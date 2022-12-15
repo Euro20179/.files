@@ -1,0 +1,378 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    border-radius: 7px;
+    /*--theme-color: #68C5D8;
+    --theme-color-bad:#B97BB5;
+    --theme-color-medium: #FFCB68;
+     */
+}
+
+button label{
+    color: black;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.5);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each workspace name */
+    border: none;
+}
+
+#workspaces button label{
+    color: #ffffff;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: #68C5D8;
+    box-shadow: inset 0 -3px #ffffff;
+    color: black;
+}
+
+#workspaces button.urgent {
+    background-color: #FFCB68;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#custom-memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#custom-pkg-count,
+#custom-vpn-location,
+#custom-tablet-mode,
+#custom-temp,
+#mpd {
+    padding: 0 10px;
+    color: black;
+}
+
+@keyframes too-hot {
+    0% {
+        background-color: red;
+    }
+    100% {
+        background-color: #ff00ff;
+    }
+}
+
+#custom-temp {
+    background-color: #68C5D8;
+}
+
+#custom-temp.too-hot{
+    animation-name: too-hot;
+    animation-duration: 500ms;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    color: white;
+}
+#custom-temp.hot{
+    background-color: #8c0000;
+    color: white;
+}
+#custom-temp.too-warm{
+    background-color: orange;
+    color: white;
+}
+#custom-temp.warm{
+    background-color: yellow;
+}
+#custom-temp.mild{
+    background-color: #4dff00;
+}
+#custom-temp.cold{
+    background-color: #009000;
+    color: white;
+}
+#custom-temp.too-cold {
+    background-color: #00cc80;
+}
+#custom-temp.freezing{
+    background-color: #00d9ff;
+}
+#custom-temp.sub-zero{
+    background-color: #99b3ff;
+}
+#custom-temp.sub-zero{
+    background-color: #9963ff;
+}
+
+#custom-tablet-mode{
+    background-color:#68C5D8;
+}
+
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: #68C5D8;
+}
+
+#battery {
+    background-color: #FFCB68;
+}
+
+#battery.charging, #battery.plugged {
+    background-color: #68C5D8;
+}
+
+#custom-pkg-count{
+  background-color: #68C5D8;
+}
+
+#custom-vpn-location.connected{
+  background-color: #68C5D8;
+}
+
+#custom-vpn-location.disconnected{
+  background-color: #B97BB5;
+}
+
+@keyframes blink {
+    to {
+        background-color: #B97BB5;
+        color: #ffffff;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    font-size: 2em;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    background-color: #68C5D8;
+}
+
+#custom-memory.low {
+    background-color: #68C5D8;
+}
+#custom-memory.medium {
+    background-color: #FFCB68;
+}
+#custom-memory.high {
+    background-color: #B97BB5;
+}
+
+
+#backlight {
+    background-color: #68C5D8;
+}
+
+#network {
+    background-color: #68C5D8;
+}
+
+#network.disconnected {
+    background-color: #B97BB5;
+}
+
+#pulseaudio {
+    background-color: #68C5D8;
+}
+
+#pulseaudio.muted {
+    background-color: #B97BB5;
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#temperature {
+    background-color: #f0932b;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#tray{
+    background-color: #68C5D8;
+}
+
+#tray menu {
+    background-color: #0a3f46;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #B97BB5;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#mpd {
+    background-color: #68C5D8;
+}
+
+#mpd.disconnected {
+    background-color: #B97BB5;
+}
+
+#mpd.stopped {
+    background-color: #68C5D8;
+}
+
+#mpd.paused {
+    background-color: #FFCB68;
+}
+
+#language {
+    background: #00b093;
+    color: #740864;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#tags button{
+  color: white;
+  transition: color 200ms;
+}
+
+#tags button.focused{
+  font-size: 1.2em;
+  color: lime;
+}
+
+#tags button.occupied {
+  border-radius: 0px;
+  border-bottom: 3px solid white;
+}
+
+#disk{
+    color: black;
+    background-color: #68C5D8;
+}
+
+#disk.low{
+    background-color: #68C5D8;
+}
+
+#disk.medium{
+    background-color: #FFCB68;
+}
+
+#disk.high{
+    background-color: #B97BB5;
+}
