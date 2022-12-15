@@ -1,0 +1,232 @@
+#!/bin/sh
+
+#some java apps don't work without this
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+#export XCURSOR_SIZE=30
+
+export XCURSOR_THEME=Borealis-cursors
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export SDL_IM_MODULE=fcitx
+export XMODIFIERS='@im=fcitx'
+
+#xdg dirs
+export XDG_HISTORY_HOME=${XDG_HISTORY_HOME:=$HOME/.history}
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_GAMES_HOME=${XDG_GAMES_HOME:="$HOME/Games"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_DOWNLOAD_HOME=${XDG_DOWNLOAD_HOME:="$HOME/Downloads"}
+export XDG_DOCUMENTS_HOME=${XDG_DOCUMENTS_HOME:="$HOME/Documents"}
+export XDG_PICTURES_HOME=${XDG_PICTURES_HOME:="$HOME/Pictures"}
+export XDG_VIDEOS_HOME=${XDG_VIDEOS_HOME:="$HOME/Videos"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
+export XDG_MUSIC_HOME=${XDG_MUSIC_HOME:="$HOME/Songs"}
+export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
+
+export WALLPAPER="$XDG_PICTURES_HOME/system-images/desktop.png"
+export NEOFETCH_IMAGE="${XDG_PICTURES_HOME}/system-images/neofetch.png"
+
+export GTK_USE_PORTAL=1
+
+export TODO_FILE="$HOME/Documents/TODO"
+
+export SHELL_LIB="$HOME/.local/lib/shell"
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+#export YTFZF_CHECK_VARS_EXISTS=0
+
+#mpd config
+CONF_FILE="$HOME/.config/mpd.conf"
+
+#fixes weird xdg-open bugs for some fucking reason
+[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=X-generic
+
+# default progs
+
+export BROWSER_LITE="_BROWSER_LITE"
+export BROWSER="_BROWSER"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export PAGER="less -R"
+export TERMINAL=footclient
+export MENU_LAUNCHER="os-menu"
+export MENU="menu"
+export IMAGE_VIEWER="feh"
+export EDITOR="nvim"
+export OPENER="xdg-open"
+export EMAIL="thunderbird"
+export VIDEO_PLAYER="mpv --geometry=1000"
+export AUDIO_PLAYER="mpv --no-video"
+export MATRIX="fractal"
+export IRC="$MATRIX"
+export SYSMON="btop"
+export UNICODE_PICKER="pick-emoji"
+export LOCKER="lock"
+#export LOCKER="gtklock -t 'Funbook Air'"
+export TRASH="$HOME/.local/share/trash"
+
+alias 'bat%=cat /sys/class/power_supply/BAT0/capacity'
+
+alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
+alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
+alias otd="doas rmmod wacom; otd"
+alias "TODO=$EDITOR $TODO_FILE"
+#this file is sourced in my other shells
+alias vim="vim -i $HOME/.cache/vim/viminfo"
+alias x="sx sh $HOME/.config/xinitrc"
+alias lo=libreoffice
+alias "l=ls -AX --group-directories-first --color=auto"
+alias "ll=ls -ASs --group-directories-first --color=auto"
+alias "password=pass-gen"
+alias ":q=exit"
+alias "ds=cd ~/Downloads"
+alias "dF=cd ~/Documents"
+alias "o=mimeopen"
+alias "wget=wget --no-hsts"
+alias "volume=pacmd set-default-sink"
+alias "peaclock=peaclock --config-dir=$HOME/.config/peaclock"
+alias "sw=peaclock --config=$HOME/.config/peaclock/stopwatch"
+alias "bc=bc -l"
+alias "less=less -r"
+alias "vim=nvim"
+alias "man-s=man -k . | dmenu -l 30 | awk '{print \$1}' | xargs -r man -Tpdf | zathura -"
+alias "todo=nvim $HOME/Documents/vimwiki/TODO.md"
+alias "dr=dragon -x"
+alias "loc=tokei"
+alias "dfile=dragon -t -x | xargs wget --no-hsts"
+alias "fbs=zathura Pictures/schedule.pdf"
+alias "TIL=$EDITOR $HOME/Documents/vimwiki/til/README.md"
+alias "lman=MANPAGER=less man"
+
+man () {
+    section=1
+    page="$2"
+    if [ "$page" ]; then
+        section="$1"
+    else
+        page="$1"
+    fi
+
+    nvim --cmd "let g:euro_is_manpage='$page($section)'" man://"${page}(${section})"
+}
+
+lk () {
+    if [ "$1" = "-f" ]; then
+	luakit "$PWD/$2"
+    elif [ "$1" = "-F" ]; then
+	luakit "$2"
+    else
+	luakit "$@"
+    fi
+}
+
+
+vimwiki () {
+    [ -n "$1" ] && file="$1" || file="index.md"
+    printf "%s" "$file" | grep -qP '\..*$' || file="$file.md"
+    nvim $HOME/Documents/vimwiki/"$file"
+}
+
+gc () {
+    sub_dir="$1"
+    case "$sub_dir" in
+        y) sub_dir="ytfzf" ;;
+        c) sub_dir="../Coding Projects/bash/catmd" ;;
+        h) sub_dir="../Coding Projects/Python_things/hearthstone" ;;
+	t) sub_dir="../Coding Projects/Python_things/tml" ;;
+	B) sub_dir="../Coding Projects/JS Things/bircle" ;;
+	m) sub_dir="../Coding Projects/Python_things/md-to-html" ;;
+    d) sub_dir="../Coding Projects/C/dvd_screen" ;;
+    esac
+    cd "$HOME/Programs/GithubContribs/$sub_dir"
+}
+
+export NO_AT_BRIDGE=1
+export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,j:down,ctrl-k:up"
+
+export DIALOGRC=~/.config
+export XINITRC=~/.config
+export LESSHISTFILE="/dev/null"
+export FZF_DEFAULT_OPTS="--cycle"
+export NODE_REPL_HISTORY="/dev/null"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export DVDCSS_CACHE="$XDG_CACHE_HOME/dvdcss"
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+
+export MPV_WIN_SIZE=1000
+export GOPATH="$XDG_DATA_HOME/go"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/euro/Programs/Coding Projects/bash:"
+export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:/opt"
+export FILEEXPLORER="kitty"
+export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
+
+py_color="38;2;254;227;107m\033[48;2;52;110;158"
+old_color="9"
+img_color="38;2;198;141;254"
+video_color="38;2;116;194;254"
+audio_color="38;2;116;194;254"
+win_exe_color="38;2;24;163;0"
+document_color="38;2;0;187;255"
+pdf_color="38;2;220;0;0"
+compressed_color="38;2;100;0;0"
+c_color="48;2;101;155;211"
+shell_lang_color="48;2;160;168;0"
+markup_color="48;2;232;93;0"
+js_color="48;2;245;220;29m\033[38;2;0;0;0"
+ts_color="48;2;36;131;209m\033[38;2;245;220;29"
+font_file_color="38;2;25;245;164"
+powerpoint_color="38;2;186;55;24"
+spreadsheet_color="38;2;1;110;56"
+css_color="48;2;41;165;218"
+java_color="48;2;222;96;0m\033[1;38;2;0;205;255"
+
+export LS_COLORS="*.py=$py_color:*-old=$old_color:*.old=$old_color:*.jpg=$img_color:*.jpeg=$img_color:*.png=$img_color:*.ico=$img_color:*.icon=$img_color:*.webp=$audio_color:*.mp4=$video_color:*.mkv=$video_color:*.m4v=$video_color:*.mov=$video_color:*.gif=$img_color:*.exe=$win_exe_color:*.bat=$shell_lang_color:*.flac=$audio_color:*.mp3=$audio_color:*.m4a=$audio_color:*.ogg=$audio_color:*.opus=$audio_color:*.wav=$audio_color:*.doc=$document_color:*.docx=$document_color:*.odf=$document_color:*.pdf=$pdf_color:*.7z=$compressed_color:*.gz=$compressed_color:*.rar=$compressed_color:*.bz2=$compressed_color:*.cpp=$c_color:*.hpp=$c_color:*.c=$c_color:*.h=$c_color:*.lock=$old_color:*.jar=$compressed_color:*.xf=$compressed_color:*.zsh=$shell_lang_color:*.sh=$shell_lang_color:*.html=$markup_color:*.xml=$markup_color:*.md=$markup_color:*.ps1=$shell_lang_color:*.js=$js_color:*.ts=$ts_color:*.ttf=$font_file_color:*.woff=$font_file_color:*.otf=$font_file_color:*.woff2=$font_file_color:*.htm=$markup_color:*.bash=$shell_lang_color:*.ppt=$powerpoint_color:*.xls=$spreadsheet_color:*.xlsx=$spreadsheet_color:*.ods=$spreadsheet_color:*.webm=$video_color:*.css=$css_color:*.scss=$css_color:*.java=$java_color:*.zip=$compressed_color:*.apikey=$document_color"
+
+unset py_color old_color img_color video_color audio_color win_exe_color document_color pdf_color\
+    compressed_color c_color shell_lang_color markup_color js_color font_file_color powerpoint_color spreadsheet_color css_color java_color
+
+unalias vim
+
+rand_num () {
+    num="$(od -N 1 /dev/urandom)"
+    : "${num%$'\n'*}"
+    echo "${_#* }"
+}
+
+case "$XDG_SESSION_TYPE" in
+    X11|wayland)
+        case "$TERM" in
+            foot) neofetch --sixel "$NEOFETCH_IMAGE" --size 250px ;;
+            kitty) neofetch --kitty "$NEOFETCH_IMAGE" ;;
+            *) neofetch --ascii "$NEOFETCH_IMAGE" ;;
+        esac ;;
+    tty)
+    ;;
+esac
+
+if [ "$XDG_SESSION_TYPE" != "tty" ] && [ -z "$COMPUTER_STARTED_CORRECTLY" ]; then
+    trap ":" SIGHUP SIGINT SIGQUIT 6 SIGKILL SIGALRM SIGTERM
+    printf "\033[31m%s\033[0m\n" "It appears you have started my computer in an incorrect way. Goodbye"
+    sleep 5
+    shutdown now &
+fi
+
+
+stream_udp () {
+    ffmpeg - "$1" -vcodec libx264 -f flv udp://localhost:8080
+}
+
+alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME"
+
+alias rm="trash"
+
+unset welcomeStr
