@@ -62,7 +62,7 @@ local function queryChatBot(data)
             local handle = io.popen([[
         curl -s "https://api.openai.com/v1/completions" \
              -H 'Content-Type: application/json' \
-             -H 'Authorization: Bearer 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' \
+             -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
              -d '{"model": "text-davinci-003", "prompt": '"$(cat ]] ..
                 filename .. [[)"', "temperature": 0}' | jq -r '.choices[0].text'
     ]]       )
@@ -92,11 +92,10 @@ local function _chatbotmain(data, type)
         f:write(str)
         f:close()
     end
-    local API_KEY = "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"
     local handle = io.popen([[
         curl -s "https://api.openai.com/v1/edits" \
              -H 'Content-Type: application/json' \
-             -H 'Authorization: Bearer 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' \
+             -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
              -d '{"model": "text-davinci-edit-001", "input": '"$(cat ]] ..
         filename .. [[)"', "instruction": "]] .. type .. [[", "temperature": 0}' | jq -r '.choices[0].text'
     ]])
