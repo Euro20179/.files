@@ -5,7 +5,7 @@ local editor = require "editor"
 local engines = settings.window.search_engines
 
 engines.ddg = "https://www.duckduckgo.com/?q=%s"
-engines.brave = "https://search.brave.com/?q=%s"
+engines.brave = "https://search.brave.com/search?q=%s"
 engines.searx = "https://searx.prvcy.eu/search?q=%s"
 engines.default = engines.brave
 

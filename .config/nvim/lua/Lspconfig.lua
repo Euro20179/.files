@@ -14,6 +14,18 @@ lspconfig.sumneko_lua.setup({
     }
 })
 
+-- lspconfig.perlnavigator.setup{
+--     cmd = {
+--         "node", "/home/euro/Programs/PerlNavigator/server/out/server.js", "--stdio"
+--     },
+--     settings = {
+--         perlnavigator = {
+--             perlPath = "perl"
+--         }
+--     }
+-- }
+--
+
 lspconfig['java_language_server'].setup {
     cmd = { "/home/euro/Programs/java-language-server/dist/lang_server_linux.sh" },
     capabilities = capabilities
