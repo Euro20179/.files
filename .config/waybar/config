@@ -8,7 +8,7 @@
     //"modules-left": ["river/tags"],
     "modules-left": ["custom/tablet-mode", "wlr/workspaces", "custom/temp"],
     "modules-center": ["custom/vpn-location"],
-    "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/memory", "backlight", "keyboard-state", "battery", "clock", "tray"],
+    "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
     // Modules configuration
     //"sway/workspaces": {
     //    "disable-scroll": true,
@@ -87,6 +87,18 @@
         "format": "{usage}% ",
         "tooltip": false
     },
+    "custom/gpu-temp": {
+        "exec": "$HOME/.config/waybar/gpu-temp.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}G🌡"
+    },
+    "custom/cpu-temp": {
+        "exec": "$HOME/.config/waybar/tmep.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}🌡"
+    },
     "custom/memory": {
 	"exec": "$HOME/.config/waybar/memory.sh",
         "return-type": "json",
@@ -162,7 +174,7 @@
     },
     "disk": {
         "interval": 30,
-        "path": "/",
+        "path": "/home",
         "format": "<span color=\"red\">{used}</span>/<span foreground=\"black\">{free}</span>🌲",
         "states": {
             "low": 0,

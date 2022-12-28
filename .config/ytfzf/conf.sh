@@ -32,6 +32,8 @@ if [ "$0" != ./ytfzf ]; then
     :
 fi
 
+export YTFZF_PICTURES_WALLPAPER_PATH="/usr/share/wallpapers:/usr/share/backgrounds:$HOME/.local/share/wallpapers:$HOME/.local/share/backgrounds:$HOME/Pictures/wallpapers"
+
 ##########################
 #      CONFIG VARS       #
 ##########################
@@ -271,12 +273,12 @@ on_opt_parse () {
                     return 1;;
                 SI|S)
                     is_sort=1
-                    search_result_type=video 
-            ;;
-        ani-gogohd-link) export PRIVATE_do_on_no_thumbnail=0 ;;
-            ani|ani-category)
-            export PRIVATE_do_on_no_thumbnail=1
-            ;;
+                    search_result_type=video ;;
+                pictures)
+                    load_url_handler "ffplay" ;;
+                ani-gogohd-link) export PRIVATE_do_on_no_thumbnail=0 ;;
+                ani|ani-category)
+                    export PRIVATE_do_on_no_thumbnail=1 ;;
             esac ;;
         pl)
             scrape="p"
@@ -316,13 +318,14 @@ ext_on_search () {
         y://*) curr_scrape=Y; _search="${_search#y://}" ;;
         o://*) curr_scrape=O; _search="${_search#o://}" ;;
         p://*) curr_scrape=P; _search="${_search#p://}" ;;
+        pics://) scrape="pictures"; source_scrapers; curr_scrape=pictures; _search="" ;;
         ytfzf://*)
             _search="${1#ytfzf://}"
             _search="$(printf "%s" "$_search" | tr '+' ' ')" ;;
     esac
 }
 
-[ -f "$HOME/.local/state/tv-mode" ] && is_fullscreen=1
+[ -f "$HOME/.local/state/tv-mode" ] && url_handler_opts="${url_handler_opts} --fullscreen"
 
 
 on_opt_parse_frame_at_second () {

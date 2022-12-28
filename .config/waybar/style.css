@@ -86,6 +86,8 @@ window#waybar.chromium {
 #clock,
 #battery,
 #cpu,
+#custom-cpu-temp,
+#custom-gpu-temp,
 #custom-memory,
 #disk,
 #temperature,
@@ -222,8 +224,30 @@ label:focus {
     background-color: #000000;
 }
 
+#custom-cpu-temp,
+#custom-gpu-temp,
 #cpu {
     background-color: #68C5D8;
+}
+
+#custom-cpu-temp.cold,
+#custom-gpu-temp.cold {
+    background-color: #68C5D8;
+}
+
+#custom-cpu-temp.medium,
+#custom-gpu-temp.medium {
+    background-color: #FFCB68;
+}
+
+#custom-cpu-temp.hot,
+#custom-gpu-temp.hot {
+    background-color: #B97BB5;
+}
+
+#custom-cpu-temp.warning,
+#custom-gpu-temp.warning {
+    background-color: #db5959;
 }
 
 #custom-memory.low {

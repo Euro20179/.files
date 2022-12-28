@@ -5,7 +5,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 #export XCURSOR_SIZE=30
 
-export XCURSOR_THEME=Borealis-cursors
+export XCURSOR_THEME="Bibata-Modern-Ice"
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
