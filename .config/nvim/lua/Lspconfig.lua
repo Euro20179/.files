@@ -51,9 +51,9 @@ lspconfig['rust_analyzer'].setup {
 lspconfig['pylsp'].setup {
   capabilities = capabilities
 }
--- lspconfig['bashls'].setup{
---   capabilities = capabilities
--- }
+
+lspconfig['bashls'].setup{}
+
 lspconfig['clangd'].setup{
   capabilities = capabilities,
   filetypes = { "c", "cpp" }

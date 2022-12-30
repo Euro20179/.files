@@ -180,4 +180,13 @@ require("packer").startup(function(use)
         run = function() vim.fn['firenvim#install'](0) end
     }
     use 'ms-jpq/chadtree'
+    use 'f-person/git-blame.nvim'
+    use {
+        'windwp/nvim-autopairs',
+        config = function ()
+            require("nvim-autopairs").setup{
+            }
+        end
+    }
+    use 'catppuccin/nvim'
 end)

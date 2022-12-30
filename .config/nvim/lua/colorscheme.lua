@@ -1,7 +1,7 @@
 local _M = {}
 
 local colorscheme = {
-    scheme = "tokyonight-night"
+    scheme = "catppuccin"
 }
 
 colorscheme.after = function()

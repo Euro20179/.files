@@ -3,9 +3,9 @@
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
     border-radius: 7px;
-    /*--theme-color: #68C5D8;
-    --theme-color-bad:#B97BB5;
-    --theme-color-medium: #FFCB68;
+    /*--theme-color: #96CDFB;
+    --theme-color-bad:#F28FAD;
+    --theme-color-medium: #F8BD96;
      */
 }
 
@@ -64,13 +64,13 @@ window#waybar.chromium {
 }
 
 #workspaces button.focused {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
     box-shadow: inset 0 -3px #ffffff;
     color: black;
 }
 
 #workspaces button.urgent {
-    background-color: #FFCB68;
+    background-color: #F8BD96;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -117,7 +117,7 @@ window#waybar.chromium {
 }
 
 #custom-temp {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #custom-temp.too-hot{
@@ -159,7 +159,7 @@ window#waybar.chromium {
 }
 
 #custom-tablet-mode{
-    background-color:#68C5D8;
+    background-color:#96CDFB;
 }
 
 
@@ -179,32 +179,32 @@ window#waybar.chromium {
 }
 
 #clock {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #battery {
-    background-color: #FFCB68;
+    background-color: #F8BD96;
 }
 
 #battery.charging, #battery.plugged {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #custom-pkg-count{
-  background-color: #68C5D8;
+  background-color: #96CDFB;
 }
 
 #custom-vpn-location.connected{
-  background-color: #68C5D8;
+  background-color: #96CDFB;
 }
 
 #custom-vpn-location.disconnected{
-  background-color: #B97BB5;
+  background-color: #F28FAD;
 }
 
 @keyframes blink {
     to {
-        background-color: #B97BB5;
+        background-color: #F28FAD;
         color: #ffffff;
     }
 }
@@ -227,22 +227,22 @@ label:focus {
 #custom-cpu-temp,
 #custom-gpu-temp,
 #cpu {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #custom-cpu-temp.cold,
 #custom-gpu-temp.cold {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #custom-cpu-temp.medium,
 #custom-gpu-temp.medium {
-    background-color: #FFCB68;
+    background-color: #F8BD96;
 }
 
 #custom-cpu-temp.hot,
 #custom-gpu-temp.hot {
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
 
 #custom-cpu-temp.warning,
@@ -251,34 +251,34 @@ label:focus {
 }
 
 #custom-memory.low {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 #custom-memory.medium {
-    background-color: #FFCB68;
+    background-color: #F8BD96;
 }
 #custom-memory.high {
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
 
 
 #backlight {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #network {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #network.disconnected {
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
 
 #pulseaudio {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #pulseaudio.muted {
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
 
 #custom-media {
@@ -304,7 +304,7 @@ label:focus {
 }
 
 #tray{
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #tray menu {
@@ -317,7 +317,7 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
 
 #idle_inhibitor {
@@ -330,19 +330,19 @@ label:focus {
 }
 
 #mpd {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #mpd.disconnected {
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
 
 #mpd.stopped {
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #mpd.paused {
-    background-color: #FFCB68;
+    background-color: #F8BD96;
 }
 
 #language {
@@ -386,17 +386,17 @@ label:focus {
 
 #disk{
     color: black;
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #disk.low{
-    background-color: #68C5D8;
+    background-color: #96CDFB;
 }
 
 #disk.medium{
-    background-color: #FFCB68;
+    background-color: #F8BD96;
 }
 
 #disk.high{
-    background-color: #B97BB5;
+    background-color: #F28FAD;
 }
