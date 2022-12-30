@@ -1,0 +1,43 @@
+#!/bin/bash
+
+export WM="${WM:-sway}"
+
+killall eww
+
+mako & disown
+brightnessctl s 100%
+
+killall BAT0
+BAT0 & disown
+
+
+# case "$XDG_CURRENT_DESKTOP" in
+#     Hyprland)
+#         hyprland keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+#         hyprland keyword monitor DP-1,1920x1080@165,0x0,1
+#         hyprland keyword monitor DP-3,disable ;;
+#     *)
+#         wlr-randr --output DP-3 --off
+#         wlr-randr --output HDMI-A-1 --pos 1920,0
+#         wlr-randr --output DP-1 --pos 0,0 ;;
+# esac
+#
+killall waybar
+waybar & disown
+
+killall swww
+swww init
+#set-wallpaper swww img
+wallpaper-slideshow $((60 * 10)) & disown
+
+killall swayidle
+swayidle timeout $((60 * 20)) $LOCKER & disown
+
+dbus-update-activation-environment --systemd --all
+
+fcitx -d & disown
+
+killall foot
+command -v foot && foot --server & disown
+
+export SDL_VIDEODRIVER=wayland
