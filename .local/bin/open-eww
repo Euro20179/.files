@@ -1,0 +1,7 @@
+#!/bin/bash
+
+eww daemon
+
+win="$(eww windows | rofi -dmenu -theme nord)"
+
+eww open "$win"
