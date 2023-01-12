@@ -89,6 +89,10 @@ enable_plugin () {
 }
 #}}}
 
+preexec () {
+    printf '\033]0;%s (foot)\a' "$1"
+}
+
 enable_plugin "zsh-syntax-highlighting"
 enable_plugin "zsh-auto-complete"
 enable_plugin "fzf-tab"

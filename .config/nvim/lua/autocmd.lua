@@ -36,6 +36,14 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.opt.filetype = "text"
     end
 })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    pattern = "*.email",
+    callback = function ()
+        vim.opt.filetype = 'email'
+    end
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank({timeout = 200, higroup = "RedrawDebugNormal" })

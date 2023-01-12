@@ -22,6 +22,7 @@
 #      EXTENSIONS        #
 ##########################
 
+
 #only load extensions if not testing locally
 if [ "$0" != ./ytfzf ]; then
     load_extension playlists
@@ -29,7 +30,7 @@ if [ "$0" != ./ytfzf ]; then
     # load_extension options
     #load_extension "log-time"
     load_extension "ipc"
-    :
+    load_extension subscription-manager
 fi
 
 export YTFZF_PICTURES_WALLPAPER_PATH="/usr/share/wallpapers:/usr/share/backgrounds:$HOME/.local/share/wallpapers:$HOME/.local/share/backgrounds:$HOME/Pictures/wallpapers"
@@ -55,9 +56,11 @@ custom_scrape_search_exclude="invidious-popular recommended sI osu-dir "
 
 sub_link_count=2
 
-thumbnail_quality=high
+thumbnail_quality=maxres
 
 is_loop=1
+
+invidious_instance="http://localhost:3000"
 
 #listen for these extra keybinds
 custom_shortcut_binds="alt-b,alt-d,alt-r,alt-n,alt-c"

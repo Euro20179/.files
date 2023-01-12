@@ -3,13 +3,10 @@
 export WM="${WM:-sway}"
 
 killall eww
+eww daemon
 
 mako & disown
 brightnessctl s 100%
-
-killall BAT0
-BAT0 & disown
-
 
 # case "$XDG_CURRENT_DESKTOP" in
 #     Hyprland)
@@ -39,5 +36,7 @@ fcitx -d & disown
 
 killall foot
 command -v foot && foot --server & disown
+
+hyprctl setcursor Bibata-Modern-Ice 24
 
 export SDL_VIDEODRIVER=wayland

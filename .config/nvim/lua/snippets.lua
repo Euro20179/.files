@@ -80,6 +80,26 @@ My student needs {goal}.
     }))
 })
 
+ls.add_snippets("email", {
+    ls.s("email",
+        fmt([[> from: {from}
+> to: {to}
+> subject: {subject}
+> cc: {cc}
+> bcc: {bcc}
+> format: {format}
+> body: {body}]], {
+    from = ls.i(1, "[from]"),
+    to = ls.i(2, "[to (comma seperated)]"),
+    subject = ls.i(3, "[subject]"),
+    cc = ls.i(4, "[cc (comma separated)]"),
+    bcc = ls.i(5, "[bcc (comma separated)]"),
+    format = ls.c(6, {ls.t("html"), ls.t("text")}),
+    body = ls.i(7, "[body]")
+})
+    )
+})
+
 ls.add_snippets("text", {
     ls.s("tcs",
 	fmt([[{student} was {interest} to use {concept} and {added} {stuffAdded} {project}. I was really {pleased} to see how they took {concept2} and {coded_it}

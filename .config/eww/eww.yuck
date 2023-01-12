@@ -1,3 +1,6 @@
+(include "./power-window/main.yuck")
+
+
 (defwindow hwinfo
            :monitor 1
            :stacking "fg"
@@ -64,21 +67,54 @@
 
 (defwidget cpu []
     (box :orientation "v"
-        (progress :class "core-0" :value {EWW_CPU.cores[0].usage})
-        (progress :class "core-1" :value {EWW_CPU.cores[1].usage})
-        (progress :class "core-2" :value {EWW_CPU.cores[2].usage})
-        (progress :class "core-3" :value {EWW_CPU.cores[3].usage})
-        (progress :class "core-4" :value {EWW_CPU.cores[4].usage})
-        (progress :class "core-5" :value {EWW_CPU.cores[5].usage})
-        (progress :class "core-6" :value {EWW_CPU.cores[6].usage})
-        (progress :class "core-7" :value {EWW_CPU.cores[7].usage})
-        (progress :class "core-8" :value {EWW_CPU.cores[8].usage})
-        (progress :class "core-9" :value {EWW_CPU.cores[9].usage})
-        (progress :class "core-10" :value {EWW_CPU.cores[10].usage})
-        (progress :class "core-11" :value {EWW_CPU.cores[11].usage})
-        (box :class "cpu-box"
-            (label :text "${round(EWW_CPU.avg, 2)}%")
-            (progress :value {EWW_CPU.avg} :start-at 0 :thickness 10 :clockwise true :class "cpu-usage" :width {center_progress * -1})
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[0].freq / 1000}")
+            (progress :class "core-0" :value {EWW_CPU.cores[0].usage})
         )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[1].freq / 1000}")
+            (progress :class "core-1" :value {EWW_CPU.cores[1].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[2].freq / 1000}")
+            (progress :class "core-2" :value {EWW_CPU.cores[2].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[3].freq / 1000}")
+            (progress :class "core-3" :value {EWW_CPU.cores[3].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[4].freq / 1000}")
+            (progress :class "core-4" :value {EWW_CPU.cores[4].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[5].freq / 1000}")
+            (progress :class "core-5" :value {EWW_CPU.cores[5].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[6].freq / 1000}")
+            (progress :class "core-6" :value {EWW_CPU.cores[6].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[7].freq / 1000}")
+            (progress :class "core-7" :value {EWW_CPU.cores[7].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[8].freq / 1000}")
+            (progress :class "core-8" :value {EWW_CPU.cores[8].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[9].freq / 1000}")
+            (progress :class "core-9" :value {EWW_CPU.cores[9].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[10].freq / 1000}")
+            (progress :class "core-10" :value {EWW_CPU.cores[10].usage})
+        )
+        (box :orientation "h"
+            (label :text "${EWW_CPU.cores[11].freq / 1000}")
+            (progress :class "core-11" :value {EWW_CPU.cores[11].usage})
+        )
+        (progress :value {EWW_CPU.avg} :start-at 0 :thickness 10 :clockwise true :class "cpu-usage" :width {center_progress * -1})
     )
 )

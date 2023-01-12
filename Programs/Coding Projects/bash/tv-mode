@@ -35,7 +35,9 @@ set.hyprland () {
         wlr-randr --output DP-1 --pos 0x0
         rm "$state_file"
     else
-        hyprctl keyword monitor DP-3,preferred,3840x0,1
+        hyprctl keyword monitor DP-3,preferred,0x0,1
+        hyprctl keyword monitor HDMI-A-1,disable
+        hyprctl keyword monitor DP-1,disable
         notify-send -c tv-mode "TV MODE" "ON"
         for i in {1..9}; do
             hyprctl keyword wsbind "$i,DP-3"
