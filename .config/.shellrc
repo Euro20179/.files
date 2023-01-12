@@ -37,6 +37,8 @@ export SHELL_LIB="$HOME/.local/lib/shell"
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+export TZ=:/etc/localtime
+
 #export YTFZF_CHECK_VARS_EXISTS=0
 
 #mpd config
@@ -51,7 +53,7 @@ export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING='luakit'
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export PAGER="moar"
+export PAGER="less"
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
