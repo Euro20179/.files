@@ -2,7 +2,13 @@
 
 #this is for styling ytfzf, I have it seperate for my sys-theme program
 
-FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color fg:#b3b3b3,fg+:#FFCB68,hl:#7D71B7,border:#7D71B7,query:#64CBF8,pointer:#FFCB68"
+c_blue="\033[38;2;76;131;241;1m"
+c_cyan="\033[38;2;129;200;190;1m"
+c_yellow="\033[38;2;248;189;150;1m"
+c_green="\033[38;2;134;166;116;1m"
+c_magenta="\033[38;2;125;113;183;1m"
+
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color fg:#b3b3b3,fg+:#F8BD96,hl:#7D71B7,border:#7D71B7,query:#81C8BE,pointer:#F8BD96"
 
 _get_var () {
     echo "get $1" > "$ipc_file"
