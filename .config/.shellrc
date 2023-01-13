@@ -221,13 +221,6 @@ case "$XDG_SESSION_TYPE" in
     ;;
 esac
 
-if [ "$XDG_SESSION_TYPE" != "tty" ] && [ -z "$COMPUTER_STARTED_CORRECTLY" ]; then
-    trap ":" SIGHUP SIGINT SIGQUIT 6 SIGKILL SIGALRM SIGTERM
-    printf "\033[31m%s\033[0m\n" "It appears you have started my computer in an incorrect way. Goodbye"
-    sleep 5
-    shutdown now &
-fi
-
 
 stream_udp () {
     ffmpeg - "$1" -vcodec libx264 -f flv udp://localhost:8080
@@ -238,3 +231,5 @@ alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=
 alias rm="trash"
 
 unset welcomeStr
+
+. "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"
