@@ -52,6 +52,10 @@ echo -ne '\e['"$INSBEAM"' q'
 preexec() { echo -ne '\e['"$INSBEAM"' q'; }
 #END CURSOR
 
+chpwd () {
+    [ -d ".git" ] && onefetch
+}
+
 rangercd () {
     tmp="$(mktemp)"
     ranger --choosedir="$tmp" --show-only-dirs
