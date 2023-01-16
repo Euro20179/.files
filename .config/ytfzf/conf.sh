@@ -60,7 +60,7 @@ thumbnail_quality=maxres
 
 is_loop=1
 
-invidious_instance="http://localhost:3000"
+# invidious_instance="http://localhost:3000"
 
 #listen for these extra keybinds
 custom_shortcut_binds="alt-b,alt-d,alt-r,alt-n,alt-c"

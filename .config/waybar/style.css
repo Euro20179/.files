@@ -24,6 +24,14 @@ label{
     padding: 5px 10px;
 }
 
+tooltip label{
+    color: white;
+}
+
+tooltip{
+    background-color:#7D71B7;
+}
+
 #tray, #tray *{
     background-color: #7D71B7;
 }
