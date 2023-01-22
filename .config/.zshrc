@@ -53,7 +53,7 @@ preexec() { echo -ne '\e['"$INSBEAM"' q'; }
 #END CURSOR
 
 chpwd () {
-    [ -d ".git" ] && onefetch
+    [ "$OLDPWD" != "$PWD" ] && [ -d ".git" ] && onefetch
 }
 
 rangercd () {

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-#this is for styling ytfzf, I have it seperate for my sys-theme program
-
 c_blue="\033[38;2;76;131;241;1m"
 c_cyan="\033[38;2;129;200;190;1m"
 c_yellow="\033[38;2;248;189;150;1m"

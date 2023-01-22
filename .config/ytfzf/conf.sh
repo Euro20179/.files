@@ -22,16 +22,21 @@
 #      EXTENSIONS        #
 ##########################
 
+if [ "$0" = "./ytfzf" ]; then
+    YTFZF_SYSTEM_ADDON_DIR=/usr/share/ytfzf/addons
+fi
 
 #only load extensions if not testing locally
-if [ "$0" != ./ytfzf ]; then
+#if [ "$0" != ./ytfzf ]; then
+    :
     load_extension playlists
-    #[ "$BASH_VERSION" ] && load_extension bsm
+    # [ "$BASH_VERSION" ] && load_extension bsm
     # load_extension options
     #load_extension "log-time"
     load_extension "ipc"
     load_extension subscription-manager
-fi
+    load_extension smart-thumb-download
+#fi
 
 export YTFZF_PICTURES_WALLPAPER_PATH="/usr/share/wallpapers:/usr/share/backgrounds:$HOME/.local/share/wallpapers:$HOME/.local/share/backgrounds:$HOME/Pictures/wallpapers"
 
@@ -272,11 +277,11 @@ on_opt_parse () {
                 sI)
                     scrape="SI"
                     is_sort=1
-                    search_result_type=video
+                    search_result_type=videos
                     return 1;;
                 SI|S)
                     is_sort=1
-                    search_result_type=video ;;
+                    search_result_type=videos ;;
                 pictures)
                     load_url_handler "ffplay" ;;
                 ani-gogohd-link) export PRIVATE_do_on_no_thumbnail=0 ;;
@@ -310,7 +315,7 @@ ext_on_search () {
     case "$curr_scrape" in
         S|SI)
             PRIVATE_old_search_result_type="$search_result_type"
-            search_result_type=video ;;
+            search_result_type=videos ;;
     esac
 
     case "$1" in
@@ -338,4 +343,9 @@ on_opt_parse_frame_at_second () {
 on_opt_parse_frame_dir () {
     PRIVATE_frame_dir="$1"
     return 1
+}
+
+on_opt_parse_term_size() {
+    printf "COLS: %d\nLINES: %d\n" "$TTY_COLS" "$TTY_LINES"
+    exit 0
 }

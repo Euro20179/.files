@@ -31,6 +31,9 @@ swayidle timeout $((60 * 20)) $LOCKER & disown
 
 dbus-update-activation-environment --systemd --all
 
+#doesn't work for some reason on activation
+killall xdg-desktop-portal-termfilechooser
+
 fcitx -d & disown
 
 killall foot
