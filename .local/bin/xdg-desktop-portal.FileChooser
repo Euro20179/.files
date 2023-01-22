@@ -1,0 +1,24 @@
+#!/bin/bash
+
+multiple="$1"
+dir="$2"
+save="$3"
+path="$4"
+out="$5"
+
+if [ "$save" -eq 1 ]; then
+    set -- --choosefile="$out" "${path%/*}"
+    printf "%s\n" "HOLDER file for caller, this is where data will be saved" > "$path"
+elif [ "$dir" -eq 1 ]; then
+    set -- --chosedir="$out" --show-only-dirs
+elif [ "$multiple" -eq 1 ];  then
+    set -- --choosefiles="$out"
+else
+    set -- --choosefile="$out"
+fi
+
+$TERMINAL -e ranger "$@"
+
+if [ "$save" -eq 1 ] && [ ! -s "$out" ]; then
+    rm "$path"
+fi
