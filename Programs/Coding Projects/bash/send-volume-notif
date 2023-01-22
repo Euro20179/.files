@@ -1,0 +1,13 @@
+#!/bin/bash
+
+read -r volume <<< $(pamixer --get-volume)
+read -r mic <<< $(pactl get-source-volume $(pactl get-default-source) | grep -o '[[:digit:]]\+%' | head -n 1)
+
+case $1 in
+  mic-lower)
+      makoctl dismiss -a && notify-send -c v-lower -t 1000 -h int:value:$mic "🎤" "$mic" ;;
+  mic-higher)
+      makoctl dismiss -a && notify-send -c v-higher -t 1000 -h int:value:$mic "🎤" "$mic" ;;
+  higher) makoctl dismiss -a && notify-send -c v-higher -t 1000 -h int:value:$volume "🔊" "$volume" ;;
+  lower) makoctl dismiss -a && notify-send -c v-lower -t 1000 -h int:value:$volume "🔉" "$volume"
+esac
