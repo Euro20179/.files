@@ -57,7 +57,7 @@ export PAGER="less"
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
-export IMAGE_VIEWER="feh"
+export IMAGE_VIEWER="display"
 export EDITOR="nvim"
 export OPENER="xdg-open"
 export EMAIL="thunderbird"
@@ -214,9 +214,9 @@ rand_num () {
 case "$XDG_SESSION_TYPE" in
     X11|wayland)
         case "$TERM" in
-            foot) neofetch --sixel "$NEOFETCH_IMAGE" --size 250px ;;
-            kitty) neofetch --kitty "$NEOFETCH_IMAGE" ;;
-            *) neofetch --ascii "$NEOFETCH_IMAGE" ;;
+            foot) _FROM_SHELLRC=1 neofetch --sixel "$NEOFETCH_IMAGE" --size 250px ;;
+            kitty) _FROM_SHELLRC=1 neofetch --kitty "$NEOFETCH_IMAGE" ;;
+            *) _FROM_SHELLRC=1 neofetch --ascii "$NEOFETCH_IMAGE" ;;
         esac ;;
     tty)
     ;;
