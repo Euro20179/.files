@@ -48,8 +48,6 @@ info_wait_action="Q"
 
 show_thumbnails=$((PRIVATE_in_nvim^1))
 
-yt_video_link_domain="https://vid.puffyan.us"
-
 search_result_type=all
 
 async_thumbnails=1
