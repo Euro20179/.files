@@ -5,7 +5,7 @@ border-color=#004361aa
 border-size=5
 border-radius=5
 ignore-timeout=1
-icon-path=/usr/share/icons/Acid
+icon-path=/home/euro/.local/share/icons/Acid
 
 [urgency=low]
 border-color=#4a4a4aaa
