@@ -42,7 +42,7 @@ require("packer").startup(function(use)
     }
     -- use "yonlu/omni.vim"
     use "bluz71/vim-nightfly-guicolors"
-    --use "nvim-treesitter/nvim-treesitter-context"
+    -- use "nvim-treesitter/nvim-treesitter-context"
     --use "stevearc/aerial.nvim"
     use "https://github.com/nvim-treesitter/nvim-treesitter-refactor"
     use { 'bennypowers/nvim-regexplainer',
@@ -189,4 +189,6 @@ require("packer").startup(function(use)
         end
     }
     use 'catppuccin/nvim'
+    use 'sindrets/diffview.nvim'
+    use 'smjonas/duplicate.nvim'
 end)

@@ -35,9 +35,9 @@ lspconfig['tsserver'].setup {
   capabilities = capabilities,
   --filetypes = { "typescript" },
   root_dir = function() return vim.loop.cwd() end,
-  -- on_attach = function (client, bufnr)
-  --   require("nvim-navic").attach(client, bufnr)
-  -- end
+  on_attach = function (client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
+  end
 }
 lspconfig['marksman'].setup{
     capabilities = capabilities

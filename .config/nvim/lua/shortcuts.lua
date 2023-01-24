@@ -232,6 +232,9 @@ local nShortcuts = {
     { "<C-c>", "<cmd>CccPick<cr>" },
     { "<a-x>", "<cmd>CccConvert<cr>" },
     -- }}}
+    -- Wiki {{{
+    { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>"}    
+    -- }}}
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], {})

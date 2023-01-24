@@ -167,8 +167,6 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 
-export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/.wine"
-
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"

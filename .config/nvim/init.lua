@@ -1,4 +1,5 @@
 require 'snippets'
+require 'snippets-personal'
 require 'cmp_'
 require "options"
 require 'plugins'
@@ -15,6 +16,7 @@ require "user.t-source"
 require "user.ccc"
 
 require "user.dap-vscode-js"
+require "user.duplicate"
 require "impatient"
 
 cs.changeColorScheme(cs.colorscheme)

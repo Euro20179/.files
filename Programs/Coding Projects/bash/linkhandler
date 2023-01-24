@@ -1,0 +1,11 @@
+#!/bin/sh
+
+link="$*"
+
+website="$(printf "%s" "$link" | grep -Po "://.*?/" | sed -E 's/(:\/)?\///g')"
+printf "%s" "$website"
+case "$link" in
+    https://"www.youtube.com"/watch\?v=*|https://"www.odysee.com"*|https://v.redd.it*) nohup mpv --geometry=1000 "$link" > /dev/null 2>&1 & ;;
+    *.png|*.jpg|*.jpeg|*.webm|*.gif) mpv --loop "$link" & ;;
+    *) nohup $BROWSER_LITE "$link" > /dev/null 2>&1 & ;;
+esac

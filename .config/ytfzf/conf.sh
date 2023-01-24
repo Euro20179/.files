@@ -22,71 +22,13 @@
 #      EXTENSIONS        #
 ##########################
 
-if [ "$0" = "./ytfzf" ]; then
-    YTFZF_SYSTEM_ADDON_DIR=/usr/share/ytfzf/addons
-fi
-
-#only load extensions if not testing locally
-#if [ "$0" != ./ytfzf ]; then
-    :
-    load_extension playlists
-    # [ "$BASH_VERSION" ] && load_extension bsm
-    # load_extension options
-    #load_extension "log-time"
-    load_extension "ipc"
-    load_extension subscription-manager
-    load_extension smart-thumb-download
-#fi
-
-export YTFZF_PICTURES_WALLPAPER_PATH="/usr/share/wallpapers:/usr/share/backgrounds:$HOME/.local/share/wallpapers:$HOME/.local/share/backgrounds:$HOME/Pictures/wallpapers"
+. "${YTFZF_CONFIG_DIR}/conf/load-extensions"
 
 ##########################
 #      CONFIG VARS       #
 ##########################
 
-info_wait_action="Q"
-
-show_thumbnails=$((PRIVATE_in_nvim^1))
-
-search_result_type=all
-
-async_thumbnails=1
-
-notify_playing=1
-
-#do not ask for a search for these scrapers
-custom_scrape_search_exclude="invidious-popular recommended sI osu-dir "
-
-sub_link_count=2
-
-thumbnail_quality=maxres
-
-is_loop=1
-
-invidious_instance="http://localhost:3000"
-
-#listen for these extra keybinds
-custom_shortcut_binds="alt-b,alt-d,alt-r,alt-n,alt-c"
-
-format_selection_screen=simple_extra
-
-
-#if using wayland:
-    # if in sway:
-        # use swayimg
-    # elif in hyprland:
-        # use swayimg-hyprland
-#elif using xorg:
-    # use ueberzug
-#elif in tty:
-    # use catimg
-[ "$XDG_SESSION_TYPE" = "wayland" ] && {
-    [ "$SWAYSOCK" ] && thumbnail_viewer="swayimg"
-    [ "$HYPRLAND_INSTANCE_SIGNATURE" ] && thumbnail_viewer="swayimg-hyprland"
-}
-[ "$XDG_SESSION_TYPE" = "X11" ] && thumbnail_viewer=ueberzug
-[ "$XDG_SESSION_TYPE" = "tty" ] && thumbnail_viewer=catimg
-
+. "${YTFZF_CONFIG_DIR}/conf/set-vars"
 
 ##########################
 #    CUSTOM FUNCTIONS    #
@@ -104,28 +46,18 @@ get_frame_at_s () {
 }
 
 ##################
-#   SORT NAMES   #
-##################
-
-rand () {
-    data_sort_fn () {
-        shuf
-    }
-}
-
-##################
 #     MENUS      #
 ##################
 
 search_prompt_menu_ext () {
     _search="$(
-	tac "$search_hist_file" | rofi -dmenu -theme slate -width 1500 -p "Search" |
+	tac "$search_hist_file" | rofi -dmenu -theme nord -width 1500 -p "Search" |
 	    cut -f2-
     )"
 }
 
 external_menu (){
-    remove_ansi_escapes | column -t -s "$tab_space" -o ' ' | tr -d "$tab_space" | rofi -dmenu -theme slate -p "$1" | awk '{print $NF}'
+    remove_ansi_escapes | column -t -s "$tab_space" -o ' ' | tr -d "$tab_space" | rofi -dmenu -theme nord -p "$1" | awk '{print $NF}'
 }
 
 ##################
