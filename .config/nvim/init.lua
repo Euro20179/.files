@@ -15,7 +15,7 @@ require 'user.whichkey'
 require "user.t-source"
 require "user.ccc"
 
-require "user.dap-vscode-js"
+--require "user.dap-vscode-js"
 require "user.duplicate"
 require "impatient"
 

@@ -280,3 +280,8 @@ on_opt_parse_term_size() {
     printf "COLS: %d\nLINES: %d\n" "$TTY_COLS" "$TTY_LINES"
     exit 0
 }
+
+on_opt_parse_term () {
+    url_handler_opts="--vo='sixel' --quiet"
+    return 1
+}
