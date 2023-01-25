@@ -97,7 +97,7 @@ scrape_osu_dir (){
             line="${line#file://}"
             location="${line%%;*}"
             id="${line##*;}"
-            cp "${location//_ytfzf_sPaCe/ }" "$thumb_dir/$id.jpg" 2> /dev/null
+            cp "$(printf "%s" "$location" | sed 's/_ytfzf_sPaCe/ /g')" "$thumb_dir/$id.jpg" 2> /dev/null
         done
     }
 
@@ -106,9 +106,10 @@ scrape_osu_dir (){
         title="$(jq -r --arg url "$1" ".[]|select(.url==\$url).title" < "$ytfzf_video_json_file")"
         thumbnail="${thumbnail#file://}"
         location="${1#file://}"
-        location="${location//_ytfzf_sPaCe/ }"
+        location="$(printf "%s" "$location" | sed 's/_ytfzf_sPaCe/ /g')"
+        thumbnail="$(printf "%s" "$thumbnail" | sed 's/_ytfzf_sPaCe/ /g')"
         #mpv "${location//%20/ }"
-        ffmpeg -y -i "${location//%20/ }" -i "${thumbnail//_ytfzf_sPaCe/ }" -f flv - < /dev/null | mpv -
+        ffmpeg -y -i "$(printf "%s" "$location" | sed 's/%20/ /g')" -i "${thumbnail}" -f flv - < /dev/null | mpv -
     }
 
     output_json_file=$2
@@ -118,11 +119,11 @@ scrape_osu_dir (){
     while read -r line; do
         {
             print_info "Scraping song: $line\n"
-            thumb=$(find "${XDG_SHARE_HOME:-$HOME/.local/share}/osu-stable/Songs/${line}" -maxdepth 1 -iregex '.*\.\(png\|jpg\)')
+            thumb=$(find "${XDG_SHARE_HOME:-$HOME/.local/share}/osu-stable/Songs/${line}" -maxdepth 1 -iregex '.*\.\(png\|jpg\)' | head -n 1)
             thumb="${thumb%%${new_line}*}"
-            audio=$(find "${XDG_SHARE_HOME:-$HOME/.local/share}/osu-stable/Songs/${line}" -maxdepth 1 -iname '*.mp3')
+            audio=$(find "${XDG_SHARE_HOME:-$HOME/.local/share}/osu-stable/Songs/${line}" -maxdepth 1 -iname '*.mp3' | head -n 1)
             audio="${audio%%${new_line}*}"
-            echo "{\"ID\": \"${line%% *}\", \"url\": \"file://${audio// /_ytfzf_sPaCe}\", \"title\": \"${line}\", \"thumbs\": \"file://${thumb// /_ytfzf_sPaCe}\"}" >> "$_osu_dir_jsonl_file"
+            echo "{\"ID\": \"${line%% *}\", \"url\": \"file://$(printf "%s" "$audio" | sed 's/ /_ytfzf_sPaCe/g')\", \"title\": \"${line}\", \"thumbs\": \"file://$(printf "%s" "$thumb" | sed 's/ /_ytfzf_sPaCe/g')\"}" >> "$_osu_dir_jsonl_file"
         } &
         _thread_started "$!"
     done <<EOF
@@ -205,7 +206,7 @@ on_opt_parse () {
         c)
             case "$2" in
                 sI)
-                    scrape="SI"
+                    set_scrape "SI"
                     is_sort=1
                     search_result_type=videos
                     return 1;;
@@ -219,12 +220,12 @@ on_opt_parse () {
                     export PRIVATE_do_on_no_thumbnail=1 ;;
             esac ;;
         pl)
-            scrape="p"
+            set_scrape "p"
             search="$HOME/.config/ytfzf/playlists/$2.ytfzfpl"
             return 1
             ;;
         search)
-            scrape=ddg
+            set_scrape ddg
             return 1 ;;
         update)
             shift $((OPTIND-1))
@@ -256,7 +257,7 @@ ext_on_search () {
         y://*) curr_scrape=Y; _search="${_search#y://}" ;;
         o://*) curr_scrape=O; _search="${_search#o://}" ;;
         p://*) curr_scrape=P; _search="${_search#p://}" ;;
-        pics://) scrape="pictures"; source_scrapers; curr_scrape=pictures; _search="" ;;
+        pics://) set_scrape pictures; source_scrapers; curr_scrape=pictures; _search="" ;;
         ytfzf://*)
             _search="${1#ytfzf://}"
             _search="$(printf "%s" "$_search" | tr '+' ' ')" ;;
