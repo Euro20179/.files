@@ -53,7 +53,7 @@ export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING='luakit'
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export PAGER="less"
+export PAGER="bat"
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
@@ -231,6 +231,8 @@ stream_udp () {
 alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME"
 
 alias rm="trash"
+
+alias tuir='BROWSER=linkhandler PAGER=less tuir'
 
 unset welcomeStr
 
