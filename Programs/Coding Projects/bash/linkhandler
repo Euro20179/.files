@@ -8,5 +8,6 @@ case "$link" in
     https://"www.youtube.com"/watch\?v=*|https://"www.odysee.com"*|https://v.redd.it*) nohup mpv --geometry=1000 "$link" > /dev/null 2>&1 & ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif) mpv --loop "$link" & ;;
     https://git*|https://codeberg*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
+    term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
     *) nohup $BROWSER_LITE "$link" > /dev/null 2>&1 & ;;
 esac

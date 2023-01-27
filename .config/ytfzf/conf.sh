@@ -167,6 +167,7 @@ get_requested_info_title(){
         #drm plays *directly* on the screen
         url_handler_opts="$url_handler_opts --vo=drm"
     fi
+    load_thumbnail_viewer catimg
     notify_playing=1
     #bit of a hack to listen when the url handler is opened
     handle_playing_notifications () {

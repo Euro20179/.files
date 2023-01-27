@@ -54,6 +54,7 @@ export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING='luakit'
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export PAGER="less"
+export TERMINAL_HOLD_OPT='-H'
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"

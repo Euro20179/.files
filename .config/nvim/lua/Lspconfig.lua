@@ -26,6 +26,8 @@ lspconfig.sumneko_lua.setup({
 -- }
 --
 
+lspconfig.gopls.setup{}
+
 lspconfig['java_language_server'].setup {
     cmd = { "/home/euro/Programs/java-language-server/dist/lang_server_linux.sh" },
     capabilities = capabilities

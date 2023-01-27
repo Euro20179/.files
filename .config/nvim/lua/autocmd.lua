@@ -25,30 +25,19 @@ vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
 vim.api.nvim_create_autocmd("BufReadPost,BufNewFilePost", {
     pattern = "*.norg",
     callback = function()
-        vim.cmd[[:norm zR]]
-    end
-})
-
-vim.api.nvim_create_autocmd("VimEnter", {
-    pattern = "notes",
-
-    callback = function()
-        vim.opt.filetype = "text"
+        vim.cmd [[:norm zR]]
     end
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*.email",
-    callback = function ()
+    callback = function()
         vim.opt.filetype = 'email'
     end
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
-        vim.highlight.on_yank({timeout = 200, higroup = "RedrawDebugNormal" })
+        vim.highlight.on_yank({ timeout = 200, higroup = "RedrawDebugNormal" })
     end
 })
-
-
-
