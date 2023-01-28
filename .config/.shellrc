@@ -73,7 +73,7 @@ export LOCKER="lock"
 #export LOCKER="gtklock -t 'Funbook Air'"
 export TRASH="$HOME/.local/share/trash"
 
-alias 'bat%=cat /sys/class/power_supply/BAT0/capacity'
+alias t='tmux'
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
