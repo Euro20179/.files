@@ -1,12 +1,12 @@
 #!/bin/bash
 
-prompt="${1:-$(echo | dmenu -p "CHATGPT: ")}"
+prompt="${1:-$(printf '\0' | dmenu -p "CHATGPT: ")}"
 
 resp=$(curl -s 'https://api.openai.com/v1/completions' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
     -d '{"prompt": "'"$prompt"'", "model": "text-davinci-003"}'  | jq -r '.choices[0].text')
 
-wl-copy <<< $resp
+wl-copy <<< "$resp"
 
 zenity --info --text="$resp"

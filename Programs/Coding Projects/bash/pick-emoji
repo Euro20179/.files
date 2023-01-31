@@ -7,4 +7,4 @@ case "$WM" in
 	roficmd="$roficmd -monitor $(bspc query -M -m '.focused' --names)"
 	;;
 esac
-cat "$HOME/Documents/emoji" | $roficmd | awk '{print $1}' | tr -d '\n' | wl-copy
+cat "$HOME/Documents/emoji" | $roficmd | awk '{print $1}' | wl-copy
