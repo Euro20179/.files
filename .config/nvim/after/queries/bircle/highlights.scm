@@ -1,3 +1,5 @@
+(header) @operator
+
 (string) @string
 (prefix) @character.special
 
