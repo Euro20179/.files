@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# $0 stands for toggle hdmi (my only hdmi monitor)
+
+die () {
+    printf "$1"
+    exit "$2"
+}
+
+[ "$XDG_CURRENT_DESKTOP" = "Hyprland" ] || die "Not on hyprland\n" 1
+
+hyprctl monitors | grep -q HDMI-A-1
+
+is_on="$(($?^1))"
+
+[ "$is_on" -eq 1 ] && hyprctl keyword monitor HDMI-A-1,disable
+[ "$is_on" -eq 0 ] && hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1

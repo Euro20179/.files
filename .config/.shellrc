@@ -75,6 +75,15 @@ export TRASH="$HOME/.local/share/trash"
 
 alias t='tmux'
 
+me () {
+    disown 2> /dev/null 1>&2
+    if [ "$?" -ne 127 ]; then
+        mullvad-exclude "$@" & disown
+    else
+        printf "\033[31mBAD SHELL\n\033[0m"
+    fi
+}
+
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
 alias otd="doas rmmod wacom; otd"
