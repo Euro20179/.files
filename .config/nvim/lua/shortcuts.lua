@@ -42,9 +42,9 @@ local nShortcuts = {
     { "<down>", "<c-w>-" },
     { "<leader>F", "<cmd>Ex<cr>" },
     { "<leader>vw", function()
-            vim.cmd[[:cd ~/Documents/vimwiki]]
-            vim.cmd[[:e index.norg]]
-        end
+        vim.cmd [[:cd ~/Documents/vimwiki]]
+        vim.cmd [[:e index.norg]]
+    end
     },
     --}}}
     -- Git {{{
@@ -61,7 +61,7 @@ local nShortcuts = {
     end },
     { "<leader>gd",
         function()
-            vim.cmd[[!git diff]]
+            vim.cmd [[!git diff]]
         end
     },
     -- }}}
@@ -138,9 +138,9 @@ local nShortcuts = {
     },
     --}}}
     --DAP{{{
-    { "<a-d>", function ()
+    { "<a-d>", function()
         vim.g.euro_debug_mode = not vim.g.euro_debug_mode
-        local filetype = vim.filetype.match({buf = 0})
+        local filetype = vim.filetype.match({ buf = 0 })
         local filename = vim.fs.basename(vim.api.nvim_buf_get_name(0))
         if vim.g.euro_debug_mode == true then
             -- local js_name = vim.split(filename, ".", {plain = true})[1] .. ".js"
@@ -154,7 +154,7 @@ local nShortcuts = {
             -- end
 
             vim.keymap.set("n", "b", function()
-                require"dap".toggle_breakpoint()
+                require "dap".toggle_breakpoint()
             end)
             require("dapui").open()
         else
@@ -168,7 +168,7 @@ local nShortcuts = {
             --     end
             -- end
             vim.keymap.del("n", "b")
-            require"dapui".close()
+            require "dapui".close()
         end
     end },
     --}}}
@@ -233,11 +233,11 @@ local nShortcuts = {
     { "<a-x>", "<cmd>CccConvert<cr>" },
     -- }}}
     -- Wiki {{{
-    { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>"}    
+    { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
     -- }}}
 }
 for _, map in ipairs(nShortcuts) do
-    vim.keymap.set("n", map[1], map[2], {})
+    vim.keymap.set("n", map[1], map[2], map[3] or {})
 end
 --}}}
 
@@ -275,7 +275,7 @@ local iShortcuts = {
         { expr = true, silent = true }
     },
     { "<c-n>",
-        function ()
+        function()
             if require("luasnip").choice_active() then
                 return '<Plug>luasnip-next-choice'
             end
@@ -284,8 +284,8 @@ local iShortcuts = {
         { silent = true, expr = true }
     },
     { "<c-p>",
-        function ()
-            if require"luasnip".choice_active() then
+        function()
+            if require "luasnip".choice_active() then
                 return '<Plug>luasnip-prev-choice'
             end
             return '<c-p>'
@@ -321,8 +321,8 @@ local vShortcuts = {
     { "<a-k>", require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-        { "D", ":ChatBotDocument<cr>"},
-        { "C", ":ChatBotComment<cr>"},
+    { "D", ":ChatBotDocument<cr>" },
+    { "C", ":ChatBotComment<cr>" },
     -- }}}
 }
 for _, map in ipairs(vShortcuts) do

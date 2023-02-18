@@ -54,14 +54,6 @@ tab .tab-background{
 tab{
     transition: background-color 300ms !important;
 
-    min-height: 19px !important; //this is about the size that the text starts to get cut off
-    max-height: 5vh !important;
-    font-size: 90% !important;
-}
-
-#tabbrowser-tabs{
-    min-height: 19px !important;
-    max-height: 5vh !important;
 }
 /*make tabs follow color scheme*/
 

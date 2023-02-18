@@ -1,7 +1,8 @@
 #!/bin/zsh
 USE_POWERLINE="true"
 
-export SAVEHIST=1000
+export SAVEHIST=1000000
+export HISTSIZE=1000000
 export HISTFILE=~/.local/share/zsh_history
 
 setopt inc_append_history share_history
@@ -107,6 +108,8 @@ alias "ref=clear; source ~/.config/.zshrc"
 __calc () {
     zcalc -f -e "$*"
 }
+
+alias -g h=-h
 
 aliases[=]='noglob __calc'
 
