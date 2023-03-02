@@ -1,0 +1,180 @@
+:root {
+    --main: #262634;
+    --secondary: #646489ff;
+    --highlight:  #81C8BE;
+    --link-color: var(--highlight);
+    --highlight-secondary:  #689C9A;
+    --text-color: white;
+    --warn: #F8BD96;
+    --error: #7D71B7;
+    --leaf: #ABE9B3;
+    
+}
+
+@-moz-document domain("brave.com") {
+    :root {
+        --color-primary: var(--main) !important;
+        --color-gray-3: var(--text-color) !important;
+    }
+    
+    #search-main{
+        background: var(--main) !important;
+    }
+    
+    /*auto result things*/
+    [data-type=rich],
+    [data-subtype]{
+        background: var(--main) !important;
+        border: 1px solid var(--secondary) !important;
+    }
+    [data-type=rich] .snippet{
+        background: var(--main) !important;
+    }
+    :is([data-type=rich], [data-subtype]) *{
+        color: var(--secondary) !important;
+    }    
+    :is([data-type=rich], [data-subtype]) footer{
+        background: var(--main) !important;
+    }
+    
+    /*global results toggle*/
+    #global-toggle{
+        color: var(--link-color) !important;)
+    }
+    
+    /*filters*/
+    .filter-name{
+        color: var(--secondary) !important;
+    }
+    #search-filters{
+        background: var(--main) !important;
+    }
+    
+    /*weird area for filters*/
+    div[class]:has(#search-filters){
+        background: var(--main) !important;
+    }
+    
+    #navbar-tabs{
+        background: var(--main) !important;
+        border-color: var(--secondary) !important;
+    }
+}
+
+@-moz-document domain("discord.com") {
+    :root{
+        --mention-background: var(--secondary) !important;
+        --mention-foreground: var(--main) !important;
+    }
+    
+    main[class*=chatContent]{
+        background: var(--main) !important;
+    }
+    
+    a:not([data-list-item-id*=private-channels]){
+        color: var(--link-color) !important;
+    }
+    
+    [data-list-item-id*=private-channels] *{
+        color: var(--secondary) !important;
+    }
+
+    /*messages*/
+    div[class*=message][class*=mentioned]{
+        background: var(--warn)!important;
+        margin-right: 30% !important;
+        border: 1px solid transparent;
+        border-radius: 10px !important;
+    }
+    
+    /*make mentioned text black*/
+    div[class*=message][class*=mentioned] div[id*=message-content]{
+        color: var(--main) !important;
+    }
+    
+    /*remove weird bar on left of mentioned*/
+    div[class*=message][class*=mentioned]::before{
+         content: unset !important;
+    }
+    
+    /*input box background*/
+    [class*=channelTextArea] [class*=inner]{
+        background: var(--secondary) !important;
+        font-weight: bold !important;
+    }
+    
+    /*chat box*/
+    [class*=channelTextArea] [class*=inner] *{
+        color: var(--leaf) !important;
+        fill: var(--leaf) !important;
+        caret-color: var(--leaf) !important;
+    }
+    
+    /*emoji input*/
+    [class*=emojiButton] *{
+        filter: none  !important;
+        background-color : var(--leaf) !important;
+        background-image: none !important;
+        border: 1px solid transparent;
+        border-radius: 50% !important;
+    }
+    
+    /*channel listing*/
+    #channels{
+        border-right: 1px solid var(--secondary) !important;
+        background-color: var(--main) !important;
+    }
+    
+    /*channel names*/
+    #channels li div[class*=name]{
+        color: var(--secondary) !important;
+        filter: brightness(190%) !important;
+    }
+    
+    /*# before channel name*/
+    #channels li a path{
+        fill: var(--secondary) !important;
+    }
+    
+    /*when a channel is selected*/
+    #channels li[class*=selected] > div > div{
+        background-color: var(--secondary) !important;
+    }
+    #channels li[class*=selected] > div > div div[class*=name]{
+        color: black !important;
+    }
+    #channels li[class*=selected] a path{
+        fill: var(--main) !important;
+    }
+    
+    /*channel name background color on hover*/
+    #channels li:hover > div > div{
+        background-color: var(--secondary) !important;
+    }
+    #channels li:hover > div > div div[class*=name]{
+        color: black !important;
+    }
+    #channels li:hover a path{
+        fill: var(--main) !important;
+    }
+    
+    /*members listing*/
+    aside[class*=membersWrap]{
+        background: var(--main) !important;
+        border-left: 1px solid var(--secondary) !important;
+    }
+    
+    [class*=members] [class*=member]{
+        background: none !important;
+    }
+    
+    /*server header in top left*/
+    nav > div[class*=container-1]{
+        background-color: var(--secondary) !important;
+    }
+    
+    /*channel label*/
+    section[aria-label*="Channel"]{
+        background: var(--main) !important;
+    }
+}

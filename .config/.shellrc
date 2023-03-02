@@ -86,7 +86,7 @@ me () {
 
 alias 'mulx=mullvad-exclude'
 
-alias autoremove='pacman -Qdttq | sudo pacman -Rs -'
+alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'

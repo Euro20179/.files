@@ -25,6 +25,9 @@
  ; "var"
  "timeit"
  "if"
+ "if-cmd"
+ "else"
+ "elif"
  ";end"
  "else;"
 ] @keyword
@@ -33,8 +36,6 @@
 (format
   (string) @parameter
 )
-
-"|" @operator
 
 (conditional) @conditional
 
@@ -47,9 +48,13 @@
 
 (escape_sequence) @string.escape
 
-(variable) @preproc
+(variable) @identifier
 (variable_scope) @field
 (variable_name) @property
+
+(pipe_operator) @operator
+
+(if_cmd_operator) @operator
 
 (EOL) @punctuation
 
