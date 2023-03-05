@@ -16,8 +16,6 @@
 
 [ -z "$PRIVATE_do_on_no_thumbnail" ] && export PRIVATE_do_on_no_thumbnail=0
 
-
-
 ##########################
 #      EXTENSIONS        #
 ##########################

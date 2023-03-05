@@ -104,3 +104,7 @@ menupopup{
     --panel-background: #2f3041dd !important;
     --panel-separator-color: #4c4d69 !important;
 }
+
+tab.tabbrowser-tab[selected=true] .tab-text {
+    color: $highlight !important;
+}

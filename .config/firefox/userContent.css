@@ -1,12 +1,13 @@
 :root {
     --main: #262634;
     --secondary: #646489ff;
+    --secondary-bright: #9e9ed9;
     --highlight:  #81C8BE;
     --link-color: var(--highlight);
     --highlight-secondary:  #689C9A;
     --text-color: white;
     --warn: #F8BD96;
-    --error: #7D71B7;
+    --error: #ED8796;
     --leaf: #ABE9B3;
     
 }
@@ -17,8 +18,37 @@
         --color-gray-3: var(--text-color) !important;
     }
     
-    #search-main{
+    .img-title{
+        color: var(--secondary-bright) !important;
+    }
+
+    #site-header {
+        background: var(--main) !important;;
+    }
+    
+    #search-main,
+    body,
+    main{
         background: var(--main) !important;
+    }
+    
+    #searchbox{
+        background: var(--secondary) !important;
+        color: var(--warn) !important;
+    }
+    
+    #searchform{
+        background: var(--secondary) !important;
+    }
+    #searchform #submit-button{
+        display: none !important;
+    }
+    #clear-query-button *{
+        fill: var(--warn) !important;
+    }
+    
+    .searchbox-wrapper:after{
+        content: unset !important;
     }
     
     /*auto result things*/
@@ -31,7 +61,7 @@
         background: var(--main) !important;
     }
     :is([data-type=rich], [data-subtype]) *{
-        color: var(--secondary) !important;
+        color: var(--secondary-bright) !important;
     }    
     :is([data-type=rich], [data-subtype]) footer{
         background: var(--main) !important;
@@ -39,12 +69,13 @@
     
     /*global results toggle*/
     #global-toggle{
-        color: var(--link-color) !important;)
+        color: var(--link-color) !important;
     }
     
     /*filters*/
     .filter-name{
         color: var(--secondary) !important;
+        filter: brightness(130%) !important;
     }
     #search-filters{
         background: var(--main) !important;
@@ -53,12 +84,163 @@
     /*weird area for filters*/
     div[class]:has(#search-filters){
         background: var(--main) !important;
+        padding: 0 !important;
     }
     
+    /*wonky padding next to filters*/
+    .container-80{
+        background: var(--main) !important;
+        max-width: unset !important; /*why the hell is there a max-width on this*/
+    }
+    
+    /*stuff like the images tab*/
     #navbar-tabs{
         background: var(--main) !important;
         border-color: var(--secondary) !important;
     }
+    
+    #nav-tabs a .icon-wrapper,
+    #nav-tabs a .icon-wrapper ~ span {
+        color: var(--leaf) !important;
+        transition: color 200ms !important;
+    }
+    
+    /*make selected tab green instead of orange*/
+    #nav-tabs li.active a span,
+    #nav-tabs li.active a svg *{
+        color: var(--warn) !important;
+        fill: var(--warn) !important;
+    }
+    #nav-tabs li.active a::after{
+        background: var(--warn) !important;
+    }
+
+    #nav-tabs a:hover .icon-wrapper,
+    #nav-tabs a:hover .icon-wrapper ~ span{
+        color: var(--error) !important;
+    }
+    
+    /*make autocomplete none*/
+    #autocomplete div {
+        display: none;
+    }
+
+    /*when searching keep the border round*/
+    #searchform{
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+    }
+    
+    /*annoying popup*/
+    #usage-metrics #notice {
+        display: none  !important;
+    }
+    
+    /*search results*/
+    div.snippet{
+        background: var(--secondary) !important;
+        transition: background 200ms !important;
+    }
+    
+    div.snippet:hover{
+        background: var(--secondary-bright) !important;
+    }
+    div.snippet:hover :is(.snippet-url .netloc, .snippet-title){
+        color: var(--main) !important;
+    }
+    div.snippet:hover a.deep-link{
+        color: var(--main) !important;
+    }
+
+    .snippet-url .netloc{
+        color: var(--link-color) !important;
+    }
+    .snippet-title {
+        color: var(--link-color) !important;
+    }
+    .snippet-description{
+        color: var(--main) !important;
+    }
+    
+    /*weird tag-like links*/
+    a.deep-link{
+        color: var(--link-color) !important;
+    }
+    
+    #search-elsewhere{
+        display: none !important;
+    }
+    
+    /*remove margin after search-elsewhere area*/
+    #results > #search-elsewhere + .snippet{
+        margin-top: 0 !important;
+    }
+    
+    /*weird part after the small link that says the subroutes*/
+    .url-path {
+        color: var(--leaf) !important;
+    }
+    
+    #news-carousel .header{
+        display: none !important;
+    }
+    
+    #news-carousel a.card{
+        background: var(--secondary) !important;
+    }
+    
+    #news-carousel .card-body div{
+        color: var(--link-color) !important;
+    }
+    
+    #news-carousel .card-footer span{
+        color: var(--main) !important;
+    }
+    
+    footer{
+        background: var(--main) !important;
+    }
+    
+    /*next arrow*/
+    .slide-button svg{
+        fill: var(--secondary-bright) !important;
+    }
+    .slide-button{
+        background: var(--main) !important;
+        border-color: var(--secondary-bright) !important;
+    }
+}
+
+@-moz-document url("https://discord.com/login"){
+    /*login page*/
+    [class*=characterBackground] svg{
+        display: none !important;
+    }
+    [class*=wrapper] {
+        background: var(--main) !important;
+    }
+    [class*=authBox]{
+        background: var(--secondary) !important;
+    }
+    input{
+        background: var(--main) !important;
+    }
+    label{
+        color: var(--text-color) !important;
+    }
+    [class*=required]{
+        color: var(--error) !important;
+    }
+    button div{
+        color: var(--text-color) !important;
+    }
+    button{
+        background: var(--main) !important;
+    }
+    [class*=mainLogin] div[class*=margin] > :is([class*=needAccount], button){
+        display: none !important;
+    }
+    /*end login page*/
 }
 
 @-moz-document domain("discord.com") {
@@ -66,10 +248,15 @@
         --mention-background: var(--secondary) !important;
         --mention-foreground: var(--main) !important;
     }
+
+    
+
     
     main[class*=chatContent]{
         background: var(--main) !important;
     }
+    
+    
     
     a:not([data-list-item-id*=private-channels]){
         color: var(--link-color) !important;
@@ -90,6 +277,10 @@
     /*make mentioned text black*/
     div[class*=message][class*=mentioned] div[id*=message-content]{
         color: var(--main) !important;
+    }
+    
+    div[class*=message][class*=mentioned] div[id*=message-content] code.inline{
+        color: var(--leaf) !important;
     }
     
     /*remove weird bar on left of mentioned*/

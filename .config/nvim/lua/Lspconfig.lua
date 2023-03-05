@@ -4,15 +4,7 @@ local luadev = require("neodev").setup({})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()--(vim.lsp.protocol.make_client_capabilities())
 
-lspconfig.sumneko_lua.setup({
-    settings = {
-        Lua = {
-            completion = {
-                callSnippet = "Replace"
-            }
-        }
-    }
-})
+lspconfig['lua_ls'].setup{}
 
 -- lspconfig.perlnavigator.setup{
 --     cmd = {
