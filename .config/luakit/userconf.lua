@@ -16,4 +16,4 @@ select.label_maker = function ()
     return trim(sort(reverse(chars)))
 end
 
-editor.editor_cmd = "kitty nvim {file} +{line}"
+editor.editor_cmd = "footclient nvim {file} +{line}"
