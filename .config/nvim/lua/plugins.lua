@@ -94,7 +94,9 @@ require("packer").startup(function(use)
                     ["core.norg.journal"]            = {},
                     ["core.tangle"]                  = {},
                     ["core.ui"]                      = {},
+                    ["core.queries.native"]          = {},
                     ["core.norg.concealer"]          = {
+                    ["core.presenter"]               = {},
                         config = {
                         }
                     }
@@ -191,4 +193,5 @@ require("packer").startup(function(use)
     use 'catppuccin/nvim'
     use 'sindrets/diffview.nvim'
     use 'smjonas/duplicate.nvim'
+    use 'nvim-orgmode/orgmode'
 end)

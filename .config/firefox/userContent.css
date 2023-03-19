@@ -211,8 +211,7 @@
     }
 }
 
-@-moz-document url("https://discord.com/login"){
-    /*login page*/
+/*@-moz-document url("https://discord.com/login"){
     [class*=characterBackground] svg{
         display: none !important;
     }
@@ -240,8 +239,7 @@
     [class*=mainLogin] div[class*=margin] > :is([class*=needAccount], button){
         display: none !important;
     }
-    /*end login page*/
-}
+}*/
 
 @-moz-document domain("discord.com") {
     :root{
