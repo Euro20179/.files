@@ -20,6 +20,8 @@ lspconfig['lua_ls'].setup{}
 
 lspconfig.gopls.setup{}
 
+lspconfig['pyright'].setup{}
+
 lspconfig['java_language_server'].setup {
     cmd = { "/home/euro/Programs/java-language-server/dist/lang_server_linux.sh" },
     capabilities = capabilities
@@ -42,9 +44,9 @@ lspconfig['marksman'].setup{
 lspconfig['rust_analyzer'].setup {
   capabilities = capabilities
 }
-lspconfig['pylsp'].setup {
-  capabilities = capabilities
-}
+-- lspconfig['pylsp'].setup {
+--   capabilities = capabilities
+-- }
 
 lspconfig['bashls'].setup{}
 
