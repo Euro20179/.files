@@ -191,7 +191,18 @@ require("packer").startup(function(use)
         end
     }
     use 'catppuccin/nvim'
-    use 'sindrets/diffview.nvim'
     use 'smjonas/duplicate.nvim'
     use 'nvim-orgmode/orgmode'
+
+    use {
+        'michaelb/sniprun', run = 'bash ./install.sh'
+    }
+
+    use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = function ()
+        require("diffview").setup{}
+    end}
+
+    use "joosepAlviste/nvim-ts-context-commentstring"
+
+
 end)

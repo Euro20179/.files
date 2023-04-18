@@ -8,18 +8,8 @@ require 'autocmd'
 require 'functions'
 require 'Lspconfig'
 local cs = require 'colorscheme'
-require "user.telescope"
-require "user.treesitter"
-require 'user.whichkey'
---require "user.color-picker"
-require "user.t-source"
-require "user.ccc"
-
-require "user.orgmode"
-
---require "user.dap-vscode-js"
-require "user.duplicate"
 require "impatient"
+require "user.init"
 
 cs.changeColorScheme(cs.colorscheme)
 
@@ -28,7 +18,11 @@ vim.api.nvim_cmd({
     cmd = "packadd"
 }, {})
 
-require "lsp_signature".setup({ bind = true, hint_enable = true, floating_window = false })
+require "lsp_signature".setup({
+    bind = true,
+    hint_enable = true,
+    floating_window = false
+})
 
 vim.diagnostic.config({ virtual_text = false })
 

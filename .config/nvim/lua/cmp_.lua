@@ -2,11 +2,11 @@ local cmp = require 'cmp'
 
 local kind_icons = {
     Text = "",
-    Method = "",
+    Method = "ﴯ",
     Function = "",
     Constructor = "",
     Field = "",
-    Variable = "",
+    Variable = "𝑥",
     Class = "ﴯ",
     Interface = "",
     Module = "",
@@ -60,7 +60,7 @@ cmp.setup({
         end
     },
     window = {
-        --completion = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
@@ -68,20 +68,20 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-s>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm()
+        ['<CR>'] = cmp.mapping.confirm({select = true})
     }),
     sources = cmp.config.sources({
+        { name = "cmp_tabnine" },
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
         { name = 'buffer' },
         { name = 'path' },
         { name = "spell" },
-        { name = "time" },
+        -- { name = "time" },
         --{
         --name = "dictionary",
         --keyword_length = 2
         --},
-        { name = 'calc' },
         --{ name = 'browser' },
     })
 })
