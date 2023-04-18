@@ -9,16 +9,16 @@
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
--- parser_config.bircle = {
---     install_info = {
---         url = "/home/euro/Programs/Coding Projects/treesitter/bircle",
---         files = {"src/parser.c"},
---         branch = "main",
---         generate_requires_npm = false,
---         requires_generate_from_grammar = false,
---     },
---     filetype = "bircle"
--- }
+parser_config.bircle = {
+    install_info = {
+        url = "/home/euro/Programs/Coding Projects/treesitter/bircle",
+        files = {"src/parser.c"},
+        branch = "main",
+        generate_requires_npm = false,
+        requires_generate_from_grammar = false,
+    },
+    filetype = "bircle"
+}
 
 require'nvim-treesitter.configs'.setup {
     highlight = {
