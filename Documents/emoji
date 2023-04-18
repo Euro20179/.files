@@ -49,6 +49,7 @@
 😬		grimacing face
 😮‍💨		face exhaling
 🤥		lying face
+🫨		shaking face
 😌		relieved face
 😔		pensive face
 😪		sleepy face
@@ -100,7 +101,7 @@
 😫		tired face
 🥱		yawning face
 😤		face with steam from nose
-😡		pouting face
+😡		enraged face
 😠		angry face
 🤬		face with symbols on mouth
 😈		smiling face with horns
@@ -128,7 +129,6 @@
 🙈		see-no-evil monkey
 🙉		hear-no-evil monkey
 🙊		speak-no-evil monkey
-💋		kiss mark
 💌		love letter
 💘		heart with arrow
 💝		heart with ribbon
@@ -147,14 +147,18 @@
 ❤‍🩹		mending heart
 ❤️		red heart
 ❤		red heart
+🩷		pink heart
 🧡		orange heart
 💛		yellow heart
 💚		green heart
 💙		blue heart
+🩵		light blue heart
 💜		purple heart
 🤎		brown heart
 🖤		black heart
+🩶		grey heart
 🤍		white heart
+💋		kiss mark
 💯		hundred points
 💢		anger symbol
 💥		collision
@@ -163,7 +167,6 @@
 💨		dashing away
 🕳️		hole
 🕳		hole
-💣		bomb
 💬		speech balloon
 👁️‍🗨️		eye in speech bubble
 👁‍🗨️		eye in speech bubble
@@ -174,7 +177,7 @@
 🗯️		right anger bubble
 🗯		right anger bubble
 💭		thought balloon
-💤		zzz
+💤		ZZZ
 👋		waving hand
 👋🏻		waving hand: light skin tone
 👋🏼		waving hand: medium-light skin tone
@@ -230,6 +233,18 @@
 🫴🏽		palm up hand: medium skin tone
 🫴🏾		palm up hand: medium-dark skin tone
 🫴🏿		palm up hand: dark skin tone
+🫷		leftwards pushing hand
+🫷🏻		leftwards pushing hand: light skin tone
+🫷🏼		leftwards pushing hand: medium-light skin tone
+🫷🏽		leftwards pushing hand: medium skin tone
+🫷🏾		leftwards pushing hand: medium-dark skin tone
+🫷🏿		leftwards pushing hand: dark skin tone
+🫸		rightwards pushing hand
+🫸🏻		rightwards pushing hand: light skin tone
+🫸🏼		rightwards pushing hand: medium-light skin tone
+🫸🏽		rightwards pushing hand: medium skin tone
+🫸🏾		rightwards pushing hand: medium-dark skin tone
+🫸🏿		rightwards pushing hand: dark skin tone
 👌		OK hand
 👌🏻		OK hand: light skin tone
 👌🏼		OK hand: medium-light skin tone
@@ -3190,6 +3205,8 @@
 🐅		tiger
 🐆		leopard
 🐴		horse face
+🫎		moose
+🫏		donkey
 🐎		horse
 🦄		unicorn
 🦓		zebra
@@ -3255,6 +3272,9 @@
 🦩		flamingo
 🦚		peacock
 🦜		parrot
+🪽		wing
+🐦‍⬛		black bird
+🪿		goose
 🐸		frog
 🐊		crocodile
 🐢		turtle
@@ -3275,6 +3295,7 @@
 🐙		octopus
 🐚		spiral shell
 🪸		coral
+🪼		jellyfish
 🐌		snail
 🦋		butterfly
 🐛		bug
@@ -3305,6 +3326,7 @@
 🌻		sunflower
 🌼		blossom
 🌷		tulip
+🪻		hyacinth
 🌱		seedling
 🪴		potted plant
 🌲		evergreen tree
@@ -3321,6 +3343,7 @@
 🍃		leaf fluttering in wind
 🪹		empty nest
 🪺		nest with eggs
+🍄		mushroom
 🍇		grapes
 🍈		melon
 🍉		watermelon
@@ -3353,10 +3376,11 @@
 🥦		broccoli
 🧄		garlic
 🧅		onion
-🍄		mushroom
 🥜		peanuts
 🫘		beans
 🌰		chestnut
+🫚		ginger root
+🫛		pea pod
 🍞		bread
 🥐		croissant
 🥖		baguette bread
@@ -3783,11 +3807,10 @@
 🎯		bullseye
 🪀		yo-yo
 🪁		kite
+🔫		water pistol
 🎱		ball
 🔮		crystal ball
 🪄		magic wand
-🧿		nazar amulet
-🪬		hamsa
 🎮		video game
 🕹️		joystick
 🕹		joystick
@@ -3840,6 +3863,7 @@
 🩳		shorts
 👙		bikini
 👚		woman’s clothes
+🪭		folding hand fan
 👛		purse
 👜		handbag
 👝		clutch bag
@@ -3855,6 +3879,7 @@
 👡		woman’s sandal
 🩰		ballet shoes
 👢		woman’s boot
+🪮		hair pick
 👑		crown
 👒		woman’s hat
 🎩		top hat
@@ -3897,6 +3922,8 @@
 🪕		banjo
 🥁		drum
 🪘		long drum
+🪇		maracas
+🪈		flute
 📱		mobile phone
 📲		mobile phone with arrow
 ☎️		telephone
@@ -4049,7 +4076,7 @@
 🗡		dagger
 ⚔️		crossed swords
 ⚔		crossed swords
-🔫		water pistol
+💣		bomb
 🪃		boomerang
 🏹		bow and arrow
 🛡️		shield
@@ -4120,6 +4147,8 @@
 🪦		headstone
 ⚱️		funeral urn
 ⚱		funeral urn
+🧿		nazar amulet
+🪬		hamsa
 🗿		moai
 🪧		placard
 🪪		identification card
@@ -4208,6 +4237,7 @@
 ☮		peace symbol
 🕎		menorah
 🔯		dotted six-pointed star
+🪯		khanda
 ♈		Aries
 ♉		Taurus
 ♊		Gemini
@@ -4252,6 +4282,7 @@
 🔅		dim button
 🔆		bright button
 📶		antenna bars
+🛜		wireless
 📳		vibration mode
 📴		mobile phone off
 ♀️		female sign
