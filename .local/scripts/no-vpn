@@ -1,0 +1,9 @@
+#!/bin/bash
+
+args="$@"
+if [ -z "$args" ]; then
+    set -- $(compgen -c | rofi -dmenu -theme nord)
+fi
+
+"$@" & disown
+mullvad split-tunnel pid add "$!"

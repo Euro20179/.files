@@ -2,6 +2,11 @@
 
 export WM="${WM:-sway}"
 
+export GDK_BACKEND=wayland,x11
+export QT_QPA_PLATFORM="wayland;xcb"
+export SDL_VIDEODRIVER=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
 killall eww
 eww daemon
 
@@ -40,5 +45,3 @@ killall foot
 command -v foot && foot --server & disown
 
 hyprctl setcursor Bibata-Modern-Ice 24
-
-export SDL_VIDEODRIVER=wayland
