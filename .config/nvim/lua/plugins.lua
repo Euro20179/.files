@@ -14,9 +14,7 @@ require("packer").startup(function(use)
     use 'hrsh7th/nvim-cmp'
     use 'flazz/vim-colorschemes'
     use 'mattn/emmet-vim'
-    use 'mbbill/undotree'
-    use {
-        'L3MON4D3/LuaSnip'
+    use 'mbbill/undotree' use { 'L3MON4D3/LuaSnip'
     }
     use 'saadparwaiz1/cmp_luasnip'
     use 'ray-x/lsp_signature.nvim'
@@ -75,39 +73,39 @@ require("packer").startup(function(use)
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig"
     }
-    use {
-        "nvim-neorg/neorg",
-        run = ":Neorg sync-parsers",
-        config = function()
-            require("neorg").setup {
-                load = {
-                    ["core.integrations.treesitter"] = {},
-                    ["core.syntax"]                  = {},
-                    ["core.norg.qol.todo_items"]     = {},
-                    ["core.norg.esupports.indent"]   = {},
-                    ["core.autocommands"]            = {},
-                    ["core.norg.esupports.metagen"]  = {},
-                    ["core.mode"]                    = {},
-                    ["core.norg.qol.toc"]            = {},
-                    ["core.norg.esupports.hop"]      = {},
-                    ["core.neorgcmd"]                = {},
-                    ["core.norg.journal"]            = {},
-                    ["core.tangle"]                  = {},
-                    ["core.ui"]                      = {},
-                    ["core.queries.native"]          = {},
-                    ["core.norg.concealer"]          = {
-                    ["core.presenter"]               = {},
-                        config = {
-                        }
-                    }
-                }
-            }
-        end,
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-neorg/neorg-telescope",
-        }
-    }
+    -- use {
+    --     "nvim-neorg/neorg",
+    --     run = ":Neorg sync-parsers",
+    --     config = function()
+    --         require("neorg").setup {
+    --             load = {
+    --                 ["core.integrations.treesitter"] = {},
+    --                 ["core.syntax"]                  = {},
+    --                 ["core.norg.qol.todo_items"]     = {},
+    --                 ["core.norg.esupports.indent"]   = {},
+    --                 ["core.autocommands"]            = {},
+    --                 ["core.norg.esupports.metagen"]  = {},
+    --                 ["core.mode"]                    = {},
+    --                 ["core.norg.qol.toc"]            = {},
+    --                 ["core.norg.esupports.hop"]      = {},
+    --                 ["core.neorgcmd"]                = {},
+    --                 ["core.norg.journal"]            = {},
+    --                 ["core.tangle"]                  = {},
+    --                 ["core.ui"]                      = {},
+    --                 ["core.queries.native"]          = {},
+    --                 ["core.norg.concealer"]          = {
+    --                 ["core.presenter"]               = {},
+    --                     config = {
+    --                     }
+    --                 }
+    --             }
+    --         }
+    --     end,
+    --     requires = {
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-neorg/neorg-telescope",
+    --     }
+    -- }
     use {
         "rcarriga/nvim-notify"
     }
@@ -203,6 +201,5 @@ require("packer").startup(function(use)
     end}
 
     use "joosepAlviste/nvim-ts-context-commentstring"
-
 
 end)

@@ -21,6 +21,15 @@ local nShortcuts = {
     { "Sd", "\"+dd" },
     { "Sc", "\"+cc" },
     --}}}
+    --telescope {{{
+    { "<leader>e;", ":Telescope symbols<cr>"},
+    { "<leader>ej", ":Telescope jumplist<cr>" },
+    { "<leader>ee", ":Telescope diagnostics<cr>" },
+    { "<leader>eT", ":Telescope treesitter<cr>" },
+    { "<leader>et", "<cmd>Telescope tagstack<cr>" },
+    { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
+    { "<leader>eH", "<cmd>Telescope highlights<cr>"},
+    --}}}
     --buffer/window shortcuts{{{
     { "<leader>S", ':split \\| wincmd j<cr>' },
     { "<leader>V", ':vsplit \\| wincmd l<cr>' },
@@ -74,6 +83,7 @@ local nShortcuts = {
     { "<leader>ff", ':tabnew<cr>:Telescope find_files<cr>' },
     { "<leader>fj", ':Telescope jumplist<cr>' },
     { "<leader>f/", ':Telescope live_grep<cr>' },
+    { "<leader>b/", ":Telescope current_buffer_fuzzy_find<cr>"},
     { "<leader>ft", ':lua require("telescope-tabs").list_tabs()<cr>' },
     --}}}
     --lsp {{{
