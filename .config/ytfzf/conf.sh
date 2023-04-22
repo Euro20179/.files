@@ -93,8 +93,8 @@ scrape_osu_dir (){
     download_thumbnails () {
         for line in "$@"; do
             line="${line#file://}"
-            location="${line%%;*}"
-            id="${line##*;}"
+            location="${line%%';'*}"
+            id="${line##*';'}"
             cp "$(printf "%s" "$location" | sed 's/_ytfzf_sPaCe/ /g')" "$thumb_dir/$id.jpg" 2> /dev/null
         done
     }
@@ -205,7 +205,7 @@ on_opt_parse () {
         c)
             case "$2" in
                 sI)
-                    set_scrape "SI"
+                    scrape="SI"
                     is_sort=1
                     search_result_type=videos
                     return 1;;
@@ -219,12 +219,13 @@ on_opt_parse () {
                     export PRIVATE_do_on_no_thumbnail=1 ;;
             esac ;;
         pl)
+            scrape="p"
             set_scrape "p"
             search="$HOME/.config/ytfzf/playlists/$2.ytfzfpl"
             return 1
             ;;
         search)
-            set_scrape ddg
+            scrape=ddg
             return 1 ;;
         update)
             shift $((OPTIND-1))
