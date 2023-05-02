@@ -43,7 +43,10 @@ local nShortcuts = {
     { "ZA", ":qa<CR>" },
     { "ZW", ":wqa<CR>" },
     { "<leader>T", ":ToggleTerm<cr>" },
-    { "<leader>N", ":CHADopen<cr>" },
+    { "<leader>n", ":CHADopen<cr>" },
+    { "<leader>N", function()
+        require("ranger-nvim").open(true)
+    end},
     { "<leader>fh", ":Telescope help_tags<cr>" },
     { "<right>", "<c-w>>" },
     { "<left>", "<c-w><" },
@@ -101,10 +104,7 @@ local nShortcuts = {
     end
     },
     { "glh", vim.lsp.buf.hover },
-    { "<leader>a", function()
-        vim.lsp.buf.code_action()
-    end
-    },
+    { "<leader>a", "<cmd>CodeActionMenu<cr>"    },
     { "<leader>A", function()
         local n = 0
         vim.lsp.buf.code_action({ filter = function(a)
@@ -193,6 +193,7 @@ local nShortcuts = {
     { "<leader><a-j>", require("tree-climber").swap_next },
     { "<leader><a-k>", require("tree-climber").swap_prev },
     { "glt", ":TSHighlightCapturesUnderCursor<cr>" },
+    { "<leader>o", "<cmd>SymbolsOutlineOpen<cr>"},
     -- }}}
     --syntax highlighting{{{
     { "<A-f>s", ":set foldmethod=syntax<cr>" },

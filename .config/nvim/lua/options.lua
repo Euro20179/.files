@@ -21,3 +21,6 @@ vim.opt.concealcursor = ''
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.spelllang = { "en_us" }
+
+--code-action-menu
+vim.g.code_action_menu_show_details = false

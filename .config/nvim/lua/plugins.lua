@@ -189,7 +189,6 @@ require("packer").startup(function(use)
     }
     use 'catppuccin/nvim'
     use 'smjonas/duplicate.nvim'
-    use 'nvim-orgmode/orgmode'
 
     use {
         'michaelb/sniprun', run = 'bash ./install.sh'
@@ -203,4 +202,10 @@ require("packer").startup(function(use)
 
     use "hrsh7th/cmp-nvim-lsp-signature-help"
     use "hrsh7th/cmp-nvim-lsp-document-symbol"
+
+    use "kelly-lin/ranger.nvim"
+
+    use "simrat39/symbols-outline.nvim"
+    use {"weilbith/nvim-code-action-menu", cmd = "CodeActionMenu"}
+
 end)
