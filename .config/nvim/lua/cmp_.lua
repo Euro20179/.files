@@ -8,7 +8,7 @@ local kind_icons = {
     Field = "",
     Variable = "𝑥",
     Class = "",
-    Interface = "",
+    Interface = "",
     Module = "",
     Property = "",
     Unit = "",
@@ -71,6 +71,7 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({})
     }),
     sources = cmp.config.sources({
+        { name = 'nvim_lsp_signature_help' },
         { name = "cmp_tabnine" },
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
@@ -98,6 +99,7 @@ cmp.setup.filetype('gitcommit', {
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
+        { name = 'nvim_lsp_document_symbol' },
         { name = 'buffer' }
     }
 })

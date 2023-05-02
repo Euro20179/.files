@@ -23,6 +23,7 @@ require "lsp_signature".setup({
     hint_enable = true,
     hint_prefix = " ",
     always_trigger = false,
+    floating_window = false
 })
 
 vim.diagnostic.config({ virtual_text = false })

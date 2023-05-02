@@ -26,7 +26,6 @@ require("packer").startup(function(use)
             require("lsp_lines").setup()
         end
     }
-    use 'dmitmel/cmp-digraphs'
     use { 'akinsho/toggleterm.nvim', tag = 'v2.*',
         config = function() require("toggleterm").setup { direction = 'horizontal' } end }
     use { 'folke/trouble.nvim', config = function() require("trouble").setup {} end,
@@ -202,4 +201,6 @@ require("packer").startup(function(use)
 
     use "joosepAlviste/nvim-ts-context-commentstring"
 
+    use "hrsh7th/cmp-nvim-lsp-signature-help"
+    use "hrsh7th/cmp-nvim-lsp-document-symbol"
 end)
