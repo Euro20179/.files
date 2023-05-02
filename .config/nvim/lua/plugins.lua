@@ -5,7 +5,6 @@ require("packer").startup(function(use)
     }
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-symbols.nvim'
-    use 'joshdick/onedark.vim'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
@@ -137,43 +136,6 @@ require("packer").startup(function(use)
         'nvim-treesitter/playground',
     }
     use "uga-rosa/ccc.nvim"
-    -- use "mfussenegger/nvim-dap"
-    -- use {
-    --     "rcarriga/nvim-dap-ui",
-    --     requires = { "mfussenegger/nvim-dap" },
-    --     config = function()
-    --         require "dapui".setup {
-    --             icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
-    --             controls = {
-    --                 -- Requires Neovim nightly (or 0.8 when released)
-    --                 enabled = true,
-    --                 -- Display controls in this element
-    --                 element = "repl",
-    --                 icons = {
-    --                     pause = "",
-    --                     play = "",
-    --                     step_into = "",
-    --                     step_over = "",
-    --                     step_out = "",
-    --                     step_back = "",
-    --                     run_last = "🔄",
-    --                     terminate = "□",
-    --                 },
-    --             },
-    --         }
-    --     end
-    -- }
-    -- use {
-    --     "mxsdev/nvim-dap-vscode-js",
-    --     requires = {
-    --         "mfussenegger/nvim-dap"
-    --     }
-    -- }
-    use {
-        "microsoft/vscode-js-debug",
-        opt = true,
-        run = "npm install --legacy-peer-deps && npm run compile"
-    }
     use {
         'glacambre/firenvim',
         run = function() vim.fn['firenvim#install'](0) end

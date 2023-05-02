@@ -15,44 +15,50 @@ local nShortcuts = {
     { "<leader>C", '"+C' },
     { "<leader>x", '"+x' },
     { "<leader>X", '"+X' },
-    { "Sb", "\"_" },
+    { "SB", "\"_" },
     { "SS", "\"+" },
-    { "Sy", "\"+yy" },
-    { "Sd", "\"+dd" },
-    { "Sc", "\"+cc" },
+    { "SY", "\"+yy" },
+    { "SD", "\"+dd" },
+    { "SC", "\"+cc" },
     --}}}
     --telescope {{{
-    { "<leader>e;", ":Telescope symbols<cr>"},
-    { "<leader>ej", ":Telescope jumplist<cr>" },
-    { "<leader>ee", ":Telescope diagnostics<cr>" },
-    { "<leader>eT", ":Telescope treesitter<cr>" },
+    { "<leader>e;", "<cmd>Telescope symbols<cr>"},
+    { "<leader>ej", "<cmd>Telescope jumplist<cr>" },
+    { "<leader>ee", "<cmd>Telescope diagnostics<cr>" },
+    { "<leader>eT", "<cmd>Telescope treesitter<cr>" },
     { "<leader>et", "<cmd>Telescope tagstack<cr>" },
     { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
     { "<leader>eH", "<cmd>Telescope highlights<cr>"},
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+    { "<leader>fb", '<cmd>Telescope buffers<cr>' },
+    { "<leader>fe", '<cmd>Telescope find_files<cr>' },
+    { "<leader>ff", ':tabnew<cr>:Telescope find_files<cr>' },
+    { "<leader>fj", '<cmd>Telescope jumplist<cr>' },
+    { "<leader>f/", '<cmd>Telescope live_grep<cr>' },
+    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>"},
+    { "<leader>ft", '<cmd>lua require("telescope-tabs").list_tabs()<cr>' },
+    --}}}
+    --Viewers {{{
+    { "<leader>n", ":CHADopen<cr>" },
+    { "<leader>N", function()
+        require("ranger-nvim").open(true)
+    end},
+    { "<leader>o", "<cmd>SymbolsOutline<cr>"},
     --}}}
     --buffer/window shortcuts{{{
     { "<leader>S", ':split \\| wincmd j<cr>' },
     { "<leader>V", ':vsplit \\| wincmd l<cr>' },
     { "<leader>l", ":tabnext<cr>" },
-    { "<S-Tab>", ':tabprev<CR>' },
     { "<leader>h", ':tabprev<CR>' },
     { "<leader><c-l>", ':bn<CR>' },
     { "<leader><c-h>", ':bp<CR>' },
     { "<leader>t", ':tabnew<CR>' },
     { "<leader>q", ':tabclose<cr>' },
-    { "ZA", ":qa<CR>" },
-    { "ZW", ":wqa<CR>" },
     { "<leader>T", ":ToggleTerm<cr>" },
-    { "<leader>n", ":CHADopen<cr>" },
-    { "<leader>N", function()
-        require("ranger-nvim").open(true)
-    end},
-    { "<leader>fh", ":Telescope help_tags<cr>" },
     { "<right>", "<c-w>>" },
     { "<left>", "<c-w><" },
     { "<up>", "<c-w>+" },
     { "<down>", "<c-w>-" },
-    { "<leader>F", "<cmd>Ex<cr>" },
     { "<leader>vw", function()
         vim.cmd [[:cd ~/Documents/vimwiki]]
         vim.cmd [[:e index.norg]]
@@ -80,25 +86,15 @@ local nShortcuts = {
     --emmet{{{
     { "<leader>,", "<c-y>," },
     --}}}
-    --FIND{{{
-    { "<leader>fb", ':Telescope buffers<cr>' },
-    { "<leader>fe", ':Telescope find_files<cr>' },
-    { "<leader>ff", ':tabnew<cr>:Telescope find_files<cr>' },
-    { "<leader>fj", ':Telescope jumplist<cr>' },
-    { "<leader>f/", ':Telescope live_grep<cr>' },
-    { "<leader>b/", ":Telescope current_buffer_fuzzy_find<cr>"},
-    { "<leader>ft", ':lua require("telescope-tabs").list_tabs()<cr>' },
-    --}}}
     --lsp {{{
-    { "<leader>#", ":!ctags -R .<cr>" },
-    { "<leader>fF", ":Telescope tags<cr>" },
-    { "<leader>f#", ":Telescope tags<cr>" },
-    { "<leader>fs", ':Telescope lsp_document_symbols<cr>' },
-    { "<leader>fS", ':Telescope lsp_workspace_symbols<cr>' },
-    { "<leader>fr", ':Telescope lsp_references<cr>' },
-    { "<leader>E", ":TroubleToggle<cr>" },
-    { "<leader>r", ":IncRename " },
-    { "<leader>e", require("lsp_lines").toggle },
+    { "<leader>fF", "<cmd>Telescope tags<cr>" },
+    { "<leader>f#", "<cmd>Telescope tags<cr>" },
+    { "<leader>fs", '<cmd>Telescope lsp_document_symbols<cr>' },
+    { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>' },
+    { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
+    { "<leader>E", "<cmd>TroubleToggle<cr>" },
+    { "<leader>r", "<cmd>IncRename " },
+    { "<leader>el", require("lsp_lines").toggle },
     { "<a-e>", function()
         vim.diagnostic.open_float()
     end
@@ -107,7 +103,7 @@ local nShortcuts = {
     { "<leader>a", "<cmd>CodeActionMenu<cr>"    },
     { "<leader>A", function()
         local n = 0
-        vim.lsp.buf.code_action({ filter = function(a)
+        vim.lsp.buf.code_action({ filter = function()
             n = n + 1
             return n == 1
         end, apply = true })
@@ -147,53 +143,16 @@ local nShortcuts = {
         end
     },
     --}}}
-    --DAP{{{
-    { "<a-d>", function()
-        vim.g.euro_debug_mode = not vim.g.euro_debug_mode
-        local filetype = vim.filetype.match({ buf = 0 })
-        local filename = vim.fs.basename(vim.api.nvim_buf_get_name(0))
-        if vim.g.euro_debug_mode == true then
-            -- local js_name = vim.split(filename, ".", {plain = true})[1] .. ".js"
-            -- if filetype == "typescript" then
-            --     if vim.fs.find(js_name, {}) then
-            --         vim.api.nvim_cmd({
-            --             args = {js_name},
-            --             cmd = "e",
-            --         }, {})
-            --     end
-            -- end
-
-            vim.keymap.set("n", "b", function()
-                require "dap".toggle_breakpoint()
-            end)
-            require("dapui").open()
-        else
-            -- local ts_name = vim.split(filename, ".", {plain = true})[1] .. ".ts"
-            -- if filetype == "javascript" then
-            --     if vim.fs.find(ts_name, {}) then
-            --         vim.api.nvim_cmd({
-            --             args = {ts_name},
-            --             cmd = "e",
-            --         }, {})
-            --     end
-            -- end
-            vim.keymap.del("n", "b")
-            require "dapui".close()
-        end
-    end },
-    --}}}
     -- Treesitter {{{
-    { "<leader>R", "<cmd>AerialToggle<cr>" },
     { "<A-r>", "<cmd>RegexplainerToggle<cr>" },
     { "<a-h>", require("tree-climber").goto_parent },
     { "<a-l>", require("tree-climber").goto_child },
     { "<a-j>", require("tree-climber").goto_next },
     { "<a-k>", require("tree-climber").goto_prev },
-    { "<leader>v", require("tree-climber").select_node },
+    { "<leader>vn", require("tree-climber").select_node },
     { "<leader><a-j>", require("tree-climber").swap_next },
     { "<leader><a-k>", require("tree-climber").swap_prev },
     { "glt", ":TSHighlightCapturesUnderCursor<cr>" },
-    { "<leader>o", "<cmd>SymbolsOutlineOpen<cr>"},
     -- }}}
     --syntax highlighting{{{
     { "<A-f>s", ":set foldmethod=syntax<cr>" },
@@ -201,14 +160,6 @@ local nShortcuts = {
     { "<C-n>", ':noh<CR>' },
     { "<C-s>", ':setlocal spell! spelllang=en_us<CR>' },
     { "<A-s>", ':syntax sync fromstart<CR>' },
-    { "<A-c>", function()
-        local c = require("colorizer")
-        if c.is_buffer_attached() then
-            c.detach_from_buffer()
-        else
-            c.attach_to_buffer(0, { mode = "foreground", css = true })
-        end
-    end },
     --}}}
     --normal movement {{{
     { "<c-l>", "<C-w>l" },
