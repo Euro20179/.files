@@ -170,4 +170,9 @@ require("packer").startup(function(use)
     use "simrat39/symbols-outline.nvim"
     use {"weilbith/nvim-code-action-menu", cmd = "CodeActionMenu"}
 
+    use {
+        "willothy/moveline.nvim",
+        run = "make"
+    }
+
 end)

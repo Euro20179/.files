@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+local moveline = require("moveline")
+
 local utilLeader = "<A-u>"
 
 --Normal Mode{{{
@@ -197,6 +199,10 @@ local nShortcuts = {
     -- Wiki {{{
     { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
     -- }}}
+    -- move code {{{
+        {"<A-k>", moveline.up},
+        {"<A-j>", moveline.down},
+    -- }}}
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -285,6 +291,10 @@ local vShortcuts = {
     -- chatbot{{{
     { "D", ":ChatBotDocument<cr>" },
     { "C", ":ChatBotComment<cr>" },
+    -- }}}
+    -- move code {{{
+        {"<A-j>", moveline.block_down},
+        {"<A-k>", moveline.block_up},
     -- }}}
 }
 for _, map in ipairs(vShortcuts) do
