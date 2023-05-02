@@ -2,30 +2,30 @@ local cmp = require 'cmp'
 
 local kind_icons = {
     Text = "",
-    Method = "ﴯ",
-    Function = "",
-    Constructor = "",
-    Field = "",
+    Method = " ",
+    Function = "",
+    Constructor = "",
+    Field = "",
     Variable = "𝑥",
-    Class = "ﴯ",
+    Class = "",
     Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "",
-    Value = "",
+    Module = "",
+    Property = "",
+    Unit = "",
+    Value = "",
     Enum = "",
-    Keyword = "",
+    Keyword = "",
     Snippet = "",
-    Color = "",
-    File = "",
+    Color = "",
+    File = "",
     Reference = "",
-    Folder = "",
+    Folder = "",
     EnumMember = "",
-    Constant = "",
+    Constant = "",
     Struct = "",
     Event = "",
-    Operator = "",
-    TypeParameter = ""
+    Operator = "",
+    TypeParameter = ""
 }
 cmp.setup({
     experimental = {
@@ -68,7 +68,7 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-s>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({select = true})
+        ['<CR>'] = cmp.mapping.confirm({})
     }),
     sources = cmp.config.sources({
         { name = "cmp_tabnine" },

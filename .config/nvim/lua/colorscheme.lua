@@ -4,6 +4,10 @@ local colorscheme = {
     scheme = "catppuccin"
 }
 
+colorscheme.after = function ()
+    vim.cmd[[hi Normal guibg=#00000000]]
+end
+
 -- colorscheme.after = function()
     -- vim.cmd [[
     -- " for vscode looking completion

@@ -21,7 +21,8 @@ vim.api.nvim_cmd({
 require "lsp_signature".setup({
     bind = true,
     hint_enable = true,
-    floating_window = false
+    hint_prefix = " ",
+    always_trigger = false,
 })
 
 vim.diagnostic.config({ virtual_text = false })
