@@ -64,11 +64,11 @@ toolbar{
 
 tab[selected="true"]{
     background-color: $secondary !important;
-    border-top: 1px solid $highlight !important;
+    border-top: 3px solid $highlight !important;
 }
 tab:not([selected="true"]){
     background-color: $main !important;
-    border-top: 1px solid $medium !important;
+    border-top: 3px solid $medium !important;
 }
 
 tab:not([selected="true"]):is(:hover, :focus){
@@ -107,4 +107,7 @@ menupopup{
 
 tab.tabbrowser-tab[selected=true] .tab-text {
     color: $highlight !important;
+}
+tab.tabbrowser-tab:not([selected=true]) .tab-text {
+    color: $medium !important;
 }

@@ -29,7 +29,7 @@ waybar & disown
 
 killall swww-daemon
 swww init
-wallpaper-slideshow $((60 * 10)) & disown
+# wallpaper-slideshow $((60 * 10)) & disown
 
 # killall swayidle
 # swayidle timeout $((60 * 20)) $LOCKER & disown
