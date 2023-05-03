@@ -97,6 +97,7 @@ alias vim="vim -i $HOME/.cache/vim/viminfo"
 alias x="sx sh $HOME/.config/xinitrc"
 alias lo=libreoffice
 #alias "l=ls -AX --group-directories-first --color=auto"
+alias 'ls=lsd'
 alias "l=lsd --group-directories-first -A"
 alias "ll=ls -ASs --group-directories-first --color=auto"
 alias "password=pass-gen"

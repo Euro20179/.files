@@ -1,0 +1,48 @@
+#!/bin/sh
+
+export YTFZF_PICTURES_WALLPAPER_PATH="/usr/share/wallpapers:/usr/share/backgrounds:$HOME/.local/share/wallpapers:$HOME/.local/share/backgrounds:$HOME/Pictures/wallpapers"
+
+info_wait_action="Q"
+
+show_thumbnails=$((PRIVATE_in_nvim^1))
+
+search_result_type=all
+
+async_thumbnails=1
+
+notify_playing=1
+
+#do not ask for a search for these scrapers
+custom_scrape_search_exclude="invidious-popular recommended sI osu-dir instances "
+
+sub_link_count=2
+
+thumbnail_quality=maxres
+
+is_loop=1
+
+#invidious_instance="http://localhost:3000"
+
+#listen for these extra keybinds
+custom_shortcut_binds="alt-b,alt-d,alt-r,alt-n,alt-c"
+
+format_selection_screen=simple_extra
+
+max_thread_count=40
+
+
+#if using wayland:
+    # if in sway:
+        # use swayimg
+    # elif in hyprland:
+        # use swayimg-hyprland
+#elif using xorg:
+    # use ueberzug
+#elif in tty:
+    # use catimg
+[ "$XDG_SESSION_TYPE" = "wayland" ] && {
+    load_thumbnail_viewer sixel
+    # [ "$SWAYSOCK" ] && thumbnail_viewer="sixel"
+    # [ "$HYPRLAND_INSTANCE_SIGNATURE" ] && thumbnail_viewer="swayimg-hyprland"
+}
+[ "$XDG_SESSION_TYPE" = "X11" ] && thumbnail_viewer=ueberzug
