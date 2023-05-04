@@ -95,7 +95,7 @@ local nShortcuts = {
     { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>' },
     { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
     { "<leader>E", "<cmd>TroubleToggle<cr>" },
-    { "<leader>r", "<cmd>IncRename " },
+    { "<leader>r", ":IncRename " },
     { "<leader>el", require("lsp_lines").toggle },
     { "<a-e>", function()
         vim.diagnostic.open_float()
