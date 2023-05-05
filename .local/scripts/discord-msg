@@ -1,0 +1,51 @@
+#!/bin/sh
+
+#this script is copied and modified from @justchokingaround on github
+
+read -r token < ~/Documents/APIKeys/discord
+launcher () {
+    rofi -dmenu -i -theme nord -p "${1:-"> "}"
+}
+base="https://discord.com/api/v10"
+
+tab="$(printf '\t')"
+
+nth() {
+	stdin=$(cat)
+	line=$(echo "$stdin" | awk -F '\t' "{ print NR, $1 }" | launcher | cut -d' '  -f1)
+	[ -n "$line" ] && echo "$stdin" | sed "${line}q;d" || exit 1
+}
+
+server_id="${1}"
+
+if [ -z "$server_id" ]; then
+    server_choice=$(curl -s -H "Authorization: $token" "${base}/users/@me/guilds" | tr "{|}" "\n" |
+        sed -nE "s@\"id\": \"([0-9]*)\", \"name\": \"([^\"]*)\".*@\1\t\2@p" | nth "\$2")
+    [ -z "$server_choice" ] && exit 1
+    server_name="${server_choice#*${tab}}"
+    server_id="${server_choice%%${tab}*}"
+fi
+
+
+channel_id="${2}"
+if [ -z "$channel_id" ]; then
+    channel=$(curl -s -H "Authorization: $token" "${base}/guilds/${server_id}/channels" | tr "{|}" "\n" |
+        sed -nE "s@\"id\": \"([0-9]*)\".*\"type\": 0, \"name\": \"([^\"]*)\", \"position\": ([0-9]*).*@\3) \1\t\2@p" | sort -h | cut -f2 -d' ')
+    channel_choice=$(printf "%s" "$channel" | nth "\$2")
+    [ -z "$channel_choice" ] && exit 1
+    channel_name="${channel_choice#*${tab}}"
+    channel_id="${channel_choice%${tab}*}"
+fi
+
+if [ -t 0 ]; then
+    tmp=$(mktemp)
+    $TERMINAL -e nvim -c 'startinsert' "${tmp}"
+    content="$(cat "${tmp}")"
+else
+    content="$(cat)"
+fi
+
+[ -z "$content" ] && exit 1
+
+curl -H "Authorization: $token" -F 'payload_json={"content":"'"${content}"'"}' "https://discord.com/api/v9/channels/$channel_id/messages"
+notify-send "Discord message" "\"$content\" has been sent to \#$channel_name in $server_name"
