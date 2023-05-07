@@ -9,16 +9,16 @@
 .modules-right widget:nth-child(2n),
 .modules-left widget:nth-child(2n),
 .modules-center widget:nth-child(2n){
-    background-color: #81C8BE;
+    border: 2px solid #81C8BE;
 }
 .modules-right widget:nth-child(2n - 1),
 .modules-left widget:nth-child(2n - 1),
 .modules-center widget:nth-child(2n - 1) {
-    background-color: #689C9A;
+    border: 2px solid #689C9A;
 }
 
 label{
-    color: black;
+    color: white;
     padding: 5px 10px;
 }
 
@@ -27,7 +27,7 @@ tooltip label{
 }
 
 #tray, #tray *{
-    background-color: #7D71B7;
+    border: none;
 }
 
 #tray {
@@ -123,34 +123,34 @@ window#waybar.chromium {
     color: white;
 }
 #custom-temp.hot{
-    background-color: #8c0000;
+    border-color: #8c0000;
     color: white;
 }
 #custom-temp.too-warm{
-    background-color: orange;
+    border-color: orange;
     color: white;
 }
 #custom-temp.warm{
-    background-color: yellow;
+    border-color: yellow;
 }
 #custom-temp.mild{
-    background-color: #4dff00;
+    border-color: #4dff00;
 }
 #custom-temp.cold{
-    background-color: #009000;
+    border-color: #009000;
     color: white;
 }
 #custom-temp.too-cold {
-    background-color: #00cc80;
+    border-color: #00cc80;
 }
 #custom-temp.freezing{
-    background-color: #00d9ff;
+    border-color: #00d9ff;
 }
 #custom-temp.sub-zero{
-    background-color: #99b3ff;
+    border-color: #99b3ff;
 }
 #custom-temp.sub-zero{
-    background-color: #9963ff;
+    border-color: #9963ff;
 }
 
 #window,
@@ -176,7 +176,7 @@ window#waybar.chromium {
 }
 
 #custom-vpn-location.disconnected{
-  background-color: #F28FAD;
+  border-color: #F28FAD;
 }
 
 @keyframes blink {
@@ -204,7 +204,7 @@ label:focus {
 
 #custom-cpu-temp.medium,
 #custom-gpu-temp.medium {
-    background-color: #F8BD96;
+    border-color: #F8BD96;
 }
 
 #custom-cpu-temp.hot,
@@ -214,11 +214,11 @@ label:focus {
 
 #custom-cpu-temp.warning,
 #custom-gpu-temp.warning {
-    background-color: #db5959;
+    border-color: #db5959;
 }
 
 #custom-memory.medium {
-    background-color: #F8BD96;
+    border-color: #F8BD96;
 }
 #custom-memory.high {
     background-color: #F28FAD;
@@ -244,15 +244,15 @@ label:focus {
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+    border-color: #ffa000;
 }
 
 #temperature {
-    background-color: #f0932b;
+    border-color: #f0932b;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    border-color: #eb4d4b;
 }
 
 #tray > .passive {
