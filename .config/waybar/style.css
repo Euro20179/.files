@@ -6,14 +6,14 @@
      */
 }
 
-.modules-right widget:nth-child(2n),
-.modules-left widget:nth-child(2n),
-.modules-center widget:nth-child(2n){
+.modules-right widget:nth-child(2n) label,
+.modules-left widget:nth-child(2n) label,
+.modules-center widget:nth-child(2n) label{
     border: 2px solid #81C8BE;
 }
-.modules-right widget:nth-child(2n - 1),
-.modules-left widget:nth-child(2n - 1),
-.modules-center widget:nth-child(2n - 1) {
+.modules-right widget:nth-child(2n - 1) label,
+.modules-left widget:nth-child(2n - 1) label,
+.modules-center widget:nth-child(2n - 1) label {
     border: 2px solid #689C9A;
 }
 
@@ -176,7 +176,7 @@ window#waybar.chromium {
 }
 
 #custom-vpn-location.disconnected{
-  border-color: #F28FAD;
+  background-color: #F28FAD;
 }
 
 @keyframes blink {
@@ -202,30 +202,31 @@ label:focus {
 }
 
 
-#custom-cpu-temp.medium,
-#custom-gpu-temp.medium {
+.modules-right #custom-cpu-temp.medium,
+.modules-right #custom-gpu-temp.medium {
     border-color: #F8BD96;
 }
 
-#custom-cpu-temp.hot,
-#custom-gpu-temp.hot {
+.modules-right #custom-cpu-temp.hot,
+.modules-right #custom-gpu-temp.hot {
     background-color: #F28FAD;
+    border-color: #F28FAD;
 }
 
-#custom-cpu-temp.warning,
-#custom-gpu-temp.warning {
+.modules-right #custom-cpu-temp.warning,
+.modules-right #custom-gpu-temp.warning {
     border-color: #db5959;
 }
 
-#custom-memory.medium {
+.modules-right #custom-memory.medium {
     border-color: #F8BD96;
 }
-#custom-memory.high {
+.modules-right #custom-memory.high {
     background-color: #F28FAD;
 }
 
 
-#network.disconnected {
+.modules-right #network.disconnected {
     background-color: #F28FAD;
 }
 
