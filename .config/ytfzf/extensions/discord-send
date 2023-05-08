@@ -1,0 +1,32 @@
+#!/bin/sh
+
+_select_from_list () {
+    _prompt=$1
+    shift
+    while read -r line; do
+        printf "%s\n" "${line%";"*}"
+    done <<-EOF | quick_menu_wrapper "$_prompt"
+        $1
+EOF
+}
+
+on_post_set_vars_discord_send () {
+    load_url_handler "discord-send"
+
+    export YTFZF_CONFIG_DIR="${YTFZF_CONFIG_DIR}"
+
+    read -r token < "$YTFZF_CONFIG_DIR/discord-token"
+    base="https://discord.com/api/v10"
+
+    servers=$(curl -s -H "Authorization: $token" "${base}/users/@me/guilds" | jq -r '.[]|"\(.name);\(.id)"')
+    server_choice=$(_select_from_list "Choose discord server" "${servers}" )
+
+    export DISCORD_SELECTED_SERVER_ID=$(printf "%s" "$servers" | grep -F "$server_choice;" | cut -d ';' -f2)
+    export DISCORD_SELECTED_SERVER_NAME=$(printf "%s" "$servers" | grep -F "$server_choice;" | cut -d ';' -f1)
+
+    channels=$(curl -s -H "Authorization: $token" "${base}/guilds/${DISCORD_SELECTED_SERVER_ID}/channels" | jq -r '.[]|"\(.name);\(.id)"')
+    channel_choice=$(_select_from_list "Choose channel" "${channels}")
+
+    export DISCORD_SELECTED_CHANNEL_ID=$(printf "%s" "$channels" | grep -F "$channel_choice;" | cut -d ';' -f2)
+    export DISCORD_SELECTED_CHANNEL_NAME=$(printf "%s" "$channels" | grep -F "$channel_choice;" | cut -d ';' -f1)
+}

@@ -253,6 +253,8 @@ alias rm="trash"
 
 alias tuir='BROWSER=linkhandler PAGER=less tuir'
 
+alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
+
 unset welcomeStr
 
 . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"

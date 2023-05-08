@@ -1,0 +1,18 @@
+#!/bin/sh
+
+thumbnail_video_info_text_instances () {
+    printf "Id: ${c_bold}%s${c_reset}\n" "$id"
+    printf "Selected url: ${c_blue}${url:-nothing selected}${c_reset}"
+}
+
+scrape_instances () {
+    set +f
+    for instance in "${YTFZF_TEMP_DIR}"/*; do
+        instance_name="$(printf "%s" "$instance" | sed 's/.*\///')"
+        json="$json{\"ID\": \"${instance_name}\", \"url\": \"$(cat "$instance/ids")\", \"title\": \"${instance_name}\", \"scraper\": \"instances\"}"
+    done
+    set -f
+
+    printf "%s\n" "$json" | jq -s | tee "$2"
+    unset json
+}

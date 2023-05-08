@@ -45,3 +45,5 @@ killall foot
 command -v foot && foot --server & disown
 
 hyprctl setcursor Bibata-Modern-Ice 24
+
+hyprland-autoname-workspaces &disown

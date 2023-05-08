@@ -5,7 +5,7 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    //"modules-left": ["river/tags"],
+    // "modules-left": ["river/tags"],
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["custom/vpn-location"],
     "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
