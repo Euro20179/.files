@@ -26,11 +26,9 @@ tooltip label{
     color: white;
 }
 
-#tray, #tray *{
-    border: none;
-}
 
 #tray {
+    border: 2px solid #F28FAD;
     padding: 5px 10px;
 }
 

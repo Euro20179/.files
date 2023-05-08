@@ -44,7 +44,7 @@
     },
     "custom/pkg-count": {
         "exec": "pacman -Q | wc -l",
-        "format": "{} \uf187",
+        "format": "{} 󰏓",
         "interval": 30
     },
     "custom/vpn-location": {
