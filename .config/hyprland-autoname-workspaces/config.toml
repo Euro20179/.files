@@ -1,4 +1,3 @@
-
 # Deduplicate icons if enable.
 # A superscripted counter will be added.
 dedup = false
@@ -12,6 +11,8 @@ dedup = false
 "[Ff]irefox" = ""
 "mpv" = ""
 "osu" = "󰎈"
+"libreoffice-writer" = "󱎒"
+"libreoffice-calc" = "󱎏"
 
 [title."firefox"]
 ".*Discord.*" = "󰙯"
