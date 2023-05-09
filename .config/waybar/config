@@ -91,13 +91,13 @@
         "exec": "$HOME/.config/waybar/gpu-temp.sh",
         "return-type": "json",
         "interval": 5,
-        "format": "{}G🌡"
+        "format": "{}°󰍹"
     },
     "custom/cpu-temp": {
         "exec": "$HOME/.config/waybar/tmep.sh",
         "return-type": "json",
         "interval": 5,
-        "format": "{}🌡"
+        "format": "{}°"
     },
     "custom/memory": {
 	"exec": "$HOME/.config/waybar/memory.sh",

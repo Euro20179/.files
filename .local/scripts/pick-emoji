@@ -1,5 +1,7 @@
 #!/bin/sh
 
+file="${1:-$HOME/Documents/emoji}"
+
 roficmd="rofi -sort -sort-method fzf -matching fuzzy -theme emojimenu -dmenu"
 case "$WM" in
     bspwm)
@@ -7,4 +9,4 @@ case "$WM" in
 	roficmd="$roficmd -monitor $(bspc query -M -m '.focused' --names)"
 	;;
 esac
-cat "$HOME/Documents/emoji" | $roficmd | awk '{print $1}' | tr -d '\n' | wl-copy
+cat "$file" | $roficmd | awk '{print $1}' | tr -d '\n' | wl-copy

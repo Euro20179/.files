@@ -1,0 +1,5 @@
+#!/bin/bash
+
+text=""
+
+curl -s https://www.nerdfonts.com/cheat-sheet | sed -n 's/.*"class-name">\([^<]\+\).*"codepoint">\([^<]\+\).*/print("\1", chr(0x\2))/p' | python > "$HOME/Documents/nerd-fonts"

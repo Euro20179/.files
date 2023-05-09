@@ -1,0 +1,4 @@
+#!/bin/sh
+#rofi -theme nord -dmenu < Documents/nerd-fonts | cut -d' ' -f2 | wl-copy
+
+fzf < "$HOME/Documents/nerd-fonts" | cut -d' ' -f2 | wl-copy
