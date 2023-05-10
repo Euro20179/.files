@@ -22,5 +22,7 @@ vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.spelllang = { "en_us" }
 
+vim.opt.fillchars = "eob:󰅖"
+
 --code-action-menu
 vim.g.code_action_menu_show_details = false

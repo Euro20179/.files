@@ -243,6 +243,7 @@ on_opt_parse_mon(){
 
 #runs when a website is about to be scraped
 ext_on_search () {
+    printf "\033]0;%s - ytfzf\a" "$_search"
     case "$curr_scrape" in
         S|SI)
             PRIVATE_old_search_result_type="$search_result_type"
@@ -284,4 +285,9 @@ on_opt_parse_term_size() {
 on_opt_parse_term () {
     url_handler_opts="--vo='sixel' --quiet"
     return 1
+}
+
+
+on_clean_up (){
+    printf "\033]0;$TERM\a"
 }

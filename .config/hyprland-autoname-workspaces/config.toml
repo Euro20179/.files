@@ -1,6 +1,10 @@
 # Deduplicate icons if enable.
 # A superscripted counter will be added.
-dedup = false
+
+[format]
+dedup = true
+client_fullscreen = "「{icon}」"
+client_dup = "{icon}  {counter_sup}{delim}"
 
 [icons]
 # Add your icons mapping
@@ -14,8 +18,12 @@ dedup = false
 "libreoffice-writer" = "󱎒"
 "libreoffice-calc" = "󱎏"
 
-[title."firefox"]
-".*Discord.*" = "󰙯"
-".*GitHub.*" = ""
+"parsecd" = "󱌣"
 
-[exclude]
+[title."firefox"]
+".*Discord.*" = "<span color='#768ED3'>󰙯</span>"
+".*GitHub.*" = "󰊤"
+
+[title."foot"]
+".*ytfzf$" = "<span color='#F28FAD'></span>"
+"^nvim" = '<span color="#7CB764"></span>'
