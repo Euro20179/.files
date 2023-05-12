@@ -3,27 +3,30 @@
 
 [format]
 dedup = true
-client_fullscreen = "「{icon}」"
+client_fullscreen = "{icon}^"
 client_dup = "{icon}  {counter_sup}{delim}"
+client_active = "<span color='#F8BD96'>[</span>{icon}<span color='#F8BD96'>]</span>"
 
 [icons]
 # Add your icons mapping
 # use double quote the key and the value
 # take class name from 'hyprctl clients'
-"foot" = ""
-"DEFAULT" = " ${class} "
-"[Ff]irefox" = ""
+"foot" = " "
+"DEFAULT" = " {class} "
+"[Ff]irefox" = " "
 "mpv" = ""
-"osu" = "󰎈"
-"libreoffice-writer" = "󱎒"
-"libreoffice-calc" = "󱎏"
+"osu" = "<span color='#F28FAD'>󰎈</span>"
+"libreoffice-writer" = "󱎒 "
+"libreoffice-calc" = "󱎏 "
+"steam" = "󰓓 "
 
-"parsecd" = "󱌣"
+"parsecd" = "󱌣 "
 
 [title."firefox"]
-".*Discord.*" = "<span color='#768ED3'>󰙯</span>"
-".*GitHub.*" = "󰊤"
+".*Discord.*" = "<span color='#768ED3'>󰙯 </span>ꜰ"
+".*GitHub.*" = "󰊤 ꜰ"
 
 [title."foot"]
-".*ytfzf$" = "<span color='#F28FAD'></span>"
-"^nvim" = '<span color="#7CB764"></span>'
+".*ytfzf$" = "<span color='#F28FAD'>󰗃 </span>ᴛ"
+"^nvim" = '<span color="#7CB764"></span>ᴛ'
+"otd .foot." = "<span color='#F28FAD'>󰑶</span>ᴛ"

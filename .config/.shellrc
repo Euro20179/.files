@@ -52,10 +52,11 @@ CONF_FILE="$HOME/.config/mpd.conf"
 export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING='luakit'
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 export PAGER="bat"
 export TERMINAL_HOLD_OPT='-H'
-export TERMINAL=footclient
+export TERMINAL=foot
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"
@@ -123,17 +124,17 @@ alias "fbs=zathura Pictures/schedule.pdf"
 alias "TIL=$EDITOR $HOME/Documents/vimwiki/til/README.md"
 alias "lman=MANPAGER=less man"
 
-man () {
-    section=1
-    page="$2"
-    if [ "$page" ]; then
-        section="$1"
-    else
-        page="$1"
-    fi
-
-    nvim --cmd "let g:euro_is_manpage='$page($section)'" man://"${page}(${section})"
-}
+# man () {
+#     section=1
+#     page="$2"
+#     if [ "$page" ]; then
+#         section="$1"
+#     else
+#         page="$1"
+#     fi
+#
+#     nvim --cmd "let g:euro_is_manpage='$page($section)'" man://"${page}(${section})"
+# }
 
 lk () {
     if [ "$1" = "-f" ]; then

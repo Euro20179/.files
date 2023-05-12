@@ -4,4 +4,4 @@ status=$(mullvad status -l)
 text=$(echo "$status" | sed -n 1p | sed -n 's/.*in \(.*\)/\1/p')
 ip=$(echo "$status" | sed -n 2p)
 mullvad status | grep -q Disconnected && class=disconnected || class=connected
-printf "%s" "{\"text\": \"$text\", \"alt\": \"vpn\", \"tooltip\": \"$ip\", \"class\": \"$class\", \"percentage\": 100 }"
+printf "%s" "{\"text\": \"${text:-disconnected}\", \"alt\": \"vpn\", \"tooltip\": \"$ip\", \"class\": \"$class\", \"percentage\": 100 }"

@@ -17,6 +17,12 @@
     border: 2px solid #689C9A;
 }
 
+.modules-left,
+.modules-right,
+.modules-center{
+    padding: 5px 0;
+}
+
 label{
     color: white;
     padding: 5px 10px;
@@ -32,10 +38,8 @@ tooltip label{
     padding: 5px 10px;
 }
 
-
-
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
+    background-color: rgba(43, 48, 59, 0.2);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
     color: #ffffff;
     transition-property: background-color;
@@ -76,12 +80,6 @@ window#waybar.chromium {
 
 #workspaces button label{
     color: #ffffff;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces button.focused {
@@ -174,7 +172,7 @@ window#waybar.chromium {
 }
 
 #custom-vpn-location.disconnected{
-  background-color: #F28FAD;
+  border-color: #F28FAD;
 }
 
 @keyframes blink {
