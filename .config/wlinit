@@ -7,9 +7,6 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export SDL_VIDEODRIVER=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-killall eww
-eww daemon
-
 mako & disown
 brightnessctl s 100%
 
@@ -26,6 +23,9 @@ brightnessctl s 100%
 #
 killall waybar
 waybar & disown
+
+killall foot
+foot -s & disown
 
 killall swww-daemon
 swww init

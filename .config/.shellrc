@@ -56,7 +56,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export PAGER="bat"
 export TERMINAL_HOLD_OPT='-H'
-export TERMINAL=foot
+export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"
