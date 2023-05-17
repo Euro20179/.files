@@ -39,8 +39,6 @@ dbus-update-activation-environment --systemd --all
 #doesn't work for some reason on activation
 killall xdg-desktop-portal-termfilechooser
 
-fcitx -d & disown
+fcitx5 -d & disown
 
 hyprctl setcursor Bibata-Modern-Ice 24
-
-hyprland-autoname-workspaces&disown

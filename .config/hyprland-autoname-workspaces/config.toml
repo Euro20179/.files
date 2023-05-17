@@ -1,6 +1,3 @@
-# Deduplicate icons if enable.
-# A superscripted counter will be added.
-
 [format]
 dedup = true
 client_fullscreen = "{icon}^"
@@ -8,9 +5,6 @@ client_dup = "{icon}  {counter_sup}{delim}"
 client_active = "<span color='#F8BD96'>[</span>{icon}<span color='#F8BD96'>]</span>"
 
 [icons]
-# Add your icons mapping
-# use double quote the key and the value
-# take class name from 'hyprctl clients'
 "foot" = " "
 "DEFAULT" = " {class} "
 "[Ff]irefox" = " "
@@ -19,6 +13,7 @@ client_active = "<span color='#F8BD96'>[</span>{icon}<span color='#F8BD96'>]</sp
 "libreoffice-writer" = "󱎒 "
 "libreoffice-calc" = "󱎏 "
 "steam" = "󰓓 "
+"anki" = "日本語"
 
 "parsecd" = "󱌣 "
 
