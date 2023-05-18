@@ -1,0 +1,60 @@
+#!/bin/bash
+
+KANJI_DATA_HOME="${XDG_DATA_HOME}/kanji"
+KANJI_DATA_FILE="${KANJI_DATA_HOME}/data"
+
+! [ -f "$KANJI_DATA_FILE" ] && mkdir -p "$KANJI_DATA_HOME" && touch "$KANJI_DATA_FILE"
+
+do_help () {
+    printf "%s\n" "Actions:
+    help
+    add <kanji> <readings> <translation>
+    list"
+}
+
+do_add () {
+    kanji="$1"
+    readings="$2"
+    translation="$3"
+
+    if [ "${use_zenity:-0}" -eq 1 ]; then
+        data=$(zenity --add-entry='kanji' --add-entry='readings' --add-entry='translation' --forms)
+        kanji="${data%%"|"*}"
+        data="${data#*"|"}"
+        readings="${data%%"|"*}"
+        data="${data#*"|"}"
+        translation="${data}"
+    fi
+
+    [ -z "$kanji" ] && die 1
+
+    printf "[%s]\nreadings: %s\ntranslation: %s\n\n" "$kanji" "$readings" "$translation" >> "$KANJI_DATA_FILE"
+}
+
+do_list () {
+    cat "$KANJI_DATA_FILE"
+}
+
+while getopts "z" OPT; do
+    case "${OPT#-}" in
+        z) use_zenity=1 ;;
+    esac
+done
+shift $((OPTIND-1))
+
+action="$1"
+[ -z "$action" ] && {
+    printf "%s\n" "No action provided"
+    exit 1
+}
+shift
+
+if command -v &> /dev/null; then
+    do_"${action}" "$@" || {
+        code="$?"
+        printf "%s\n" "$action returned error code: $code"
+        exit $code
+    }
+else
+    printf "%s\n" "${action} is not a valid action" "run 'kanji help' for more info"
+fi
