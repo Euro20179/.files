@@ -9,7 +9,8 @@ do_help () {
     printf "%s\n" "Actions:
     help
     add <kanji> <readings> <translation>
-    list"
+    list
+    count"
 }
 
 do_add () {
@@ -19,6 +20,7 @@ do_add () {
 
     if [ "${use_zenity:-0}" -eq 1 ]; then
         data=$(zenity --add-entry='kanji' --add-entry='readings' --add-entry='translation' --forms)
+        [ -z "$data" ] && exit 1
         kanji="${data%%"|"*}"
         data="${data#*"|"}"
         readings="${data%%"|"*}"
@@ -28,11 +30,20 @@ do_add () {
 
     [ -z "$kanji" ] && die 1
 
+    if grep -q "\[$kanji\]" "${KANJI_DATA_FILE}"; then
+        notify-send "$kanji has already been aded"
+        die 2
+    fi
+
     printf "[%s]\nreadings: %s\ntranslation: %s\n\n" "$kanji" "$readings" "$translation" >> "$KANJI_DATA_FILE"
 }
 
 do_list () {
     cat "$KANJI_DATA_FILE"
+}
+
+do_count () {
+    grep '^\[.*\]$' "$KANJI_DATA_FILE" | wc -l
 }
 
 while getopts "z" OPT; do
