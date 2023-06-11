@@ -68,7 +68,7 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-s>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({})
+        ['<CR>'] = cmp.mapping.confirm()
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp_signature_help' },
