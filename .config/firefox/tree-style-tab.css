@@ -1,0 +1,35 @@
+:root{
+--main: #2f3041; 
+--secondary: #4c4d69; 
+--highlight: #96CDFB; 
+--darker: #232430; 
+--good: var(--highlight); 
+--medium: #F8BD96; 
+--bad: #F28FAD; 
+--background: linear-gradient(var(--highlight), var(--main)); 
+--text-color: white; 
+--link-color: var(--highlight); 
+--slight-transparent: #000000aa; 
+--very-transparent: #00000033; 
+--transparent: #00000055; 
+}
+
+tab-item[aria-selected=false] tab-item-substance {
+    background-color: var(--main);
+    border-left: 2px solid var(--warn);
+    outline: none;
+}
+
+tab-item[aria-selected=false] tab-label span {
+    color: var(--warn);
+}
+
+tab-item[aria-selected=true] tab-item-substance {
+    background-color: var(--secondary);
+    border-left: 2px solid var(--highlight);
+    outline: none;
+}
+
+tab-item[aria-selected=true] tab-label span {
+    color: var(--highlight);
+}
