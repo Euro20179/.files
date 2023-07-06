@@ -324,6 +324,9 @@
     #channels li a path{
         fill: var(--secondary) !important;
     }
+    #channels li[class*=selected] a{
+        background: none !important;
+    }
     
     /*when a channel is selected*/
     #channels li[class*=selected] > div > div{
