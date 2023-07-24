@@ -1,0 +1,28 @@
+#!/bin/python
+
+import requests
+import sys
+from datetime import datetime
+
+data = requests.get(sys.argv[1]).json()
+
+text = """
+<rss version="2.0">
+<channel>
+"""
+
+for item in data['appnews']['newsitems']:
+    text += f"""
+    <item>
+        <title>{item['title']}</title>
+        <description>{item['contents']}</description>
+        <link>{item['url']}</link>
+        <pubDate>{datetime.utcfromtimestamp(item['date']).strftime("%a, %d %b %Y %H:%M:%S %z")}</pubDate>
+        <author>{item['author']}</author>
+    </item>
+"""
+
+text += "</channel></rss>"
+
+print(text)
+

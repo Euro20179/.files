@@ -1,0 +1,48 @@
+#!/bin/python
+
+import requests
+import sys
+import bs4
+from datetime import datetime
+
+class Item:
+    pass
+
+link = sys.argv[1]
+html = requests.get(sys.argv[1]).text
+soup = bs4.BeautifulSoup(html, features="html.parser")
+issues = soup.find_all("div", class_="js-issue-row")
+
+t = "pull-requests" if link.endswith("pulls") else "issues"
+generalTitle = f"{t} of {'/'.join(link.split('/')[3:5])}"
+
+text = f"""
+<rss version="2.0">
+<channel>
+<title>{generalTitle}</title>
+<link>{link}</link>
+<category>github/{t}</category>
+"""
+
+for issue in issues:
+    issue_name = issue.select("a[href][id^=issue_]")
+    issue_label = issue.select("span a[href*=\"/issues\"][data-name]")
+    issue_author = issue.select("a[title*=\"created by\"]")
+    issue_opened = issue.select("span.opened-by relative-time")
+    issue_opened_time = datetime.fromisoformat(issue_opened[0]['datetime']).strftime("%a, %d %b %Y %H:%M:%S %z")
+
+    text += f"""
+<item>
+    <title>{issue_name[0].text.strip()}</title>
+    """
+    for category in issue_label:
+        text += f"<category>{category.text.strip()}</category>"
+    text += f"""
+    <author>{issue_author[0].text.strip()}</author>
+    <pubDate>{issue_opened_time}</pubDate>
+    <link>https://github.com{issue_name[0]['href']}</link>
+</item>
+"""
+
+text += "</channel></rss>"
+print(text)
