@@ -42,7 +42,7 @@ max_thread_count=40
     # use catimg
 if [ "$__is_fzf_preview" -eq 0 ]; then
     [ "$XDG_SESSION_TYPE" = "wayland" ] && {
-        load_thumbnail_viewer sixel
+        load_thumbnail_viewer wayland
         # [ "$SWAYSOCK" ] && thumbnail_viewer="sixel"
         # [ "$HYPRLAND_INSTANCE_SIGNATURE" ] && thumbnail_viewer="swayimg-hyprland"
     }

@@ -40,7 +40,7 @@ for issue in issues:
     text += f"""
     <author>{issue_author[0].text.strip()}</author>
     <pubDate>{issue_opened_time}</pubDate>
-    <link>https://github.com{issue_name[0]['href']}</link>
+    <link>https://www.github.com{issue_name[0]['href']}</link>
 </item>
 """
 
