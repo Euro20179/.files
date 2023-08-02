@@ -1,0 +1,29 @@
+#!/bin/python
+
+import requests
+import bs4
+
+link = 'https://www.mozilla.org/en-US/firefox/releases/'
+html = requests.get(link).text
+soup = bs4.BeautifulSoup(html, features='html.parser')
+updates = soup.select(".c-release-list li a")
+text = f"""
+<rss version="2.0">
+<channel>
+<title>Firefox Releases</title>
+<link>{link}</link>
+<category>releases</category>
+"""
+for update in updates[0:10]:
+    text += f"""
+    <item>
+    <title>{update.text}</title>
+    <author>Mozilla</author>
+    <link>https://www.mozilla.org/en-US/firefox/{update.text}/releasenotes</link>
+    </item>
+    """
+
+text += "</channel></rss>"
+
+print(text)
+
