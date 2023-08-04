@@ -1,0 +1,61 @@
+/*
+ * BEGIN hackernews
+ */
+
+:root {
+    --main: #262634;
+    --secondary: #646489ff;
+    --secondary-bright: #9e9ed9;
+    --highlight: #81C8BE;
+    --link-color: var(--highlight);
+    --highlight-secondary: #689C9A;
+    --text-color: white;
+    --warn: #F8BD96;
+    --error: #7D71B7;
+    --leaf: #ABE9B3;
+}
+
+#hnmain td[bgcolor="#ff6600"], #hnmain td[bgcolor="#ff6600"] * {
+    color: transparent !important;
+    background: transparent !important;
+}
+
+#hnmain td[bgcolor="#ff6600"] img {
+    display: none !important;
+}
+
+#hnmain td[bgcolor="#ff6600"]::before {
+    content: "HackerNews";
+    color: var(--warn);
+    margin: 10px !important;
+    display: block !important;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#hnmain .comment {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#hnmain form[action="comment"] {
+    display: none !important;
+}
+
+#hnmain .titleline {
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+#hnmain {
+    background-color: var(--main) !important;
+}
+
+#hnmain * {
+    color: var(--text-color) !important;
+}
+
+/*
+ * END hackernews
+ */
