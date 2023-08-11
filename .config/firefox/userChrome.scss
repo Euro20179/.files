@@ -111,3 +111,7 @@ tab.tabbrowser-tab[selected=true] .tab-text {
 tab.tabbrowser-tab:not([selected=true]) .tab-text {
     color: $medium !important;
 }
+
+tab:where([visuallyselected="true"]){
+    z-index: 0 !important
+}

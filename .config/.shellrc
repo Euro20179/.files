@@ -51,8 +51,8 @@ CONF_FILE="$HOME/.config/mpd.conf"
 
 export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
-export BROWSER_SCRIPTING='luakit'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BROWSER_SCRIPTING="$BROWSER"
+export MANPAGER="less"
 
 export PAGER="bat"
 export TERMINAL_HOLD_OPT='-H'

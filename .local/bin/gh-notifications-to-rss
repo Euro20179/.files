@@ -13,10 +13,9 @@ for item in data:
     <category>{item['subject']['type']}</category>
     <pubDate>{item['updated_at']}</pubDate>
     <title>{item['subject']['title']}</title>
-    <link>{item['subject']['url']}</link>
+    <link>{(item['subject']['url'] if item['subject']['url'] else "").replace("api.", "").replace("/repos", "")}</link>
 </item>
 """
 
 rss += '</channel></rss>'
-
 print(rss)
