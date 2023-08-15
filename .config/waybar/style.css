@@ -1,20 +1,20 @@
+@define-color theme-color #81C8BE;
+@define-color theme-color-dark #689C9A;
+@define-color theme-color-bad #F28FAD;
+@define-color theme-color-medium #F8BD96;
 * {
     font-size: 13px;
-    /*--theme-color: #96CDFB;
-    --theme-color-bad:#F28FAD;
-    --theme-color-medium: #F8BD96;
-     */
 }
 
 .modules-right widget:nth-child(2n) label,
 .modules-left widget:nth-child(2n) label,
 .modules-center widget:nth-child(2n) label{
-    border: 2px solid #81C8BE;
+    border: 2px solid @theme-color;
 }
 .modules-right widget:nth-child(2n - 1) label,
 .modules-left widget:nth-child(2n - 1) label,
 .modules-center widget:nth-child(2n - 1) label {
-    border: 2px solid #689C9A;
+    border: 2px solid @theme-color-dark;
 }
 
 .modules-left,
@@ -34,7 +34,7 @@ tooltip label{
 
 
 #tray {
-    border: 2px solid #F28FAD;
+    border: 2px solid @theme-color-bad;
     padding: 5px 10px;
 }
 
@@ -83,13 +83,13 @@ window#waybar.chromium {
 }
 
 #workspaces button.focused {
-    background-color: #96CDFB;
+    background-color: @theme-color;
     box-shadow: inset 0 -3px #ffffff;
     color: black;
 }
 
 #workspaces button.urgent {
-    background-color: #F8BD96;
+    background-color: @theme-color-medium;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -164,20 +164,20 @@ window#waybar.chromium {
     margin-right: 0;
 }
 #battery {
-    background-color: #F8BD96;
+    background-color: @theme-color-medium;
 }
 
 #battery.charging, #battery.plugged {
-    background-color: #96CDFB;
+    background-color: @theme-color;
 }
 
 #custom-vpn-location.disconnected{
-  border-color: #F28FAD;
+  border-color: @theme-color-bad;
 }
 
 @keyframes blink {
     to {
-        background-color: #F28FAD;
+        background-color: @theme-color-bad;
         color: #ffffff;
     }
 }
@@ -200,13 +200,13 @@ label:focus {
 
 .modules-right #custom-cpu-temp.medium,
 .modules-right #custom-gpu-temp.medium {
-    border-color: #F8BD96;
+    border-color: @theme-color-medium;
 }
 
 .modules-right #custom-cpu-temp.hot,
 .modules-right #custom-gpu-temp.hot {
-    background-color: #F28FAD;
-    border-color: #F28FAD;
+    background-color: @theme-color-bad;
+    border-color: @theme-color-bad;
 }
 
 .modules-right #custom-cpu-temp.warning,
@@ -215,19 +215,19 @@ label:focus {
 }
 
 .modules-right #custom-memory.medium {
-    border-color: #F8BD96;
+    border-color: @theme-color-medium;
 }
 .modules-right #custom-memory.high {
-    background-color: #F28FAD;
+    background-color: @theme-color-bad;
 }
 
 
 .modules-right #network.disconnected {
-    background-color: #F28FAD;
+    background-color: @theme-color-bad;
 }
 
 #pulseaudio.muted {
-    background-color: #F28FAD;
+    background-color: @theme-color-bad;
 }
 
 #custom-media {
@@ -258,7 +258,7 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #F28FAD;
+    background-color: @theme-color-bad;
 }
 
 #idle_inhibitor {
@@ -275,7 +275,7 @@ label:focus {
 }
 
 #mpd.disconnected {
-    background-color: #F28FAD;
+    background-color: @theme-color-bad;
 }
 
 #mpd.stopped {
@@ -283,7 +283,7 @@ label:focus {
 }
 
 #mpd.paused {
-    background-color: #F8BD96;
+    background-color: @theme-color-medium;
 }
 
 #language {
@@ -326,9 +326,9 @@ label:focus {
 }
 
 #disk.medium{
-    background-color: #F8BD96;
+    background-color: @theme-color-medium;
 }
 
 #disk.high{
-    background-color: #F28FAD;
+    background-color: @theme-color-bad;
 }
