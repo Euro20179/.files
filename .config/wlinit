@@ -41,4 +41,6 @@ killall xdg-desktop-portal-termfilechooser
 
 fcitx5 -d & disown
 
+hyprland-autoname-workspaces & disown
+
 hyprctl setcursor Bibata-Modern-Ice 24

@@ -13,6 +13,8 @@ libreoffice-calc = "󱎏 "
 DEFAULT = " {class} "
 libreoffice-writer = "󱎒 "
 VencordDesktop='󰙯'
+"hearthstone.exe"='󱢡'
+"io.github.martinrotter.rssguard" = '󰑬'
 
 [class_active]
 
