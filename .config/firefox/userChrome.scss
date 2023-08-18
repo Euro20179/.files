@@ -115,3 +115,28 @@ tab.tabbrowser-tab:not([selected=true]) .tab-text {
 tab:where([visuallyselected="true"]){
     z-index: 0 !important
 }
+
+#sidebar-box {
+    min-width: 4ch !important;
+}
+
+#sidebar-header {
+    display: none !important;
+}
+
+#titlebar{
+    display: none !important;
+}
+
+#back-button, #forward-button {
+    display: none !important;
+}
+
+#urlbar-input {
+    text-align: center !important;
+}
+
+.urlbarView-no-wrap {
+    width: 100% !important;
+    justify-content: center !important;
+}
