@@ -1,0 +1,83 @@
+.close-button {
+    background-color: #DD2789;
+}
+
+.mem-usage,
+.gpu-mem-usage,
+.cpu-usage{
+    color: #78d9ff;
+}
+
+.gvram-label{
+    font-size: .9rem;
+}
+
+box.outer-box{
+    border: 1px solid #004f6e;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+box.outer-box box{
+    margin: 2px;
+}
+
+box.outer-box > box:nth-child(2n - 1){
+    background-color: #003347;
+}
+
+box.outer-box box:nth-child(2n){
+    background-color: #004966;
+}
+
+.core-0 progress {
+    background-color: #00ff66;
+}
+
+.core-1 progress {
+    background-color: #00ffb2;
+}
+
+.core-2 progress {
+    background-color: #00f7ff;
+}
+
+.core-3 progress {
+    background-color: #00bbff;
+}
+
+.core-4 progress {
+    background-color: #008cff;
+}
+
+.core-5 progress {
+    background-color: #0059ff;
+}
+
+.core-6 progress {
+    background-color: #002aff;
+}
+
+.core-7 progress {
+    background-color: #5500ff;
+}
+
+.core-8 progress {
+    background-color: #6e00ff;
+}
+
+.core-9 progress {
+    background-color: #8c00ff;
+}
+
+.core-10 progress {
+    background-color: #bf00ff;
+}
+
+.core-11 progress {
+    background-color: #ff00dd;
+}
+
+.shutdown-day{
+    background-color: red;
+}

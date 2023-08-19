@@ -1,0 +1,48 @@
+#!/bin/bash
+
+read -r volume <<< $(pamixer --get-volume)
+read -r mic <<< $(pactl get-source-volume $(pactl get-default-source) | grep -o '[[:digit:]]\+%' | head -n 1)
+
+action="$1"
+
+makoctl dismiss -a
+
+set -- -t 1000
+
+case $action in
+  mic-lower)
+      set -- "$@" -c v-lower -h "int:value:$mic" "$mic" ;;
+  mic-higher)
+      set -- "$@" -c v-higher -h "int:value:$mic" "$mic" ;;
+  higher)
+      set -- "$@" -c v-higher -h "int:value:$volume" "$volume" ;;
+  lower)
+      set -- "$@" -c v-lower -t 1000 -h "int:value:$volume" "$volume" ;;
+esac
+
+case "$action" in
+    *mic*) 
+        if [ "${mic%\%}" -ge 66 ]; then
+            image="microphone-high"
+        elif [ "${mic%\%}" -ge 33 ]; then
+            image="microphone-medium"
+        elif [ "${mic%\%}" -ge 0 ]; then
+            image="microphone-low"
+        else
+            image="microphone-mute"
+        fi
+        ;;
+    higher|lower) 
+        if [ "$volume" -ge 66 ]; then
+            image="audio-volume-high"
+        elif [ "$volume" -ge 33 ]; then
+            image="audio-volume-medium"
+        elif [ "$volume" -ge 0 ]; then
+            image='audio-volume-low'
+        else
+            image="audio-volume-mute"
+        fi
+        ;;
+esac
+
+notify-send -i "$image" "$@"

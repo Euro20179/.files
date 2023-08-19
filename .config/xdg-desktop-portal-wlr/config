@@ -1,0 +1,5 @@
+[screencast]
+max_fps=165
+exec_before=notify-send Starting Screenshare
+exec_after=notify-send Screensharing Stopped
+chooser_cmd=slurp -f %o -or

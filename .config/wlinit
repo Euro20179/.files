@@ -1,0 +1,46 @@
+#!/bin/bash
+
+export WM="${WM:-sway}"
+
+export GDK_BACKEND=wayland,x11
+export QT_QPA_PLATFORM="wayland;xcb"
+export SDL_VIDEODRIVER=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+mako & disown
+brightnessctl s 100%
+
+# case "$XDG_CURRENT_DESKTOP" in
+#     Hyprland)
+#         hyprland keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+#         hyprland keyword monitor DP-1,1920x1080@165,0x0,1
+#         hyprland keyword monitor DP-3,disable ;;
+#     *)
+#         wlr-randr --output DP-3 --off
+#         wlr-randr --output HDMI-A-1 --pos 1920,0
+#         wlr-randr --output DP-1 --pos 0,0 ;;
+# esac
+#
+killall waybar
+waybar & disown
+
+killall foot
+foot -s & disown
+
+killall swww-daemon
+swww init
+# wallpaper-slideshow $((60 * 10)) & disown
+
+# killall swayidle
+# swayidle timeout $((60 * 20)) $LOCKER & disown
+
+dbus-update-activation-environment --systemd --all
+
+#doesn't work for some reason on activation
+killall xdg-desktop-portal-termfilechooser
+
+fcitx5 -d & disown
+
+hyprland-autoname-workspaces & disown
+
+hyprctl setcursor Bibata-Modern-Ice 24

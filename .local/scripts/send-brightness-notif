@@ -1,0 +1,8 @@
+#!/bin/bash
+
+read -r brightness <<< $(brightnessctl i | grep -Po "(?<=\()\d+(?=%)")
+
+case $1 in
+  darker) makoctl dismiss -a && notify-send -c b-darker -t 1000 -h int:value:$brightness "🌑" "$brightness" ;;
+  brighter) makoctl dismiss -a && notify-send -c b-brighter -t 1000 -h int:value:$brightness "🌕" "$brightness"
+esac

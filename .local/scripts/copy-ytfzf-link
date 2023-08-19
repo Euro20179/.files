@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wl-copy < /tmp/ytfzf-$UID/$(ls -1 /tmp/ytfzf-$UID | dmenu)/ids

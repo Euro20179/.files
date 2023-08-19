@@ -1,0 +1,21 @@
+#!/bin/python
+
+import requests
+import os
+
+data = requests.get('https://api.github.com/notifications?all=true', headers={"Authorization": f"Bearer {os.environ['GITHUB_NOTIFICATIONS_TOKEN']}", "Accept": "application/vnd.github.v3+json", "X-GitHub-Api-Version": "2022-11-28"}).json()
+
+rss = '<rss version="2.0"><channel><title>Github Notifications</title>'
+
+for item in data:
+    rss += f"""
+<item>
+    <category>{item['subject']['type']}</category>
+    <pubDate>{item['updated_at']}</pubDate>
+    <title>{item['subject']['title']}</title>
+    <link>{(item['subject']['url'] if item['subject']['url'] else "").replace("api.", "").replace("/repos", "")}</link>
+</item>
+"""
+
+rss += '</channel></rss>'
+print(rss)

@@ -1,0 +1,56 @@
+version = "1.1.5"
+
+[class]
+"[Ff]irefox" = " "
+parsecd = "󱌣 "
+foot = " "
+osu = "<span color='#F28FAD'>󰎈</span>"
+steam = "󰓓 "
+mpv = ""
+anki = "日本語"
+nheko = "<span color='#ABE9B3'>󰊌</span>"
+libreoffice-calc = "󱎏 "
+DEFAULT = " {class} "
+libreoffice-writer = "󱎒 "
+VencordDesktop='󰙯'
+"hearthstone.exe"='󱢡'
+"io.github.martinrotter.rssguard" = '󰑬'
+
+[class_active]
+
+[initial_class]
+
+[initial_class_active]
+
+[workspaces_name]
+
+[title_in_class]
+
+[title_in_class_active]
+
+[title_in_initial_class]
+
+[title_in_initial_class_active]
+
+[initial_title_in_class]
+
+[initial_title_in_class_active]
+
+[initial_title_in_initial_class]
+
+[initial_title_in_initial_class_active]
+
+[exclude]
+
+[format]
+dedup = true
+dedup_inactive_fullscreen = false
+delim = " "
+workspace = "{id}:{delim}{clients}"
+workspace_empty = "{id}"
+client = "{icon}"
+client_fullscreen = "{icon}^"
+client_active = "<span color='#F8BD96'>[</span>{icon}<span color='#F8BD96'>]</span>"
+client_dup = "{icon}  {counter_sup}{delim}"
+client_dup_active = "*{icon}*{delim}{icon}{counter_unfocused_sup}"
+client_dup_fullscreen = "[{icon}]{delim}{icon}{counter_unfocused_sup}"

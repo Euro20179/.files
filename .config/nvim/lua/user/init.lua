@@ -1,0 +1,10 @@
+require "user.telescope"
+require "user.treesitter"
+require 'user.whichkey'
+--require "user.color-picker"
+require "user.t-source"
+require "user.ccc"
+--require "user.orgmode"
+require "user.duplicate"
+require "user.sniprun"
+require "user.symbols-outline"

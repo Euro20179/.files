@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ -z "$*" ] && exit 1
+
+read -r token < "${YTFZF_CONFIG_DIR}/discord-token"
+
+notify-send "$token"
+
+curl -H "Authorization: $token" -F 'payload_json={"content":"'"$*"'"}' "https://discord.com/api/v9/channels/${DISCORD_SELECTED_CHANNEL_ID}/messages" > /dev/null
+
+notify-send -c ytfzf-discord-send "Ytfzf (discord message)" "$# links have been sent to ${DISCORD_SELECTED_CHANNEL_NAME} in ${DISCORD_SELECTED_SERVER_NAME}"
+
+printf "%s\n" "$@"

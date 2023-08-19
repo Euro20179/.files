@@ -1,0 +1,142 @@
+$main: #2f3041; 
+$secondary: #4c4d69; 
+$highlight: #96CDFB; 
+$darker: #232430; 
+$good: var(--highlight); 
+$medium: #F8BD96; 
+$bad: #F28FAD; 
+$background: linear-gradient(var(--highlight), var(--main)); 
+$text-color: white; 
+$link-color: var(--highlight); 
+$slight-transparent: #000000aa; 
+$very-transparent: #00000033; 
+$transparent: #00000055; 
+
+
+/*make the top bar transparent*/
+
+:root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #navigator-toolbox-background
+{
+    appearance: none !important;
+}
+
+#main-window:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([tabsintitlebar], [inFullscreen])
+{
+    background-color: transparent !important;
+}
+
+:root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([tabsintitlebar], [inFullscreen]) .titlebar-color
+{
+    appearance: none !important;
+}
+
+:root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #navigator-toolbox,
+:root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([tabsintitlebar]) #navigator-toolbox
+{
+    background-color: color-mix(in srgb, rgba(0, 0, 0, 0.5) 75%, transparent) !important;
+}
+
+toolbarbutton#tabs-newtab-button{
+  background-color: $transparent !important;
+  margin: 0 !important;
+}
+
+vbox.browserContainer{
+  background-color: $main !important;
+}
+/*end transparency*/
+
+/*get rid of the awful tab background and rounded corners*/
+tab .tab-background{
+    display: none !important;
+}
+
+tab{
+    transition: background-color 300ms !important;
+
+}
+/*make tabs follow color scheme*/
+
+toolbar{
+    --toolbar-bgcolor: #2f3041;
+    --toolbar-color: white;
+}
+
+tab[selected="true"]{
+    background-color: $secondary !important;
+    border-top: 3px solid $highlight !important;
+}
+tab:not([selected="true"]){
+    background-color: $main !important;
+    border-top: 3px solid $medium !important;
+}
+
+tab:not([selected="true"]):is(:hover, :focus){
+    background-color: #449bbd !important;
+}
+
+
+pannelview#appMenu-protonMainView,
+vbox.panel-subview-body{
+    background-color: $main !important;
+}
+
+#appMenu-popup toolbarbutton{
+    background-color: $main !important;
+
+    &:hover{
+        background-color: $highlight !important;
+        color: $main !important;
+    }
+}
+
+//that weird ass arrow in the top right that no one uses
+toolbarbutton#alltabs-button{
+    display: none !important;
+}
+
+label#identity-icon-label.plain[value=Firefox]{
+    display: none;
+}
+
+menupopup{
+    --panel-color: white !important;
+    --panel-background: #2f3041dd !important;
+    --panel-separator-color: #4c4d69 !important;
+}
+
+tab.tabbrowser-tab[selected=true] .tab-text {
+    color: $highlight !important;
+}
+tab.tabbrowser-tab:not([selected=true]) .tab-text {
+    color: $medium !important;
+}
+
+tab:where([visuallyselected="true"]){
+    z-index: 0 !important
+}
+
+#sidebar-box {
+    min-width: 4ch !important;
+}
+
+#sidebar-header {
+    display: none !important;
+}
+
+#titlebar{
+    display: none !important;
+}
+
+#back-button, #forward-button {
+    display: none !important;
+}
+
+#urlbar-input {
+    text-align: center !important;
+}
+
+.urlbarView-no-wrap {
+    width: 100% !important;
+    justify-content: center !important;
+}

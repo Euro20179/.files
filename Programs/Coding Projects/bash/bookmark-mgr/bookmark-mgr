@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# config{{{
+
+: "${CONFIG_FILE:="${XDG_CONFIG_HOME:-$HOME/.config}/bookmark-mgr/conf.sh"}"
+
+#BOOKMARK_FILE can be set in config file
+[ -f "$CONFIG_FILE" ] && . "$CONFIG_FILE"
+
+: "${BOOKMARK_FILE:="${XDG_CONFIG_HOME:-$HOME/.config}/bookmark-mgr/bookmarks.list"}"
+
+declare -F "bookmark_mgr_menu" || bookmark_mgr_menu () {
+    # $1 = list of links
+    # $2 = list of icons
+    echo "$1" | rofi -dmenu -theme slate
+}
+
+declare -F "bookmark_mgr_url_handler" || bookmark_mgr_url_handler () {
+    #url passed through stdin
+    read -r url
+    case "$url" in
+	http?://*) $BROWSER "$url" ;;
+    esac
+}
+#}}}
+
+[ -f "$BOOKMARK_FILE" ] || { printf "%s\n" "$BOOKMARK_FILE not found" && exit 1; }
+
+bookmarks=""
+
+while read -r line; do
+    bookmarks="$bookmarks
+$line"
+done < "$BOOKMARK_FILE"
+
+bookmark_mgr_menu "$(printf "%s" "$bookmarks" | sed 1d)"  | bookmark_mgr_url_handler

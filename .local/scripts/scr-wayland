@@ -1,0 +1,8 @@
+#!/bin/bash
+
+pos=$(slurp "$@")
+grim -g "$pos" /dev/stdout | wl-copy -t image/png
+t=$(mktemp)
+wl-paste > $t
+notify-send -c screenshot -i $t "Image taken at: $pos"
+rm $t

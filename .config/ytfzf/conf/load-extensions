@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$0" = "./ytfzf" ]; then
+    YTFZF_SYSTEM_ADDON_DIR=/usr/share/ytfzf/addons
+fi
+
+load_extension playlists
+# [ "$BASH_VERSION" ] && load_extension bsm
+# load_extension options
+#load_extension "ipc"
+load_extension subscription-manager
+#load_extension smart-thumb-download

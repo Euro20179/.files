@@ -1,0 +1,26 @@
+#!/bin/bash
+
+end() {
+    [ -z "$ans" ] && return
+    case "$XDG_SESSION_TYPE" in
+	wayland) wl-copy  -- "$ans" ;;
+	X11) xclip -i <<< "$ans" ;;
+    esac
+    notify-send -- "$e" "$ans"
+
+}
+
+[ -n "$*" ] && { 
+    e="${*#*://}"
+    ans="$(qalc -t "$e")"
+}
+
+[ -z "$*" ] && {
+    e="$(echo "" | dmenu -p "Calc:")" 
+    res="$(qalc "$e")"
+    ans="$(qalc -t "$e")"
+    extra_ans="$(echo "$res" | tac | sed 1d)"
+    [ "$ans" = "0" ] && ans=$extra_ans
+}
+
+end
