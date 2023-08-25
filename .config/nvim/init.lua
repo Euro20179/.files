@@ -1,5 +1,4 @@
 require 'snippets'
-require 'snippets-personal'
 require 'cmp_'
 require "options"
 require 'plugins'
