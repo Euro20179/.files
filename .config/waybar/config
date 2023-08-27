@@ -168,7 +168,7 @@
     "disk": {
         "interval": 30,
         "path": "/home",
-        "format": "<span color=\"red\">{used}</span>/<span foreground=\"white\">{free}</span>🌲",
+        "format": "<span color=\"red\">{used}</span>/<span foreground=\"white\">{free}</span> 󰋊",
         "states": {
             "low": 0,
             "medium": 50,

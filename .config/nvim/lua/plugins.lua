@@ -1,21 +1,23 @@
 require("packer").startup(function(use)
     use 'nvim-lua/plenary.nvim'
+
     use {
         'nvim-treesitter/nvim-treesitter',
     }
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-symbols.nvim'
+
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
+
     use 'flazz/vim-colorschemes'
     use 'mattn/emmet-vim'
-    use 'mbbill/undotree' use { 'L3MON4D3/LuaSnip'
-    }
-    use 'saadparwaiz1/cmp_luasnip'
     use 'ray-x/lsp_signature.nvim'
     use { 'williamboman/mason.nvim', config = function() require("mason").setup() end }
     use 'tjdevries/nlua.nvim'
@@ -25,8 +27,6 @@ require("packer").startup(function(use)
             require("lsp_lines").setup()
         end
     }
-    use { 'akinsho/toggleterm.nvim', tag = 'v2.*',
-        config = function() require("toggleterm").setup { direction = 'horizontal' } end }
     use { 'folke/trouble.nvim', config = function() require("trouble").setup {} end,
         requires = "kyazdani42/nvim-web-devicons", }
     use {
@@ -144,8 +144,8 @@ require("packer").startup(function(use)
     use 'f-person/git-blame.nvim'
     use {
         'windwp/nvim-autopairs',
-        config = function ()
-            require("nvim-autopairs").setup{
+        config = function()
+            require("nvim-autopairs").setup {
             }
         end
     }
@@ -156,9 +156,9 @@ require("packer").startup(function(use)
         'michaelb/sniprun', run = 'bash ./install.sh'
     }
 
-    use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = function ()
-        require("diffview").setup{}
-    end}
+    use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = function()
+        require("diffview").setup {}
+    end }
 
     use "joosepAlviste/nvim-ts-context-commentstring"
 
@@ -168,11 +168,15 @@ require("packer").startup(function(use)
     use "kelly-lin/ranger.nvim"
 
     use "simrat39/symbols-outline.nvim"
-    use {"weilbith/nvim-code-action-menu", cmd = "CodeActionMenu"}
+    use { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" }
 
     use {
         "willothy/moveline.nvim",
         run = "make"
     }
+    use {
+        "debugloop/telescope-undo.nvim"
+    }
 
+    use "alec-gibson/nvim-tetris"
 end)

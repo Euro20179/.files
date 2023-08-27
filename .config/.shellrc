@@ -52,7 +52,7 @@ CONF_FILE="$HOME/.config/mpd.conf"
 export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="$BROWSER"
-export MANPAGER="less"
+export MANPAGER="nvim +Man!"
 
 export PAGER="bat"
 export TERMINAL_HOLD_OPT='-H'

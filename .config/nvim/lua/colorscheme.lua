@@ -1,13 +1,5 @@
 local _M = {}
 
-local colorscheme = {
-    scheme = "catppuccin"
-}
-
-colorscheme.after = function ()
-    vim.cmd[[hi Normal guibg=#00000000]]
-end
-
 -- colorscheme.after = function()
     -- vim.cmd [[
     -- " for vscode looking completion
@@ -74,17 +66,12 @@ end
 --     -- ]]
 -- end
 
-_M.colorscheme = colorscheme
-
 _M.changeColorScheme = function(newScheme)
     vim.api.nvim_cmd({
         args = { newScheme.scheme },
         cmd = "colorscheme"
     }, {})
-
-    if newScheme.after then
-        colorscheme.after()
-    end
+    vim.cmd[[hi Normal guibg=#00000000]]
 end
 
 return _M

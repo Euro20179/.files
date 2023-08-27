@@ -1,16 +1,16 @@
 require 'snippets'
-require 'cmp_'
 require "options"
 require 'plugins'
 require "shortcuts"
 require 'autocmd'
 require 'functions'
 require 'Lspconfig'
-local cs = require 'colorscheme'
 require "impatient"
 require "user.init"
 
-cs.changeColorScheme(cs.colorscheme)
+local cs = require 'colorscheme'
+
+cs.changeColorScheme({scheme = "catppuccin"})
 
 vim.api.nvim_cmd({
     args = { "packer.nvim" },

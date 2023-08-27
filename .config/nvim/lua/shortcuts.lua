@@ -13,15 +13,8 @@ local nShortcuts = {
     { "<leader>Y", '"+Y' },
     { "<leader>d", '"+d' },
     { "<leader>d", '"+d' },
-    { "<leader>c", '"+c' },
-    { "<leader>C", '"+C' },
-    { "<leader>x", '"+x' },
-    { "<leader>X", '"+X' },
-    { "SB", "\"_" },
-    { "SS", "\"+" },
-    { "SY", "\"+yy" },
-    { "SD", "\"+dd" },
-    { "SC", "\"+cc" },
+    { "<leader>c", '"+' },
+    { "<leader>b", "\"_" },
     --}}}
     --telescope {{{
     { "<leader>e;", "<cmd>Telescope symbols<cr>"},
@@ -31,6 +24,7 @@ local nShortcuts = {
     { "<leader>et", "<cmd>Telescope tagstack<cr>" },
     { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
     { "<leader>eH", "<cmd>Telescope highlights<cr>"},
+    { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
     { "<leader>fe", '<cmd>Telescope find_files<cr>' },
@@ -38,7 +32,6 @@ local nShortcuts = {
     { "<leader>fj", '<cmd>Telescope jumplist<cr>' },
     { "<leader>f/", '<cmd>Telescope live_grep<cr>' },
     { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>"},
-    { "<leader>ft", '<cmd>lua require("telescope-tabs").list_tabs()<cr>' },
     --}}}
     --Viewers {{{
     { "<leader>n", ":CHADopen<cr>" },
@@ -56,7 +49,6 @@ local nShortcuts = {
     { "<leader><c-h>", ':bp<CR>' },
     { "<leader>t", ':tabnew<CR>' },
     { "<leader>q", ':tabclose<cr>' },
-    { "<leader>T", ":ToggleTerm<cr>" },
     { "<right>", "<c-w>>" },
     { "<left>", "<c-w><" },
     { "<up>", "<c-w>+" },
@@ -89,8 +81,6 @@ local nShortcuts = {
     { "<leader>,", "<c-y>," },
     --}}}
     --lsp {{{
-    { "<leader>fF", "<cmd>Telescope tags<cr>" },
-    { "<leader>f#", "<cmd>Telescope tags<cr>" },
     { "<leader>fs", '<cmd>Telescope lsp_document_symbols<cr>' },
     { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>' },
     { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
@@ -149,8 +139,6 @@ local nShortcuts = {
     { "<A-r>", "<cmd>RegexplainerToggle<cr>" },
     { "<a-h>", require("tree-climber").goto_parent },
     { "<a-l>", require("tree-climber").goto_child },
-    { "<a-j>", require("tree-climber").goto_next },
-    { "<a-k>", require("tree-climber").goto_prev },
     { "<leader>vn", require("tree-climber").select_node },
     { "<leader><a-j>", require("tree-climber").swap_next },
     { "<leader><a-k>", require("tree-climber").swap_prev },
@@ -326,9 +314,9 @@ end
 -- }}}
 
 -- popup menu{{{
---mostly here as example
+--here as example
 vim.cmd [[
 aunmenu PopUp
-nnoremenu PopUp.Terminal :ToggleTerm<cr>
+nnoremenu PopUp.hi :lua print("hi")<cr>
 ]]
 --}}}

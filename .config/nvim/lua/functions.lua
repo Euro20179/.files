@@ -40,13 +40,13 @@ function Word_count()
 end
 
 function Winbar()
-    local text = "%m "
+    local text = " "
     text = text .. require 'nvim-navic'.get_location()
     return text
 end
 
 function P(...)
-    vim.pretty_print(...)
+    vim.print(...)
 end
 
 local function queryChatBot(data)
