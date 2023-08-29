@@ -212,6 +212,7 @@ local iShortcuts = {
     { "<C-g>W", "<Esc>Wi" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
+    { "<c-backspace>", "<c-w>"},
     -- }}}
     -- luasnip {{{
     { "<Tab>",
