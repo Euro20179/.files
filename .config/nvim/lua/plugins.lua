@@ -1,76 +1,81 @@
-require("packer").startup(function(use)
-    use 'nvim-lua/plenary.nvim'
-
-    use {
-        'nvim-treesitter/nvim-treesitter',
-    }
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-symbols.nvim'
-
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
-
-    use 'flazz/vim-colorschemes'
-    use 'mattn/emmet-vim'
-    use 'ray-x/lsp_signature.nvim'
-    use { 'williamboman/mason.nvim', config = function() require("mason").setup() end }
-    use 'tjdevries/nlua.nvim'
-    use "folke/neodev.nvim"
-    use { "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+require("lazy").setup({
+    'nvim-lua/plenary.nvim',
+    'nvim-treesitter/nvim-treesitter',
+    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-symbols.nvim',
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    'flazz/vim-colorschemes',
+    'mattn/emmet-vim',
+    'ray-x/lsp_signature.nvim',
+    {
+        'williamboman/mason.nvim',
+        config = function()
+            require("mason").setup()
+        end
+    },
+    'tjdevries/nlua.nvim',
+    "folke/neodev.nvim",
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         config = function()
             require("lsp_lines").setup()
         end
-    }
-    use { 'folke/trouble.nvim', config = function() require("trouble").setup {} end,
-        requires = "kyazdani42/nvim-web-devicons", }
-    use {
+    },
+    {
+        'folke/trouble.nvim',
+        config = function() require("trouble").setup {} end,
+        dependencies = "kyazdani42/nvim-web-devicons",
+    },
+    {
         "kylechui/nvim-surround",
-        tag = "*",
         config = function()
             require("nvim-surround").setup({})
         end
-    }
+    },
     -- use "yonlu/omni.vim"
-    use "bluz71/vim-nightfly-guicolors"
+    "bluz71/vim-nightfly-guicolors",
     -- use "nvim-treesitter/nvim-treesitter-context"
     --use "stevearc/aerial.nvim"
-    use "https://github.com/nvim-treesitter/nvim-treesitter-refactor"
-    use { 'bennypowers/nvim-regexplainer',
+    "https://github.com/nvim-treesitter/nvim-treesitter-refactor",
+    {
+        'bennypowers/nvim-regexplainer',
         config = function() require 'regexplainer'.setup({}) end,
-        requires = {
+        dependencies = {
             'nvim-treesitter/nvim-treesitter',
             'MunifTanjim/nui.nvim',
-        } }
-    use "ray-x/aurora"
+        }
+    },
+    "ray-x/aurora",
     -- use {
     --     "NvChad/nvim-colorizer.lua",
     --     config = function ()
     --         require("colorizer").setup{}
     --         require("colorizer").attach_to_buffer(0, {mode = "foreground", css = true})
     --     end
-    -- }
-    use "drybalka/tree-climber.nvim"
-    use "folke/which-key.nvim"
-    use {
+    -- },
+    "drybalka/tree-climber.nvim",
+    "folke/which-key.nvim",
+    {
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
         end
-    }
-    use "nvim-treesitter/nvim-treesitter-textobjects"
-    -- use "ziontee113/color-picker.nvim"
-    use 'f3fora/cmp-spell'
-    use 'superhawk610/ascii-blocks.nvim'
-    use {
+    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    -- use "ziontee113/color-picker.nvim",
+    'f3fora/cmp-spell',
+    'superhawk610/ascii-blocks.nvim',
+    {
         "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
-    }
+        dependencies = "neovim/nvim-lspconfig"
+    },
     -- use {
     --     "nvim-neorg/neorg",
     --     run = ":Neorg sync-parsers",
@@ -99,84 +104,81 @@ require("packer").startup(function(use)
     --             }
     --         }
     --     end,
-    --     requires = {
+    --     dependencies = {
     --         "nvim-lua/plenary.nvim",
     --         "nvim-neorg/neorg-telescope",
     --     }
     -- }
-    use {
+    {
         "rcarriga/nvim-notify"
-    }
-    use {
+    },
+    {
         "smjonas/inc-rename.nvim",
         config = function()
             require("inc_rename").setup {}
         end
-    }
-    use {
+    },
+    {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup {
                 attach_to_untracked = false,
             }
         end
-    }
-    use {
+    },
+    {
         'folke/tokyonight.nvim'
-    }
-    use {
+    },
+    {
         'LukasPietzschmann/telescope-tabs',
         config = function()
             require "telescope-tabs".setup {
             }
         end
-    }
-    use 'lewis6991/impatient.nvim'
-    use {
+    },
+    {
         'nvim-treesitter/playground',
-    }
-    use "uga-rosa/ccc.nvim"
-    use {
-        'glacambre/firenvim',
-        run = function() vim.fn['firenvim#install'](0) end
-    }
-    use 'ms-jpq/chadtree'
-    use 'f-person/git-blame.nvim'
-    use {
+    },
+    "uga-rosa/ccc.nvim",
+    'ms-jpq/chadtree',
+    'f-person/git-blame.nvim',
+    {
         'windwp/nvim-autopairs',
         config = function()
             require("nvim-autopairs").setup {
             }
         end
-    }
-    use 'catppuccin/nvim'
-    use 'smjonas/duplicate.nvim'
+    },
+    'catppuccin/nvim',
+    'smjonas/duplicate.nvim',
 
-    use {
+    {
         'michaelb/sniprun', run = 'bash ./install.sh'
-    }
+    },
 
-    use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = function()
-        require("diffview").setup {}
-    end }
+    {
+        "sindrets/diffview.nvim",
+        dependencies = "nvim-lua/plenary.nvim",
+        config = function()
+            require("diffview").setup {}
+        end
+    },
 
-    use "joosepAlviste/nvim-ts-context-commentstring"
+    "joosepAlviste/nvim-ts-context-commentstring",
 
-    use "hrsh7th/cmp-nvim-lsp-signature-help"
-    use "hrsh7th/cmp-nvim-lsp-document-symbol"
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-nvim-lsp-document-symbol",
 
-    use "kelly-lin/ranger.nvim"
+    "kelly-lin/ranger.nvim",
 
-    use "simrat39/symbols-outline.nvim"
-    use { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" }
+    "simrat39/symbols-outline.nvim",
+    { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
 
-    use {
-        "willothy/moveline.nvim",
-        run = "make"
-    }
-    use {
+
+    "willothy/moveline.nvim",
+    {
         "debugloop/telescope-undo.nvim"
-    }
+    },
 
-    use "alec-gibson/nvim-tetris"
-end)
+    "alec-gibson/nvim-tetris"
+})

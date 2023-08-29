@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-local moveline = require("moveline")
+-- local moveline = require("moveline")
 
 local utilLeader = "<A-u>"
 
@@ -188,8 +188,8 @@ local nShortcuts = {
     { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
     -- }}}
     -- move code {{{
-        {"<A-k>", moveline.up},
-        {"<A-j>", moveline.down},
+        -- {"<A-k>", moveline.up},
+        -- {"<A-j>", moveline.down},
     -- }}}
 }
 for _, map in ipairs(nShortcuts) do
@@ -282,8 +282,8 @@ local vShortcuts = {
     { "C", ":ChatBotComment<cr>" },
     -- }}}
     -- move code {{{
-        {"<A-j>", moveline.block_down},
-        {"<A-k>", moveline.block_up},
+        -- {"<A-j>", moveline.block_down},
+        -- {"<A-k>", moveline.block_up},
     -- }}}
 }
 for _, map in ipairs(vShortcuts) do

@@ -1,21 +1,29 @@
+
+-- lazy bootstrap{{{
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
+        lazypath
+    })
+end
+
+vim.opt.rtp:prepend(lazypath)
+-- }}}
+
+require 'plugins'
+
 require 'snippets'
 require "options"
-require 'plugins'
 require "shortcuts"
 require 'autocmd'
 require 'functions'
-require 'Lspconfig'
-require "impatient"
 require "user.init"
 
 local cs = require 'colorscheme'
 
 cs.changeColorScheme({scheme = "catppuccin"})
-
-vim.api.nvim_cmd({
-    args = { "packer.nvim" },
-    cmd = "packadd"
-}, {})
 
 require "lsp_signature".setup({
     bind = true,

@@ -29,6 +29,21 @@ vim.api.nvim_create_autocmd("BufReadPost,BufNewFilePost", {
     end
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        local filetypeMatches = {
+            lua = "if:end,function:end",
+            sh = "if:fi,while:done,for:done,until:done,case:esac"
+        }
+        local matches = filetypeMatches[vim.bo.filetype]
+        if matches then
+            vim.b.match_words = matches
+        end
+    end,
+    once = true
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*.email",
     callback = function()
