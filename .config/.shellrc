@@ -161,6 +161,7 @@ gc () {
         h) sub_dir="../Coding Projects/Python_things/hearthstone" ;;
 	t) sub_dir="../Coding Projects/Python_things/tml" ;;
 	B) sub_dir="../Coding Projects/JS Things/bircle" ;;
+    b) sub_dir="../Coding Projects/JS Things/bircle-website" ;;
 	m) sub_dir="../Coding Projects/Python_things/md-to-html" ;;
     d) sub_dir="../Coding Projects/C/dvd_screen" ;;
     esac
