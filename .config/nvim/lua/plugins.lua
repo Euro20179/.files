@@ -9,7 +9,6 @@ require("lazy").setup({
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
-    "dcampos/cmp-emmet-vim",
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
     'flazz/vim-colorschemes',
@@ -241,4 +240,8 @@ require("lazy").setup({
             require("nvim_context_vt").setup { enabled = true }
         end
     },
+    {
+        'jim-fx/sudoku.nvim',
+        config = true
+    }
 })
