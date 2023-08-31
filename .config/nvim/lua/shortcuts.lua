@@ -71,11 +71,7 @@ local nShortcuts = {
     { "<leader>gD", function()
         require("user.telescope").telescope_diff()
     end },
-    { "<leader>gd",
-        function()
-            vim.cmd [[!git diff]]
-        end
-    },
+    { "<leader>gd", "<cmd>DiffviewOpen<cr>" },
     -- }}}
     --emmet{{{
     { "<leader>,", "<c-y>," },

@@ -27,6 +27,7 @@ local kind_icons = {
     Operator = "",
     TypeParameter = ""
 }
+
 cmp.setup({
     experimental = {
         ghost_text = true
@@ -38,24 +39,26 @@ cmp.setup({
         end,
     },
     formatting = {
-        fields = {"kind", "abbr", "menu"},
+        fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
             vim_item.menu = ({
-                --buffer = "-",
-                nvim_lsp = "*",
-                spell = "S",
-                luasnip = "✂️",
-                --nvim_lua = "[Lua]",
-                --latex_symbols = "[LaTeX]",
-                calc = "[=]",
-                time = "%",
-                --emoji = "[Emoji]",
-                --rg = '[/]',
-                --look = '[Look]',
-                --digraphs = '[Digraph]',
-                --browser = '[🌎]',
-            })[entry.source.name]
+                    --buffer = "-",
+                    nvim_lsp = "*",
+                    spell = "S",
+                    luasnip = "",
+                    treesitter = "",
+                    --nvim_lua = "[Lua]",
+                    --latex_symbols = "[LaTeX]",
+                    calc = "[=]",
+                    time = "%",
+                    dynamic = ""
+                    --emoji = "[Emoji]",
+                    --rg = '[/]',
+                    --look = '[Look]',
+                    --digraphs = '[Digraph]',
+                    --browser = '[🌎]',
+                })[entry.source.name]
             return vim_item
         end
     },
@@ -64,15 +67,16 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-b>'] = cmp.mapping.scroll_docs( -4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-s>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm()
     }),
     sources = cmp.config.sources({
-        -- { name = 'nvim_lsp_signature_help' },
-        { name = "cmp_tabnine" },
+        -- { name = 'nvim_lsp_signature_help', autocomplete = false },
+        { name = "emmet_vim" },
+        { name = "dynamic" },
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
         { name = 'buffer' },

@@ -23,15 +23,7 @@ require "user.init"
 
 local cs = require 'colorscheme'
 
-cs.changeColorScheme({scheme = "catppuccin"})
-
-require "lsp_signature".setup({
-    bind = true,
-    hint_enable = true,
-    hint_prefix = " ",
-    always_trigger = false,
-    floating_window = false
-})
+cs.changeColorScheme({scheme = "catppuccin-macchiato"})
 
 vim.diagnostic.config({ virtual_text = false })
 

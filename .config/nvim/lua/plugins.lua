@@ -9,19 +9,32 @@ require("lazy").setup({
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
+    "dcampos/cmp-emmet-vim",
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
     'flazz/vim-colorschemes',
     'mattn/emmet-vim',
-    'ray-x/lsp_signature.nvim',
+    {
+        'ray-x/lsp_signature.nvim',
+        config = true,
+        main = "lsp_signature",
+        opts = {
+            bind = true,
+            hint_enable = true,
+            hint_prefix = " ",
+            always_trigger = false,
+            floating_window = true,
+            doc_lines = 0,
+            toggle_key = "<c-x>",
+            select_signature_key = "<c-z>"
+        }
+    },
     {
         'williamboman/mason.nvim',
         config = function()
             require("mason").setup()
         end
     },
-    'tjdevries/nlua.nvim',
-    "folke/neodev.nvim",
     {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         config = function()
@@ -110,7 +123,31 @@ require("lazy").setup({
     --     }
     -- }
     {
-        "rcarriga/nvim-notify"
+        "rcarriga/nvim-notify",
+        config = function ()
+            vim.opt.termguicolors = true
+            require("notify").setup{
+                background_colour = "#000000"
+            }
+        end
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            lsp = {
+                signature = {
+                    enabled = false
+                },
+            },
+            messages = {
+                enabled = false
+            }
+        },
+        dependencies = {
+            "rcarriga/nvim-notify",
+            "MunifTanjim/nui.nvim"
+        }
     },
     {
         "smjonas/inc-rename.nvim",
@@ -141,7 +178,7 @@ require("lazy").setup({
     },
     "uga-rosa/ccc.nvim",
     'ms-jpq/chadtree',
-    'f-person/git-blame.nvim',
+    -- 'f-person/git-blame.nvim',
     {
         'windwp/nvim-autopairs',
         config = function()
@@ -166,9 +203,6 @@ require("lazy").setup({
 
     "joosepAlviste/nvim-ts-context-commentstring",
 
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "hrsh7th/cmp-nvim-lsp-document-symbol",
-
     "kelly-lin/ranger.nvim",
 
     "simrat39/symbols-outline.nvim",
@@ -180,5 +214,31 @@ require("lazy").setup({
         "debugloop/telescope-undo.nvim"
     },
 
-    "alec-gibson/nvim-tetris"
+    {
+        "Apeiros-46B/qalc.nvim",
+        config = function()
+            require("qalc").setup {}
+        end
+    },
+
+    "alec-gibson/nvim-tetris",
+    {
+        "NStefan002/speedtyper.nvim",
+        cmd = "Speedtyper"
+    },
+    {
+        "ellisonleao/glow.nvim",
+        cmd = "Glow",
+        config = function()
+            require "glow".setup {
+                glow_path = "/usr/bin/glow",
+            }
+        end
+    },
+    {
+        "andersevenrud/nvim_context_vt",
+        config = function()
+            require("nvim_context_vt").setup { enabled = true }
+        end
+    },
 })

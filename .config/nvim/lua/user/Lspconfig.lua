@@ -9,28 +9,17 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()--(vim.lsp.protocol.make_client_capabilities())
 
-require("neodev").setup({})
 lspconfig['lua_ls'].setup{
     settings= {
         Lua = {
             completion = {
                 callSnippet = "Replace"
             },
-            runtime = {
-                version = "luaJIT"
-            },
-            diagnostics = {
-                globals = {"vim"}
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true)
-            },
             telemetry = {
                 enable = false
             }
         },
     },
-    on_attach = on_attach
 }
 
 -- lspconfig.perlnavigator.setup{
