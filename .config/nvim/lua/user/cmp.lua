@@ -75,8 +75,9 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         -- { name = 'nvim_lsp_signature_help', autocomplete = false },
-        { name = "emmet_vim" },
-        { name = "dynamic" },
+        { name = "emmet_vim", option = {
+            filetypes = {"html"}
+        } },
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
         { name = 'buffer' },
