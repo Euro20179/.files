@@ -243,5 +243,11 @@ require("lazy").setup({
     {
         'jim-fx/sudoku.nvim',
         config = true
+    },
+    {
+        "stefanlogue/hydrate.nvim",
+        opts = {
+            minute_interval = 60
+        }
     }
 })
