@@ -1,4 +1,8 @@
 
+vim.lsp.buf.hover = function ()
+    vim.cmd[[LspUI hover]]
+end
+
 -- lazy bootstrap{{{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -11,6 +15,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 -- }}}
+
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
 require 'plugins'
 

@@ -88,44 +88,50 @@ require("lazy").setup({
         "SmiteshP/nvim-navic",
         dependencies = "neovim/nvim-lspconfig"
     },
-    -- use {
-    --     "nvim-neorg/neorg",
-    --     run = ":Neorg sync-parsers",
-    --     config = function()
-    --         require("neorg").setup {
-    --             load = {
-    --                 ["core.integrations.treesitter"] = {},
-    --                 ["core.syntax"]                  = {},
-    --                 ["core.norg.qol.todo_items"]     = {},
-    --                 ["core.norg.esupports.indent"]   = {},
-    --                 ["core.autocommands"]            = {},
-    --                 ["core.norg.esupports.metagen"]  = {},
-    --                 ["core.mode"]                    = {},
-    --                 ["core.norg.qol.toc"]            = {},
-    --                 ["core.norg.esupports.hop"]      = {},
-    --                 ["core.neorgcmd"]                = {},
-    --                 ["core.norg.journal"]            = {},
-    --                 ["core.tangle"]                  = {},
-    --                 ["core.ui"]                      = {},
-    --                 ["core.queries.native"]          = {},
-    --                 ["core.norg.concealer"]          = {
-    --                 ["core.presenter"]               = {},
-    --                     config = {
-    --                     }
-    --                 }
-    --             }
-    --         }
-    --     end,
-    --     dependencies = {
-    --         "nvim-lua/plenary.nvim",
-    --         "nvim-neorg/neorg-telescope",
-    --     }
-    -- }
+    {
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers",
+        opts = {
+            load = {
+                ["core.defaults"] = {},
+                ["core.concealer"] = {}
+            }
+        },
+        -- config = function()
+        --     require("neorg").setup {
+        --         load = {
+        --             ["core.integrations.treesitter"] = {},
+        --             ["core.syntax"]                  = {},
+        --             ["core.norg.qol.todo_items"]     = {},
+        --             ["core.norg.esupports.indent"]   = {},
+        --             ["core.autocommands"]            = {},
+        --             ["core.norg.esupports.metagen"]  = {},
+        --             ["core.mode"]                    = {},
+        --             ["core.norg.qol.toc"]            = {},
+        --             ["core.norg.esupports.hop"]      = {},
+        --             ["core.neorgcmd"]                = {},
+        --             ["core.norg.journal"]            = {},
+        --             ["core.tangle"]                  = {},
+        --             ["core.ui"]                      = {},
+        --             ["core.queries.native"]          = {},
+        --             ["core.norg.concealer"]          = {
+        --                 ["core.presenter"] = {},
+        --                 config             = {
+        --                 }
+        --             }
+        --         }
+        --     }
+        -- end,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-neorg/neorg-telescope",
+        }
+    },
     {
         "rcarriga/nvim-notify",
-        config = function ()
+        config = function()
             vim.opt.termguicolors = true
-            require("notify").setup{
+            require("notify").setup {
                 background_colour = "#000000"
             }
         end
@@ -249,5 +255,20 @@ require("lazy").setup({
         opts = {
             minute_interval = 60
         }
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "<leader>s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
+            { "<leader>F", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+        }
+    },
+    {
+        "jinzhongjia/LspUI.nvim",
+        config = true
     }
 })

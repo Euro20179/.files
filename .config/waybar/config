@@ -6,7 +6,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     // "modules-left": ["river/tags"],
-    "modules-left": ["wlr/workspaces"],
+    "modules-left": ["wlr/workspaces", "custom/osu"],
     "modules-center": ["custom/vpn-location"],
     "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
     // Modules configuration
@@ -32,6 +32,10 @@
             "playing": "▶",
             "paused": "⏸"
         }
+    },
+    "custom/osu": {
+        "exec": "$HOME/.config/waybar/osu.sh",
+        "interval": 600
     },
     "custom/temp": {
         "exec": "$HOME/.local/bin/get-weather-data",
@@ -80,7 +84,7 @@
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}",
-	"format": "{:%H:%M:%S}",
+	"format": "{:%m-%d · %H:%M:%S}",
 	"interval": 1
     },
     "cpu": {
