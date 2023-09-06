@@ -56,3 +56,4 @@ vim.w.euro_debug_mode = false
 
 -- if vim.g.euro_is_manpage ~= nil then
 -- end
+--

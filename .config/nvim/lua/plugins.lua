@@ -260,15 +260,26 @@ require("lazy").setup({
         "folke/flash.nvim",
         event = "VeryLazy",
         ---@type Flash.Config
-        opts = {},
-        -- stylua: ignore
-        keys = {
-            { "<leader>s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
-            { "<leader>F", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-        }
+        opts = {
+            char = {
+                label = {
+                    exclude = "hjkliardcft"
+                }
+            },
+        },
     },
     {
         "jinzhongjia/LspUI.nvim",
         config = true
+    },
+    {
+        "folke/neodev.nvim",
+        config = true
+    },
+    {
+        "EdenEast/nightfox.nvim"
+    },
+    {
+        "andymass/vim-matchup"
     }
 })

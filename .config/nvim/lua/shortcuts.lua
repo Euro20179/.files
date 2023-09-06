@@ -182,6 +182,7 @@ local nShortcuts = {
     -- }}}
     -- Wiki {{{
     { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
+    { "<leader>G", "<cmd>Glow<cr>" },
     -- }}}
     -- move code {{{
         -- {"<A-k>", moveline.up},

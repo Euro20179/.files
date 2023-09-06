@@ -6,7 +6,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     // "modules-left": ["river/tags"],
-    "modules-left": ["wlr/workspaces", "custom/osu"],
+    "modules-left": ["hyprland/workspaces", "custom/osu"],
     "modules-center": ["custom/vpn-location"],
     "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
     // Modules configuration
