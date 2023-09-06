@@ -7,23 +7,23 @@ local utilLeader = "<A-u>"
 --Normal Mode{{{
 local nShortcuts = {
     --copy shortcuts {{{
-    { "<leader>p", '"+p' },
-    { "<leader>P", '"+P' },
-    { "<leader>y", '"+y' },
-    { "<leader>Y", '"+Y' },
-    { "<leader>d", '"+d' },
-    { "<leader>d", '"+d' },
-    { "<leader>c", '"+' },
-    { "<leader>b", "\"_" },
+    { "<leader>p",  '"+p' },
+    { "<leader>P",  '"+P' },
+    { "<leader>y",  '"+y' },
+    { "<leader>Y",  '"+Y' },
+    { "<leader>d",  '"+d' },
+    { "<leader>d",  '"+d' },
+    { "<leader>c",  '"+' },
+    { "<leader>b",  "\"_" },
     --}}}
     --telescope {{{
-    { "<leader>e;", "<cmd>Telescope symbols<cr>"},
+    { "<leader>e;", "<cmd>Telescope symbols<cr>" },
     { "<leader>ej", "<cmd>Telescope jumplist<cr>" },
     { "<leader>ee", "<cmd>Telescope diagnostics<cr>" },
     { "<leader>eT", "<cmd>Telescope treesitter<cr>" },
     { "<leader>et", "<cmd>Telescope tagstack<cr>" },
     { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
-    { "<leader>eH", "<cmd>Telescope highlights<cr>"},
+    { "<leader>eH", "<cmd>Telescope highlights<cr>" },
     { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
@@ -31,28 +31,28 @@ local nShortcuts = {
     { "<leader>ff", ':tabnew<cr>:Telescope find_files<cr>' },
     { "<leader>fj", '<cmd>Telescope jumplist<cr>' },
     { "<leader>f/", '<cmd>Telescope live_grep<cr>' },
-    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>"},
+    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
     --}}}
     --Viewers {{{
-    { "<leader>n", ":CHADopen<cr>" },
+    { "<leader>n",  ":CHADopen<cr>" },
     { "<leader>N", function()
         require("ranger-nvim").open(true)
-    end},
-    { "<leader>o", "<cmd>SymbolsOutline<cr>"},
+    end },
+    { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
-    { "<leader>S", ':split \\| wincmd j<cr>' },
-    { "<leader>V", ':vsplit \\| wincmd l<cr>' },
-    { "<leader>l", ":tabnext<cr>" },
-    { "<leader>h", ':tabprev<CR>' },
+    { "<leader>S",     ':split \\| wincmd j<cr>' },
+    { "<leader>V",     ':vsplit \\| wincmd l<cr>' },
+    { "<leader>l",     ":tabnext<cr>" },
+    { "<leader>h",     ':tabprev<CR>' },
     { "<leader><c-l>", ':bn<CR>' },
     { "<leader><c-h>", ':bp<CR>' },
-    { "<leader>t", ':tabnew<CR>' },
-    { "<leader>q", ':tabclose<cr>' },
-    { "<right>", "<c-w>>" },
-    { "<left>", "<c-w><" },
-    { "<up>", "<c-w>+" },
-    { "<down>", "<c-w>-" },
+    { "<leader>t",     ':tabnew<CR>' },
+    { "<leader>q",     ':tabclose<cr>' },
+    { "<right>",       "<c-w>>" },
+    { "<left>",        "<c-w><" },
+    { "<up>",          "<c-w>+" },
+    { "<down>",        "<c-w>-" },
     { "<leader>vw", function()
         vim.cmd [[:cd ~/Documents/vimwiki]]
         vim.cmd [[:e index.norg]]
@@ -74,27 +74,30 @@ local nShortcuts = {
     { "<leader>gd", "<cmd>DiffviewOpen<cr>" },
     -- }}}
     --emmet{{{
-    { "<leader>,", "<c-y>," },
+    { "<leader>,",  "<c-y>," },
     --}}}
     --lsp {{{
     { "<leader>fs", '<cmd>Telescope lsp_document_symbols<cr>' },
     { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>' },
     { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
-    { "<leader>E", "<cmd>TroubleToggle<cr>" },
-    { "<leader>r", ":IncRename " },
+    { "<leader>E",  "<cmd>TroubleToggle<cr>" },
+    { "<leader>r",  ":IncRename " },
     { "<leader>el", require("lsp_lines").toggle },
     { "<a-e>", function()
         vim.diagnostic.open_float()
     end
     },
-    { "glh", vim.lsp.buf.hover },
-    { "<leader>a", "<cmd>CodeActionMenu<cr>"    },
+    { "glh",       vim.lsp.buf.hover },
+    { "<leader>a", "<cmd>CodeActionMenu<cr>" },
     { "<leader>A", function()
         local n = 0
-        vim.lsp.buf.code_action({ filter = function()
-            n = n + 1
-            return n == 1
-        end, apply = true })
+        vim.lsp.buf.code_action({
+            filter = function()
+                n = n + 1
+                return n == 1
+            end,
+            apply = true
+        })
     end
     },
     { "]d", function()
@@ -104,10 +107,13 @@ local nShortcuts = {
     { "]D", function()
         vim.diagnostic.goto_next()
         local n = 0
-        vim.lsp.buf.code_action({ filter = function(a)
-            n = n + 1
-            return n == 1
-        end, apply = true })
+        vim.lsp.buf.code_action({
+            filter = function(a)
+                n = n + 1
+                return n == 1
+            end,
+            apply = true
+        })
     end
     },
     { "[d", function()
@@ -118,10 +124,13 @@ local nShortcuts = {
     { "[D", function()
         vim.diagnostic.goto_prev({})
         local n = 0
-        vim.lsp.buf.code_action({ filter = function(a)
-            n = n + 1
-            return n == 1
-        end, apply = true })
+        vim.lsp.buf.code_action({
+            filter = function(a)
+                n = n + 1
+                return n == 1
+            end,
+            apply = true
+        })
     end
     },
     {
@@ -132,36 +141,37 @@ local nShortcuts = {
     },
     --}}}
     -- Treesitter {{{
-    { "<A-r>", "<cmd>RegexplainerToggle<cr>" },
-    { "<a-h>", require("tree-climber").goto_parent },
-    { "<a-l>", require("tree-climber").goto_child },
-    { "<leader>vn", require("tree-climber").select_node },
-    { "<leader><a-j>", require("tree-climber").swap_next },
-    { "<leader><a-k>", require("tree-climber").swap_prev },
-    { "glt", ":TSHighlightCapturesUnderCursor<cr>" },
+    { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
+    { "<a-h>",           require("tree-climber").goto_parent },
+    { "<a-l>",           require("tree-climber").goto_child },
+    { "<leader>vn",      require("tree-climber").select_node },
+    { "<a-j>",           require("tree-climber").swap_next },
+    { "<a-k>",           require("tree-climber").swap_prev },
+    { "glt",             ":TSHighlightCapturesUnderCursor<cr>" },
     -- }}}
     --syntax highlighting{{{
-    { "<A-f>s", ":set foldmethod=syntax<cr>" },
-    { "<A-f>m", ':set foldmethod=marker<cr>' },
-    { "<C-n>", ':noh<CR>' },
-    { "<C-s>", ':setlocal spell! spelllang=en_us<CR>' },
-    { "<A-s>", ':syntax sync fromstart<CR>' },
+    { "<A-f>s",          ":set foldmethod=syntax<cr>" },
+    { "<A-f>m",          ':set foldmethod=marker<cr>' },
+    { "<C-n>",           ':noh<CR>' },
+    { "<C-s>",           ':setlocal spell! spelllang=en_us<CR>' },
+    { "<A-s>",           ':syntax sync fromstart<CR>' },
     --}}}
     --normal movement {{{
-    { "<c-l>", "<C-w>l" },
-    { "<c-j>", "<C-w>j" },
-    { "<c-h>", "<C-w>h" },
-    { "<c-k>", "<C-w>k" },
+    { "<c-l>",           "<C-w>l" },
+    { "<c-j>",           "<C-w>j" },
+    { "<c-h>",           "<C-w>h" },
+    { "<c-k>",           "<C-w>k" },
     --}}}
     -- Util Functions {{{
     { utilLeader .. "W", "\"=v:lua.Rword()<cr>p" },
     { utilLeader .. "y", function()
-        Ytfzf({ _on_done = function(selection)
-            local data = vim.split(selection[1], "|")
-            local url = data[#data]
-            vim.cmd([[!mpv ]] .. "\"" .. url .. "\"")
-
-        end })
+        Ytfzf({
+            _on_done = function(selection)
+                local data = vim.split(selection[1], "|")
+                local url = data[#data]
+                vim.cmd([[!mpv ]] .. "\"" .. url .. "\"")
+            end
+        })
     end },
     { utilLeader .. "w", "<cmd>!detex % | wc -w<cr>" },
     { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>" },
@@ -177,20 +187,20 @@ local nShortcuts = {
             vim.cmd("e man://" .. data)
         end)
     end },
-    { "<C-c>", "<cmd>CccPick<cr>" },
-    { "<a-x>", "<cmd>CccConvert<cr>" },
+    { "<C-c>",      "<cmd>CccPick<cr>" },
+    { "<a-x>",      "<cmd>CccConvert<cr>" },
     -- }}}
     -- Wiki {{{
-    { "<leader>W", "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
-    { "<leader>G", "<cmd>Glow<cr>" },
+    { "<leader>W",  "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
+    { "<leader>G",  "<cmd>Glow<cr>" },
     -- }}}
     -- move code {{{
-        -- {"<A-k>", moveline.up},
-        -- {"<A-j>", moveline.down},
+    -- {"<A-k>", moveline.up},
+    -- {"<A-j>", moveline.down},
     -- }}}
     -- lazy {{{
-        {"<leader>Lu", "<cmd>Lazy update<cr>"},
-        {"<leader>Lx", "<cmd>Lazy clean<cr>"},
+    { "<leader>Lu", "<cmd>Lazy update<cr>" },
+    { "<leader>Lx", "<cmd>Lazy clean<cr>" },
     -- }}}
 }
 for _, map in ipairs(nShortcuts) do
@@ -201,19 +211,19 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     -- Movement {{{
-    { "<C-bs>", "<C-w>" },
-    { "<C-g>$", "<Esc>$a" },
-    { "<C-g>l", "<Esc>la" },
-    { "<C-g>h", "<Esc>ha" },
-    { "<C-g>0", "<Esc>0i" },
-    { "<C-g>^", "<Esc>^i" },
-    { "<C-g>b", "<Esc>bi" },
-    { "<C-g>w", "<Esc>wi" },
-    { "<C-g>B", "<Esc>Bi" },
-    { "<C-g>W", "<Esc>Wi" },
-    { "<c-space>l", "<Esc>:tabnext<CR>" },
-    { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-backspace>", "<c-w>"},
+    { "<C-bs>",        "<C-w>" },
+    { "<C-g>$",        "<Esc>$a" },
+    { "<C-g>l",        "<Esc>la" },
+    { "<C-g>h",        "<Esc>ha" },
+    { "<C-g>0",        "<Esc>0i" },
+    { "<C-g>^",        "<Esc>^i" },
+    { "<C-g>b",        "<Esc>bi" },
+    { "<C-g>w",        "<Esc>wi" },
+    { "<C-g>B",        "<Esc>Bi" },
+    { "<C-g>W",        "<Esc>Wi" },
+    { "<c-space>l",    "<Esc>:tabnext<CR>" },
+    { "<c-space>h",    "<Esc>:tabprev<CR>" },
+    { "<c-backspace>", "<c-w>" },
     -- }}}
     -- luasnip {{{
     { "<Tab>",
@@ -269,22 +279,22 @@ local vShortcuts = {
     { "<leader>p", "\"+p" },
     -- }}}
     -- indentation {{{
-    { "<", "<gv" },
-    { ">", ">gv" },
+    { "<",         "<gv" },
+    { ">",         ">gv" },
     --}}}
     --treesitter{{{
-    { "<a-h>", require("tree-climber").goto_parent },
-    { "<a-l>", require("tree-climber").goto_child },
-    { "<a-j>", require("tree-climber").goto_next },
-    { "<a-k>", require("tree-climber").goto_prev },
+    { "<a-h>",     require("tree-climber").goto_parent },
+    { "<a-l>",     require("tree-climber").goto_child },
+    { "<a-j>",     require("tree-climber").goto_next },
+    { "<a-k>",     require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-    { "D", ":ChatBotDocument<cr>" },
-    { "C", ":ChatBotComment<cr>" },
+    { "D",         ":ChatBotDocument<cr>" },
+    { "C",         ":ChatBotComment<cr>" },
     -- }}}
     -- move code {{{
-        -- {"<A-j>", moveline.block_down},
-        -- {"<A-k>", moveline.block_up},
+    -- {"<A-j>", moveline.block_down},
+    -- {"<A-k>", moveline.block_up},
     -- }}}
 }
 for _, map in ipairs(vShortcuts) do
@@ -294,11 +304,11 @@ end --}}}
 -- Select Mode {{{
 local sShortcuts = {
     --luasnip {{{
-    { "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>" },
+    { "<Tab>",   "<cmd>lua require('luasnip').jump(1)<Cr>" },
     { "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>" },
     --visual also binds this for some reason?
-    { "C", "C", expr = true },
-    { "D", "D", expr = true },
+    { "C",       "C",                                       expr = true },
+    { "D",       "D",                                       expr = true },
     --}}}
 }
 for _, map in ipairs(sShortcuts) do
