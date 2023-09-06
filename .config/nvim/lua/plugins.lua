@@ -251,12 +251,6 @@ require("lazy").setup({
         config = true
     },
     {
-        "stefanlogue/hydrate.nvim",
-        opts = {
-            minute_interval = 60
-        }
-    },
-    {
         "folke/flash.nvim",
         event = "VeryLazy",
         ---@type Flash.Config

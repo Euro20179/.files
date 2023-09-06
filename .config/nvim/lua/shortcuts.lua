@@ -188,6 +188,10 @@ local nShortcuts = {
         -- {"<A-k>", moveline.up},
         -- {"<A-j>", moveline.down},
     -- }}}
+    -- lazy {{{
+        {"<leader>Lu", "<cmd>Lazy update<cr>"},
+        {"<leader>Lx", "<cmd>Lazy clean<cr>"},
+    -- }}}
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
