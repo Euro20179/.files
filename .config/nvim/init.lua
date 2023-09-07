@@ -54,6 +54,12 @@ end
 
 vim.w.euro_debug_mode = false
 
+vim.filetype.add({
+    pattern = {
+        [".*/hyprland?.conf"] = 'hyprland'
+    }
+})
+
 -- if vim.g.euro_is_manpage ~= nil then
 -- end
 --
