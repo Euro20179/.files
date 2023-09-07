@@ -78,6 +78,8 @@ alias t='tmux'
 
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 
+alias email=compose-email
+
 me () {
     disown 2> /dev/null 1>&2
     if [ "$?" -ne 127 ]; then
