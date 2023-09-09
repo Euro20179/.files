@@ -94,7 +94,8 @@ require("lazy").setup({
 		opts = {
 			load = {
 				["core.defaults"] = {},
-				["core.concealer"] = {}
+				["core.concealer"] = {},
+                ["core.ui.calendar"] = {}
 			}
 		},
 		-- config = function()

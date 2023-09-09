@@ -78,6 +78,8 @@ alias t='tmux'
 
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 
+alias anime='nvim $HOME/Documents/vimwiki/norg-home/anime-list.norg'
+
 alias email=compose-email
 
 me () {
