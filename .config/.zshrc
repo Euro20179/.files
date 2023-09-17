@@ -41,14 +41,14 @@ function zle-keymap-select {
     fi
 }
 zle -N zle-keymap-select
-#initial cursor
+# #initial cursor
 zle-line-init(){
     zle -K viins
     #beam
     echo -ne "\e['"$INSBEAM"' q"
 }
 zle -N zle-line-init
-#initial cursor
+# #initial cursor
 echo -ne '\e['"$INSBEAM"' q'
 preexec() { echo -ne '\e['"$INSBEAM"' q'; }
 #END CURSOR

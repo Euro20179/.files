@@ -62,4 +62,3 @@ vim.filetype.add({
 
 -- if vim.g.euro_is_manpage ~= nil then
 -- end
---

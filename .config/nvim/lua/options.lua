@@ -21,6 +21,7 @@ vim.opt.concealcursor = ''
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.spelllang = { "en_us" }
+vim.opt.smoothscroll = true
 
 vim.opt.fillchars = "eob:󰅖"
 

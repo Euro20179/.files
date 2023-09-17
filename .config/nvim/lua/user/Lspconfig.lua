@@ -66,7 +66,8 @@ lspconfig['rust_analyzer'].setup {
 -- }
 
 lspconfig['bashls'].setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
 lspconfig['clangd'].setup{

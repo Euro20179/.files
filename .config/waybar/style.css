@@ -41,7 +41,7 @@ tooltip label{
 window#waybar {
     background-color: rgba(43, 48, 59, 0.2);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    color: white;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -71,7 +71,7 @@ window#waybar.chromium {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: white;
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
     /* Avoid rounded borders under each workspace name */
@@ -79,13 +79,13 @@ window#waybar.chromium {
 }
 
 #workspaces button label{
-    color: #ffffff;
+    color: white;
 }
 
 #workspaces button.focused {
     background-color: @theme-color;
-    box-shadow: inset 0 -3px #ffffff;
-    color: black;
+    box-shadow: inset 0 -3px white;
+    color: white;
 }
 
 #workspaces button.urgent {

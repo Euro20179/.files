@@ -94,7 +94,17 @@ require("lazy").setup({
 		opts = {
 			load = {
 				["core.defaults"] = {},
-				["core.concealer"] = {},
+				["core.concealer"] = {
+                    config = {
+                        icons = {
+                            todo = {
+                                on_hold = {
+                                    icon = "󰏤"
+                                },
+                            }
+                        }
+                    }
+                },
                 ["core.ui.calendar"] = {}
 			}
 		},
@@ -137,24 +147,24 @@ require("lazy").setup({
 			}
 		end
 	},
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			lsp = {
-				signature = {
-					enabled = false
-				},
-			},
-			messages = {
-				enabled = false
-			}
-		},
-		dependencies = {
-			"rcarriga/nvim-notify",
-			"MunifTanjim/nui.nvim"
-		}
-	},
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts = {
+	-- 		lsp = {
+	-- 			signature = {
+	-- 				enabled = false
+	-- 			},
+	-- 		},
+	-- 		messages = {
+	-- 			enabled = false
+	-- 		}
+	-- 	},
+	-- 	dependencies = {
+	-- 		"rcarriga/nvim-notify",
+	-- 		"MunifTanjim/nui.nvim"
+	-- 	}
+	-- },
 	{
 		"smjonas/inc-rename.nvim",
 		config = function()
@@ -252,18 +262,6 @@ require("lazy").setup({
 		config = true
 	},
 	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		---@type Flash.Config
-		opts = {
-			char = {
-				label = {
-					exclude = "hjkliardcft"
-				}
-			},
-		},
-	},
-	{
 		"jinzhongjia/LspUI.nvim",
 		config = true
 	},
@@ -283,5 +281,19 @@ require("lazy").setup({
         opts = {
             temp_dir = "~/.config/nvim/template"
         }
-	}
+	},
+    {
+        "jinh0/eyeliner.nvim",
+        config = function ()
+            require'eyeliner'.setup {
+                highlight_on_key = true,
+                dim = true
+            }
+        end
+    },
+    {
+        "chrisgrieser/nvim-various-textobjs",
+        lazy = false,
+        opts = { useDefaultKeymaps = true }
+    }
 })
