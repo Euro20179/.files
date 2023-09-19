@@ -20,7 +20,9 @@ local telescope_diff = function(opts)
             actions.select_default:replace(function()
                 actions.close(prompt_bufnr)
                 local selection = action_state.get_selected_entry()
-                vim.cmd([[new | wincmd j | read !git diff ]] .. selection[1])
+                vim.api.nvim_cmd({cmd = "new"}, {})
+                vim.api.nvim_cmd({cmd = "wincmd", args = {"j"}}, {})
+                vim.cmd([[read !git diff ]] .. selection[1])
                 vim.o.filetype = "diff"
             end)
             return true
@@ -33,20 +35,20 @@ local telescope_diff = function(opts)
     }):find()
 end
 
-local ytfzf_previewer = require("telescope.previewers").Previewer:new{
-    setup = function(self) end,
-    teardown = function (self) end,
-    preview_fn = function(self, entry, status)
-        return entry
-    end,
-    title = function (self)
-        return "Thumbnail"
-    end,
-    dynamic_title = function (self, entry)
-        return entry
-    end
-}
-
+-- local ytfzf_previewer = require("telescope.previewers").Previewer:new{
+--     setup = function(self) end,
+--     teardown = function (self) end,
+--     preview_fn = function(self, entry, status)
+--         return entry
+--     end,
+--     title = function (self)
+--         return "Thumbnail"
+--     end,
+--     dynamic_title = function (self, entry)
+--         return entry
+--     end
+-- }
+--
 local ytfzf = function(opts)
     opts = opts or {}
     local _on_done = opts._on_done
@@ -68,9 +70,9 @@ local ytfzf = function(opts)
                 vim.ui.input({ prompt = "Search: " }, function (text)
                     if text then
                         vim.g._NVIM_YTFZF = ""
-                        vim.cmd[[redir => g:_NVIM_YTFZF]]
+                        vim.api.nvim_cmd({cmd = "redir", args = {"=>", "g:_NVIM_YTFZF"}}, {})
                         vim.cmd([[filter /|/ !YTFZF_CONFIG_FILE="/dev/null" ytfzf -A -IR ]] .. text)
-                        vim.cmd[[redir END]]
+                        vim.api.nvim_cmd({cmd = "redir", args = {"END"}}, {})
                         local t = vim.split(vim.g._NVIM_YTFZF, "\n")
                         for _, value in ipairs(t) do
                             if string.match(value, "|") then
