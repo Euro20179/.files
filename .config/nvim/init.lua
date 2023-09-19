@@ -1,6 +1,9 @@
 
 vim.lsp.buf.hover = function ()
-    vim.cmd[[LspUI hover]]
+    vim.api.nvim_cmd({
+        cmd = "LspUI",
+        args = {"hover"}
+    })
 end
 
 -- lazy bootstrap{{{

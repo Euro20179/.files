@@ -53,8 +53,11 @@ local utilLeader = "<A-u>"
                         { "<up>",          "<c-w>+" },
                         { "<down>",        "<c-w>-" },
                         { "<leader>vw", function()
-                            vim.cmd [[:cd ~/Documents/vimwiki]]
-                            vim.cmd [[:e index.norg]]
+                            vim.fn.chdir("~/Documents/vimwiki")
+                            vim.api.nvim_cmd({
+                                cmd = "e",
+                                args = {"index.norg"}
+                            })
                         end
                     },
                     --}}}
@@ -63,7 +66,10 @@ local utilLeader = "<A-u>"
                         function()
                             vim.cmd [[new | wincmd j | read !git log]]
                             vim.o.filetype = "gitlog"
-                            vim.cmd [[norm gg]]
+                            vim.api.nvim_cmd({
+                                cmd = "norm",
+                                args = {"gg"}
+                            })
                             vim.keymap.set("n", "q", ":q<cr>", { buffer = vim.api.nvim_get_current_buf() })
                         end
                     },
@@ -168,7 +174,8 @@ local utilLeader = "<A-u>"
                             _on_done = function(selection)
                                 local data = vim.split(selection[1], "|")
                                 local url = data[#data]
-                                vim.cmd([[!mpv ]] .. "\"" .. url .. "\"")
+                                vim.system({"mpv", url})
+                                -- vim.cmd([[!mpv ]] .. "\"" .. url .. "\"")
                             end
                         })
                     end },

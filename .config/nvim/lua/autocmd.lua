@@ -25,7 +25,10 @@ vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
 vim.api.nvim_create_autocmd("BufReadPost,BufNewFilePost", {
     pattern = "*.norg",
     callback = function()
-        vim.cmd [[:norm zR]]
+        vim.api.nvim_cmd({
+            cmd = "norm",
+            args = {"zR"}
+        }, {})
     end
 })
 
@@ -33,6 +36,18 @@ vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*.email",
     callback = function()
         vim.opt.filetype = 'email'
+    end
+})
+
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    pattern = "*",
+    callback = function()
+        if vim.fn.isdirectory(vim.api.nvim_buf_get_name(0)) == 1 then
+            vim.api.nvim_cmd({
+                cmd = "Ex"
+            }, {})
+        end
     end
 })
 

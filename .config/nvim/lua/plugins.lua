@@ -295,5 +295,5 @@ require("lazy").setup({
         "chrisgrieser/nvim-various-textobjs",
         lazy = false,
         opts = { useDefaultKeymaps = true }
-    }
+    },
 })

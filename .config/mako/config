@@ -1,3 +1,4 @@
+font=Arimo
 format=<span size="15pt">%s</span>\n\n%b
 default-timeout=3000
 background-color=#0078ADee

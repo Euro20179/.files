@@ -21,7 +21,7 @@ local telescope_diff = function(opts)
                 actions.close(prompt_bufnr)
                 local selection = action_state.get_selected_entry()
                 vim.cmd([[new | wincmd j | read !git diff ]] .. selection[1])
-                vim.cmd [[set filetype=diff]]
+                vim.o.filetype = "diff"
             end)
             return true
         end,
@@ -81,7 +81,7 @@ local ytfzf = function(opts)
                     end
                 end)
                 while not final_text[1] do
-                    vim.cmd[[sleep 1]]
+                    vim.uv.sleep(1)
                 end
                 return final_text
             end)()
