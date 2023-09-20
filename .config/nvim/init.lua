@@ -1,11 +1,3 @@
-
-vim.lsp.buf.hover = function ()
-    vim.api.nvim_cmd({
-        cmd = "LspUI",
-        args = {"hover"}
-    }, {})
-end
-
 -- lazy bootstrap{{{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -34,7 +26,7 @@ local cs = require 'colorscheme'
 
 cs.changeColorScheme({scheme = "catppuccin-macchiato"})
 
-vim.diagnostic.config({ virtual_text = false })
+-- vim.diagnostic.config({ virtual_text = false })
 
 vim.o.winbar = "%{%v:lua.Winbar()%}"
 
@@ -46,15 +38,10 @@ if vim.g.neovide ~= nil then
     }, {})
 end
 
---vim.highlight.on_yank({ timeout = 200, higroup = "String" })
-
---vim.notify = require("notify")
-
 if vim.g.started_by_firenvim then
     vim.o.laststatus = 0
     vim.g.html_font = "Consolas"
 end
-
 vim.w.euro_debug_mode = false
 
 vim.filetype.add({
@@ -63,5 +50,9 @@ vim.filetype.add({
     }
 })
 
--- if vim.g.euro_is_manpage ~= nil then
--- end
+vim.lsp.buf.hover = function ()
+    vim.api.nvim_cmd({
+        cmd = "LspUI",
+        args = {"hover"}
+    }, {})
+end

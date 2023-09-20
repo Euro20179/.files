@@ -12,8 +12,9 @@ local nShortcuts = {
     { "<leader>Y",  '"+Y' },
     { "<leader>d",  '"_d' },
     { "<leader>d",  '"_d' },
-    { "<leader>c",  '"+' },
+    { "<leader>c",  '"_c' },
     { "<leader>b",  "\"_" },
+    { "<leader>B",  "\"+" },
     --}}}
     --telescope {{{
     { "<leader>e;", "<cmd>Telescope symbols<cr>" },
@@ -89,12 +90,18 @@ local nShortcuts = {
     { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
     { "<leader>E",  "<cmd>TroubleToggle<cr>" },
     { "<leader>r",  ":IncRename " },
-    { "<leader>el", require("lsp_lines").toggle },
+    { "<leader>el", function()
+        if vim.diagnostic.is_disabled() then
+            vim.diagnostic.enable()
+        else
+            vim.diagnostic.disable()
+        end
+    end},
     { "<a-e>", function()
         vim.diagnostic.open_float()
     end
     },
-    { "glh",       vim.lsp.buf.hover },
+    --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
     { "<leader>a", "<cmd>CodeActionMenu<cr>" },
     { "<leader>A", function()
         local n = 0
@@ -115,7 +122,7 @@ local nShortcuts = {
         vim.diagnostic.goto_next()
         local n = 0
         vim.lsp.buf.code_action({
-            filter = function(a)
+            filter = function()
                 n = n + 1
                 return n == 1
             end,
@@ -222,7 +229,6 @@ local iShortcuts = {
     { "<C-g>W",        "<Esc>Wi" },
     { "<c-space>l",    "<Esc>:tabnext<CR>" },
     { "<c-space>h",    "<Esc>:tabprev<CR>" },
-    { "<c-backspace>", "<c-w>" },
     -- }}}
     -- luasnip {{{
     { "<Tab>",
@@ -241,24 +247,24 @@ local iShortcuts = {
         end,
         { expr = true, silent = true }
     },
-    -- { "<c-n>",
-    --     function()
-    --         if require("luasnip").choice_active() then
-    --             return '<Plug>luasnip-next-choice'
-    --         end
-    --         return '<c-n>'
-    --     end,
-    --     { silent = true, expr = true }
-    -- },
-    -- { "<c-p>",
-    --     function()
-    --         if require "luasnip".choice_active() then
-    --             return '<Plug>luasnip-prev-choice'
-    --         end
-    --         return '<c-p>'
-    --     end,
-    --     { silent = true, expr = true }
-    -- },
+    { "<c-n>",
+        function()
+            if require("luasnip").choice_active() then
+                return '<Plug>luasnip-next-choice'
+            end
+            return '<c-n>'
+        end,
+        { silent = true, expr = true }
+    },
+    { "<c-p>",
+        function()
+            if require "luasnip".choice_active() then
+                return '<Plug>luasnip-prev-choice'
+            end
+            return '<c-p>'
+        end,
+        { silent = true, expr = true }
+    },
     -- }}}
     -- Util Functions {{{
     { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },
@@ -331,3 +337,7 @@ aunmenu PopUp
 nnoremenu PopUp.hi :lua print("hi")<cr>
 ]]
 --}}}
+
+vim.keymap.set("o", "O", "<esc>mzkddg`z") --motion to delete above line
+vim.keymap.set("o", "o", "<esc>mzjddg`z") --motion to delete below line
+vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line

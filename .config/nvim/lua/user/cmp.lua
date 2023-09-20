@@ -53,8 +53,8 @@ cmp.setup({
                     --latex_symbols = "[LaTeX]",
                     calc = "[=]",
                     time = "%",
-                    dynamic = ""
-                    --emoji = "[Emoji]",
+                    dynamic = "",
+                    emoji = "E",
                     --rg = '[/]',
                     --look = '[Look]',
                     --digraphs = '[Digraph]',
@@ -99,6 +99,7 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
         { name = "spell" },
+        { name = "emoji" },
         -- { name = "time" },
         --{
         --name = "dictionary",
