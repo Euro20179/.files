@@ -64,8 +64,8 @@ local function queryChatBot(data)
              -H 'Content-Type: application/json' \
              -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
              -d '{"model": "text-davinci-003", "prompt": '"$(cat ]] ..
-                filename .. [[)"', "temperature": 0}' | jq -r '.choices[0].text'
-    ]]       )
+            filename .. [[)"', "temperature": 0}' | jq -r '.choices[0].text'
+    ]])
             if handle then
                 local res = handle:read("*a")
                 vim.api.nvim_put(vim.split(res, "\n"), "l", true, true)
@@ -97,7 +97,7 @@ local function _chatbotmain(data, type)
              -H 'Content-Type: application/json' \
              -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
              -d '{"model": "text-davinci-edit-001", "input": '"$(cat ]] ..
-        filename .. [[)"', "instruction": "]] .. type .. [[", "temperature": 0}' | jq -r '.choices[0].text'
+    filename .. [[)"', "instruction": "]] .. type .. [[", "temperature": 0}' | jq -r '.choices[0].text'
     ]])
     if handle then
         local res = handle:read("*a")
@@ -114,6 +114,18 @@ end
 
 function ChatBotDocument(data)
     _chatbotmain(data, "Add documentation")
+end
+
+function GotoTerminalTab()
+    for _, tid in ipairs(vim.api.nvim_list_tabpages()) do
+        for _, wid in ipairs(vim.api.nvim_tabpage_list_wins(tid)) do
+            local bid = vim.api.nvim_win_get_buf(wid)
+            local name = vim.api.nvim_buf_get_name(bid)
+            if vim.startswith(name, "term://") then
+                vim.api.nvim_set_current_tabpage(tid)
+            end
+        end
+    end
 end
 
 vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })

@@ -26,6 +26,7 @@ local nShortcuts = {
     { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
+    { "<leader>ft", require"telescope-tabs".list_tabs},
     { "<leader>fe", '<cmd>Telescope find_files<cr>' },
     { "<leader>ff", ':tabnew<cr>:Telescope find_files<cr>' },
     { "<leader>fj", '<cmd>Telescope jumplist<cr>' },
@@ -52,6 +53,7 @@ local nShortcuts = {
     { "<left>",        "<c-w><" },
     { "<up>",          "<c-w>+" },
     { "<down>",        "<c-w>-" },
+    { "<leader>T", function() GotoTerminalTab() end},
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -69,7 +71,7 @@ local nShortcuts = {
             vim.api.nvim_cmd({
                 cmd = "norm",
                 args = { "gg" }
-            })
+            }, {})
             vim.keymap.set("n", "q", ":q<cr>", { buffer = vim.api.nvim_get_current_buf() })
         end
     },
@@ -239,24 +241,24 @@ local iShortcuts = {
         end,
         { expr = true, silent = true }
     },
-    { "<c-n>",
-        function()
-            if require("luasnip").choice_active() then
-                return '<Plug>luasnip-next-choice'
-            end
-            return '<c-n>'
-        end,
-        { silent = true, expr = true }
-    },
-    { "<c-p>",
-        function()
-            if require "luasnip".choice_active() then
-                return '<Plug>luasnip-prev-choice'
-            end
-            return '<c-p>'
-        end,
-        { silent = true, expr = true }
-    },
+    -- { "<c-n>",
+    --     function()
+    --         if require("luasnip").choice_active() then
+    --             return '<Plug>luasnip-next-choice'
+    --         end
+    --         return '<c-n>'
+    --     end,
+    --     { silent = true, expr = true }
+    -- },
+    -- { "<c-p>",
+    --     function()
+    --         if require "luasnip".choice_active() then
+    --             return '<Plug>luasnip-prev-choice'
+    --         end
+    --         return '<c-p>'
+    --     end,
+    --     { silent = true, expr = true }
+    -- },
     -- }}}
     -- Util Functions {{{
     { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },

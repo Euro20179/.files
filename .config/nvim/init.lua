@@ -3,7 +3,7 @@ vim.lsp.buf.hover = function ()
     vim.api.nvim_cmd({
         cmd = "LspUI",
         args = {"hover"}
-    })
+    }, {})
 end
 
 -- lazy bootstrap{{{

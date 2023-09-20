@@ -88,56 +88,56 @@ require("lazy").setup({
         "SmiteshP/nvim-navic",
         dependencies = "neovim/nvim-lspconfig"
     },
-    {
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers",
-        opts = {
-            load = {
-                ["core.defaults"] = {},
-                ["core.concealer"] = {
-                    config = {
-                        icons = {
-                            todo = {
-                                on_hold = {
-                                    icon = "󰏤"
-                                },
-                            }
-                        }
-                    }
-                },
-                ["core.ui.calendar"] = {}
-            }
-        },
-        -- config = function()
-        --     require("neorg").setup {
-        --         load = {
-        --             ["core.integrations.treesitter"] = {},
-        --             ["core.syntax"]                  = {},
-        --             ["core.norg.qol.todo_items"]     = {},
-        --             ["core.norg.esupports.indent"]   = {},
-        --             ["core.autocommands"]            = {},
-        --             ["core.norg.esupports.metagen"]  = {},
-        --             ["core.mode"]                    = {},
-        --             ["core.norg.qol.toc"]            = {},
-        --             ["core.norg.esupports.hop"]      = {},
-        --             ["core.neorgcmd"]                = {},
-        --             ["core.norg.journal"]            = {},
-        --             ["core.tangle"]                  = {},
-        --             ["core.ui"]                      = {},
-        --             ["core.queries.native"]          = {},
-        --             ["core.norg.concealer"]          = {
-        --                 ["core.presenter"] = {},
-        --                 config             = {
-        --                 }
-        --             }
-        --         }
-        --     }
-        -- end,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-neorg/neorg-telescope",
-        }
-    },
+    -- {
+    --     "nvim-neorg/neorg",
+    --     build = ":Neorg sync-parsers",
+    --     opts = {
+    --         load = {
+    --             ["core.defaults"] = {},
+    --             ["core.concealer"] = {
+    --                 config = {
+    --                     icons = {
+    --                         todo = {
+    --                             on_hold = {
+    --                                 icon = "󰏤"
+    --                             },
+    --                         }
+    --                     }
+    --                 }
+    --             },
+    --             ["core.ui.calendar"] = {}
+    --         }
+    --     },
+    --     -- config = function()
+    --     --     require("neorg").setup {
+    --     --         load = {
+    --     --             ["core.integrations.treesitter"] = {},
+    --     --             ["core.syntax"]                  = {},
+    --     --             ["core.norg.qol.todo_items"]     = {},
+    --     --             ["core.norg.esupports.indent"]   = {},
+    --     --             ["core.autocommands"]            = {},
+    --     --             ["core.norg.esupports.metagen"]  = {},
+    --     --             ["core.mode"]                    = {},
+    --     --             ["core.norg.qol.toc"]            = {},
+    --     --             ["core.norg.esupports.hop"]      = {},
+    --     --             ["core.neorgcmd"]                = {},
+    --     --             ["core.norg.journal"]            = {},
+    --     --             ["core.tangle"]                  = {},
+    --     --             ["core.ui"]                      = {},
+    --     --             ["core.queries.native"]          = {},
+    --     --             ["core.norg.concealer"]          = {
+    --     --                 ["core.presenter"] = {},
+    --     --                 config             = {
+    --     --                 }
+    --     --             }
+    --     --         }
+    --     --     }
+    --     -- end,
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-neorg/neorg-telescope",
+    --     }
+    -- },
     {
         "rcarriga/nvim-notify",
         config = function()
@@ -252,12 +252,6 @@ require("lazy").setup({
         end
     },
     {
-        "andersevenrud/nvim_context_vt",
-        config = function()
-            require("nvim_context_vt").setup { enabled = true }
-        end
-    },
-    {
         'jim-fx/sudoku.nvim',
         config = true
     },
@@ -296,4 +290,7 @@ require("lazy").setup({
         lazy = false,
         opts = { useDefaultKeymaps = true }
     },
+    {
+        "LukasPietzschmann/telescope-tabs"
+    }
 })
