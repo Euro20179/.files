@@ -1,7 +1,10 @@
 vim.g.mapleader = " "
 
+
 -- local moveline = require("moveline")
 local utilLeader = "<A-u>"
+
+local gitLeader = "<A-g>"
 
 --Normal Mode{{{
 local nShortcuts = {
@@ -65,21 +68,22 @@ local nShortcuts = {
     },
     --}}}
     -- Git {{{
-    { "<leader>gl",
+    { gitLeader .. "l",
         function()
-            vim.cmd [[new | wincmd j | read !git log]]
-            vim.o.filetype = "gitlog"
-            vim.api.nvim_cmd({
-                cmd = "norm",
-                args = { "gg" }
-            }, {})
-            vim.keymap.set("n", "q", ":q<cr>", { buffer = vim.api.nvim_get_current_buf() })
+            local neogit = require("neogit")
+            neogit.open({ "log" })
         end
     },
-    { "<leader>gD", function()
+    {gitLeader .. "c", function()
+        require"neogit".open({ "commit" })
+    end},
+    {gitLeader .. "D", function()
         require("user.telescope").telescope_diff()
     end },
-    { "<leader>gd", "<cmd>DiffviewOpen<cr>" },
+    {gitLeader .. "d", "<cmd>DiffviewOpen<cr>" },
+    {gitLeader .. "p", function()
+        require"neogit".open({ "push" })
+    end},
     -- }}}
     --emmet{{{
     { "<leader>,",  "<c-y>," },

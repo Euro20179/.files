@@ -1,20 +1,20 @@
-version = "1.1.5"
+version = "1.1.11"
 
 [class]
-"[Ff]irefox" = " "
-parsecd = "󱌣 "
+DEFAULT = " {class} "
+VencordDesktop = "󰙯"
+"hearthstone.exe" = "󱢡"
+libreoffice-writer = "󱎒 "
+anki = "日本語"
 foot = " "
 osu = "<span color='#F28FAD'>󰎈</span>"
+parsecd = "󱌣 "
+"io.github.martinrotter.rssguard" = "󰑬"
+nheko = "<span color='#ABE9B3'>󰊌</span>"
 steam = "󰓓 "
 mpv = ""
-anki = "日本語"
-nheko = "<span color='#ABE9B3'>󰊌</span>"
+"[Ff]irefox" = " "
 libreoffice-calc = "󱎏 "
-DEFAULT = " {class} "
-libreoffice-writer = "󱎒 "
-VencordDesktop='󰙯'
-"hearthstone.exe"='󱢡'
-"io.github.martinrotter.rssguard" = '󰑬'
 
 [class_active]
 

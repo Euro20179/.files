@@ -51,9 +51,9 @@ lspconfig['tsserver'].setup {
   root_dir = function() return vim.loop.cwd() end,
   on_attach = on_attach
 }
-lspconfig['marksman'].setup{
-    capabilities = capabilities
-}
+-- lspconfig['marksman'].setup{
+--     capabilities = capabilities
+-- }
 -- lspconfig['jedi_language_server'].setup {
 --   capabilities = capabilities
 -- }
@@ -81,7 +81,7 @@ lspconfig['html'].setup{
 lspconfig['cssls'].setup{
     capabilities = capabilities
 }
-lspconfig['ltex'].setup{}
+-- lspconfig['ltex'].setup{}
 lspconfig.vimls.setup{
   capabilities = capabilities,
   isNeovim = true

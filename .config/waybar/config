@@ -9,22 +9,10 @@
     "modules-left": ["hyprland/workspaces", "custom/osu"],
     "modules-center": ["custom/vpn-location"],
     "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
-    // Modules configuration
-    //"sway/workspaces": {
-    //    "disable-scroll": true,
-    //    "all-outputs": false,
-    //    "format": "{name}: {icon}",
-    //    "format-icons": {
-    //        "1": "",
-    //        "2": "",
-    //        "3": "",
-    //        "4": "",
-    //        "5": "",
-    //        "urgent": "",
-    //        "focused": "",
-    //        "default": ""
-    //    }
-    //},
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "show-special": true
+    },
     "mpd": {
         "format": "{title} - {elapsedTime:%M:%S}/{totalTime:%M:%S}",
         "format-disconnected": "Disconnected",

@@ -106,6 +106,7 @@ require("lazy").setup({
                         }
                     }
                 },
+                ["core.ui"] = {},
                 ["core.ui.calendar"] = {}
             }
         },
@@ -241,7 +242,14 @@ require("lazy").setup({
     "alec-gibson/nvim-tetris",
     {
         "NStefan002/speedtyper.nvim",
-        cmd = "Speedtyper"
+        cmd = "Speedtyper",
+        opts = {
+            game_modes = {
+                rain = {
+                    throttle = 4
+                }
+            }
+        }
     },
     {
         "ellisonleao/glow.nvim",
@@ -293,5 +301,20 @@ require("lazy").setup({
     },
     {
         "LukasPietzschmann/telescope-tabs"
+    },
+    {
+        "3rd/image.nvim",
+        opts = {
+            backend = "ueberzug"
+        }
+    },
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "sindrets/diffview.nvim",
+        },
+        config = true
     }
 })
