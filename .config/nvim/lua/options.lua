@@ -1,28 +1,27 @@
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.dictionary = "~/Documents/words.list"
-vim.opt.nu = true
-vim.opt.rnu = true
-vim.opt.autoindent = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.ruler = true
-vim.opt.swapfile = false
-vim.opt.foldmethod = "marker"
-vim.opt.smartcase = true
-vim.opt.scbk = 100
-vim.opt.tildeop = true
-vim.opt.mouse = "a"
-vim.opt.termguicolors = true
-vim.cmd[[set display+=uhex]]
-vim.opt.formatoptions._value = "jql"
-vim.opt.expandtab = true
-vim.opt.concealcursor = ''
-vim.opt.cursorline = true
-vim.opt.relativenumber = true
-vim.opt.spelllang = { "en_us" }
-
-vim.opt.fillchars = "eob:󰅖"
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.dictionary = "~/Documents/words.list"
+vim.o.nu = true
+vim.o.rnu = true
+vim.o.autoindent = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.ruler = true
+vim.o.swapfile = false
+vim.o.foldmethod = "marker"
+vim.o.smartcase = true
+vim.o.scbk = 100
+vim.o.tildeop = true
+vim.o.mouse = "a"
+vim.o.termguicolors = true
+vim.opt.display:append("uhex")
+vim.o.formatoptions = "jql"
+vim.o.expandtab = true
+vim.o.concealcursor = ''
+vim.o.cursorline = true
+vim.o.relativenumber = true
+vim.o.spelllang =  "en_us"
+vim.opt.fillchars = {eob = "󰅖"}
 
 --code-action-menu
 vim.g.code_action_menu_show_details = false

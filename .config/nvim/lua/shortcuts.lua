@@ -2,9 +2,9 @@ vim.g.mapleader = " "
 
 
 -- local moveline = require("moveline")
-local utilLeader = "<A-u>"
+local utilLeader = "<M-u>"
 
-local gitLeader = "<A-g>"
+local gitLeader = "<M-g>"
 
 --Normal Mode{{{
 local nShortcuts = {
@@ -81,6 +81,7 @@ local nShortcuts = {
         require("user.telescope").telescope_diff()
     end },
     {gitLeader .. "d", "<cmd>DiffviewOpen<cr>" },
+    {gitLeader .. gitLeader, "<cmd>Gitsigns toggle_deleted<cr>"},
     {gitLeader .. "p", function()
         require"neogit".open({ "push" })
     end},
@@ -120,6 +121,7 @@ local nShortcuts = {
     },
     { "]d", function()
         vim.diagnostic.goto_next()
+        vim.diagnostic.open_float()
     end
     },
     { "]D", function()
@@ -136,9 +138,10 @@ local nShortcuts = {
     },
     { "[d", function()
         vim.diagnostic.goto_prev({})
+        vim.diagnostic.open_float()
     end
     },
-
+    {"<leader>ed", vim.diagnostic.open_float},
     { "[D", function()
         vim.diagnostic.goto_prev({})
         local n = 0

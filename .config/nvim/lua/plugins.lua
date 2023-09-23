@@ -175,11 +175,9 @@ require("lazy").setup({
     },
     {
         "lewis6991/gitsigns.nvim",
-        config = function()
-            require("gitsigns").setup {
-                attach_to_untracked = false,
-            }
-        end
+        opts = {
+            attach_to_untracked = false,
+        }
     },
     {
         'folke/tokyonight.nvim'
@@ -194,6 +192,18 @@ require("lazy").setup({
     {
         'nvim-treesitter/playground',
     },
+    -- {
+    --     "nvim-colortils/colortils.nvim",
+    --     opts = {
+    --         register = '"',
+    --         mappings = {
+    --             replace_default_format = "<cr>",
+    --             replace_choose_format = "g<cr>",
+    --             set_register_default_format = "<m-cr>",
+    --             set_register_choose_format = "g<m-cr>"
+    --         }
+    --     }
+    -- },
     "uga-rosa/ccc.nvim",
     'ms-jpq/chadtree',
     -- 'f-person/git-blame.nvim',

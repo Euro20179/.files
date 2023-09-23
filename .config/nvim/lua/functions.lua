@@ -128,6 +128,34 @@ function GotoTerminalTab()
     end
 end
 
+function DisplayImg(file_path)
+    local file_name =  vim.api.nvim_buf_get_name(0)
+    if type(file_path) == "string" then
+        file_name = file_path
+    elseif type(file_path) == "table" and file_path.args ~= nil and file_path.args ~= "" then
+        file_name = file_path.args
+    end
+    local image_api = require('image')
+
+    local buf = vim.api.nvim_create_buf(true, false)
+    local image = image_api.from_file(file_name, {
+        buffer = buf,
+    })
+    vim.api.nvim_open_win(buf, true, {relative = "win", row = 0, col = 0, width = 1, height = 1})
+    vim.keymap.set("n", "q", "<cmd>q<cr>", {
+        buffer = buf
+    })
+    vim.api.nvim_create_autocmd("BufLeave", {
+        buffer = buf,
+        callback = function()
+            image:clear()
+        end
+    })
+    image:render()
+end
+
+vim.api.nvim_create_user_command("DisplayImg", DisplayImg, {nargs = "?"})
+
 vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 vim.api.nvim_create_user_command("ChatBotComment", ChatBotComment, { range = true })
 vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})

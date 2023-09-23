@@ -27,7 +27,7 @@ local cs = require 'colorscheme'
 
 cs.changeColorScheme({scheme = "catppuccin-macchiato"})
 
--- vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = false })
 
 vim.o.winbar = "%{%v:lua.Winbar()%}"
 
@@ -55,5 +55,12 @@ vim.lsp.buf.hover = function ()
     vim.api.nvim_cmd({
         cmd = "LspUI",
         args = {"hover"}
+    }, {})
+end
+
+vim.lsp.diagnostic.open_float = function ()
+    vim.api.nvim_cmd({
+        cmd = "LspUI",
+        args = "diagnostic"
     }, {})
 end
