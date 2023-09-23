@@ -15,13 +15,14 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
 require 'plugins'
-
 require 'snippets'
 require "options"
 require "shortcuts"
 require 'autocmd'
 require 'functions'
 require "user.init"
+
+require "filetypes"
 
 local cs = require 'colorscheme'
 
@@ -44,12 +45,6 @@ if vim.g.started_by_firenvim then
     vim.g.html_font = "Consolas"
 end
 vim.w.euro_debug_mode = false
-
-vim.filetype.add({
-    pattern = {
-        [".*/hyprland?.conf"] = 'hyprland'
-    }
-})
 
 vim.lsp.buf.hover = function ()
     vim.api.nvim_cmd({

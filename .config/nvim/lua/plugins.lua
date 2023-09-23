@@ -205,7 +205,7 @@ require("lazy").setup({
     --     }
     -- },
     "uga-rosa/ccc.nvim",
-    'ms-jpq/chadtree',
+    -- 'ms-jpq/chadtree',
     -- 'f-person/git-blame.nvim',
     {
         'windwp/nvim-autopairs',
@@ -326,5 +326,13 @@ require("lazy").setup({
             "sindrets/diffview.nvim",
         },
         config = true
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = {
+            filesystem = {
+                hijack_netrw_behavior = "open_current"
+            }
+        }
     }
 })

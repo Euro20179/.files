@@ -28,7 +28,9 @@ local nShortcuts = {
     { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
     { "<leader>eH", "<cmd>Telescope highlights<cr>" },
     { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+    { "<leader>fh", function ()
+        vim.cmd[[Telescope help_tags]]
+    end},
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
     { "<leader>ft", require"telescope-tabs".list_tabs},
     { "<leader>fe", '<cmd>Telescope find_files<cr>' },
@@ -38,7 +40,7 @@ local nShortcuts = {
     { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
     --}}}
     --Viewers {{{
-    { "<leader>n",  ":CHADopen<cr>" },
+    { "<leader>n",  ":Neotree float<cr>" },
     { "<leader>N", function()
         require("ranger-nvim").open(true)
     end },
@@ -141,12 +143,12 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    {"<leader>ed", vim.diagnostic.open_float},
+    {"<leader>eK", vim.diagnostic.open_float},
     { "[D", function()
         vim.diagnostic.goto_prev({})
         local n = 0
         vim.lsp.buf.code_action({
-            filter = function(a)
+            filter = function(_)
                 n = n + 1
                 return n == 1
             end,
