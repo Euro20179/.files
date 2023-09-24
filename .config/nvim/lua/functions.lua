@@ -50,7 +50,7 @@ function P(...)
 end
 
 local function queryChatBot(data)
-    str = vim.ui.input({ prompt = "Query: " }, function(input)
+    vim.ui.input({ prompt = "Query: " }, function(input)
         if input ~= nil then
             local filename = "/tmp/nvim-ChatBotQuery"
             local f = io.open(filename, "w")

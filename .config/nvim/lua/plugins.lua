@@ -110,31 +110,6 @@ require("lazy").setup({
                 ["core.ui.calendar"] = {}
             }
         },
-        -- config = function()
-        --     require("neorg").setup {
-        --         load = {
-        --             ["core.integrations.treesitter"] = {},
-        --             ["core.syntax"]                  = {},
-        --             ["core.norg.qol.todo_items"]     = {},
-        --             ["core.norg.esupports.indent"]   = {},
-        --             ["core.autocommands"]            = {},
-        --             ["core.norg.esupports.metagen"]  = {},
-        --             ["core.mode"]                    = {},
-        --             ["core.norg.qol.toc"]            = {},
-        --             ["core.norg.esupports.hop"]      = {},
-        --             ["core.neorgcmd"]                = {},
-        --             ["core.norg.journal"]            = {},
-        --             ["core.tangle"]                  = {},
-        --             ["core.ui"]                      = {},
-        --             ["core.queries.native"]          = {},
-        --             ["core.norg.concealer"]          = {
-        --                 ["core.presenter"] = {},
-        --                 config             = {
-        --                 }
-        --             }
-        --         }
-        --     }
-        -- end,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-neorg/neorg-telescope",
@@ -149,24 +124,6 @@ require("lazy").setup({
             }
         end
     },
-    -- {
-    -- 	"folke/noice.nvim",
-    -- 	event = "VeryLazy",
-    -- 	opts = {
-    -- 		lsp = {
-    -- 			signature = {
-    -- 				enabled = false
-    -- 			},
-    -- 		},
-    -- 		messages = {
-    -- 			enabled = false
-    -- 		}
-    -- 	},
-    -- 	dependencies = {
-    -- 		"rcarriga/nvim-notify",
-    -- 		"MunifTanjim/nui.nvim"
-    -- 	}
-    -- },
     {
         "smjonas/inc-rename.nvim",
         config = function()
@@ -192,21 +149,7 @@ require("lazy").setup({
     {
         'nvim-treesitter/playground',
     },
-    -- {
-    --     "nvim-colortils/colortils.nvim",
-    --     opts = {
-    --         register = '"',
-    --         mappings = {
-    --             replace_default_format = "<cr>",
-    --             replace_choose_format = "g<cr>",
-    --             set_register_default_format = "<m-cr>",
-    --             set_register_choose_format = "g<m-cr>"
-    --         }
-    --     }
-    -- },
     "uga-rosa/ccc.nvim",
-    -- 'ms-jpq/chadtree',
-    -- 'f-person/git-blame.nvim',
     {
         'windwp/nvim-autopairs',
         config = function()
@@ -334,5 +277,11 @@ require("lazy").setup({
                 hijack_netrw_behavior = "open_current"
             }
         }
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+    },
+    {
+        "arkav/lualine-lsp-progress"
     }
 })

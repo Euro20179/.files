@@ -72,6 +72,7 @@ _M.changeColorScheme = function(newScheme)
         cmd = "colorscheme"
     }, {})
     vim.cmd[[hi Normal guibg=#00000000]]
+    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true})
 end
 
 return _M

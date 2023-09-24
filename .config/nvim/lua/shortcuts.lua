@@ -9,15 +9,14 @@ local gitLeader = "<M-g>"
 --Normal Mode{{{
 local nShortcuts = {
     --copy shortcuts {{{
-    { "<leader>p",  '"+p' },
-    { "<leader>P",  '"+P' },
-    { "<leader>y",  '"+y' },
-    { "<leader>Y",  '"+Y' },
-    { "<leader>d",  '"_d' },
-    { "<leader>d",  '"_d' },
-    { "<leader>c",  '"_c' },
-    { "<leader>b",  "\"_" },
-    { "<leader>B",  "\"+" },
+    { "<leader>p",  '"+p', {desc = "paste from sys clipboard"} },
+    { "<leader>P",  '"+P', {desc = "paste above from sys clipboard"} },
+    { "<leader>y",  '"+y', { desc = "copy to sys clipboard" } },
+    { "<leader>Y",  '"+Y', { desc = "copy line to sys clipboard"} },
+    { "<leader>d",  '"_d', { desc = "delete to null register"} },
+    { "<leader>c",  '"_c', { desc = "change to null register"} },
+    { "<leader>b",  "\"_", { desc = "run on null register"} },
+    { "<leader>B",  "\"+", { desc = "run on sys clipboard"} },
     --}}}
     --telescope {{{
     { "<leader>e;", "<cmd>Telescope symbols<cr>" },
@@ -37,6 +36,7 @@ local nShortcuts = {
     { "<leader>ff", ':tabnew<cr>:Telescope find_files<cr>' },
     { "<leader>fj", '<cmd>Telescope jumplist<cr>' },
     { "<leader>f/", '<cmd>Telescope live_grep<cr>' },
+    { "<leader>fm", "<cmd>Telescope marks<cr>" },
     { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
     --}}}
     --Viewers {{{

@@ -25,5 +25,7 @@ vim.opt.fillchars = {eob = "󰅖"}
 --fixes weird bug with Telescope help_menu tags not being sorted and lazy complaining
 vim.o.tagcase = 'ignore'
 
+vim.o.pumblend = 5
+
 --code-action-menu
 vim.g.code_action_menu_show_details = false

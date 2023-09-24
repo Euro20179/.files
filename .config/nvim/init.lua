@@ -52,10 +52,3 @@ vim.lsp.buf.hover = function ()
         args = {"hover"}
     }, {})
 end
-
-vim.lsp.diagnostic.open_float = function ()
-    vim.api.nvim_cmd({
-        cmd = "LspUI",
-        args = "diagnostic"
-    }, {})
-end
