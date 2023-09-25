@@ -1,5 +1,26 @@
-#!/bin/sh
+#!/usr/bin/nvim -S
 
-file="${1:-$HOME/Documents/emoji}"
-
-fzf < "$file" | awk '{print $1}' | tr -d '\n' | wl-copy
+lua <<EOF
+local actions = require("telescope.actions")
+if actions == nil  then
+    vim.system({"notify-send", "pick-emoji", "Telescope.nvim is required for pick-emoji"})
+end
+local action_state = require "telescope.actions.state"
+local originalBuf = vim.fn.bufnr()
+require("telescope.builtin").symbols {
+    attach_mappings = function(bufnr, _)
+        actions.select_default:replace(function(text)
+            local selection = action_state.get_selected_entry()
+            local emoji = vim.split(selection["display"], " ")[1]
+            vim.cmd.call("setreg('+', '" .. emoji .. "')")
+            actions.close(bufnr)
+            vim.cmd.qa()
+        end)
+        return true
+    end
+}
+EOF
+"
+" file="${1:-$HOME/Documents/emoji}"
+"
+" fzf < "$file" | awk '{print $1}' | tr -d '\n' | wl-copy
