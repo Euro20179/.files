@@ -6,8 +6,6 @@ save="$3"
 path="$4"
 out="$5"
 
-notify-send "$save $dir $multiple $out"
-
 declare -a args
 
 if [ "$save" -eq 1 ]; then
@@ -21,7 +19,7 @@ else
     args=(--choosefile="$out")
 fi
 
-$TERMINAL -e ranger "${args[@]}" ||notify-send "$*"
+$TERMINAL -e ranger "${args[@]}"
 
 if [ "$save" -eq 1 ] && [ ! -s "$out" ]; then
     rm "$path"

@@ -65,7 +65,6 @@ require("lazy").setup({
             'MunifTanjim/nui.nvim',
         }
     },
-    "ray-x/aurora",
     -- use {
     --     "NvChad/nvim-colorizer.lua",
     --     config = function ()
@@ -161,7 +160,10 @@ require("lazy").setup({
     'smjonas/duplicate.nvim',
 
     {
-        'michaelb/sniprun', run = 'bash ./install.sh'
+        'michaelb/sniprun', build = 'bash ./install.sh',
+        opts = {
+            live_mode_toggle = 'enable'
+        }
     },
 
     {
@@ -192,7 +194,10 @@ require("lazy").setup({
         end
     },
 
-    "alec-gibson/nvim-tetris",
+    {
+        "alec-gibson/nvim-tetris",
+        cmd = "Tetris"
+    },
     {
         "NStefan002/speedtyper.nvim",
         cmd = "Speedtyper",
@@ -278,10 +283,6 @@ require("lazy").setup({
             }
         }
     },
-    {
-        "nvim-lualine/lualine.nvim",
-    },
-    {
-        "arkav/lualine-lsp-progress"
-    }
+    "nvim-lualine/lualine.nvim",
+    "arkav/lualine-lsp-progress" ,
 })

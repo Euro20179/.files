@@ -309,6 +309,9 @@ local vShortcuts = {
     -- move code {{{
     { "<A-j>",     ":m '>+1<CR>gv=gv" },
     { "<A-k>",     ":m '<-2<CR>gv=gv" },
+    {"<leader>r", function()
+        require("sniprun").run("v")
+    end}
     -- }}}
 }
 for _, map in ipairs(vShortcuts) do

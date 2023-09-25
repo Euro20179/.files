@@ -96,6 +96,7 @@ local config = {
                             R = "󰇾",
                             s = "",
                             S = "",
+                            t = "",
                             ['\x13'] = "^" -- gCTRL-h (blockwise select)
 
                         }
