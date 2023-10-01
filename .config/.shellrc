@@ -206,6 +206,7 @@ export MPV_WIN_SIZE=1000
 export GOPATH="$XDG_DATA_HOME/go"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/euro/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
+export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin"
 export FILEEXPLORER="kitty"
 export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 

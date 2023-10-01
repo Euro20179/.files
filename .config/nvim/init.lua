@@ -22,7 +22,7 @@ require 'autocmd'
 require 'functions'
 require "user.init"
 
-require "filetypes"
+-- require "filetypes"
 
 local cs = require 'colorscheme'
 

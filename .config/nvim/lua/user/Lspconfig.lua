@@ -17,6 +17,9 @@ lspconfig['lua_ls'].setup{
             },
             telemetry = {
                 enable = false
+            },
+            workspace = {
+                checkThirdParty = false
             }
         },
     },

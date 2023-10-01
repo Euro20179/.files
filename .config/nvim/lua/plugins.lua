@@ -285,4 +285,14 @@ require("lazy").setup({
     },
     "nvim-lualine/lualine.nvim",
     "arkav/lualine-lsp-progress" ,
+    {
+        "mfussenegger/nvim-dap"
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        opts = {}
+    },
+    {
+        "ThePrimeagen/harpoon"
+    }
 })

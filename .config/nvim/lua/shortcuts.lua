@@ -6,8 +6,15 @@ local utilLeader = "<M-u>"
 
 local gitLeader = "<M-g>"
 
+local dapLeader = "<M-d>"
+
 --Normal Mode{{{
 local nShortcuts = {
+    -- dap {{{
+    { dapLeader .. "o", function() require"dapui".toggle() end},
+    { dapLeader .. "b", function() require"dap".toggle_breakpoint() end},
+    { dapLeader .. "p", function() require"dap".pause() end},
+    -- }}}
     --copy shortcuts {{{
     { "<leader>p",  '"+p', {desc = "paste from sys clipboard"} },
     { "<leader>P",  '"+P', {desc = "paste above from sys clipboard"} },
@@ -38,6 +45,7 @@ local nShortcuts = {
     { "<leader>f/", '<cmd>Telescope live_grep<cr>' },
     { "<leader>fm", "<cmd>Telescope marks<cr>" },
     { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
+    { "<leader>fH", function() require"harpoon.ui".toggle_quick_menu() end },
     --}}}
     --Viewers {{{
     { "<leader>n",  ":Neotree float<cr>" },
@@ -47,6 +55,16 @@ local nShortcuts = {
     { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
+    { "<leader>fa", function() require"harpoon.mark".add_file() end },
+    { "<leader>1", function() require"harpoon.ui".nav_file(1) end },
+    { "<leader>2", function() require"harpoon.ui".nav_file(2) end },
+    { "<leader>3", function() require"harpoon.ui".nav_file(3) end },
+    { "<leader>4", function() require"harpoon.ui".nav_file(4) end },
+    { "<leader>5", function() require"harpoon.ui".nav_file(5) end },
+    { "<leader>6", function() require"harpoon.ui".nav_file(6) end },
+    { "<leader>7", function() require"harpoon.ui".nav_file(7) end },
+    { "<leader>8", function() require"harpoon.ui".nav_file(8) end },
+    { "<leader>9", function() require"harpoon.ui".nav_file(9) end },
     { "<leader>S",     ':split \\| wincmd j<cr>' },
     { "<leader>V",     ':vsplit \\| wincmd l<cr>' },
     { "<leader>l",     ":tabnext<cr>" },
