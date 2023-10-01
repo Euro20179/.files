@@ -13,7 +13,16 @@ local nShortcuts = {
     -- dap {{{
     { dapLeader .. "o", function() require"dapui".toggle() end},
     { dapLeader .. "b", function() require"dap".toggle_breakpoint() end},
-    { dapLeader .. "p", function() require"dap".pause() end},
+    { dapLeader .. "P", function() require"dap".pause() end},
+    { dapLeader .. "c", function() require"dap".continue() end},
+    { dapLeader .. "n", function() require"dap".step_over() end},
+    { dapLeader .. "p", function() require"dap".step_back() end},
+    { dapLeader .. "i", function() require"dap".step_into() end},
+    { dapLeader .. "I", function() require"dap".step_out() end},
+    { dapLeader .. "r", function()
+        require"dap".session()
+        require"dap".continue()
+    end},
     -- }}}
     --copy shortcuts {{{
     { "<leader>p",  '"+p', {desc = "paste from sys clipboard"} },
