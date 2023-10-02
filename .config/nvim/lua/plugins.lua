@@ -13,7 +13,10 @@ require("lazy").setup({
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
     'flazz/vim-colorschemes',
-    'mattn/emmet-vim',
+    {
+        'mattn/emmet-vim',
+        ft = {"html"}
+    },
     {
         'ray-x/lsp_signature.nvim',
         config = true,
@@ -31,6 +34,7 @@ require("lazy").setup({
     },
     {
         'williamboman/mason.nvim',
+        cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall" },
         config = function()
             require("mason").setup()
         end
@@ -48,6 +52,7 @@ require("lazy").setup({
     },
     {
         "kylechui/nvim-surround",
+        event = "VeryLazy",
         config = function()
             require("nvim-surround").setup({})
         end
@@ -76,6 +81,7 @@ require("lazy").setup({
     "folke/which-key.nvim",
     {
         "numToStr/Comment.nvim",
+        event = "VeryLazy",
         config = function()
             require("Comment").setup()
         end
@@ -91,6 +97,7 @@ require("lazy").setup({
     {
         "nvim-neorg/neorg",
         build = ":Neorg sync-parsers",
+        ft = "neorg",
         opts = {
             load = {
                 ["core.defaults"] = {},
@@ -169,29 +176,21 @@ require("lazy").setup({
     {
         "sindrets/diffview.nvim",
         dependencies = "nvim-lua/plenary.nvim",
-        config = function()
-            require("diffview").setup {}
-        end
+        lazy = true,
+        cmd = { "DiffviewOpen" },
+        opts = {}
     },
 
     "joosepAlviste/nvim-ts-context-commentstring",
 
     "kelly-lin/ranger.nvim",
 
-    "simrat39/symbols-outline.nvim",
+    {"simrat39/symbols-outline.nvim", cmd = "SymbolsOutline"},
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
 
 
-    "willothy/moveline.nvim",
     {
         "debugloop/telescope-undo.nvim"
-    },
-
-    {
-        "Apeiros-46B/qalc.nvim",
-        config = function()
-            require("qalc").setup {}
-        end
     },
 
     {
@@ -220,6 +219,7 @@ require("lazy").setup({
     },
     {
         'jim-fx/sudoku.nvim',
+        cmd = "Sudoku",
         config = true
     },
     {
@@ -245,6 +245,7 @@ require("lazy").setup({
     },
     {
         "jinh0/eyeliner.nvim",
+        event = "VeryLazy",
         config = function()
             require 'eyeliner'.setup {
                 highlight_on_key = true,
@@ -262,12 +263,15 @@ require("lazy").setup({
     },
     {
         "3rd/image.nvim",
+        cmd = "DisplayImg",
+        ft = {"markdown", "neorg"},
         opts = {
             backend = "ueberzug"
         }
     },
     {
         "NeogitOrg/neogit",
+        lazy = true,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
@@ -277,6 +281,7 @@ require("lazy").setup({
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
+        lazy = true,
         opts = {
             filesystem = {
                 hijack_netrw_behavior = "open_current"
@@ -290,6 +295,7 @@ require("lazy").setup({
     },
     {
         "rcarriga/nvim-dap-ui",
+        event = "VeryLazy",
         opts = {}
     },
     {
