@@ -43,9 +43,7 @@ local nShortcuts = {
     { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
     { "<leader>eH", "<cmd>Telescope highlights<cr>" },
     { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
-    { "<leader>fh", function ()
-        vim.cmd[[Telescope help_tags]]
-    end},
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>"},
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
     { "<leader>ft", require"telescope-tabs".list_tabs},
     { "<leader>fe", '<cmd>Telescope find_files<cr>' },
@@ -58,9 +56,6 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>n",  ":Neotree float<cr>" },
-    { "<leader>N", function()
-        require("ranger-nvim").open(true)
-    end },
     { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
@@ -74,8 +69,8 @@ local nShortcuts = {
     { "<leader>7", function() require"harpoon.ui".nav_file(7) end },
     { "<leader>8", function() require"harpoon.ui".nav_file(8) end },
     { "<leader>9", function() require"harpoon.ui".nav_file(9) end },
-    { "<leader>S",     ':split \\| wincmd j<cr>' },
-    { "<leader>V",     ':vsplit \\| wincmd l<cr>' },
+    { "<leader>S",     ':split | wincmd j<cr>' },
+    { "<leader>V",     ':vsplit | wincmd l<cr>' },
     { "<leader>l",     ":tabnext<cr>" },
     { "<leader>h",     ':tabprev<CR>' },
     { "<leader><c-l>", ':bn<CR>' },
@@ -267,40 +262,40 @@ local iShortcuts = {
     { "<c-space>h",    "<Esc>:tabprev<CR>" },
     -- }}}
     -- luasnip {{{
-    { "<Tab>",
-        function()
-            if (require "luasnip".expand_or_jumpable()) then
-                return '<Plug>luasnip-expand-or-jump'
-            else
-                return "<Tab>"
-            end
-        end,
-        { expr = true, silent = true, noremap = true }
-    },
-    { "<S-Tab>",
-        function()
-            return '<cmd>lua require"luasnip".jump(-1)<cr>'
-        end,
-        { expr = true, silent = true }
-    },
-    { "<c-n>",
-        function()
-            if require("luasnip").choice_active() then
-                return '<Plug>luasnip-next-choice'
-            end
-            return '<c-n>'
-        end,
-        { silent = true, expr = true }
-    },
-    { "<c-p>",
-        function()
-            if require "luasnip".choice_active() then
-                return '<Plug>luasnip-prev-choice'
-            end
-            return '<c-p>'
-        end,
-        { silent = true, expr = true }
-    },
+    -- { "<Tab>",
+    --     function()
+    --         if (require "luasnip".expand_or_jumpable()) then
+    --             return '<Plug>luasnip-expand-or-jump'
+    --         else
+    --             return "<Tab>"
+    --         end
+    --     end,
+    --     { expr = true, silent = true, noremap = true }
+    -- },
+    -- { "<S-Tab>",
+    --     function()
+    --         return '<cmd>lua require"luasnip".jump(-1)<cr>'
+    --     end,
+    --     { expr = true, silent = true }
+    -- },
+    -- { "<c-n>",
+    --     function()
+    --         if require("luasnip").choice_active() then
+    --             return '<Plug>luasnip-next-choice'
+    --         end
+    --         return '<c-n>'
+    --     end,
+    --     { silent = true, expr = true }
+    -- },
+    -- { "<c-p>",
+    --     function()
+    --         if require "luasnip".choice_active() then
+    --             return '<Plug>luasnip-prev-choice'
+    --         end
+    --         return '<c-p>'
+    --     end,
+    --     { silent = true, expr = true }
+    -- },
     -- }}}
     -- Util Functions {{{
     { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },

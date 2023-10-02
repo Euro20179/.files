@@ -14,10 +14,6 @@ require("lazy").setup({
     'saadparwaiz1/cmp_luasnip',
     'flazz/vim-colorschemes',
     {
-        'mattn/emmet-vim',
-        ft = {"html"}
-    },
-    {
         'ray-x/lsp_signature.nvim',
         config = true,
         main = "lsp_signature",
@@ -97,7 +93,7 @@ require("lazy").setup({
     {
         "nvim-neorg/neorg",
         build = ":Neorg sync-parsers",
-        ft = "neorg",
+        ft = "norg",
         opts = {
             load = {
                 ["core.defaults"] = {},
@@ -182,8 +178,6 @@ require("lazy").setup({
     },
 
     "joosepAlviste/nvim-ts-context-commentstring",
-
-    "kelly-lin/ranger.nvim",
 
     {"simrat39/symbols-outline.nvim", cmd = "SymbolsOutline"},
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
@@ -281,7 +275,6 @@ require("lazy").setup({
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
-        lazy = true,
         opts = {
             filesystem = {
                 hijack_netrw_behavior = "open_current"
