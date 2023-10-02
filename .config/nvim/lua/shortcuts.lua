@@ -11,28 +11,28 @@ local dapLeader = "<M-d>"
 --Normal Mode{{{
 local nShortcuts = {
     -- dap {{{
-    { dapLeader .. "o", function() require"dapui".toggle() end},
-    { dapLeader .. "b", function() require"dap".toggle_breakpoint() end},
-    { dapLeader .. "P", function() require"dap".pause() end},
-    { dapLeader .. "c", function() require"dap".continue() end},
-    { dapLeader .. "n", function() require"dap".step_over() end},
-    { dapLeader .. "p", function() require"dap".step_back() end},
-    { dapLeader .. "i", function() require"dap".step_into() end},
-    { dapLeader .. "I", function() require"dap".step_out() end},
+    { dapLeader .. "o", function() require "dapui".toggle() end },
+    { dapLeader .. "b", function() require "dap".toggle_breakpoint() end },
+    { dapLeader .. "P", function() require "dap".pause() end },
+    { dapLeader .. "c", function() require "dap".continue() end },
+    { dapLeader .. "n", function() require "dap".step_over() end },
+    { dapLeader .. "p", function() require "dap".step_back() end },
+    { dapLeader .. "i", function() require "dap".step_into() end },
+    { dapLeader .. "I", function() require "dap".step_out() end },
     { dapLeader .. "r", function()
-        require"dap".session()
-        require"dap".continue()
-    end},
+        require "dap".session()
+        require "dap".continue()
+    end },
     -- }}}
     --copy shortcuts {{{
-    { "<leader>p",  '"+p', {desc = "paste from sys clipboard"} },
-    { "<leader>P",  '"+P', {desc = "paste above from sys clipboard"} },
-    { "<leader>y",  '"+y', { desc = "copy to sys clipboard" } },
-    { "<leader>Y",  '"+Y', { desc = "copy line to sys clipboard"} },
-    { "<leader>d",  '"_d', { desc = "delete to null register"} },
-    { "<leader>c",  '"_c', { desc = "change to null register"} },
-    { "<leader>b",  "\"_", { desc = "run on null register"} },
-    { "<leader>B",  "\"+", { desc = "run on sys clipboard"} },
+    { "<leader>p",  '"+p',                                                     { desc = "paste from sys clipboard" } },
+    { "<leader>P",  '"+P',                                                     { desc = "paste above from sys clipboard" } },
+    { "<leader>y",  '"+y',                                                     { desc = "copy to sys clipboard" } },
+    { "<leader>Y",  '"+Y',                                                     { desc = "copy line to sys clipboard" } },
+    { "<leader>d",  '"_d',                                                     { desc = "delete to null register" } },
+    { "<leader>c",  '"_c',                                                     { desc = "change to null register" } },
+    { "<leader>b",  "\"_",                                                     { desc = "run on null register" } },
+    { "<leader>B",  "\"+",                                                     { desc = "run on sys clipboard" } },
     --}}}
     --telescope {{{
     { "<leader>e;", "<cmd>Telescope symbols<cr>" },
@@ -43,45 +43,56 @@ local nShortcuts = {
     { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
     { "<leader>eH", "<cmd>Telescope highlights<cr>" },
     { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>"},
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
     { "<leader>fe", ':bdel<cr>:Telescope find_files<cr>' },
-    { "<leader>ff", ':lua require"harpoon.mark".add_file()<cr>:Telescope find_files<cr>' },
-    { "<leader>fj", '<cmd>Telescope jumplist<cr>' },
-    { "<leader>f/", '<cmd>Telescope live_grep<cr>' },
-    { "<leader>fm", "<cmd>Telescope marks<cr>" },
-    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
-    { "<leader>fH", function() require"harpoon.ui".toggle_quick_menu() end },
+    { "<leader>ff", function()
+        local hm = require "harpoon.mark"
+        local t = require "telescope.builtin"
+        hm.add_file()
+        t.find_files({ hidden = true })
+    end },
+    { "<leader>fF", function()
+        local hm = require "harpoon.mark"
+        local t = require "telescope.builtin"
+        hm.add_file()
+        t.find_files({ hidden = true, no_ignore = true })
+    end },
+    { "<leader>fj",    '<cmd>Telescope jumplist<cr>' },
+    { "<leader>f/",    '<cmd>Telescope live_grep<cr>' },
+    { "<leader>fm",    "<cmd>Telescope marks<cr>" },
+    { "<leader>b/",    "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
+    { "<leader>fH",    function() require "harpoon.ui".toggle_quick_menu() end },
     --}}}
     --Viewers {{{
-    { "<leader>n",  ":Neotree float<cr>" },
+    { "<leader>n",     ":Neotree float<cr>" },
     { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
-    { "<leader>fa", function() require"harpoon.mark".add_file() end },
-    { "<leader>1", function() require"harpoon.ui".nav_file(1) end },
-    { "<leader>2", function() require"harpoon.ui".nav_file(2) end },
-    { "<leader>3", function() require"harpoon.ui".nav_file(3) end },
-    { "<leader>4", function() require"harpoon.ui".nav_file(4) end },
-    { "<leader>5", function() require"harpoon.ui".nav_file(5) end },
-    { "<leader>6", function() require"harpoon.ui".nav_file(6) end },
-    { "<leader>7", function() require"harpoon.ui".nav_file(7) end },
-    { "<leader>8", function() require"harpoon.ui".nav_file(8) end },
-    { "<leader>9", function() require"harpoon.ui".nav_file(9) end },
+    { "<leader>fa",    function() require "harpoon.mark".add_file() end },
+    { "<leader>1",     function() require "harpoon.ui".nav_file(1) end },
+    { "<leader>2",     function() require "harpoon.ui".nav_file(2) end },
+    { "<leader>3",     function() require "harpoon.ui".nav_file(3) end },
+    { "<leader>4",     function() require "harpoon.ui".nav_file(4) end },
+    { "<leader>5",     function() require "harpoon.ui".nav_file(5) end },
+    { "<leader>6",     function() require "harpoon.ui".nav_file(6) end },
+    { "<leader>7",     function() require "harpoon.ui".nav_file(7) end },
+    { "<leader>8",     function() require "harpoon.ui".nav_file(8) end },
+    { "<leader>9",     function() require "harpoon.ui".nav_file(9) end },
     { "<leader>S",     ':split | wincmd j<cr>' },
     { "<leader>V",     ':vsplit | wincmd l<cr>' },
-    { "<leader><c-l>",     ":tabnext<cr>" },
-    { "<leader><c-h>",     ':tabprev<CR>' },
-    { "<leader>l", ':bn<CR>' },
-    { "<leader>h", ':bp<CR>' },
+    { "<leader><c-l>", ":tabnext<cr>" },
+    { "<leader><c-h>", ':tabprev<CR>' },
+    { "<leader>l",     ':bn<CR>' },
+    { "<leader>h",     ':bp<CR>' },
     { "<leader>t",     ':tabnew<CR>' },
     { "<leader>q",     ':bdel<cr>' },
-    { "<leader><c-q>",     ':tabclose<cr>' },
+    { "<leader><c-q>", ':tabclose<cr>' },
     { "<right>",       "<c-w>>" },
     { "<left>",        "<c-w><" },
     { "<up>",          "<c-w>+" },
     { "<down>",        "<c-w>-" },
-    { "<leader>T", function() GotoTerminalTab() end},
+    { "<leader>T",     function() GotoTerminalTab() end },
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -98,17 +109,17 @@ local nShortcuts = {
             neogit.open({ "log" })
         end
     },
-    {gitLeader .. "c", function()
-        require"neogit".open({ "commit" })
-    end},
-    {gitLeader .. "D", function()
+    { gitLeader .. "c", function()
+        require "neogit".open({ "commit" })
+    end },
+    { gitLeader .. "D", function()
         require("user.telescope").telescope_diff()
     end },
-    {gitLeader .. "d", "<cmd>DiffviewOpen<cr>" },
-    {gitLeader .. gitLeader, "<cmd>Gitsigns toggle_deleted<cr>"},
-    {gitLeader .. "p", function()
-        require"neogit".open({ "push" })
-    end},
+    { gitLeader .. "d",       "<cmd>DiffviewOpen<cr>" },
+    { gitLeader .. gitLeader, "<cmd>Gitsigns toggle_deleted<cr>" },
+    { gitLeader .. "p", function()
+        require "neogit".open({ "push" })
+    end },
     -- }}}
     --emmet{{{
     { "<leader>,",  "<c-y>," },
@@ -120,18 +131,15 @@ local nShortcuts = {
     { "<leader>E",  "<cmd>TroubleToggle<cr>" },
     { "<leader>r",  ":IncRename " },
     { "<leader>el", function()
-        if vim.diagnostic.is_disabled() then
-            vim.diagnostic.enable()
-        else
-            vim.diagnostic.disable()
-        end
-    end},
+        local virt_text = vim.diagnostic.config().virtual_text
+        vim.diagnostic.config({virtual_text = not virt_text})
+    end },
     { "<a-e>", function()
         vim.diagnostic.open_float()
     end
     },
     --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
-    { "<leader>a", "<cmd>CodeActionMenu<cr>" },
+    { "<leader>a",  "<cmd>CodeActionMenu<cr>" },
     { "<leader>A", function()
         local n = 0
         vim.lsp.buf.code_action({
@@ -165,7 +173,17 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    {"<leader>eK", vim.diagnostic.open_float},
+    { "<leader>K",  function() vim.lsp.inlay_hint(0) end },
+    { "gK", vim.diagnostic.open_float },
+    { "<leader>tK", function()
+        local token = vim.lsp.semantic_tokens.get_at_pos(0)[1]
+        if token == nil then
+            vim.lsp.util.open_floating_preview({"UNKNOWN"})
+        else
+                vim.lsp.util.open_floating_preview({token.type}) end
+        end
+    },
+    { "g<c-]>",     function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
         vim.diagnostic.goto_prev({})
         local n = 0
@@ -248,18 +266,18 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     -- Movement {{{
-    { "<C-bs>",        "<C-w>" },
-    { "<C-g>$",        "<Esc>$a" },
-    { "<C-g>l",        "<Esc>la" },
-    { "<C-g>h",        "<Esc>ha" },
-    { "<C-g>0",        "<Esc>0i" },
-    { "<C-g>^",        "<Esc>^i" },
-    { "<C-g>b",        "<Esc>bi" },
-    { "<C-g>w",        "<Esc>wi" },
-    { "<C-g>B",        "<Esc>Bi" },
-    { "<C-g>W",        "<Esc>Wi" },
-    { "<c-space>l",    "<Esc>:tabnext<CR>" },
-    { "<c-space>h",    "<Esc>:tabprev<CR>" },
+    { "<C-bs>",          "<C-w>" },
+    { "<C-g>$",          "<Esc>$a" },
+    { "<C-g>l",          "<Esc>la" },
+    { "<C-g>h",          "<Esc>ha" },
+    { "<C-g>0",          "<Esc>0i" },
+    { "<C-g>^",          "<Esc>^i" },
+    { "<C-g>b",          "<Esc>bi" },
+    { "<C-g>w",          "<Esc>wi" },
+    { "<C-g>B",          "<Esc>Bi" },
+    { "<C-g>W",          "<Esc>Wi" },
+    { "<c-space>l",      "<Esc>:tabnext<CR>" },
+    { "<c-space>h",      "<Esc>:tabprev<CR>" },
     -- }}}
     -- luasnip {{{
     -- { "<Tab>",
@@ -278,24 +296,24 @@ local iShortcuts = {
     --     end,
     --     { expr = true, silent = true }
     -- },
-    -- { "<c-n>",
-    --     function()
-    --         if require("luasnip").choice_active() then
-    --             return '<Plug>luasnip-next-choice'
-    --         end
-    --         return '<c-n>'
-    --     end,
-    --     { silent = true, expr = true }
-    -- },
-    -- { "<c-p>",
-    --     function()
-    --         if require "luasnip".choice_active() then
-    --             return '<Plug>luasnip-prev-choice'
-    --         end
-    --         return '<c-p>'
-    --     end,
-    --     { silent = true, expr = true }
-    -- },
+    { "<c-n>",
+        function()
+            if require("luasnip").choice_active() then
+                return '<Plug>luasnip-next-choice'
+            end
+            return '<c-n>'
+        end,
+        { silent = true, expr = true }
+    },
+    { "<c-p>",
+        function()
+            if require "luasnip".choice_active() then
+                return '<Plug>luasnip-prev-choice'
+            end
+            return '<c-p>'
+        end,
+        { silent = true, expr = true }
+    },
     -- }}}
     -- Util Functions {{{
     { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },
@@ -331,9 +349,9 @@ local vShortcuts = {
     -- move code {{{
     { "<A-j>",     ":m '>+1<CR>gv=gv" },
     { "<A-k>",     ":m '<-2<CR>gv=gv" },
-    {"<leader>r", function()
+    { "<leader>r", function()
         require("sniprun").run("v")
-    end}
+    end }
     -- }}}
 }
 for _, map in ipairs(vShortcuts) do
@@ -372,6 +390,6 @@ nnoremenu PopUp.hi :lua print("hi")<cr>
 ]]
 --}}}
 
-vim.keymap.set("o", "O", "<esc>mzkddg`z") --motion to delete above line
-vim.keymap.set("o", "o", "<esc>mzjddg`z") --motion to delete below line
+vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
+vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
 vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line

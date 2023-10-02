@@ -18,6 +18,7 @@ lspconfig['emmet_ls'].setup{
 lspconfig['lua_ls'].setup{
     settings= {
         Lua = {
+            hint = { enable = true },
             completion = {
                 callSnippet = "Replace"
             },

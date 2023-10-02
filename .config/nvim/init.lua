@@ -28,7 +28,7 @@ local cs = require 'colorscheme'
 
 cs.changeColorScheme({scheme = "catppuccin-macchiato"})
 
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = true })
 
 vim.o.winbar = "%{%v:lua.Winbar()%}"
 
