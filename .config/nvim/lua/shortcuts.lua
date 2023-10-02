@@ -45,7 +45,8 @@ local nShortcuts = {
     { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
-    { "<leader>fe", ':bdel<cr>:Telescope find_files<cr>' },
+    { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>' },
+    { "<leader>fe", ':Telescope find_files<cr>' },
     { "<leader>ff", function()
         local hm = require "harpoon.mark"
         local t = require "telescope.builtin"
@@ -173,8 +174,8 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    { "<leader>K",  function() vim.lsp.inlay_hint(0) end },
-    { "gK", vim.diagnostic.open_float },
+    { "<leader>K",  function() vim.lsp.inlay_hint(0) end, { desc = "Toggle inlay hints"} },
+    { "gK", vim.diagnostic.open_float, { desc = "Open diagnostic float"} },
     { "<leader>tK", function()
         local token = vim.lsp.semantic_tokens.get_at_pos(0)[1]
         if token == nil then

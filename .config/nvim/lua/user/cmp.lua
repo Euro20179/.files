@@ -1,5 +1,4 @@
 local cmp = require 'cmp'
-local cmp_types = require"cmp.types"
 local luasnip = require "luasnip"
 
 local kind_icons = {
