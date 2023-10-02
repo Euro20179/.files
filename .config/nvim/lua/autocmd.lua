@@ -8,13 +8,6 @@ vim.api.nvim_create_autocmd("BufReadPost,BufNewFilePost", {
     end
 })
 
-vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        pcall(DisplayImg)
-    end
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank({ timeout = 200, higroup = "RedrawDebugNormal" })

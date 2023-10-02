@@ -49,7 +49,7 @@ function P(...)
     vim.print(...)
 end
 
-local function queryChatBot(data)
+local function queryChatBot()
     vim.ui.input({ prompt = "Query: " }, function(input)
         if input ~= nil then
             local filename = "/tmp/nvim-ChatBotQuery"
@@ -82,7 +82,7 @@ local function _chatbotmain(data, type)
 
     local lines = vim.api.nvim_buf_get_lines(0, data.line1 - 1, data.line2, false)
     local str = ""
-    for i, line in ipairs(lines) do
+    for _, line in ipairs(lines) do
         str = str .. line .. '\n'
     end
     str = json.encode(str)

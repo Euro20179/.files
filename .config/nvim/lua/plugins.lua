@@ -141,13 +141,13 @@ require("lazy").setup({
     {
         'folke/tokyonight.nvim'
     },
-    {
-        'LukasPietzschmann/telescope-tabs',
-        config = function()
-            require "telescope-tabs".setup {
-            }
-        end
-    },
+    -- {
+    --     'LukasPietzschmann/telescope-tabs',
+    --     config = function()
+    --         require "telescope-tabs".setup {
+    --         }
+    --     end
+    -- },
     {
         'nvim-treesitter/playground',
     },
@@ -163,7 +163,8 @@ require("lazy").setup({
     'smjonas/duplicate.nvim',
 
     {
-        'michaelb/sniprun', build = 'bash ./install.sh',
+        'michaelb/sniprun',
+        build = 'bash ./install.sh',
         opts = {
             live_mode_toggle = 'enable'
         }
@@ -179,7 +180,7 @@ require("lazy").setup({
 
     "joosepAlviste/nvim-ts-context-commentstring",
 
-    {"simrat39/symbols-outline.nvim", cmd = "SymbolsOutline"},
+    { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline" },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
 
 
@@ -258,7 +259,7 @@ require("lazy").setup({
     {
         "3rd/image.nvim",
         cmd = "DisplayImg",
-        ft = {"markdown", "neorg"},
+        ft = { "markdown", "neorg" },
         opts = {
             backend = "ueberzug"
         }
@@ -282,7 +283,7 @@ require("lazy").setup({
         }
     },
     "nvim-lualine/lualine.nvim",
-    "arkav/lualine-lsp-progress" ,
+    "arkav/lualine-lsp-progress",
     {
         "mfussenegger/nvim-dap"
     },
@@ -292,6 +293,30 @@ require("lazy").setup({
         opts = {}
     },
     {
-        "ThePrimeagen/harpoon"
+        "ThePrimeagen/harpoon",
+        config = function()
+            local harpoon = require "harpoon"
+            local mark = require "harpoon.mark"
+            harpoon.setup {}
+            mark.clear_all()
+        end
+    },
+    {
+        "akinsho/bufferline.nvim",
+        opts = {
+            options = {
+                diagnostics = "nvim_lsp",
+                diagnostics_indicator = function(count)
+                    return "(" .. count .. ")"
+                end,
+                themable = true
+            },
+            highlights = {
+                buffer_selected = {
+                    bold = true,
+                    italic = false
+                }
+            }
+        }
     }
 })
