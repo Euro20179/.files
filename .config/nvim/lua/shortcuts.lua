@@ -88,7 +88,7 @@ local nShortcuts = {
     { "<leader>h",     ':bp<CR>' },
     { "<leader>t",     ':tabnew<CR>' },
     { "<leader>q",     ':bdel<cr>' },
-    { "<leader><c-q>", ':tabclose<cr>' },
+    { "<leader>Q", ':tabclose<cr>' },
     { "<right>",       "<c-w>>" },
     { "<left>",        "<c-w><" },
     { "<up>",          "<c-w>+" },
@@ -375,8 +375,8 @@ end --}}}
 
 -- Terminal Mode {{{
 local tShortcuts = {
-    { "<leader><esc>", "<c-\\><c-n>" },
-    { "<leader><C-[>", "<c-\\><c-n>" },
+    { "<F4>", "<c-\\><c-n>" },
+    { "<c-\\><c-\\>", "<c-\\><c-n>"}
 }
 for _, map in ipairs(tShortcuts) do
     vim.keymap.set("t", map[1], map[2])

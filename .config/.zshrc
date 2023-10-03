@@ -40,17 +40,17 @@ function zle-keymap-select {
 	echo -ne '\e['"$INSBEAM"' q'
     fi
 }
-zle -N zle-keymap-select
+[ -z "$IN_VIM" ] && zle -N zle-keymap-select
 # #initial cursor
 zle-line-init(){
     zle -K viins
     #beam
     echo -ne "\e['"$INSBEAM"' q"
 }
-zle -N zle-line-init
+[ -z "$IN_VIM" ] && zle -N zle-line-init
 # #initial cursor
-echo -ne '\e['"$INSBEAM"' q'
-preexec() { echo -ne '\e['"$INSBEAM"' q'; }
+[ -z "$IN_VIM" ] && echo -ne '\e['"$INSBEAM"' q'
+[ -z "$IN_VIM" ] && preexec() { echo -ne '\e['"$INSBEAM"' q'; }
 #END CURSOR
 
 chpwd () {

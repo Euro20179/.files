@@ -22,6 +22,8 @@ require 'autocmd'
 require 'functions'
 require "user.init"
 
+vim.fn.setenv("IN_VIM", "true")
+
 -- require "filetypes"
 
 local cs = require 'colorscheme'
