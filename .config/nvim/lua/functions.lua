@@ -64,7 +64,7 @@ local function queryChatBot()
              -H 'Content-Type: application/json' \
              -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
              -d '{"model": "text-davinci-003", "prompt": '"$(cat ]] ..
-            filename .. [[)"', "temperature": 0}' | jq -r '.choices[0].text'
+                filename .. [[)"', "temperature": 0}' | jq -r '.choices[0].text'
     ]])
             if handle then
                 local res = handle:read("*a")
@@ -97,7 +97,7 @@ local function _chatbotmain(data, type)
              -H 'Content-Type: application/json' \
              -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
              -d '{"model": "text-davinci-edit-001", "input": '"$(cat ]] ..
-    filename .. [[)"', "instruction": "]] .. type .. [[", "temperature": 0}' | jq -r '.choices[0].text'
+        filename .. [[)"', "instruction": "]] .. type .. [[", "temperature": 0}' | jq -r '.choices[0].text'
     ]])
     if handle then
         local res = handle:read("*a")
@@ -116,20 +116,17 @@ function ChatBotDocument(data)
     _chatbotmain(data, "Add documentation")
 end
 
-function GotoTerminalTab()
-    for _, tid in ipairs(vim.api.nvim_list_tabpages()) do
-        for _, wid in ipairs(vim.api.nvim_tabpage_list_wins(tid)) do
-            local bid = vim.api.nvim_win_get_buf(wid)
-            local name = vim.api.nvim_buf_get_name(bid)
-            if vim.startswith(name, "term://") then
-                vim.api.nvim_set_current_tabpage(tid)
-            end
+function GotoTerminalBuf()
+    for _, bid in ipairs(vim.api.nvim_list_bufs()) do
+        local name = vim.api.nvim_buf_get_name(bid)
+        if vim.startswith(name, "term://") then
+            vim.api.nvim_set_current_buf(bid)
         end
     end
 end
 
 function DisplayImg(file_path)
-    local file_name =  vim.api.nvim_buf_get_name(0)
+    local file_name = vim.api.nvim_buf_get_name(0)
     if type(file_path) == "string" then
         file_name = file_path
     elseif type(file_path) == "table" and file_path.args ~= nil and file_path.args ~= "" then
@@ -141,7 +138,7 @@ function DisplayImg(file_path)
     local image = image_api.from_file(file_name, {
         buffer = buf,
     })
-    vim.api.nvim_open_win(buf, true, {relative = "win", row = 0, col = 0, width = 1, height = 1})
+    vim.api.nvim_open_win(buf, true, { relative = "win", row = 0, col = 0, width = 1, height = 1 })
     vim.keymap.set("n", "q", "<cmd>q<cr>", {
         buffer = buf
     })
@@ -154,7 +151,7 @@ function DisplayImg(file_path)
     image:render()
 end
 
-vim.api.nvim_create_user_command("DisplayImg", DisplayImg, {nargs = "?"})
+vim.api.nvim_create_user_command("DisplayImg", DisplayImg, { nargs = "?" })
 
 vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 vim.api.nvim_create_user_command("ChatBotComment", ChatBotComment, { range = true })

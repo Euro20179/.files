@@ -93,7 +93,11 @@ local nShortcuts = {
     { "<left>",        "<c-w><" },
     { "<up>",          "<c-w>+" },
     { "<down>",        "<c-w>-" },
-    { "<leader>T",     function() GotoTerminalTab() end },
+    { "<leader>T",     function() GotoTerminalBuf() end },
+    { "<leader>t", function()
+        require("harpoon.mark").add_file()
+        vim.cmd.terminal()
+    end},
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -176,14 +180,6 @@ local nShortcuts = {
     },
     { "<leader>K",  function() vim.lsp.inlay_hint(0) end, { desc = "Toggle inlay hints"} },
     { "gK", vim.diagnostic.open_float, { desc = "Open diagnostic float"} },
-    { "<leader>tK", function()
-        local token = vim.lsp.semantic_tokens.get_at_pos(0)[1]
-        if token == nil then
-            vim.lsp.util.open_floating_preview({"UNKNOWN"})
-        else
-                vim.lsp.util.open_floating_preview({token.type}) end
-        end
-    },
     { "g<c-]>",     function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
         vim.diagnostic.goto_prev({})
