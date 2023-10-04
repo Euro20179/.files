@@ -105,6 +105,9 @@ require("lazy").setup({
                                 on_hold = {
                                     icon = "󰏤"
                                 },
+                            },
+                            heading = {
+                                icons = { "󰉫", "󰉬", "󰉭", "󰉮", "󰉯", "󰉰" }
                             }
                         }
                     }
@@ -142,13 +145,6 @@ require("lazy").setup({
     {
         'folke/tokyonight.nvim'
     },
-    -- {
-    --     'LukasPietzschmann/telescope-tabs',
-    --     config = function()
-    --         require "telescope-tabs".setup {
-    --         }
-    --     end
-    -- },
     {
         'nvim-treesitter/playground',
     },
@@ -302,22 +298,22 @@ require("lazy").setup({
             mark.clear_all()
         end
     },
-    {
-        "akinsho/bufferline.nvim",
-        opts = {
-            options = {
-                diagnostics = "nvim_lsp",
-                diagnostics_indicator = function(count)
-                    return "(" .. count .. ")"
-                end,
-                themable = true
-            },
-            highlights = {
-                buffer_selected = {
-                    bold = true,
-                    italic = false
-                }
-            }
-        }
-    }
+    -- {
+    --     "akinsho/bufferline.nvim",
+    --     opts = {
+    --         options = {
+    --             diagnostics = "nvim_lsp",
+    --             diagnostics_indicator = function(count)
+    --                 return "(" .. count .. ")"
+    --             end,
+    --             themable = true
+    --         },
+    --         highlights = {
+    --             buffer_selected = {
+    --                 bold = true,
+    --                 italic = false
+    --             }
+    --         }
+    --     }
+    -- }
 })

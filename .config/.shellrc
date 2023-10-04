@@ -79,6 +79,7 @@ alias t='tmux'
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 alias img="nvim -b +DisplayImg"
 alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
+alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
 
 alias email=compose-email
 
@@ -122,7 +123,7 @@ alias "bc=bc -l"
 alias "less=less -r"
 alias "vim=nvim"
 alias "man-s=man -k . | dmenu -l 30 | awk '{print \$1}' | xargs -r man -Tpdf | zathura -"
-alias "todo=nvim $HOME/Documents/vimwiki/TODO.md"
+alias "todo=nvim $HOME/Documents/vimwiki/TODO.norg"
 alias "dr=dragon -x"
 alias "loc=tokei"
 alias "dfile=dragon -t -x | xargs wget --no-hsts"

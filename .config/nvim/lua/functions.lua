@@ -121,8 +121,12 @@ function GotoTerminalBuf()
         local name = vim.api.nvim_buf_get_name(bid)
         if vim.startswith(name, "term://") then
             vim.api.nvim_set_current_buf(bid)
+            return
         end
     end
+    -- if no term buf found
+    require("harpoon.mark").add_file()
+    vim.cmd.terminal()
 end
 
 function DisplayImg(file_path)
@@ -151,8 +155,23 @@ function DisplayImg(file_path)
     image:render()
 end
 
-vim.api.nvim_create_user_command("DisplayImg", DisplayImg, { nargs = "?" })
+function ExecSelection(cmdData)
+    local lines
+    if #cmdData.fargs ~= 0 then
+        lines = { table.concat(cmdData.fargs, " ") }
+    else
+        lines = vim.api.nvim_buf_get_lines(0, cmdData.line1 - 1, cmdData.line2, false)
+    end
+    if cmdData.bang then
+        vim.cmd["!"](table.concat(lines, ";"))
+    else
+        GotoTerminalBuf()
+        vim.api.nvim_feedkeys('i' .. table.concat(lines, "\n") .. "\n", "n", false)
+    end
+end
 
+vim.api.nvim_create_user_command("Exec", ExecSelection, { range = true, nargs = "?", bang = true })
+vim.api.nvim_create_user_command("DisplayImg", DisplayImg, { nargs = "?" })
 vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 vim.api.nvim_create_user_command("ChatBotComment", ChatBotComment, { range = true })
 vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})

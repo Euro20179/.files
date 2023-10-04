@@ -20,6 +20,7 @@ require "options"
 require "shortcuts"
 require 'autocmd'
 require 'functions'
+require "link-graph"
 require "user.init"
 
 vim.fn.setenv("IN_VIM", "true")

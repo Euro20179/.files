@@ -70,7 +70,7 @@ local nShortcuts = {
     { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
-    { "<leader>fa",    function() require "harpoon.mark".add_file() end },
+    { "<leader><leader>",    function() require "harpoon.mark".add_file() end },
     { "<leader>1",     function() require "harpoon.ui".nav_file(1) end },
     { "<leader>2",     function() require "harpoon.ui".nav_file(2) end },
     { "<leader>3",     function() require "harpoon.ui".nav_file(3) end },
@@ -82,22 +82,18 @@ local nShortcuts = {
     { "<leader>9",     function() require "harpoon.ui".nav_file(9) end },
     { "<leader>S",     ':split | wincmd j<cr>' },
     { "<leader>V",     ':vsplit | wincmd l<cr>' },
-    { "<leader><c-l>", ":tabnext<cr>" },
-    { "<leader><c-h>", ':tabprev<CR>' },
-    { "<leader>l",     ':bn<CR>' },
-    { "<leader>h",     ':bp<CR>' },
+    { "<leader>l", ":tabnext<cr>" },
+    { "<leader>h", ':tabprev<CR>' },
+    { "<leader><c-l>",     ':bn<CR>' },
+    { "<leader><c-h>",     ':bp<CR>' },
     { "<leader>t",     ':tabnew<CR>' },
-    { "<leader>q",     ':bdel<cr>' },
-    { "<leader>Q", ':tabclose<cr>' },
+    { "<leader>Q",     ':bdel<cr>' },
+    { "<leader>q", ':tabclose<cr>' },
     { "<right>",       "<c-w>>" },
     { "<left>",        "<c-w><" },
     { "<up>",          "<c-w>+" },
     { "<down>",        "<c-w>-" },
     { "<leader>T",     function() GotoTerminalBuf() end },
-    { "<leader>t", function()
-        require("harpoon.mark").add_file()
-        vim.cmd.terminal()
-    end},
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -212,6 +208,7 @@ local nShortcuts = {
     --syntax highlighting{{{
     { "<A-f>s",          ":set foldmethod=syntax<cr>" },
     { "<A-f>m",          ':set foldmethod=marker<cr>' },
+    { "<A-f>e",          ':set foldmethod=expr<cr>' },
     { "<C-n>",           ':noh<CR>' },
     { "<C-s>",           ':setlocal spell! spelllang=en_us<CR>' },
     { "<A-s>",           ':syntax sync fromstart<CR>' },

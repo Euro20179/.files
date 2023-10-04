@@ -30,5 +30,8 @@ vim.o.conceallevel = 2
 
 vim.o.pumblend = 5
 
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = "v:lua.vim.treesitter.foldtext()"
+
 --code-action-menu
 vim.g.code_action_menu_show_details = false
