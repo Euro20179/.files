@@ -21,6 +21,7 @@ require "shortcuts"
 require 'autocmd'
 require 'functions'
 require "link-graph"
+require "filetypes"
 require "user.init"
 
 vim.fn.setenv("IN_VIM", "true")

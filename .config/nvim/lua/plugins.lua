@@ -249,7 +249,10 @@ require("lazy").setup({
     {
         "chrisgrieser/nvim-various-textobjs",
         lazy = false,
-        opts = { useDefaultKeymaps = true }
+        opts = {
+            useDefaultKeymaps = true,
+            disabledKeymaps = { "ik", "ak", "iv", "av" }
+        }
     },
     {
         "LukasPietzschmann/telescope-tabs"
@@ -299,6 +302,10 @@ require("lazy").setup({
             mark.clear_all()
         end
     },
+    {
+        "devkvlt/floaty.nvim",
+        opts = {}
+    }
     -- {
     --     "akinsho/bufferline.nvim",
     --     opts = {

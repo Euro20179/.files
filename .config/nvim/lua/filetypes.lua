@@ -3,6 +3,9 @@ vim.filetype.add({
         [".*"] = {
             function(path, bufnr, ...)
                 local line1 = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]
+                if vim.endswith(line1, "nvim -l") then
+                    return "lua"
+                end
                 local pkgData = vim.split(line1, " ", {})
                 if #pkgData == 1 then
                     return

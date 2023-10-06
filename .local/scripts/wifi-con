@@ -2,6 +2,8 @@
 
 wifi=$(nmcli d wifi list | awk '{print $2}' | sed -n '3,$p' | grep -v -- '--' | rofi -theme nord -dmenu | tr -d '\n')
 
+[ -z "$wifi" ] && exit
+
 nmcli d wifi con "${wifi}" || {
     notify-send -c wifi-con "Enter password"
     nmcli d wifi con "${wifi}" password "$(zenity --password)"

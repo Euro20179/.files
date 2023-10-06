@@ -94,6 +94,7 @@ local nShortcuts = {
     { "<up>",          "<c-w>+" },
     { "<down>",        "<c-w>-" },
     { "<leader>T",     function() GotoTerminalBuf() end },
+    {"<leader>ft", require"floaty".toggle},
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -320,6 +321,10 @@ end
 
 --Visual Mode{{{
 local vShortcuts = {
+    { "<c-l>",           "<C-w>l" },
+    { "<c-j>",           "<C-w>j" },
+    { "<c-h>",           "<C-w>h" },
+    { "<c-k>",           "<C-w>k" },
     -- copying {{{
     { "<leader>y", "\"+y" },
     { "<leader>d", "\"_d" },
@@ -341,8 +346,8 @@ local vShortcuts = {
     { "C",         ":ChatBotComment<cr>" },
     -- }}}
     -- move code {{{
-    { "<A-j>",     ":m '>+1<CR>gv=gv" },
-    { "<A-k>",     ":m '<-2<CR>gv=gv" },
+    { "mj",     ":m '>+1<CR>gv=gv" },
+    { "mk",     ":m '<-2<CR>gv=gv" },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }

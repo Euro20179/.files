@@ -2,12 +2,18 @@
 
 link="$*"
 
+mime=$(file --mime-type "$*" | cut -d: -f2 | tr -d ' ')
+
 website="$(printf "%s" "$link" | grep -Po "://.*?/" | sed -E 's/(:\/)?\///g')"
 printf "%s" "$website"
+
+case "$mime" in
+    image/*) sxiv "$link"; exit 0;;
+esac
 case "$link" in
     file://*) $TERMINAL $EDITOR "$link" ;;
     https://"www.youtube.com"/watch\?v=*|https://"www.odysee.com"*|https://v.redd.it*|*vid.puffyan.us*) nohup mpv --geometry=1000 "$link" > /dev/null 2>&1 & ;;
-    *.png|*.jpg|*.jpeg|*.webm|*.gif) mpv --loop "$link" & ;;
+    *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
-    *) nohup $BROWSER_SCRIPTING "$link" > /dev/null 2>&1 & ;;
+    *) nohup $BROWSER_LITE "$link" > /dev/null 2>&1 & ;;
 esac

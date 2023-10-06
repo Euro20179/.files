@@ -10,8 +10,15 @@
     "modules-center": ["custom/vpn-location"],
     "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
     "hyprland/workspaces": {
-        "format": "{name}",
-        "show-special": true
+        "format": "{name} {windows}",
+        "show-special": true,
+        "window-rewrite": {
+            "firefox": "",
+            "footclient": "",
+            "code": "󰨞",
+            "nheko": "<span color='#ABE9B3'>󰊌</span>",
+            "io.github.martinrotter.rssguard": ""
+        }
     },
     "mpd": {
         "format": "{title} - {elapsedTime:%M:%S}/{totalTime:%M:%S}",

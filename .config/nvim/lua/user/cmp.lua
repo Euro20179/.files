@@ -116,14 +116,15 @@ cmp.setup.filetype('gitcommit', {
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'nvim_lsp_document_symbol' },
-        { name = 'buffer' }
-    }
-})
-
+for _, name in ipairs({"/", "?"}) do
+    cmp.setup.cmdline(name, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+            { name = 'nvim_lsp_document_symbol' },
+            { name = 'buffer' }
+        }
+    })
+end
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
