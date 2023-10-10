@@ -531,3 +531,22 @@
         background: var(--main) !important;
     }
 }
+
+@-moz-document domain("libreddit"), domain("libreddit.privacydev.net") {
+    body {
+        --accent: #babbf1 !important; /* lavender */
+        --green: #a6d189 !important; /* green */
+        --text: #c6d0f5 !important; /* text */
+        --foreground: #232634 !important; /* crust */
+        --background: #303446 !important; /* base */
+        --outside: #232634 !important; /* crust */
+        --post: #232634 !important; /* crust */
+        --panel-border: none !important;
+        --highlighted: #414559 !important; /* surface0 */
+        --visited: #737994 !important; /* overlay0 */
+        --shadow: 0 0 0 transparent !important;
+
+        --nsfw: #ef9f76 !important; /* peach */
+        --admin: #ea999c !important; /* maroon */
+    }
+}
