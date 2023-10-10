@@ -1,182 +1,193 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-    // "modules-left": ["river/tags"],
-    "modules-left": ["hyprland/workspaces", "custom/osu"],
-    "modules-center": ["custom/vpn-location"],
-    "modules-right": ["disk", "custom/pkg-count", "pulseaudio", "network", "cpu", "custom/cpu-temp", "custom/gpu-temp", "custom/memory", "keyboard-state", "clock", "tray"],
-    "hyprland/workspaces": {
-        "format": "{name} {windows}",
-        "show-special": true,
-        "window-rewrite": {
-            "firefox": "",
-            "footclient": "",
-            "code": "󰨞",
-            "nheko": "<span color='#ABE9B3'>󰊌</span>",
-            "io.github.martinrotter.rssguard": "",
-            "mpv": "󰈫",
-            "org.qbittorrent.qBittorrent": "󰥥",
-            "osu!\\.exe": "󰎄",
-            ".*steam.*": "󰓓"
-        }
-    },
-    "mpd": {
-        "format": "{title} - {elapsedTime:%M:%S}/{totalTime:%M:%S}",
-        "format-disconnected": "Disconnected",
-        "state-icons": {
-            "playing": "▶",
-            "paused": "⏸"
-        }
-    },
-    "custom/osu": {
-        "exec": "$HOME/.config/waybar/osu.sh",
-        "interval": 600
-    },
-    "custom/temp": {
-        "exec": "$HOME/.local/bin/get-weather-data",
-        "interval": 1800,
-        "return-type": "json"
-    },
-    "custom/ping": {
-        "exec": "$HOME/.config/waybar/ping.sh",
-        "interval": 1
-    },
-    "custom/pkg-count": {
-        "exec": "pacman -Q | wc -l",
-        "format": "{} 󰏓",
-        "interval": 30
-    },
-    "custom/vpn-location": {
-        "exec": "$HOME/.config/waybar/vpn.module",
-	"return-type": "json",
-        "interval": 30
-    },
-    "custom/tablet-mode": {
-	"on-click": "tablet-mode",
-	"format": "📱"
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}",
-	"format": "{:%m-%d · %H:%M:%S}",
-	"interval": 1
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "custom/gpu-temp": {
-        "exec": "$HOME/.config/waybar/gpu-temp.sh",
-        "return-type": "json",
-        "interval": 5,
-        "format": "{}°󰍹"
-    },
-    "custom/cpu-temp": {
-        "exec": "$HOME/.config/waybar/tmep.sh",
-        "return-type": "json",
-        "interval": 5,
-        "format": "{}°"
-    },
-    "custom/memory": {
-	"exec": "$HOME/.config/waybar/memory.sh",
-        "return-type": "json",
-        "format": "{percentage}% ",
-	"interval": 5
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} {icon}",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%) ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "format-icons": ["󰤟", "󰤟", "󰤥", "󰤥"]
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "🔇 {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": ["", "", ""] ,
-        "on-click": "helvum"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "disk": {
-        "interval": 30,
-        "path": "/home",
-        "format": "<span color=\"red\">{used}</span>/<span foreground=\"white\">{free}</span> 󰋊",
-        "states": {
-            "low": 0,
-            "medium": 50,
-            "high": 90
-        }
+  "layer": "top", // Waybar at top layer
+  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  "height": 30, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  "spacing": 4, // Gaps between modules (4px)
+  // Choose the order of the modules
+  // "modules-left": ["river/tags"],
+  "modules-left": ["hyprland/workspaces", "custom/osu"],
+  "modules-center": ["custom/vpn-location"],
+  "modules-right": [
+    "disk",
+    "custom/pkg-count",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "custom/cpu-temp",
+    "custom/gpu-temp",
+    "custom/memory",
+    "keyboard-state",
+    "clock",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "format": "{name} {windows}",
+    "show-special": true,
+    "window-rewrite": {
+      "firefox": "",
+      "footclient": "",
+      "code": "󰨞",
+      "nheko": "<span color='#ABE9B3'>󰊌</span>",
+      "io.github.martinrotter.rssguard": "",
+      "mpv": "󰈫",
+      "org.qbittorrent.qBittorrent": "󰥥",
+      "osu!\\.exe": "󰎄",
+      ".*steam.*": "󰓓"
     }
+  },
+  "mpd": {
+    "format": "{title} - {elapsedTime:%M:%S}/{totalTime:%M:%S}",
+    "format-disconnected": "Disconnected",
+    "state-icons": {
+      "playing": "▶",
+      "paused": "⏸"
+    }
+  },
+  "custom/osu": {
+    "exec": "$HOME/.config/waybar/osu.sh",
+    "interval": 600
+  },
+  "custom/temp": {
+    "exec": "$HOME/.local/bin/get-weather-data",
+    "interval": 1800,
+    "return-type": "json"
+  },
+  "custom/ping": {
+    "exec": "$HOME/.config/waybar/ping.sh",
+    "interval": 1
+  },
+  "custom/pkg-count": {
+    "exec": "pacman -Q | wc -l",
+    "format": "{} 󰏓",
+    "interval": 30
+  },
+  "custom/vpn-location": {
+    "exec": "$HOME/.config/waybar/vpn.module",
+    "return-type": "json",
+    "interval": 30
+  },
+  "custom/tablet-mode": {
+    "on-click": "tablet-mode",
+    "format": "📱"
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10
+  },
+  "clock": {
+    // "timezone": "America/New_York",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}",
+    "format": "{:%m-%d · %H:%M:%S}",
+    "interval": 1
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "custom/gpu-temp": {
+    "exec": "$HOME/.config/waybar/gpu-temp.sh",
+    "return-type": "json",
+    "interval": 5,
+    "format": "{}°󰍹"
+  },
+  "custom/cpu-temp": {
+    "exec": "$HOME/.config/waybar/tmep.sh",
+    "return-type": "json",
+    "interval": 5,
+    "format": "{}°"
+  },
+  "custom/memory": {
+    "exec": "$HOME/.config/waybar/memory.sh",
+    "return-type": "json",
+    "format": "{percentage}% ",
+    "interval": 5
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} {icon}",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%) ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "format-icons": ["󰤟", "󰤟", "󰤥", "󰤥"]
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": "🔇 {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": ["", "", ""],
+    "on-click": "helvum"
+  },
+  "custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": "",
+      "default": "🎜"
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+  },
+  "disk": {
+    "interval": 30,
+    "path": "/home",
+    "format": "<span color=\"red\">{used}</span>/<span foreground=\"white\">{free}</span> 󰋊",
+    "states": {
+      "low": 0,
+      "medium": 50,
+      "high": 90
+    }
+  }
 }
-
