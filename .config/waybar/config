@@ -17,7 +17,11 @@
             "footclient": "",
             "code": "󰨞",
             "nheko": "<span color='#ABE9B3'>󰊌</span>",
-            "io.github.martinrotter.rssguard": ""
+            "io.github.martinrotter.rssguard": "",
+            "mpv": "󰈫",
+            "org.qbittorrent.qBittorrent": "󰥥",
+            "osu!\\.exe": "󰎄",
+            ".*steam.*": "󰓓"
         }
     },
     "mpd": {

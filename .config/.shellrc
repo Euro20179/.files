@@ -131,7 +131,7 @@ alias "fbs=zathura Pictures/schedule.pdf"
 alias "TIL=$EDITOR $HOME/Documents/vimwiki/til/README.md"
 alias "lman=MANPAGER=less man"
 
-alias 'q=nvim +Qalc +startinsert'
+alias 'q=exit'
 
 # man () {
 #     section=1
