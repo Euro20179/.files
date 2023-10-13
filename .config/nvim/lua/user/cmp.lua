@@ -70,7 +70,13 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-s>'] = cmp.mapping.complete(),
+        ['<C-s>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end),
         ['<C-e>'] = cmp.mapping.abort(),
         ["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),

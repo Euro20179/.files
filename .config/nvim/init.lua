@@ -24,13 +24,18 @@ require "link-graph"
 require "filetypes"
 require "user.init"
 
+require "discord".setup {
+    token = vim.fn.readfile("/home/euro/Documents/APIKeys/discord")[1],
+    user_id = "334538784043696130"
+}
+
 vim.fn.setenv("IN_VIM", "true")
 
 -- require "filetypes"
 
 local cs = require 'colorscheme'
 
-cs.changeColorScheme({scheme = "catppuccin-macchiato"})
+cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -50,9 +55,9 @@ if vim.g.started_by_firenvim then
 end
 vim.w.euro_debug_mode = false
 
-vim.lsp.buf.hover = function ()
+vim.lsp.buf.hover = function()
     vim.api.nvim_cmd({
         cmd = "LspUI",
-        args = {"hover"}
+        args = { "hover" }
     }, {})
 end
