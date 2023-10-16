@@ -1,5 +1,6 @@
 vim.filetype.add({
     pattern = {
+        [".*%.config/hypr/.*%.conf"] = "hyprland",
         [".*"] = {
             function(path, bufnr, ...)
                 local line1 = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]

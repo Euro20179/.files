@@ -59,42 +59,42 @@ local nShortcuts = {
         hm.add_file()
         t.find_files({ hidden = true, no_ignore = true })
     end },
-    { "<leader>fj",    '<cmd>Telescope jumplist<cr>' },
-    { "<leader>f/",    '<cmd>Telescope live_grep<cr>' },
-    { "<leader>fm",    "<cmd>Telescope marks<cr>" },
-    { "<leader>b/",    "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
-    { "<leader>fH",    function() require "harpoon.ui".toggle_quick_menu() end },
+    { "<leader>fj",       '<cmd>Telescope jumplist<cr>' },
+    { "<leader>f/",       '<cmd>Telescope live_grep<cr>' },
+    { "<leader>fm",       "<cmd>Telescope marks<cr>" },
+    { "<leader>b/",       "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
+    { "<leader>fH",       function() require "harpoon.ui".toggle_quick_menu() end },
     --}}}
     --Viewers {{{
-    { "<leader>n",     ":Neotree float<cr>" },
-    { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
+    { "<leader>n",        ":Neotree float<cr>" },
+    { "<leader>o",        "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
-    { "<leader><leader>",    function() require "harpoon.mark".add_file() end },
-    { "<leader>1",     function() require "harpoon.ui".nav_file(1) end },
-    { "<leader>2",     function() require "harpoon.ui".nav_file(2) end },
-    { "<leader>3",     function() require "harpoon.ui".nav_file(3) end },
-    { "<leader>4",     function() require "harpoon.ui".nav_file(4) end },
-    { "<leader>5",     function() require "harpoon.ui".nav_file(5) end },
-    { "<leader>6",     function() require "harpoon.ui".nav_file(6) end },
-    { "<leader>7",     function() require "harpoon.ui".nav_file(7) end },
-    { "<leader>8",     function() require "harpoon.ui".nav_file(8) end },
-    { "<leader>9",     function() require "harpoon.ui".nav_file(9) end },
-    { "<leader>S",     ':split | wincmd j<cr>' },
-    { "<leader>V",     ':vsplit | wincmd l<cr>' },
-    { "<leader>l", ":tabnext<cr>" },
-    { "<leader>h", ':tabprev<CR>' },
-    { "<leader><c-l>",     ':bn<CR>' },
-    { "<leader><c-h>",     ':bp<CR>' },
-    { "<leader>t",     ':tabnew<CR>' },
-    { "<leader>Q",     ':bdel<cr>' },
-    { "<leader>q", ':tabclose<cr>' },
-    { "<right>",       "<c-w>>" },
-    { "<left>",        "<c-w><" },
-    { "<up>",          "<c-w>+" },
-    { "<down>",        "<c-w>-" },
-    { "<leader>T",     function() GotoTerminalBuf() end },
-    {"<leader>ft", require"floaty".toggle},
+    { "<leader><leader>", function() require "harpoon.mark".add_file() end },
+    { "<leader>1",        function() require "harpoon.ui".nav_file(1) end },
+    { "<leader>2",        function() require "harpoon.ui".nav_file(2) end },
+    { "<leader>3",        function() require "harpoon.ui".nav_file(3) end },
+    { "<leader>4",        function() require "harpoon.ui".nav_file(4) end },
+    { "<leader>5",        function() require "harpoon.ui".nav_file(5) end },
+    { "<leader>6",        function() require "harpoon.ui".nav_file(6) end },
+    { "<leader>7",        function() require "harpoon.ui".nav_file(7) end },
+    { "<leader>8",        function() require "harpoon.ui".nav_file(8) end },
+    { "<leader>9",        function() require "harpoon.ui".nav_file(9) end },
+    { "<leader>S",        ':split | wincmd j<cr>' },
+    { "<leader>V",        ':vsplit | wincmd l<cr>' },
+    { "<leader>l",        ":tabnext<cr>" },
+    { "<leader>h",        ':tabprev<CR>' },
+    { "<leader><c-l>",    ':bn<CR>' },
+    { "<leader><c-h>",    ':bp<CR>' },
+    { "<leader>t",        ':tabnew<CR>' },
+    { "<leader>Q",        ':bdel<cr>' },
+    { "<leader>q",        ':tabclose<cr>' },
+    { "<right>",          "<c-w>>" },
+    { "<left>",           "<c-w><" },
+    { "<up>",             "<c-w>+" },
+    { "<down>",           "<c-w>-" },
+    { "<leader>T",        function() GotoTerminalBuf() end },
+    { "<leader>ft",       require "floaty".toggle },
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -134,14 +134,14 @@ local nShortcuts = {
     { "<leader>r",  ":IncRename " },
     { "<leader>el", function()
         local virt_text = vim.diagnostic.config().virtual_text
-        vim.diagnostic.config({virtual_text = not virt_text})
+        vim.diagnostic.config({ virtual_text = not virt_text })
     end },
     { "<a-e>", function()
         vim.diagnostic.open_float()
     end
     },
     --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
-    { "<leader>a",  "<cmd>CodeActionMenu<cr>" },
+    { "<leader>a", "<cmd>CodeActionMenu<cr>" },
     { "<leader>A", function()
         local n = 0
         vim.lsp.buf.code_action({
@@ -175,9 +175,9 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    { "<leader>K",  function() vim.lsp.inlay_hint(0) end, { desc = "Toggle inlay hints"} },
-    { "gK", vim.diagnostic.open_float, { desc = "Open diagnostic float"} },
-    { "g<c-]>",     function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
+    { "<leader>K", function() vim.lsp.inlay_hint(0) end,                            { desc = "Toggle inlay hints" } },
+    { "gK",        vim.diagnostic.open_float,                                       { desc = "Open diagnostic float" } },
+    { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
         vim.diagnostic.goto_prev({})
         local n = 0
@@ -198,6 +198,7 @@ local nShortcuts = {
     },
     --}}}
     -- Treesitter {{{
+    { "<leader>sr",      function() require "ssr".open() end },
     { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
     { "<a-h>",           require("tree-climber").goto_parent },
     { "<a-l>",           require("tree-climber").goto_child },
@@ -261,18 +262,18 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     -- Movement {{{
-    { "<C-bs>",          "<C-w>" },
-    { "<C-g>$",          "<Esc>$a" },
-    { "<C-g>l",          "<Esc>la" },
-    { "<C-g>h",          "<Esc>ha" },
-    { "<C-g>0",          "<Esc>0i" },
-    { "<C-g>^",          "<Esc>^i" },
-    { "<C-g>b",          "<Esc>bi" },
-    { "<C-g>w",          "<Esc>wi" },
-    { "<C-g>B",          "<Esc>Bi" },
-    { "<C-g>W",          "<Esc>Wi" },
-    { "<c-space>l",      "<Esc>:tabnext<CR>" },
-    { "<c-space>h",      "<Esc>:tabprev<CR>" },
+    { "<C-bs>",     "<C-w>" },
+    { "<C-g>$",     "<Esc>$a" },
+    { "<C-g>l",     "<Esc>la" },
+    { "<C-g>h",     "<Esc>ha" },
+    { "<C-g>0",     "<Esc>0i" },
+    { "<C-g>^",     "<Esc>^i" },
+    { "<C-g>b",     "<Esc>bi" },
+    { "<C-g>w",     "<Esc>wi" },
+    { "<C-g>B",     "<Esc>Bi" },
+    { "<C-g>W",     "<Esc>Wi" },
+    { "<c-space>l", "<Esc>:tabnext<CR>" },
+    { "<c-space>h", "<Esc>:tabprev<CR>" },
     -- }}}
     -- luasnip {{{
     -- { "<Tab>",
@@ -321,33 +322,34 @@ end
 
 --Visual Mode{{{
 local vShortcuts = {
-    { "<c-l>",           "<C-w>l" },
-    { "<c-j>",           "<C-w>j" },
-    { "<c-h>",           "<C-w>h" },
-    { "<c-k>",           "<C-w>k" },
+    { "<c-l>",      "<C-w>l" },
+    { "<c-j>",      "<C-w>j" },
+    { "<c-h>",      "<C-w>h" },
+    { "<c-k>",      "<C-w>k" },
     -- copying {{{
-    { "<leader>y", "\"+y" },
-    { "<leader>d", "\"_d" },
-    { "<leader>c", "\"_c" },
-    { "<leader>p", "\"+p" },
+    { "<leader>y",  "\"+y" },
+    { "<leader>d",  "\"_d" },
+    { "<leader>c",  "\"_c" },
+    { "<leader>p",  "\"+p" },
     -- }}}
     -- indentation {{{
-    { "<",         "<gv" },
-    { ">",         ">gv" },
+    { "<",          "<gv" },
+    { ">",          ">gv" },
     --}}}
     --treesitter{{{
-    { "<a-h>",     require("tree-climber").goto_parent },
-    { "<a-l>",     require("tree-climber").goto_child },
-    { "<a-j>",     require("tree-climber").goto_next },
-    { "<a-k>",     require("tree-climber").goto_prev },
+    { "<leader>sr", function() require "ssr".open() end },
+    { "<a-h>",      require("tree-climber").goto_parent },
+    { "<a-l>",      require("tree-climber").goto_child },
+    { "<a-j>",      require("tree-climber").goto_next },
+    { "<a-k>",      require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-    { "D",         ":ChatBotDocument<cr>" },
-    { "C",         ":ChatBotComment<cr>" },
+    { "D",          ":ChatBotDocument<cr>" },
+    { "C",          ":ChatBotComment<cr>" },
     -- }}}
     -- move code {{{
-    { "mj",     ":m '>+1<CR>gv=gv" },
-    { "mk",     ":m '<-2<CR>gv=gv" },
+    { "mj",         ":m '>+1<CR>gv=gv" },
+    { "mk",         ":m '<-2<CR>gv=gv" },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }
@@ -373,8 +375,8 @@ end --}}}
 
 -- Terminal Mode {{{
 local tShortcuts = {
-    { "<F4>", "<c-\\><c-n>" },
-    { "<c-\\><c-\\>", "<c-\\><c-n>"}
+    { "<F4>",         "<c-\\><c-n>" },
+    { "<c-\\><c-\\>", "<c-\\><c-n>" }
 }
 for _, map in ipairs(tShortcuts) do
     vim.keymap.set("t", map[1], map[2])

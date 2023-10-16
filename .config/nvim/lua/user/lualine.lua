@@ -145,7 +145,9 @@ local function ins_right(component)
 end
 
 ins_left {
-    'filename',
+    function()
+        return string.gsub(vim.api.nvim_buf_get_name(0), vim.fn.getenv("HOME") or "/////", "~")
+    end,
     cond = conditions.buffer_not_empty,
     color = { fg = colors.magenta, gui = 'bold' },
 }

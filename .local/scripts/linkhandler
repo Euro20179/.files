@@ -15,7 +15,7 @@ case "$link" in
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
     *)
         if yt-dlp -s "$link" > /dev/null 2>&1; then
-            nohup mpv --geometry=1000 "$link" > /dev/null 2>&1 &
+            nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
         else
             nohup $BROWSER_LITE "$link" > /dev/null 2>&1 &
         fi;;

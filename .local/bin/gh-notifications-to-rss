@@ -14,6 +14,11 @@ for item in data:
     <pubDate>{item['updated_at']}</pubDate>
     <title>{item['subject']['title']}</title>
     <link>{(item['subject']['url'] if item['subject']['url'] else "").replace("api.", "").replace("/repos", "")}</link>
+    <description>
+    <![CDATA[
+        <a href={(item["subject"]["url"] if item["subject"]["url"] else "").replace("/repos", "")}>Url</a>
+    ]]>
+    </description>
 </item>
 """
 

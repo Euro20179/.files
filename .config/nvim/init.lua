@@ -55,6 +55,10 @@ if vim.g.started_by_firenvim then
 end
 vim.w.euro_debug_mode = false
 
+vim.ui.open = function(item)
+    vim.system({"linkhandler", item})
+end
+
 vim.lsp.buf.hover = function()
     vim.api.nvim_cmd({
         cmd = "LspUI",
