@@ -251,7 +251,7 @@ require("lazy").setup({
         lazy = false,
         opts = {
             useDefaultKeymaps = true,
-            disabledKeymaps = { "ik", "ak", "iv", "av" }
+            disabledKeymaps = { "ik", "ak", "iv", "av", "!" }
         }
     },
     {

@@ -77,7 +77,7 @@ cmp.setup({
                 fallback()
             end
         end),
-        ['<C-e>'] = cmp.mapping.abort(),
+        ['<c-e>'] = cmp.mapping.abort(),
         ["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ['<CR>'] = cmp.mapping.confirm(),
