@@ -35,8 +35,8 @@ vim.fn.setenv("IN_VIM", "true")
 
 local cs = require 'colorscheme'
 
--- cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
-cs.changeColorScheme({ scheme = "spaceduck" })
+cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
+-- cs.changeColorScheme({ scheme = "spaceduck" })
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -56,10 +56,12 @@ if vim.g.started_by_firenvim then
 end
 vim.w.euro_debug_mode = false
 
+---@diagnostic disable-next-line
 vim.ui.open = function(item)
     vim.system({ "linkhandler", item })
 end
 
+---@diagnostic disable-next-line
 vim.lsp.buf.hover = function()
     vim.api.nvim_cmd({
         cmd = "LspUI",
