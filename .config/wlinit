@@ -36,9 +36,6 @@ swww init
 
 dbus-update-activation-environment --systemd --all
 
-#doesn't work for some reason on activation
-killall xdg-desktop-portal-termfilechooser
-
 fcitx5 -d & disown
 #
 hyprland-autoname-workspaces & disown

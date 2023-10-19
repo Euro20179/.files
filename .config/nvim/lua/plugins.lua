@@ -1,3 +1,4 @@
+local key = vim.fn.readfile("/home/euro/Documents/APIKeys/hggf.key")[1]
 require("lazy").setup({
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
@@ -151,11 +152,8 @@ require("lazy").setup({
     },
     "uga-rosa/ccc.nvim",
     {
-        'windwp/nvim-autopairs',
-        config = function()
-            require("nvim-autopairs").setup {
-            }
-        end
+        "m4xshen/autoclose.nvim",
+        opts = {}
     },
     'catppuccin/nvim',
     'smjonas/duplicate.nvim',
@@ -303,10 +301,6 @@ require("lazy").setup({
         end
     },
     {
-        "devkvlt/floaty.nvim",
-        opts = {}
-    },
-    {
         "shaunsingh/nord.nvim"
     },
     {
@@ -330,22 +324,10 @@ require("lazy").setup({
             }
         end
     },
-    -- {
-    --     "akinsho/bufferline.nvim",
-    --     opts = {
-    --         options = {
-    --             diagnostics = "nvim_lsp",
-    --             diagnostics_indicator = function(count)
-    --                 return "(" .. count .. ")"
-    --             end,
-    --             themable = true
-    --         },
-    --         highlights = {
-    --             buffer_selected = {
-    --                 bold = true,
-    --                 italic = false
-    --             }
-    --         }
-    --     }
-    -- }
+    {
+        "space-chalk/spacechalk.nvim"
+    },
+    {
+        "pineapplegiant/spaceduck"
+    }
 })

@@ -94,7 +94,11 @@ local nShortcuts = {
     { "<up>",             "<c-w>+" },
     { "<down>",           "<c-w>-" },
     { "<leader>T",        function() GotoTerminalBuf() end },
-    { "<leader>ft",       require "floaty".toggle },
+    { "<leader>ft",       function()
+        require"lazy.util".float_term("/bin/zsh", {
+            border = "single"
+        })
+    end},
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({

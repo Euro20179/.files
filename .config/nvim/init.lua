@@ -35,7 +35,8 @@ vim.fn.setenv("IN_VIM", "true")
 
 local cs = require 'colorscheme'
 
-cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
+-- cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
+cs.changeColorScheme({ scheme = "spaceduck" })
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -56,7 +57,7 @@ end
 vim.w.euro_debug_mode = false
 
 vim.ui.open = function(item)
-    vim.system({"linkhandler", item})
+    vim.system({ "linkhandler", item })
 end
 
 vim.lsp.buf.hover = function()
