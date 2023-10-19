@@ -179,7 +179,11 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    { "<leader>K", function() vim.lsp.inlay_hint(0) end,                            { desc = "Toggle inlay hints" } },
+    { "<leader>K", function()
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            vim.lsp.inlay_hint(buf)
+        end
+    end,                            { desc = "Toggle inlay hints" } },
     { "gK",        vim.diagnostic.open_float,                                       { desc = "Open diagnostic float" } },
     { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
