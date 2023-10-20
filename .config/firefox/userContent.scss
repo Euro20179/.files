@@ -532,7 +532,7 @@
     }
 }
 
-@-moz-document domain("libreddit"), domain("libreddit.privacydev.net") {
+@-moz-document domain("libreddit"), domain("libreddit.privacydev.net"), domain("libreddit.localhost") {
     body {
         --accent: #babbf1 !important; /* lavender */
         --green: #a6d189 !important; /* green */

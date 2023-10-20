@@ -2,7 +2,21 @@ local key = vim.fn.readfile("/home/euro/Documents/APIKeys/hggf.key")[1]
 require("lazy").setup({
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
-    'nvim-telescope/telescope.nvim',
+    "nvim-telescope/telescope-ui-select.nvim",
+    {
+        'nvim-telescope/telescope.nvim',
+        config = function()
+            require "telescope".setup {
+
+                extensions = {
+                    ["ui-select"] = {
+                        require "telescope.themes".get_dropdown {}
+                    }
+                }
+            }
+            require "telescope".load_extension("ui-select")
+        end
+    },
     'nvim-telescope/telescope-symbols.nvim',
     'neovim/nvim-lspconfig',
     'hrsh7th/cmp-nvim-lsp',
@@ -151,12 +165,7 @@ require("lazy").setup({
         'nvim-treesitter/playground',
     },
     "uga-rosa/ccc.nvim",
-    {
-        "m4xshen/autoclose.nvim",
-        opts = {}
-    },
     'catppuccin/nvim',
-    'smjonas/duplicate.nvim',
 
     {
         'michaelb/sniprun',
@@ -173,8 +182,6 @@ require("lazy").setup({
         cmd = { "DiffviewOpen" },
         opts = {}
     },
-
-    "joosepAlviste/nvim-ts-context-commentstring",
 
     { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline" },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
@@ -330,5 +337,42 @@ require("lazy").setup({
     },
     {
         "pineapplegiant/spaceduck"
+    },
+    {
+        "polirritmico/monokai-nightasty.nvim"
+    },
+    {
+        "mxsdev/nvim-dap-vscode-js"
+    },
+    {
+        "echasnovski/mini.nvim",
+        config = function()
+            require"mini.pairs".setup{}
+            require"mini.comment".setup{}
+            require"mini.ai".setup{}
+            require"mini.splitjoin".setup{
+                join = {
+                    hooks_post = {
+                        function ()
+                            vim.api.nvim_cmd({
+                                cmd = "norm",
+                                args = { "ysib " }
+                            }, {})
+                        end
+                    }
+                }
+            }
+            require"mini.indentscope".setup{
+                delay = 0
+            }
+            require"mini.operators".setup{
+                exchange = {
+                    prefix = "yx"
+                },
+                multiply = {
+                    prefix = "yd"
+                }
+            }
+        end
     }
 })

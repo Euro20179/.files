@@ -94,11 +94,11 @@ local nShortcuts = {
     { "<up>",             "<c-w>+" },
     { "<down>",           "<c-w>-" },
     { "<leader>T",        function() GotoTerminalBuf() end },
-    { "<leader>ft",       function()
-        require"lazy.util".float_term("/bin/zsh", {
+    { "<leader>ft", function()
+        require "lazy.util".float_term("/bin/zsh", {
             border = "single"
         })
-    end},
+    end },
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -179,11 +179,8 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    { "<leader>K", function()
-        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-            vim.lsp.inlay_hint(buf)
-        end
-    end,                            { desc = "Toggle inlay hints" } },
+    { "<leader>K", function() vim.lsp.inlay_hint(0) end,
+        { desc = "Toggle inlay hints" } },
     { "gK",        vim.diagnostic.open_float,                                       { desc = "Open diagnostic float" } },
     { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
@@ -403,6 +400,6 @@ vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
 vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
 vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
 
-vim.keymap.set({"o", "x"}, "?", function()
-    require"various-textobjs".diagnostic()
+vim.keymap.set({ "o", "x" }, "?", function()
+    require "various-textobjs".diagnostic()
 end)

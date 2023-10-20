@@ -24,6 +24,9 @@ vim.o.spelllang =  "en_us"
 vim.opt.fillchars = {eob = "󰅖"}
 --fixes weird bug with Telescope help_menu tags not being sorted and lazy complaining
 vim.o.tagcase = 'ignore'
+vim.o.lazyredraw = true
+
+vim.o.exrc = true
 
 vim.o.smoothscroll = true
 vim.o.conceallevel = 2

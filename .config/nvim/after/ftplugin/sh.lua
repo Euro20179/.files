@@ -1,1 +1,1 @@
-vim.bo.equalprg = "shfmt -p"
+vim.bo.equalprg = "shfmt"

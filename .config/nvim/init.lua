@@ -35,8 +35,8 @@ vim.fn.setenv("IN_VIM", "true")
 
 local cs = require 'colorscheme'
 
-cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
--- cs.changeColorScheme({ scheme = "spaceduck" })
+-- cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
+cs.changeColorScheme({ scheme = "monokai-nightasty" })
 
 vim.diagnostic.config({ virtual_text = true })
 
