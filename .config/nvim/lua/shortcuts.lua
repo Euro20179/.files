@@ -362,7 +362,7 @@ local vShortcuts = {
 }
 for _, map in ipairs(vShortcuts) do
     vim.keymap.set("v", map[1], map[2])
-end --}}}
+end                                                                     --}}}
 
 -- Select Mode {{{
 local sShortcuts = {
@@ -376,7 +376,7 @@ local sShortcuts = {
 }
 for _, map in ipairs(sShortcuts) do
     vim.keymap.set("s", map[1], map[2])
-end --}}}
+end                                                                             --}}}
 
 -- Terminal Mode {{{
 local tShortcuts = {
@@ -391,14 +391,14 @@ end
 -- popup menu{{{
 --here as example
 vim.cmd [[
-aunmenu PopUp
-nnoremenu PopUp.hi :lua print("hi")<cr>
-]]
+                                                                                    aunmenu PopUp
+                                                                                    nnoremenu PopUp.hi :lua print("hi")<cr>
+                                                                                    ]]
 --}}}
 
-vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
-vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
-vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
+vim.keymap.set("o", "O", "<esc>mzkddg`z")                                                                                             --motion to delete above line
+vim.keymap.set("o", "o", "<esc>mzjddg`z")                                                                                             --motion to delete below line
+vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z")                                                                                     -- delete around line
 
 vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()
