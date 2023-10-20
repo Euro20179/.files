@@ -196,17 +196,6 @@ require("lazy").setup({
         cmd = "Tetris"
     },
     {
-        "NStefan002/speedtyper.nvim",
-        cmd = "Speedtyper",
-        opts = {
-            game_modes = {
-                rain = {
-                    throttle = 4
-                }
-            }
-        }
-    },
-    {
         "ellisonleao/glow.nvim",
         cmd = "Glow",
         config = function()

@@ -13,6 +13,11 @@ case "$link" in
     file://*) $TERMINAL $EDITOR "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
+    https://github.com/*/blob/*)
+        file_path=${link#*/blob/}
+        repo="${link%%/blob/*}"
+        repo="${repo#https://github.com/}"
+        "${TERMINAL}" $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
     *)
         if yt-dlp -s "$link" > /dev/null 2>&1; then
             nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
