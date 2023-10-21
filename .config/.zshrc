@@ -109,8 +109,6 @@ __calc () {
     zcalc -f -e "$*"
 }
 
-alias -g h=-h
-
 aliases[=]='noglob __calc'
 
 source ~/.config/.shellrc

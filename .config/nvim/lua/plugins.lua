@@ -195,10 +195,10 @@ require("lazy").setup({
         "jinzhongjia/LspUI.nvim",
         config = true
     },
-    {
-        "folke/neodev.nvim",
-        config = true
-    },
+    -- {
+    --     "folke/neodev.nvim",
+    --     config = true
+    -- },
     {
         "EdenEast/nightfox.nvim"
     },
@@ -253,7 +253,6 @@ require("lazy").setup({
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
-        cmd = "Neotree",
         opts = {
             filesystem = {
                 hijack_netrw_behavior = "open_current"

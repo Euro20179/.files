@@ -10,10 +10,13 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+
 lspconfig['emmet_ls'].setup{
     capabilities = capabilities,
     filetypes = { "html" }
 }
+
+local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
 
 lspconfig['lua_ls'].setup{
     settings= {
@@ -26,7 +29,8 @@ lspconfig['lua_ls'].setup{
                 enable = false
             },
             workspace = {
-                checkThirdParty = false
+                checkThirdParty = false,
+                library = lua_ls_library
             }
         },
     },

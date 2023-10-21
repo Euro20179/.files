@@ -81,6 +81,8 @@ alias img="nvim -b +DisplayImg"
 alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
 
+alias conf=open-config-from-vw.lua
+
 alias email=compose-email
 
 me () {
