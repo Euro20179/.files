@@ -38,10 +38,10 @@ require("lazy").setup({
             hint_enable = true,
             hint_prefix = " ",
             always_trigger = false,
-            floating_window = true,
             doc_lines = 0,
-            toggle_key = "<c-x>",
-            select_signature_key = "<c-z>"
+            toggle_key = "<c-b>",
+            select_signature_key = "<c-s><c-z>",
+            move_cursor_key = "<c-s><c-s>"
         }
     },
     {
@@ -82,24 +82,9 @@ require("lazy").setup({
             'MunifTanjim/nui.nvim',
         }
     },
-    -- use {
-    --     "NvChad/nvim-colorizer.lua",
-    --     config = function ()
-    --         require("colorizer").setup{}
-    --         require("colorizer").attach_to_buffer(0, {mode = "foreground", css = true})
-    --     end
-    -- },
     "drybalka/tree-climber.nvim",
     "folke/which-key.nvim",
-    {
-        "numToStr/Comment.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("Comment").setup()
-        end
-    },
     "nvim-treesitter/nvim-treesitter-textobjects",
-    -- use "ziontee113/color-picker.nvim",
     'f3fora/cmp-spell',
     'superhawk610/ascii-blocks.nvim',
     {
@@ -160,9 +145,6 @@ require("lazy").setup({
     },
     {
         'folke/tokyonight.nvim'
-    },
-    {
-        'nvim-treesitter/playground',
     },
     "uga-rosa/ccc.nvim",
     'catppuccin/nvim',

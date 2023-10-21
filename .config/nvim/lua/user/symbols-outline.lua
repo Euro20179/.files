@@ -1,6 +1,11 @@
 require("symbols-outline").setup{
     position = "left",
+    show_numbers = true,
+    show_relative_Numbers = true,
     symbols = {
+        Boolean = { icon = "", hl = "@boolean" },
+        Array = { icon = "", hl = "@constant"},
+        String = { icon = "", hl = "@string"},
         Function = {icon = "", hl = "@function"},
         File = {icon = "", hl = "@text.uri"},
         Module = {icon = "", hl = "@namespace"},

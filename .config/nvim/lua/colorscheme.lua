@@ -71,7 +71,7 @@ _M.changeColorScheme = function(newScheme)
         args = { newScheme.scheme },
         cmd = "colorscheme"
     }, {})
-    vim.cmd[[hi Normal guibg=#00000000]]
+    -- vim.cmd[[hi Normal guibg=#00000000]]
     vim.api.nvim_set_hl(0, "LspInlayHint", {bg = "NONE", italic = true, fg="#6e738d"})
     vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true})
 end

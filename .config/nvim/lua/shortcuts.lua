@@ -181,6 +181,7 @@ local nShortcuts = {
     },
     { "<leader>K", function() vim.lsp.inlay_hint(0) end,
         { desc = "Toggle inlay hints" } },
+    { "<leader>k", vim.lsp.buf.signature_help, {desc = "Show function signature"}},
     { "gK",        vim.diagnostic.open_float,                                       { desc = "Open diagnostic float" } },
     { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
@@ -362,7 +363,7 @@ local vShortcuts = {
 }
 for _, map in ipairs(vShortcuts) do
     vim.keymap.set("v", map[1], map[2])
-end                                                                     --}}}
+end --}}}
 
 -- Select Mode {{{
 local sShortcuts = {
@@ -376,7 +377,7 @@ local sShortcuts = {
 }
 for _, map in ipairs(sShortcuts) do
     vim.keymap.set("s", map[1], map[2])
-end                                                                             --}}}
+end --}}}
 
 -- Terminal Mode {{{
 local tShortcuts = {
@@ -396,9 +397,9 @@ vim.cmd [[
                                                                                     ]]
 --}}}
 
-vim.keymap.set("o", "O", "<esc>mzkddg`z")                                                                                             --motion to delete above line
-vim.keymap.set("o", "o", "<esc>mzjddg`z")                                                                                             --motion to delete below line
-vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z")                                                                                     -- delete around line
+vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
+vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
+vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
 
 vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()

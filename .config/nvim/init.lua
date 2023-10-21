@@ -16,13 +16,14 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 
 require 'plugins'
 require 'snippets'
-require "options"
-require "shortcuts"
+require 'options'
+require 'shortcuts'
 require 'autocmd'
 require 'functions'
-require "link-graph"
-require "filetypes"
-require "user.init"
+require 'link-graph'
+require 'filetypes'
+require 'setwidths'
+require 'user.init'
 
 require "discord".setup {
     token = vim.fn.readfile("/home/euro/Documents/APIKeys/discord")[1],
@@ -36,7 +37,8 @@ vim.fn.setenv("IN_VIM", "true")
 local cs = require 'colorscheme'
 
 -- cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
-cs.changeColorScheme({ scheme = "monokai-nightasty" })
+-- cs.changeColorScheme({ scheme = "monokai-nightasty" })
+cs.changeColorScheme({ scheme = "nightfox" })
 
 vim.diagnostic.config({ virtual_text = true })
 
