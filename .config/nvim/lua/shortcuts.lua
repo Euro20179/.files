@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+local widgets = require"dap.ui.widgets"
+
 
 -- local moveline = require("moveline")
 local utilLeader = "<M-u>"
@@ -11,7 +13,31 @@ local dapLeader = "<M-d>"
 --Normal Mode{{{
 local nShortcuts = {
     -- dap {{{
-    { dapLeader .. "o", function() require "dapui".toggle() end },
+        { dapLeader .. "o",function ()
+            require"dapui".toggle()
+        end},
+    { dapLeader .. "s", function()
+        local sidebar = widgets.sidebar(widgets.scopes)
+        sidebar.open()
+    end},
+    { dapLeader .. "f", function()
+        local sidebar = widgets.sidebar(widgets.frames)
+        sidebar.open()
+    end},
+    { dapLeader .. "<leader>", function()
+        require"dap".repl.toggle()
+    end},
+    { dapLeader .. "k", function()
+        widgets.hover()
+    end},
+    { dapLeader .. "t", function()
+        local sidebar = widgets.sidebar(widgets.threads)
+        sidebar.open()
+    end},
+    { dapLeader .. "e", function()
+        local sidebar = widgets.sidebar(widgets.expression)
+        sidebar.open()
+    end},
     { dapLeader .. "b", function() require "dap".toggle_breakpoint() end },
     { dapLeader .. "P", function() require "dap".pause() end },
     { dapLeader .. "c", function() require "dap".continue() end },
