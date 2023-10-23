@@ -56,7 +56,7 @@ export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
 export MANPAGER="nvim +Man!"
 
-export PAGER="bat"
+export PAGER=nvimpager
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"

@@ -1,2 +1,3 @@
 [filechooser]
 cmd=xdg-desktop-portal.FileChooser
+default_dir=/home/euro/Downloads

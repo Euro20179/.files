@@ -8,17 +8,23 @@ local config_home = vim.fn.getenv("XDG_CONFIG_HOME")
 local i = 3
 while i < #dirs do
     local dir = dirs[i]
-    items[#items+1] = "[" .. dir .. "]" .. "{/ " .. config_home .. "/" .. dir .. "}"
+    items[#items + 1] = "[" .. dir .. "]" .. "{/ " .. config_home .. "/" .. dir .. "}"
     i = i + 1
 end
 
 local function open_path(path)
-    local dirname = vim.fs.dirname(path)
-    vim.cmd.cd(vim.fs.dirname(path))
-    --if it's the same, open the directory
-    if dirname .. "/" == path then
+    local dirname = vim.trim(vim.fs.dirname(path))
+    vim.cmd.cd(dirname)
+    local files = {}
+    for name, type in vim.fs.dir(dirname) do
+        files[#files + 1] = name
+    end
+    if #files == 1 then
+        vim.cmd.edit(files[1])
+        --if it's the same, open the directory
+    elseif dirname .. "/" == path then
         vim.cmd.edit(".")
-    --otherwise there is a specific file that should be opened
+        --otherwise there is a specific file that should be opened
     else
         vim.cmd.edit(path)
     end
@@ -29,7 +35,9 @@ local configs = {
     n = "~/.config/nvim/init.lua",
     h = "~/.config/hypr/hyprland.conf",
     w = "~/.config/waybar/config.jsonc",
-    f = "~/.config/foot/foot.ini"
+    f = "~/.config/foot/foot.ini",
+    s = "~/.config/.shellrc",
+    z = "~/.config/.zshrc"
 }
 local name_regex = vim.regex("\\(\\[\\)\\@<=.*\\(\\]\\)\\@=")
 local path_regex = vim.regex("\\({/ \\)\\@<=.*\\(}\\)\\@=")
@@ -41,8 +49,8 @@ for _, conf in ipairs(items) do
     configs[conf_name] = path
     configs[#configs + 1] = conf_name
 end
-if configs[string.lower(args[#args])] then
-    local path = configs[string.lower(args[#args])]
+if configs[string.lower(args[#args])] or configs[string.lower(args[#args]) .. "/"] then
+    local path = configs[string.lower(args[#args])] or configs[string.lower(args[#args]) .. "/"]
     open_path(path)
 else
     vim.ui.select(configs, { prompt = "Select config" }, function(line)

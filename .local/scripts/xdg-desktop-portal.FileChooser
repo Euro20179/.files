@@ -9,17 +9,21 @@ out="$5"
 declare -a args
 
 if [ "$save" -eq 1 ]; then
-    args=(--choosefile="$out" "${path%/*}")
+    args=(--chooser-file="${out}")
+    # args=(--choosefile="$out" "${path%/*}")
     printf "%s\n" "HOLDER file for caller, this is where data will be saved" > "$path"
 elif [ "$dir" -eq 1 ]; then
-    args=(--choosedir="$out" --show-only-dirs)
+    args=(--chooser-file="${out}")
+    # args=(--choosedir="$out" --show-only-dirs)
 elif [ "$multiple" -eq 1 ];  then
-    args=(--choosefiles="$out")
+    args=(--chooser-file="${out}")
+    # args=(--choosefiles="$out")
 else
-    args=(--choosefile="$out")
+    args=(--chooser-file="${out}")
+    # args=(--choosefile="$out")
 fi
 
-$TERMINAL -e ranger "${args[@]}"
+$TERMINAL -e yazi "${args[@]}"
 
 if [ "$save" -eq 1 ] && [ ! -s "$out" ]; then
     rm "$path"
