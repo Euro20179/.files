@@ -317,13 +317,13 @@ require("lazy").setup({
     {
         "echasnovski/mini.nvim",
         config = function()
-            require"mini.pairs".setup{}
-            require"mini.comment".setup{}
-            require"mini.ai".setup{}
-            require"mini.splitjoin".setup{
+            require "mini.pairs".setup {}
+            require "mini.comment".setup {}
+            require "mini.ai".setup {}
+            require "mini.splitjoin".setup {
                 join = {
                     hooks_post = {
-                        function ()
+                        function()
                             vim.api.nvim_cmd({
                                 cmd = "norm",
                                 args = { "ysib " }
@@ -332,10 +332,10 @@ require("lazy").setup({
                     }
                 }
             }
-            require"mini.indentscope".setup{
+            require "mini.indentscope".setup {
                 delay = 0
             }
-            require"mini.operators".setup{
+            require "mini.operators".setup {
                 exchange = {
                     prefix = "yx"
                 },
@@ -344,5 +344,5 @@ require("lazy").setup({
                 }
             }
         end
-    },
+    }
 })

@@ -78,6 +78,7 @@ export TRASH="$HOME/.local/share/trash"
 
 alias t='tmux'
 
+alias y=yazi
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 alias img="nvim -b +DisplayImg"
 alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'

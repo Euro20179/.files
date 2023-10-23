@@ -13,7 +13,8 @@ while i < #dirs do
 end
 
 local function open_path(path)
-    local dirname = vim.trim(vim.fs.dirname(path))
+    path = vim.trim(path)
+    local dirname = vim.fs.dirname(path)
     vim.cmd.cd(dirname)
     local files = {}
     for name, type in vim.fs.dir(dirname) do
@@ -22,7 +23,7 @@ local function open_path(path)
     if #files == 1 then
         vim.cmd.edit(files[1])
         --if it's the same, open the directory
-    elseif dirname .. "/" == path then
+    elseif dirname .. "/" == path or dirname == path then
         vim.cmd.edit(".")
         --otherwise there is a specific file that should be opened
     else
