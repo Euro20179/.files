@@ -26,8 +26,8 @@ require("lazy").setup({
     'hrsh7th/cmp-emoji',
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     'hrsh7th/nvim-cmp',
-    'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
+    -- 'L3MON4D3/LuaSnip',
+    -- 'saadparwaiz1/cmp_luasnip',
     'flazz/vim-colorschemes',
     {
         'ray-x/lsp_signature.nvim',
@@ -344,5 +344,5 @@ require("lazy").setup({
                 }
             }
         end
-    }
+    },
 })

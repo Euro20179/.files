@@ -1,5 +1,5 @@
 local cmp = require 'cmp'
-local luasnip = require "luasnip"
+-- local luasnip = require "luasnip"
 
 local kind_icons = {
     Text = "",
@@ -36,7 +36,8 @@ cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            vim.snippet.expand(args.body)
+            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     formatting = {
@@ -47,7 +48,7 @@ cmp.setup({
                 --buffer = "-",
                 nvim_lsp = "*",
                 spell = "S",
-                luasnip = "",
+                -- luasnip = "",
                 treesitter = "",
                 --nvim_lua = "[Lua]",
                 --latex_symbols = "[LaTeX]",
@@ -82,24 +83,34 @@ cmp.setup({
         ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ['<CR>'] = cmp.mapping.confirm(),
         ["<tab>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
+            if vim.snippet.jumpable(1) then
+                vim.snippet.jump(1)
             else
                 fallback()
             end
+            -- if luasnip.expand_or_jumpable() then
+            --     luasnip.expand_or_jump()
+            -- else
+            --     fallback()
+            -- end
         end),
         ["<s-tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            if vim.snippet.jumpable(-1) then
+                vim.snippet.jump(-1)
             else
                 fallback()
             end
+            -- if luasnip.jumpable(-1) then
+            --     luasnip.jump(-1)
+            -- else
+            --     fallback()
+            -- end
         end)
     }),
     sources = cmp.config.sources({
         -- { name = 'nvim_lsp_signature_help', autocomplete = false },
         { name = 'nvim_lsp' },
-        { name = 'luasnip' }, -- For luasnip users.
+        -- { name = 'luasnip' }, -- For luasnip users.
         { name = 'buffer' },
         { name = 'path' },
         { name = "spell" },

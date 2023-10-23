@@ -298,24 +298,24 @@ local iShortcuts = {
     --     end,
     --     { expr = true, silent = true }
     -- },
-    { "<c-n>",
-        function()
-            if require("luasnip").choice_active() then
-                return '<Plug>luasnip-next-choice'
-            end
-            return '<c-n>'
-        end,
-        { silent = true, expr = true }
-    },
-    { "<c-p>",
-        function()
-            if require "luasnip".choice_active() then
-                return '<Plug>luasnip-prev-choice'
-            end
-            return '<c-p>'
-        end,
-        { silent = true, expr = true }
-    },
+    -- { "<c-n>",
+    --     function()
+    --         if require("luasnip").choice_active() then
+    --             return '<Plug>luasnip-next-choice'
+    --         end
+    --         return '<c-n>'
+    --     end,
+    --     { silent = true, expr = true }
+    -- },
+    -- { "<c-p>",
+    --     function()
+    --         if require "luasnip".choice_active() then
+    --             return '<Plug>luasnip-prev-choice'
+    --         end
+    --         return '<c-p>'
+    --     end,
+    --     { silent = true, expr = true }
+    -- },
     -- }}}
     -- Util Functions {{{
     { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },
@@ -368,8 +368,8 @@ end --}}}
 -- Select Mode {{{
 local sShortcuts = {
     --luasnip {{{
-    { "<Tab>",   "<cmd>lua require('luasnip').jump(1)<Cr>" },
-    { "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>" },
+    { "<Tab>",   "<cmd>lua vim.snippet.jump(1)<Cr>" },
+    { "<S-Tab>", "<cmd>lua vim.snippet.jump(-1)<Cr>" },
     --visual also binds this for some reason?
     { "C",       "C",                                       expr = true },
     { "D",       "D",                                       expr = true },
