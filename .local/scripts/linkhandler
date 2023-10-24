@@ -10,9 +10,11 @@ case "$mime" in
     image/*) sxiv "$link"; exit 0 ;;
     text/*|plain/*) $TERMINAL $EDITOR "$link"; exit 0 ;;
     video/*|audio/*) mpv "$link"; exit 0 ;;
+    application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
 esac
 case "$link" in
     file://*|/*|~/*|./*) $TERMINAL $EDITOR "$link" ;;
+    *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
     https://cdn.discordapp.com/attachments/*)

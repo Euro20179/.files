@@ -54,8 +54,8 @@ keymap = [
 	{ on = [ "P" ],         exec = "paste --force",                                        desc = "Paste the files (overwrite if the destination exists)" },
 	{ on = [ "-" ],         exec = "link",                                                 desc = "Symlink the absolute path of files" },
 	{ on = [ "_" ],         exec = "link --relative",                                      desc = "Symlink the relative path of files" },
-	{ on = [ "d" ],         exec = [ "remove", "escape --visual --select" ],               desc = "Move the files to the trash" },
-	{ on = [ "D" ],         exec = [ "remove --permanently", "escape --visual --select" ], desc = "Permanently delete the files" },
+	{ on = [ "d", "d" ],         exec = [ "remove", "escape --visual --select" ],               desc = "Move the files to the trash" },
+	{ on = [ "d", "D" ],         exec = [ "remove --permanently", "escape --visual --select" ], desc = "Permanently delete the files" },
 	{ on = [ "a" ],         exec = "create",                                               desc = "Create a file or directory (ends with / for directories)" },
 	{ on = [ "r" ],         exec = "rename",                                               desc = "Rename a file or directory" },
 	{ on = [ ";" ],         exec = "shell",                                                desc = "Run a shell command" },
@@ -68,7 +68,7 @@ keymap = [
 	{ on = [ "Z" ],         exec = "jump fzf",                                             desc = "Jump to a directory, or reveal a file using fzf" },
 
     # Run through script
-    { on = [ "f" ],         exec = ["copy path", "shell 'ripdrag $1'"],                    desc = "ripdrag the file"},
+    { on = [ "f" ],         exec = ["copy path", "shell 'ripdrag \"$@\"'"],                    desc = "ripdrag the file"},
 
 	# Linemode
 	{ on = [ "m", "s" ], exec = "linemode size",        desc = "Set linemode to size" },
@@ -123,11 +123,12 @@ keymap = [
 	{ on = [ "w" ], exec = "tasks_show", desc = "Show the tasks manager" },
 
 	# Goto
-	{ on = [ "g", "h" ],       exec = "cd ~",             desc = "Go to the home directory" },
-	{ on = [ "g", "c" ],       exec = "cd ~/.config",     desc = "Go to the config directory" },
-	{ on = [ "g", "d" ],       exec = "cd ~/Downloads",   desc = "Go to the downloads directory" },
-	{ on = [ "g", "t" ],       exec = "cd /tmp",          desc = "Go to the temporary directory" },
-	{ on = [ "g", "<Space>" ], exec = "cd --interactive", desc = "Go to a directory interactively" },
+	{ on = [ "d", "h" ],       exec = "cd ~",             desc = "Go to the home directory" },
+	{ on = [ "d", "." ],       exec = "cd ~/.config",     desc = "Go to the config directory" },
+	{ on = [ "d", "s" ],       exec = "cd ~/Downloads",   desc = "Go to the downloads directory" },
+	{ on = [ "d", "F" ],       exec = "cd ~/Documents",   desc = "Go to the documents directory" },
+	{ on = [ "d", "t" ],       exec = "cd /tmp",          desc = "Go to the temporary directory" },
+	{ on = [ "d", "<Space>" ], exec = "cd --interactive", desc = "Go to a directory interactively" },
 
 	# Help
 	{ on = [ "~" ], exec = "help", desc = "Open help" },

@@ -41,10 +41,12 @@ max_thread_count=40
 #elif in tty:
     # use catimg
 if [ "$__is_fzf_preview" -eq 0 ]; then
-    [ "$XDG_SESSION_TYPE" = "wayland" ] && {
-        load_thumbnail_viewer wayland
-        # [ "$SWAYSOCK" ] && thumbnail_viewer="sixel"
-        # [ "$HYPRLAND_INSTANCE_SIGNATURE" ] && thumbnail_viewer="swayimg-hyprland"
-    }
-    [ "$XDG_SESSION_TYPE" = "X11" ] && thumbnail_viewer=ueberzug
+    load_thumbnail_viewer sixel
+    #[ $TERM = foot ] && {
+    #    load_thumbnail_viewer sixel
+    #} || [ "$XDG_SESSION_TYPE" = "wayland" ] && {
+    #    load_thumbnail_viewer wayland
+    #    # [ "$SWAYSOCK" ] && thumbnail_viewer="sixel"
+    #    # [ "$HYPRLAND_INSTANCE_SIGNATURE" ] && thumbnail_viewer="swayimg-hyprland"
+    #} || [ "$XDG_SESSION_TYPE" = "X11" ] && thumbnail_viewer=ueberzug
 fi

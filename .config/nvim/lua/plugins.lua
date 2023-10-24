@@ -113,12 +113,14 @@ require("lazy").setup({
                     }
                 },
                 ["core.ui"] = {},
-                ["core.ui.calendar"] = {}
+                ["core.ui.calendar"] = {},
+                ["external.exec"] = {}
             }
         },
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-neorg/neorg-telescope",
+            "laher/neorg-exec"
         }
     },
     {
@@ -344,5 +346,9 @@ require("lazy").setup({
                 }
             }
         end
+    },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        opts = {}
     }
 })

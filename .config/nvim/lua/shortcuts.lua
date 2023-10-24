@@ -254,6 +254,7 @@ local nShortcuts = {
     { "<c-k>",           "<C-w>k" },
     --}}}
     -- Util Functions {{{
+        { utilLeader .. "e", ":Neorg exec cursor<CR>"},
     { utilLeader .. "W", "\"=v:lua.Rword()<cr>p" },
     { utilLeader .. "y", function()
         Ytfzf({
@@ -358,6 +359,7 @@ local vShortcuts = {
     { "<c-j>",      "<C-w>j" },
     { "<c-h>",      "<C-w>h" },
     { "<c-k>",      "<C-w>k" },
+    { utilLeader .. "e", ":Exec<CR>"},
     -- copying {{{
     { "<leader>y",  "\"+y" },
     { "<leader>d",  "\"_d" },
