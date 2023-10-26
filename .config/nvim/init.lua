@@ -32,6 +32,8 @@ require "discord".setup {
 
 vim.fn.setenv("IN_VIM", "true")
 
+vim.fn.setenv("NVIM", vim.v.servername)
+
 -- require "filetypes"
 
 local cs = require 'colorscheme'

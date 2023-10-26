@@ -6,23 +6,31 @@ link="$*"
 
 mime=$(file --mime-type "$*" | cut -d: -f2 | tr -d ' ')
 
+EDITOR="$TERMINAL $EDITOR"
+
 #website="$(printf "%s" "$link" | grep -Po "://.*?/" | sed -E 's/(:\/)?\///g')"
 
 case "$mime" in
     image/*) sxiv "$link"; exit 0 ;;
     text/*|plain/*)
         [ $LH_NO_EDIT = 1 ] && exit 1
-        $TERMINAL $EDITOR "$link"; exit 0 ;;
+         $EDITOR "$link"; exit 0 ;;
     video/*|audio/*) mpv "$link"; exit 0 ;;
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
 esac
 case "$link" in
     file://*|/*|~/*|./*)
         [ $LH_NO_EDIT = 1 ] && exit 1
-        $TERMINAL $EDITOR "$link" ;;
+         $EDITOR "$link" ;;
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
+    man://*|man:)
+        grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man:}"; link="${link#//}"; }
+$MANPAGER
+EOF
+        #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
+        [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" $MANPAGER "$link" ;;
     https://cdn.discordapp.com/attachments/*)
         tmp=$(mktemp)
         curl "$link" > "$tmp"
@@ -33,7 +41,7 @@ case "$link" in
         file_path=${link#*/blob/}
         repo="${link%%/blob/*}"
         repo="${repo#https://github.com/}"
-        "${TERMINAL}" $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
+        $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
     *)
         if yt-dlp -s "$link" > /dev/null 2>&1; then
             nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
