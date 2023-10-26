@@ -2,7 +2,7 @@ local key = vim.fn.readfile("/home/euro/Documents/APIKeys/hggf.key")[1]
 require("lazy").setup({
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
-    "nvim-telescope/telescope-ui-select.nvim",
+    -- "nvim-telescope/telescope-ui-select.nvim",
     {
         'nvim-telescope/telescope.nvim',
         config = function()
@@ -14,7 +14,7 @@ require("lazy").setup({
                     }
                 }
             }
-            require "telescope".load_extension("ui-select")
+            -- require "telescope".load_extension("ui-select")
         end
     },
     'nvim-telescope/telescope-symbols.nvim',
@@ -256,6 +256,19 @@ require("lazy").setup({
     {
         "nvim-neo-tree/neo-tree.nvim",
         opts = {
+            event_handlers = {
+                {
+                    event = "file_open_requested",
+                    handler = function(arg)
+                        vim.fn.setenv("LH_NO_EDIT", "1")
+                        local res = vim.system({"linkhandler", arg.path}):wait()
+                        if res.code == 1 then
+                            return { handled = false }
+                        end
+                        return { handled = true }
+                    end
+                }
+            },
             filesystem = {
                 hijack_netrw_behavior = "open_current"
             }
@@ -350,5 +363,5 @@ require("lazy").setup({
     {
         "ThePrimeagen/refactoring.nvim",
         opts = {}
-    }
+    },
 })

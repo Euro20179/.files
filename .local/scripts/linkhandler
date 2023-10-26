@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#LH_NO_EDIT is used in my nvim config to say, dont edit just exit with an error to let nvim handle the editing
+
 link="$*"
 
 mime=$(file --mime-type "$*" | cut -d: -f2 | tr -d ' ')
@@ -8,12 +10,16 @@ mime=$(file --mime-type "$*" | cut -d: -f2 | tr -d ' ')
 
 case "$mime" in
     image/*) sxiv "$link"; exit 0 ;;
-    text/*|plain/*) $TERMINAL $EDITOR "$link"; exit 0 ;;
+    text/*|plain/*)
+        [ $LH_NO_EDIT = 1 ] && exit 1
+        $TERMINAL $EDITOR "$link"; exit 0 ;;
     video/*|audio/*) mpv "$link"; exit 0 ;;
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
 esac
 case "$link" in
-    file://*|/*|~/*|./*) $TERMINAL $EDITOR "$link" ;;
+    file://*|/*|~/*|./*)
+        [ $LH_NO_EDIT = 1 ] && exit 1
+        $TERMINAL $EDITOR "$link" ;;
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
@@ -23,6 +29,7 @@ case "$link" in
         linkhandler "$tmp"
         rm "$tmp" ;;
     https://github.com/*/blob/*)
+        [ $LH_NO_EDIT = 1 ] && exit 1
         file_path=${link#*/blob/}
         repo="${link%%/blob/*}"
         repo="${repo#https://github.com/}"

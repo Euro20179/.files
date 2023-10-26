@@ -9,22 +9,25 @@ out="$5"
 declare -a args
 
 if [ "$save" -eq 1 ]; then
-    args=(--chooser-file="${out}")
-    # args=(--choosefile="$out" "${path%/*}")
-    printf "%s\n" "HOLDER file for caller, this is where data will be saved" > "$path"
+	cwd_file=$(mktemp)
+	$TERMINAL -e yazi --cwd-file=$cwd_file
+	read -r cwd <"$cwd_file"
+	args=(--chooser-file="${out}" "$cwd")
+	# args=(--choosefile="$out" "${path%/*}")
+	printf "%s\n" "HOLDER file for caller, this is where data will be saved" >"$path"
 elif [ "$dir" -eq 1 ]; then
-    args=(--chooser-file="${out}")
-    # args=(--choosedir="$out" --show-only-dirs)
-elif [ "$multiple" -eq 1 ];  then
-    args=(--chooser-file="${out}")
-    # args=(--choosefiles="$out")
+	args=(--chooser-file="${out}")
+	# args=(--choosedir="$out" --show-only-dirs)
+elif [ "$multiple" -eq 1 ]; then
+	args=(--chooser-file="${out}")
+	# args=(--choosefiles="$out")
 else
-    args=(--chooser-file="${out}")
-    # args=(--choosefile="$out")
+	args=(--chooser-file="${out}")
+	# args=(--choosefile="$out")
 fi
 
 $TERMINAL -e yazi "${args[@]}"
 
 if [ "$save" -eq 1 ] && [ ! -s "$out" ]; then
-    rm "$path"
+	rm "$path"
 fi
