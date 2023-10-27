@@ -38,7 +38,8 @@ local configs = {
     w = "~/.config/waybar/config.jsonc",
     f = "~/.config/foot/foot.ini",
     s = "~/.config/.shellrc",
-    z = "~/.config/.zshrc"
+    z = "~/.config/.zshrc",
+    wl = "~/.config/wlinit"
 }
 local name_regex = vim.regex("\\(\\[\\)\\@<=.*\\(\\]\\)\\@=")
 local path_regex = vim.regex("\\({/ \\)\\@<=.*\\(}\\)\\@=")
@@ -54,10 +55,14 @@ if configs[string.lower(args[#args])] or configs[string.lower(args[#args]) .. "/
     local path = configs[string.lower(args[#args])] or configs[string.lower(args[#args]) .. "/"]
     open_path(path)
 else
+    for k, v in pairs(configs) do
+        if type(k) == 'string' then
+            configs[k] = nil
+        end
+    end
     vim.ui.select(configs, { prompt = "Select config" }, function(line)
-        local path = configs[line]
         vim.schedule(function()
-            open_path(path)
+            open_path(vim.fn.getenv("XDG_CONFIG_HOME") .. "/" .. line)
         end)
     end)
 end

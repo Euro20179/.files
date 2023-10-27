@@ -2,7 +2,7 @@ local key = vim.fn.readfile("/home/euro/Documents/APIKeys/hggf.key")[1]
 require("lazy").setup({
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
-    -- "nvim-telescope/telescope-ui-select.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
     {
         'nvim-telescope/telescope.nvim',
         config = function()
@@ -14,7 +14,7 @@ require("lazy").setup({
                     }
                 }
             }
-            -- require "telescope".load_extension("ui-select")
+            require "telescope".load_extension("ui-select")
         end
     },
     'nvim-telescope/telescope-symbols.nvim',
