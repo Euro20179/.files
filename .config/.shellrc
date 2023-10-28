@@ -80,6 +80,8 @@ alias t='tmux'
 
 alias paru=pikaur
 
+alias u="sudo pikaur -Syu"
+
 alias y=yazi
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 alias img="nvim -b +DisplayImg"

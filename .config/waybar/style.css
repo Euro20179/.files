@@ -2,20 +2,27 @@
 @define-color theme-color-dark #689C9A;
 @define-color theme-color-bad #F28FAD;
 @define-color theme-color-medium #F8BD96;
+@define-color theme-main #181825;
 * {
     font-size: 13px;
 }
 
-.modules-right widget:nth-child(2n) label,
-.modules-left widget:nth-child(2n) label,
-.modules-center widget:nth-child(2n) label{
-    border: 2px solid @theme-color;
+.modules-right, .modules-left, .modules-center {
+    background-color: @theme-main;
+    border-radius: 10px;
+    border: 1px solid white;
 }
-.modules-right widget:nth-child(2n - 1) label,
-.modules-left widget:nth-child(2n - 1) label,
-.modules-center widget:nth-child(2n - 1) label {
-    border: 2px solid @theme-color-dark;
-}
+
+/* .modules-right widget:nth-child(2n) label, */
+/* .modules-left widget:nth-child(2n) label, */
+/* .modules-center widget:nth-child(2n) label{ */
+/*     border: 2px solid @theme-color; */
+/* } */
+/* .modules-right widget:nth-child(2n - 1) label, */
+/* .modules-left widget:nth-child(2n - 1) label, */
+/* .modules-center widget:nth-child(2n - 1) label { */
+/*     border: 2px solid @theme-color-dark; */
+/* } */
 
 .modules-left,
 .modules-right,
@@ -34,13 +41,13 @@ tooltip label{
 
 
 #tray {
-    border: 2px solid @theme-color-bad;
+    /* border: 2px solid @theme-color-bad; */
     padding: 5px 10px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.2);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: transparent;
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
     color: white;
     transition-property: background-color;
     transition-duration: .5s;
@@ -200,34 +207,34 @@ label:focus {
 
 .modules-right #custom-cpu-temp.medium,
 .modules-right #custom-gpu-temp.medium {
-    border-color: @theme-color-medium;
+    color: @theme-color-medium;
 }
 
 .modules-right #custom-cpu-temp.hot,
 .modules-right #custom-gpu-temp.hot {
-    background-color: @theme-color-bad;
-    border-color: @theme-color-bad;
+    /* background-color: @theme-color-bad; */
+    color: @theme-color-bad;
 }
 
 .modules-right #custom-cpu-temp.warning,
 .modules-right #custom-gpu-temp.warning {
-    border-color: #db5959;
+    color: #db5959;
 }
 
 .modules-right #custom-memory.medium {
-    border-color: @theme-color-medium;
+    color: @theme-color-medium;
 }
 .modules-right #custom-memory.high {
-    background-color: @theme-color-bad;
+    color: @theme-color-bad;
 }
 
 
 .modules-right #network.disconnected {
-    background-color: @theme-color-bad;
+    color: @theme-color-bad;
 }
 
 #pulseaudio.muted {
-    background-color: @theme-color-bad;
+    color: @theme-color-bad;
 }
 
 #custom-media {
@@ -326,9 +333,9 @@ label:focus {
 }
 
 #disk.medium{
-    background-color: @theme-color-medium;
+    color: @theme-color-medium;
 }
 
 #disk.high{
-    background-color: @theme-color-bad;
+    color: @theme-color-bad;
 }
