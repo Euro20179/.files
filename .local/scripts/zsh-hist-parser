@@ -1,0 +1,57 @@
+#!/bin/python
+
+import json
+from collections import defaultdict
+
+with open(".local/share/zsh_history", "rb") as f:
+    data = f.read()
+
+def parse_cmd(cmd: bytes):
+    current_cmd_name = b""
+    build_cmd = True
+    escape = False
+    instr = False
+    strType = ""
+    for char in cmd:
+        char = char.to_bytes()
+        if char == b"\\":
+            if not escape:
+                escape = True
+                continue
+
+        elif char == b" ":
+            if not escape and not instr:
+                yield current_cmd_name
+                current_cmd_name = b""
+                build_cmd = False
+                continue
+        elif char == b";":
+            if not escape:
+                yield current_cmd_name
+                current_cmd_name = b""
+                build_cmd = True
+                continue
+        elif char == b'"' or char == b"'":
+            if not escape and (strType == char or strType == ""):
+                instr = not instr
+                if instr:
+                    strType = char
+                else: strType = ""
+
+        escape = False
+
+        if build_cmd:
+            current_cmd_name += bytes(char)
+    if current_cmd_name:
+        yield current_cmd_name
+
+cmd_usage = defaultdict(lambda: 0)
+
+for line in data.splitlines():
+    for cmd in parse_cmd(line):
+        if cmd == b"": continue
+        cmd_usage[cmd.decode("latin-1")] += 1
+
+sorted_data = list(sorted(cmd_usage.items(), key=lambda kv: kv[1], reverse=True))
+
+print(json.dumps(sorted_data))
