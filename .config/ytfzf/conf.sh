@@ -191,6 +191,12 @@ handle_keypress_alt_r () {
 
 }
 
+#alt-c copy
+handle_keypress_alt_c() {
+    printf "\033]52;c;$(base64 "$ytfzf_selected_urls")\033\\"
+    return 2
+}
+
 #alt-b shortcut
 #open in browser
 handle_keypress_alt_b () {

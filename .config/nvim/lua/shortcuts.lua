@@ -429,6 +429,10 @@ vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
 vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
 vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
 
+vim.keymap.set({"o", "x"}, "gC", function()
+    require"various-textobjs".multiCommentedLines()
+end)
+
 vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()
 end)
