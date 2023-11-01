@@ -78,9 +78,7 @@ export TRASH="$HOME/.local/share/trash"
 
 alias t='tmux'
 
-alias paru=pikaur
-
-alias u="sudo pikaur -Syu"
+alias u="paru"
 
 alias y=yazi
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
