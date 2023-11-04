@@ -16,6 +16,11 @@ lspconfig['emmet_ls'].setup{
     filetypes = { "html" }
 }
 
+lspconfig["raku_navigator"].setup{
+    capabilities = capabilities,
+    cmd = {"raku-navigator", "--stdio"}
+}
+
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
 
 lspconfig['lua_ls'].setup{

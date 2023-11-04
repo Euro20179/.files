@@ -4,7 +4,8 @@
 
 link="$*"
 
-mime=$(file --mime-type "$*" | cut -d: -f2 | tr -d ' ')
+#rev cut rev gets the last field
+mime=$(file --mime-type "$*" | rev | cut -d: -f1 | rev | tr -d ' ')
 
 EDITOR="$TERMINAL $EDITOR"
 
@@ -19,11 +20,17 @@ case "$mime" in
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
 esac
 case "$link" in
+    *.swf) flashplayer "$link" ;;
+    *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
+    #mpv works if there is a password in the url
+    sftp://*:*@*.m3u8) mpv "$link" & ;;
+    #otherwise use vlc
+    sftp://*.m3u8) vlc "$link" & ;;
+    #all other m3u8's go to mpv
+    *.m3u8) mpv "$link" & ;;
     file://*|/*|~/*|./*)
         [ $LH_NO_EDIT = 1 ] && exit 1
          $EDITOR "$link" ;;
-    *.swf) flashplayer "$link" ;;
-    *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
     man://*|man:)
         grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man:}"; link="${link#//}"; }
@@ -42,6 +49,7 @@ EOF
         repo="${link%%/blob/*}"
         repo="${repo#https://github.com/}"
         $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
+    sftp://*) nemo "$link" ;;
     *)
         if yt-dlp -s "$link" > /dev/null 2>&1; then
             nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &

@@ -10,18 +10,23 @@ declare -a args
 
 if [ "$save" -eq 1 ]; then
 	cwd_file=$(mktemp)
+    notify-send "choose directory to save in"
 	$TERMINAL -e yazi --cwd-file=$cwd_file
 	read -r cwd <"$cwd_file"
+    notify-send "Choose file to save in"
 	args=(--chooser-file="${out}" "$cwd")
 	# args=(--choosefile="$out" "${path%/*}")
 	printf "%s\n" "HOLDER file for caller, this is where data will be saved" >"$path"
 elif [ "$dir" -eq 1 ]; then
-	args=(--chooser-file="${out}")
+    notify-send "Choose directory"
+	args=(--cwd-file="${out}")
 	# args=(--choosedir="$out" --show-only-dirs)
 elif [ "$multiple" -eq 1 ]; then
+    notify-send "Choose multiple files"
 	args=(--chooser-file="${out}")
 	# args=(--choosefiles="$out")
 else
+    notify-send "Choose files"
 	args=(--chooser-file="${out}")
 	# args=(--choosefile="$out")
 fi
