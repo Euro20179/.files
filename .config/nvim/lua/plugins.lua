@@ -364,4 +364,7 @@ require("lazy").setup({
         "ThePrimeagen/refactoring.nvim",
         opts = {}
     },
+    {
+        "elkowar/yuck.vim"
+    }
 })

@@ -43,4 +43,7 @@ hyprland-autoname-workspaces & disown
 #needs manual intervention
 /usr/lib/xdg-desktop-portal-termfilechooser -r & disown
 
+# killall workspace-iconifier
+# workspace-iconifier & disown
+
 hyprctl setcursor Bibata-Modern-Ice 24

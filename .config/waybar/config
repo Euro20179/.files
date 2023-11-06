@@ -1,12 +1,13 @@
 {
+    "output": ["HDMI-A-1", "DP-2", "DP-3"],
   "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 30, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
+  "position": "left", // Waybar position (top|bottom|left|right)
+  "height": 1080, // Waybar height (to be removed for auto height)
+  "width": 10, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
   // "modules-left": ["river/tags"],
-  "modules-left": ["hyprland/workspaces", "custom/osu"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": ["custom/vpn-location"],
   "modules-right": [
     "disk",
@@ -22,8 +23,10 @@
     "tray"
   ],
   "hyprland/workspaces": {
-    "format": "{name} {windows}",
+    "format": "{icon} {name}\n{windows}",
+    "all-outputs": true,
     "show-special": true,
+    "format-window-separator": "\n",
     "window-rewrite": {
       "firefox": "",
       "footclient": "",
@@ -34,6 +37,11 @@
       "org.qbittorrent.qBittorrent": "󰥥",
       "osu!\\.exe": "󰎄",
       ".*steam.*": "󰓓"
+    },
+    "format-icons": {
+        "default": "",
+        "active": "*",
+        "urgent": "!"
     }
   },
   "mpd": {
@@ -95,7 +103,7 @@
     // "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}",
-    "format": "{:%m-%d · %H:%M:%S}",
+    "format": "{:%m-%d%n%H:%M}",
     "interval": 1
   },
   "cpu": {
@@ -117,7 +125,7 @@
   "custom/memory": {
     "exec": "$HOME/.config/waybar/memory.sh",
     "return-type": "json",
-    "format": "{percentage}% ",
+    "format": "{percentage} ",
     "interval": 5
   },
   "temperature": {
@@ -149,21 +157,21 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} {icon}",
+    "format-wifi": "{icon}",
     "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%) ",
+    "tooltip-format": "{essid}\n{ifname} via {gwaddr} ({signalStrength}%) ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "D⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
     "format-icons": ["󰤟", "󰤟", "󰤥", "󰤥"]
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
+    "format": "{volume} {icon}\n{format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": "🔇 {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
+    "format-muted": "{format_source}",
+    "format-source": "{volume} ",
     "format-source-muted": "",
     "format-icons": ["", "", ""],
     "on-click": "helvum"
@@ -183,7 +191,7 @@
   "disk": {
     "interval": 30,
     "path": "/home",
-    "format": "<span>{used}</span>/<span>{free}</span> 󰋊",
+    "format": "<span>{percentage_used}%</span>󰋊",
     "states": {
       "low": 0,
       "medium": 50,

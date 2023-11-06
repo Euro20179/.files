@@ -26,6 +26,8 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 export XDG_MUSIC_HOME=${XDG_MUSIC_HOME:="$HOME/Songs"}
 export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
 
+export WORDCHARS="*?[]~=&;!#$%^(){}<>"
+
 export LYNX_CFG="${XDG_CONFIG_HOME}/lynx/lynx.cfg"
 
 export WALLPAPER="$XDG_PICTURES_HOME/system-images/desktop.png"
@@ -56,7 +58,11 @@ export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
 export MANPAGER="nvim +Man!"
 
-export PAGER=nvimpager
+_pager(){
+    nvimpager | nvim
+}
+
+export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
