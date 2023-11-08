@@ -7,9 +7,15 @@ export HISTFILE=~/.local/share/zsh_history
 
 setopt inc_append_history share_history
 
-bindkey -v
-
 unsetopt BEEP
+
+bindkey -v
+bindkey '^b' backward-char
+bindkey '^f' forward-char
+bindkey '^a' beginning-of-line
+bindkey '^g' end-of-line
+bindkey '^e' forward-word
+bindkey '^p' backward-word
 
 #allow better tab completion
 autoload -U compinit

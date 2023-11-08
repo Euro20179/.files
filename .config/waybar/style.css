@@ -32,7 +32,6 @@
 }
 
 label{
-    color: white;
     padding: 5px 2px;
 }
 
@@ -208,31 +207,31 @@ label:focus {
 }
 
 
-.modules-right #custom-cpu-temp.medium,
-.modules-right #custom-gpu-temp.medium {
+.modules-center #custom-cpu-temp.medium,
+.modules-center #custom-gpu-temp.medium {
     color: @theme-color-medium;
 }
 
-.modules-right #custom-cpu-temp.hot,
-.modules-right #custom-gpu-temp.hot {
+.modules-center #custom-cpu-temp.hot,
+.modules-center #custom-gpu-temp.hot {
     /* background-color: @theme-color-bad; */
     color: @theme-color-bad;
 }
 
-.modules-right #custom-cpu-temp.warning,
-.modules-right #custom-gpu-temp.warning {
+.modules-center #custom-cpu-temp.warning,
+.modules-center #custom-gpu-temp.warning {
     color: #db5959;
 }
 
-.modules-right #custom-memory.medium {
+.modules-center #custom-memory.medium {
     color: @theme-color-medium;
 }
-.modules-right #custom-memory.high {
+.modules-center #custom-memory.high {
     color: @theme-color-bad;
 }
 
 
-.modules-right #network.disconnected {
+.modules-center #network.disconnected {
     color: @theme-color-bad;
 }
 

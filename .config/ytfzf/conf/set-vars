@@ -13,7 +13,7 @@ async_thumbnails=1
 notify_playing=1
 
 #do not ask for a search for these scrapers
-custom_scrape_search_exclude="invidious-popular recommended sI osu-dir instances "
+custom_scrape_search_exclude="invidious-popular recommended sI osu-dir instances cloud "
 
 sub_link_count=2
 

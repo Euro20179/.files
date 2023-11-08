@@ -27,12 +27,12 @@ set.hyprland () {
     #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
     if [ -f "$state_file" ]; then
         notify-send -c tv-mode "TV MODE" "OFF"
-        hyprctl keyword monitor DP-3,disable
+        hyprctl keyword monitor DP-2,disable
+        hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+        hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
         for i in {1..9}; do
             [ "$((i%2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
         done
-        wlr-randr --output HDMI-A-1 --pos 1920x0
-        wlr-randr --output DP-1 --pos 0x0
         rm "$state_file"
     else
         hyprctl keyword monitor DP-2,preferred,0x0,1

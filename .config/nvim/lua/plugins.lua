@@ -235,14 +235,14 @@ require("lazy").setup({
     {
         "LukasPietzschmann/telescope-tabs"
     },
-    {
-        "3rd/image.nvim",
-        cmd = "DisplayImg",
-        ft = { "markdown", "neorg" },
-        opts = {
-            backend = "ueberzug"
-        }
-    },
+    -- {
+    --     "3rd/image.nvim",
+    --     cmd = "DisplayImg",
+    --     ft = { "markdown", "neorg" },
+    --     opts = {
+    --         backend = "ueberzug"
+    --     }
+    -- },
     {
         "NeogitOrg/neogit",
         lazy = true,
@@ -366,5 +366,8 @@ require("lazy").setup({
     },
     {
         "elkowar/yuck.vim"
+    },
+    {
+        "luckasRanarison/tree-sitter-hypr"
     }
 })

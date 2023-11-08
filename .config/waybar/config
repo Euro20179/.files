@@ -8,8 +8,8 @@
   // Choose the order of the modules
   // "modules-left": ["river/tags"],
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["custom/vpn-location"],
-  "modules-right": [
+  "modules-right": ["custom/vpn-location"],
+  "modules-center": [
     "disk",
     "custom/pkg-count",
     "pulseaudio",
@@ -36,7 +36,9 @@
       "mpv": "󰈫",
       "org.qbittorrent.qBittorrent": "󰥥",
       "osu!\\.exe": "󰎄",
-      ".*steam.*": "󰓓"
+      ".*steam.*": "󰓓",
+      "makemkv": "📀",
+      "vlc": "󰕼"
     },
     "format-icons": {
         "default": "",
