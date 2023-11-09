@@ -78,7 +78,9 @@ setopt prompt_subst
 autoload -U colors && colors
 formatPath () {
     [ "$1" = "$HOME" ] && printf "%s" "" || case "$1" in
-    $HOME*) printf "%s" "${1/$HOME*/ }" "${1/*$HOME\//}" ;;
+        $CLOUD) printf "%s" "󰒋" ;;
+        $CLOUD*) printf "%s" "${1/$CLOUD*/󰒋 }" "${1/*$CLOUD\//}" ;;
+        $HOME*) printf "%s" "${1/$HOME*/ }" "${1/*$HOME\//}" ;;
     *) printf "$1" ;;
 esac
 }
