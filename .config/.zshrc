@@ -77,7 +77,10 @@ rangercd () {
 setopt prompt_subst
 autoload -U colors && colors
 formatPath () {
-    printf "%s/" "${1/$HOME/~}"
+    [ "$1" = "$HOME" ] && printf "%s" "" || case "$1" in
+    $HOME*) printf "%s" "${1/$HOME*/ }" "${1/*$HOME\//}" ;;
+    *) printf "$1" ;;
+esac
 }
 
 precmd () {
@@ -91,7 +94,7 @@ precmd () {
     fileCount="$(ls -A | wc -l)"
 }
 
-PS1='(%F{%(?.green.red)}%?%F{reset})[%F{039}$pwd%F{reset} %F{yellow}($fileCount%)%F{reset}]%F{magenta}$curr_branch% %F{reset}$ '
+PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset}%F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}%F{reset} '
 
 enable_plugin () {
     if [[ -e ~/.config/zshplugs/$1/$1.plugin.zsh ]]; then

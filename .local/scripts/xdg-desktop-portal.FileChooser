@@ -8,15 +8,18 @@ out="$5"
 
 declare -a args
 
+state_home=${XDG_STATE_HOME:-$HOME/.local/state}/xdg-desktop-portal.FileChooser
+mkdir -p "$state_home"
+
 if [ "$save" -eq 1 ]; then
-	cwd_file=$(mktemp)
     notify-send "choose directory to save in"
-	$TERMINAL -e yazi --cwd-file=$cwd_file
+    cwd_file="$state_home/cwd"
+    $TERMINAL -e yazi --cwd-file="$cwd_file" "$(cat "$cwd_file")"
 	read -r cwd <"$cwd_file"
+    notify-send "$cwd"
     notify-send "Choose file to save in"
 	args=(--chooser-file="${out}" "$cwd")
 	# args=(--choosefile="$out" "${path%/*}")
-	printf "%s\n" "HOLDER file for caller, this is where data will be saved" >"$path"
 elif [ "$dir" -eq 1 ]; then
     notify-send "Choose directory"
 	args=(--cwd-file="${out}")

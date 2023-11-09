@@ -12,6 +12,7 @@ export QT_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export XMODIFIERS='@im=fcitx'
 
+
 #xdg dirs
 export XDG_HISTORY_HOME=${XDG_HISTORY_HOME:=$HOME/.history}
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
@@ -26,7 +27,11 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 export XDG_MUSIC_HOME=${XDG_MUSIC_HOME:="$HOME/Songs"}
 export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
 
+
 export WORDCHARS="*?[]~=&;!#$%^(){}<>"
+
+export ZEF_INSTALL_TO="${XDG_DATA_HOME}/zef"
+export ZEF_CONFIG_PATH="${XDG_CONFIG_HOME}/zef"
 
 export LYNX_CFG="${XDG_CONFIG_HOME}/lynx/lynx.cfg"
 
@@ -280,6 +285,8 @@ alias rm="trash"
 alias tuir='BROWSER=linkhandler PAGER=less tuir'
 
 alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
+
+alias c='echo $?'
 
 unset welcomeStr
 

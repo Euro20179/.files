@@ -38,7 +38,11 @@
       "osu!\\.exe": "󰎄",
       ".*steam.*": "󰓓",
       "makemkv": "📀",
-      "vlc": "󰕼"
+      "vlc": "󰕼",
+      ".*Minecraft.*": "󰍳",
+      "MultiMC": "󰍳L",
+      "title<.*nvim.*\\(foot\\)>": "",
+      "title<\\./play \\(foot\\)": "󰐑"
     },
     "format-icons": {
         "default": "",

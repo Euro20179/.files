@@ -24,26 +24,35 @@ set.wayland() {
 }
 
 set.hyprland () {
-    #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
     if [ -f "$state_file" ]; then
         notify-send -c tv-mode "TV MODE" "OFF"
-        hyprctl keyword monitor DP-2,disable
-        hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
-        hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
-        for i in {1..9}; do
-            [ "$((i%2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
-        done
+        pactl set-default-sink 'alsa_output.pci-0000_2f_00.4.analog-stereo'
         rm "$state_file"
     else
-        hyprctl keyword monitor DP-2,preferred,0x0,1
-        hyprctl keyword monitor HDMI-A-1,disable
-        hyprctl keyword monitor DP-1,disable
         notify-send -c tv-mode "TV MODE" "ON"
-        for i in {1..9}; do
-            hyprctl keyword wsbind "$i,DP-3"
-        done
+        pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
         touch "$state_file"
     fi
+    # #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
+    # if [ -f "$state_file" ]; then
+    #     notify-send -c tv-mode "TV MODE" "OFF"
+    #     hyprctl keyword monitor DP-2,disable
+    #     hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+    #     hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
+    #     for i in {1..9}; do
+    #         [ "$((i%2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
+    #     done
+    #     rm "$state_file"
+    # else
+    #     hyprctl keyword monitor DP-2,preferred,0x0,1
+    #     hyprctl keyword monitor HDMI-A-1,disable
+    #     hyprctl keyword monitor DP-1,disable
+    #     notify-send -c tv-mode "TV MODE" "ON"
+    #     for i in {1..9}; do
+    #         hyprctl keyword wsbind "$i,DP-3"
+    #     done
+    #     touch "$state_file"
+    # fi
 }
 
 case "$XDG_SESSION_TYPE" in
