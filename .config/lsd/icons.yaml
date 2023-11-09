@@ -11,6 +11,9 @@ name:
   .git: 
   src: 
   .dotnet: 󰪮
+  .cache: 
+  cloud: 󰒋
+  euro: 
 extension:
   bin: 
   dat: 
