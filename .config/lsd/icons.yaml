@@ -4,6 +4,20 @@ name:
   documents: 󰲃
   videos: 
   .mozilla: 󰈹
+  .ssh: 󰣀
+  .pki: 
+  downloads: 󱃩
+  .npm: 
+  .git: 
+  src: 
+  .dotnet: 󰪮
 extension:
   bin: 
   dat: 
+  conf: 󰢻
+filetype:
+  dir: 
+  socket: 
+  device-char: 󰾺
+  pipe: 
+
