@@ -352,10 +352,10 @@ require("lazy").setup({
             }
             require "mini.operators".setup {
                 exchange = {
-                    prefix = "yx"
+                    prefix = "Yx"
                 },
                 multiply = {
-                    prefix = "yd"
+                    prefix = "Yd"
                 }
             }
         end

@@ -3,67 +3,84 @@
 state_file="${XDG_STATE_HOME:-$HOME/.local/state}/tv-mode"
 
 set.wayland() {
-    if [ -f "$state_file" ]; then
-        # i don't know why i need to use swaymsg here, but apparently I do
-        wlr-randr --output eDP-1 --on
-        wlr-randr --output HDMI-A-1 --on
-        wlr-randr --output DP-1 --off
-        wlr-randr --output eDP-1 --pos 1920,0
-        wlr-randr --output HDMI-A-1 --pos 0,0
-        rm "$state_file"
-        swaymsg 'unbindsym KP_8'
-        swaymsg 'unbindsym KP_2'
-    else
-        wlr-randr --output eDP-1 --off
-        wlr-randr --output HDMI-A-1 --off
-        wlr-randr --output DP-1 --on
-        swaymsg "bindsym KP_8 exec 'pactl set-sink-volume \$(pactl get-default-sink) +5% && send-volume-notif higher'"
-        swaymsg "bindsym KP_2 exec 'pactl set-sink-volume \$(pactl get-default-sink) -5% && send-volume-notif lower'"
-        touch "$state_file"
-    fi
+	if [ -f "$state_file" ]; then
+		# i don't know why i need to use swaymsg here, but apparently I do
+		wlr-randr --output eDP-1 --on
+		wlr-randr --output HDMI-A-1 --on
+		wlr-randr --output DP-1 --off
+		wlr-randr --output eDP-1 --pos 1920,0
+		wlr-randr --output HDMI-A-1 --pos 0,0
+		rm "$state_file"
+		swaymsg 'unbindsym KP_8'
+		swaymsg 'unbindsym KP_2'
+	else
+		wlr-randr --output eDP-1 --off
+		wlr-randr --output HDMI-A-1 --off
+		wlr-randr --output DP-1 --on
+		swaymsg "bindsym KP_8 exec 'pactl set-sink-volume \$(pactl get-default-sink) +5% && send-volume-notif higher'"
+		swaymsg "bindsym KP_2 exec 'pactl set-sink-volume \$(pactl get-default-sink) -5% && send-volume-notif lower'"
+		touch "$state_file"
+	fi
 }
 
-set.hyprland () {
-    if [ -f "$state_file" ]; then
-        notify-send -c tv-mode "TV MODE" "OFF"
-        pactl set-default-sink 'alsa_output.pci-0000_2f_00.4.analog-stereo'
-        rm "$state_file"
-    else
-        notify-send -c tv-mode "TV MODE" "ON"
-        pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
-        touch "$state_file"
-    fi
-    # #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
-    # if [ -f "$state_file" ]; then
-    #     notify-send -c tv-mode "TV MODE" "OFF"
-    #     hyprctl keyword monitor DP-2,disable
-    #     hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
-    #     hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
-    #     for i in {1..9}; do
-    #         [ "$((i%2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
-    #     done
-    #     rm "$state_file"
-    # else
-    #     hyprctl keyword monitor DP-2,preferred,0x0,1
-    #     hyprctl keyword monitor HDMI-A-1,disable
-    #     hyprctl keyword monitor DP-1,disable
-    #     notify-send -c tv-mode "TV MODE" "ON"
-    #     for i in {1..9}; do
-    #         hyprctl keyword wsbind "$i,DP-3"
-    #     done
-    #     touch "$state_file"
-    # fi
+set.hyprland() {
+	if [ -f "$state_file" ]; then
+		notify-send -c tv-mode "TV MODE" "OFF"
+		pactl set-default-sink 'alsa_output.pci-0000_2f_00.4.analog-stereo'
+		hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+		hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
+		hyprctl keyword monitor DP-2,preferred,auto,1,mirror,DP-1
+		for i in {1..9}; do
+			[ "$((i % 2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
+		done
+		rm "$state_file"
+		sleep 1
+		swww init
+
+	else
+		notify-send -c tv-mode "TV MODE" "ON"
+		pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
+		hyprctl keyword monitor HDMI-A-1,disable
+		hyprctl keyword monitor DP-1,disable
+		hyprctl keyword monitor DP-2,preferred,0x0,1
+		touch "$state_file"
+        sleep 1
+		swww init
+	fi
+	# #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
+	# if [ -f "$state_file" ]; then
+	#     notify-send -c tv-mode "TV MODE" "OFF"
+	#     hyprctl keyword monitor DP-2,disable
+	#     hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+	#     hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
+	#     for i in {1..9}; do
+	#         [ "$((i%2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
+	#     done
+	#     rm "$state_file"
+	# else
+	#     hyprctl keyword monitor DP-2,preferred,0x0,1
+	#     hyprctl keyword monitor HDMI-A-1,disable
+	#     hyprctl keyword monitor DP-1,disable
+	#     notify-send -c tv-mode "TV MODE" "ON"
+	#     for i in {1..9}; do
+	#         hyprctl keyword wsbind "$i,DP-3"
+	#     done
+	#     touch "$state_file"
+	# fi
 }
 
 case "$XDG_SESSION_TYPE" in
-    wayland)
-        case "$XDG_CURRENT_DESKTOP" in
-            sway)
-                killall waybar
-                set.wayland
-                waybar & disown ;;
-            Hyprland)
-                set.hyprland ;;
-        esac
+wayland)
+	case "$XDG_CURRENT_DESKTOP" in
+	sway)
+		killall waybar
+		set.wayland
+		waybar &
+		disown
+		;;
+	Hyprland)
+		set.hyprland
+		;;
+	esac
 	;;
 esac

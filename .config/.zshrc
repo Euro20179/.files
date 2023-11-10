@@ -96,7 +96,7 @@ precmd () {
     fileCount="$(ls -A | wc -l)"
 }
 
-PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset}%F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}%F{reset} '
+PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset}%F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}%F{reset} '
 
 enable_plugin () {
     if [[ -e ~/.config/zshplugs/$1/$1.plugin.zsh ]]; then
