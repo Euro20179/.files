@@ -369,5 +369,5 @@ require("lazy").setup({
     },
     {
         "luckasRanarison/tree-sitter-hypr"
-    }
+    },
 })

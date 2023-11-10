@@ -38,20 +38,20 @@ NORMBEAM="1"
 
 #make cursor beam/block in ins/norm mode
 function zle-keymap-select {
-    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = "block" ]]; then
-	#norm cursor
-	echo -ne '\e['"$NORMBEAM"' q' 
-    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} == '' ]] || [[ $1 = "beam" ]]; then
-	#ins cursor
-	echo -ne '\e['"$INSBEAM"' q'
-    fi
+if [[ ${KEYMAP} == vicmd ]] || [[ $1 = "block" ]]; then
+    #norm cursor
+    echo -ne '\e['"$NORMBEAM"' q' 
+elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} == '' ]] || [[ $1 = "beam" ]]; then
+    #ins cursor
+    echo -ne '\e['"$INSBEAM"' q'
+fi
 }
 [ -z "$IN_VIM" ] && zle -N zle-keymap-select
 # #initial cursor
 zle-line-init(){
-    zle -K viins
-    #beam
-    echo -ne "\e['"$INSBEAM"' q"
+zle -K viins
+#beam
+echo -ne "\e['"$INSBEAM"' q"
 }
 [ -z "$IN_VIM" ] && zle -N zle-line-init
 # #initial cursor
@@ -67,9 +67,9 @@ rangercd () {
     tmp="$(mktemp)"
     ranger --choosedir="$tmp" --show-only-dirs
     if [ -f "$tmp" ]; then
-	dir="$(cat "$tmp")"
-	rm -f "$tmp"
-	[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
 
@@ -78,9 +78,9 @@ setopt prompt_subst
 autoload -U colors && colors
 formatPath () {
     [ "$1" = "$HOME" ] && printf "%s" "" || case "$1" in
-        $CLOUD) printf "%s" "󰒋" ;;
-        $CLOUD*) printf "%s" "${1/$CLOUD*/󰒋 }" "${1/*$CLOUD\//}" ;;
-        $HOME*) printf "%s" "${1/$HOME*/ }" "${1/*$HOME\//}" ;;
+    $CLOUD) printf "%s" "󰒋" ;;
+    $CLOUD*) printf "%s" "${1/$CLOUD*/󰒋 }" "${1/*$CLOUD\//}" ;;
+    $HOME*) printf "%s" "${1/$HOME*/ }" "${1/*$HOME\//}" ;;
     *) printf "$1" ;;
 esac
 }
@@ -89,25 +89,26 @@ precmd () {
     print -Pn "\e]133;A\e\\"
     #get first, 2nd to last, and last folder in $PWD
     pwd=$(formatPath "$PWD")
-    [ -d ".git" ] && {
-	read branch < ".git/HEAD"
-	curr_branch="{${branch##*/}}"
-    } || curr_branch=
+    if [ -d ".git" ]; then
+        read branch < ".git/HEAD"
+        curr_branch="  ${branch##*/}"
+    else curr_branch=
+    fi
     fileCount="$(ls -A | wc -l)"
 }
 
-PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset}%F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}%F{reset} '
+new_line=$'\n'
 
-enable_plugin () {
-    if [[ -e ~/.config/zshplugs/$1/$1.plugin.zsh ]]; then
-	source ~/.config/zshplugs/$1/$1.plugin.zsh
-    fi
+PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}$new_line%F{reset} '
+
+enable_plugin (){
+    [[ -e ~/.config/zshplugs/$1/$1.plugin.zsh ]] && source ~/.config/zshplugs/$1/$1.plugin.zsh
 }
+
 #}}}
 
-preexec () {
-    printf '\033]0;%s (foot)\a' "$1"
-}
+preexec () printf '\033]0;%s (foot)\a' "$1"
+
 
 enable_plugin "zsh-syntax-highlighting"
 enable_plugin "zsh-auto-complete"

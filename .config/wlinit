@@ -29,6 +29,7 @@ foot -s & disown
 
 killall swww-daemon
 swww init
+sleep 0.3
 swww img ~"/Pictures/system-images/desktop.png"
 # wallpaper-slideshow $((60 * 10)) & disown
 

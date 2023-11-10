@@ -36,7 +36,7 @@ set.hyprland() {
 		rm "$state_file"
 		sleep 1
 		swww init
-
+        swww img "$XDG_PICTURES_HOME/system-images/desktop.png"
 	else
 		notify-send -c tv-mode "TV MODE" "ON"
 		pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
@@ -46,6 +46,7 @@ set.hyprland() {
 		touch "$state_file"
         sleep 1
 		swww init
+        swww img "$XDG_PICTURES_HOME/system-images/desktop.png"
 	fi
 	# #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
 	# if [ -f "$state_file" ]; then
