@@ -116,17 +116,57 @@ tab:where([visuallyselected="true"]){
     z-index: 0 !important
 }
 
-#sidebar-box {
-    min-width: 4ch !important;
+/*put tabs inline with url bar*/
+
+#navigator-toolbox {
+    display: grid;
+    grid-template-areas: 
+        "a b b"
+        "c c c";
 }
 
-#sidebar-header {
-    display: none !important;
+#titlebar {
+    grid-area: b;
 }
 
-#titlebar{
-    display: none !important;
+#nav-bar.browser-toolbar {
+    grid-area: a;
+    min-width: fit-content !important; //makes it so tabs dont overflow onto the urlbar
 }
+
+#PersonalToolbar {
+    grid-area: c;
+}
+
+/*END: tabs inline with url bar*/
+
+//hide bookmark website button
+#star-button-box {
+    display: none;
+}
+
+//hide settings dropdown
+#PanelUI-menu-button { 
+    display: none;
+}
+
+//hide firefox view
+#firefox-view-button {
+    display: none;
+}
+
+//remove tabs, replace with sideberry
+// #sidebar-box {
+//     min-width: 4ch !important;
+// }
+
+// #sidebar-header {
+//     display: none !important;
+// }
+
+// #titlebar{
+//     display: none !important;
+// }
 
 #back-button, #forward-button {
     display: none !important;
@@ -139,4 +179,35 @@ tab:where([visuallyselected="true"]){
 .urlbarView-no-wrap {
     width: 100% !important;
     justify-content: center !important;
+}
+
+/*makes the unifieid extension menu compact*/
+:root {
+  --uei-icon-size: 16px !important;
+}
+
+#unified-extensions-view > .panel-header {
+  display: none !important;
+}
+
+#unified-extensions-view > .panel-header + toolbarseparator {
+  border: none !important;
+  margin: 0 0 var(--arrowpanel-menuitem-margin-inline) !important;
+}
+
+#unified-extensions-panel .unified-extensions-item {
+  margin-block: 0 !important;
+}
+
+.unified-extensions-item-message-deck {
+  display: none;
+}
+
+.unified-extensions-item-menu-button.subviewbutton {
+  list-style-image: url("chrome://global/skin/icons/more.svg") !important;
+  padding: 0 0 0 var(--arrowpanel-menuitem-margin-inline) !important;
+}
+
+.unified-extensions-item-menu-button.subviewbutton > .toolbarbutton-icon {
+  border: none !important;
 }

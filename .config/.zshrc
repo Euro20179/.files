@@ -117,10 +117,4 @@ enable_plugin "fzf-tab"
 
 alias "ref=clear; source ~/.config/.zshrc"    
 
-__calc () {
-    zcalc -f -e "$*"
-}
-
-aliases[=]='noglob __calc'
-
 source ~/.config/.shellrc

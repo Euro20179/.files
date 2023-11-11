@@ -1,0 +1,10 @@
+#!/bin/sh
+
+move_x=$1
+move_y=$2
+
+read -r x y <<< $(hyprctl cursorpos)
+
+x=${x%,}
+
+hyprctl dispatch movecursor "$((x + move_x))" "$((y + move_y))"
