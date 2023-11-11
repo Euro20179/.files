@@ -30,7 +30,7 @@
     "window-rewrite": {
       "firefox": "",
       "footclient": "",
-      "code": "󰨞",
+      "class<code>": "󰨞",
       "nheko": "<span color='#ABE9B3'>󰊌</span>",
       "io.github.martinrotter.rssguard": "",
       "mpv": "󰈫",

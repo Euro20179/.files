@@ -261,7 +261,7 @@ require("lazy").setup({
                     event = "file_open_requested",
                     handler = function(arg)
                         vim.fn.setenv("LH_NO_EDIT", "1")
-                        local res = vim.system({"linkhandler", arg.path}):wait()
+                        local res = vim.system({ "linkhandler", arg.path }):wait()
                         if res.code == 1 then
                             return { handled = false }
                         end
