@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-local widgets = require"dap.ui.widgets"
+local widgets = require "dap.ui.widgets"
 
 
 -- local moveline = require("moveline")
@@ -13,31 +13,31 @@ local dapLeader = "<M-d>"
 --Normal Mode{{{
 local nShortcuts = {
     -- dap {{{
-        { dapLeader .. "o",function ()
-            require"dapui".toggle()
-        end},
+    { dapLeader .. "o", function()
+        require "dapui".toggle()
+    end },
     { dapLeader .. "s", function()
         local sidebar = widgets.sidebar(widgets.scopes)
         sidebar.open()
-    end},
+    end },
     { dapLeader .. "f", function()
         local sidebar = widgets.sidebar(widgets.frames)
         sidebar.open()
-    end},
+    end },
     { dapLeader .. "<leader>", function()
-        require"dap".repl.toggle()
-    end},
+        require "dap".repl.toggle()
+    end },
     { dapLeader .. "k", function()
         widgets.hover()
-    end},
+    end },
     { dapLeader .. "t", function()
         local sidebar = widgets.sidebar(widgets.threads)
         sidebar.open()
-    end},
+    end },
     { dapLeader .. "e", function()
         local sidebar = widgets.sidebar(widgets.expression)
         sidebar.open()
-    end},
+    end },
     { dapLeader .. "b", function() require "dap".toggle_breakpoint() end },
     { dapLeader .. "P", function() require "dap".pause() end },
     { dapLeader .. "c", function() require "dap".continue() end },
@@ -205,9 +205,9 @@ local nShortcuts = {
         vim.diagnostic.open_float()
     end
     },
-    { "<leader>K", function() vim.lsp.inlay_hint(0) end,
+    { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
         { desc = "Toggle inlay hints" } },
-    { "<leader>k", vim.lsp.buf.signature_help, {desc = "Show function signature"}},
+    { "<leader>k", vim.lsp.buf.signature_help,                                      { desc = "Show function signature" } },
     { "gK",        vim.diagnostic.open_float,                                       { desc = "Open diagnostic float" } },
     { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
     { "[D", function()
@@ -254,7 +254,7 @@ local nShortcuts = {
     { "<c-k>",           "<C-w>k" },
     --}}}
     -- Util Functions {{{
-        { utilLeader .. "e", ":Neorg exec cursor<CR>"},
+    { utilLeader .. "e", ":Neorg exec cursor<CR>" },
     { utilLeader .. "W", "\"=v:lua.Rword()<cr>p" },
     { utilLeader .. "y", function()
         Ytfzf({
@@ -295,18 +295,18 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     -- Movement {{{
-    { "<C-bs>",     "<C-w>" },
-    { "<C-g>$",     "<Esc>$a" },
-    { "<C-g>l",     "<Esc>la" },
-    { "<C-g>h",     "<Esc>ha" },
-    { "<C-g>0",     "<Esc>0i" },
-    { "<C-g>^",     "<Esc>^i" },
-    { "<C-g>b",     "<Esc>bi" },
-    { "<C-g>w",     "<Esc>wi" },
-    { "<C-g>B",     "<Esc>Bi" },
-    { "<C-g>W",     "<Esc>Wi" },
-    { "<c-space>l", "<Esc>:tabnext<CR>" },
-    { "<c-space>h", "<Esc>:tabprev<CR>" },
+    { "<C-bs>",          "<C-w>" },
+    { "<C-g>$",          "<Esc>$a" },
+    { "<C-g>l",          "<Esc>la" },
+    { "<C-g>h",          "<Esc>ha" },
+    { "<C-g>0",          "<Esc>0i" },
+    { "<C-g>^",          "<Esc>^i" },
+    { "<C-g>b",          "<Esc>bi" },
+    { "<C-g>w",          "<Esc>wi" },
+    { "<C-g>B",          "<Esc>Bi" },
+    { "<C-g>W",          "<Esc>Wi" },
+    { "<c-space>l",      "<Esc>:tabnext<CR>" },
+    { "<c-space>h",      "<Esc>:tabprev<CR>" },
     -- }}}
     -- luasnip {{{
     -- { "<Tab>",
@@ -355,35 +355,35 @@ end
 
 --Visual Mode{{{
 local vShortcuts = {
-    { "<c-l>",      "<C-w>l" },
-    { "<c-j>",      "<C-w>j" },
-    { "<c-h>",      "<C-w>h" },
-    { "<c-k>",      "<C-w>k" },
-    { utilLeader .. "e", ":Exec<CR>"},
+    { "<c-l>",           "<C-w>l" },
+    { "<c-j>",           "<C-w>j" },
+    { "<c-h>",           "<C-w>h" },
+    { "<c-k>",           "<C-w>k" },
+    { utilLeader .. "e", ":Exec<CR>" },
     -- copying {{{
-    { "<leader>y",  "\"+y" },
-    { "<leader>d",  "\"_d" },
-    { "<leader>c",  "\"_c" },
-    { "<leader>p",  "\"+p" },
+    { "<leader>y",       "\"+y" },
+    { "<leader>d",       "\"_d" },
+    { "<leader>c",       "\"_c" },
+    { "<leader>p",       "\"+p" },
     -- }}}
     -- indentation {{{
-    { "<",          "<gv" },
-    { ">",          ">gv" },
+    { "<",               "<gv" },
+    { ">",               ">gv" },
     --}}}
     --treesitter{{{
-    { "<leader>sr", function() require "ssr".open() end },
-    { "<a-h>",      require("tree-climber").goto_parent },
-    { "<a-l>",      require("tree-climber").goto_child },
-    { "<a-j>",      require("tree-climber").goto_next },
-    { "<a-k>",      require("tree-climber").goto_prev },
+    { "<leader>sr",      function() require "ssr".open() end },
+    { "<a-h>",           require("tree-climber").goto_parent },
+    { "<a-l>",           require("tree-climber").goto_child },
+    { "<a-j>",           require("tree-climber").goto_next },
+    { "<a-k>",           require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-    { "D",          ":ChatBotDocument<cr>" },
-    { "C",          ":ChatBotComment<cr>" },
+    { "D",               ":ChatBotDocument<cr>" },
+    { "C",               ":ChatBotComment<cr>" },
     -- }}}
     -- move code {{{
-    { "mj",         ":m '>+1<CR>gv=gv" },
-    { "mk",         ":m '<-2<CR>gv=gv" },
+    { "mj",              ":m '>+1<CR>gv=gv" },
+    { "mk",              ":m '<-2<CR>gv=gv" },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }
@@ -399,8 +399,8 @@ local sShortcuts = {
     { "<Tab>",   "<cmd>lua vim.snippet.jump(1)<Cr>" },
     { "<S-Tab>", "<cmd>lua vim.snippet.jump(-1)<Cr>" },
     --visual also binds this for some reason?
-    { "C",       "C",                                       expr = true },
-    { "D",       "D",                                       expr = true },
+    { "C",       "C",                                expr = true },
+    { "D",       "D",                                expr = true },
     --}}}
 }
 for _, map in ipairs(sShortcuts) do
@@ -429,8 +429,8 @@ vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
 vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
 vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
 
-vim.keymap.set({"o", "x"}, "gC", function()
-    require"various-textobjs".multiCommentedLines()
+vim.keymap.set({ "o", "x" }, "gC", function()
+    require "various-textobjs".multiCommentedLines()
 end)
 
 vim.keymap.set({ "o", "x" }, "?", function()

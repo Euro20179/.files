@@ -16,6 +16,7 @@ bindkey '^a' beginning-of-line
 bindkey '^g' end-of-line
 bindkey '^e' forward-word
 bindkey '^p' backward-word
+bindkey '^[[27;2;13~' accept-line
 
 #allow better tab completion
 autoload -U compinit
