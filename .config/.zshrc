@@ -108,7 +108,7 @@ enable_plugin (){
 
 #}}}
 
-preexec () printf '\033]0;%s (foot)\a' "$1"
+preexec () printf '\033]0;%s - %s (foot)\a' "$PWD" "$1"
 
 
 enable_plugin "zsh-syntax-highlighting"
