@@ -7,4 +7,4 @@ read -r x y <<< $(hyprctl cursorpos)
 
 x=${x%,}
 
-hyprctl dispatch movecursor "$((x + move_x))" "$((y + move_y))"
+ydotool mousemove -- "$((move_x))" "$((move_y))"
