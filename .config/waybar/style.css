@@ -8,6 +8,12 @@
     font-size: 13px;
 }
 
+.off {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+}
+
 .modules-right, .modules-left, .modules-center {
     background-color: @theme-main;
     border-radius: 10px;
@@ -280,19 +286,19 @@ label:focus {
 }
 
 #mpd {
-    background-color: #96CDFB;
+    color: @theme-color;
 }
 
 #mpd.disconnected {
-    background-color: @theme-color-bad;
+    color: @theme-color-bad;
 }
 
 #mpd.stopped {
-    background-color: #96CDFB;
+    color: @theme-color-bad;
 }
 
 #mpd.paused {
-    background-color: @theme-color-medium;
+    color: @theme-color-medium;
 }
 
 #language {

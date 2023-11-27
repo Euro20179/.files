@@ -19,8 +19,17 @@
     "custom/memory",
     "keyboard-state",
     "clock",
+    "custom/mouselock-indicator",
+    "mpd",
     "tray"
   ],
+  "custom/mouselock-indicator": {
+      "signal": 40,
+      "interval": 1,
+      "exec": "[ -f \"$XDG_STATE_HOME/mouselock\" ] && echo '{\"text\": \"󰍽\", \"class\": \"on\"}' || echo '{\"text\": \"off\", \"class\": \"off\"}'",
+      "return-type": "json",
+      "format": "{}"
+  },
   "hyprland/workspaces": {
     "format": "{icon} {name}\n{windows}",
     "all-outputs": true,
@@ -47,12 +56,15 @@
     "format-icons": {
         "default": "",
         "active": "*",
-        "urgent": "!"
+        "urgent": "!",
+        "special": ""
     }
   },
   "mpd": {
-    "format": "{title} - {elapsedTime:%M:%S}/{totalTime:%M:%S}",
-    "format-disconnected": "Disconnected",
+    "format": "",
+    "format-disconnected": "!󰝛",
+    "format-stopped": "󰝛",
+    "tooltip-format": "{elapsedTime:%M:%S}/{totalTime:%M:%S}",
     "state-icons": {
       "playing": "▶",
       "paused": "⏸"
