@@ -1,8 +1,8 @@
 font=Arimo
 format=<span size="15pt">%s</span>\n\n%b
 default-timeout=3000
-background-color=#0078ADee
-border-color=#004361aa
+background-color=#89dcebee
+border-color=#136774ee
 border-size=5
 border-radius=5
 ignore-timeout=1
@@ -14,14 +14,14 @@ background-color=#ffffffee
 text-color=#000000
 
 [urgency=normal]
-background-color=#0078ADee
-text-color=#ffffff
+background-color=#89dcebee
+text-color=#1e1e2e
 
 [urgency=high]
-format=<b>Important</b>\n\n<span size="15pt" color="#eee244">%s</span>\n<span size="12pt">%b</span>
-background-color=#B97BB5ee
-border-color=#723c6eaa
-text-color=#ffffff
+format=<b>Important</b>\n\n<span size="15pt">%s</span>\n<span size="12pt">%b</span>
+background-color=#f38ba8ee
+border-color=#57091eaa
+text-color=#1e1e2e
 ignore-timeout=0
 default-timeout=0
 
