@@ -61,8 +61,10 @@ else
         end
     end
     vim.ui.select(configs, { prompt = "Select config" }, function(line)
+        --line does not get moved into the vim.schedule callback, instead it gets deleted
+        vim.g._t_line = line
         vim.schedule(function()
-            open_path(vim.fn.getenv("XDG_CONFIG_HOME") .. "/" .. line)
+            open_path(vim.fn.getenv("XDG_CONFIG_HOME") .. "/" .. vim.g._t_line)
         end)
     end)
 end
