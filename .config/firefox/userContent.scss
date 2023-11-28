@@ -2,38 +2,40 @@
 /*make dark mode on every website*/
 // @-moz-document url-prefix("http") {
 //     *{
-//         color: var(--text-color) !important;
-//         background-color: var(--main) !important;
+//         color: var(--text-color);
+//         background-color: var(--main);
 //     }
 //
 //     mark {
-//         color: var(--secondary) !important;
-//         background-color: var(--highlight) !important;
+//         color: var(--secondary);
+//         background-color: var(--highlight);
 //     }
 //
 //     input, textarea{
-//         background-color: var(--secondary) !important;
-//         border: 1px solid currentColor !important;
-//         color: var(--text-color) !important;
+//         background-color: var(--secondary) ;
+//         border: 1px solid currentColor ;
+//         color: var(--text-color) ;
 //     }
 //
 //     a {
-//         color: var(--link-color) !important;
-//         text-decoration: underline !important;
-//         background-color: var(--main) !important;
+//         color: var(--link-color) ;
+//         text-decoration: underline ;
+//         background-color: var(--main) ;
 //     }
 //
 //     cite {
-//         color: var(--link-color) !important;
-//         text-decoration: none !important;
-//         background-color: var(--main) !important;
+//         color: var(--link-color) ;
+//         text-decoration: none ;
+//         background-color: var(--main) ;
 //     }
 //
 //     *::after, *::before {
-//         background: transparent !important;
-//         color: var(--text-color) !important;
+//         background: transparent ;
+//         color: var(--text-color) ;
 //     }
 // }
+
+
 
 @-moz-document domain("brave.com") {
     :root, ::backdrop {

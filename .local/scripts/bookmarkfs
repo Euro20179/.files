@@ -1,0 +1,42 @@
+#!/bin/bash
+
+action=$1
+
+bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
+
+open() {
+	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "open" -i -dmenu -theme cat-macchiato)
+
+	[ -z "$file" ] && exit
+
+	path="${bookmark_dir}/${file}"
+
+    $BROWSER "$(grep url "$path" | cut -d '=' -f2-)"
+}
+
+add () {
+    folder=$(fd --type d --base-directory "$bookmark_dir" | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
+    [ -z "$folder" ] && exit
+    mkdir -p "${bookmark_dir}/$folder"
+    IFS="|" read name url tags <<< "$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags')"
+    [ -z "$url" ] && zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1
+    printf "%s\n" "$name" "$url" "$tags"
+    printf "url=%s\ntags=%s" "$url" "$tags" > "${bookmark_dir}/${folder}/${name}"
+}
+
+remove () {
+	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "open" -i -dmenu -theme cat-macchiato)
+    [ -z "$file" ] && exit
+    path="${bookmark_dir}/${file}"
+
+    zenity --question --text="Are you sure you want to remove\n<b>${file}</b>" || exit 1
+
+    rm "${path}"
+}
+
+case "$action" in
+    open|o) open ;;
+    add|a) add ;;
+    remove|r) remove ;;
+    *) printf "%s\n" "$action is not a valid action" ;;
+esac

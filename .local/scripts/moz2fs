@@ -1,0 +1,34 @@
+#!/bin/python
+
+import json
+import os
+
+with open("./bookmarks.json", "r") as f:
+    root = json.load(f)
+
+def handle_folder(node):
+    if node["title"] != "":
+        try:
+            os.mkdir(node["title"].replace("/", "⋅"))
+        except FileExistsError:
+            print(f"created {node['title']}")
+        os.chdir(node["title"])
+    for child in node.get("children", []):
+        handle_node(child)
+    if node["title"] != "":
+        os.chdir("..")
+
+def handle_file(node):
+    with open(node["title"].replace("/", "⋅"), "w") as bf:
+        bf.write(f'url={node["uri"]}\n')
+        if node.get("tags"):
+            bf.write(f'tags={node["tags"]}')
+
+
+def handle_node(node):
+    if "x-moz-place-container" in node["type"]:
+        handle_folder(node)
+    else:
+        handle_file(node)
+
+handle_node(root)
