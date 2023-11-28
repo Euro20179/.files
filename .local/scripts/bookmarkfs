@@ -10,6 +10,8 @@ open() {
 
 	[ -z "$file" ] && exit
 
+    file="${file%%  *}"
+
 	path="${bookmark_dir}/${file}"
 
     $BROWSER "$(grep url "$path" | cut -d '=' -f2-)"
@@ -20,7 +22,7 @@ add () {
     [ -z "$folder" ] && exit
     mkdir -p "${bookmark_dir}/$folder"
     IFS="|" read name url tags <<< "$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags')"
-    [ -z "$url" ] && zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1
+    [ -z "$url" ] && { zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1; }
     printf "%s\n" "$name" "$url" "$tags"
     printf "url=%s\ntags=%s" "$url" "$tags" > "${bookmark_dir}/${folder}/${name}"
 }
