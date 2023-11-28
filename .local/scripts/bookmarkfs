@@ -5,7 +5,8 @@ action=$1
 bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
 
 open() {
-	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "open" -i -dmenu -theme cat-macchiato)
+	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
+    printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"; done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit
 
