@@ -51,13 +51,12 @@
       "class<.*Minecraft.*>": "󰍳",
       "class<MultiMC>": "󰍳L",
       "title<.*nvim.*\\(foot\\)>": "",
-      "title<\\./play \\(foot\\)": "󰐑"
+      "title<.*\\./play .*\\(foot\\)": "󰽴",
     },
     "format-icons": {
         "default": "",
         "active": "*",
         "urgent": "!",
-        "special": ""
     }
   },
   "mpd": {

@@ -29,6 +29,10 @@ table, tr, td, th, tbody {
     border-color: $text-color !important;
 }
 
+a {
+    color: $pink !important;
+}
+
 [type=checkbox] {
     appearance: none !important;
     width: 10px;

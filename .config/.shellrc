@@ -36,7 +36,7 @@ export ZEF_CONFIG_PATH="${XDG_CONFIG_HOME}/zef"
 export LYNX_CFG="${XDG_CONFIG_HOME}/lynx/lynx.cfg"
 
 export WALLPAPER="$XDG_PICTURES_HOME/system-images/desktop.png"
-export NEOFETCH_IMAGE="${XDG_PICTURES_HOME}/system-images/neofetch.png"
+export NEOFETCH_IMAGE=$(fd . "${XDG_PICTURES_HOME}/system-images/neofetch" | shuf | head -n1)
 
 export GTK_USE_PORTAL=1
 
@@ -261,12 +261,17 @@ rand_num () {
     echo "${_#* }"
 }
 
+case "$NEOFETCH_IMAGE" in
+    *.txt) backend=ascii ;;
+    *) backend=sixel ;;
+esac
+
 case "$XDG_SESSION_TYPE" in
     X11|wayland)
         case "$TERM" in
-            foot) _FROM_SHELLRC=1 neofetch --sixel "$NEOFETCH_IMAGE" --size 250px ;;
-            kitty) _FROM_SHELLRC=1 neofetch --kitty "$NEOFETCH_IMAGE" ;;
-            *) _FROM_SHELLRC=1 neofetch --ascii "$NEOFETCH_IMAGE" ;;
+            foot) _FROM_SHELLRC=1 neofetch --source "$NEOFETCH_IMAGE" --size 250px ;;
+            kitty) _FROM_SHELLRC=1 neofetch --source "$NEOFETCH_IMAGE" ;;
+            *) _FROM_SHELLRC=1 neofetch --source "$NEOFETCH_IMAGE" ;;
         esac ;;
     tty)
     ;;
