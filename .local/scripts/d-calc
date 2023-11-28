@@ -17,6 +17,7 @@ end() {
 
 [ -z "$*" ] && {
     e="$(echo "" | rofi -dmenu -p "Calc: " -theme cat-macchiato-dmenu-center -theme-str '#element-text selected { background-color: transparent; }')" 
+    [ -z "$e" ] && exit
     res="$(qalc "$e")"
     ans="$(qalc -t "$e")"
     extra_ans="$(echo "$res" | tac | sed 1d)"
