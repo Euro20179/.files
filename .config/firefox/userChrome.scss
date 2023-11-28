@@ -1,40 +1,31 @@
-$main: #2f3041; 
-$secondary: #4c4d69; 
-$highlight: #96CDFB; 
-$darker: #232430; 
-$good: var(--highlight); 
-$medium: #F8BD96; 
-$bad: #F28FAD; 
-$background: linear-gradient(var(--highlight), var(--main)); 
-$text-color: white; 
-$link-color: var(--highlight); 
-$slight-transparent: #000000aa; 
-$very-transparent: #00000033; 
-$transparent: #00000055; 
-
-
-/*make the top bar transparent*/
-
-:root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #navigator-toolbox-background
-{
-    appearance: none !important;
-}
-
-#main-window:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([tabsintitlebar], [inFullscreen])
-{
-    background-color: transparent !important;
-}
-
-:root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([tabsintitlebar], [inFullscreen]) .titlebar-color
-{
-    appearance: none !important;
-}
-
-:root[sizemode="normal"][tabsintitlebar]:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #navigator-toolbox,
-:root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]):not([tabsintitlebar]) #navigator-toolbox
-{
-    background-color: color-mix(in srgb, rgba(0, 0, 0, 0.5) 75%, transparent) !important;
-}
+$main: #1e1e2e;
+$secondary: #585b70;
+$secondary-bright: #9399b2;
+$highlight:  #94e2d5;
+$text-color: #cdd6f4;
+$warn: #f9e2af;
+$error: #f38ba8;
+$leaf: #a6e3a1;
+$sky: #89dceb;
+$blue: #89b4fa;
+$teal: #94e2d5;
+$lavender: #b4befe;
+$green: #a6e3a1;
+$yellow: #f9e2af;
+$peach: #fab387;
+$maroon: #eba0ac;
+$red: #f38ba8;
+$mauve: #cba6f7;
+$pink: #f5c2e7;
+$flamingo: #f2cdcd;
+$rosewater: #f5e0dc;
+$slight-transparent: #000000aa;
+$very-transparent: #00000033;
+$transparent: #00000055;
+$bad: var(--error);
+$good: var(--highlight);
+$link-color: var(--highlight);
+$background: linear-gradient(var(--highlight), var(--main));
 
 toolbarbutton#tabs-newtab-button{
   background-color: $transparent !important;
@@ -58,17 +49,17 @@ tab{
 /*make tabs follow color scheme*/
 
 toolbar{
-    --toolbar-bgcolor: #2f3041;
-    --toolbar-color: white;
+    --toolbar-bgcolor: $secondary;
+    --toolbar-color: $text-color;
 }
 
 tab[selected="true"]{
     background-color: $secondary !important;
-    border-top: 3px solid $highlight !important;
+    border-top: 3px solid $sky !important;
 }
 tab:not([selected="true"]){
     background-color: $main !important;
-    border-top: 3px solid $medium !important;
+    border-top: 3px solid $warn !important;
 }
 
 tab:not([selected="true"]):is(:hover, :focus){
@@ -106,10 +97,10 @@ menupopup{
 }
 
 tab.tabbrowser-tab[selected=true] .tab-text {
-    color: $highlight !important;
+    color: $sky !important;
 }
 tab.tabbrowser-tab:not([selected=true]) .tab-text {
-    color: $medium !important;
+    color: $warn !important;
 }
 
 tab:where([visuallyselected="true"]){
@@ -150,7 +141,7 @@ tab:where([visuallyselected="true"]){
 
 //makes url background color cool
 #urlbar-background {
-    background-color: $highlight !important;
+    background-color: $blue !important;
     filter: brightness(50%) !important;
 }
 
