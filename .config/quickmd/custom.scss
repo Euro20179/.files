@@ -1,0 +1,41 @@
+@import "../COMMON/colors.scss";
+
+body, html {
+    background: $main;
+}
+
+* {
+    color: $text-color !important;
+}
+
+pre, code {
+    border: none !important;
+    outline: none !important;
+    background: $secondary !important;
+    padding-top: 1ex !important; /*looks really weird without this*/
+}
+
+img {
+    border: 1px solid $secondary !important;
+    border-radius: 1em !important;
+}
+
+table {
+    border-collapse: collapse !important;
+}
+
+table, tr, td, th, tbody {
+    background: $main !important;
+    border-color: $text-color !important;
+}
+
+[type=checkbox] {
+    appearance: none !important;
+    width: 10px;
+    height: 10px;
+    background-color: $secondary !important;
+}
+
+[type=checkbox]:checked {
+    background-color: $green !important;
+}

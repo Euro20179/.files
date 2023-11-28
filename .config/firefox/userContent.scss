@@ -1,28 +1,4 @@
-:root {
-    --main: #1e1e2e;
-    --secondary: #585b70;
-    --secondary-bright: #9399b2;
-    --highlight:  #94e2d5;
-    --link-color: var(--highlight);
-    --text-color: #cdd6f4;
-    --warn: #f9e2af;
-    --error: #f38ba8;
-    --leaf: #a6e3a1;
-    --sky: #89dceb;
-    --blue: #89b4fa;
-    --teal: #94e2d5;
-    --lavender: #b4befe;
-    --green: #a6e3a1;
-    --yellow: #f9e2af;
-    --peach: #fab387;
-    --maroon: #eba0ac;
-    --red: #f38ba8;
-    --mauve: #cba6f7;
-    --pink: #f5c2e7;
-    --flamingo: #f2cdcd;
-    --rosewater: #f5e0dc;
-}
-
+@import "../COMMON/colors.scss";
 /*make dark mode on every website*/
 // @-moz-document url-prefix("http") {
 //     *{
@@ -63,10 +39,10 @@
     :root, ::backdrop {
         color-scheme: dark !important;
         --body-bg: var(--main) !important;
-        --bg-glassy: #var(--main) !important;
+        --bg-glassy: var(--main) !important;
         --bg-1: var(--secondary) !important;
-        --bg-2: #var(--main) !important;
-        --bg-02: #var(--main) !important; /* this is the 02 color from the Brave Design System */
+        --bg-2: var(--main) !important;
+        --bg-02: var(--main) !important; /* this is the 02 color from the Brave Design System */
         --bg-04: var(--main) !important;
         --bg-green: var(--green) !important;
         --bg-blue: var(--sky) !important;
