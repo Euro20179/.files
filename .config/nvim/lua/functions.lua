@@ -143,6 +143,7 @@ function ChatBotDocument(data)
 end
 
 function GotoTerminalBuf()
+    local harpoon = require "harpoon"
     for _, bid in ipairs(vim.api.nvim_list_bufs()) do
         local name = vim.api.nvim_buf_get_name(bid)
         if vim.startswith(name, "term://") then
@@ -151,7 +152,7 @@ function GotoTerminalBuf()
         end
     end
     -- if no term buf found
-    require("harpoon.mark").add_file()
+    harpoon:list():append()
     vim.cmd.terminal()
 end
 

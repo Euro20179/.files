@@ -46,7 +46,7 @@ local path_regex = vim.regex("\\({/ \\)\\@<=.*\\(}\\)\\@=")
 for _, conf in ipairs(items) do
     local nstart, nend = name_regex:match_str(conf)
     local pstart, pend = path_regex:match_str(conf)
-    local conf_name = string.lower(string.sub(conf, nstart + 1, nend))
+    local conf_name = string.sub(conf, nstart + 1, nend)
     local path = string.sub(conf, pstart, pend)
     configs[conf_name] = path
     configs[#configs + 1] = conf_name
