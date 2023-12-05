@@ -1,0 +1,4 @@
+#!/bin/bash
+#key to event code
+
+grep "#define KEY_${1^^}[[:space:]]" /usr/include/linux/input-event-codes.h | awk '{print $3}'

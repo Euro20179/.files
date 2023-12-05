@@ -88,7 +88,7 @@ local config = {
                     return (
                         {
                             c = "",
-                            n = "",
+                            n = "",
                             i = "󰗧",
                             v = "󰒅",
                             V = "󰒇",

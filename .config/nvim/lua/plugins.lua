@@ -286,12 +286,7 @@ require("lazy").setup({
     },
     {
         "ThePrimeagen/harpoon",
-        config = function()
-            local harpoon = require "harpoon"
-            local mark = require "harpoon.mark"
-            harpoon.setup {}
-            mark.clear_all()
-        end
+        branch = "harpoon2"
     },
     {
         "shaunsingh/nord.nvim"

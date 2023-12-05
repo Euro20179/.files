@@ -14,7 +14,7 @@ open() {
 
 	path="${bookmark_dir}/${file}"
 
-    $BROWSER "$(grep url "$path" | cut -d '=' -f2-)"
+    $BROWSER "$(grep "^url=" "$path" | cut -d '=' -f2-)"
 }
 
 add () {

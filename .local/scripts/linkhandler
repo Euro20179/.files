@@ -54,6 +54,6 @@ EOF
         if yt-dlp -s "$link" > /dev/null 2>&1; then
             nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
         else
-            nohup $BROWSER_LITE "$link" > /dev/null 2>&1 &
+            nohup $BROWSER "$link" > /dev/null 2>&1 &
         fi;;
 esac

@@ -24,6 +24,7 @@ border-color=#57091eaa
 text-color=#1e1e2e
 ignore-timeout=0
 default-timeout=0
+on-notify=exec mpv --no-video --no-terminal $HOME/Songs/ETC/ayaya.mp3
 
 [category=ytfzf]
 max-icon-size=200

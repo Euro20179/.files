@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 
+local harpoon = require "harpoon"
+harpoon:setup()
+
 local widgets = require "dap.ui.widgets"
 
 
@@ -74,52 +77,50 @@ local nShortcuts = {
     { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>' },
     { "<leader>fe", ':Telescope find_files<cr>' },
     { "<leader>ff", function()
-        local hm = require "harpoon.mark"
         local t = require "telescope.builtin"
-        hm.add_file()
+        harpoon:list():append()
         t.find_files({ hidden = true })
     end },
     { "<leader>fF", function()
-        local hm = require "harpoon.mark"
         local t = require "telescope.builtin"
-        hm.add_file()
+        harpoon:list():append()
         t.find_files({ hidden = true, no_ignore = true })
     end },
-    { "<leader>fj",       '<cmd>Telescope jumplist<cr>' },
-    { "<leader>f/",       '<cmd>Telescope live_grep<cr>' },
-    { "<leader>fm",       "<cmd>Telescope marks<cr>" },
-    { "<leader>b/",       "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
-    { "<leader>fH",       function() require "harpoon.ui".toggle_quick_menu() end },
+    { "<leader>fj",    '<cmd>Telescope jumplist<cr>' },
+    { "<leader>f/",    '<cmd>Telescope live_grep<cr>' },
+    { "<leader>fm",    "<cmd>Telescope marks<cr>" },
+    { "<leader>b/",    "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
+    { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
     --}}}
     --Viewers {{{
-    { "<leader>n",        ":Neotree float<cr>" },
-    { "<leader>o",        "<cmd>SymbolsOutline<cr>" },
+    { "<leader>n",     ":Neotree float<cr>" },
+    { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
     --}}}
     --buffer/window shortcuts{{{
-    { "<leader><leader>", function() require "harpoon.mark".add_file() end },
-    { "<leader>1",        function() require "harpoon.ui".nav_file(1) end },
-    { "<leader>2",        function() require "harpoon.ui".nav_file(2) end },
-    { "<leader>3",        function() require "harpoon.ui".nav_file(3) end },
-    { "<leader>4",        function() require "harpoon.ui".nav_file(4) end },
-    { "<leader>5",        function() require "harpoon.ui".nav_file(5) end },
-    { "<leader>6",        function() require "harpoon.ui".nav_file(6) end },
-    { "<leader>7",        function() require "harpoon.ui".nav_file(7) end },
-    { "<leader>8",        function() require "harpoon.ui".nav_file(8) end },
-    { "<leader>9",        function() require "harpoon.ui".nav_file(9) end },
-    { "<leader>S",        ':split | wincmd j<cr>' },
-    { "<leader>V",        ':vsplit | wincmd l<cr>' },
-    { "<leader>l",        ":tabnext<cr>" },
-    { "<leader>h",        ':tabprev<CR>' },
-    { "<leader><c-l>",    ':bn<CR>' },
-    { "<leader><c-h>",    ':bp<CR>' },
-    { "<leader>t",        ':tabnew<CR>' },
-    { "<leader>Q",        ':bdel<cr>' },
-    { "<leader>q",        ':tabclose<cr>' },
-    { "<right>",          "<c-w>>" },
-    { "<left>",           "<c-w><" },
-    { "<up>",             "<c-w>+" },
-    { "<down>",           "<c-w>-" },
-    { "<leader>T",        function() GotoTerminalBuf() end },
+    { "<leader><leader>", function() harpoon:list():append() end },
+    { "<leader>1",        function() harpoon:list():select(1) end },
+    { "<leader>2",        function() harpoon:list():select(2) end },
+    { "<leader>3",        function() harpoon:list():select(3) end },
+    { "<leader>4",        function() harpoon:list():select(4) end },
+    { "<leader>5",        function() harpoon:list():select(5) end },
+    { "<leader>6",        function() harpoon:list():select(6) end },
+    { "<leader>7",        function() harpoon:list():select(7) end },
+    { "<leader>8",        function() harpoon:list():select(8) end },
+    { "<leader>9",        function() harpoon:list():select(9) end },
+    { "<leader>S",     ':split | wincmd j<cr>' },
+    { "<leader>V",     ':vsplit | wincmd l<cr>' },
+    { "<leader>l",     ":tabnext<cr>" },
+    { "<leader>h",     ':tabprev<CR>' },
+    { "<leader><c-l>", ':bn<CR>' },
+    { "<leader><c-h>", ':bp<CR>' },
+    { "<leader>t",     ':tabnew<CR>' },
+    { "<leader>Q",     ':bdel<cr>' },
+    { "<leader>q",     ':tabclose<cr>' },
+    { "<right>",       "<c-w>>" },
+    { "<left>",        "<c-w><" },
+    { "<up>",          "<c-w>+" },
+    { "<down>",        "<c-w>-" },
+    { "<leader>T",     function() GotoTerminalBuf() end },
     { "<leader>ft", function()
         require "lazy.util".float_term("/bin/zsh", {
             border = "single"
