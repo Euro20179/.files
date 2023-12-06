@@ -1,0 +1,35 @@
+:root {
+  --main: #1e1e2e;
+  --secondary: #585b70;
+  --secondary-bright: #9399b2;
+  --highlight:  #94e2d5;
+  --text-color: #cdd6f4;
+  --warn: #f9e2af;
+  --error: #f38ba8;
+  --leaf: #a6e3a1;
+  --sky: #89dceb;
+  --blue: #89b4fa;
+  --teal: #94e2d5;
+  --lavender: #b4befe;
+  --green: #a6e3a1;
+  --yellow: #f9e2af;
+  --peach: #fab387;
+  --maroon: #eba0ac;
+  --red: #f38ba8;
+  --mauve: #cba6f7;
+  --pink: #f5c2e7;
+  --flamingo: #f2cdcd;
+  --rosewater: #f5e0dc;
+  --slight-transparent: #000000aa;
+  --very-transparent: #00000033;
+  --transparent: #00000055;
+  --bad: var(--error);
+  --good: var(--highlight);
+  --link-color: var(--highlight);
+  --background: linear-gradient(var(--highlight), var(--main)); }
+
+#msgFeedSummaryBody {
+  background: #1e1e2e !important;
+  color: #cdd6f4 !important; }
+  #msgFeedSummaryBody a {
+    color: #f5c2e7 !important; }

@@ -1,5 +1,25 @@
 @import "../COMMON/colors.scss";
 
+/*floorp*/
+#sidebar-select-box {
+    background-color: $main !important;
+}
+#statusBar {
+    display: none !important;
+}
+/*end floorp*/
+
+/*height adjustment: makes the browser tabs not have a ton of padding*/
+#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
+    height: unset !important;
+}
+
+#urlbar-container[breakout] {
+    min-height: unset !important;
+}
+/*end height adjustment*/
+
+/*transparency*/
 toolbarbutton#tabs-newtab-button{
   background-color: $transparent !important;
   margin: 0 !important;

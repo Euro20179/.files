@@ -2,24 +2,27 @@
 
 import requests
 import sys
+from urllib.parse import unquote
 from datetime import datetime
 
-data = requests.get(sys.argv[1]).json()
+data = requests.get(unquote(sys.argv[1])).json()
 
-text = """
+text = f"""
 <rss version="2.0">
 <channel>
+<title>steam - <![CDATA[{unquote(sys.argv[1])}]]></title>
+<link><![CDATA[{unquote(sys.argv[1])}]]></link>
 """
 
 for item in data['appnews']['newsitems']:
     text += f"""
-    <item>
-        <title>{item['title']}</title>
-        <description>{item['contents']}</description>
-        <link>{item['url']}</link>
-        <pubDate>{datetime.utcfromtimestamp(item['date']).strftime("%a, %d %b %Y %H:%M:%S %z")}</pubDate>
-        <author>{item['author']}</author>
-    </item>
+<item>
+    <title><![CDATA[[{item['title']}]]></title>
+    <description><![CDATA[{item['contents']}]]></description>
+    <link><![CDATA[{item['url']}]]></link>
+    <pubDate><![CDATA[{datetime.utcfromtimestamp(item['date']).strftime("%a, %d %b %Y %H:%M:%S %z")}]]></pubDate>
+    <author><![CDATA[{item['author']}]]></author>
+</item>
 """
 
 text += "</channel></rss>"

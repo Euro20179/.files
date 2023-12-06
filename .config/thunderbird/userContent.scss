@@ -1,0 +1,9 @@
+@import "../COMMON/colors.scss";
+
+#msgFeedSummaryBody {
+    background: $main !important;
+    color: $text-color !important;
+    a {
+        color: $pink !important;
+    }
+}
