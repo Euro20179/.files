@@ -33,3 +33,5 @@
   color: #cdd6f4 !important; }
   #msgFeedSummaryBody a {
     color: #f5c2e7 !important; }
+  #msgFeedSummaryBody pre {
+    background: color-mix(in srgb, #1e1e2e 90%, white) !important; }

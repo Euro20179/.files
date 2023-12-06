@@ -6,4 +6,8 @@
     a {
         color: $pink !important;
     }
+
+    pre {
+        background: color-mix(in srgb, $main 90%, white) !important;
+    }
 }
