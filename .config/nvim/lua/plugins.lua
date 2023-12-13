@@ -1,5 +1,6 @@
 local key = vim.fn.readfile("/home/euro/Documents/APIKeys/hggf.key")[1]
 require("lazy").setup({
+    'mattn/emmet-vim',
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     "nvim-telescope/telescope-ui-select.nvim",

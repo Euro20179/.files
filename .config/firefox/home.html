@@ -3,13 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>HOME</title>
     <style>
+        :root {
+            --main: #1e1e2e;
+            --secondary: #585b70;
+            --secondary-bright: #9399b2;
+            --highlight:  #94e2d5;
+            --text-color: #cdd6f4;
+            --warn: #f9e2af;
+            --error: #f38ba8;
+            --leaf: #a6e3a1;
+            --sky: #89dceb;
+            --blue: #89b4fa;
+            --teal: #94e2d5;
+            --lavender: #b4befe;
+            --green: #a6e3a1;
+            --yellow: #f9e2af;
+            --peach: #fab387;
+            --maroon: #eba0ac;
+            --red: #f38ba8;
+            --mauve: #cba6f7;
+            --pink: #f5c2e7;
+            --flamingo: #f2cdcd;
+            --rosewater: #f5e0dc;
+            --slight-transparent: #000000aa;
+            --very-transparent: #00000033;
+            --transparent: #00000055;
+            --bad: var(--error);
+            --good: var(--highlight);
+            --link-color: var(--highlight);
+            --background: linear-gradient(var(--highlight), var(--main));
+        }
         body,
         html {
             padding: 0;
             margin: 0;
             background-color: var(--main);
+            font-family: sans-serif;
         }
 
         h1 {
@@ -26,11 +58,21 @@
             cursor: pointer;
         }
 
-        img {
-            width: 70%;
-            border-radius: 25px;
+        #main-image-container  {
+            max-width: 50%;
+            max-height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        img {
+            border-radius: 25px;
+            width: 70%;
+        }
+
         body {
+            flex-shrink: 2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,11 +84,19 @@
 
 <body style="overflow: hidden">
     <h1>Home</h1>
+    <div id="main-image-container">
+    </div>
 </body>
 <script>
-    const images = ["lain8.png", "gun.png", "lab.png", "tiger.png", "clannad.png", "clannad2.png", "cypher.png", "僕だけがいない.png"]
+    const img_container = document.getElementById("main-image-container")
+    const month = (new Date()).toLocaleString("default", {month: "long"}).toLowerCase()
+    const special_images = {
+        "december": ["tiger-december.png"]
+    }
+    const images = ["lain9.png", "gun.png", "lab.png", "tiger.png", "clannad.png", "clannad2.png", "cypher.png", "僕だけがいない.png", "truth.png"].concat(special_images[month] || [])
     let img = new Image()
-    img.src = images[Math.floor(Math.random() * images.length)]
-    document.body.append(img)
+    img.src = `./images/${images[Math.floor(Math.random() * images.length)]}`
+    img.setAttribute("width", "200")
+    img_container.append(img)
 </script>
 </html>

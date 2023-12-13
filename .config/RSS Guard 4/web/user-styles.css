@@ -33,6 +33,11 @@
     --background: linear-gradient(var(--highlight), var(--main));
 }
 
+/*if the website does not provide a background weird stuff happens*/
+html {
+    background: white;
+}
+
 #hnmain td[bgcolor="#ff6600"], #hnmain td[bgcolor="#ff6600"] * {
     color: transparent !important;
     background: transparent !important;
@@ -85,6 +90,16 @@ div.rssguard-mwrapper {
 }
 
 .rssguard-mwrapper a {
-    color: var(--pink) !important;
+    text-decoration-color: var(--pink) !important;
+    cursor: pointer !important;
+    text-decoration-thickness: 0.1em;
+    color: var(--text-color) !important;
+    transition: text-decoration-color 300ms;
+}
+
+.rssguard-mwrapper a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--blue) !important;
+    text-decoration-thickness: 0.1em !important;
 }
 /*end rssguard*/

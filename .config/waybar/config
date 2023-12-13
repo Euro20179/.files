@@ -50,6 +50,7 @@
       "class<vlc>": "󰕼",
       "class<.*Minecraft.*>": "󰍳",
       "class<MultiMC>": "󰍳L",
+      "class<thunderbird>": "",
       "title<.*nvim.*\\(foot\\)>": "",
       "title<.*\\./play .*\\(foot\\)": "󰽴",
     },
