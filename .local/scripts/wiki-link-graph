@@ -1,0 +1,87 @@
+#!/bin/python
+
+import os
+import re
+from pathlib import Path
+
+class Graph:
+    def __init__(self):
+        self.edges = {}
+
+    def add_edge(self, a: str, b: str):
+        connected_to_a = self.edges.get(a, [])
+        connected_to_a.append(b)
+        self.edges[a] = connected_to_a
+
+    def __str__(self):
+        text = ""
+        for edge in self.edges:
+            text += f'''"{edge}" -> {{{", ".join(f'"{x}"' for x in self.edges[edge])}}}\n'''
+
+        return text
+
+start = "index.norg"
+
+def get_link_extractor(name: str):
+    if name.endswith(".md"):
+        return extract_md_links
+    elif name.endswith(".norg"):
+        return extract_norg_links
+    return no_links
+
+def no_links(*args):
+    yield ""
+
+def extract_norg_links(text: str, cwd: Path):
+    norg_link_re = re.compile(r"\[[^\]]+\]\{:([^\}]+):\}")
+    X_file_link_re = re.compile(r"\[[^\]]+\]\{/ ([^\}]+)\}")
+    proto_link_re = re.compile(r"\[[^\]]+\]{([^\}]+://[^\}]+)}")
+    for match in norg_link_re.findall(text):
+        yield Path(f'{cwd}/{match}.norg').resolve()
+    for match in X_file_link_re.findall(text):
+        yield Path(match.replace("~", os.environ['HOME'])).resolve().absolute()
+    for match in proto_link_re.findall(text):
+        yield match
+
+def extract_md_links(text: str, cwd: Path):
+    link_re = re.compile(r"\[[^\]]+\]\(([^\)]+)\)")
+    for match in link_re.findall(text):
+        if re.match(r".*://.*", match):
+            yield match
+        else:
+            yield Path(f'{cwd}/{match}').resolve()
+
+def extract_links(file_path: Path):
+    link_extractor = get_link_extractor(str(file_path))
+    with open(file_path, "r") as f:
+        dir = Path(file_path.parent)
+        for link in link_extractor(f.read(), dir):
+            if link:
+                yield link
+
+def traverse(start: Path):
+    graph = Graph()
+    stack = []
+    stack.append(start)
+    visited = set()
+    while len(stack):
+        cur = stack.pop()
+        visited.add(cur)
+        for link in extract_links(cur):
+            graph.add_edge(cur, str(link))
+            if link in visited:
+                continue
+            if os.path.exists(link):
+                stack.append(link)
+    return graph
+
+print(f"""
+digraph G {{
+    fontname="Helvetica,Arial,sans-serif"
+    node [fontname="Helvetica,Arial,sans-serif" color="#00FF22" fontcolor="#f8f8f8"]
+    edge [fontname="Helvetica,Arial,sans-serif" color=cyan fontcolor="#f8f8f8"]
+    layout=sfdp
+    graph [ranksep=3, overlap=prism, bgcolor="#1e1e2e"];
+    {traverse(Path(f"{os.environ['HOME']}/Documents/vimwiki/index.norg"))}
+}}
+""")

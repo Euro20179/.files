@@ -59,16 +59,29 @@
         }
 
         #main-image-container  {
-            max-width: 50%;
-            max-height: 50%;
+            max-width: 60%;
+            max-height: 60%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+
         img {
             border-radius: 25px;
-            width: 70%;
+            width: 80%;
+        }
+
+        /*ladybird detection*/
+        @supports (text-align: -libweb-center) {
+            #main-image-container {
+                max-width: 80vmin;
+                max-height: 80vmin;
+            }
+            img {
+                width: initial;
+                width: 100%;
+            }
         }
 
         body {
