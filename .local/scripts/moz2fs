@@ -1,5 +1,7 @@
 #!/bin/python
 
+# this script converts a mozilla bookmark json export into a filesystem folder tree in the current working directory
+
 import json
 import os
 
