@@ -53,7 +53,7 @@ tooltip label{
 }
 
 window#waybar {
-    background-color: @theme-main;
+    background-color: rgba(24, 24, 37, 0.8);
     /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
     color: white;
     transition-property: background-color;

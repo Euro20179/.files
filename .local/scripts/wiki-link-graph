@@ -1,6 +1,7 @@
 #!/bin/python
 
 import os
+import sys
 import re
 from pathlib import Path
 
@@ -75,13 +76,27 @@ def traverse(start: Path):
                 stack.append(link)
     return graph
 
-print(f"""
-digraph G {{
-    fontname="Helvetica,Arial,sans-serif"
-    node [fontname="Helvetica,Arial,sans-serif" color="#00FF22" fontcolor="#f8f8f8"]
-    edge [fontname="Helvetica,Arial,sans-serif" color=cyan fontcolor="#f8f8f8"]
-    layout=sfdp
-    graph [ranksep=3, overlap=prism, bgcolor="#1e1e2e"];
-    {traverse(Path(f"{os.environ['HOME']}/Documents/vimwiki/index.norg"))}
-}}
-""")
+graph = traverse(Path(f"{os.environ['HOME']}/Documents/vimwiki/index.norg"))
+
+if len(sys.argv) > 1 and sys.argv[1] == "links":
+    printed = set()
+    for edge in graph.edges:
+        if edge not in printed:
+            print(edge)
+        for node in graph.edges[edge]:
+            if node not in printed:
+                print(node)
+            printed.add(node)
+        printed.add(edge)
+
+else:
+    print(f"""
+    digraph G {{
+        fontname="Helvetica,Arial,sans-serif"
+        node [fontname="Helvetica,Arial,sans-serif" color="#00FF22" fontcolor="#f8f8f8"]
+        edge [fontname="Helvetica,Arial,sans-serif" color=cyan fontcolor="#f8f8f8"]
+        layout=sfdp
+        graph [ranksep=3, overlap=prism, bgcolor="#1e1e2e"];
+        {graph}
+    }}
+    """)

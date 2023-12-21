@@ -7,7 +7,7 @@
   // Choose the order of the modules
   // "modules-left": ["river/tags"],
   "modules-left": ["hyprland/workspaces"],
-  "modules-right": ["custom/vpn-location"],
+  "modules-right": ["mpd", "custom/vpn-location", "tray"],
   "modules-center": [
     "disk",
     "custom/pkg-count",
@@ -19,9 +19,7 @@
     "custom/memory",
     //"keyboard-state",
     "clock",
-    "custom/mouselock-indicator",
-    "mpd",
-    "tray"
+    "custom/mouselock-indicator"
   ],
   "custom/mouselock-indicator": {
       "signal": 40,

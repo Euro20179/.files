@@ -1,4 +1,3 @@
-local key = vim.fn.readfile("/home/euro/Documents/APIKeys/hggf.key")[1]
 require("lazy").setup({
     'mattn/emmet-vim',
     'nvim-lua/plenary.nvim',
@@ -24,7 +23,6 @@ require("lazy").setup({
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-emoji',
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     'hrsh7th/nvim-cmp',
     -- 'L3MON4D3/LuaSnip',
@@ -36,7 +34,7 @@ require("lazy").setup({
         main = "lsp_signature",
         opts = {
             bind = true,
-            hint_enable = true,
+            hint_enable = false,
             hint_prefix = " ",
             always_trigger = false,
             doc_lines = 0,
@@ -124,28 +122,28 @@ require("lazy").setup({
             "laher/neorg-exec"
         }
     },
-    {
-        "rcarriga/nvim-notify",
-        config = function()
-            vim.opt.termguicolors = true
-            vim.notify = require "notify"
-            require("notify").setup {
-                background_colour = "#000000"
-            }
-        end
-    },
+    -- {
+    --     "rcarriga/nvim-notify",
+    --     config = function()
+    --         vim.opt.termguicolors = true
+    --         vim.notify = require "notify"
+    --         require("notify").setup {
+    --             background_colour = "#000000"
+    --         }
+    --     end
+    -- },
     {
         "smjonas/inc-rename.nvim",
         config = function()
             require("inc_rename").setup {}
         end
     },
-    {
-        "lewis6991/gitsigns.nvim",
-        opts = {
-            attach_to_untracked = false,
-        }
-    },
+    -- {
+    --     "lewis6991/gitsigns.nvim",
+    --     opts = {
+    --         attach_to_untracked = false,
+    --     }
+    -- },
     {
         'folke/tokyonight.nvim'
     },
@@ -159,7 +157,6 @@ require("lazy").setup({
             live_mode_toggle = 'enable'
         }
     },
-
     {
         "sindrets/diffview.nvim",
         dependencies = "nvim-lua/plenary.nvim",
@@ -167,53 +164,33 @@ require("lazy").setup({
         cmd = { "DiffviewOpen" },
         opts = {}
     },
-
-    { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline" },
+    { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline", lazy = true },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
-
-
     {
         "debugloop/telescope-undo.nvim"
     },
-
-    {
-        "alec-gibson/nvim-tetris",
-        cmd = "Tetris"
-    },
-    {
-        "ellisonleao/glow.nvim",
-        cmd = "Glow",
-        config = function()
-            require "glow".setup {
-                glow_path = "/usr/bin/glow",
-            }
-        end
-    },
-    {
-        'jim-fx/sudoku.nvim',
-        cmd = "Sudoku",
-        config = true
-    },
-    {
-        "jinzhongjia/LspUI.nvim",
-        config = true
-    },
+    -- {
+    --     "ellisonleao/glow.nvim",
+    --     cmd = "Glow",
+    --     config = function()
+    --         require "glow".setup {
+    --             glow_path = "/usr/bin/glow",
+    --         }
+    --     end
+    -- },
+    -- {
+    --     "jinzhongjia/LspUI.nvim",
+    --     config = true
+    -- },
     -- {
     --     "folke/neodev.nvim",
     --     config = true
     -- },
-    {
-        "EdenEast/nightfox.nvim"
-    },
+    -- {
+    --     "EdenEast/nightfox.nvim"
+    -- },
     {
         "andymass/vim-matchup"
-    },
-    {
-        "/nvimdev/template.nvim",
-        cmd = { "Template", "TemProject" },
-        opts = {
-            temp_dir = "~/.config/nvim/template"
-        }
     },
     {
         "jinh0/eyeliner.nvim",
@@ -328,7 +305,7 @@ require("lazy").setup({
     {
         "echasnovski/mini.nvim",
         config = function()
-            require "mini.pairs".setup {}
+            -- require "mini.pairs".setup {}
             require "mini.comment".setup {}
             require "mini.ai".setup {}
             require "mini.splitjoin".setup {
@@ -357,13 +334,24 @@ require("lazy").setup({
         end
     },
     {
-        "ThePrimeagen/refactoring.nvim",
+        "luckasRanarison/tree-sitter-hypr"
+    },
+    {
+        "altermo/nxwm"
+    },
+    {
+        "altermo/ultimate-autopair.nvim",
         opts = {}
     },
     {
-        "elkowar/yuck.vim"
-    },
-    {
-        "luckasRanarison/tree-sitter-hypr"
+        "dustinblackman/oatmeal.nvim",
+        cmd = { "Oatmeal" },
+        keys = {
+            { "<leader>om", mode = "n", desc = "Start Oatmeal session" },
+        },
+        opts = {
+            backend = "ollama",
+            model = "codellama:latest",
+        },
     },
 })

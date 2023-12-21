@@ -25,10 +25,10 @@ require 'filetypes'
 require 'setwidths'
 require 'user.init'
 
-require "discord".setup {
-    token = vim.fn.readfile("/home/euro/Documents/APIKeys/discord")[1],
-    user_id = "334538784043696130"
-}
+-- require "discord".setup {
+--     token = vim.fn.readfile("/home/euro/Documents/APIKeys/discord")[1],
+--     user_id = "334538784043696130"
+-- }
 
 vim.fn.setenv("IN_VIM", "true")
 
@@ -38,9 +38,8 @@ vim.fn.setenv("NVIM", vim.v.servername)
 
 local cs = require 'colorscheme'
 
--- cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
+cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
 -- cs.changeColorScheme({ scheme = "monokai-nightasty" })
-cs.changeColorScheme({ scheme = "nightfox" })
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -54,21 +53,7 @@ if vim.g.neovide ~= nil then
     }, {})
 end
 
-if vim.g.started_by_firenvim then
-    vim.o.laststatus = 0
-    vim.g.html_font = "Consolas"
-end
-vim.w.euro_debug_mode = false
-
 ---@diagnostic disable-next-line
 vim.ui.open = function(item)
     vim.system({ "linkhandler", item })
-end
-
----@diagnostic disable-next-line
-vim.lsp.buf.hover = function()
-    vim.api.nvim_cmd({
-        cmd = "LspUI",
-        args = { "hover" }
-    }, {})
 end

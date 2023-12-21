@@ -151,6 +151,8 @@ alias "lman=MANPAGER=less man"
 
 alias 'q=exit'
 
+alias "ani=strack-cli"
+
 # man () {
 #     section=1
 #     page="$2"

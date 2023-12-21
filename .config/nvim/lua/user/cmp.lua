@@ -55,7 +55,7 @@ cmp.setup({
                 calc = "[=]",
                 time = "%",
                 dynamic = "",
-                emoji = "E",
+                -- emoji = "E",
                 --rg = '[/]',
                 --look = '[Look]',
                 --digraphs = '[Digraph]',
@@ -114,7 +114,7 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
         { name = "spell" },
-        { name = "emoji" },
+        -- { name = "emoji" },
         -- { name = "time" },
         --{
         --name = "dictionary",
