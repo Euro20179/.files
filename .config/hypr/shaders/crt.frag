@@ -1,3 +1,5 @@
+//modified version of [this shader](https://github.com/wessles/GLSL-CRT/blob/master/shader.frag)
+
 precision mediump float;
 varying vec2 v_texcoord;
 
