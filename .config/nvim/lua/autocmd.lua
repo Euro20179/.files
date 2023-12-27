@@ -4,6 +4,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
 })
 
+-- vim.api.nvim_create_autocmd({"ModeChanged"}, {
+--     pattern = "*:*",
+--     callback = function ()
+--         vim.system({
+--             "notify-send",
+--             vim.fn.mode()
+--         })
+--
+--         vim.o.titlestring = "nvim - " .. vim.fn.mode()
+--     end
+-- })
+--         vim.o.title = true
+
 -- I cannot STAND inlay hints in insert mode
 -- vim.api.nvim_create_autocmd("InsertEnter", {
 --     callback = function()

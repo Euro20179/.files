@@ -19,12 +19,6 @@ bindkey '^p' backward-word
 bindkey '^[[27;2;13~' accept-line
 
 #allow better tab completion
-autoload -U compinit
-compinit
-_comp_options+=(globdots)
-compdef _gnu_generic ytfzf
-compdef _gnu_generic trash
-
 setopt AUTO_CD
 setopt CORRECT
 setopt EQUALS
@@ -119,3 +113,11 @@ enable_plugin "fzf-tab"
 alias "ref=clear; source ~/.config/.zshrc"    
 
 source ~/.config/.shellrc
+
+fpath=("$XDG_CONFIG_HOME"/zsh-autoload "${fpath[@]}")
+autoload -U compinit
+compinit
+_comp_options+=(globdots)
+compdef _gnu_generic ytfzf
+compdef _gnu_generic trash
+

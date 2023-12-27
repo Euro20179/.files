@@ -1,0 +1,23 @@
+#compdef strack-cli
+
+_strack_cli () {
+    local curcontext="$curcontext" state line
+    _arguments -C '*::arg:->args' "1:command:(start finish rewatch list plan rename add)"
+    case "${line[1]}" in
+        s*) _strack_start ;;
+        f*) _strack_start ;; #for now they are the same
+        a*) _strack_start ;; #for now they are the same
+    esac
+}
+
+_strack_start () {
+    _arguments "1:show:_strack_shows" "*::arg->args"
+}
+
+_strack_shows () {
+    local -a shows
+    IFS=$'\n' shows=($(strack-cli list | sed 's/:/\\:/g'))
+    _describe 'select show' shows
+}
+
+_strack_cli "$@"

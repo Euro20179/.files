@@ -93,12 +93,18 @@ alias u="paru"
 alias y=yazi
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 alias img="nvim -b +DisplayImg"
-alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
+#alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
 
 alias conf=open-config-from-vw.lua
 
 alias email=compose-email
+
+anime () {
+    file="$HOME/Documents/vimwiki/norg-home/anime-list2.norg"
+    strack-cli norg > "$file"
+    nvim -- "$file"
+}
 
 me () {
     disown 2> /dev/null 1>&2
@@ -227,7 +233,7 @@ export MPV_WIN_SIZE=1000
 export GOPATH="$XDG_DATA_HOME/go"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
-export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin"
+export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"
 export FILEEXPLORER="kitty"
 export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 

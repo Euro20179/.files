@@ -94,7 +94,13 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>n",     ":Neotree float<cr>" },
-    { "<leader>o",     "<cmd>SymbolsOutline<cr>" },
+    { "<leader>o",     function ()
+        if vim.o.filetype == "norg" then
+            vim.cmd[[Neorg toc]]
+        else
+            vim.cmd[[SymbolsOutline]]
+        end
+    end },
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():append() end },

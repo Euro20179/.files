@@ -336,9 +336,9 @@ require("lazy").setup({
     {
         "luckasRanarison/tree-sitter-hypr"
     },
-    {
-        "altermo/nxwm"
-    },
+    -- {
+    --     "altermo/nxwm"
+    -- },
     {
         "altermo/ultimate-autopair.nvim",
         opts = {}

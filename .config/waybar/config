@@ -7,7 +7,7 @@
   // Choose the order of the modules
   // "modules-left": ["river/tags"],
   "modules-left": ["hyprland/workspaces"],
-  "modules-right": ["mpd", "custom/vpn-location", "tray"],
+  "modules-right": ["custom/vpn-location", "tray"],
   "modules-center": [
     "disk",
     "custom/pkg-count",
