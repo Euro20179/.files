@@ -57,3 +57,13 @@ end
 vim.ui.open = function(item)
     vim.system({ "linkhandler", item })
 end
+
+vim.lsp.buf.hover = function(...)
+    local hovercraft = require "hovercraft"
+    if hovercraft.is_visible() then
+        hovercraft.enter_popup()
+    else
+        hovercraft.hover({ current_provider = "LSP" })
+    end
+end
+

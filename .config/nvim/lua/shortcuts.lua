@@ -385,7 +385,7 @@ local vShortcuts = {
     { "<a-k>",           require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-    { "D",               ":ChatBotDocument<cr>" },
+    { "D",               ":ODocument<cr>" },
     { "C",               ":ChatBotComment<cr>" },
     -- }}}
     -- move code {{{

@@ -1,5 +1,3 @@
-local json = require("lib.json")
-
 function Rword()
     local words = {}
     for line in io.lines("/home/euro/Documents/words.txt") do
@@ -75,72 +73,13 @@ function P(...)
     vim.print(...)
 end
 
-local function queryChatBot()
-    vim.ui.input({ prompt = "Query: " }, function(input)
-        if input ~= nil then
-            local filename = "/tmp/nvim-ChatBotQuery"
-            local f = io.open(filename, "w")
-            input = json.encode(input)
-            if f then
-                f:write(input)
-                f:close()
-            end
-            local handle = io.popen([[
-        curl -s "https://api.openai.com/v1/completions" \
-             -H 'Content-Type: application/json' \
-             -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
-             -d '{"model": "text-davinci-003", "prompt": '"$(cat ]] ..
-                filename .. [[)"', "temperature": 0}' | jq -r '.choices[0].text'
-    ]])
-            if handle then
-                local res = handle:read("*a")
-                vim.api.nvim_put(vim.split(res, "\n"), "l", true, true)
-            end
-            os.remove(filename)
-        end
-    end)
-end
-
-local function _chatbotmain(data, type)
-    if data.line1 == nil then
-        return
-    end
-
-    local lines = vim.api.nvim_buf_get_lines(0, data.line1 - 1, data.line2, false)
-    local str = ""
-    for _, line in ipairs(lines) do
-        str = str .. line .. '\n'
-    end
-    str = json.encode(str)
-    local filename = "/tmp/nvim-ChatBot"
-    local f = io.open(filename, "w")
-    if f then
-        f:write(str)
-        f:close()
-    end
-    local handle = io.popen([[
-        curl -s "https://api.openai.com/v1/edits" \
-             -H 'Content-Type: application/json' \
-             -H "Authorization: Bearer $(cat ~/Documents/APIKeys/openai.private)" \
-             -d '{"model": "text-davinci-edit-001", "input": '"$(cat ]] ..
-        filename .. [[)"', "instruction": "]] .. type .. [[", "temperature": 0}' | jq -r '.choices[0].text'
-    ]])
-    if handle then
-        local res = handle:read("*a")
-        -- print(res)
-        vim.api.nvim_buf_set_lines(0, data.line1 - 1, data.line2, false, vim.split(res, "\n"))
-        handle:close()
-    end
-    os.remove(filename)
-end
-
 function ChatBotComment(data)
-    _chatbotmain(data, "Add comments")
+    OllamaDocument(data)
 end
 
-function ChatBotDocument(data)
-    _chatbotmain(data, "Add documentation")
-end
+-- function ChatBotDocument(data)
+--     _chatbotmain(data, "Add documentation")
+-- end
 
 function GotoTerminalBuf()
     local harpoon = require "harpoon"
@@ -197,10 +136,67 @@ function ExecSelection(cmdData)
     end
 end
 
+function OllamaDocument(cmdData)
+    local model = cmdData.fargs[1] or "llama2"
+    local buf = vim.api.nvim_get_current_buf()
+    if cmdData.line1 == nil then
+        vim.notify("This command requires a range")
+    end
+    local lines = vim.api.nvim_buf_get_lines(0, cmdData.line1 - 1, cmdData.line2, false)
+    local json = vim.json.encode(table.concat(lines, "\n"))
+    local commentstring = vim.api.nvim_get_option_value("commentstring", { buf = buf })
+    vim.system({
+        "curl",
+        "http://localhost:11434/api/generate",
+        "-d",
+        '{"model": "' .. model .. '", "prompt": ' ..
+        json ..
+        ', "system": "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Only provide code examples, do not provide full code functions"}',
+    }, { text = true }, function(obj)
+        local output_lines = vim.split(obj.stdout, "\n")
+        vim.schedule(function()
+            local result = ""
+            for _, line in ipairs(output_lines) do
+                if line == "" then
+                    goto continue
+                end
+                print(line)
+                local j = vim.json.decode(line)
+                if j["response"] == nil then
+                    goto continue
+                end
+                result = result .. j["response"]
+                ::continue::
+            end
+            local split = vim.split(result, "\n")
+            for i, line in ipairs(split) do
+                split[i] =  vim.fn.printf(commentstring, line)
+            end
+            vim.api.nvim_buf_set_lines(buf, cmdData.line1 - 2, cmdData.line1 - 1, false, split)
+            -- local obuf = vim.api.nvim_create_buf(false, false)
+            -- local width = vim.fn.winwidth(0)
+            -- local height = vim.fn.winheight(0)
+            -- local window = vim.api.nvim_open_win(obuf, true, {
+            --     relative = "win",
+            --     bufpos = {10, 5},
+            --     width = width - 20,
+            --     height = height - 10,
+            --     border = "single",
+            --     title = model .. " output",
+            --     style = "minimal"
+            -- })
+            -- vim.api.nvim_buf_set_lines(obuf, 0, 1, false, vim.split(result, "\n"))
+            -- vim.fn.setreg('"', result)
+        end
+        )
+    end)
+end
+
+vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
 vim.api.nvim_create_user_command("Preview", PreviewFile, {})
 vim.api.nvim_create_user_command("Exec", ExecSelection, { range = true, nargs = "?", bang = true })
 vim.api.nvim_create_user_command("DisplayImg", DisplayImg, { nargs = "?" })
-vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
+-- vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 vim.api.nvim_create_user_command("ChatBotComment", ChatBotComment, { range = true })
-vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})
+-- vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})

@@ -301,6 +301,8 @@ alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
 
 alias c='echo $?'
 
+alias llm="HSA_OVERRIDE_GFX_VERSION=10.3.0 ollama serve"
+
 unset welcomeStr
 
 . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"
