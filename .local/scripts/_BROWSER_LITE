@@ -1,3 +1,5 @@
 #!/bin/sh
 
-firefox-developer-edition -P Non-broken "$@"
+librewolf -P default
+
+#firefox-developer-edition -P Non-broken "$@"

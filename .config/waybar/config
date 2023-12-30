@@ -43,6 +43,7 @@
       "class<mpv>": "󰈫",
       "class<org.qbittorrent.qBittorrent>": "μ",
       "class<osu!\\.exe>": "󰎄",
+      "class<osu!>": "󰎄!",
       "class<.*steam.*>": "󰓓",
       "class<makemkv>": "📀",
       "class<vlc>": "󰕼",

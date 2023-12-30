@@ -94,7 +94,7 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>n",     ":Neotree float<cr>" },
-    { "<leader>o",     function ()
+    { "gO",     function ()
         if vim.o.filetype == "norg" then
             vim.cmd[[Neorg toc]]
         else

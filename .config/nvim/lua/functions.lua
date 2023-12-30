@@ -136,6 +136,42 @@ function ExecSelection(cmdData)
     end
 end
 
+function OllamaGen(cmdData)
+    local model = cmdData.fargs[1] or "codellama:13b-code"
+    local buf = vim.api.nvim_get_current_buf()
+    if cmdData.line1 == nil then
+        vim.notify("This command requires a range")
+    end
+    local lines = vim.api.nvim_buf_get_lines(0, cmdData.line1 - 1, cmdData.line2, false)
+    local json = vim.json.encode("<PRE> " .. table.concat(lines, "\n") .. " <MID>")
+    vim.system({
+        "curl",
+        "http://localhost:11434/api/generate",
+        "-d",
+        '{"model": "' .. model .. '", "prompt": ' ..
+        json .. '}'
+    }, { text = true }, function(obj)
+        local output_lines = vim.split(obj.stdout, "\n")
+        vim.schedule(function()
+            local result = ""
+            for _, line in ipairs(output_lines) do
+                if line == "" then
+                    goto continue
+                end
+                local j = vim.json.decode(line)
+                if j["response"] == nil then
+                    goto continue
+                end
+                result = result .. j["response"]
+                ::continue::
+            end
+            local split = vim.split(table.concat(lines, "\n"):gsub("<SUF>", result), "\n")
+            vim.api.nvim_buf_set_lines(buf, cmdData.line1 - 1, cmdData.line2, false, split)
+        end
+        )
+    end)
+end
+
 function OllamaDocument(cmdData)
     local model = cmdData.fargs[1] or "llama2"
     local buf = vim.api.nvim_get_current_buf()
@@ -160,7 +196,6 @@ function OllamaDocument(cmdData)
                 if line == "" then
                     goto continue
                 end
-                print(line)
                 local j = vim.json.decode(line)
                 if j["response"] == nil then
                     goto continue
@@ -192,6 +227,7 @@ function OllamaDocument(cmdData)
     end)
 end
 
+vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
 vim.api.nvim_create_user_command("Preview", PreviewFile, {})

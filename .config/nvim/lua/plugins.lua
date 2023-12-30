@@ -363,5 +363,5 @@
          cmd = {
              "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop"
          }
-     }
+     },
  })
