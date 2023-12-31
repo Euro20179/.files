@@ -12,6 +12,8 @@ export QT_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export XMODIFIERS='@im=fcitx'
 
+export GTK_THEME='Catppuccin-Macchiato-Standard-Pink-Dark'
+
 
 #xdg dirs
 export XDG_HISTORY_HOME=${XDG_HISTORY_HOME:=$HOME/.history}
@@ -121,8 +123,8 @@ alias upc='paru; flatpak update'
 
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 
-alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
-alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
+alias 'plotdu=BROWSER=epiphany $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
+alias 'plotpkgs=BROWSER=epiphany $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
 alias otd="doas rmmod wacom; otd"
 alias "TODO=$EDITOR $TODO_FILE"
 #this file is sourced in my other shells

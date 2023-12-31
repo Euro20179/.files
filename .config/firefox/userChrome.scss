@@ -9,6 +9,11 @@
 }
 /*end floorp*/
 
+/*disable window decroations*/
+.titlebar-buttonbox-container {
+  display: none !important;
+}
+
 /*height adjustment: makes the browser tabs not have a ton of padding*/
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
     height: unset !important;
