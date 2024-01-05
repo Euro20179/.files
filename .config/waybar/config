@@ -36,6 +36,7 @@
     "window-rewrite": {
       "title<QuickMedia.*>": "全て",
       "class<firefoxdeveloperedition>": "<span color='#89b4fa'></span>",
+      "class<librewolf>": "<span color='#69c1eb'></span>",
       "class<footclient>": "",
       "class<code>": "󰨞",
       "class<nheko>": "<span color='#ABE9B3'>󰊌</span>",

@@ -4,7 +4,7 @@ slurp_args="$1"
 image_lib="${2:-png}"
 
 pos=$(slurp "$slurp_args")
-grim -g "$pos" /dev/stdout | ffmpeg -i - -c:v "${image_lib}" -f image2pipe - | wl-copy -t image/png
+grim -t png -g "$pos" /dev/stdout | ffmpeg -i - -c:v "${image_lib}" -f image2pipe - | wl-copy -t image/png
 t=$(mktemp)
 wl-paste > $t
 notify-send -c screenshot -i $t "Image taken at: $pos"

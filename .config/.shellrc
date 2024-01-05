@@ -69,7 +69,7 @@ _pager(){
     nvimpager | nvim
 }
 
-export PAGER=pager
+export PAGER=less
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL=footclient
 export MENU_LAUNCHER="os-menu"
@@ -80,7 +80,7 @@ export OPENER="xdg-open"
 export EMAIL="thunderbird -mail"
 export VIDEO_PLAYER="mpv --geometry=1000"
 export AUDIO_PLAYER="mpv --no-video"
-export MATRIX="nheko"
+export MATRIX="neochat"
 export FILEMANAGER="ranger"
 export SYSMON="btop"
 export UNICODE_PICKER="pick-emoji"
@@ -101,6 +101,8 @@ alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
 alias conf=open-config-from-vw.lua
 
 alias email=compose-email
+
+alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'
 
 anime () {
     file="$HOME/Documents/vimwiki/norg-home/anime-list2.norg"

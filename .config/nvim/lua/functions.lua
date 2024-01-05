@@ -173,7 +173,7 @@ function OllamaGen(cmdData)
 end
 
 function OllamaDocument(cmdData)
-    local model = cmdData.fargs[1] or "llama2"
+    local model = cmdData.fargs[1] or "mistral"
     local buf = vim.api.nvim_get_current_buf()
     if cmdData.line1 == nil then
         vim.notify("This command requires a range")
@@ -187,7 +187,7 @@ function OllamaDocument(cmdData)
         "-d",
         '{"model": "' .. model .. '", "prompt": ' ..
         json ..
-        ', "system": "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Only provide code examples, do not provide full code functions"}',
+        ', "system": "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Provide a description of the function, its parameters, the return value, and example usage"}',
     }, { text = true }, function(obj)
         local output_lines = vim.split(obj.stdout, "\n")
         vim.schedule(function()

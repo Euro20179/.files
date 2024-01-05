@@ -112,13 +112,15 @@
                  },
                  ["core.ui"] = {},
                  ["core.ui.calendar"] = {},
-                 ["external.exec"] = {}
+                 ["external.exec"] = {},
+                 ["core.queries.native"] = {},
+                 ["core.integrations.treesitter"] = {},
              }
          },
          dependencies = {
              "nvim-lua/plenary.nvim",
              "nvim-neorg/neorg-telescope",
-             "laher/neorg-exec"
+             "laher/neorg-exec",
          }
      },
      -- {
@@ -319,6 +321,7 @@
                      }
                  }
              }
+             require "mini.notify".setup{}
              require "mini.indentscope".setup {
                  delay = 0
              }
@@ -358,10 +361,12 @@
          config = true
      },
      {
-         "nomnivore/ollama.nvim",
-         opts = {},
-         cmd = {
-             "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop"
-         }
+         "LudoPinelli/comment-box.nvim"
      },
+     {
+         "NStefan002/visual-surround.nvim",
+         opts = {
+             use_default_keymaps = false
+         }
+     }
  })

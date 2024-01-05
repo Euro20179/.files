@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #LH_NO_EDIT is used in my nvim config to say, dont edit just exit with an error to let nvim handle the editing
 
 link="$*"
@@ -22,10 +21,17 @@ esac
 case "$link" in
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
-    #mpv works if there is a password in the url
-    sftp://*:*@*.m3u8) mpv "$link" & ;;
-    #otherwise use vlc
-    sftp://*.m3u8) vlc "$link" & ;;
+    anime:sftp://*)
+        eval "$(ssh-agent -s)"
+        SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
+        notify-send "opening"
+        mpv --profile=anime "${link#anime:}";;
+    anime:*) mpv --profile=anime "${link#anime:}" ;;
+    sftp://*.m3u8)
+        eval "$(ssh-agent -s)"
+        SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
+        notify-send "opening"
+        mpv "$link";;
     #all other m3u8's go to mpv
     *.m3u8) mpv "$link" & ;;
     file://*|/*|~/*|./*)
@@ -58,3 +64,4 @@ EOF
             nohup $BROWSER "$link" > /dev/null 2>&1 &
         fi;;
 esac
+killall ssh-agent

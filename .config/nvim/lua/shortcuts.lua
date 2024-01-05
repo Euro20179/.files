@@ -443,3 +443,12 @@ end)
 vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()
 end)
+
+local surround_prefix = "s"
+local surround_chars = {"{", "[", "(", "'", '"', "<"}
+local surround = require"visual-surround".surround
+for _, key in pairs(surround_chars) do
+    vim.keymap.set("v", surround_prefix .. key, function ()
+        surround(key)
+    end, { desc = "[visual-surround] " .. key })
+end
