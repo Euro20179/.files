@@ -76,6 +76,7 @@ local nShortcuts = {
     { "<leader>fb", '<cmd>Telescope buffers<cr>' },
     { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>' },
     { "<leader>fe", ':Telescope find_files<cr>' },
+    { "<leader>fq", ":Telescope quickfix<cr>" },
     { "<leader>ff", function()
         local t = require "telescope.builtin"
         harpoon:list():append()
@@ -190,11 +191,6 @@ local nShortcuts = {
         })
     end
     },
-    { "]d", function()
-        vim.diagnostic.goto_next()
-        vim.diagnostic.open_float()
-    end
-    },
     { "]D", function()
         vim.diagnostic.goto_next()
         local n = 0
@@ -205,11 +201,6 @@ local nShortcuts = {
             end,
             apply = true
         })
-    end
-    },
-    { "[d", function()
-        vim.diagnostic.goto_prev({})
-        vim.diagnostic.open_float()
     end
     },
     { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,

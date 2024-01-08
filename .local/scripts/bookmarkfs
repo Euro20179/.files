@@ -20,8 +20,8 @@ open() {
     [ "$do_prompt" = "true" ] && prompt=""
     [ "$do_prompt" ] && {
         query=$(printf | rofi -theme cat-macchiato-dmenu-center -dmenu -p "${prompt}")
-        $BROWSER "$(printf "$url" "$query")"
-    } || $BROWSER "$(grep "^url=" "$path" | cut -d '=' -f2-)"
+        linkhandler "$(printf "$url" "$query")"
+    } || linkhandler "${url}"
 
 }
 
@@ -44,9 +44,22 @@ remove () {
     rm "${path}"
 }
 
+copy () {
+	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
+    printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"; done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
+
+	[ -z "$file" ] && exit
+
+    file="${file%%  *}"
+
+	path="${bookmark_dir}/${file}"
+    grep "^url=" "$path" | cut -d '=' -f2- | tr -d $'\n' | wl-copy 
+}
+
 case "$action" in
     open|o) open ;;
     add|a) add ;;
     remove|r) remove ;;
+    copy|c) copy ;;
     *) printf "%s\n" "$action is not a valid action" ;;
 esac

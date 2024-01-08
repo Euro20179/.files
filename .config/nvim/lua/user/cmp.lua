@@ -83,28 +83,23 @@ cmp.setup({
         ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ['<CR>'] = cmp.mapping.confirm(),
         ["<tab>"] = cmp.mapping(function(fallback)
-            if vim.snippet.jumpable(1) then
+            local jumpable = vim.snippet.jumpable(1)
+            if jumpable~= 0 and jumpable ~= nil then
                 vim.snippet.jump(1)
+            elseif vim.snippet.active() then
+                vim.snippet.exit()
             else
                 fallback()
             end
-            -- if luasnip.expand_or_jumpable() then
-            --     luasnip.expand_or_jump()
-            -- else
-            --     fallback()
-            -- end
         end),
         ["<s-tab>"] = cmp.mapping(function(fallback)
             if vim.snippet.jumpable(-1) then
                 vim.snippet.jump(-1)
+            elseif vim.snippet.active() then
+                vim.snippet.exit()
             else
                 fallback()
             end
-            -- if luasnip.jumpable(-1) then
-            --     luasnip.jump(-1)
-            -- else
-            --     fallback()
-            -- end
         end)
     }),
     sources = cmp.config.sources({
@@ -114,6 +109,7 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
         { name = "spell" },
+        { name = "snippets" },
         -- { name = "emoji" },
         -- { name = "time" },
         --{
@@ -133,7 +129,7 @@ cmp.setup.filetype('gitcommit', {
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-for _, name in ipairs({"/", "?"}) do
+for _, name in ipairs({ "/", "?" }) do
     cmp.setup.cmdline(name, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {

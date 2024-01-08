@@ -38,7 +38,6 @@ vim.fn.setenv("NVIM", vim.v.servername)
 local cs = require 'colorscheme'
 
 cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
--- cs.changeColorScheme({ scheme = "monokai-nightasty" })
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -57,6 +56,7 @@ vim.ui.open = function(item)
     vim.system({ "linkhandler", item })
 end
 
+---@diagnostic disable-next-line
 vim.lsp.buf.hover = function(...)
     local hovercraft = require "hovercraft"
     if hovercraft.is_visible() then

@@ -19,6 +19,7 @@ case "$mime" in
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
 esac
 case "$link" in
+    gemini://*) lagrange "$link" ;;
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     anime:sftp://*)
