@@ -239,6 +239,5 @@ ins_right {
     padding = { left = 1 },
 
 }
-config.sections.lualine_c[#config.sections.lualine_c + 1] = 'lsp_progress'
 -- Now don't forget to initialize lualine
 lualine.setup(config)

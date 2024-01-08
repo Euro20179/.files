@@ -1,5 +1,3 @@
-local _M = {}
-
 -- colorscheme.after = function()
     -- vim.cmd [[
     -- " for vscode looking completion
@@ -66,15 +64,19 @@ local _M = {}
 --     -- ]]
 -- end
 
-_M.changeColorScheme = function(newScheme)
-    vim.api.nvim_cmd({
-        args = { newScheme.scheme },
-        cmd = "colorscheme"
-    }, {})
-    -- vim.cmd[[hi Normal guibg=#00000000]]
-    -- vim.cmd[[hi Winbar guibg=#00000000]]
-    vim.api.nvim_set_hl(0, "LspInlayHint", {bg = "NONE", italic = true, fg="#6e738d"})
-    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true})
-end
+vim.api.nvim_cmd({
+    args = { "catppuccin-macchiato" },
+    cmd = "colorscheme"
+}, {})
+-- vim.cmd[[hi Normal guibg=#00000000]]
+-- vim.cmd[[hi Winbar guibg=#00000000]]
+vim.api.nvim_set_hl(0, "LspInlayHint", {bg = "NONE", italic = true, fg="#6e738d"})
+vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true})
 
-return _M
+if vim.g.neovide ~= nil then
+    vim.g.neovide_transparency = 0.8
+    vim.api.nvim_cmd({
+        cmd = "hi",
+        args = { "Normal", "guibg=NONE", "ctermbg=NONE" }
+    }, {})
+end

@@ -5,7 +5,6 @@ harpoon:setup()
 
 local widgets = require "dap.ui.widgets"
 
-
 -- local moveline = require("moveline")
 local utilLeader = "<M-u>"
 
@@ -18,88 +17,90 @@ local nShortcuts = {
     -- dap {{{
     { dapLeader .. "o", function()
         require "dapui".toggle()
-    end },
+    end, { desc = "toggle dap ui" } },
     { dapLeader .. "s", function()
         local sidebar = widgets.sidebar(widgets.scopes)
         sidebar.open()
-    end },
+    end, { desc = "open scopes" } },
     { dapLeader .. "f", function()
         local sidebar = widgets.sidebar(widgets.frames)
         sidebar.open()
-    end },
+    end, { desc = "open frames" } },
     { dapLeader .. "<leader>", function()
         require "dap".repl.toggle()
-    end },
+    end, { desc = "open repl" } },
     { dapLeader .. "k", function()
         widgets.hover()
-    end },
+    end, { desc = "hover widget" } },
     { dapLeader .. "t", function()
         local sidebar = widgets.sidebar(widgets.threads)
         sidebar.open()
-    end },
+    end, { desc = "open threads" } },
     { dapLeader .. "e", function()
         local sidebar = widgets.sidebar(widgets.expression)
         sidebar.open()
-    end },
-    { dapLeader .. "b", function() require "dap".toggle_breakpoint() end },
-    { dapLeader .. "P", function() require "dap".pause() end },
-    { dapLeader .. "c", function() require "dap".continue() end },
-    { dapLeader .. "n", function() require "dap".step_over() end },
-    { dapLeader .. "p", function() require "dap".step_back() end },
-    { dapLeader .. "i", function() require "dap".step_into() end },
-    { dapLeader .. "I", function() require "dap".step_out() end },
+    end, { desc = "open expressions" } },
+    { dapLeader .. "b", function() require "dap".toggle_breakpoint() end, { desc = "toggle breakpoint" } },
+    { dapLeader .. "P", function() require "dap".pause() end,             { desc = "pause" } },
+    { dapLeader .. "c", function() require "dap".continue() end,          { desc = "continue" } },
+    { dapLeader .. "n", function() require "dap".step_over() end,         { desc = "setp over" } },
+    { dapLeader .. "p", function() require "dap".step_back() end,         { desc = "step back" } },
+    { dapLeader .. "i", function() require "dap".step_into() end,         { desc = "step into" } },
+    { dapLeader .. "I", function() require "dap".step_out() end,          { desc = "step out" } },
     { dapLeader .. "r", function()
         require "dap".session()
         require "dap".continue()
-    end },
+    end, { desc = "start session" } },
     -- }}}
     --copy shortcuts {{{
-    { "<leader>p",  '"+p',                                                     { desc = "paste from sys clipboard" } },
-    { "<leader>P",  '"+P',                                                     { desc = "paste above from sys clipboard" } },
-    { "<leader>y",  '"+y',                                                     { desc = "copy to sys clipboard" } },
-    { "<leader>Y",  '"+Y',                                                     { desc = "copy line to sys clipboard" } },
-    { "<leader>d",  '"_d',                                                     { desc = "delete to null register" } },
-    { "<leader>c",  '"_c',                                                     { desc = "change to null register" } },
-    { "<leader>b",  "\"_",                                                     { desc = "run on null register" } },
-    { "<leader>B",  "\"+",                                                     { desc = "run on sys clipboard" } },
+    { "<leader>p",  '"+p',                                { desc = "paste from sys clipboard" } },
+    { "<leader>P",  '"+P',                                { desc = "paste above from sys clipboard" } },
+    { "<leader>y",  '"+y',                                { desc = "copy to sys clipboard" } },
+    { "<leader>Y",  '"+Y',                                { desc = "copy line to sys clipboard" } },
+    { "<leader>d",  '"_d',                                { desc = "delete to null register" } },
+    { "<leader>c",  '"_c',                                { desc = "change to null register" } },
+    { "<leader>b",  "\"_",                                { desc = "run on null register" } },
+    { "<leader>B",  "\"+",                                { desc = "run on sys clipboard" } },
     --}}}
     --telescope {{{
-    { "<leader>e;", "<cmd>Telescope symbols<cr>" },
-    { "<leader>ej", "<cmd>Telescope jumplist<cr>" },
-    { "<leader>ee", "<cmd>Telescope diagnostics<cr>" },
-    { "<leader>eT", "<cmd>Telescope treesitter<cr>" },
-    { "<leader>et", "<cmd>Telescope tagstack<cr>" },
-    { "<leader>es", "<cmd>Telescope spell_suggest<cr>" },
-    { "<leader>eH", "<cmd>Telescope highlights<cr>" },
-    { "<leader>eu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>" },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
-    { "<leader>fb", '<cmd>Telescope buffers<cr>' },
-    { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>' },
-    { "<leader>fe", ':Telescope find_files<cr>' },
-    { "<leader>fq", ":Telescope quickfix<cr>" },
+    { "<leader>e;", "<cmd>Telescope symbols<cr>",         { desc = "emojis" } },
+    { "<leader>ej", "<cmd>Telescope jumplist<cr>",        { desc = "jumplist" } },
+    { "<leader>ee", "<cmd>Telescope diagnostics<cr>",     { desc = "diagnostics" } },
+    { "<leader>eT", "<cmd>Telescope treesitter<cr>",      { desc = "treesitter" } },
+    { "<leader>et", "<cmd>Telescope tagstack<cr>",        { desc = "tagstack" } },
+    { "<leader>es", "<cmd>Telescope spell_suggest<cr>",   { desc = "spell suggest" } },
+    { "<leader>eH", "<cmd>Telescope highlights<cr>",      { desc = "highlights" } },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>",       { desc = "help tags" } },
+    { "<leader>fb", '<cmd>Telescope buffers<cr>',         { desc = "buffers" } },
+    { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "find files (delete current buffer)" } },
+    { "<leader>fe", ':Telescope find_files<cr>',          { desc = "find files" } },
+    { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "quickfix list" } },
     { "<leader>ff", function()
         local t = require "telescope.builtin"
         harpoon:list():append()
         t.find_files({ hidden = true })
-    end },
+    end, { desc = "open file and save current buffer in harpoon" } },
     { "<leader>fF", function()
         local t = require "telescope.builtin"
         harpoon:list():append()
         t.find_files({ hidden = true, no_ignore = true })
-    end },
-    { "<leader>fj",    '<cmd>Telescope jumplist<cr>' },
-    { "<leader>f/",    '<cmd>Telescope live_grep<cr>' },
-    { "<leader>fm",    "<cmd>Telescope marks<cr>" },
-    { "<leader>b/",    "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
-    { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
+    end, { desc = "open any file, save current buffer in harpoon" } },
+    { "<leader>fj", '<cmd>Telescope jumplist<cr>',                               { desc = "jumplist" } },
+    { "<leader>f/", '<cmd>Telescope live_grep<cr>',                              { desc = "grep" } },
+    { "<leader>fm", "<cmd>Telescope marks<cr>",                                  { desc = "marks" } },
+    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>",              { desc = "buffer fuzzy find" } },
+    { "<leader>fH", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
-    { "<leader>n",     ":Neotree float<cr>" },
-    { "gO",     function ()
-        if vim.o.filetype == "norg" then
-            vim.cmd[[Neorg toc]]
+    { "<leader>eu", "<cmd>lua require('undotree').toggle()<cr>" },
+    { "<leader>n",  ":Neotree float<cr>" },
+    { "<leader>z", "<cmd>Yazi<cr>" },
+    { "gO", function()
+        if vim.g._outline_cmd then
+            vim.cmd(vim.g._outline_cmd)
         else
-            vim.cmd[[SymbolsOutline]]
+            --fallback
+            vim.cmd [[SymbolsOutline]]
         end
     end },
     --}}}
@@ -114,20 +115,20 @@ local nShortcuts = {
     { "<leader>7",        function() harpoon:list():select(7) end },
     { "<leader>8",        function() harpoon:list():select(8) end },
     { "<leader>9",        function() harpoon:list():select(9) end },
-    { "<leader>S",     ':split | wincmd j<cr>' },
-    { "<leader>V",     ':vsplit | wincmd l<cr>' },
-    { "<leader>l",     ":tabnext<cr>" },
-    { "<leader>h",     ':tabprev<CR>' },
-    { "<leader><c-l>", ':bn<CR>' },
-    { "<leader><c-h>", ':bp<CR>' },
-    { "<leader>t",     ':tabnew<CR>' },
-    { "<leader>Q",     ':bdel<cr>' },
-    { "<leader>q",     ':tabclose<cr>' },
-    { "<right>",       "<c-w>>" },
-    { "<left>",        "<c-w><" },
-    { "<up>",          "<c-w>+" },
-    { "<down>",        "<c-w>-" },
-    { "<leader>T",     function() GotoTerminalBuf() end },
+    { "<leader>S",        ':split | wincmd j<cr>' },
+    { "<leader>V",        ':vsplit | wincmd l<cr>' },
+    { "<leader>l",        ":tabnext<cr>" },
+    { "<leader>h",        ':tabprev<CR>' },
+    { "<leader><c-l>",    ':bn<CR>' },
+    { "<leader><c-h>",    ':bp<CR>' },
+    { "<leader>t",        ':tabnew<CR>' },
+    { "<leader>Q",        ':bdel<cr>' },
+    { "<leader>q",        ':tabclose<cr>' },
+    { "<right>",          "<c-w>>" },
+    { "<left>",           "<c-w><" },
+    { "<up>",             "<c-w>+" },
+    { "<down>",           "<c-w>-" },
+    { "<leader>T",        function() GotoTerminalBuf() end },
     { "<leader>ft", function()
         require "lazy.util".float_term("/bin/zsh", {
             border = "single"
@@ -306,42 +307,6 @@ local iShortcuts = {
     { "<c-space>l",      "<Esc>:tabnext<CR>" },
     { "<c-space>h",      "<Esc>:tabprev<CR>" },
     -- }}}
-    -- luasnip {{{
-    -- { "<Tab>",
-    --     function()
-    --         if (require "luasnip".expand_or_jumpable()) then
-    --             return '<Plug>luasnip-expand-or-jump'
-    --         else
-    --             return "<Tab>"
-    --         end
-    --     end,
-    --     { expr = true, silent = true, noremap = true }
-    -- },
-    -- { "<S-Tab>",
-    --     function()
-    --         return '<cmd>lua require"luasnip".jump(-1)<cr>'
-    --     end,
-    --     { expr = true, silent = true }
-    -- },
-    -- { "<c-n>",
-    --     function()
-    --         if require("luasnip").choice_active() then
-    --             return '<Plug>luasnip-next-choice'
-    --         end
-    --         return '<c-n>'
-    --     end,
-    --     { silent = true, expr = true }
-    -- },
-    -- { "<c-p>",
-    --     function()
-    --         if require "luasnip".choice_active() then
-    --             return '<Plug>luasnip-prev-choice'
-    --         end
-    --         return '<c-p>'
-    --     end,
-    --     { silent = true, expr = true }
-    -- },
-    -- }}}
     -- Util Functions {{{
     { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },
     -- }}}
@@ -418,9 +383,9 @@ end
 -- popup menu{{{
 --here as example
 vim.cmd [[
-                                                                                    aunmenu PopUp
-                                                                                    nnoremenu PopUp.hi :lua print("hi")<cr>
-                                                                                    ]]
+    aunmenu PopUp
+    nnoremenu PopUp.hi :lua print("hi")<cr>
+]]
 --}}}
 
 vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
@@ -436,10 +401,10 @@ vim.keymap.set({ "o", "x" }, "?", function()
 end)
 
 local surround_prefix = "s"
-local surround_chars = {"{", "[", "(", "'", '"', "<"}
-local surround = require"visual-surround".surround
+local surround_chars = { "{", "[", "(", "'", '"', "<" }
+local surround = require "visual-surround".surround
 for _, key in pairs(surround_chars) do
-    vim.keymap.set("v", surround_prefix .. key, function ()
+    vim.keymap.set("v", surround_prefix .. key, function()
         surround(key)
     end, { desc = "[visual-surround] " .. key })
 end

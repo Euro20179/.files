@@ -1,5 +1,4 @@
 require("lazy").setup({
-    'mattn/emmet-vim',
     'nvim-treesitter/nvim-treesitter',
     "nvim-telescope/telescope-ui-select.nvim",
     {
@@ -25,8 +24,6 @@ require("lazy").setup({
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     'hrsh7th/nvim-cmp',
-    -- 'L3MON4D3/LuaSnip',
-    -- 'saadparwaiz1/cmp_luasnip',
     'flazz/vim-colorschemes',
     {
         'ray-x/lsp_signature.nvim',
@@ -84,7 +81,6 @@ require("lazy").setup({
     "drybalka/tree-climber.nvim",
     "folke/which-key.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    'f3fora/cmp-spell',
     'superhawk610/ascii-blocks.nvim',
     {
         "SmiteshP/nvim-navic",
@@ -168,9 +164,6 @@ require("lazy").setup({
     },
     { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline", lazy = true },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
-    {
-        "debugloop/telescope-undo.nvim"
-    },
     -- {
     --     "ellisonleao/glow.nvim",
     --     cmd = "Glow",
@@ -363,7 +356,18 @@ require("lazy").setup({
     },
     {
         "patrickpichler/hovercraft.nvim",
-        config = true
+        config = function()
+            require "hovercraft".setup {}
+            ---@diagnostic disable-next-line
+            vim.lsp.buf.hover = function(...)
+                local hovercraft = require "hovercraft"
+                if hovercraft.is_visible() then
+                    hovercraft.enter_popup()
+                else
+                    hovercraft.hover({ current_provider = "LSP" })
+                end
+            end
+        end
     },
     {
         "LudoPinelli/comment-box.nvim"
@@ -379,5 +383,21 @@ require("lazy").setup({
         config = function()
             require "nvim-snippets".setup {}
         end
+    },
+    {
+        "jiaoshijie/undotree",
+        dependencies = "nvim-lua/plenary.nvim",
+        opts = {
+            window = {
+                winblend = 5
+            }
+        },
+        keys = { -- load the plugin only when using it's keybinding:
+            { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+        },
+    },
+    {
+        "SR-MyStar/yazi.nvim",
+        config = true
     }
 })

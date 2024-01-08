@@ -1,67 +1,20 @@
--- lazy bootstrap{{{
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
-        lazypath
-    })
-end
-
-vim.opt.rtp:prepend(lazypath)
--- }}}
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
+require 'init_lazy'
 require 'plugins'
+require 'functions'
 require 'snippets'
 require 'options'
 require 'shortcuts'
 require 'autocmd'
-require 'functions'
 require 'link-graph'
 require 'filetypes'
 require 'setwidths'
 require 'user.init'
+require 'colorscheme'
+
+require "globals-setup"
 
 -- require "discord".setup {
 --     token = vim.fn.readfile("/home/euro/Documents/APIKeys/discord")[1],
 --     user_id = "334538784043696130"
 -- }
 
-vim.fn.setenv("IN_VIM", "true")
-
-vim.fn.setenv("NVIM", vim.v.servername)
-
--- require "filetypes"
-
-local cs = require 'colorscheme'
-
-cs.changeColorScheme({ scheme = "catppuccin-macchiato" })
-
-vim.diagnostic.config({ virtual_text = true })
-
-vim.o.winbar = "%{%v:lua.Winbar()%}"
-
-if vim.g.neovide ~= nil then
-    vim.g.neovide_transparency = 0.8
-    vim.api.nvim_cmd({
-        cmd = "hi",
-        args = { "Normal", "guibg=NONE", "ctermbg=NONE" }
-    }, {})
-end
-
----@diagnostic disable-next-line
-vim.ui.open = function(item)
-    vim.system({ "linkhandler", item })
-end
-
----@diagnostic disable-next-line
-vim.lsp.buf.hover = function(...)
-    local hovercraft = require "hovercraft"
-    if hovercraft.is_visible() then
-        hovercraft.enter_popup()
-    else
-        hovercraft.hover({ current_provider = "LSP" })
-    end
-end

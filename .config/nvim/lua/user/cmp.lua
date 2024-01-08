@@ -84,7 +84,7 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm(),
         ["<tab>"] = cmp.mapping(function(fallback)
             local jumpable = vim.snippet.jumpable(1)
-            if jumpable~= 0 and jumpable ~= nil then
+            if jumpable~= 0 and jumpable ~= nil and jumpable ~= false then
                 vim.snippet.jump(1)
             elseif vim.snippet.active() then
                 vim.snippet.exit()
@@ -108,7 +108,6 @@ cmp.setup({
         -- { name = 'luasnip' }, -- For luasnip users.
         { name = 'buffer' },
         { name = 'path' },
-        { name = "spell" },
         { name = "snippets" },
         -- { name = "emoji" },
         -- { name = "time" },

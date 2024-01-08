@@ -1,6 +1,6 @@
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.dictionary = "~/Documents/words.list"
+vim.o.dictionary = "/usr/share/dict/american-english"
 vim.o.nu = true
 vim.o.rnu = true
 vim.o.autoindent = true
@@ -21,6 +21,7 @@ vim.o.concealcursor = ''
 vim.o.cursorline = true
 vim.o.relativenumber = true
 vim.o.spelllang =  "en_us"
+vim.o.spell = true
 vim.opt.fillchars = {eob = "󰅖"}
 --fixes weird bug with Telescope help_menu tags not being sorted and lazy complaining
 vim.o.tagcase = 'ignore'
@@ -38,3 +39,13 @@ vim.o.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 --code-action-menu
 vim.g.code_action_menu_show_details = false
+
+vim.o.winbar = "%{%v:lua.Winbar()%}"
+
+vim.diagnostic.config({ virtual_text = true })
+
+---@diagnostic disable-next-line
+vim.ui.open = function(item)
+    vim.system({ "linkhandler", item })
+end
+

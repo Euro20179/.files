@@ -4,6 +4,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function ()
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+    end
+})
+
 -- vim.api.nvim_create_autocmd({"ModeChanged"}, {
 --     pattern = "*:*",
 --     callback = function ()
