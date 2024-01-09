@@ -285,6 +285,7 @@ local nShortcuts = {
     { "<leader>Lu", "<cmd>Lazy update<cr>" },
     { "<leader>Lx", "<cmd>Lazy clean<cr>" },
     -- }}}
+    {"ZF", require"mini.misc".zoom},
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -400,11 +401,11 @@ vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()
 end)
 
-local surround_prefix = "s"
-local surround_chars = { "{", "[", "(", "'", '"', "<" }
-local surround = require "visual-surround".surround
-for _, key in pairs(surround_chars) do
-    vim.keymap.set("v", surround_prefix .. key, function()
-        surround(key)
-    end, { desc = "[visual-surround] " .. key })
-end
+-- local surround_prefix = "s"
+-- local surround_chars = { "{", "[", "(", "'", '"', "<", "}", "]", ")" }
+-- local surround = require "visual-surround".surround
+-- for _, key in pairs(surround_chars) do
+--     vim.keymap.set("v", surround_prefix .. key, function()
+--         surround(key)
+--     end, { desc = "[visual-surround] " .. key })
+-- end

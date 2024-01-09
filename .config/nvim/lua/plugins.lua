@@ -6,7 +6,6 @@ require("lazy").setup({
         config = function()
             local tele = require "telescope"
             tele.setup {
-
                 extensions = {
                     ["ui-select"] = {
                         require "telescope.themes".get_dropdown {}
@@ -47,28 +46,12 @@ require("lazy").setup({
             require("mason").setup()
         end
     },
-    -- {
-    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --     config = function()
-    --         require("lsp_lines").setup()
-    --     end
-    -- },
     {
         'folke/trouble.nvim',
         config = function() require("trouble").setup {} end,
         dependencies = "kyazdani42/nvim-web-devicons",
     },
-    {
-        "kylechui/nvim-surround",
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({})
-        end
-    },
-    -- use "yonlu/omni.vim"
     "bluz71/vim-nightfly-guicolors",
-    -- use "nvim-treesitter/nvim-treesitter-context"
-    --use "stevearc/aerial.nvim"
     "https://github.com/nvim-treesitter/nvim-treesitter-refactor",
     {
         'bennypowers/nvim-regexplainer',
@@ -120,28 +103,12 @@ require("lazy").setup({
             "laher/neorg-exec",
         }
     },
-    -- {
-    --     "rcarriga/nvim-notify",
-    --     config = function()
-    --         vim.opt.termguicolors = true
-    --         vim.notify = require "notify"
-    --         require("notify").setup {
-    --             background_colour = "#000000"
-    --         }
-    --     end
-    -- },
     {
         "smjonas/inc-rename.nvim",
         config = function()
             require("inc_rename").setup {}
         end
     },
-    -- {
-    --     "lewis6991/gitsigns.nvim",
-    --     opts = {
-    --         attach_to_untracked = false,
-    --     }
-    -- },
     {
         'folke/tokyonight.nvim'
     },
@@ -164,26 +131,6 @@ require("lazy").setup({
     },
     { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline", lazy = true },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
-    -- {
-    --     "ellisonleao/glow.nvim",
-    --     cmd = "Glow",
-    --     config = function()
-    --         require "glow".setup {
-    --             glow_path = "/usr/bin/glow",
-    --         }
-    --     end
-    -- },
-    -- {
-    --     "jinzhongjia/LspUI.nvim",
-    --     config = true
-    -- },
-    -- {
-    --     "folke/neodev.nvim",
-    --     config = true
-    -- },
-    -- {
-    --     "EdenEast/nightfox.nvim"
-    -- },
     {
         "andymass/vim-matchup"
     },
@@ -208,14 +155,6 @@ require("lazy").setup({
     {
         "LukasPietzschmann/telescope-tabs"
     },
-    -- {
-    --     "3rd/image.nvim",
-    --     cmd = "DisplayImg",
-    --     ft = { "markdown", "neorg" },
-    --     opts = {
-    --         backend = "ueberzug"
-    --     }
-    -- },
     {
         "NeogitOrg/neogit",
         lazy = true,
@@ -262,9 +201,6 @@ require("lazy").setup({
         branch = "harpoon2"
     },
     {
-        "shaunsingh/nord.nvim"
-    },
-    {
         "cshuaimin/ssr.nvim",
         module = "ssr",
         -- Calling setup is optional.
@@ -286,15 +222,6 @@ require("lazy").setup({
         end
     },
     {
-        "space-chalk/spacechalk.nvim"
-    },
-    {
-        "pineapplegiant/spaceduck"
-    },
-    {
-        "polirritmico/monokai-nightasty.nvim"
-    },
-    {
         "mxsdev/nvim-dap-vscode-js"
     },
     {
@@ -302,7 +229,17 @@ require("lazy").setup({
         config = function()
             -- require "mini.pairs".setup {}
             require "mini.comment".setup {}
-            require "mini.ai".setup {}
+            require "mini.surround".setup{
+                mappings = {
+                    add = 'ys',
+                    delete = 'ds',
+                    find = 'Yf',
+                    find_left = 'YF',
+                    highlight = 'Yh',
+                    replace = 'cs',
+                    update_n_lines = 'Yn'
+                }
+            }
             require "mini.splitjoin".setup {
                 join = {
                     hooks_post = {
@@ -322,13 +259,13 @@ require("lazy").setup({
             require "mini.bracketed".setup {}
             require "mini.operators".setup {
                 exchange = {
-                    prefix = "Yx"
+                    prefix = "yx"
                 },
                 multiply = {
-                    prefix = "Yd"
+                    prefix = "yd"
                 },
                 replace = {
-                    prefix = "Yr"
+                    prefix = "yr"
                 }
             }
         end
@@ -336,9 +273,6 @@ require("lazy").setup({
     {
         "luckasRanarison/tree-sitter-hypr"
     },
-    -- {
-    --     "altermo/nxwm"
-    -- },
     {
         "altermo/ultimate-autopair.nvim",
         opts = {}
@@ -370,15 +304,6 @@ require("lazy").setup({
         end
     },
     {
-        "LudoPinelli/comment-box.nvim"
-    },
-    {
-        "NStefan002/visual-surround.nvim",
-        opts = {
-            use_default_keymaps = false
-        }
-    },
-    {
         "garymjr/nvim-snippets",
         config = function()
             require "nvim-snippets".setup {}
@@ -399,5 +324,12 @@ require("lazy").setup({
     {
         "SR-MyStar/yazi.nvim",
         config = true
+    },
+    {
+        "Nedra1998/nvim-mdlink",
+        opts = {
+            keymap = true,
+            cmp = true
+        }
     }
 })

@@ -55,6 +55,7 @@ cmp.setup({
                 calc = "[=]",
                 time = "%",
                 dynamic = "",
+                mdlink = "󰌷"
                 -- emoji = "E",
                 --rg = '[/]',
                 --look = '[Look]',
@@ -109,6 +110,7 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
         { name = "snippets" },
+        { name = "mdlink" }
         -- { name = "emoji" },
         -- { name = "time" },
         --{
