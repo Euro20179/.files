@@ -20,7 +20,3 @@ require("telescope.builtin").symbols {
     end
 }
 EOF
-"
-" file="${1:-$HOME/Documents/emoji}"
-"
-" fzf < "$file" | awk '{print $1}' | tr -d '\n' | wl-copy

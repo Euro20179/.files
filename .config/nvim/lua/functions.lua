@@ -227,6 +227,14 @@ function OllamaDocument(cmdData)
     end)
 end
 
+vim.api.nvim_create_user_command("X", function (data)
+    local args = data.args
+    local buf = vim.api.nvim_create_buf(true, false)
+    vim.cmd.split()
+    vim.api.nvim_set_current_buf(buf)
+    vim.cmd("term " .. args)
+end, {nargs = "*"})
+
 vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})

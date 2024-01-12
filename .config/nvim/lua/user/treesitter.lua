@@ -29,17 +29,6 @@ parser_config.bircle = {
     filetype = "bircle"
 }
 
-parser_config.hyprland = {
-    install_info = {
-        url = "/home/euro/Programs/Coding Projects/treesitter/hyprland",
-        files = { "src/parser.c" },
-        branch = "main",
-        generate_requires_npm = false,
-        requires_generate_from_grammar = false,
-    },
-    filetype = "hyprland"
-}
-
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "org" },
     highlight = {

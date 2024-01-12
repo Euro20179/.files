@@ -20,9 +20,9 @@ vim.o.expandtab = true
 vim.o.concealcursor = ''
 vim.o.cursorline = true
 vim.o.relativenumber = true
-vim.o.spelllang =  "en_us"
+vim.o.spelllang = "en_us"
 -- vim.o.spell = true
-vim.opt.fillchars = {eob = "󰅖"}
+vim.opt.fillchars = { eob = "󰅖" }
 --fixes weird bug with Telescope help_menu tags not being sorted and lazy complaining
 vim.o.tagcase = 'ignore'
 vim.o.lazyredraw = true
@@ -38,3 +38,6 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 vim.o.winbar = "%{%v:lua.Winbar()%}"
+vim.o.title = true
+
+vim.o.shell = '/bin/bash'

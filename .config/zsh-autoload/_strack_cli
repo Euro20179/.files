@@ -7,6 +7,8 @@ _strack_cli () {
         s*) _strack_start ;;
         f*) _strack_start ;; #for now they are the same
         a*) _strack_start ;; #for now they are the same
+        r*) _strack_start ;; #for now they are the same
+        p*) _strack_start ;; #for now they are the same
     esac
 }
 

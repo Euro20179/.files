@@ -66,6 +66,7 @@
 
 vim.api.nvim_cmd({
     args = { "catppuccin-macchiato" },
+    -- args = {"kanagawa"},
     cmd = "colorscheme"
 }, {})
 -- vim.cmd[[hi Normal guibg=#00000000]]

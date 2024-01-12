@@ -1,3 +1,4 @@
+local sk = vim.lsp.protocol.SymbolKind
 require("lazy").setup({
     'nvim-treesitter/nvim-treesitter',
     "nvim-telescope/telescope-ui-select.nvim",
@@ -229,7 +230,15 @@ require("lazy").setup({
         config = function()
             -- require "mini.pairs".setup {}
             require "mini.comment".setup {}
-            require "mini.surround".setup{
+            require "mini.surround".setup {
+                custom_surroundings = {
+                    T = {
+                        output = function()
+                            local name = require "mini.surround".user_input("Name of template type")
+                            return { left = name .. "<", right = ">" }
+                        end
+                    },
+                },
                 mappings = {
                     add = 'ys',
                     delete = 'ds',
@@ -322,14 +331,31 @@ require("lazy").setup({
         },
     },
     {
-        "SR-MyStar/yazi.nvim",
-        config = true
-    },
-    {
         "Nedra1998/nvim-mdlink",
         opts = {
             keymap = true,
             cmp = true
         }
-    }
+    },
+    {
+        "VidocqH/lsp-lens.nvim",
+        opts = {
+            sections = {
+                git_authors = false,
+                definitions = false,
+                references = true,
+                implements = false
+            },
+            target_symbol_kinds = {sk.Class, sk.Method, sk.Enum, sk.Function, sk.Struct, sk.Object},
+            wrapper_symbol_kinds = {sk.Class, sk.Struct, sk.Enum, sk.Object}
+        }
+    },
+    {
+        "altermo/nxwm",
+        opts = {
+            on_win_open = function (buf)
+                vim.api.nvim_set_current_buf(buf)
+            end
+        }
+    },
 })

@@ -97,6 +97,7 @@ alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<
 alias img="nvim -b +DisplayImg"
 #alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
+alias vwe='emacs $HOME/Documents/vimwiki/index.org'
 
 alias conf=open-config-from-vw.lua
 
@@ -125,8 +126,8 @@ alias upc='paru; flatpak update'
 
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 
-alias 'plotdu=BROWSER=epiphany $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
-alias 'plotpkgs=BROWSER=epiphany $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
+alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
+alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
 alias otd="doas rmmod wacom; otd"
 alias "TODO=$EDITOR $TODO_FILE"
 #this file is sourced in my other shells
