@@ -72,6 +72,7 @@ local nShortcuts = {
     { "<leader>eH", "<cmd>Telescope highlights<cr>",      { desc = "highlights" } },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>",       { desc = "help tags" } },
     { "<leader>fb", '<cmd>Telescope buffers<cr>',         { desc = "buffers" } },
+    { "<leader>ec", "<cmd>Telescope colorscheme<cr>",     { desc = "colorscheme" }},
     { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "find files (delete current buffer)" } },
     { "<leader>fe", ':Telescope find_files<cr>',          { desc = "find files" } },
     { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "quickfix list" } },
@@ -342,8 +343,11 @@ local vShortcuts = {
     { "<a-k>",           require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-    { "D",               ":ODocument<cr>" },
-    { "C",               ":ChatBotComment<cr>" },
+    { "DD",               ":ODocument<cr>" },
+    { "DC",               ":ChatBotComment<cr>" },
+    { "C", function ()
+        vim.api.nvim_feedkeys(":M complete\r", "n", true)
+    end},
     -- }}}
     -- move code {{{
     { "mj",              ":m '>+1<CR>gv=gv" },

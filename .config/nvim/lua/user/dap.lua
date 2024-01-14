@@ -9,6 +9,25 @@ dap.adapters.python = {
     args = { '-m', 'debugpy.adapter' }
 }
 
+dap.adapters.lldb = {
+    type = "executable",
+    command = "lldb-vscode",
+    name = "lldb"
+}
+
+dap.configurations.rust = {
+    {
+        type = "lldb",
+        request = "launch",
+        program = function ()
+            return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.input("filename: ")
+        end,
+        cwd = '${workspaceFolder}',
+        enableTelemetry = false,
+        stopOnEntry = false
+    }
+}
+
 dap.configurations.python = {
     {
         type = "python",

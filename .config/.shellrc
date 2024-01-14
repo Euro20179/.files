@@ -90,6 +90,8 @@ export TRASH="$HOME/.local/share/trash"
 
 alias t='tmux'
 
+alias n=neovide
+
 alias u="paru"
 
 alias y=yazi

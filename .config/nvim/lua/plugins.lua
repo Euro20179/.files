@@ -287,17 +287,6 @@ require("lazy").setup({
         opts = {}
     },
     {
-        "dustinblackman/oatmeal.nvim",
-        cmd = { "Oatmeal" },
-        keys = {
-            { "<leader>om", mode = "n", desc = "Start Oatmeal session" },
-        },
-        opts = {
-            backend = "ollama",
-            model = "codellama:latest",
-        },
-    },
-    {
         "patrickpichler/hovercraft.nvim",
         config = function()
             require "hovercraft".setup {}
@@ -358,4 +347,51 @@ require("lazy").setup({
             end
         }
     },
+
+    {
+        "gsuuon/model.nvim",
+        config = function ()
+            require"model".setup{
+                prompts = {
+                    complete = {
+                        provider = require"model.providers.ollama",
+                        params = {
+                            model = "codellama"
+                        },
+                        builder = function (input)
+                            return {
+                                prompt = "[INST] <<SYS>>You try to predict what code would come next, do not output anything other than code<</SYS>>\n\n" .. input .. " [/INST]"
+                            }
+                        end
+                    },
+                    completeS = {
+                        provider = require"model.providers.ollama",
+                        params = {
+                            model = "starcoder"
+                        },
+                        builder = function (input)
+                            return {
+                                prompt = input
+                            }
+                        end
+                    },
+                    ["complete13"] = {
+                        provider = require"model.providers.ollama",
+                        params = {
+                            model = "codellama:13b-code"
+                        },
+                        builder = function (input)
+                            return {
+                                prompt = input
+                            }
+                        end
+                    }
+                }
+            }
+        end
+    },
+    {
+        "scottmckendry/cyberdream.nvim",
+        config = true
+    }
 })
