@@ -58,31 +58,32 @@ require 'nvim-treesitter.configs'.setup {
             show_help = "?"
         }
     },
-    -- refactor = {
-    --     smart_rename = {
-    --         enable = true,
-    --         keymaps = {
-    --             smart_rename = "grr"
-    --         }
-    --     },
-    --     navigation = {
-    --         enable = true,
-    --         keymaps = {
-    --             goto_definition = "gd",
-    --             goto_next_usage = "<A-n>",
-    --             goto_previous_usage = "<A-p>"
-    --         }
-    --     }
-    -- },
-    -- incremental_selection = {
-    --     enable = true,
-    --     keymaps = {
-    --         init_selection = "gnn",
-    --         node_incremental = 'grn',
-    --         scope_incremental = "grc",
-    --         node_decremental = "grm"
-    --     }
-    -- },
+    refactor = {
+        smart_rename = {
+            enable = true,
+            keymaps = {
+                smart_rename = "grr"
+            }
+        },
+        navigation = {
+            enable = true,
+            keymaps = {
+                goto_definition = "gd",
+                goto_next_usage = "<A-n>",
+                goto_previous_usage = "<A-N>",
+                list_definitions_toc = "gnO"
+            }
+        }
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            node_incremental = 'gin',
+            scope_incremental = "gis",
+            node_decremental = "gdn",
+        }
+    },
     textobjects = {
         move = {
             enable = true,

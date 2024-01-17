@@ -66,6 +66,11 @@
 --
 
 function Color(scheme)
+    --for legacy colorschemes
+    vim.api.nvim_cmd({
+        args = { "vim" },
+        cmd = "colorscheme"
+    }, {})
     vim.api.nvim_cmd({
         -- args = { 'nord' },
         -- args = { "catppuccin-macchiato" },
@@ -73,17 +78,15 @@ function Color(scheme)
         -- args = { "candy" },
         cmd = "colorscheme"
     }, {})
-    vim.cmd [[
-hi! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough
-hi! link CmpItemAbbrMatch TelescopeMatching
-hi! link CmpItemKindFunction @function
-hi! link CmpItemKindField @field
-hi! link CmpItemKindOperator @operator
-hi! link CmpItemKindKeyword @keyword
-hi! link CmpItemKindEnumMember @lsp.type.enumMember
-hi! link CmpItemKindEnum @lsp.type.enum
-hi! WildMenu guibg=#00000000
-]]
+    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", {bg = "NONE", strikethrough = true})
+    vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "TelescopeMatching" })
+    vim.api.nvim_set_hl(0, "CmpItemKindFunction", { link = "function" })
+    vim.api.nvim_set_hl(0, "CmpItemKindField", { link = "field" })
+    vim.api.nvim_set_hl(0, "CmpItemKindOperator", { link = "operator" })
+    vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { link = "keyword" })
+    vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "enumMember" })
+    vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "enum" })
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", blend = 100 })
     vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", italic = true, fg = "#6e738d" })
     vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
 
@@ -94,8 +97,7 @@ hi! WildMenu guibg=#00000000
             args = { "Normal", "guibg=NONE", "ctermbg=NONE" }
         }, {})
     end
-    -- vim.cmd[[hi Normal guibg=#00000000]]
-    -- vim.cmd[[hi Winbar guibg=#00000000]]
 end
+
 
 Color("tokyonight")

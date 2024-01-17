@@ -129,6 +129,8 @@ keymap = [
 	{ on = [ "d", "F" ],       exec = "cd ~/Documents",   desc = "Go to the documents directory" },
 	{ on = [ "d", "t" ],       exec = "cd /tmp",          desc = "Go to the temporary directory" },
 	{ on = [ "d", "<Space>" ], exec = "cd --interactive", desc = "Go to a directory interactively" },
+    { on = [ "d", "p" ], exec = "cd ~/Pictures", desc = "Go to pictures folder"},
+    { on = [ "d", "m" ], exec = "cd ~/Pictures/memes", desc = "Go to memes folder"},
 
 	# Help
 	{ on = [ "~" ], exec = "help", desc = "Open help" },

@@ -32,7 +32,7 @@ vim.o.exrc = true
 vim.o.smoothscroll = true
 vim.o.conceallevel = 2
 
-vim.o.pumblend = 5
+vim.o.pumblend = 10
 
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldtext = "v:lua.vim.treesitter.foldtext()"
@@ -44,3 +44,5 @@ vim.o.shell = '/bin/bash'
 
 vim.g.neovide_scroll_animation_length = 0.1
 vim.g.neovide_cursor_animation_length = 0
+
+vim.o.grepprg = 'rg -n $*'

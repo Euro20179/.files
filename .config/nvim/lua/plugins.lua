@@ -47,21 +47,8 @@ require("lazy").setup({
             require("mason").setup()
         end
     },
-    {
-        'folke/trouble.nvim',
-        config = function() require("trouble").setup {} end,
-        dependencies = "kyazdani42/nvim-web-devicons",
-    },
     "bluz71/vim-nightfly-guicolors",
     "https://github.com/nvim-treesitter/nvim-treesitter-refactor",
-    {
-        'bennypowers/nvim-regexplainer',
-        config = function() require 'regexplainer'.setup({}) end,
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'MunifTanjim/nui.nvim',
-        }
-    },
     "drybalka/tree-climber.nvim",
     "folke/which-key.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -150,7 +137,7 @@ require("lazy").setup({
         lazy = false,
         opts = {
             useDefaultKeymaps = true,
-            disabledKeymaps = { "ik", "ak", "iv", "av", "!", "gc" }
+            disabledKeymaps = { "ik", "ak", "iv", "av", "!", "gc", "Q" }
         },
     },
     {
@@ -168,6 +155,9 @@ require("lazy").setup({
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim"
+        },
         opts = {
             event_handlers = {
                 {
@@ -302,6 +292,7 @@ require("lazy").setup({
         end
     },
     {
+        --in order to get this to work with lazy, I had to create a symlink to nvim-snippets called "snippets" in the lazy/nvim-snippets/lua folder.
         "garymjr/nvim-snippets",
         config = function()
             require "nvim-snippets".setup {}
@@ -393,5 +384,12 @@ require("lazy").setup({
     {
         "scottmckendry/cyberdream.nvim",
         config = true
+    },
+    {
+        "Apeiros-46B/qalc.nvim",
+        config = true
+    },
+    {
+        "kevinhwang91/nvim-bqf"
     }
 })

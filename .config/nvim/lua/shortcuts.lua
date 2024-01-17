@@ -123,7 +123,6 @@ local nShortcuts = {
     { "<leader><c-l>",    ':bn<CR>' },
     { "<leader><c-h>",    ':bp<CR>' },
     { "<leader>t",        ':tabnew<CR>' },
-    { "<leader>Q",        ':bdel<cr>' },
     { "<leader>q",        ':tabclose<cr>' },
     { "<right>",          "<c-w>>" },
     { "<left>",           "<c-w><" },
@@ -168,9 +167,14 @@ local nShortcuts = {
     --}}}
     --lsp {{{
     { "<leader>fs", '<cmd>Telescope lsp_document_symbols<cr>' },
+    { "gns", vim.lsp.buf.document_symbol },
+    { "gnw", vim.lsp.buf.workspace_symbol },
     { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>' },
     { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
-    { "<leader>E",  "<cmd>TroubleToggle<cr>" },
+    { "<leader>E",  function ()
+        vim.fn.setqflist(vim.diagnostic.get())
+        vim.cmd.cwindow()
+    end},
     { "<leader>r",  ":IncRename " },
     { "<leader>el", function()
         local virt_text = vim.diagnostic.config().virtual_text
@@ -232,12 +236,14 @@ local nShortcuts = {
     -- Treesitter {{{
     { "<leader>sr",      function() require "ssr".open() end },
     { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
-    { "<a-h>",           require("tree-climber").goto_parent },
-    { "<a-l>",           require("tree-climber").goto_child },
+    { "<a-t>p",           require("tree-climber").goto_parent },
+    { "<a-t>c",           require("tree-climber").goto_child },
+    { "<a-t>n",           require"tree-climber".goto_next},
+    { "<a-t>p",           require"tree-climber".goto_prev},
     { "<leader>vn",      require("tree-climber").select_node },
     { "<a-j>",           require("tree-climber").swap_next },
     { "<a-k>",           require("tree-climber").swap_prev },
-    { "glt",             ":TSHighlightCapturesUnderCursor<cr>" },
+    { "glt",             "<cmd>Inspect<cr>" },
     -- }}}
     --syntax highlighting{{{
     { "<A-f>s",          ":set foldmethod=syntax<cr>" },
@@ -287,6 +293,8 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>Lazy clean<cr>" },
     -- }}}
     {"ZF", require"mini.misc".zoom},
+    {"<c-q>", vim.cmd.cwindow},
+    {"<leader>/", ":silent grep! | cwindow<S-Left><S-Left>"}
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})

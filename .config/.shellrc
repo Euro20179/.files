@@ -308,7 +308,12 @@ alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
 
 alias c='echo $?'
 
-alias llm="HSA_OVERRIDE_GFX_VERSION=10.3.0 ollama serve"
+alias llm="HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='192.168.0.114' ollama serve"
+alias ollama="OLLAMA_HOST=192.168.0.114 ollama"
+
+alias Q='nvim +Qalc +startinsert'
+
+alias doase=doasedit
 
 unset welcomeStr
 
