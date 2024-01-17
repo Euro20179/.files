@@ -17,40 +17,40 @@ local nShortcuts = {
     -- dap {{{
     { dapLeader .. "o", function()
         require "dapui".toggle()
-    end, { desc = "toggle dap ui" } },
+    end, { desc = "[DAP] toggle dap ui" } },
     { dapLeader .. "s", function()
         local sidebar = widgets.sidebar(widgets.scopes)
         sidebar.open()
-    end, { desc = "open scopes" } },
+    end, { desc = "[DAP] open scopes" } },
     { dapLeader .. "f", function()
         local sidebar = widgets.sidebar(widgets.frames)
         sidebar.open()
-    end, { desc = "open frames" } },
+    end, { desc = "[DAP] open frames" } },
     { dapLeader .. "<leader>", function()
         require "dap".repl.toggle()
-    end, { desc = "open repl" } },
+    end, { desc = "[DAP] open repl" } },
     { dapLeader .. "k", function()
         widgets.hover()
-    end, { desc = "hover widget" } },
+    end, { desc = "[DAP] hover widget" } },
     { dapLeader .. "t", function()
         local sidebar = widgets.sidebar(widgets.threads)
         sidebar.open()
-    end, { desc = "open threads" } },
+    end, { desc = "[DAP] open threads" } },
     { dapLeader .. "e", function()
         local sidebar = widgets.sidebar(widgets.expression)
         sidebar.open()
-    end, { desc = "open expressions" } },
-    { dapLeader .. "b", function() require "dap".toggle_breakpoint() end, { desc = "toggle breakpoint" } },
-    { dapLeader .. "P", function() require "dap".pause() end,             { desc = "pause" } },
-    { dapLeader .. "c", function() require "dap".continue() end,          { desc = "continue" } },
-    { dapLeader .. "n", function() require "dap".step_over() end,         { desc = "setp over" } },
-    { dapLeader .. "p", function() require "dap".step_back() end,         { desc = "step back" } },
-    { dapLeader .. "i", function() require "dap".step_into() end,         { desc = "step into" } },
-    { dapLeader .. "I", function() require "dap".step_out() end,          { desc = "step out" } },
+    end, { desc = "[DAP] open expressions" } },
+    { dapLeader .. "b", function() require "dap".toggle_breakpoint() end, { desc = "[DAP] toggle breakpoint" } },
+    { dapLeader .. "P", function() require "dap".pause() end,             { desc = "[DAP] pause" } },
+    { dapLeader .. "c", function() require "dap".continue() end,          { desc = "[DAP] continue" } },
+    { dapLeader .. "n", function() require "dap".step_over() end,         { desc = "[DAP] step over" } },
+    { dapLeader .. "p", function() require "dap".step_back() end,         { desc = "[DAP] step back" } },
+    { dapLeader .. "i", function() require "dap".step_into() end,         { desc = "[DAP] step into" } },
+    { dapLeader .. "I", function() require "dap".step_out() end,          { desc = "[DAP] step out" } },
     { dapLeader .. "r", function()
         require "dap".session()
         require "dap".continue()
-    end, { desc = "start session" } },
+    end, { desc = "[DAP] start session" } },
     -- }}}
     --copy shortcuts {{{
     { "<leader>p",  '"+p',                                { desc = "paste from sys clipboard" } },
@@ -63,39 +63,39 @@ local nShortcuts = {
     { "<leader>B",  "\"+",                                { desc = "run on sys clipboard" } },
     --}}}
     --telescope {{{
-    { "<leader>e;", "<cmd>Telescope symbols<cr>",         { desc = "emojis" } },
-    { "<leader>ej", "<cmd>Telescope jumplist<cr>",        { desc = "jumplist" } },
-    { "<leader>ee", "<cmd>Telescope diagnostics<cr>",     { desc = "diagnostics" } },
-    { "<leader>eT", "<cmd>Telescope treesitter<cr>",      { desc = "treesitter" } },
-    { "<leader>et", "<cmd>Telescope tagstack<cr>",        { desc = "tagstack" } },
-    { "<leader>es", "<cmd>Telescope spell_suggest<cr>",   { desc = "spell suggest" } },
-    { "<leader>eH", "<cmd>Telescope highlights<cr>",      { desc = "highlights" } },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>",       { desc = "help tags" } },
-    { "<leader>fb", '<cmd>Telescope buffers<cr>',         { desc = "buffers" } },
-    { "<leader>ec", "<cmd>Telescope colorscheme<cr>",     { desc = "colorscheme" }},
-    { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "find files (delete current buffer)" } },
-    { "<leader>fe", ':Telescope find_files<cr>',          { desc = "find files" } },
-    { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "quickfix list" } },
+    { "<leader>e;", "<cmd>Telescope symbols<cr>",         { desc = "[TELESCOPE] emojis" } },
+    { "<leader>ej", "<cmd>Telescope jumplist<cr>",        { desc = "[TELESCOPE] jumplist" } },
+    { "<leader>ee", "<cmd>Telescope diagnostics<cr>",     { desc = "[TELESCOPE] diagnostics" } },
+    { "<leader>eT", "<cmd>Telescope treesitter<cr>",      { desc = "[TELESCOPE] treesitter" } },
+    { "<leader>et", "<cmd>Telescope tagstack<cr>",        { desc = "[TELESCOPE] tagstack" } },
+    { "<leader>es", "<cmd>Telescope spell_suggest<cr>",   { desc = "[TELESCOPE] spell suggest" } },
+    { "<leader>eH", "<cmd>Telescope highlights<cr>",      { desc = "[TELESCOPE] highlights" } },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>",       { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fb", '<cmd>Telescope buffers<cr>',         { desc = "[TELESCOPE] buffers" } },
+    { "<leader>ec", "<cmd>Telescope colorscheme<cr>",     { desc = "[TELESCOPE] colorscheme" } },
+    { "<leader>em", "<cmd>Telescope marks<cr>",           { desc = "[TELESCOPE] marks" } },
+    { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
+    { "<leader>fe", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
+    { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "[TELESCOPE] quickfix list" } },
     { "<leader>ff", function()
         local t = require "telescope.builtin"
         harpoon:list():append()
         t.find_files({ hidden = true })
-    end, { desc = "open file and save current buffer in harpoon" } },
+    end, { desc = "[TELESCOPE] open file and save current buffer in harpoon" } },
     { "<leader>fF", function()
         local t = require "telescope.builtin"
         harpoon:list():append()
         t.find_files({ hidden = true, no_ignore = true })
-    end, { desc = "open any file, save current buffer in harpoon" } },
-    { "<leader>fj", '<cmd>Telescope jumplist<cr>',                               { desc = "jumplist" } },
-    { "<leader>f/", '<cmd>Telescope live_grep<cr>',                              { desc = "grep" } },
-    { "<leader>fm", "<cmd>Telescope marks<cr>",                                  { desc = "marks" } },
-    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>",              { desc = "buffer fuzzy find" } },
+    end, { desc = "[TELESCOPE] open any file, save current buffer in harpoon" } },
+    { "<leader>f/", '<cmd>Telescope live_grep<cr>',                              { desc = "[TELESCOPE] grep" } },
+    { "<C-S-p>",    "<cmd>Telescope keymaps<cr>",                                { desc = "[TELESCOPE] keymap pallete" } },
+    { "<leader>ek", "<cmd>Telescope keymaps<cr>",                                { desc = "[TELESCOPE] keymap pallete" } },
+    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>",              { desc = "[TELESCOPE] buffer fuzzy find" } },
     { "<leader>fH", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
     { "<leader>eu", "<cmd>lua require('undotree').toggle()<cr>" },
     { "<leader>n",  ":Neotree float<cr>" },
-    { "<leader>z", "<cmd>Yazi<cr>" },
     { "gO", function()
         if vim.g._outline_cmd then
             vim.cmd(vim.g._outline_cmd)
@@ -103,7 +103,7 @@ local nShortcuts = {
             --fallback
             vim.cmd [[SymbolsOutline]]
         end
-    end },
+    end, { desc = "symbols outline [OR] table of contents" } },
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():append() end },
@@ -116,18 +116,18 @@ local nShortcuts = {
     { "<leader>7",        function() harpoon:list():select(7) end },
     { "<leader>8",        function() harpoon:list():select(8) end },
     { "<leader>9",        function() harpoon:list():select(9) end },
-    { "<leader>S",        ':split | wincmd j<cr>' },
-    { "<leader>V",        ':vsplit | wincmd l<cr>' },
-    { "<leader>l",        ":tabnext<cr>" },
-    { "<leader>h",        ':tabprev<CR>' },
-    { "<leader><c-l>",    ':bn<CR>' },
-    { "<leader><c-h>",    ':bp<CR>' },
-    { "<leader>t",        ':tabnew<CR>' },
-    { "<leader>q",        ':tabclose<cr>' },
-    { "<right>",          "<c-w>>" },
-    { "<left>",           "<c-w><" },
-    { "<up>",             "<c-w>+" },
-    { "<down>",           "<c-w>-" },
+    { "<leader>S",        ':split | wincmd j<cr>',                { desc = "[WIN] Top/bottom split" } },
+    { "<leader>V",        ':vsplit | wincmd l<cr>',               { desc = "[WIN] Left/right split" } },
+    { "<leader>l",        ":tabnext<cr>",                         { desc = "[TAB] Next tab" } },
+    { "<leader>h",        ':tabprev<CR>',                         { desc = "[TAB] Previous tab" } },
+    { "<leader><c-l>",    ':bn<CR>',                              { desc = "Next buffer" } },
+    { "<leader><c-h>",    ':bp<CR>',                              { desc = "Previous buffer" } },
+    { "<leader>t",        ':tabnew<CR>',                          { desc = "[TAB] New tab" } },
+    { "<leader>q",        ':tabclose<cr>',                        { desc = "[TAB] Tab close" } },
+    { "<right>",          "<c-w>>",                               { desc = "[WIN] Grow horizontal" } },
+    { "<left>",           "<c-w><",                               { desc = "[WIN] Shrink horizontal" } },
+    { "<up>",             "<c-w>+",                               { desc = "[WIN] Grow vertical" } },
+    { "<down>",           "<c-w>-",                               { desc = "[WIN] shrink vertical" } },
     { "<leader>T",        function() GotoTerminalBuf() end },
     { "<leader>ft", function()
         require "lazy.util".float_term("/bin/zsh", {
@@ -162,84 +162,15 @@ local nShortcuts = {
         require "neogit".open({ "push" })
     end },
     -- }}}
-    --emmet{{{
-    { "<leader>,",  "<c-y>," },
-    --}}}
     --lsp {{{
-    { "<leader>fs", '<cmd>Telescope lsp_document_symbols<cr>' },
-    { "gns", vim.lsp.buf.document_symbol },
-    { "gnw", vim.lsp.buf.workspace_symbol },
-    { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>' },
-    { "<leader>fr", '<cmd>Telescope lsp_references<cr>' },
-    { "<leader>E",  function ()
-        vim.fn.setqflist(vim.diagnostic.get())
-        vim.cmd.cwindow()
-    end},
-    { "<leader>r",  ":IncRename " },
-    { "<leader>el", function()
-        local virt_text = vim.diagnostic.config().virtual_text
-        vim.diagnostic.config({ virtual_text = not virt_text })
-    end },
-    { "<a-e>", function()
-        vim.diagnostic.open_float()
-    end
-    },
-    --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
-    { "<leader>a", "<cmd>CodeActionMenu<cr>" },
-    { "<leader>A", function()
-        local n = 0
-        vim.lsp.buf.code_action({
-            filter = function()
-                n = n + 1
-                return n == 1
-            end,
-            apply = true
-        })
-    end
-    },
-    { "]D", function()
-        vim.diagnostic.goto_next()
-        local n = 0
-        vim.lsp.buf.code_action({
-            filter = function()
-                n = n + 1
-                return n == 1
-            end,
-            apply = true
-        })
-    end
-    },
-    { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
-        { desc = "Toggle inlay hints" } },
-    { "<leader>k", vim.lsp.buf.signature_help,                                      { desc = "Show function signature" } },
-    { "gK",        vim.diagnostic.open_float,                                       { desc = "Open diagnostic float" } },
-    { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end },
-    { "[D", function()
-        vim.diagnostic.goto_prev({})
-        local n = 0
-        vim.lsp.buf.code_action({
-            filter = function(_)
-                n = n + 1
-                return n == 1
-            end,
-            apply = true
-        })
-    end
-    },
-    {
-        "<leader>=",
-        function()
-            vim.lsp.buf.format { async = true }
-        end
-    },
     --}}}
     -- Treesitter {{{
     { "<leader>sr",      function() require "ssr".open() end },
     { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
-    { "<a-t>p",           require("tree-climber").goto_parent },
-    { "<a-t>c",           require("tree-climber").goto_child },
-    { "<a-t>n",           require"tree-climber".goto_next},
-    { "<a-t>p",           require"tree-climber".goto_prev},
+    { "<a-t>p",          require("tree-climber").goto_parent },
+    { "<a-t>c",          require("tree-climber").goto_child },
+    { "<a-t>n",          require "tree-climber".goto_next },
+    { "<a-t>p",          require "tree-climber".goto_prev },
     { "<leader>vn",      require("tree-climber").select_node },
     { "<a-j>",           require("tree-climber").swap_next },
     { "<a-k>",           require("tree-climber").swap_prev },
@@ -284,17 +215,13 @@ local nShortcuts = {
     { "<C-c>",      "<cmd>CccPick<cr>" },
     { "<a-x>",      "<cmd>CccConvert<cr>" },
     -- }}}
-    -- Wiki {{{
-    { "<leader>W",  "<cmd>cd ~/Documents/vimwiki/norg-home | e index.norg<cr>" },
-    { "<leader>G",  "<cmd>Glow<cr>" },
-    -- }}}
     -- lazy {{{
     { "<leader>Lu", "<cmd>Lazy update<cr>" },
     { "<leader>Lx", "<cmd>Lazy clean<cr>" },
     -- }}}
-    {"ZF", require"mini.misc".zoom},
-    {"<c-q>", vim.cmd.cwindow},
-    {"<leader>/", ":silent grep! | cwindow<S-Left><S-Left>"}
+    { "ZF",         require "mini.misc".zoom },
+    { "<c-q>",      vim.cmd.cwindow,                           { desc = "[QF] Open quickfix window" } },
+    { "<leader>/",  ":silent grep! | cwindow<S-Left><S-Left>", { desc = "[QF] :grep, then open :cwin" } }
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -351,15 +278,15 @@ local vShortcuts = {
     { "<a-k>",           require("tree-climber").goto_prev },
     --}}}
     -- chatbot{{{
-    { "DD",               ":ODocument<cr>" },
-    { "DC",               ":ChatBotComment<cr>" },
-    { "C", function ()
+    { "DD",              ":ODocument<cr>" },
+    { "DC",              ":ChatBotComment<cr>" },
+    { "C", function()
         vim.api.nvim_feedkeys(":M complete\r", "n", true)
-    end},
+    end },
     -- }}}
     -- move code {{{
-    { "mj",              ":m '>+1<CR>gv=gv" },
-    { "mk",              ":m '<-2<CR>gv=gv" },
+    { "mj", ":m '>+1<CR>gv=gv" },
+    { "mk", ":m '<-2<CR>gv=gv" },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }

@@ -391,5 +391,5 @@ require("lazy").setup({
     },
     {
         "kevinhwang91/nvim-bqf"
-    }
+    },
 })

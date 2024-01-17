@@ -39,7 +39,7 @@
       "class<librewolf>": "<span color='#69c1eb'></span>",
       "class<footclient>": "",
       "class<code>": "󰨞",
-      "class<nheko>": "<span color='#ABE9B3'>󰊌</span>",
+      "class<nheko|neochat>": "<span color='#ABE9B3'>󰊌</span>",
       "class<io.github.martinrotter.rssguard>": "",
       "class<mpv>": "󰈫",
       "class<org.qbittorrent.qBittorrent>": "μ",
