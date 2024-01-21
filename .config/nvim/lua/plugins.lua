@@ -26,21 +26,6 @@ require("lazy").setup({
     'hrsh7th/nvim-cmp',
     'flazz/vim-colorschemes',
     {
-        'ray-x/lsp_signature.nvim',
-        config = true,
-        main = "lsp_signature",
-        opts = {
-            bind = true,
-            hint_enable = false,
-            hint_prefix = " ",
-            always_trigger = false,
-            doc_lines = 0,
-            toggle_key = "<c-b>",
-            select_signature_key = "<c-s><c-z>",
-            move_cursor_key = "<c-s><c-s>"
-        }
-    },
-    {
         'williamboman/mason.nvim',
         cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall" },
         config = function()
@@ -53,10 +38,10 @@ require("lazy").setup({
     "folke/which-key.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
     'superhawk610/ascii-blocks.nvim',
-    {
-        "SmiteshP/nvim-navic",
-        dependencies = "neovim/nvim-lspconfig"
-    },
+    -- {
+    --     "SmiteshP/nvim-navic",
+    --     dependencies = "neovim/nvim-lspconfig"
+    -- },
     {
         "nvim-neorg/neorg",
         build = ":Neorg sync-parsers",
@@ -100,9 +85,29 @@ require("lazy").setup({
     {
         'folke/tokyonight.nvim'
     },
-    "uga-rosa/ccc.nvim",
+    {
+        "uga-rosa/ccc.nvim",
+        cmd = { "CccPick", "CccConvert" },
+        config = function()
+            local ccc = require("ccc")
+            if vim.o.binary == false then
+                local mapping = ccc.mapping
+                ccc.setup {
+                    inputs = {
+                        ccc.input.hsl,
+                        ccc.input.rgb
+                    },
+                    highlighter = {
+                        auto_enable = true
+                    },
+                    mappings = {
+                        ["$"] = mapping.set100
+                    }
+                }
+            end
+        end
+    },
     'catppuccin/nvim',
-
     {
         'michaelb/sniprun',
         build = 'bash ./install.sh',
@@ -117,7 +122,41 @@ require("lazy").setup({
         cmd = { "DiffviewOpen" },
         opts = {}
     },
-    { "simrat39/symbols-outline.nvim",  cmd = "SymbolsOutline", lazy = true },
+    {
+        "simrat39/symbols-outline.nvim",
+        cmd = "SymbolsOutline",
+        lazy = true,
+        opts = {
+            position = "left",
+            show_numbers = true,
+            show_relative_Numbers = true,
+            symbols = {
+                Boolean = { icon = "", hl = "@boolean" },
+                Array = { icon = "", hl = "@constant" },
+                String = { icon = "", hl = "@string" },
+                Function = { icon = "", hl = "@function" },
+                File = { icon = "", hl = "@text.uri" },
+                Module = { icon = "", hl = "@namespace" },
+                Class = { icon = "", hl = "@type" },
+                Method = { icon = " ", hl = "@method" },
+                Property = { icon = "", hl = "@method" },
+                Field = { icon = "", hl = "@field" },
+                Constructor = { icon = "", hl = "@constructor" },
+                Enum = { icon = "", hl = "@type" },
+                Interface = { icon = "", hl = "@type" },
+                Variable = { icon = "𝑥", hl = "@constant" },
+                Constant = { icon = "", hl = "@constant" },
+                EnumMember = { icon = "", hl = "@field" },
+                Struct = { icon = "", hl = "@type" },
+                Event = { icon = "", hl = "@type" },
+                Operator = { icon = "", hl = "@operator" },
+                TypeParameter = { icon = "", hl = "@parameter" },
+            },
+            keymaps = {
+                hover_symbol = "glh"
+            }
+        }
+    },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
     {
         "andymass/vim-matchup"
@@ -213,7 +252,8 @@ require("lazy").setup({
         end
     },
     {
-        "mxsdev/nvim-dap-vscode-js"
+        "mxsdev/nvim-dap-vscode-js",
+        ft = { "javascript", "typescript" }
     },
     {
         "echasnovski/mini.nvim",
@@ -251,7 +291,6 @@ require("lazy").setup({
                     }
                 }
             }
-            require "mini.notify".setup {}
             require "mini.indentscope".setup {
                 delay = 0
             }
@@ -318,60 +357,42 @@ require("lazy").setup({
         }
     },
     {
-        "VidocqH/lsp-lens.nvim",
-        opts = {
-            sections = {
-                git_authors = false,
-                definitions = false,
-                references = true,
-                implements = false
-            },
-            target_symbol_kinds = {sk.Class, sk.Method, sk.Enum, sk.Function, sk.Struct, sk.Object},
-            wrapper_symbol_kinds = {sk.Class, sk.Struct, sk.Enum, sk.Object}
-        }
-    },
-    {
-        "altermo/nxwm",
-        opts = {
-            on_win_open = function (buf)
-                vim.api.nvim_set_current_buf(buf)
-            end
-        }
-    },
-
-    {
-        "gsuuon/model.nvim",
-        config = function ()
-            require"model".setup{
+        dir =  "~/.config/nvim/model.nvim/" ,
+        cmd = { "MChat", "Model", "Myank", "M", "Mshow", "Mcount", "Mdelete", "Mselect", "Mstore", "Mcancel" },
+        lazy = true,
+        config = function()
+            require "model".setup {
                 prompts = {
                     complete = {
-                        provider = require"model.providers.ollama",
+                        provider = require "model.providers.ollama",
                         params = {
                             model = "codellama"
                         },
-                        builder = function (input)
+                        builder = function(input)
                             return {
-                                prompt = "[INST] <<SYS>>You try to predict what code would come next, do not output anything other than code<</SYS>>\n\n" .. input .. " [/INST]"
+                                prompt =
+                                    "[INST] <<SYS>>You try to predict what code would come next, do not output anything other than code<</SYS>>\n\n" ..
+                                    input .. " [/INST]"
                             }
                         end
                     },
                     completeS = {
-                        provider = require"model.providers.ollama",
+                        provider = require "model.providers.ollama",
                         params = {
                             model = "starcoder"
                         },
-                        builder = function (input)
+                        builder = function(input)
                             return {
                                 prompt = input
                             }
                         end
                     },
                     ["complete13"] = {
-                        provider = require"model.providers.ollama",
+                        provider = require "model.providers.ollama",
                         params = {
                             model = "codellama:13b-code"
                         },
-                        builder = function (input)
+                        builder = function(input)
                             return {
                                 prompt = input
                             }

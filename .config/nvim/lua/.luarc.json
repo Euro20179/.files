@@ -56,5 +56,8 @@
         "${3rd}/luassert/library",
         "${3rd}/luv/library"
     ],
-    "workspace.checkThirdParty": false
+    "workspace.checkThirdParty": false,
+    "diagnostics.disable": [
+        "unused-local"
+    ]
 }

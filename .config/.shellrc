@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ $TERM = "foot" ] && export TERM=foot-extra
+
 #some java apps don't work without this
 export _JAVA_AWT_WM_NONREPARENTING=1
 
@@ -71,7 +73,7 @@ _pager(){
 
 export PAGER=less
 export TERMINAL_HOLD_OPT='-H'
-export TERMINAL=footclient
+export TERMINAL=foot
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"

@@ -100,4 +100,4 @@ function Color(scheme)
 end
 
 
-Color("tokyonight")
+Color("tokyonight-moon")

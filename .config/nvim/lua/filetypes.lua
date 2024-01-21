@@ -2,7 +2,8 @@ vim.filetype.add({
     pattern = {
         [".*%.config/hypr/.*%.conf"] = "hyprland",
         [".*"] = {
-            function(path, bufnr, ...)
+            ---@diagnostic disable-next-line: unused-vararg
+            function(_path, bufnr, ...)
                 local line1 = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]
                 if vim.endswith(line1, "nvim -l") then
                     return "lua"

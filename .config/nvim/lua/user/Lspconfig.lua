@@ -1,13 +1,7 @@
 local lspconfig = require("lspconfig")
 
-local on_attach = function (client, bufnr)
-    if client.server_capabilities.documentSymbolProvider then
-        require"nvim-navic".attach(client, bufnr)
-    end
-end
 
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require"cmp_nvim_lsp".default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig['emmet_ls'].setup{

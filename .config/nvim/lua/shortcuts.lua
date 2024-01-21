@@ -212,8 +212,8 @@ local nShortcuts = {
             vim.opt.relativenumber = true
         end
     end },
-    { "<C-c>",      "<cmd>CccPick<cr>" },
-    { "<a-x>",      "<cmd>CccConvert<cr>" },
+    { "<C-c><C-c>",      "<cmd>CccPick<cr>" },
+    { "<C-c><C-x>",      "<cmd>CccConvert<cr>" },
     -- }}}
     -- lazy {{{
     { "<leader>Lu", "<cmd>Lazy update<cr>" },
@@ -221,7 +221,9 @@ local nShortcuts = {
     -- }}}
     { "ZF",         require "mini.misc".zoom },
     { "<c-q>",      vim.cmd.cwindow,                           { desc = "[QF] Open quickfix window" } },
-    { "<leader>/",  ":silent grep! | cwindow<S-Left><S-Left>", { desc = "[QF] :grep, then open :cwin" } }
+    { "<leader>/",  ":silent grep! | cwindow<S-Left><S-Left>", { desc = "[QF] :grep, then open :cwin" } },
+    { "<c-c><c-n>", ":cnext<CR>", { desc = "[QF] Next quickfix item" } },
+    { "<c-c><c-p>", ":cprev<CR>", { desc = "[QF] Previous quickfix item" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -243,9 +245,6 @@ local iShortcuts = {
     { "<C-g>W",          "<Esc>Wi" },
     { "<c-space>l",      "<Esc>:tabnext<CR>" },
     { "<c-space>h",      "<Esc>:tabprev<CR>" },
-    -- }}}
-    -- Util Functions {{{
-    { utilLeader .. "w", "<C-r>=v:lua.Rword()<cr>" },
     -- }}}
 }
 for _, map in ipairs(iShortcuts) do
@@ -285,8 +284,8 @@ local vShortcuts = {
     end },
     -- }}}
     -- move code {{{
-    { "mj", ":m '>+1<CR>gv=gv" },
-    { "mk", ":m '<-2<CR>gv=gv" },
+    { "mj", ":m '>+1<CR>gv=gv", { desc = "Move up" } },
+    { "mk", ":m '<-2<CR>gv=gv", { desc = "Move down" } },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }
@@ -312,7 +311,6 @@ end --}}}
 
 -- Terminal Mode {{{
 local tShortcuts = {
-    { "<F4>",         "<c-\\><c-n>" },
     { "<c-\\><c-\\>", "<c-\\><c-n>" }
 }
 for _, map in ipairs(tShortcuts) do

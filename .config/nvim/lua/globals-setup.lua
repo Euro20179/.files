@@ -11,6 +11,7 @@ vim.ui.open = function(item)
     vim.system({ "linkhandler", item })
 end
 
+--conflicts with terminal color ansi codes
 vim.fn.setcellwidths({
     { 0xe5fa, 0xe6ac, 2 },
     { 0xea60, 0xebeb, 2 },

@@ -58,7 +58,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
             { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
                 { desc = "Toggle inlay hints" } },
-            { "<leader>k", vim.lsp.buf.signature_help,                                       { desc = "Show function signature" } },
             { "gK",        vim.diagnostic.open_float,                                        { desc = "Open diagnostic float" } },
             { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "Go to type definition" } },
             { "[D", function()
@@ -83,6 +82,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         for _, value in ipairs(key_maps) do
             ks("n", value[1], value[2], value[3] or {})
         end
+        ks("i", "<c-s>", vim.lsp.buf.signature_help, { desc = "Show function signature" })
     end
 })
 
