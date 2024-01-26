@@ -44,7 +44,7 @@ vim.opt.title = true
 vim.g.neovide_scroll_animation_length = 0.1
 vim.g.neovide_cursor_animation_length = 0
 
-vim.o.grepprg = 'rg -n $*'
+vim.opt.grepprg = 'rg -n $*'
 
 vim.opt.wrap = false
 

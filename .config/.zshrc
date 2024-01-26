@@ -94,7 +94,11 @@ precmd () {
 
 new_line=$'\n'
 
-PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}$new_line%F{reset} '
+if [ -z "$IN_VIM" ]; then
+    PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}$new_line%F{reset} '
+else
+    PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}$new_line>%F{reset} '
+fi
 
 enable_plugin (){
     [[ -e ~/.config/zshplugs/$1/$1.plugin.zsh ]] && source ~/.config/zshplugs/$1/$1.plugin.zsh
@@ -113,6 +117,11 @@ enable_plugin "fzf-tab"
 alias "ref=clear; source ~/.config/.zshrc"    
 
 source ~/.config/.shellrc
+
+if [ "$IN_VIM" ]; then
+    unalias ls
+    alias l='ls -A --color=always -S --group-directories-first'
+fi
 
 fpath=("$XDG_CONFIG_HOME"/zsh-autoload "${fpath[@]}")
 autoload -U compinit

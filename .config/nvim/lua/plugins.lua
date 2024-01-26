@@ -10,7 +10,7 @@ require("lazy").setup({
                 extensions = {
                     ["ui-select"] = {
                         require "telescope.themes".get_dropdown {}
-                    }
+                    },
                 }
             }
             tele.load_extension("ui-select")
@@ -413,4 +413,8 @@ require("lazy").setup({
     {
         "kevinhwang91/nvim-bqf"
     },
+    {
+        "stevearc/oil.nvim",
+        opts = {}
+    }
 })

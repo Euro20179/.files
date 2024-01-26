@@ -224,6 +224,7 @@ local nShortcuts = {
     { "<leader>/",  ":silent grep! | cwindow<S-Left><S-Left>", { desc = "[QF] :grep, then open :cwin" } },
     { "<c-c><c-n>", ":cnext<CR>", { desc = "[QF] Next quickfix item" } },
     { "<c-c><c-p>", ":cprev<CR>", { desc = "[QF] Previous quickfix item" } },
+    { "<leader>O", "<cmd>Oil<CR>", { desc = "Open oil" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})

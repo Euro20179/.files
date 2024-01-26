@@ -91,14 +91,14 @@ require 'nvim-treesitter.configs'.setup {
             goto_next_start = {
                 ["]m"] = "@function.outer",
                 ["]]"] = { query = "@class.outer", desc = "Next class start" },
-                ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+                ["]@"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
             },
             goto_next_end = {
                 ["]M"] = "@function.outer",
                 ["]["] = "@class.outer",
             },
             goto_previous_start = {
-                ["[s"] = { query = "@scope", query_group = "locals", desc = "Previous scope" },
+                ["[@"] = { query = "@scope", query_group = "locals", desc = "Previous scope" },
                 ["[m"] = "@function.outer",
                 ["[["] = "@class.outer",
             },

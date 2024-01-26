@@ -3,6 +3,20 @@
 -- Credit: glepnir
 local lualine = require('lualine')
 
+local line_count = 0
+
+local group = vim.api.nvim_create_augroup("LuaLineEnter", {
+    clear = true
+})
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    callback = function()
+        vim.schedule(function()
+            line_count = vim.fn.len(vim.api.nvim_buf_get_lines(0, 0, -1, false))
+        end)
+    end,
+    group = group
+})
+
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
@@ -100,7 +114,7 @@ local config = {
                             ['\x13'] = "^" -- gCTRL-h (blockwise select)
 
                         }
-                        )[mode] or mode
+                    )[mode] or mode
                 end,
                 color = function()
                     return { fg = get_color_by_mode() }
@@ -109,8 +123,8 @@ local config = {
         },
         lualine_c = {
             {
-                function ()
-                    return vim.fn.len(vim.api.nvim_buf_get_lines(0, 0, -1, false))
+                function()
+                    return line_count
                 end,
                 cond = conditions.buffer_not_empty,
                 color = {
@@ -200,7 +214,7 @@ ins_left {
 
 -- Add components to right sections
 ins_right {
-    'o:encoding', -- option component same as &encoding in viml
+    'o:encoding',       -- option component same as &encoding in viml
     fmt = string.upper, -- I'm not sure why it's upper case either ;)
     cond = conditions.hide_in_width,
     color = { fg = colors.green, gui = 'bold' },

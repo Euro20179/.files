@@ -50,7 +50,6 @@ lspconfig['lua_ls'].setup{
 lspconfig.gopls.setup{}
 
 lspconfig['pyright'].setup{
-    on_attach = on_attach
 }
 
 lspconfig['java_language_server'].setup {
@@ -62,7 +61,6 @@ lspconfig['tsserver'].setup {
   capabilities = capabilities,
   --filetypes = { "typescript" },
   root_dir = function() return vim.loop.cwd() end,
-  on_attach = on_attach
 }
 -- lspconfig['marksman'].setup{
 --     capabilities = capabilities
@@ -72,21 +70,18 @@ lspconfig['tsserver'].setup {
 -- }
 lspconfig['rust_analyzer'].setup {
   capabilities = capabilities,
-  on_attach = on_attach
 }
 -- lspconfig['pylsp'].setup {
 --   capabilities = capabilities
 -- }
 
 lspconfig['bashls'].setup{
-  on_attach = on_attach,
   capabilities = capabilities
 }
 
 lspconfig['clangd'].setup{
   capabilities = capabilities,
   filetypes = { "c", "cpp" },
-  on_attach = on_attach
 }
 lspconfig['html'].setup{
     capabilities = capabilities
