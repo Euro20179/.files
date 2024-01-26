@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 local harpoon = require "harpoon"
 harpoon:setup()
 
@@ -76,15 +74,10 @@ local nShortcuts = {
     { "<leader>em", "<cmd>Telescope marks<cr>",           { desc = "[TELESCOPE] marks" } },
     { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
     { "<leader>fe", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
+    { "<leader>ff", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
     { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "[TELESCOPE] quickfix list" } },
-    { "<leader>ff", function()
-        local t = require "telescope.builtin"
-        harpoon:list():append()
-        t.find_files({ hidden = true })
-    end, { desc = "[TELESCOPE] open file and save current buffer in harpoon" } },
     { "<leader>fF", function()
         local t = require "telescope.builtin"
-        harpoon:list():append()
         t.find_files({ hidden = true, no_ignore = true })
     end, { desc = "[TELESCOPE] open any file, save current buffer in harpoon" } },
     { "<leader>f/", '<cmd>Telescope live_grep<cr>',                              { desc = "[TELESCOPE] grep" } },
@@ -212,8 +205,8 @@ local nShortcuts = {
             vim.opt.relativenumber = true
         end
     end },
-    { "<C-c><C-c>",      "<cmd>CccPick<cr>" },
-    { "<C-c><C-x>",      "<cmd>CccConvert<cr>" },
+    { "<C-c><C-c>", "<cmd>CccPick<cr>" },
+    { "<C-c><C-x>", "<cmd>CccConvert<cr>" },
     -- }}}
     -- lazy {{{
     { "<leader>Lu", "<cmd>Lazy update<cr>" },
@@ -222,9 +215,9 @@ local nShortcuts = {
     { "ZF",         require "mini.misc".zoom },
     { "<c-q>",      vim.cmd.cwindow,                           { desc = "[QF] Open quickfix window" } },
     { "<leader>/",  ":silent grep! | cwindow<S-Left><S-Left>", { desc = "[QF] :grep, then open :cwin" } },
-    { "<c-c><c-n>", ":cnext<CR>", { desc = "[QF] Next quickfix item" } },
-    { "<c-c><c-p>", ":cprev<CR>", { desc = "[QF] Previous quickfix item" } },
-    { "<leader>O", "<cmd>Oil<CR>", { desc = "Open oil" } },
+    { "<c-c><c-n>", ":cnext<CR>",                              { desc = "[QF] Next quickfix item" } },
+    { "<c-c><c-p>", ":cprev<CR>",                              { desc = "[QF] Previous quickfix item" } },
+    { "<leader>O",  "<cmd>Oil<CR>",                            { desc = "Open oil" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -234,18 +227,18 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     -- Movement {{{
-    { "<C-bs>",          "<C-w>" },
-    { "<C-g>$",          "<Esc>$a" },
-    { "<C-g>l",          "<Esc>la" },
-    { "<C-g>h",          "<Esc>ha" },
-    { "<C-g>0",          "<Esc>0i" },
-    { "<C-g>^",          "<Esc>^i" },
-    { "<C-g>b",          "<Esc>bi" },
-    { "<C-g>w",          "<Esc>wi" },
-    { "<C-g>B",          "<Esc>Bi" },
-    { "<C-g>W",          "<Esc>Wi" },
-    { "<c-space>l",      "<Esc>:tabnext<CR>" },
-    { "<c-space>h",      "<Esc>:tabprev<CR>" },
+    { "<C-bs>",     "<C-w>" },
+    { "<C-g>$",     "<Esc>$a" },
+    { "<C-g>l",     "<Esc>la" },
+    { "<C-g>h",     "<Esc>ha" },
+    { "<C-g>0",     "<Esc>0i" },
+    { "<C-g>^",     "<Esc>^i" },
+    { "<C-g>b",     "<Esc>bi" },
+    { "<C-g>w",     "<Esc>wi" },
+    { "<C-g>B",     "<Esc>Bi" },
+    { "<C-g>W",     "<Esc>Wi" },
+    { "<c-space>l", "<Esc>:tabnext<CR>" },
+    { "<c-space>h", "<Esc>:tabprev<CR>" },
     -- }}}
 }
 for _, map in ipairs(iShortcuts) do

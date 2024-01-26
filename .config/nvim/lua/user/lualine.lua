@@ -10,8 +10,14 @@ local group = vim.api.nvim_create_augroup("LuaLineEnter", {
 })
 vim.api.nvim_create_autocmd("BufWinEnter", {
     callback = function()
-        vim.schedule(function()
-            line_count = vim.fn.len(vim.api.nvim_buf_get_lines(0, 0, -1, false))
+        local timer = vim.uv.new_timer()
+        if not timer then
+            return
+        end
+        timer:start(0, 500, function ()
+            vim.schedule(function()
+                line_count = vim.fn.len(vim.api.nvim_buf_get_lines(0, 0, -1, false))
+            end)
         end)
     end,
     group = group

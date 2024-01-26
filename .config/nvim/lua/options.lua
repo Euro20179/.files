@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.dictionary = "/usr/share/dict/american-english"
@@ -25,7 +27,6 @@ vim.opt.spelllang = "en_us"
 vim.opt.fillchars = { eob = "󰅖" }
 --fixes weird bug with Telescope help_menu tags not being sorted and lazy complaining
 vim.opt.tagcase = 'ignore'
-vim.opt.lazyredraw = true
 
 vim.opt.exrc = true
 vim.opt.smoothscroll = true
@@ -49,5 +50,11 @@ vim.opt.grepprg = 'rg -n $*'
 vim.opt.wrap = false
 
 vim.opt.colorcolumn = { 100 }
+
+local left = '%1*%f%2*%{&modified == v:true ? "*" : ""} %4*%p%%%*'
+local right = '%2*%y'
+local center = '%3*%{v:lua.GetLspNames()}%*'
+
+vim.opt.statusline = left .. '%=' .. center .. '%=' .. right
 
 vim.cmd.lang("ja_JP.utf8")

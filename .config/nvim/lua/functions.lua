@@ -227,6 +227,17 @@ function OllamaDocument(cmdData)
     end)
 end
 
+function GetLspNames ()
+    local names = ""
+    for _, lsp in ipairs(vim.lsp.get_clients()) do
+        names = names .. lsp.name .. " "
+    end
+    if names ~= "" then
+        return vim.trim("" .. names)
+    end
+    return ""
+end
+
 vim.api.nvim_create_user_command("X", function (data)
     local args = data.args
     local buf = vim.api.nvim_create_buf(true, false)

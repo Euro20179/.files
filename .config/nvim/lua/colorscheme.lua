@@ -78,7 +78,7 @@ function Color(scheme)
         -- args = { "candy" },
         cmd = "colorscheme"
     }, {})
-    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", {bg = "NONE", strikethrough = true})
+    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "TelescopeMatching" })
     vim.api.nvim_set_hl(0, "CmpItemKindFunction", { link = "function" })
     vim.api.nvim_set_hl(0, "CmpItemKindField", { link = "field" })
@@ -90,6 +90,13 @@ function Color(scheme)
     vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", italic = true, fg = "#6e738d" })
     vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
 
+    vim.cmd [[
+        hi link User1 @label
+        hi link User2 @annotation
+        hi link User3 @property
+        hi link User4 @number
+    ]]
+
     if vim.g.neovide ~= nil then
         vim.g.neovide_transparency = 0.8
         vim.api.nvim_cmd({
@@ -98,6 +105,5 @@ function Color(scheme)
         }, {})
     end
 end
-
 
 Color("tokyonight-moon")

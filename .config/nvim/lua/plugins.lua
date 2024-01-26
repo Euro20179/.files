@@ -216,8 +216,6 @@ require("lazy").setup({
             }
         }
     },
-    "nvim-lualine/lualine.nvim",
-    "arkav/lualine-lsp-progress",
     {
         "mfussenegger/nvim-dap"
     },
@@ -357,7 +355,7 @@ require("lazy").setup({
         }
     },
     {
-        dir =  "~/.config/nvim/model.nvim/" ,
+        dir = "~/.config/nvim/model.nvim/",
         cmd = { "MChat", "Model", "Myank", "M", "Mshow", "Mcount", "Mdelete", "Mselect", "Mstore", "Mcancel" },
         lazy = true,
         config = function()
@@ -416,5 +414,5 @@ require("lazy").setup({
     {
         "stevearc/oil.nvim",
         opts = {}
-    }
+    },
 })
