@@ -14,7 +14,7 @@ lspconfig["raku_navigator"].setup{
     cmd = {"raku-navigator", "--stdio"}
 }
 
-local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
+local lua_ls_library = { "/usr/local/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
 
 lspconfig['lua_ls'].setup{
     settings= {

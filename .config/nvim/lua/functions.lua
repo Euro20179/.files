@@ -137,7 +137,7 @@ function ExecSelection(cmdData)
 end
 
 function OllamaGen(cmdData)
-    local model = cmdData.fargs[1] or "codellama:13b-code"
+    local model = cmdData.fargs[1] or "codellama:7b-code"
     local buf = vim.api.nvim_get_current_buf()
     if cmdData.line1 == nil then
         vim.notify("This command requires a range")
@@ -146,7 +146,7 @@ function OllamaGen(cmdData)
     local json = vim.json.encode("<PRE> " .. table.concat(lines, "\n") .. " <MID>")
     vim.system({
         "curl",
-        "http://localhost:11434/api/generate",
+        "http://192.168.0.114:11434/api/generate",
         "-d",
         '{"model": "' .. model .. '", "prompt": ' ..
         json .. '}'

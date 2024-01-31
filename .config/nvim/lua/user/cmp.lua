@@ -1,4 +1,5 @@
 local cmp = require 'cmp'
+local sk = require 'cmp.types.lsp'.CompletionItemKind
 -- local luasnip = require "luasnip"
 
 local kind_icons = {
@@ -85,7 +86,7 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm(),
         ["<tab>"] = cmp.mapping(function(fallback)
             local jumpable = vim.snippet.jumpable(1)
-            if jumpable~= 0 and jumpable ~= nil and jumpable ~= false then
+            if jumpable ~= 0 and jumpable ~= nil and jumpable ~= false then
                 vim.snippet.jump(1)
             elseif vim.snippet.active() then
                 vim.snippet.exit()
@@ -110,7 +111,8 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
         { name = "snippets" },
-        { name = "mdlink" }
+        { name = "mdlink" },
+         { name = "cmp_ai" }
         -- { name = "emoji" },
         -- { name = "time" },
         --{

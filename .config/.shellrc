@@ -92,11 +92,9 @@ export TRASH="$HOME/.local/share/trash"
 
 alias t='tmux'
 
-alias n=neovide
-
 alias u="paru"
 
-alias y=yazi
+alias y='nvim +Oil'
 alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
 alias img="nvim -b +DisplayImg"
 #alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
@@ -317,6 +315,6 @@ alias Q='nvim +Qalc +startinsert'
 
 alias doase=doasedit
 
-unset welcomeStr
+alias n='neovide  -- -p2 term://$SHELL +tabnext "$@" &'
 
 . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"

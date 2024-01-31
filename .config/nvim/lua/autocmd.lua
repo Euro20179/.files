@@ -22,8 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>', { desc = "[TELESCOPE] Workspace symbols" } },
             { "<leader>fr", '<cmd>Telescope lsp_references<cr>',        { desc = "[TELESCOPE] References" } },
             { "<leader>E", function()
-                vim.fn.setqflist(vim.diagnostic.get())
-                vim.cmd.cwindow()
+                vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics" } },
             { "<leader>r", ":IncRename ",             { desc = "Incremental rename" } },
             { "<leader>el", function()

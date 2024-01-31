@@ -30,6 +30,8 @@ format_selection_screen=simple_extra
 
 max_thread_count=40
 
+print_link_shortcut="alt-k"
+
 
 #if using wayland:
     # if in sway:

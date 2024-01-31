@@ -293,6 +293,10 @@ on_opt_parse_term () {
     return 1
 }
 
+handle_custom_keypress() {
+    notify-send "$*"
+}
+
 
 on_clean_up (){
     printf "\033]0;$TERM\a"

@@ -71,6 +71,7 @@ function Color(scheme)
         args = { "vim" },
         cmd = "colorscheme"
     }, {})
+
     vim.api.nvim_cmd({
         -- args = { 'nord' },
         -- args = { "catppuccin-macchiato" },
@@ -78,6 +79,7 @@ function Color(scheme)
         -- args = { "candy" },
         cmd = "colorscheme"
     }, {})
+
     vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "TelescopeMatching" })
     vim.api.nvim_set_hl(0, "CmpItemKindFunction", { link = "function" })
@@ -90,12 +92,12 @@ function Color(scheme)
     vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", italic = true, fg = "#6e738d" })
     vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
 
-    vim.cmd [[
-        hi link User1 @label
-        hi link User2 @annotation
-        hi link User3 @property
-        hi link User4 @number
-    ]]
+    vim.api.nvim_set_hl(0, "User1", { link = "@label" })
+    vim.api.nvim_set_hl(0, "User2", { link = "@annotation" })
+    vim.api.nvim_set_hl(0, "User3", { link = "@property" })
+    vim.api.nvim_set_hl(0, "User4", { link = "@number" })
+    vim.api.nvim_set_hl(0, "User5", { link = "Error" })
+    vim.api.nvim_set_hl(0, "User6", { link = "DiagnosticWarning" })
 
     if vim.g.neovide ~= nil then
         vim.g.neovide_transparency = 0.8

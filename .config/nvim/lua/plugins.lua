@@ -38,10 +38,6 @@ require("lazy").setup({
     "folke/which-key.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
     'superhawk610/ascii-blocks.nvim',
-    -- {
-    --     "SmiteshP/nvim-navic",
-    --     dependencies = "neovim/nvim-lspconfig"
-    -- },
     {
         "nvim-neorg/neorg",
         build = ":Neorg sync-parsers",
@@ -180,9 +176,6 @@ require("lazy").setup({
         },
     },
     {
-        "LukasPietzschmann/telescope-tabs"
-    },
-    {
         "NeogitOrg/neogit",
         lazy = true,
         dependencies = {
@@ -191,30 +184,6 @@ require("lazy").setup({
             "sindrets/diffview.nvim",
         },
         config = true
-    },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim"
-        },
-        opts = {
-            event_handlers = {
-                {
-                    event = "file_open_requested",
-                    handler = function(arg)
-                        vim.fn.setenv("LH_NO_EDIT", "1")
-                        local res = vim.system({ "linkhandler", arg.path }):wait()
-                        if res.code == 1 then
-                            return { handled = false }
-                        end
-                        return { handled = true }
-                    end
-                }
-            },
-            filesystem = {
-                hijack_netrw_behavior = "open_current"
-            }
-        }
     },
     {
         "mfussenegger/nvim-dap"
@@ -227,27 +196,6 @@ require("lazy").setup({
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2"
-    },
-    {
-        "cshuaimin/ssr.nvim",
-        module = "ssr",
-        -- Calling setup is optional.
-        config = function()
-            require("ssr").setup {
-                border = "rounded",
-                min_width = 50,
-                min_height = 5,
-                max_width = 120,
-                max_height = 25,
-                keymaps = {
-                    close = "q",
-                    next_match = "n",
-                    prev_match = "N",
-                    replace_confirm = "<cr>",
-                    replace_all = "<leader><cr>",
-                },
-            }
-        end
     },
     {
         "mxsdev/nvim-dap-vscode-js",
@@ -283,7 +231,7 @@ require("lazy").setup({
                         function()
                             vim.api.nvim_cmd({
                                 cmd = "norm",
-                                args = { "ysib " }
+                                args = { "ysi% " }
                             }, {})
                         end
                     }
@@ -329,30 +277,25 @@ require("lazy").setup({
         end
     },
     {
-        --in order to get this to work with lazy, I had to create a symlink to nvim-snippets called "snippets" in the lazy/nvim-snippets/lua folder.
-        "garymjr/nvim-snippets",
-        config = function()
-            require "nvim-snippets".setup {}
-        end
+        dir = "~/Programs/GithubContribs/nvim-snippets/",
+        opts = true
     },
+    -- {
+    --     --in order to get this to work with lazy, I had to create a symlink to nvim-snippets called "snippets" in the lazy/nvim-snippets/lua folder.
+    --     "garymjr/nvim-snippets",
+    --     config = function()
+    --         require "nvim-snippets".setup {}
+    --     end
+    -- },
     {
         "jiaoshijie/undotree",
         dependencies = "nvim-lua/plenary.nvim",
+        lazy = true,
         opts = {
             window = {
                 winblend = 5
             }
         },
-        keys = { -- load the plugin only when using it's keybinding:
-            { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
-        },
-    },
-    {
-        "Nedra1998/nvim-mdlink",
-        opts = {
-            keymap = true,
-            cmp = true
-        }
     },
     {
         dir = "~/.config/nvim/model.nvim/",
@@ -401,18 +344,21 @@ require("lazy").setup({
         end
     },
     {
-        "scottmckendry/cyberdream.nvim",
-        config = true
-    },
-    {
-        "Apeiros-46B/qalc.nvim",
-        config = true
-    },
-    {
         "kevinhwang91/nvim-bqf"
     },
     {
         "stevearc/oil.nvim",
-        opts = {}
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+        opts = {
+            default_file_explorer = true,
+            view_options = {
+                show_hidden = true
+            },
+            columns = {
+                "icon"
+            }
+        }
     },
 })

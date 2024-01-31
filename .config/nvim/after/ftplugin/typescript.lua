@@ -2,6 +2,8 @@ local dap = require "dap"
 
 local HOME = vim.fn.getenv("HOME")
 
+vim.cmd.compiler("tsc")
+
 require "dap-vscode-js".setup({
     node_path = "node",
     debugger_path = HOME .. "/Programs/vscode-js-debug",

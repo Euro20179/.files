@@ -75,6 +75,8 @@ local nShortcuts = {
     { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
     { "<leader>fe", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
     { "<leader>ff", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
+    -- { "<leader>fe", ':find **/',                          { desc = "Find files" } },
+    -- { "<leader>ff", ":find **/",                          { desc = "Find files" } },
     { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "[TELESCOPE] quickfix list" } },
     { "<leader>fF", function()
         local t = require "telescope.builtin"
@@ -88,7 +90,7 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>eu", "<cmd>lua require('undotree').toggle()<cr>" },
-    { "<leader>n",  ":Neotree float<cr>" },
+    { "<leader>n",  require 'oil'.toggle_float },
     { "gO", function()
         if vim.g._outline_cmd then
             vim.cmd(vim.g._outline_cmd)
@@ -165,8 +167,8 @@ local nShortcuts = {
     { "<a-t>n",          require "tree-climber".goto_next },
     { "<a-t>p",          require "tree-climber".goto_prev },
     { "<leader>vn",      require("tree-climber").select_node },
-    { "<a-j>",           require("tree-climber").swap_next },
-    { "<a-k>",           require("tree-climber").swap_prev },
+    -- { "<a-j>",           require("tree-climber").swap_next },
+    -- { "<a-k>",           require("tree-climber").swap_prev },
     { "glt",             "<cmd>Inspect<cr>" },
     -- }}}
     --syntax highlighting{{{
@@ -214,10 +216,16 @@ local nShortcuts = {
     -- }}}
     { "ZF",         require "mini.misc".zoom },
     { "<c-q>",      vim.cmd.cwindow,                           { desc = "[QF] Open quickfix window" } },
-    { "<leader>/",  ":silent grep! | cwindow<S-Left><S-Left>", { desc = "[QF] :grep, then open :cwin" } },
+    { "<leader>/",  ":silent lgrep! | lwindow<S-Left><S-Left>", { desc = "[QF] :lgrep, then open :lwin" } },
     { "<c-c><c-n>", ":cnext<CR>",                              { desc = "[QF] Next quickfix item" } },
     { "<c-c><c-p>", ":cprev<CR>",                              { desc = "[QF] Previous quickfix item" } },
     { "<leader>O",  "<cmd>Oil<CR>",                            { desc = "Open oil" } },
+    { "<c-s-t>", function()
+        vim.api.nvim_cmd({
+            cmd = "tag",
+            range = { vim.v.count1 }
+        }, {})
+    end, { desc = "[TAG] go to [count] previous tag in the tag stack" } }
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -273,13 +281,12 @@ local vShortcuts = {
     -- chatbot{{{
     { "DD",              ":ODocument<cr>" },
     { "DC",              ":ChatBotComment<cr>" },
-    { "C", function()
-        vim.api.nvim_feedkeys(":M complete\r", "n", true)
-    end },
+    { "DG",              ":OGen<CR>" },
+    { "C",               ":M complete<CR>" },
     -- }}}
     -- move code {{{
-    { "mj", ":m '>+1<CR>gv=gv", { desc = "Move up" } },
-    { "mk", ":m '<-2<CR>gv=gv", { desc = "Move down" } },
+    { "mj",              ":m '>+1<CR>gv=gv",                 { desc = "Move up" } },
+    { "mk",              ":m '<-2<CR>gv=gv",                 { desc = "Move down" } },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }

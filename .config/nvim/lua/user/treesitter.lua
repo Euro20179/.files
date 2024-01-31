@@ -11,11 +11,11 @@ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 parser_config.hypr = {
     install_info = {
-    url = "https://github.com/luckasRanarison/tree-sitter-hyprlang",
-    files = { "src/parser.c" },
-    branch = "master",
-  },
-  filetype = "hypr",
+        url = "https://github.com/luckasRanarison/tree-sitter-hyprlang",
+        files = { "src/parser.c" },
+        branch = "master",
+    },
+    filetype = "hypr",
 }
 
 parser_config.bircle = {
@@ -85,22 +85,31 @@ require 'nvim-treesitter.configs'.setup {
         }
     },
     textobjects = {
+        swap = {
+            enable = true,
+            swap_next = {
+                ["<A-j>"] = "@parameter.inner",
+            },
+            swap_previous = {
+                ["<A-k>"] = "@parameter.inner",
+            },
+        },
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
                 ["]m"] = "@function.outer",
                 ["]]"] = { query = "@class.outer", desc = "Next class start" },
-                ["]@"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+                ["]@"] = "@block.outer"
             },
             goto_next_end = {
                 ["]M"] = "@function.outer",
                 ["]["] = "@class.outer",
             },
             goto_previous_start = {
-                ["[@"] = { query = "@scope", query_group = "locals", desc = "Previous scope" },
                 ["[m"] = "@function.outer",
                 ["[["] = "@class.outer",
+                ["[@"] = "@block.outer"
             },
             goto_previous_end = {
                 ["[M"] = "@function.outer",
