@@ -53,6 +53,7 @@
       "class<thunderbird>": "",
       "title<.*nvim.*\\(foot\\)>": "",
       "title<.*\\./play .*\\(foot\\)": "󰽴",
+      "title<.*Discord.*>": "󰙯"
     },
     "format-icons": {
         "default": "",

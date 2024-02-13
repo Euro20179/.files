@@ -24,9 +24,6 @@ brightnessctl s 100%
 killall waybar
 waybar & disown
 
-killall foot
-foot -s & disown
-
 killall swww-daemon
 swww init
 sleep 0.3

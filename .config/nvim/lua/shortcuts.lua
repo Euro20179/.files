@@ -215,7 +215,13 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>Lazy clean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<c-q>",      vim.cmd.cwindow,                           { desc = "[QF] Open quickfix window" } },
+    { "<c-q>",      function ()
+        if vim.bo.filetype == 'qf' then
+            vim.cmd.cclose()
+        else
+            vim.cmd.cwin()
+        end
+    end,                           { desc = "[QF] Open quickfix window" } },
     { "<leader>/",  ":silent lgrep! | lwindow<S-Left><S-Left>", { desc = "[QF] :lgrep, then open :lwin" } },
     { "<c-c><c-n>", ":cnext<CR>",                              { desc = "[QF] Next quickfix item" } },
     { "<c-c><c-p>", ":cprev<CR>",                              { desc = "[QF] Previous quickfix item" } },
@@ -330,6 +336,9 @@ vim.cmd [[
 vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
 vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
 vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
+
+vim.keymap.set("i", "<c-S-V>", "<c-r>+")
+vim.keymap.set("n", "<c-S-V>", "a<c-r>+<esc>")
 
 vim.keymap.set({ "o", "x" }, "gC", function()
     require "various-textobjs".multiCommentedLines()

@@ -154,9 +154,9 @@ require("lazy").setup({
         }
     },
     { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
-    {
-        "andymass/vim-matchup"
-    },
+    -- {
+    --     "andymass/vim-matchup"
+    -- },
     {
         "jinh0/eyeliner.nvim",
         event = "VeryLazy",
@@ -361,4 +361,7 @@ require("lazy").setup({
             }
         }
     },
+    {
+        "jbyuki/quickmath.nvim"
+    }
 })

@@ -84,9 +84,16 @@ html {
  */
 
 /*rssguard*/
+
+/*make transaprent on the article part*/
+:is(html, body):has(.rssguard-mwrapper) {
+    background: transparent !important;
+}
+/*end transparency*/
+
 div.rssguard-mwrapper {
     color: var(--text-color) !important;
-    background: var(--main) !important;
+    background: transparent !important;
 }
 
 .rssguard-mwrapper a {

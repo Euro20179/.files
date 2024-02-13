@@ -1,5 +1,9 @@
 #!/bin/sh
 
+export GPG_TTY=$(tty)
+
+#foot terminfo is broken for some reason
+    #by broken i mean it doesn't exist
 [ $TERM = "foot" ] && export TERM=foot-extra
 
 #some java apps don't work without this
@@ -73,11 +77,11 @@ _pager(){
 
 export PAGER=less
 export TERMINAL_HOLD_OPT='-H'
-export TERMINAL=foot
+export TERMINAL="foot"
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"
-export EDITOR="nvim"
+export EDITOR="neovide"
 export OPENER="xdg-open"
 export EMAIL="thunderbird -mail"
 export VIDEO_PLAYER="mpv --geometry=1000"
@@ -154,7 +158,7 @@ alias "bc=bc -l"
 alias "less=less -r"
 alias "vim=nvim"
 alias "man-s=man -k . | dmenu -l 30 | awk '{print \$1}' | xargs -r man -Tpdf | zathura -"
-alias "todo=nvim $HOME/Documents/vimwiki/TODO.norg"
+alias "todo=nvim $HOME/Documents/vimwiki/TODO.md"
 alias "dr=dragon -x"
 alias "loc=tokei"
 alias "dfile=dragon -t -x | xargs wget --no-hsts"
@@ -311,10 +315,12 @@ alias c='echo $?'
 alias llm="HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='192.168.0.114' ollama serve"
 alias ollama="OLLAMA_HOST=192.168.0.114 ollama"
 
-alias Q='nvim +Qalc +startinsert'
+alias Q='nvim +Quickmath +startinsert'
 
 alias doase=doasedit
 
 alias n='neovide  -- -p2 term://$SHELL +tabnext "$@" &'
+
+alias nvim='neovide --'
 
 . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"

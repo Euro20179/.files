@@ -2,11 +2,13 @@
 
 /*floorp*/
 #sidebar-select-box {
-    background-color: $main !important;
+  background-color: $main !important;
 }
+
 #statusBar {
-    display: none !important;
+  display: none !important;
 }
+
 /*end floorp*/
 
 /*disable window decroations*/
@@ -16,136 +18,155 @@
 
 /*height adjustment: makes the browser tabs not have a ton of padding*/
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
-    height: unset !important;
+  height: unset !important;
 }
 
 #urlbar-container[breakout] {
-    min-height: unset !important;
+  min-height: unset !important;
 }
+
 /*end height adjustment*/
 
 /*transparency*/
-toolbarbutton#tabs-newtab-button{
-  background-color: $transparent !important;
-  margin: 0 !important;
-}
 
-vbox.browserContainer{
-  background-color: $main !important;
-}
+/*does not work v well in hyprland*/
+// toolbarbutton#tabs-newtab-button {
+//   background-color: $transparent !important;
+//   margin: 0 !important;
+// }
+//
+// vbox.browserContainer {
+//   background-color: $main !important;
+// }
+//
+// #navigator-toolbox {
+//   background: color-mix(in srgb, $main, transparent 90%) !important;
+// }
+
 /*end transparency*/
 
 /*get rid of the awful tab background and rounded corners*/
-tab .tab-background{
-    display: none !important;
+tab .tab-background {
+  display: none !important;
 }
 
-tab{
-    transition: background-color 300ms !important;
+//--------------------------------------------------------
+//!IMPORTANT: this for some god forsaken reason makes it so when tabs are dragged around
+//the x can't be clicked
+//--------------------------------------------------------
+// tab{
+//     transition: background-color 300ms !important;
+//
+// }
 
-}
 /*make tabs follow color scheme*/
 
-toolbar{
-    --toolbar-bgcolor: $secondary;
-    --toolbar-color: $text-color;
+toolbar {
+  --toolbar-bgcolor: $secondary;
+  --toolbar-color: $text-color;
 }
 
-tab[selected="true"]{
-    background-color: $secondary !important;
-    border-top: 3px solid $sky !important;
-}
-tab:not([selected="true"]){
-    background-color: $main !important;
-    border-top: 3px solid $warn !important;
+tab[selected="true"] {
+  background-color: $secondary !important;
+  border-top: 3px solid $sky !important;
 }
 
-tab:not([selected="true"]):is(:hover, :focus){
-    background-color: $main !important;
+tab:not([selected="true"]) {
+  background-color: $main !important;
+  border-top: 3px solid $warn !important;
+}
+
+tab:not([selected="true"]):is(:hover, :focus) {
+  background-color: $main !important;
 }
 
 
 pannelview#appMenu-protonMainView,
-vbox.panel-subview-body{
-    background-color: $main !important;
+vbox.panel-subview-body {
+  background-color: $main !important;
 }
 
-#appMenu-popup toolbarbutton{
-    background-color: $main !important;
+#appMenu-popup toolbarbutton {
+  background-color: $main !important;
 
-    &:hover{
-        background-color: $highlight !important;
-        color: $main !important;
-    }
+  &:hover {
+    background-color: $highlight !important;
+    color: $main !important;
+  }
 }
 
 //that weird ass arrow in the top right that no one uses
-toolbarbutton#alltabs-button{
-    display: none !important;
+toolbarbutton#alltabs-button {
+  display: none !important;
 }
 
-label#identity-icon-label.plain[value=Firefox]{
-    display: none;
+label#identity-icon-label.plain[value=Firefox] {
+  display: none;
 }
 
-menupopup{
-    --panel-color: white !important;
-    --panel-background: #2f3041dd !important;
-    --panel-separator-color: #4c4d69 !important;
+menupopup {
+  --panel-color: white !important;
+  --panel-background: #2f3041dd !important;
+  --panel-separator-color: #4c4d69 !important;
 }
 
 tab.tabbrowser-tab[selected=true] .tab-text {
-    color: $sky !important;
-}
-tab.tabbrowser-tab:not([selected=true]) .tab-text {
-    color: $warn !important;
+  color: $sky !important;
 }
 
-tab:where([visuallyselected="true"]){
-    z-index: 0 !important
+tab.tabbrowser-tab:not([selected=true]) .tab-text {
+  color: $warn !important;
+}
+
+tab:where([visuallyselected="true"]) {
+  z-index: 0 !important
 }
 
 /*put tabs inline with url bar*/
 
 #navigator-toolbox {
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    // grid-template-areas: 
-    //     "a b b"
-    //     "c c c";
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  // grid-template-areas:
+  //     "a b b"
+  //     "c c c";
 }
 
 #titlebar {
-    // grid-area: b;
-    grid-column: 2;
-    grid-row: 1;
+  // grid-area: b;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 #nav-bar.browser-toolbar {
-    // grid-area: a;
-    min-width: fit-content !important; //makes it so tabs dont overflow onto the urlbar
-    width: fit-content !important;
-    grid-column: 1;
-    grid-row: 1;
+  // grid-area: a;
+  min-width: fit-content !important; //makes it so tabs dont overflow onto the urlbar
+  width: fit-content !important;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 #PersonalToolbar {
-    grid-row: 2;
-    grid-column: 1 / 3;
-    // grid-area: c;
+  grid-row: 2;
+  grid-column: 1 / 3;
+  // grid-area: c;
+}
+
+#tab-notification-deck {
+  grid-column: 1 / -1 !important;
 }
 
 /*END: tabs inline with url bar*/
 
 //makes url background color cool
 #urlbar-background {
-    background-color: $blue !important;
-    filter: brightness(50%) !important;
+  background-color: $blue !important;
+  filter: brightness(50%) !important;
 }
 
 //hide bookmark website button
 #star-button-box {
-    display: none;
+  display: none;
 }
 
 //hide settings dropdown
@@ -155,7 +176,7 @@ tab:where([visuallyselected="true"]){
 
 //hide firefox view
 #firefox-view-button {
-    display: none;
+  display: none;
 }
 
 //remove tabs, replace with sideberry
@@ -171,17 +192,18 @@ tab:where([visuallyselected="true"]){
 //     display: none !important;
 // }
 
-#back-button, #forward-button {
-    display: none !important;
+#back-button,
+#forward-button {
+  display: none !important;
 }
 
 #urlbar-input {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 .urlbarView-no-wrap {
-    width: 100% !important;
-    justify-content: center !important;
+  width: 100% !important;
+  justify-content: center !important;
 }
 
 /*makes the unifieid extension menu compact*/
@@ -189,11 +211,11 @@ tab:where([visuallyselected="true"]){
   --uei-icon-size: 16px !important;
 }
 
-#unified-extensions-view > .panel-header {
+#unified-extensions-view>.panel-header {
   display: none !important;
 }
 
-#unified-extensions-view > .panel-header + toolbarseparator {
+#unified-extensions-view>.panel-header+toolbarseparator {
   border: none !important;
   margin: 0 0 var(--arrowpanel-menuitem-margin-inline) !important;
 }
@@ -211,6 +233,29 @@ tab:where([visuallyselected="true"]){
   padding: 0 0 0 var(--arrowpanel-menuitem-margin-inline) !important;
 }
 
-.unified-extensions-item-menu-button.subviewbutton > .toolbarbutton-icon {
+.unified-extensions-item-menu-button.subviewbutton>.toolbarbutton-icon {
   border: none !important;
 }
+
+/*remove tabs*/
+// #TabsToolbar {
+//   display: none !important;
+// }
+
+/*end remove tabs*/
+//
+//
+// #identity-box {
+//   display: none !important;
+// }
+//
+// /*fix colors of search bar*/
+// #nav-bar-customization-target {
+//   background: $main
+// }
+// #urlbar-input-container {
+//   border: none !important;
+// }
+// .urlbar-input-box {
+//   background: $main !important;
+// }
