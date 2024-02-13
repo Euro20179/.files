@@ -216,7 +216,7 @@ gc () {
 }
 
 export NO_AT_BRIDGE=1
-export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,j:down,ctrl-k:up"
+export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,j:down,ctrl-k:up,tab:down,shift-tab:up --cycle --color=fg:blue,fg+:green"
 
 export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
 
@@ -224,7 +224,6 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export DIALOGRC=~/.config
 export XINITRC=~/.config
 export LESSHISTFILE="/dev/null"
-export FZF_DEFAULT_OPTS="--cycle"
 export NODE_REPL_HISTORY="/dev/null"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"

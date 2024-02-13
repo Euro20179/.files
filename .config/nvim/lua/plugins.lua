@@ -1,4 +1,3 @@
-local sk = vim.lsp.protocol.SymbolKind
 require("lazy").setup({
     'nvim-treesitter/nvim-treesitter',
     "nvim-telescope/telescope-ui-select.nvim",
