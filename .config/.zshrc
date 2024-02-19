@@ -1,6 +1,9 @@
 #!/bin/zsh
 USE_POWERLINE="true"
 
+#makes it not error on no glob match
+set -3
+
 export SAVEHIST=1000000
 export HISTSIZE=1000000
 export HISTFILE=~/.local/share/zsh_history
@@ -81,6 +84,7 @@ esac
 }
 
 precmd () {
+    #shell integration osc133A tells where the prompt is
     print -Pn "\e]133;A\e\\"
     #get first, 2nd to last, and last folder in $PWD
     pwd=$(formatPath "$PWD")
@@ -89,7 +93,9 @@ precmd () {
         curr_branch="  ${branch##*/}"
     else curr_branch=
     fi
-    fileCount="$(ls -A | wc -l)"
+    #this shpiel is faster than fileCount=$(ls -A | wc -l)
+    set -- *
+    [ "$1" = "*" ] && fileCount=0 || fileCount="$#"
 }
 
 new_line=$'\n'
@@ -114,6 +120,7 @@ enable_plugin "zsh-auto-complete"
 # enable_plugin "fzf-tab-completion/zsh"
 source "$HOME/.config/zshplugs/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
 bindkey '^I' fzf_completion
+zstyle ":completion:*" fzf-search-display true
 # enable_plugin "zsh-autocomplete"
 
 alias "ref=clear; source ~/.config/.zshrc"    
@@ -131,4 +138,3 @@ compinit
 _comp_options+=(globdots)
 compdef _gnu_generic ytfzf
 compdef _gnu_generic trash
-

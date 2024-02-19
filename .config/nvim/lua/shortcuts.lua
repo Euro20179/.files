@@ -211,8 +211,8 @@ local nShortcuts = {
     { "<C-c><C-x>", "<cmd>CccConvert<cr>" },
     -- }}}
     -- lazy {{{
-    { "<leader>Lu", "<cmd>Lazy update<cr>" },
-    { "<leader>Lx", "<cmd>Lazy clean<cr>" },
+    { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
+    { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
     { "<c-q>",      function ()

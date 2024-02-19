@@ -26,6 +26,7 @@ add {
 }
 add { source = "nvim-tree/nvim-web-devicons" }
 --}}}
+
 -- Treesitter{{{
 add {
     source = "nvim-treesitter/nvim-treesitter"
@@ -47,7 +48,7 @@ add {
     source = "nvim-telescope/telescope-ui-select.nvim"
 }
 
-later(function()
+now(function()
     local tele = require "telescope"
     tele.setup {
         extensions = {
@@ -258,18 +259,18 @@ add { source = "file:///home/euro/Programs/GithubContribs/nvim-snippets" }
 now(require "nvim-snippets".setup)
 
 add { source = "patrickpichler/hovercraft.nvim" }
-later(function()
-    require "hovercraft".setup {}
-    ---@diagnostic disable-next-line
-    vim.lsp.buf.hover = function(...)
-        local hovercraft = require "hovercraft"
-        if hovercraft.is_visible() then
-            hovercraft.enter_popup()
-        else
-            hovercraft.hover({ current_provider = "LSP" })
-        end
-    end
-end)
+-- now(function()
+--     require "hovercraft".setup {}
+--     ---@diagnostic disable-next-line
+--     vim.lsp.buf.hover = function(...)
+--         local hovercraft = require "hovercraft"
+--         if hovercraft.is_visible() then
+--             hovercraft.enter_popup()
+--         else
+--             hovercraft.hover({ current_provider = "LSP" })
+--         end
+--     end
+-- end)
 
 add { source = "jiaoshijie/undotree" }
 later(function() require"undotree".setup{window = { winblend = 5 }} end)

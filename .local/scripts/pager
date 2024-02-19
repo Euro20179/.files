@@ -1,2 +1,3 @@
 #!/bin/bash
-/usr/share/nvim/runtime/macros/less.sh
+less
+# /usr/share/nvim/runtime/macros/less.sh

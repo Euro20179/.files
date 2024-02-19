@@ -1,3 +1,4 @@
+vim.loader.enable()
 require 'options'
 -- require 'init_lazy'
 -- require 'plugins'

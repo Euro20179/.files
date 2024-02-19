@@ -6,60 +6,82 @@ bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
 
 open() {
 	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
-    printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"; done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
+		printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"
+	done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit
 
-    file="${file%%  *}"
+	file="${file%%  *}"
 
 	path="${bookmark_dir}/${file}"
-    requested_exec="$(grep '^exec=' "$path" | cut -d '=' -f2-)"
-    do_prompt="$(grep '^prompt=' "$path" | cut -d '=' -f2-)"
-    prompt="${do_prompt}"
-    url="$(grep "^url=" "$path" | cut -d '=' -f2-)"
-    [ "$do_prompt" = "true" ] && prompt=""
-    [ "$do_prompt" ] && {
-        query=$(printf | rofi -theme cat-macchiato-dmenu-center -dmenu -p "${prompt}")
-        linkhandler "$(printf "$url" "$query")"
-    } || linkhandler "${url}"
+	requested_exec="$(grep '^exec=' "$path" | cut -d '=' -f2-)"
+	do_prompt="$(grep '^prompt=' "$path" | cut -d '=' -f2-)"
+	prompt="${do_prompt}"
+	url="$(grep "^url=" "$path" | cut -d '=' -f2-)"
+	[ "$do_prompt" = "true" ] && prompt=""
+	[ "$do_prompt" ] && {
+		query=$(printf | rofi -theme cat-macchiato-dmenu-center -dmenu -p "${prompt}")
+		linkhandler "$(printf "$url" "$query")"
+	} || linkhandler "${url}"
 
 }
 
-add () {
-    folder=$(fd --type d --base-directory "$bookmark_dir" | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
-    [ -z "$folder" ] && exit
-    mkdir -p "${bookmark_dir}/$folder"
-    IFS="|" read name url tags prompt <<< "$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags' --add-entry='prompt')"
-    [ -z "$url" ] && { zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1; }
-    printf "url=%s\ntags=%s\nprompt=%s" "$url" "$tags" "$prompt" > "${bookmark_dir}/${folder}/${name}"
+add() {
+	folder=$(fd --type d --base-directory "$bookmark_dir" | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
+	[ -z "$folder" ] && exit
+	mkdir -p "${bookmark_dir}/$folder"
+	IFS="|" read name url tags prompt keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags' --add-entry='prompt' --add-entry='keyword')"
+	[ -z "$url" ] && { zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1; }
+	printf "url=%s\ntags=%s\nprompt=%s\nkeyword=%s" "$url" "$tags" "$prompt" "$keyword" >"${bookmark_dir}/${folder}/${name}"
 }
 
-remove () {
+remove() {
 	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "open" -i -dmenu -theme cat-macchiato)
-    [ -z "$file" ] && exit
-    path="${bookmark_dir}/${file}"
+	[ -z "$file" ] && exit
+	path="${bookmark_dir}/${file}"
 
-    zenity --question --text="Are you sure you want to remove\n<b>${file}</b>" || exit 1
+	zenity --question --text="Are you sure you want to remove\n<b>${file}</b>" || exit 1
 
-    rm "${path}"
+	rm "${path}"
 }
 
-copy () {
+copy() {
 	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
-    printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"; done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
+		printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"
+	done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit
 
-    file="${file%%  *}"
+	file="${file%%  *}"
 
 	path="${bookmark_dir}/${file}"
-    grep "^url=" "$path" | cut -d '=' -f2- | tr -d $'\n' | wl-copy 
+	grep "^url=" "$path" | cut -d '=' -f2- | tr -d $'\n' | wl-copy
+}
+
+search() {
+	q="$*"
+	[ -z "$q" ] && q="$(printf "" | rofi -dmenu -p "Query: " -theme cat-macchiato-dmenu-center -theme-str '#element-text selected { background-color: transparent; }')"
+
+	[ -z "$q" ] && return 1
+
+	words=($q)
+
+	keyword="${words[0]}"
+
+	path=$(rg -l "keyword=${keyword}\$" | head -n1)
+	if [ "$path" ]; then
+		url="$(grep "^url=" "$path" | cut -d '=' -f2-)"
+		linkhandler "$(printf "$url" "${words[@]:1}")"
+	else
+		$BROWSER --search "$q"
+	fi
 }
 
 case "$action" in
-    open|o) open ;;
-    add|a) add ;;
-    remove|r) remove ;;
-    copy|c) copy ;;
-    *) printf "%s\n" "$action is not a valid action" ;;
+open | o) open ;;
+add | a) add ;;
+remove | r) remove ;;
+copy | c) copy ;;
+search | s) search ;;
+*) printf "%s\n" "$action is not a valid action" ;;
 esac

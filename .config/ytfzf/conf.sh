@@ -301,3 +301,17 @@ handle_custom_keypress() {
 on_clean_up (){
     printf "\033]0;$TERM\a"
 }
+
+# video_player() {
+#         # this function should not be set as the url_handler as it is part of multimedia_player
+#         command_exists "mpv" || die 3 "mpv is not installed\n"
+#         [ "$is_detach" -eq 1 ] && use_detach_cmd=detach_cmd || use_detach_cmd=''
+#         # shellcheck disable=SC2086
+#         unset IFS
+#
+#         # comment this line ...
+#         # $use_detach_cmd mpv --ytdl-format="$ytdl_pref" $(eval echo "$url_handler_opts") "$@"
+#         # ... and add this line:
+#         $use_detach_cmd yt-dlp -o - "$@" | mpv -
+# }
+

@@ -71,17 +71,13 @@ export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
 export MANPAGER="nvim +Man!"
 
-_pager(){
-    nvimpager | nvim
-}
-
-export PAGER=less
+export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL="foot"
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"
-export EDITOR="neovide"
+export EDITOR="nvim"
 export OPENER="xdg-open"
 export EMAIL="thunderbird -mail"
 export VIDEO_PLAYER="mpv --geometry=1000"
@@ -216,7 +212,7 @@ gc () {
 }
 
 export NO_AT_BRIDGE=1
-export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,j:down,ctrl-k:up,tab:down,shift-tab:up --cycle --color=fg:blue,fg+:green"
+export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,ctrl-j:down,ctrl-k:up --cycle --color=fg:blue,fg+:green"
 
 export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
 
@@ -318,8 +314,92 @@ alias Q='nvim +Quickmath +startinsert'
 
 alias doase=doasedit
 
-alias n='neovide  -- -p2 term://$SHELL +tabnext "$@" &'
+alias nvim=$EDITOR
 
-alias nvim='neovide --'
+alias vim=/usr/bin/nvim
+
+# =============================================================================
+#
+# Utility functions for zoxide.
+#
+
+# pwd based on the value of _ZO_RESOLVE_SYMLINKS.
+__zoxide_pwd() {
+    \command pwd -L
+}
+
+# cd + custom logic based on the value of _ZO_ECHO.
+__zoxide_cd() {
+    # shellcheck disable=SC2164
+    cd "$@"
+}
+
+# =============================================================================
+#
+# Hook configuration for zoxide.
+#
+
+# Hook to add new entries to the database.
+__zoxide_hook() {
+    \command zoxide add -- "$(__zoxide_pwd || \builtin true)"
+}
+
+# Initialize hook.
+if [ "${PS1:=}" = "${PS1#*\$(__zoxide_hook)}" ]; then
+    PS1="${PS1}\$(__zoxide_hook)"
+fi
+
+# =============================================================================
+#
+# When using zoxide with --no-cmd, alias these internal functions as desired.
+#
+
+# Jump to a directory using only keywords.
+__zoxide_z() {
+    if [ "$#" -eq 0 ]; then
+        __zoxide_cd ~
+    elif [ "$#" -eq 1 ] && [ "$1" = '-' ]; then
+        if [ -n "${OLDPWD}" ]; then
+            __zoxide_cd "${OLDPWD}"
+        else
+            # shellcheck disable=SC2016
+            \command printf 'zoxide: $OLDPWD is not set'
+            return 1
+        fi
+    elif [ "$#" -eq 1 ] && [ -d "$1" ]; then
+        __zoxide_cd "$1"
+    else
+        __zoxide_result="$(\command zoxide query --exclude "$(__zoxide_pwd || \builtin true)" -- "$@")" &&
+            __zoxide_cd "${__zoxide_result}"
+    fi
+}
+
+# Jump to a directory using interactive search.
+__zoxide_zi() {
+    __zoxide_result="$(\command zoxide query --interactive -- "$@")" && __zoxide_cd "${__zoxide_result}"
+}
+
+# =============================================================================
+#
+# Commands for zoxide. Disable these using --no-cmd.
+#
+
+\command unalias z >/dev/null 2>&1 || \true
+z() {
+    __zoxide_z "$@"
+}
+
+\command unalias zi >/dev/null 2>&1 || \true
+zi() {
+    __zoxide_zi "$@"
+}
+
+# =============================================================================
+#
+# To initialize zoxide, add this to your configuration:
+#
+# eval "$(zoxide init posix --hook prompt)"
+
+alias cd=z
 
 . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"

@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "gnw",        vim.lsp.buf.workspace_symbol,               { desc = "[QF] Workspace symbols" } },
             { "gnr",        vim.lsp.buf.references,                     { desc = "[QF] References" } },
             { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>', { desc = "[TELESCOPE] Workspace symbols" } },
-            { "<leader>fr", '<cmd>Telescope lsp_references<cr>',        { desc = "[TELESCOPE] References" } },
+            { "<leader>fr", vim.lsp.buf.references,                   { desc = "[TELESCOPE] References" } },
             { "<leader>E", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics" } },
@@ -57,8 +57,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
             { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
                 { desc = "Toggle inlay hints" } },
-            { "gK",        vim.diagnostic.open_float,                                        { desc = "Open diagnostic float" } },
-            { "g<c-]>",    function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "Go to type definition" } },
+            { "gK",     vim.diagnostic.open_float,                                        { desc = "Open diagnostic float" } },
+            { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "Go to type definition" } },
             { "[D", function()
                 vim.diagnostic.goto_prev({})
                 local n = 0

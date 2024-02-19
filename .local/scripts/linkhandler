@@ -59,10 +59,10 @@ EOF
         $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
     sftp://*) nemo "$link" ;;
     *)
-        if yt-dlp -s "$link" > /dev/null 2>&1; then
-            nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
-        else
+        # if yt-dlp -s "$link" > /dev/null 2>&1; then
+        #     nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
+        # else
             nohup $BROWSER "$link" > /dev/null 2>&1 &
-        fi;;
+        # fi;;
 esac
 killall ssh-agent
