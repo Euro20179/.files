@@ -60,11 +60,10 @@ copy() {
 
 search() {
 	q="$*"
-	[ -z "$q" ] && q="$(printf "" | rofi -dmenu -p "Query: " -theme cat-macchiato-dmenu-center -theme-str '#element-text selected { background-color: transparent; }')"
+    kwd_bookmarks=$(rg 'keyword=(.+)' $bookmark_dir | sed "s_${bookmark_dir}/__" | awk -F':keyword=' '{print $2, $1}')
+	[ -z "$q" ] && q="$(echo "$kwd_bookmarks" | rofi -dmenu -p "Query: " -theme cat-macchiato)"
 
 	[ -z "$q" ] && return 1
-
-	words=($q)
 
 	keyword="${words[0]}"
 
@@ -82,6 +81,8 @@ open | o) open ;;
 add | a) add ;;
 remove | r) remove ;;
 copy | c) copy ;;
-search | s) search ;;
+search | s)
+    shift;
+    search  "$@";;
 *) printf "%s\n" "$action is not a valid action" ;;
 esac

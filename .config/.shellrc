@@ -164,6 +164,8 @@ alias "lman=MANPAGER=less man"
 
 alias 'q=exit'
 
+alias 's=bookmarkfs search'
+
 alias "ani=strack-cli"
 
 # man () {

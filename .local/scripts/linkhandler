@@ -19,9 +19,22 @@ case "$mime" in
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
 esac
 case "$link" in
-    gemini://*) lagrange "$link" ;;
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
+    https://cdn.discordapp.com/attachments/*)
+        tmp=$(mktemp)
+        curl "$link" > "$tmp"
+        linkhandler "$tmp"
+        rm "$tmp" ;;
+    https://github.com/*/blob/*)
+        [ $LH_NO_EDIT = 1 ] && exit 1
+        file_path=${link#*/blob/}
+        repo="${link%%/blob/*}"
+        repo="${repo#https://github.com/}"
+        $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
+    https://*/watch?v=*) mpv "$1" ;;
+    https://*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
+    gemini://*) lagrange "$link" ;;
     anime:sftp://*)
         eval "$(ssh-agent -s)"
         SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
@@ -46,23 +59,6 @@ $MANPAGER
 EOF
         #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
         [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" $MANPAGER "$link" ;;
-    https://cdn.discordapp.com/attachments/*)
-        tmp=$(mktemp)
-        curl "$link" > "$tmp"
-        linkhandler "$tmp"
-        rm "$tmp" ;;
-    https://github.com/*/blob/*)
-        [ $LH_NO_EDIT = 1 ] && exit 1
-        file_path=${link#*/blob/}
-        repo="${link%%/blob/*}"
-        repo="${repo#https://github.com/}"
-        $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
     sftp://*) nemo "$link" ;;
-    *)
-        # if yt-dlp -s "$link" > /dev/null 2>&1; then
-        #     nohup mpv --geometry=1000 --loop "$link" > /dev/null 2>&1 &
-        # else
-            nohup $BROWSER "$link" > /dev/null 2>&1 &
-        # fi;;
 esac
-killall ssh-agent
+killall ssh-agent 2> /dev/null

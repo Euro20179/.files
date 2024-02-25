@@ -252,8 +252,14 @@ later(function()
     }
 end)
 
-add { source = "altermo/ultimate-autopair.nvim" }
-later(require "ultimate-autopair".setup)
+add { source = "m4xshen/autoclose.nvim" }
+later(function()
+    require"autoclose".setup{
+        options = {
+            pair_spaces = true
+        }
+    }
+end)
 
 add { source = "file:///home/euro/Programs/GithubContribs/nvim-snippets" }
 now(require "nvim-snippets".setup)
