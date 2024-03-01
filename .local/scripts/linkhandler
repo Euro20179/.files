@@ -33,7 +33,7 @@ case "$link" in
         repo="${repo#https://github.com/}"
         $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
     https://*/watch?v=*) mpv "$1" ;;
-    https://*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
+    https://*|http://*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
     gemini://*) lagrange "$link" ;;
     anime:sftp://*)
         eval "$(ssh-agent -s)"

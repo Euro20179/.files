@@ -4,7 +4,7 @@ export GPG_TTY=$(tty)
 
 #foot terminfo is broken for some reason
     #by broken i mean it doesn't exist
-[ $TERM = "foot" ] && export TERM=foot-extra
+[ $TERM = "foot" ] && export TERM=xterm-256color
 
 #some java apps don't work without this
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -154,7 +154,6 @@ alias "bc=bc -l"
 alias "less=less -r"
 alias "vim=nvim"
 alias "man-s=man -k . | dmenu -l 30 | awk '{print \$1}' | xargs -r man -Tpdf | zathura -"
-alias "todo=nvim $HOME/Documents/vimwiki/TODO.md"
 alias "dr=dragon -x"
 alias "loc=tokei"
 alias "dfile=dragon -t -x | xargs wget --no-hsts"

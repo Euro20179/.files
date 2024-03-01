@@ -63,14 +63,18 @@ search() {
     kwd_bookmarks=$(rg 'keyword=(.+)' $bookmark_dir | sed "s_${bookmark_dir}/__" | awk -F':keyword=' '{print $2, $1}')
 	[ -z "$q" ] && q="$(echo "$kwd_bookmarks" | rofi -dmenu -p "Query: " -theme cat-macchiato)"
 
+
 	[ -z "$q" ] && return 1
+
+    words=($q)
 
 	keyword="${words[0]}"
 
 	path=$(rg -l "keyword=${keyword}\$" | head -n1)
+
 	if [ "$path" ]; then
 		url="$(grep "^url=" "$path" | cut -d '=' -f2-)"
-		linkhandler "$(printf "$url" "${words[@]:1}")"
+		linkhandler "$(printf "$url" "${words[*]:1}")"
 	else
 		$BROWSER --search "$q"
 	fi

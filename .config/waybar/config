@@ -37,7 +37,7 @@
       "title<QuickMedia.*>": "全て",
       "class<firefoxdeveloperedition>": "<span color='#89b4fa'></span>",
       "class<librewolf>": "<span color='#69c1eb'></span>",
-      "class<footclient>": "",
+      "class<footclient|foot>": "",
       "class<code>": "󰨞",
       "class<nheko|neochat>": "<span color='#ABE9B3'>󰊌</span>",
       "class<io.github.martinrotter.rssguard>": "",

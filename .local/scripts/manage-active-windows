@@ -1,0 +1,53 @@
+#!/bin/sh
+
+active_windows_file="${XDG_STATE_HOME:-$HOME/.local/state}/active-windows.list"
+
+get_active_window_num() {
+    n=$1
+    sed -n "${n}p" "$active_windows_file"
+
+    unset n
+}
+
+set_active_window_num() {
+    n=$1
+    win_title="$2"
+    sed -i "${n}c $win_title" "$active_windows_file"
+
+    unset win_title n
+}
+
+append_active_window() {
+    win_title="$1"
+    echo "$win_title" >> "$active_windows_file"
+
+    unset win_title
+}
+
+delete_active_window () {
+    n=$1
+    sed -i "${n}d" "$active_windows_file"
+}
+
+list_active_windows() {
+    cat "$active_windows_file"
+}
+
+
+create_window_file() {
+    space_reserved=$1
+
+    seq 1 "$space_reserved" | tr -d '[:digit:]' > "$active_windows_file"
+
+    unset space_reserved
+}
+
+action=$1
+shift
+case "$action" in
+    get) get_active_window_num "$@" ;;
+    set) set_active_window_num "$@" ;;
+    append) append_active_window "$@" ;;
+    create) create_window_file "$@" ;;
+    list) list_active_windows "$@" ;;
+esac
