@@ -1,6 +1,6 @@
 vim.filetype.add({
     pattern = {
-        [".*%.config/hypr/.*%.conf"] = "hyprland",
+        [".*%.config/hypr/.*%.conf"] = "hyprlang",
         [".*"] = {
             ---@diagnostic disable-next-line: unused-vararg
             function(_path, bufnr, ...)

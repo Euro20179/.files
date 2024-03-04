@@ -59,6 +59,6 @@ $MANPAGER
 EOF
         #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
         [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" $MANPAGER "$link" ;;
-    sftp://*) nemo "$link" ;;
+    sftp://*) mpv "$link" ;;
 esac
 killall ssh-agent 2> /dev/null

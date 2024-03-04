@@ -36,7 +36,7 @@ add() {
 }
 
 remove() {
-	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "open" -i -dmenu -theme cat-macchiato)
+	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "remove" -i -dmenu -theme cat-macchiato)
 	[ -z "$file" ] && exit
 	path="${bookmark_dir}/${file}"
 
@@ -48,7 +48,7 @@ remove() {
 copy() {
 	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
 		printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"
-	done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
+	done | column -s$'\t' -t -c 1000 | rofi -p "copy" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit
 
