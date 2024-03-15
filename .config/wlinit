@@ -47,5 +47,3 @@ hyprland-autoname-workspaces & disown
 
 killall hypr-activity-tracker
 hypr-activity-tracker & disown
-
-hyprctl setcursor Bibata-Modern-Ice 24

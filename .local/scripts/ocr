@@ -1,0 +1,12 @@
+#!/bin/sh
+
+lang="${1:-$(tesseract --list-langs | sed 1d | rofi -dmenu -p "LANG:" -theme cat-macchiato)}"
+
+pos=$(slurp)
+
+t="$(mktemp)"
+grim -g "$pos" - > "$t"
+
+tesseract "$t" -
+
+rm "$t"

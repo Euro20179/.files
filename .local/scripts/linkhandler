@@ -21,6 +21,7 @@ esac
 case "$link" in
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
+    *.m3u?) mpv "$link" ;;
     https://cdn.discordapp.com/attachments/*)
         tmp=$(mktemp)
         curl "$link" > "$tmp"
@@ -33,7 +34,7 @@ case "$link" in
         repo="${repo#https://github.com/}"
         $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
     https://*/watch?v=*) mpv "$1" ;;
-    https://*|http://*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
+    https://*|http://*|file:///*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
     gemini://*) lagrange "$link" ;;
     anime:sftp://*)
         eval "$(ssh-agent -s)"
@@ -48,7 +49,7 @@ case "$link" in
         mpv "$link";;
     #all other m3u8's go to mpv
     *.m3u8) mpv "$link" & ;;
-    file://*|/*|~/*|./*)
+    /*|~/*|./*)
         [ $LH_NO_EDIT = 1 ] && exit 1
          $EDITOR "$link" ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;

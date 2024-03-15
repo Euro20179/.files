@@ -9,7 +9,7 @@ export GPG_TTY=$(tty)
 #some java apps don't work without this
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-export XCURSOR_SIZE=24
+export XCURSOR_SIZE=15
 
 export XCURSOR_THEME="Bibata-Modern-Ice"
 
@@ -82,7 +82,7 @@ export OPENER="xdg-open"
 export EMAIL="thunderbird -mail"
 export VIDEO_PLAYER="mpv --geometry=1000"
 export AUDIO_PLAYER="mpv --no-video"
-export MATRIX="neochat"
+export MATRIX="nheko"
 export FILEMANAGER="ranger"
 export SYSMON="btop"
 export UNICODE_PICKER="pick-emoji"
@@ -308,7 +308,7 @@ alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
 
 alias c='echo $?'
 
-alias llm="HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' ollama serve"
+alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
 
 alias Q='nvim +Quickmath +startinsert'

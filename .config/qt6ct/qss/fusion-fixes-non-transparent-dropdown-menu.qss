@@ -1,0 +1,17 @@
+QMenuBar, QMenu, QToolBar, QStatusBar, QScrollBar {
+    border: none;
+}
+
+QTabBar::tab:selected {
+    color: palette(bright-text);
+}
+QScrollBar {
+    background: palette(dark);
+}
+QScrollBar::handle {
+    background: palette(highlight);
+    border-radius: 4px;
+}
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: palette(window);
+}
