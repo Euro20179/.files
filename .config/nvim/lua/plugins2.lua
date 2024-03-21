@@ -295,6 +295,11 @@ later(function()
     }
 end)
 
+add { source = "ThePrimeagen/refactoring.nvim" }
+later(function()
+    require("refactoring").setup()
+end)
+
 add { source = "jinh0/eyeliner.nvim" }
 later(function()
     require"eyeliner".setup{

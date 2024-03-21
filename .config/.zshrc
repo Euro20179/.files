@@ -8,6 +8,8 @@ export SAVEHIST=1000000
 export HISTSIZE=1000000
 export HISTFILE=~/.local/share/zsh_history
 
+export WORDCHARS="*?[]~=&;!#$%^(){}<>"
+
 setopt inc_append_history share_history
 
 unsetopt BEEP

@@ -1,27 +1,38 @@
 #!/bin/sh
 
-export GPG_TTY=$(tty)
-
+########
+# Foot #
+########
+# {{{
 #foot terminfo is broken for some reason
     #by broken i mean it doesn't exist
 [ $TERM = "foot" ] && export TERM=xterm-256color
+# }}}
 
-#some java apps don't work without this
-export _JAVA_AWT_WM_NONREPARENTING=1
-
+###########
+# THEMING #
+###########
+# {{{
 export XCURSOR_SIZE=15
-
 export XCURSOR_THEME="Bibata-Modern-Ice"
+export GTK_THEME='Catppuccin-Macchiato-Standard-Pink-Dark'
+export QT_QPA_PLATFORMTHEME=qt5ct
+# }}}
 
+#######
+# IME #
+#######
+# {{{
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export XMODIFIERS='@im=fcitx'
+# }}}
 
-export GTK_THEME='Catppuccin-Macchiato-Standard-Pink-Dark'
-
-
-#xdg dirs
+#######
+# XDG #
+#######
+# {{{
 export XDG_HISTORY_HOME=${XDG_HISTORY_HOME:=$HOME/.history}
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_GAMES_HOME=${XDG_GAMES_HOME:="$HOME/Games"}
@@ -34,38 +45,70 @@ export XDG_VIDEOS_HOME=${XDG_VIDEOS_HOME:="$HOME/Videos"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 export XDG_MUSIC_HOME=${XDG_MUSIC_HOME:="$HOME/Songs"}
 export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
+# }}}
 
+#################
+# WAYLAND FIXES #
+#################
+# {{{
+#some java apps don't work without this
+export _JAVA_AWT_WM_NONREPARENTING=1
+export GTK_USE_PORTAL=1
+#fixes weird xdg-open bugs for some fucking reason
+[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=X-generic
+# }}}
 
-export WORDCHARS="*?[]~=&;!#$%^(){}<>"
-
+#################
+# PROGRAM PATHS #
+#################
+# {{{
 export ZEF_INSTALL_TO="${XDG_DATA_HOME}/zef"
 export ZEF_CONFIG_PATH="${XDG_CONFIG_HOME}/zef"
 
 export LYNX_CFG="${XDG_CONFIG_HOME}/lynx/lynx.cfg"
 
-export WALLPAPER="$XDG_PICTURES_HOME/system-images/desktop.png"
-export NEOFETCH_IMAGE=$(fd . "${XDG_PICTURES_HOME}/system-images/neofetch" | shuf | head -n1)
-
-export GTK_USE_PORTAL=1
-
-export TODO_FILE="$HOME/Documents/TODO"
-
-export SHELL_LIB="$HOME/.local/lib/shell"
-
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-export TZ=:/etc/localtime
-
-#export YTFZF_CHECK_VARS_EXISTS=0
-
-#mpd config
 CONF_FILE="$HOME/.config/mpd.conf"
 
-#fixes weird xdg-open bugs for some fucking reason
-[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=X-generic
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export DIALOGRC=~/.config
+export XINITRC=~/.config
+export LESSHISTFILE="/dev/null"
+export NODE_REPL_HISTORY="/dev/null"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export DVDCSS_CACHE="$XDG_CACHE_HOME/dvdcss"
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 
-# default progs
+export GOPATH="$XDG_DATA_HOME/go"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
+export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
+
+# }}}
+
+################
+# SYSTEM PATHS #
+################
+# {{{
+export WALLPAPER="$XDG_PICTURES_HOME/system-images/desktop.png"
+export NEOFETCH_IMAGE=$(fd . "${XDG_PICTURES_HOME}/system-images/neofetch" | shuf | head -n1)
+export TODO_FILE="$HOME/Documents/TODO"
+export SHELL_LIB="$HOME/.local/lib/shell"
+
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
+export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
+export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"
+export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
+# }}}
+
+####################
+# DEFAULT PROGRAMS #
+####################
+# {{{
 export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
@@ -89,29 +132,42 @@ export UNICODE_PICKER="pick-emoji"
 export LOCKER="lock"
 #export LOCKER="gtklock -t 'Funbook Air'"
 export TRASH="$HOME/.local/share/trash"
+# }}}
 
+###################
+# PROGRAM ALIASES #
+###################
+# {{{
+alias "lman=MANPAGER=less man"
 alias t='tmux'
-
 alias u="paru"
-
-alias y='nvim +Oil'
-alias md="nvim +Glow +'let g:bufnr = bufnr()' +\"lua vim.keymap.set('n', 'q', '<cmd>qa<cr>', {buffer = vim.g.bufnr})\""
-alias img="nvim -b +DisplayImg"
-#alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
-alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
-alias vwe='emacs $HOME/Documents/vimwiki/index.org'
-
 alias conf=open-config-from-vw.lua
-
 alias email=compose-email
-
+alias "dr=dragon -x"
 alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'
+alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
+#It's really annoying that wget leaves the .wget_hists file or whatever
+alias "wget=wget --no-hsts"
+alias 's=bookmarkfs search'
+alias "bc=bc -l"
+alias "ani=strack-cli"
+alias "password=pass-gen"
+alias ":q=exit"
+alias "less=less -r"
 
-anime () {
-    file="$HOME/Documents/vimwiki/norg-home/anime-list2.norg"
-    strack-cli norg > "$file"
-    nvim -- "$file"
-}
+alias 'q=exit'
+
+alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
+alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
+
+alias Q='nvim +Quickmath +startinsert'
+
+alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' ollama serve'"
+alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
+
+alias doase=doasedit
+alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
+alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME"
 
 me () {
     disown 2> /dev/null 1>&2
@@ -122,127 +178,62 @@ me () {
     fi
 }
 
-alias 'mulx=mullvad-exclude'
-
-alias upc='paru; flatpak update'
-
-alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
-
-alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
-alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
-alias otd="doas rmmod wacom; otd"
-alias "TODO=$EDITOR $TODO_FILE"
-#this file is sourced in my other shells
-alias vim="vim -i $HOME/.cache/vim/viminfo"
-alias x="sx sh $HOME/.config/xinitrc"
-alias lo=libreoffice
-#alias "l=ls -AX --group-directories-first --color=auto"
-alias 'ls=lsd'
-alias "l=lsd --group-directories-first -A"
-alias "ll=ls -ASs --group-directories-first --color=auto"
-alias "password=pass-gen"
-alias ":q=exit"
-alias "ds=cd ~/Downloads"
-alias "dF=cd ~/Documents"
-alias "db=cd ~/Documents/bookmarks"
-alias "o=mimeopen"
-alias "wget=wget --no-hsts"
-alias "volume=pacmd set-default-sink"
-alias "peaclock=peaclock --config-dir=$HOME/.config/peaclock"
-alias "sw=peaclock --config=$HOME/.config/peaclock/stopwatch"
-alias "bc=bc -l"
-alias "less=less -r"
-alias "vim=nvim"
-alias "man-s=man -k . | dmenu -l 30 | awk '{print \$1}' | xargs -r man -Tpdf | zathura -"
-alias "dr=dragon -x"
-alias "loc=tokei"
-alias "dfile=dragon -t -x | xargs wget --no-hsts"
-alias "fbs=zathura Pictures/schedule.pdf"
-alias "TIL=$EDITOR $HOME/Documents/vimwiki/til/README.md"
-alias "lman=MANPAGER=less man"
-
-alias 'q=exit'
-
-alias 's=bookmarkfs search'
-
-alias "ani=strack-cli"
-
-# man () {
-#     section=1
-#     page="$2"
-#     if [ "$page" ]; then
-#         section="$1"
-#     else
-#         page="$1"
-#     fi
-#
-#     nvim --cmd "let g:euro_is_manpage='$page($section)'" man://"${page}(${section})"
-# }
-
-lk () {
-    if [ "$1" = "-f" ]; then
-	luakit "$PWD/$2"
-    elif [ "$1" = "-F" ]; then
-	luakit "$2"
-    else
-	luakit "$@"
-    fi
-}
-
-
 vimwiki () {
     [ -n "$1" ] && file="$1" || file="index.md"
     printf "%s" "$file" | grep -qP '\..*$' || file="$file.md"
     nvim $HOME/Documents/vimwiki/"$file"
 }
+# }}}
+
+############################
+# PROGRAM OVERRIDE ALIASES #
+############################
+# {{{
+alias nvim=$EDITOR
+alias "vim=nvim"
+alias 'ls=lsd'
+alias "l=lsd --group-directories-first -A"
+alias "ll=ls -ASs --group-directories-first --color=auto"
+alias cd=z
+alias rm="trash"
+# }}}
+
+############################
+# FILE/DIRECTORY SHORTCUTS #
+############################
+# {{{
+#alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
+alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
+alias p='cd $(zoxide query -l "Coding Projects/" "/" | fzf)'
+alias "TODO=$EDITOR $TODO_FILE"
+alias "ds=cd ~/Downloads"
+alias "dF=cd ~/Documents"
+alias "db=cd ~/Documents/bookmarks"
 
 gc () {
     sub_dir="$1"
     case "$sub_dir" in
         y) sub_dir="../GithubContribs/ytfzf" ;;
-        c) sub_dir="bash/catmd" ;;
-        s) sub_dir="rust/sheet" ;;
-        h) sub_dir="Python_things/hearthstone" ;;
-        t) sub_dir="Python_things/tml" ;;
         B) sub_dir="JS Things/bircle" ;;
         b) sub_dir="JS Things/bircle-website" ;;
-        m) sub_dir="Python_things/md-to-html" ;;
         d) sub_dir="C/dvd_screen" ;;
+        T) sub_dir="rust/tpick" ;;
     esac
     cd "$HOME/Programs/Coding Projects/$sub_dir"
 }
+# }}}
 
-export NO_AT_BRIDGE=1
+#####################
+# MISC PROGRAM VARS #
+#####################
+# {{{
+export GPG_TTY=$(tty)
+
+export TZ=:/etc/localtime
+
 export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,ctrl-j:down,ctrl-k:up --cycle --color=fg:blue,fg+:green"
 
-export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
-
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export DIALOGRC=~/.config
-export XINITRC=~/.config
-export LESSHISTFILE="/dev/null"
-export NODE_REPL_HISTORY="/dev/null"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
-export DVDCSS_CACHE="$XDG_CACHE_HOME/dvdcss"
-export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
-export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
-
-export NEXTCLOUD_PHP_CONFIG=/etc/webapps/nextcloud/php.ini
-
-export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
-
-export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-
 export MPV_WIN_SIZE=1000
-export GOPATH="$XDG_DATA_HOME/go"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
-export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
-export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"
-export FILEEXPLORER="kitty"
-export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 
 py_color="38;2;254;227;107m\033[48;2;52;110;158"
 old_color="9"
@@ -268,139 +259,10 @@ export LS_COLORS="*.py=${py_color}:*-old=$old_color:*.old=$old_color:*.jpg=$img_
 
 unset py_color old_color img_color video_color audio_color win_exe_color document_color pdf_color\
     compressed_color c_color shell_lang_color markup_color js_color font_file_color powerpoint_color spreadsheet_color css_color java_color
+# }}}
 
-unalias vim
-
-rand_num () {
-    num="$(od -N 1 /dev/urandom)"
-    : "${num%$'\n'*}"
-    echo "${_#* }"
-}
-
-case "$NEOFETCH_IMAGE" in
-    *.txt) backend=ascii ;;
-    *) backend=sixel ;;
-esac
-
-case "$XDG_SESSION_TYPE" in
-    X11|wayland)
-        case "$TERM" in
-            foot) _FROM_SHELLRC=1 neofetch --source "$NEOFETCH_IMAGE" --size 250px ;;
-            kitty) _FROM_SHELLRC=1 neofetch --source "$NEOFETCH_IMAGE" ;;
-            *) _FROM_SHELLRC=1 neofetch --source "$NEOFETCH_IMAGE" ;;
-        esac ;;
-    tty)
-    ;;
-esac
-
-
-stream_udp () {
-    ffmpeg - "$1" -vcodec libx264 -f flv udp://localhost:8080
-}
-
-alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME"
-
-alias rm="trash"
-
-alias tuir='BROWSER=linkhandler PAGER=less tuir'
-
-alias send-vid="ytfzf -cinstances -e discord-send --loop=0"
-
-alias c='echo $?'
-
-alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' ollama serve'"
-alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
-
-alias Q='nvim +Quickmath +startinsert'
-
-alias doase=doasedit
-
-alias nvim=$EDITOR
-
-alias vim=/usr/bin/nvim
-
-# =============================================================================
-#
-# Utility functions for zoxide.
-#
-
-# pwd based on the value of _ZO_RESOLVE_SYMLINKS.
-__zoxide_pwd() {
-    \command pwd -L
-}
-
-# cd + custom logic based on the value of _ZO_ECHO.
-__zoxide_cd() {
-    # shellcheck disable=SC2164
-    cd "$@"
-}
-
-# =============================================================================
-#
-# Hook configuration for zoxide.
-#
-
-# Hook to add new entries to the database.
-__zoxide_hook() {
-    \command zoxide add -- "$(__zoxide_pwd || \builtin true)"
-}
-
-# Initialize hook.
-if [ "${PS1:=}" = "${PS1#*\$(__zoxide_hook)}" ]; then
-    PS1="${PS1}\$(__zoxide_hook)"
-fi
-
-# =============================================================================
-#
-# When using zoxide with --no-cmd, alias these internal functions as desired.
-#
-
-# Jump to a directory using only keywords.
-__zoxide_z() {
-    if [ "$#" -eq 0 ]; then
-        __zoxide_cd ~
-    elif [ "$#" -eq 1 ] && [ "$1" = '-' ]; then
-        if [ -n "${OLDPWD}" ]; then
-            __zoxide_cd "${OLDPWD}"
-        else
-            # shellcheck disable=SC2016
-            \command printf 'zoxide: $OLDPWD is not set'
-            return 1
-        fi
-    elif [ "$#" -eq 1 ] && [ -d "$1" ]; then
-        __zoxide_cd "$1"
-    else
-        __zoxide_result="$(\command zoxide query --exclude "$(__zoxide_pwd || \builtin true)" -- "$@")" &&
-            __zoxide_cd "${__zoxide_result}"
-    fi
-}
-
-# Jump to a directory using interactive search.
-__zoxide_zi() {
-    __zoxide_result="$(\command zoxide query --interactive -- "$@")" && __zoxide_cd "${__zoxide_result}"
-}
-
-# =============================================================================
-#
-# Commands for zoxide. Disable these using --no-cmd.
-#
-
-\command unalias z >/dev/null 2>&1 || \true
-z() {
-    __zoxide_z "$@"
-}
-
-\command unalias zi >/dev/null 2>&1 || \true
-zi() {
-    __zoxide_zi "$@"
-}
-
-# =============================================================================
-#
-# To initialize zoxide, add this to your configuration:
-#
-# eval "$(zoxide init posix --hook prompt)"
-
-alias cd=z
+for file in "${XDG_CONFIG_HOME}/shell-autoload"/*; do
+    . "$file"
+done
 
 . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"

@@ -20,7 +20,7 @@ for item in data['appnews']['newsitems']:
     <title><![CDATA[[{item['title']}]]></title>
     <description><![CDATA[{item['contents']}]]></description>
     <link><![CDATA[{item['url']}]]></link>
-    <pubDate><![CDATA[{datetime.utcfromtimestamp(item['date']).strftime("%a, %d %b %Y %H:%M:%S %z")}]]></pubDate>
+    <pubDate><![CDATA[{datetime.fromtimestamp(item['date']).strftime("%a, %d %b %Y %H:%M:%S %z")}]]></pubDate>
     <author><![CDATA[{item['author']}]]></author>
 </item>
 """

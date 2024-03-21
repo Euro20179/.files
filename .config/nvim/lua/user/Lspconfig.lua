@@ -9,6 +9,10 @@ lspconfig['emmet_ls'].setup{
     filetypes = { "html" }
 }
 
+lspconfig["basedpyright"].setup{
+    capabilities = capabilities
+}
+
 lspconfig["raku_navigator"].setup{
     capabilities = capabilities,
     cmd = {"raku-navigator", "--stdio"}
@@ -17,6 +21,9 @@ lspconfig["raku_navigator"].setup{
 lspconfig['elixirls'].setup{
     capabilities = capabilities,
     cmd = { "/home/euro/.local/share/nvim/mason/bin/elixir-ls" }
+}
+
+lspconfig["kotlin_language_server"].setup {
 }
 
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
@@ -54,7 +61,7 @@ lspconfig['lua_ls'].setup{
 
 lspconfig.gopls.setup{}
 
-lspconfig['pyright'].setup{ }
+-- lspconfig['pyright'].setup{ }
 
 lspconfig['java_language_server'].setup {
     cmd = { "/home/euro/Programs/java-language-server/dist/lang_server_linux.sh" },
