@@ -110,4 +110,5 @@ function Color(scheme)
     end
 end
 
-Color("tokyonight-moon")
+--Color("tokyonight-moon")
+Color("catppuccin-macchiato")

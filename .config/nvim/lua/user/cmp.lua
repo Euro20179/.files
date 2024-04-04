@@ -73,7 +73,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-s>'] = cmp.mapping(function(fallback)
+        ['<C-a>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.complete()
             else
@@ -83,7 +83,7 @@ cmp.setup({
         ['<c-e>'] = cmp.mapping.abort(),
         ["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<CR>'] = cmp.mapping.confirm(),
+        ['<c-l>'] = cmp.mapping.confirm(),
         ["<tab>"] = cmp.mapping(function(fallback)
             local jumpable = vim.snippet.jumpable(1)
             if jumpable ~= 0 and jumpable ~= nil and jumpable ~= false then

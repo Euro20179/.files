@@ -25,7 +25,7 @@ killall waybar
 waybar & disown
 
 killall swww-daemon
-swww init
+swww-daemon
 sleep 0.3
 swww img "$HOME/Pictures/system-images/desktop.png"
 # wallpaper-slideshow $((60 * 10)) & disown

@@ -20,6 +20,12 @@ local add = miniDeps.add
 local later = miniDeps.later
 local now = miniDeps.now
 
+local function setup(when, name, opts)
+    when(function()
+        require(name).setup(opts)
+    end)
+end
+
 --libraries{{{
 add {
     source = "nvim-lua/plenary.nvim"
@@ -48,6 +54,10 @@ add {
     source = "nvim-telescope/telescope-ui-select.nvim"
 }
 
+add {
+    source = "nvim-telescope/telescope-symbols.nvim"
+}
+
 now(function()
     local tele = require "telescope"
     tele.setup {
@@ -73,14 +83,14 @@ for _, name in ipairs({
     add { source = name }
 end
 
-add { source = "weilbith/nvim-code-action-menu" }
 add { source = "mfussenegger/nvim-dap" }
 add { source = "mxsdev/nvim-dap-vscode-js" }
+add { source = "rcarriga/nvim-dap-ui" }
+add { source = "nvim-neotest/nvim-nio" }
 --}}}
 
 add { source = "williamboman/mason.nvim" }
-
-later(function() require "mason".setup() end)
+setup(later, "mason", {})
 
 add { source = "bluz71/vim-nightfly-guicolors" }
 add { source = "flazz/vim-colorschemes" }
@@ -91,17 +101,15 @@ add { source = "ThePrimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon
 
 add { source = "stevearc/oil.nvim" }
 
-now(function()
-    require "oil".setup {
-        default_file_explorer = true,
-        view_options = {
-            show_hidden = true
-        },
-        columns = {
-            "icons"
-        }
+setup(now, "oil", {
+    default_file_explorer = true,
+    view_options = {
+        show_hidden = true
+    },
+    columns = {
+        "icons"
     }
-end)
+})
 
 add { source = "folke/which-key.nvim" }
 
@@ -254,42 +262,34 @@ end)
 
 add { source = "m4xshen/autoclose.nvim" }
 later(function()
-    require"autoclose".setup{
+    require "autoclose".setup {
         options = {
             pair_spaces = true
         }
     }
 end)
 
+add { source = "abecodes/tabout.nvim" }
+setup(later, "tabout", {
+    tabkey = "<c-l>",
+    backwards_tabkey = "<c-b>"
+})
+
 add { source = "file:///home/euro/Programs/GithubContribs/nvim-snippets" }
 now(require "nvim-snippets".setup)
 
-add { source = "patrickpichler/hovercraft.nvim" }
--- now(function()
---     require "hovercraft".setup {}
---     ---@diagnostic disable-next-line
---     vim.lsp.buf.hover = function(...)
---         local hovercraft = require "hovercraft"
---         if hovercraft.is_visible() then
---             hovercraft.enter_popup()
---         else
---             hovercraft.hover({ current_provider = "LSP" })
---         end
---     end
--- end)
-
 add { source = "jiaoshijie/undotree" }
-later(function() require"undotree".setup{window = { winblend = 5 }} end)
+later(function() require "undotree".setup { window = { winblend = 5 } } end)
 
 add { source = "kevinhwang91/nvim-bqf" }
 add { source = "jbyuki/quickmath.nvim" }
 
 add { source = "NeogitOrg/neogit" }
-later(require"neogit".setup)
+later(require "neogit".setup)
 
 add { source = "chrisgrieser/nvim-various-textobjs" }
 later(function()
-    require"various-textobjs".setup{
+    require "various-textobjs".setup {
         useDefaultKeymaps = true,
         disabledKeymaps = { "ik", "ak", "iv", "av", "!", "gc", "Q" }
     }
@@ -302,8 +302,30 @@ end)
 
 add { source = "jinh0/eyeliner.nvim" }
 later(function()
-    require"eyeliner".setup{
+    require "eyeliner".setup {
         highlight_on_key = true,
         dim = true
     }
 end)
+
+add { source = "MeanderingProgrammer/markdown.nvim" }
+setup(later, "render-markdown", {
+    headings = {
+        "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 ",
+    },
+    bullets = {
+        "•", "∘", "◆", "⬦"
+    }
+})
+
+-- add { source = "aznhe21/actions-preview.nvim" }
+-- setup(later, "actions-preview", {
+--     telescope = vim.tbl_extend(
+--         "force",
+--         require("telescope.themes").get_dropdown(),
+--         {
+--             make_value = nil,
+--             make_make_display = nil
+--         }
+--     )
+-- })

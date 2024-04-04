@@ -79,3 +79,5 @@ zi() {
 # To initialize zoxide, add this to your configuration:
 #
 # eval "$(zoxide init posix --hook prompt)"
+
+alias cd=z

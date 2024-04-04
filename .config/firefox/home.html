@@ -127,7 +127,19 @@
     const special_images = {
         "december": ["tiger-december.png"]
     }
-    const images = ["lain9.png", "gun.png", "lab.png", "tiger.png", "clannad.png", "clannad2.png", "cypher.png", "僕だけがいない.png", "truth.png"].concat(special_images[month] || [])
+    const images = [
+        "aot-paths.png",
+        "calcifer.png",
+        "lain4.png",
+        "gun.png",
+        "lab.png",
+        "tiger.png",
+        "clannad.png",
+        "clannad2.png",
+        "cypher.png",
+        "僕だけがいない.png",
+        "truth.png"
+    ].concat(special_images[month] || [])
     let img = new Image()
     img.src = `./images/${images[Math.floor(Math.random() * images.length)]}`
     img.setAttribute("width", "200")

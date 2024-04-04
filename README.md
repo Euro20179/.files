@@ -13,7 +13,6 @@ The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
 - colorscheme: [catppuccin](https://github.com/catppuccin/catppuccin)
     - The best colorscheme
 
-
 Very epic Desktop
 ![Screenshot](./Pictures/system-images/dotfiles.png)
 
