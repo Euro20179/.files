@@ -31,7 +31,9 @@ set.hyprland() {
 		hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
 		hyprctl keyword monitor DP-2,preferred,auto,1,mirror,DP-1
 		for i in {1..9}; do
-			[ "$((i % 2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
+			[ "$((i % 2))" -eq 1 ] && 
+                hyprctl keyword wsbind "$i,HDMI-A-1,layoutopt:orientation:bottom" ||
+                hyprctl keyword wsbind "$i,DP-1"
 		done
 		rm "$state_file"
 		sleep 1
