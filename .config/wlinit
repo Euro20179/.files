@@ -21,8 +21,8 @@ brightnessctl s 100%
 #         wlr-randr --output DP-1 --pos 0,0 ;;
 # esac
 #
-killall waybar
-waybar & disown
+
+restart-waybar
 
 killall swww-daemon
 swww-daemon
