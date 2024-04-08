@@ -12,7 +12,7 @@
 #window {
     anchor:     center;
     location:   center;
-    width:      30%;
+    width:      100%;
     padding:    4px;
     children:   [ horibox ];
     border: 2px;
@@ -33,7 +33,7 @@
 
 #entry {
     expand:     false;
-    width:      10em;
+    width:      100%;
 }
 
 #element {

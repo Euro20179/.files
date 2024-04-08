@@ -43,7 +43,7 @@ print_link_shortcut="alt-k"
 #elif in tty:
     # use catimg
 if [ "$__is_fzf_preview" -eq 0 ]; then
-    load_thumbnail_viewer wayland
+    load_thumbnail_viewer sixel
     #[ $TERM = foot ] && {
     #    load_thumbnail_viewer sixel
     #} || [ "$XDG_SESSION_TYPE" = "wayland" ] && {

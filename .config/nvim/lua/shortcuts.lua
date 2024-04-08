@@ -74,7 +74,7 @@ local nShortcuts = {
     { "<leader>em", "<cmd>Telescope marks<cr>",           { desc = "[TELESCOPE] marks" } },
     { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
     { "<leader>fe", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
-    { "<leader>ff", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
+    { "<leader>ff", '<cmd>lua require"mini.pick".builtin.files()<cr>',          { desc = "[TELESCOPE] find files" } },
     -- { "<leader>fe", ':find **/',                          { desc = "Find files" } },
     -- { "<leader>ff", ":find **/",                          { desc = "Find files" } },
     { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "[TELESCOPE] quickfix list" } },
@@ -101,7 +101,7 @@ local nShortcuts = {
     end, { desc = "symbols outline [OR] table of contents" } },
     --}}}
     --buffer/window shortcuts{{{
-    { "<leader><leader>", function() harpoon:list():append() end },
+    { "<leader><leader>", function() harpoon:list():add() end },
     { "<leader>1",        function() harpoon:list():select(1) end },
     { "<leader>2",        function() harpoon:list():select(2) end },
     { "<leader>3",        function() harpoon:list():select(3) end },
@@ -327,10 +327,10 @@ end
 
 -- popup menu{{{
 --here as example
-vim.cmd [[
-    aunmenu PopUp
-    nnoremenu PopUp.hi :lua print("hi")<cr>
-]]
+-- vim.cmd [[
+--     aunmenu PopUp
+--     nnoremenu PopUp.hi :lua print("hi")<cr>
+-- ]]
 --}}}
 
 vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line

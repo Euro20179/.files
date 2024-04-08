@@ -519,6 +519,14 @@
     section[aria-label*="Channel"]{
         background: var(--main) !important;
     }
+
+    [aria-label="Servers sidebar"] {
+      display: none !important;
+    }
+
+    body:has(:is(#channels, [aria-label="Servers sidebar"], [aria-label="Private channels"]):hover) [aria-label="Servers sidebar"] {
+      display: unset !important;
+    }
 }
 
 @-moz-document domain("news.ycombinator.com") {

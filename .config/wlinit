@@ -23,11 +23,8 @@ brightnessctl s 100%
 #
 
 restart-waybar
+restart-wallpaper
 
-killall swww-daemon
-swww-daemon
-sleep 0.3
-swww img "$HOME/Pictures/system-images/desktop.png"
 # wallpaper-slideshow $((60 * 10)) & disown
 
 # killall swayidle

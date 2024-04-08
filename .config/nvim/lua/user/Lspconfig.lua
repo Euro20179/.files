@@ -13,6 +13,10 @@ lspconfig["basedpyright"].setup{
     capabilities = capabilities
 }
 
+lspconfig['nushell'].setup{
+    capabilities = capabilities
+}
+
 lspconfig["raku_navigator"].setup{
     capabilities = capabilities,
     cmd = {"raku-navigator", "--stdio"}

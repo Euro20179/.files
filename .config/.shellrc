@@ -94,8 +94,8 @@ export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icon
 # SYSTEM PATHS #
 ################
 # {{{
-export WALLPAPER="$XDG_PICTURES_HOME/system-images/desktop.png"
-export NEOFETCH_IMAGE=$(fd . "${XDG_PICTURES_HOME}/system-images/neofetch" | shuf | head -n1)
+export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
+export NEOFETCH_IMAGE=$(fd . "$SYSTEM_IMAGES/neofetch" | shuf | head -n1)
 export TODO_FILE="$HOME/Documents/TODO"
 export SHELL_LIB="$HOME/.local/lib/shell"
 

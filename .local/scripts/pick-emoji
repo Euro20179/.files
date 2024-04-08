@@ -1,22 +1,31 @@
+#!/bin/sh
+
+cat ~/.local/share/nvim/site/pack/deps/opt/telescope-symbols.nvim/data/telescope-sources/* \
+    ~/.local/share/nvim/telescope/symbols/* |
+    jq -r '.[]|join("\t")' |
+    rofi -dmenu -theme cat-macchiato |
+    cut -f1 |
+    wl-copy -n
+
 #!/usr/bin/nvim -S
 
-lua <<EOF
-local actions = require("telescope.actions")
-if actions == nil  then
-    vim.system({"notify-send", "pick-emoji", "Telescope.nvim is required for pick-emoji"})
-end
-local action_state = require "telescope.actions.state"
-local originalBuf = vim.fn.bufnr()
-require("telescope.builtin").symbols {
-    attach_mappings = function(bufnr, _)
-        actions.select_default:replace(function(text)
-            local selection = action_state.get_selected_entry()
-            local emoji = vim.split(selection["display"], " ")[1]
-            vim.cmd.call("setreg('+', '" .. emoji .. "')")
-            actions.close(bufnr)
-            vim.cmd.qa()
-        end)
-        return true
-    end
-}
-EOF
+# lua <<EOF
+# local actions = require("telescope.actions")
+# if actions == nil  then
+#     vim.system({"notify-send", "pick-emoji", "Telescope.nvim is required for pick-emoji"})
+# end
+# local action_state = require "telescope.actions.state"
+# local originalBuf = vim.fn.bufnr()
+# require("telescope.builtin").symbols {
+#     attach_mappings = function(bufnr, _)
+#         actions.select_default:replace(function(text)
+#             local selection = action_state.get_selected_entry()
+#             local emoji = vim.split(selection["display"], " ")[1]
+#             vim.cmd.call("setreg('+', '" .. emoji .. "')")
+#             actions.close(bufnr)
+#             vim.cmd.qa()
+#         end)
+#         return true
+#     end
+# }
+# EOF

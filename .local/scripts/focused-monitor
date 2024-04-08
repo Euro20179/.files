@@ -1,0 +1,3 @@
+#!/bin/sh
+
+hyprctl activeworkspace -j | sed -n '/^[[:space:]]\+"monitor"/s/.*: "\(.*\)",/\1/p'

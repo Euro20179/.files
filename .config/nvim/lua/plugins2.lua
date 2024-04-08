@@ -35,7 +35,10 @@ add { source = "nvim-tree/nvim-web-devicons" }
 
 -- Treesitter{{{
 add {
-    source = "nvim-treesitter/nvim-treesitter"
+    source = "nvim-treesitter/nvim-treesitter",
+}
+add {
+    source = "nushell/tree-sitter-nu"
 }
 add {
     source = "drybalka/tree-climber.nvim"
@@ -49,11 +52,9 @@ add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 add {
     source = "nvim-telescope/telescope.nvim"
 }
-
 add {
     source = "nvim-telescope/telescope-ui-select.nvim"
 }
-
 add {
     source = "nvim-telescope/telescope-symbols.nvim"
 }
@@ -115,36 +116,15 @@ add { source = "folke/which-key.nvim" }
 
 add { source = "superhawk610/ascii-blocks.nvim" }
 
-add { source = "nvim-neorg/neorg" }
+add { source = "nvim-neorg/neorg",
+    depends = {
+        "pysan3/pathlib.nvim",
+        "vhyrro/luarocks.nvim",
+        "nvim-neorg/lua-utils.nvim"
+    }
+}
 add { source = "nvim-neorg/neorg-telescope" }
 add { source = "laher/neorg-exec" }
-
-later(function()
-    require "neorg".setup {
-        load = {
-            ["core.defaults"] = {},
-            ["core.concealer"] = {
-                config = {
-                    icons = {
-                        todo = {
-                            on_hold = {
-                                icon = "󰏤"
-                            },
-                        },
-                        heading = {
-                            icons = { "󰉫", "󰉬", "󰉭", "󰉮", "󰉯", "󰉰" }
-                        }
-                    }
-                }
-            },
-            ["core.ui"] = {},
-            ["core.ui.calendar"] = {},
-            ["external.exec"] = {},
-            ["core.queries.native"] = {},
-            ["core.integrations.treesitter"] = {},
-        }
-    }
-end)
 
 add { source = "smjonas/inc-rename.nvim" }
 later(function()
@@ -157,7 +137,7 @@ later(function() require "diffview".setup {} end)
 add { source = "echasnovski/mini.nvim" }
 
 later(function()
-    require "mini.comment".setup {}
+    -- require "mini.comment".setup {}
     require "mini.surround".setup {
         custom_surroundings = {
             T = {
@@ -259,24 +239,21 @@ later(function()
         }
     }
 end)
+--
+-- add { source = "m4xshen/autoclose.nvim" }
+-- later(function()
+--     require "autoclose".setup {
+--         options = {
+--             pair_spaces = true
+--         }
+--     }
+-- end)
 
-add { source = "m4xshen/autoclose.nvim" }
-later(function()
-    require "autoclose".setup {
-        options = {
-            pair_spaces = true
-        }
-    }
-end)
-
-add { source = "abecodes/tabout.nvim" }
-setup(later, "tabout", {
-    tabkey = "<c-l>",
-    backwards_tabkey = "<c-b>"
-})
+add { source = "altermo/ultimate-autopair.nvim" }
+setup(later, "ultimate-autopair", {})
 
 add { source = "file:///home/euro/Programs/GithubContribs/nvim-snippets" }
-now(require "nvim-snippets".setup)
+setup(now, "nvim-snippets", {})
 
 add { source = "jiaoshijie/undotree" }
 later(function() require "undotree".setup { window = { winblend = 5 } } end)
@@ -291,7 +268,7 @@ add { source = "chrisgrieser/nvim-various-textobjs" }
 later(function()
     require "various-textobjs".setup {
         useDefaultKeymaps = true,
-        disabledKeymaps = { "ik", "ak", "iv", "av", "!", "gc", "Q" }
+        disabledKeymaps = { "ik", "ak", "iv", "av", "!", "gc", "Q"}
     }
 end)
 
@@ -318,14 +295,8 @@ setup(later, "render-markdown", {
     }
 })
 
--- add { source = "aznhe21/actions-preview.nvim" }
--- setup(later, "actions-preview", {
---     telescope = vim.tbl_extend(
---         "force",
---         require("telescope.themes").get_dropdown(),
---         {
---             make_value = nil,
---             make_make_display = nil
---         }
---     )
--- })
+add { source = "dustinblackman/oatmeal.nvim" }
+setup(later, "oatmeal", {
+    backend = "ollama",
+    model = "dolphin-mistral:latest"
+})

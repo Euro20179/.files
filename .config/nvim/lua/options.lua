@@ -72,7 +72,7 @@ function FormatstatuslineDiag()
 end
 
 local left = '%1*%f%2*%{&modified == v:true ? "*" : ""} %4*%p%%%* %{%v:lua.FormatstatuslineDiag()%}'
-local right = '%2*%y'
+local right = '%2*%{&filetype} '
 local center = '%3*%{v:lua.GetLspNames()}%*'
 
 vim.opt.statusline = left .. '%=' .. center .. '%=' .. right
