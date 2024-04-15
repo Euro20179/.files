@@ -63,7 +63,9 @@ lspconfig['lua_ls'].setup{
 -- }
 --
 
-lspconfig.gopls.setup{}
+lspconfig.gopls.setup{
+    capabilities = capabilities
+}
 
 -- lspconfig['pyright'].setup{ }
 
@@ -105,7 +107,7 @@ lspconfig['cssls'].setup{
     capabilities = capabilities
 }
 -- lspconfig['ltex'].setup{}
-lspconfig.vimls.setup{
-  capabilities = capabilities,
-  isNeovim = true
-}
+-- lspconfig.vimls.setup{
+--   capabilities = capabilities,
+--   isNeovim = true
+-- }

@@ -77,17 +77,17 @@ require 'nvim-treesitter.configs'.setup {
         navigation = {
             enable = true,
             keymaps = {
+                list_definitions = "gsD",
                 goto_definition = "gd",
                 goto_next_usage = "<A-n>",
-                goto_previous_usage = "<A-N>",
-                list_definitions_toc = "gnO"
+                goto_previous_usage = "<A-p>",
             }
         }
     },
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "gnn",
+            init_selection = "<leader>vn",
             node_incremental = 'gin',
             scope_incremental = "gis",
             node_decremental = "gdn",
@@ -97,10 +97,10 @@ require 'nvim-treesitter.configs'.setup {
         swap = {
             enable = true,
             swap_next = {
-                ["<A-j>"] = "@parameter.inner",
+                ["<A-n>"] = "@parameter.inner",
             },
             swap_previous = {
-                ["<A-k>"] = "@parameter.inner",
+                ["<A-p>"] = "@parameter.inner",
             },
         },
         move = {

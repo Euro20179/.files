@@ -1,0 +1,48 @@
+#!/bin/nvim -l
+local get_nerd_source = function()
+  local source_files = {
+    'i_cod.sh', 'i_dev.sh', 'i_fa.sh', 'i_fae.sh', 'i_iec.sh', 'i_logos.sh',
+    'i_material.sh', 'i_md.sh', 'i_oct.sh', 'i_ple.sh', 'i_pom.sh', 'i_seti.sh',
+    'i_weather.sh'
+  }
+
+  for _, file in ipairs(source_files) do
+    local res = vim.system({"curl", 'https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/bin/scripts/lib/' .. file}):wait()
+    local source = vim.split(res.stdout:gsub("\n      ", ' '), '\n')
+    local group = file:gsub('i_', ''):gsub('%.sh', '')
+
+    for _, line in ipairs(source) do
+      if not line:find('i=') then
+        goto continue
+      end
+      if not line:find('=%$i') then
+        goto continue
+      end
+      line = line:gsub('i=\'', '')
+      line = line:gsub('=%$i%g*', '')
+
+      -- Follow the naming scheme of https://www.nerdfonts.com/cheat-sheet
+      if file == 'i_material.sh' then
+        line = line:gsub('i_mdi_', 'nf-mdi-')
+      elseif file == 'i_logos.sh' then
+        line = line:gsub('i_linux_', 'nf-linux-')
+      elseif file == 'i_ple.sh' then
+        line = line:gsub('i_pl_', 'nf-pl-')
+        line = line:gsub('i_ple_', 'nf-ple-')
+      elseif file == 'i_seti.sh' then
+        line = line:gsub('i_seti_', 'nf-seti-')
+        line = line:gsub('i_custom_', 'nf-custom-')
+        line = line:gsub('i_indent_', 'nf-indent-')
+        line = line:gsub('i_indentation_', 'nf-indentation-')
+      else
+        line = line:gsub('i_' .. group .. '_', 'nf-' .. group .. '-')
+      end
+
+      local symbol, description = line:match('(.-)\'%s(.*)')
+      io.stdout:write(symbol .. '\t' .. description .. '\n')
+      ::continue::
+    end
+  end
+end
+
+get_nerd_source()

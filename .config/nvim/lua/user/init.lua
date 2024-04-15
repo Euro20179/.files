@@ -1,5 +1,5 @@
 require "user.cmp"
-require "user.telescope"
+-- require "user.telescope"
 require "user.treesitter"
 require 'user.whichkey'
 require "user.Lspconfig"

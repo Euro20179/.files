@@ -25,11 +25,13 @@ local function setup(when, name, opts)
         require(name).setup(opts)
     end)
 end
+local function aSetup(addOpts, when, name, opts)
+    add(addOpts)
+    setup(when, name, opts)
+end
 
 --libraries{{{
-add {
-    source = "nvim-lua/plenary.nvim"
-}
+add { source = "nvim-lua/plenary.nvim" }
 add { source = "nvim-tree/nvim-web-devicons" }
 --}}}
 
@@ -37,39 +39,11 @@ add { source = "nvim-tree/nvim-web-devicons" }
 add {
     source = "nvim-treesitter/nvim-treesitter",
 }
-add {
-    source = "nushell/tree-sitter-nu"
-}
-add {
-    source = "drybalka/tree-climber.nvim"
-}
-add { source = "https://github.com/nvim-treesitter/nvim-treesitter-refactor" }
+add { source = "nushell/tree-sitter-nu" }
+add { source = "nvim-treesitter/nvim-treesitter-refactor" }
 
 add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 -- }}}
-
--- Telescope{{{
-add {
-    source = "nvim-telescope/telescope.nvim"
-}
-add {
-    source = "nvim-telescope/telescope-ui-select.nvim"
-}
-add {
-    source = "nvim-telescope/telescope-symbols.nvim"
-}
-
-now(function()
-    local tele = require "telescope"
-    tele.setup {
-        extensions = {
-            ["ui-select"] = {
-                require "telescope.themes".get_dropdown {}
-            }
-        }
-    }
-    tele.load_extension("ui-select")
-end) -- }}}
 
 --LSP+DAP{{{
 for _, name in ipairs({
@@ -90,19 +64,15 @@ add { source = "rcarriga/nvim-dap-ui" }
 add { source = "nvim-neotest/nvim-nio" }
 --}}}
 
-add { source = "williamboman/mason.nvim" }
-setup(later, "mason", {})
+aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 
-add { source = "bluz71/vim-nightfly-guicolors" }
 add { source = "flazz/vim-colorschemes" }
 add { source = "folke/tokyonight.nvim" }
 add { source = "catppuccin/nvim" }
 
 add { source = "ThePrimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
-add { source = "stevearc/oil.nvim" }
-
-setup(now, "oil", {
+aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
     default_file_explorer = true,
     view_options = {
         show_hidden = true
@@ -126,17 +96,26 @@ add { source = "nvim-neorg/neorg",
 add { source = "nvim-neorg/neorg-telescope" }
 add { source = "laher/neorg-exec" }
 
-add { source = "smjonas/inc-rename.nvim" }
-later(function()
-    require "inc_rename".setup {}
-end)
+aSetup({ source = "smjonas/inc-rename.nvim" }, later, "inc_rename", {})
 
-add { source = "sindrets/diffview.nvim" }
-later(function() require "diffview".setup {} end)
+aSetup({ source = "sindrets/diffview.nvim" }, later, "diffview", {})
 
 add { source = "echasnovski/mini.nvim" }
 
 later(function()
+    require "mini.move".setup {
+        mappings = {
+            left = "mh",
+            right = "ml",
+            down = "mj",
+            up = "mk",
+
+            line_left = "<leader>mh",
+            line_right = "<leader>ml",
+            line_down = "<leader>mj",
+            line_up = "<leader>mk",
+        }
+    }
     -- require "mini.comment".setup {}
     require "mini.surround".setup {
         custom_surroundings = {
@@ -182,8 +161,21 @@ later(function()
         },
         replace = {
             prefix = "yr"
+        },
+        sort = {
+            prefix = '<Plug>' --disable sort feature, by setting an inacessable key
         }
     }
+    require "mini.pick".setup {
+        window = {
+            config = function()
+                return {
+                    width = vim.o.columns - 30
+                }
+            end
+        }
+    }
+    vim.ui.select = require "mini.pick".ui_select
 end)
 
 add { source = "uga-rosa/ccc.nvim" }
@@ -206,40 +198,6 @@ later(function()
     end
 end)
 
-add { source = "simrat39/symbols-outline.nvim" }
-later(function()
-    require "symbols-outline".setup {
-        position = "left",
-        show_numbers = true,
-        show_relative_Numbers = true,
-        symbols = {
-            Boolean = { icon = "", hl = "@boolean" },
-            Array = { icon = "", hl = "@constant" },
-            String = { icon = "", hl = "@string" },
-            Function = { icon = "", hl = "@function" },
-            File = { icon = "", hl = "@text.uri" },
-            Module = { icon = "", hl = "@namespace" },
-            Class = { icon = "", hl = "@type" },
-            Method = { icon = " ", hl = "@method" },
-            Property = { icon = "", hl = "@method" },
-            Field = { icon = "", hl = "@field" },
-            Constructor = { icon = "", hl = "@constructor" },
-            Enum = { icon = "", hl = "@type" },
-            Interface = { icon = "", hl = "@type" },
-            Variable = { icon = "𝑥", hl = "@constant" },
-            Constant = { icon = "", hl = "@constant" },
-            EnumMember = { icon = "", hl = "@field" },
-            Struct = { icon = "", hl = "@type" },
-            Event = { icon = "", hl = "@type" },
-            Operator = { icon = "", hl = "@operator" },
-            TypeParameter = { icon = "", hl = "@parameter" },
-        },
-        keymaps = {
-            hover_symbol = "glh"
-        }
-    }
-end)
---
 -- add { source = "m4xshen/autoclose.nvim" }
 -- later(function()
 --     require "autoclose".setup {
@@ -250,43 +208,30 @@ end)
 -- end)
 
 add { source = "altermo/ultimate-autopair.nvim" }
-setup(later, "ultimate-autopair", {})
+later(function ()
+    require"ultimate-autopair.core".modes = {'i'}
+    require"ultimate-autopair".setup{}
+end)
 
 add { source = "file:///home/euro/Programs/GithubContribs/nvim-snippets" }
 setup(now, "nvim-snippets", {})
 
-add { source = "jiaoshijie/undotree" }
-later(function() require "undotree".setup { window = { winblend = 5 } } end)
+aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
 add { source = "kevinhwang91/nvim-bqf" }
 add { source = "jbyuki/quickmath.nvim" }
 
-add { source = "NeogitOrg/neogit" }
-later(require "neogit".setup)
-
-add { source = "chrisgrieser/nvim-various-textobjs" }
-later(function()
-    require "various-textobjs".setup {
-        useDefaultKeymaps = true,
-        disabledKeymaps = { "ik", "ak", "iv", "av", "!", "gc", "Q"}
-    }
-end)
+aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
 
 add { source = "ThePrimeagen/refactoring.nvim" }
-later(function()
-    require("refactoring").setup()
-end)
+later(function() require("refactoring").setup() end)
 
-add { source = "jinh0/eyeliner.nvim" }
-later(function()
-    require "eyeliner".setup {
-        highlight_on_key = true,
-        dim = true
-    }
-end)
+aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
+    highlight_on_key = true,
+    dim = true
+})
 
-add { source = "MeanderingProgrammer/markdown.nvim" }
-setup(later, "render-markdown", {
+aSetup({ source = "MeanderingProgrammer/markdown.nvim" }, later, "render-markdown", {
     headings = {
         "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 ",
     },
@@ -298,5 +243,5 @@ setup(later, "render-markdown", {
 add { source = "dustinblackman/oatmeal.nvim" }
 setup(later, "oatmeal", {
     backend = "ollama",
-    model = "dolphin-mistral:latest"
+    model = "gemma:latest"
 })

@@ -106,11 +106,11 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         -- { name = 'nvim_lsp_signature_help', autocomplete = false },
+        { name = "snippets" },
         { name = 'nvim_lsp' },
         -- { name = 'luasnip' }, -- For luasnip users.
         { name = 'buffer' },
         { name = 'path' },
-        { name = "snippets" },
         { name = "mdlink" },
          { name = "cmp_ai" }
         -- { name = "emoji" },

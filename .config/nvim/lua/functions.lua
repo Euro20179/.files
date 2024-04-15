@@ -83,11 +83,15 @@ end
 
 function GotoTerminalBuf()
     local harpoon = require "harpoon"
-    for _, bid in ipairs(vim.api.nvim_list_bufs()) do
-        local name = vim.api.nvim_buf_get_name(bid)
-        if vim.startswith(name, "term://") then
-            vim.api.nvim_set_current_buf(bid)
-            return
+    for _, tid in ipairs(vim.api.nvim_list_tabpages()) do
+        for _, wid in ipairs(vim.api.nvim_tabpage_list_wins(tid)) do
+            local bid = vim.api.nvim_win_get_buf(wid)
+            local name = vim.api.nvim_buf_get_name(bid)
+            if vim.startswith(name, "term://") then
+                vim.api.nvim_set_current_tabpage(tid)
+                vim.api.nvim_tabpage_set_win(tid, wid)
+                return
+            end
         end
     end
     -- if no term buf found

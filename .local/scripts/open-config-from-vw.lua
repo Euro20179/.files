@@ -34,6 +34,7 @@ end
 local args = vim.v.argv
 local configs = {
     n = "~/.config/nvim/init.lua",
+    u = "~/.config/nushell/config.nu",
     h = "~/.config/hypr/hyprland.conf",
     w = "~/.config/waybar/config.jsonc",
     f = "~/.config/foot/foot.ini",

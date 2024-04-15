@@ -83,7 +83,7 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 
-export GOPATH="$XDG_DATA_HOME/go"
+export GOPATH="$XDG_DATA_HOME/go:$HOME/Programs/Coding Projects/go"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
@@ -116,7 +116,7 @@ export MANPAGER="nvim +Man!"
 
 export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
-export TERMINAL="foot"
+export TERMINAL="TERMINAL"
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"
@@ -139,10 +139,8 @@ export TRASH="$HOME/.local/share/trash"
 ###################
 # {{{
 alias "lman=MANPAGER=less man"
-alias t='tmux'
 alias u="paru"
 alias conf=open-config-from-vw.lua
-alias email=compose-email
 alias "dr=dragon -x"
 alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
@@ -151,11 +149,7 @@ alias "wget=wget --no-hsts"
 alias 's=bookmarkfs search'
 alias "bc=bc -l"
 alias "ani=strack-cli"
-alias "password=pass-gen"
-alias ":q=exit"
 alias "less=less -r"
-
-alias ms=='mullvad status'
 
 alias 'q=exit'
 

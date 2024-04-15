@@ -1,8 +1,6 @@
 #!/bin/sh
 
-cat ~/.local/share/nvim/site/pack/deps/opt/telescope-symbols.nvim/data/telescope-sources/* \
-    ~/.local/share/nvim/telescope/symbols/* |
-    jq -r '.[]|join("\t")' |
+cat $XDG_DOCUMENTS_HOME/emoji $XDG_DOCUMENTS_HOME/nerd-fonts |
     rofi -dmenu -theme cat-macchiato |
     cut -f1 |
     wl-copy -n

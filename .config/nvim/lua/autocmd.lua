@@ -15,25 +15,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local ks = vim.keymap.set
         ks("n", "gd", vim.lsp.buf.definition, { desc = "goto definition" })
         local key_maps = {
-            { "<leader>fs", '<cmd>Telescope lsp_document_symbols<cr>',  { desc = "[TELESCOPE] document symbols" } },
-            { "gns",        vim.lsp.buf.document_symbol,                { desc = "[QF] Document symbols" } },
-            { "gnw",        vim.lsp.buf.workspace_symbol,               { desc = "[QF] Workspace symbols" } },
-            { "gnr",        vim.lsp.buf.references,                     { desc = "[QF] References" } },
-            { "gno",        vim.lsp.buf.outgoing_calls,                 { desc = "[QF] Outgoing calls" } },
-            { "gni",        vim.lsp.buf.incoming_calls,                 { desc = "[QF] Incoming calls" } },
-            { "<leader>fS", '<cmd>Telescope lsp_workspace_symbols<cr>', { desc = "[TELESCOPE] Workspace symbols" } },
-            { "<leader>fr", vim.lsp.buf.references,                     { desc = "[TELESCOPE] References" } },
+            { "<leader>fs", vim.lsp.buf.document_symbol,                     { desc = "[QF] document symbols" } },
+            { "gss",        vim.lsp.buf.document_symbol,                     { desc = "[QF] Document symbols" } },
+            { "gsw",        vim.lsp.buf.workspace_symbol,                    { desc = "[QF] Workspace symbols" } },
+            { "gsr",        vim.lsp.buf.references,                          { desc = "[QF] References" } },
+            { "gso",        vim.lsp.buf.outgoing_calls,                      { desc = "[QF] Outgoing calls" } },
+            { "gsi",        vim.lsp.buf.incoming_calls,                      { desc = "[QF] Incoming calls" } },
+            { "<leader>fS", function() vim.lsp.buf.workspace_symbol("") end, { desc = "[QF] Workspace symbols" } },
+            { "<leader>fr", vim.lsp.buf.references,                          { desc = "[QF] References" } },
             { "<leader>E", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics" } },
-            { "<leader>r", ":IncRename ",                           { desc = "Incremental rename" } },
+            { "<leader>r", ":IncRename ",             { desc = "Incremental rename" } },
             { "<leader>el", function()
                 local virt_text = vim.diagnostic.config().virtual_text
                 vim.diagnostic.config({ virtual_text = not virt_text })
             end, { desc = "Toggle virtual text" } },
-            { "<a-e>",     vim.diagnostic.open_float,               { desc = "Show diagnostics" } },
+            { "<a-e>",     vim.diagnostic.open_float, { desc = "Show diagnostics" } },
             --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
-            { "<leader>a", vim.lsp.buf.code_action, { desc = "Select code action to perform" } },
+            { "<leader>a", vim.lsp.buf.code_action,   { desc = "Select code action to perform" } },
             { "<leader>A", function()
                 local n = 0
                 vim.lsp.buf.code_action({

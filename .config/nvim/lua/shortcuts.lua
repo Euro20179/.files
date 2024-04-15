@@ -10,12 +10,36 @@ local gitLeader = "<M-g>"
 
 local dapLeader = "<M-d>"
 
+local macros = {}
+
 --Normal Mode{{{
 local nShortcuts = {
+    --Macros {{{
+    { "<leader>ms", function ()
+        local inp = vim.fn.input({ prompt = "register@name: " })
+        if inp == "" then
+            return
+        end
+        local dat = vim.split(inp, "@")
+        local name = dat[1]
+        local reg = dat[2]
+        macros[name] = reg
+    end, { desc = "[MACRO] Save macro" } },
+    { "<leader>mp", function ()
+        local items = {}
+        for k, v in pairs(macros) do
+            items[#items+1] = k .. "@" .. v .. " = " .. vim.fn.getreg(k)
+        end
+        vim.ui.select(items, { prompt = "Macro to play" }, function(macro)
+            if macro == nil then
+                return
+            end
+            local reg = vim.split(macro, "@")[1]
+            vim.cmd.norm("@" .. reg)
+        end)
+    end, { desc = "[MACRO] play macro" } },
+    --}}}
     -- dap {{{
-    { dapLeader .. "o", function()
-        require "dapui".toggle()
-    end, { desc = "[DAP] toggle dap ui" } },
     { dapLeader .. "s", function()
         local sidebar = widgets.sidebar(widgets.scopes)
         sidebar.open()
@@ -51,41 +75,47 @@ local nShortcuts = {
     end, { desc = "[DAP] start session" } },
     -- }}}
     --copy shortcuts {{{
-    { "<leader>p",  '"+p',                                { desc = "paste from sys clipboard" } },
-    { "<leader>P",  '"+P',                                { desc = "paste above from sys clipboard" } },
-    { "<leader>y",  '"+y',                                { desc = "copy to sys clipboard" } },
-    { "<leader>Y",  '"+Y',                                { desc = "copy line to sys clipboard" } },
-    { "<leader>d",  '"_d',                                { desc = "delete to null register" } },
-    { "<leader>c",  '"_c',                                { desc = "change to null register" } },
-    { "<leader>b",  "\"_",                                { desc = "run on null register" } },
-    { "<leader>B",  "\"+",                                { desc = "run on sys clipboard" } },
+    { "<leader>p",  '"+p',                                                                     { desc = "paste from sys clipboard" } },
+    { "<leader>P",  '"+P',                                                                     { desc = "paste above from sys clipboard" } },
+    { "<leader>y",  '"+y',                                                                     { desc = "copy to sys clipboard" } },
+    { "<leader>Y",  '"+Y',                                                                     { desc = "copy line to sys clipboard" } },
+    { "<leader>d",  '"_d',                                                                     { desc = "delete to null register" } },
+    { "<leader>c",  '"_c',                                                                     { desc = "change to null register" } },
+    { "<leader>b",  "\"_",                                                                     { desc = "run on null register" } },
+    { "<leader>B",  "\"+",                                                                     { desc = "run on sys clipboard" } },
     --}}}
     --telescope {{{
-    { "<leader>e;", "<cmd>Telescope symbols<cr>",         { desc = "[TELESCOPE] emojis" } },
-    { "<leader>ej", "<cmd>Telescope jumplist<cr>",        { desc = "[TELESCOPE] jumplist" } },
-    { "<leader>ee", "<cmd>Telescope diagnostics<cr>",     { desc = "[TELESCOPE] diagnostics" } },
-    { "<leader>eT", "<cmd>Telescope treesitter<cr>",      { desc = "[TELESCOPE] treesitter" } },
-    { "<leader>et", "<cmd>Telescope tagstack<cr>",        { desc = "[TELESCOPE] tagstack" } },
-    { "<leader>es", "<cmd>Telescope spell_suggest<cr>",   { desc = "[TELESCOPE] spell suggest" } },
-    { "<leader>eH", "<cmd>Telescope highlights<cr>",      { desc = "[TELESCOPE] highlights" } },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>",       { desc = "[TELESCOPE] help tags" } },
-    { "<leader>fb", '<cmd>Telescope buffers<cr>',         { desc = "[TELESCOPE] buffers" } },
-    { "<leader>ec", "<cmd>Telescope colorscheme<cr>",     { desc = "[TELESCOPE] colorscheme" } },
-    { "<leader>em", "<cmd>Telescope marks<cr>",           { desc = "[TELESCOPE] marks" } },
-    { "<leader>fE", ':bdel<cr>:Telescope find_files<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
-    { "<leader>fe", ':Telescope find_files<cr>',          { desc = "[TELESCOPE] find files" } },
-    { "<leader>ff", '<cmd>lua require"mini.pick".builtin.files()<cr>',          { desc = "[TELESCOPE] find files" } },
-    -- { "<leader>fe", ':find **/',                          { desc = "Find files" } },
-    -- { "<leader>ff", ":find **/",                          { desc = "Find files" } },
-    { "<leader>fq", ":Telescope quickfix<cr>",            { desc = "[TELESCOPE] quickfix list" } },
+    { "<leader>ej", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },
+    { "<leader>ee", function() require "mini.extra".pickers.diagnostic({ scope = "all" }) end, { desc = "[TELESCOPE] diagnostics" } },
+    { "<leader>ft", function ()
+        local tagStack = vim.fn.gettagstack(0)
+        local items = {}
+        for _, value in ipairs(tagStack.items) do
+            local filename = vim.api.nvim_buf_get_name(value.bufnr)
+            items[#items+1] = {bufnr = value.bufnr, lnum = value.from[2], col = value.from[3], filename = filename}
+        end
+        vim.fn.setloclist(0, items)
+        vim.cmd.lwin()
+    end,                                             { desc = "[LL] tagstack" } },
+    { "<leader>fh", require "mini.pick".builtin.help,                                          { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fb", function ()
+        local bufs = {}
+        for _, bufno in ipairs(vim.api.nvim_list_bufs()) do
+            bufs[#bufs+1] = vim.api.nvim_buf_get_name(bufno) .. ":" .. bufno
+        end
+        vim.ui.select(bufs, {}, function (item)
+            local sp = vim.split(item, ":")
+            vim.api.nvim_win_set_buf(0, tonumber(sp[1]) or 0)
+        end)
+    end,                                              { desc = "[TELESCOPE] buffers" } },
+    { "<leader>fe", ':bdel<cr>:lua require"mini.pick".builtin.files()<cr>',                    { desc = "[TELESCOPE] find files (delete current buffer)" } },
+    { "<leader>ff", require "mini.pick".builtin.files,                                         { desc = "[TELESCOPE] find files" } },
     { "<leader>fF", function()
         local t = require "telescope.builtin"
         t.find_files({ hidden = true, no_ignore = true })
     end, { desc = "[TELESCOPE] open any file, save current buffer in harpoon" } },
-    { "<leader>f/", '<cmd>Telescope live_grep<cr>',                              { desc = "[TELESCOPE] grep" } },
-    { "<C-S-p>",    "<cmd>Telescope keymaps<cr>",                                { desc = "[TELESCOPE] keymap pallete" } },
-    { "<leader>ek", "<cmd>Telescope keymaps<cr>",                                { desc = "[TELESCOPE] keymap pallete" } },
-    { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<cr>",              { desc = "[TELESCOPE] buffer fuzzy find" } },
+    { "<leader>f/", require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
+    { "<C-S-p>",    require "mini.extra".pickers.keymaps,                        { desc = "[TELESCOPE] keymap pallete" } },
     { "<leader>fH", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
@@ -102,11 +132,11 @@ local nShortcuts = {
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():add() end },
-    { "<leader>1",        function() harpoon:list():select(1) end },
-    { "<leader>2",        function() harpoon:list():select(2) end },
-    { "<leader>3",        function() harpoon:list():select(3) end },
-    { "<leader>4",        function() harpoon:list():select(4) end },
-    { "<leader>5",        function() harpoon:list():select(5) end },
+    { "<A-j>",        function() harpoon:list():select(1) end },
+    { "<A-k>",        function() harpoon:list():select(2) end },
+    { "<A-l>",        function() harpoon:list():select(3) end },
+    { "<A-;>",        function() harpoon:list():select(4) end },
+    { "<A-'>",        function() harpoon:list():select(5) end },
     { "<leader>6",        function() harpoon:list():select(6) end },
     { "<leader>7",        function() harpoon:list():select(7) end },
     { "<leader>8",        function() harpoon:list():select(8) end },
@@ -124,11 +154,6 @@ local nShortcuts = {
     { "<up>",             "<c-w>+",                               { desc = "[WIN] Grow vertical" } },
     { "<down>",           "<c-w>-",                               { desc = "[WIN] shrink vertical" } },
     { "<leader>T",        function() GotoTerminalBuf() end },
-    { "<leader>ft", function()
-        require "lazy.util".float_term("/bin/zsh", {
-            border = "single"
-        })
-    end },
     { "<leader>vw", function()
         vim.fn.chdir("~/Documents/vimwiki")
         vim.api.nvim_cmd({
@@ -162,13 +187,6 @@ local nShortcuts = {
     -- Treesitter {{{
     { "<leader>sr",      function() require "ssr".open() end },
     { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
-    { "<a-t>p",          require("tree-climber").goto_parent },
-    { "<a-t>c",          require("tree-climber").goto_child },
-    { "<a-t>n",          require "tree-climber".goto_next },
-    { "<a-t>p",          require "tree-climber".goto_prev },
-    { "<leader>vn",      require("tree-climber").select_node },
-    -- { "<a-j>",           require("tree-climber").swap_next },
-    -- { "<a-k>",           require("tree-climber").swap_prev },
     { "glt",             "<cmd>Inspect<cr>" },
     -- }}}
     --syntax highlighting{{{
@@ -215,23 +233,23 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<c-q>",      function ()
+    { "<c-q>", function()
         if vim.bo.filetype == 'qf' then
             vim.cmd.cclose()
         else
             vim.cmd.cwin()
         end
-    end,                           { desc = "[QF] Open quickfix window" } },
-    { "<leader>/",  ":silent lgrep! | lwindow<S-Left><S-Left>", { desc = "[QF] :lgrep, then open :lwin" } },
-    { "<c-c><c-n>", ":cnext<CR>",                              { desc = "[QF] Next quickfix item" } },
-    { "<c-c><c-p>", ":cprev<CR>",                              { desc = "[QF] Previous quickfix item" } },
-    { "<leader>O",  "<cmd>Oil<CR>",                            { desc = "Open oil" } },
+    end, { desc = "[QF] Open quickfix window" } },
+    { "<leader>/",  ":silent lgrep! | lwindow<S-Left><S-Left>", { desc = "[LL] :lgrep, then open :lwin" } },
+    { "<c-c><c-n>", ":cnext<CR>",                               { desc = "[QF] Next quickfix item" } },
+    { "<c-c><c-p>", ":cprev<CR>",                               { desc = "[QF] Previous quickfix item" } },
+    { "<leader>O",  "<cmd>Oil<CR>",                             { desc = "Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
             range = { vim.v.count1 }
         }, {})
-    end, { desc = "[TAG] go to [count] previous tag in the tag stack" } }
+    end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -279,20 +297,8 @@ local vShortcuts = {
     --}}}
     --treesitter{{{
     { "<leader>sr",      function() require "ssr".open() end },
-    { "<a-h>",           require("tree-climber").goto_parent },
-    { "<a-l>",           require("tree-climber").goto_child },
-    { "<a-j>",           require("tree-climber").goto_next },
-    { "<a-k>",           require("tree-climber").goto_prev },
     --}}}
-    -- chatbot{{{
-    { "DD",              ":ODocument<cr>" },
-    { "DC",              ":ChatBotComment<cr>" },
-    { "DG",              ":OGen<CR>" },
-    { "C",               ":M complete<CR>" },
-    -- }}}
     -- move code {{{
-    { "mj",              ":m '>+1<CR>gv=gv",                 { desc = "Move up" } },
-    { "mk",              ":m '<-2<CR>gv=gv",                 { desc = "Move down" } },
     { "<leader>r", function()
         require("sniprun").run("v")
     end }
@@ -333,16 +339,10 @@ end
 -- ]]
 --}}}
 
-vim.keymap.set("o", "O", "<esc>mzkddg`z")         --motion to delete above line
-vim.keymap.set("o", "o", "<esc>mzjddg`z")         --motion to delete below line
 vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
 
 vim.keymap.set("i", "<c-S-V>", "<c-r>+")
 vim.keymap.set("n", "<c-S-V>", "a<c-r>+<esc>")
-
-vim.keymap.set({ "o", "x" }, "gC", function()
-    require "various-textobjs".multiCommentedLines()
-end)
 
 vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()
