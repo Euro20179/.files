@@ -11,6 +11,8 @@ vim.ui.open = function(item)
     vim.system({ "linkhandler", item })
 end
 
+vim.ui.select = require "mini.pick".ui_select
+
 --conflicts with terminal color ansi codes
 vim.fn.setcellwidths({
     { 0xe5fa, 0xe6ac, 2 },

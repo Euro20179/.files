@@ -231,6 +231,33 @@ function OllamaDocument(cmdData)
     end)
 end
 
+function CreateSnippet()
+    local snip_prefixes = vim.fn.input({ prompt = "Prefixes (' ' seperated)> " })
+    if snip_prefixes == "" or snip_prefixes == nil then
+        return
+    end
+    local prefixes = vim.split(snip_prefixes, " ")
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_create_autocmd({"WinEnter", "BufWinEnter"}, {
+        buffer = buf,
+        command = "startinsert",
+        once = true
+    })
+    vim.api.nvim_create_autocmd("WinClosed", {
+        buffer = buf,
+    })
+    local float = vim.api.nvim_open_win(buf, true, {
+        relative = "win",
+        row = 0,
+        col = 0,
+        width = vim.fn.round(vim.api.nvim_win_get_width(0) / 2),
+        height = vim.fn.round(vim.api.nvim_win_get_height(0) / 2),
+        style = "minimal",
+        border = "single",
+        title = "Snippet body"
+    })
+end
+
 function GetLspNames ()
     local names = ""
     for _, lsp in ipairs(vim.lsp.get_clients()) do

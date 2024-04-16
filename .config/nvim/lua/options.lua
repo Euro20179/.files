@@ -14,6 +14,7 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.swapfile = false
 vim.opt.foldmethod = "marker"
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.scbk = 100
 vim.opt.tildeop = true
@@ -48,7 +49,11 @@ vim.opt.title = true
 vim.g.neovide_scroll_animation_length = 0.1
 vim.g.neovide_cursor_animation_length = 0
 
-vim.opt.grepprg = 'rg -n $*'
+-- New [default](https://github.com/neovim/neovim/commit/20b38677c22b0ff19ea54396c7718b5a8f410ed4)
+-- if rg is available!!
+-- `rg --vimgrep -uuu $*` /dev/null 2>&1
+-- the problem with this is that rg doesn't accept /dev/null v well
+vim.opt.grepprg = 'rg --vimgrep $*'
 
 vim.opt.wrap = false
 

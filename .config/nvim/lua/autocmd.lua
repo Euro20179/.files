@@ -13,16 +13,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     group = conf_group,
     callback = function()
         local ks = vim.keymap.set
-        ks("n", "gd", vim.lsp.buf.definition, { desc = "goto definition" })
+        ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {
-            { "<leader>fs", vim.lsp.buf.document_symbol,                     { desc = "[QF] document symbols" } },
-            { "gss",        vim.lsp.buf.document_symbol,                     { desc = "[QF] Document symbols" } },
-            { "gsw",        vim.lsp.buf.workspace_symbol,                    { desc = "[QF] Workspace symbols" } },
-            { "gsr",        vim.lsp.buf.references,                          { desc = "[QF] References" } },
-            { "gso",        vim.lsp.buf.outgoing_calls,                      { desc = "[QF] Outgoing calls" } },
-            { "gsi",        vim.lsp.buf.incoming_calls,                      { desc = "[QF] Incoming calls" } },
-            { "<leader>fS", function() vim.lsp.buf.workspace_symbol("") end, { desc = "[QF] Workspace symbols" } },
-            { "<leader>fr", vim.lsp.buf.references,                          { desc = "[QF] References" } },
+            { "<leader>fs", vim.lsp.buf.document_symbol,                     { desc = "[LSP] [QF] document symbols" } },
+            { "gss",        vim.lsp.buf.document_symbol,                     { desc = "[LSP] [QF] Document symbols" } },
+            { "gsw",        vim.lsp.buf.workspace_symbol,                    { desc = "[LSP] [QF] Workspace symbols" } },
+            { "gsr",        vim.lsp.buf.references,                          { desc = "[LSP] [QF] References" } },
+            { "gso",        vim.lsp.buf.outgoing_calls,                      { desc = "[LSP] [QF] Outgoing calls" } },
+            { "gsi",        vim.lsp.buf.incoming_calls,                      { desc = "[LSP] [QF] Incoming calls" } },
+            { "<leader>fS", function() vim.lsp.buf.workspace_symbol("") end, { desc = "[LSP] [QF] Workspace symbols" } },
+            { "<leader>fr", vim.lsp.buf.references,                          { desc = "[LSP] [QF] References" } },
             { "<leader>E", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics" } },
@@ -31,9 +31,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 local virt_text = vim.diagnostic.config().virtual_text
                 vim.diagnostic.config({ virtual_text = not virt_text })
             end, { desc = "Toggle virtual text" } },
-            { "<a-e>",     vim.diagnostic.open_float, { desc = "Show diagnostics" } },
+            { "<a-e>",     vim.diagnostic.open_float, { desc = "[LSP] Show diagnostics" } },
             --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
-            { "<leader>a", vim.lsp.buf.code_action,   { desc = "Select code action to perform" } },
+            { "<leader>a", vim.lsp.buf.code_action,   { desc = "[LSP] Select code action to perform" } },
             { "<leader>A", function()
                 local n = 0
                 vim.lsp.buf.code_action({
@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     end,
                     apply = true
                 })
-            end, { desc = "Perform first code action automatically" }
+            end, { desc = "[LSP] Perform first code action automatically" }
             },
             { "]D", function()
                 vim.diagnostic.goto_next()
@@ -55,12 +55,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     end,
                     apply = true
                 })
-            end, { desc = "Go to previous diagnostic error" }
+            end, { desc = "[LSP] Go to previous diagnostic error" }
             },
             { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
-                { desc = "Toggle inlay hints" } },
-            { "gK",     vim.diagnostic.open_float,                                        { desc = "Open diagnostic float" } },
-            { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "Go to type definition" } },
+                { desc = "[LSP] Toggle inlay hints" } },
+            { "gK",     vim.diagnostic.open_float,                                        { desc = "[LSP] Open diagnostic float" } },
+            { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
             { "[D", function()
                 vim.diagnostic.goto_prev({})
                 local n = 0
@@ -71,19 +71,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     end,
                     apply = true
                 })
-            end, { desc = "Go to next diagnostic error" }
+            end, { desc = "[LSP] Go to next diagnostic error" }
             },
             {
                 "<leader>=",
                 function()
                     vim.lsp.buf.format { async = true }
-                end, { desc = "Format code" }
+                end, { desc = "[LSP] Format code" }
             },
         }
         for _, value in ipairs(key_maps) do
             ks("n", value[1], value[2], value[3] or {})
         end
-        ks("i", "<c-s>", vim.lsp.buf.signature_help, { desc = "Show function signature" })
+        ks("i", "<c-s>", vim.lsp.buf.signature_help, { desc = "[LSP] Show function signature" })
     end
 })
 

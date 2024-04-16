@@ -78,7 +78,6 @@ require 'nvim-treesitter.configs'.setup {
             enable = true,
             keymaps = {
                 list_definitions = "gsD",
-                goto_definition = "gd",
                 goto_next_usage = "<A-n>",
                 goto_previous_usage = "<A-p>",
             }
@@ -90,7 +89,7 @@ require 'nvim-treesitter.configs'.setup {
             init_selection = "<leader>vn",
             node_incremental = 'gin',
             scope_incremental = "gis",
-            node_decremental = "gdn",
+            node_decremental = "gip",
         }
     },
     textobjects = {

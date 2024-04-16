@@ -56,7 +56,8 @@ cmp.setup({
                 calc = "[=]",
                 time = "%",
                 dynamic = "",
-                mdlink = "󰌷"
+                mdlink = "󰌷",
+                rg = "󰮗"
                 -- emoji = "E",
                 --rg = '[/]',
                 --look = '[Look]',
@@ -112,7 +113,8 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
         { name = "mdlink" },
-         { name = "cmp_ai" }
+        { name = "cmp_ai" },
+        { name = "rg" }
         -- { name = "emoji" },
         -- { name = "time" },
         --{

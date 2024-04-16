@@ -6,7 +6,7 @@
 # {{{
 #foot terminfo is broken for some reason
     #by broken i mean it doesn't exist
-[ $TERM = "foot" ] && export TERM=xterm-256color
+# [ $TERM = "foot" ] && export TERM=xterm-256color
 # }}}
 
 ###########
@@ -149,6 +149,7 @@ alias "wget=wget --no-hsts"
 alias 's=bookmarkfs search'
 alias "bc=bc -l"
 alias "ani=strack-cli"
+alias strack="$HOME/Programs/Coding\\ Projects/Python_things/strack-cli/main.py"
 alias "less=less -r"
 
 alias 'q=exit'

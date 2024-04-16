@@ -1,6 +1,14 @@
 local harpoon = require "harpoon"
 harpoon:setup()
 
+local function toggleQFWinType(opener, closer)
+    if vim.bo.filetype == "qf" then
+        opener()
+    else
+        closer()
+    end
+end
+
 local widgets = require "dap.ui.widgets"
 
 -- local moveline = require("moveline")
@@ -15,7 +23,7 @@ local macros = {}
 --Normal Mode{{{
 local nShortcuts = {
     --Macros {{{
-    { "<leader>ms", function ()
+    { "<leader>ms", function()
         local inp = vim.fn.input({ prompt = "register@name: " })
         if inp == "" then
             return
@@ -25,10 +33,10 @@ local nShortcuts = {
         local reg = dat[2]
         macros[name] = reg
     end, { desc = "[MACRO] Save macro" } },
-    { "<leader>mp", function ()
+    { "<leader>mp", function()
         local items = {}
         for k, v in pairs(macros) do
-            items[#items+1] = k .. "@" .. v .. " = " .. vim.fn.getreg(k)
+            items[#items + 1] = k .. "@" .. v .. " = " .. vim.fn.getreg(k)
         end
         vim.ui.select(items, { prompt = "Macro to play" }, function(macro)
             if macro == nil then
@@ -87,35 +95,61 @@ local nShortcuts = {
     --telescope {{{
     { "<leader>ej", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },
     { "<leader>ee", function() require "mini.extra".pickers.diagnostic({ scope = "all" }) end, { desc = "[TELESCOPE] diagnostics" } },
-    { "<leader>ft", function ()
+    { "<leader>ft", function()
         local tagStack = vim.fn.gettagstack(0)
         local items = {}
         for _, value in ipairs(tagStack.items) do
             local filename = vim.api.nvim_buf_get_name(value.bufnr)
-            items[#items+1] = {bufnr = value.bufnr, lnum = value.from[2], col = value.from[3], filename = filename}
+            items[#items + 1] = { bufnr = value.bufnr, lnum = value.from[2], col = value.from[3], filename = filename }
         end
         vim.fn.setloclist(0, items)
         vim.cmd.lwin()
-    end,                                             { desc = "[LL] tagstack" } },
-    { "<leader>fh", require "mini.pick".builtin.help,                                          { desc = "[TELESCOPE] help tags" } },
-    { "<leader>fb", function ()
+    end, { desc = "[LL] tagstack" } },
+    { "<leader>fg;", function()
+        local chgLst = vim.fn.getchangelist()[1]
+        local bufNr = vim.fn.bufnr()
+        local bufText = vim.api.nvim_buf_get_lines(bufNr, 0, vim.api.nvim_buf_line_count(bufNr), false)
+        for i, _ in pairs(chgLst) do
+            chgLst[i].bufnr = bufNr
+            chgLst[i].text = bufText[i]
+        end
+        vim.fn.setloclist(0, vim.fn.reverse(chgLst))
+        vim.cmd.lwin()
+    end },
+    { "<leader>fh", require "mini.pick".builtin.help,                       { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fb", function()
         local bufs = {}
         for _, bufno in ipairs(vim.api.nvim_list_bufs()) do
-            bufs[#bufs+1] = vim.api.nvim_buf_get_name(bufno) .. ":" .. bufno
+            if not vim.api.nvim_buf_is_loaded(bufno) then
+                goto continue
+            end
+            bufs[#bufs + 1] = vim.api.nvim_buf_get_name(bufno) .. ":" .. bufno
+            ::continue::
         end
-        vim.ui.select(bufs, {}, function (item)
+        vim.ui.select(bufs, {}, function(item)
+            if item == nil then
+                return
+            end
             local sp = vim.split(item, ":")
             vim.api.nvim_win_set_buf(0, tonumber(sp[1]) or 0)
         end)
-    end,                                              { desc = "[TELESCOPE] buffers" } },
-    { "<leader>fe", ':bdel<cr>:lua require"mini.pick".builtin.files()<cr>',                    { desc = "[TELESCOPE] find files (delete current buffer)" } },
-    { "<leader>ff", require "mini.pick".builtin.files,                                         { desc = "[TELESCOPE] find files" } },
+    end, { desc = "[TELESCOPE] buffers" } },
+    { "<leader>fe", ':bdel<cr>:lua require"mini.pick".builtin.files()<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
+    { "<leader>ff", require "mini.pick".builtin.files,                      { desc = "[TELESCOPE] find files" } },
     { "<leader>fF", function()
-        local t = require "telescope.builtin"
-        t.find_files({ hidden = true, no_ignore = true })
+        require "mini.pick".builtin.cli({
+            command = { "fd", "-I" },
+        })
+        -- require "mini.pick".builtin.files({ tool = "fd" }, {spawn_opts = "-I"})
     end, { desc = "[TELESCOPE] open any file, save current buffer in harpoon" } },
     { "<leader>f/", require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
-    { "<C-S-p>",    require "mini.extra".pickers.keymaps,                        { desc = "[TELESCOPE] keymap pallete" } },
+    { "<C-S-p>",    function ()
+        local keys = require "mini.extra".pickers.keymaps()
+        if keys == nil then
+            return
+        end
+        vim.api.nvim_feedkeys(keys.lhs, "n", true)
+    end,                        { desc = "[TELESCOPE] keymap pallete" } },
     { "<leader>fH", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
@@ -132,11 +166,11 @@ local nShortcuts = {
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():add() end },
-    { "<A-j>",        function() harpoon:list():select(1) end },
-    { "<A-k>",        function() harpoon:list():select(2) end },
-    { "<A-l>",        function() harpoon:list():select(3) end },
-    { "<A-;>",        function() harpoon:list():select(4) end },
-    { "<A-'>",        function() harpoon:list():select(5) end },
+    { "<A-j>",            function() harpoon:list():select(1) end },
+    { "<A-k>",            function() harpoon:list():select(2) end },
+    { "<A-l>",            function() harpoon:list():select(3) end },
+    { "<A-;>",            function() harpoon:list():select(4) end },
+    { "<A-'>",            function() harpoon:list():select(5) end },
     { "<leader>6",        function() harpoon:list():select(6) end },
     { "<leader>7",        function() harpoon:list():select(7) end },
     { "<leader>8",        function() harpoon:list():select(8) end },
@@ -173,11 +207,8 @@ local nShortcuts = {
     { gitLeader .. "c", function()
         require "neogit".open({ "commit" })
     end },
-    { gitLeader .. "D", function()
-        require("user.telescope").telescope_diff()
-    end },
     { gitLeader .. "d",       "<cmd>DiffviewOpen<cr>" },
-    { gitLeader .. gitLeader, "<cmd>Gitsigns toggle_deleted<cr>" },
+    { gitLeader .. gitLeader, "<cmd>Neogit<cr>" },
     { gitLeader .. "p", function()
         require "neogit".open({ "push" })
     end },
@@ -233,23 +264,23 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
+    { "<c-s-q>", function()
+        toggleQFWinType(vim.cmd.lwin, vim.cmd.lclose)
+    end, { desc = "[LL] Toggle location window" } },
     { "<c-q>", function()
-        if vim.bo.filetype == 'qf' then
-            vim.cmd.cclose()
-        else
-            vim.cmd.cwin()
-        end
+        toggleQFWinType(vim.cmd.cwin, vim.cmd.cclose)
     end, { desc = "[QF] Open quickfix window" } },
     { "<leader>/",  ":silent lgrep! | lwindow<S-Left><S-Left>", { desc = "[LL] :lgrep, then open :lwin" } },
     { "<c-c><c-n>", ":cnext<CR>",                               { desc = "[QF] Next quickfix item" } },
     { "<c-c><c-p>", ":cprev<CR>",                               { desc = "[QF] Previous quickfix item" } },
-    { "<leader>O",  "<cmd>Oil<CR>",                             { desc = "Open oil" } },
+    { "<leader>O",  "<cmd>Oil<CR>",                             { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
+    { "<c-m>", vim.snippet.exit, { desc = "[SNIPPET] exit" } }
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -260,15 +291,6 @@ end
 local iShortcuts = {
     -- Movement {{{
     { "<C-bs>",     "<C-w>" },
-    { "<C-g>$",     "<Esc>$a" },
-    { "<C-g>l",     "<Esc>la" },
-    { "<C-g>h",     "<Esc>ha" },
-    { "<C-g>0",     "<Esc>0i" },
-    { "<C-g>^",     "<Esc>^i" },
-    { "<C-g>b",     "<Esc>bi" },
-    { "<C-g>w",     "<Esc>wi" },
-    { "<C-g>B",     "<Esc>Bi" },
-    { "<C-g>W",     "<Esc>Wi" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
     -- }}}
@@ -280,10 +302,6 @@ end
 
 --Visual Mode{{{
 local vShortcuts = {
-    { "<c-l>",           "<C-w>l" },
-    { "<c-j>",           "<C-w>j" },
-    { "<c-h>",           "<C-w>h" },
-    { "<c-k>",           "<C-w>k" },
     { utilLeader .. "e", ":Exec<CR>" },
     -- copying {{{
     { "<leader>y",       "\"+y" },

@@ -93,8 +93,8 @@ add { source = "nvim-neorg/neorg",
         "nvim-neorg/lua-utils.nvim"
     }
 }
-add { source = "nvim-neorg/neorg-telescope" }
-add { source = "laher/neorg-exec" }
+
+add({ source = "lukas-reineke/cmp-rg" })
 
 aSetup({ source = "smjonas/inc-rename.nvim" }, later, "inc_rename", {})
 
