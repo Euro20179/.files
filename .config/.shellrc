@@ -96,8 +96,8 @@ export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icon
 # {{{
 export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
 export NEOFETCH_IMAGE=$(fd . "$SYSTEM_IMAGES/neofetch" | shuf | head -n1)
-export TODO_FILE="$HOME/Documents/TODO"
 export SHELL_LIB="$HOME/.local/lib/shell"
+export CLOUD="/home/cloud"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
@@ -148,7 +148,6 @@ alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 alias "wget=wget --no-hsts"
 alias 's=bookmarkfs search'
 alias "bc=bc -l"
-alias "ani=strack-cli"
 alias strack="$HOME/Programs/Coding\\ Projects/Python_things/strack-cli/main.py"
 alias "less=less -r"
 
@@ -202,7 +201,7 @@ alias rm="trash"
 #alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
 alias p='cd $(zoxide query -l "Coding Projects/" "/" | fzf)'
-alias "TODO=$EDITOR $TODO_FILE"
+alias "TODO=$EDITOR Documents/vimwiki/TODO.md"
 alias "ds=cd ~/Downloads"
 alias "dF=cd ~/Documents"
 alias "db=cd ~/Documents/bookmarks"

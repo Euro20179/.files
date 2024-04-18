@@ -20,7 +20,6 @@ require "mini.deps".now(function()
             },
             ["core.ui"] = {},
             ["core.ui.calendar"] = {},
-            ["external.exec"] = {},
             ["core.queries.native"] = {},
             ["core.integrations.treesitter"] = {},
         }

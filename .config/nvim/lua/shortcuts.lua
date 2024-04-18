@@ -1,14 +1,6 @@
 local harpoon = require "harpoon"
 harpoon:setup()
 
-local function toggleQFWinType(opener, closer)
-    if vim.bo.filetype == "qf" then
-        opener()
-    else
-        closer()
-    end
-end
-
 local widgets = require "dap.ui.widgets"
 
 -- local moveline = require("moveline")
@@ -82,16 +74,6 @@ local nShortcuts = {
         require "dap".continue()
     end, { desc = "[DAP] start session" } },
     -- }}}
-    --copy shortcuts {{{
-    { "<leader>p",  '"+p',                                                                     { desc = "paste from sys clipboard" } },
-    { "<leader>P",  '"+P',                                                                     { desc = "paste above from sys clipboard" } },
-    { "<leader>y",  '"+y',                                                                     { desc = "copy to sys clipboard" } },
-    { "<leader>Y",  '"+Y',                                                                     { desc = "copy line to sys clipboard" } },
-    { "<leader>d",  '"_d',                                                                     { desc = "delete to null register" } },
-    { "<leader>c",  '"_c',                                                                     { desc = "change to null register" } },
-    { "<leader>b",  "\"_",                                                                     { desc = "run on null register" } },
-    { "<leader>B",  "\"+",                                                                     { desc = "run on sys clipboard" } },
-    --}}}
     --telescope {{{
     { "<leader>ej", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },
     { "<leader>ee", function() require "mini.extra".pickers.diagnostic({ scope = "all" }) end, { desc = "[TELESCOPE] diagnostics" } },
@@ -175,28 +157,7 @@ local nShortcuts = {
     { "<leader>7",        function() harpoon:list():select(7) end },
     { "<leader>8",        function() harpoon:list():select(8) end },
     { "<leader>9",        function() harpoon:list():select(9) end },
-    { "<leader>S",        ':split | wincmd j<cr>',                { desc = "[WIN] Top/bottom split" } },
-    { "<leader>V",        ':vsplit | wincmd l<cr>',               { desc = "[WIN] Left/right split" } },
-    { "<leader>l",        ":tabnext<cr>",                         { desc = "[TAB] Next tab" } },
-    { "<leader>h",        ':tabprev<CR>',                         { desc = "[TAB] Previous tab" } },
-    { "<leader><c-l>",    ':bn<CR>',                              { desc = "Next buffer" } },
-    { "<leader><c-h>",    ':bp<CR>',                              { desc = "Previous buffer" } },
-    { "<leader>t",        ':tabnew<CR>',                          { desc = "[TAB] New tab" } },
-    { "<leader>q",        ':tabclose<cr>',                        { desc = "[TAB] Tab close" } },
-    { "<right>",          "<c-w>>",                               { desc = "[WIN] Grow horizontal" } },
-    { "<left>",           "<c-w><",                               { desc = "[WIN] Shrink horizontal" } },
-    { "<up>",             "<c-w>+",                               { desc = "[WIN] Grow vertical" } },
-    { "<down>",           "<c-w>-",                               { desc = "[WIN] shrink vertical" } },
     { "<leader>T",        function() GotoTerminalBuf() end },
-    { "<leader>vw", function()
-        vim.fn.chdir("~/Documents/vimwiki")
-        vim.api.nvim_cmd({
-            cmd = "e",
-            args = { "index.norg" }
-        }, {})
-    end
-    },
-    --}}}
     -- Git {{{
     { gitLeader .. "l",
         function()
@@ -224,15 +185,6 @@ local nShortcuts = {
     { "<A-f>s",          ":set foldmethod=syntax<cr>" },
     { "<A-f>m",          ':set foldmethod=marker<cr>' },
     { "<A-f>e",          ':set foldmethod=expr<cr>' },
-    { "<C-n>",           ':noh<CR>' },
-    { "<C-s>",           ':setlocal spell! spelllang=en_us<CR>' },
-    { "<A-s>",           ':syntax sync fromstart<CR>' },
-    --}}}
-    --normal movement {{{
-    { "<c-l>",           "<C-w>l" },
-    { "<c-j>",           "<C-w>j" },
-    { "<c-h>",           "<C-w>h" },
-    { "<c-k>",           "<C-w>k" },
     --}}}
     -- Util Functions {{{
     { utilLeader .. "e", ":Neorg exec cursor<CR>" },
@@ -264,15 +216,6 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<c-s-q>", function()
-        toggleQFWinType(vim.cmd.lwin, vim.cmd.lclose)
-    end, { desc = "[LL] Toggle location window" } },
-    { "<c-q>", function()
-        toggleQFWinType(vim.cmd.cwin, vim.cmd.cclose)
-    end, { desc = "[QF] Open quickfix window" } },
-    { "<leader>/",  ":silent lgrep! | lwindow<S-Left><S-Left>", { desc = "[LL] :lgrep, then open :lwin" } },
-    { "<c-c><c-n>", ":cnext<CR>",                               { desc = "[QF] Next quickfix item" } },
-    { "<c-c><c-p>", ":cprev<CR>",                               { desc = "[QF] Previous quickfix item" } },
     { "<leader>O",  "<cmd>Oil<CR>",                             { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
@@ -303,16 +246,6 @@ end
 --Visual Mode{{{
 local vShortcuts = {
     { utilLeader .. "e", ":Exec<CR>" },
-    -- copying {{{
-    { "<leader>y",       "\"+y" },
-    { "<leader>d",       "\"_d" },
-    { "<leader>c",       "\"_c" },
-    { "<leader>p",       "\"+p" },
-    -- }}}
-    -- indentation {{{
-    { "<",               "<gv" },
-    { ">",               ">gv" },
-    --}}}
     --treesitter{{{
     { "<leader>sr",      function() require "ssr".open() end },
     --}}}

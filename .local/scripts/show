@@ -1,0 +1,12 @@
+#!/bin/sh
+data=$(strack)
+stream_uri=$(echo "$data" | jq -r .stream_uri)
+name=$(echo "$data" | jq -r .name)
+echo "$name"
+if [ "$stream_uri" = "null" ]; then
+	case "$(strack is-anime $name)" in
+	true) stream_uri="$CLOUD/Anime/$name" ;;
+	false) stream_uri="$CLOUD/Shows/$name" ;;
+	esac
+fi
+mpv "$stream_uri"
