@@ -94,8 +94,6 @@ add { source = "nvim-neorg/neorg",
     }
 }
 
-add({ source = "lukas-reineke/cmp-rg" })
-
 aSetup({ source = "smjonas/inc-rename.nvim" }, later, "inc_rename", {})
 
 aSetup({ source = "sindrets/diffview.nvim" }, later, "diffview", {})
