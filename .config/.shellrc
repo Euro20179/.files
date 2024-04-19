@@ -239,7 +239,7 @@ audio_color="38;2;116;194;254"
 win_exe_color="38;2;24;163;0"
 document_color="38;2;0;187;255"
 pdf_color="38;2;220;0;0"
-compressed_color="38;2;100;0;0"
+compressed_color="38;2;255;140;140"
 c_color="48;2;0;0;211"
 shell_lang_color="48;2;160;168;0"
 markup_color="48;2;232;93;0"
@@ -251,7 +251,7 @@ spreadsheet_color="38;2;1;110;56"
 css_color="48;2;41;165;218"
 java_color="48;2;222;96;0m\033[1;38;2;0;205;255"
 
-export LS_COLORS="*.py=${py_color}:*-old=$old_color:*.old=$old_color:*.jpg=$img_color:*.jpeg=$img_color:*.png=$img_color:*.ico=$img_color:*.icon=$img_color:*.webp=$audio_color:*.mp4=$video_color:*.mkv=$video_color:*.m4v=$video_color:*.mov=$video_color:*.gif=$img_color:*.exe=$win_exe_color:*.bat=$shell_lang_color:*.flac=$audio_color:*.mp3=$audio_color:*.m4a=$audio_color:*.ogg=$audio_color:*.opus=$audio_color:*.wav=$audio_color:*.doc=$document_color:*.docx=$document_color:*.odf=$document_color:*.pdf=$pdf_color:*.7z=$compressed_color:*.gz=$compressed_color:*.rar=$compressed_color:*.bz2=$compressed_color:*.cpp=$c_color:*.hpp=$c_color:*.c=$c_color:*.h=$c_color:*.lock=$old_color:*.jar=$compressed_color:*.xf=$compressed_color:*.zsh=$shell_lang_color:*.sh=$shell_lang_color:*.html=$markup_color:*.xml=$markup_color:*.md=$markup_color:*.ps1=$shell_lang_color:*.js=$js_color:*.ts=$ts_color:*.ttf=$font_file_color:*.woff=$font_file_color:*.otf=$font_file_color:*.woff2=$font_file_color:*.htm=$markup_color:*.bash=$shell_lang_color:*.ppt=$powerpoint_color:*.xls=$spreadsheet_color:*.xlsx=$spreadsheet_color:*.ods=$spreadsheet_color:*.webm=$video_color:*.css=$css_color:*.scss=$css_color:*.java=$java_color:*.zip=$compressed_color:*.apikey=$document_color"
+export LS_COLORS="*.py=${py_color}:*-old=$old_color:*.old=$old_color:*.jpg=$img_color:*.jpeg=$img_color:*.png=$img_color:*.ico=$img_color:*.icon=$img_color:*.webp=$audio_color:*.mp4=$video_color:*.mkv=$video_color:*.m4v=$video_color:*.mov=$video_color:*.gif=$img_color:*.exe=$win_exe_color:*.bat=$shell_lang_color:*.flac=$audio_color:*.mp3=$audio_color:*.m4a=$audio_color:*.ogg=$audio_color:*.opus=$audio_color:*.wav=$audio_color:*.doc=$document_color:*.docx=$document_color:*.odf=$document_color:*.pdf=$pdf_color:*.7z=$compressed_color:*.gz=$compressed_color:*.rar=$compressed_color:*.bz2=$compressed_color:*.cpp=$c_color:*.hpp=$c_color:*.c=$c_color:*.h=$c_color:*.lock=$old_color:*.jar=$compressed_color:*.xf=$compressed_color:*.zsh=$shell_lang_color:*.sh=$shell_lang_color:*.html=$markup_color:*.xml=$markup_color:*.md=$markup_color:*.ps1=$shell_lang_color:*.js=$js_color:*.ts=$ts_color:*.ttf=$font_file_color:*.woff=$font_file_color:*.otf=$font_file_color:*.woff2=$font_file_color:*.htm=$markup_color:*.bash=$shell_lang_color:*.ppt=$powerpoint_color:*.xls=$spreadsheet_color:*.xlsx=$spreadsheet_color:*.ods=$spreadsheet_color:*.webm=$video_color:*.css=$css_color:*.scss=$css_color:*.java=$java_color:*.zip=$compressed_color:*.apikey=$document_color:*.zst=$compressed_color"
 
 unset py_color old_color img_color video_color audio_color win_exe_color document_color pdf_color\
     compressed_color c_color shell_lang_color markup_color js_color font_file_color powerpoint_color spreadsheet_color css_color java_color

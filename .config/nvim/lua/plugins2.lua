@@ -211,7 +211,7 @@ later(function ()
     require"ultimate-autopair".setup{}
 end)
 
-add { source = "file:///home/euro/Programs/GithubContribs/nvim-snippets" }
+add { source = "Euro20179/nvim-snippets" }
 setup(now, "nvim-snippets", {})
 
 aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
@@ -219,7 +219,8 @@ aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winbl
 add { source = "kevinhwang91/nvim-bqf" }
 add { source = "jbyuki/quickmath.nvim" }
 
-aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
+-- aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
+add{ source = "tpope/vim-fugitive" }
 
 add { source = "ThePrimeagen/refactoring.nvim" }
 later(function() require("refactoring").setup() end)
@@ -243,3 +244,5 @@ setup(later, "oatmeal", {
     backend = "ollama",
     model = "gemma:latest"
 })
+
+aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, now, "regedit", {})

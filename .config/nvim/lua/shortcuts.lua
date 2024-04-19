@@ -158,6 +158,7 @@ local nShortcuts = {
     { "<leader>8",        function() harpoon:list():select(8) end },
     { "<leader>9",        function() harpoon:list():select(9) end },
     { "<leader>T",        function() GotoTerminalBuf() end },
+    --}}}
     -- Git {{{
     { gitLeader .. "l",
         function()
@@ -223,11 +224,13 @@ local nShortcuts = {
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
-    { "<c-m>", vim.snippet.exit, { desc = "[SNIPPET] exit" } }
+    { "<c-m>", vim.snippet.exit, { desc = "[SNIPPET] exit" } },
+    { "<leader>R", ":Regedit! ", { desc = "[REGEDIT] edit a register" }},
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
 end
+--}}}
 --}}}
 
 -- Insert Mode{{{

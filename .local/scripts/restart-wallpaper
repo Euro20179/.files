@@ -1,12 +1,15 @@
 #!/bin/sh
 
-swww kill
-[ -e "/run/user/1000/swww.socket" ] && rm "/run/user/1000/swww.socket"
-swww-daemon & disown
+killall hyprpaper
+hyprpaper & disown
 
-[ -f "$SYSTEM_IMAGES/desktop.png" ] && swww img "$SYSTEM_IMAGES/desktop.png"
-for wallpaper in "$SYSTEM_IMAGES/desktop"*.png; do 
-    output="${wallpaper##*desktop}"
-    output="${output%.png}"
-    swww img "$wallpaper" -o "$output"
-done
+# swww kill
+# [ -e "/run/user/1000/swww.socket" ] && rm "/run/user/1000/swww.socket"
+# swww-daemon & disown
+#
+# [ -f "$SYSTEM_IMAGES/desktop.png" ] && swww img "$SYSTEM_IMAGES/desktop.png"
+# for wallpaper in "$SYSTEM_IMAGES/desktop"*.png; do 
+#     output="${wallpaper##*desktop}"
+#     output="${output%.png}"
+#     swww img "$wallpaper" -o "$output"
+# done

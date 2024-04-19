@@ -119,6 +119,10 @@ vnoremap <leader>p       "+p
 vnoremap < <gv
 vnoremap > >gv
 "}}}
+"Better pipe mnemonic{{{
+vnoremap \| !
+nnoremap \| !
+"}}}
 
 "It's honestly cleaner to do this in lua than viml
 lua <<EOF
