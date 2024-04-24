@@ -22,6 +22,7 @@ case "$link" in
     *.swf) flashplayer "$link" ;;
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     *.m3u?) mpv "$link" ;;
+    media://*) mpv "${link#media://}" ;;
     https://cdn.discordapp.com/attachments/*)
         tmp=$(mktemp)
         curl "$link" > "$tmp"

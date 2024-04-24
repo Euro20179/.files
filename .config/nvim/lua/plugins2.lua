@@ -216,7 +216,13 @@ setup(now, "nvim-snippets", {})
 
 aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
-add { source = "kevinhwang91/nvim-bqf" }
+aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
+    preview = {
+
+        winblend = 0
+    }
+})
+-- add { source = "kevinhwang91/nvim-bqf" }
 add { source = "jbyuki/quickmath.nvim" }
 
 -- aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})

@@ -2,6 +2,7 @@
 alias strack="$HOME/Programs/Coding\ Projects/Python_things/strack-cli/main.py"
 data=$(strack)
 stream_uri=$(echo "$data" | jq -r .stream_uri)
+stream_uri="${stream_uri#media://}"
 name=$(echo "$data" | jq -r .name)
 if [ "$stream_uri" = "null" ]; then
 	case "$(strack is-anime $name)" in

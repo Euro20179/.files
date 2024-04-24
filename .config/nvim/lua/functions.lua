@@ -277,6 +277,34 @@ vim.api.nvim_create_user_command("X", function (data)
     vim.cmd("term " .. args)
 end, {nargs = "*"})
 
+vim.api.nvim_create_user_command("Screenshot", function (data)
+    local text = vim.api.nvim_buf_get_lines(0, data.line1 - 1, data.line2, false)
+    local ext = data.fargs[1]
+    local oFileName = vim.fn.tempname()
+    local resp = vim.system({
+        "sss_code",
+        "-e", ext,
+        "-f", "png",
+        "-o", oFileName,
+        "-"
+    }, { stdin = text }):wait()
+    if resp.code ~= 0 then
+        vim.notify("Could not take screenshot", vim.log.levels.ERROR, {})
+    end
+    local pngDatFile = io.open(oFileName, "r")
+    if pngDatFile == nil then
+        vim.cmd.echoerr('"Could nott copy screenshot"')
+        vim.cmd.echom('"Saved screenshot in"', oFileName)
+        return
+    end
+    vim.fn.delete(oFileName)
+    local pngDat = pngDatFile:read("a")
+    pngDatFile:close()
+    vim.system({
+        "wl-copy"
+    }, { stdin = pngDat })
+end, { range = true, nargs = 1 })
+
 vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})

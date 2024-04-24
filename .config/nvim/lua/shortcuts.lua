@@ -224,8 +224,7 @@ local nShortcuts = {
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
-    { "<c-m>", vim.snippet.exit, { desc = "[SNIPPET] exit" } },
-    { "<leader>R", ":Regedit! ", { desc = "[REGEDIT] edit a register" }},
+    { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" }},
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -239,6 +238,7 @@ local iShortcuts = {
     { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
+    { "<c-w>", vim.snippet.exit, {desc = "[SNIPPET] exit"}}
     -- }}}
 }
 for _, map in ipairs(iShortcuts) do
@@ -278,7 +278,11 @@ end --}}}
 
 -- Terminal Mode {{{
 local tShortcuts = {
-    { "<c-\\><c-\\>", "<c-\\><c-n>" }
+    { "<c-\\><c-\\>", "<c-\\><c-n>" },
+    { "<c-h>", "<cmd>wincmd h<CR>" },
+    { "<c-l>", "<cmd>wincmd l<CR>" },
+    { "<c-k>", "<cmd>wincmd k<CR>" },
+    { "<c-j>", "<cmd>wincmd j<CR>" },
 }
 for _, map in ipairs(tShortcuts) do
     vim.keymap.set("t", map[1], map[2])
@@ -292,11 +296,6 @@ end
 --     nnoremenu PopUp.hi :lua print("hi")<cr>
 -- ]]
 --}}}
-
-vim.keymap.set("n", "dal", "<esc>mzkddg`zjddg`z") -- delete around line
-
-vim.keymap.set("i", "<c-S-V>", "<c-r>+")
-vim.keymap.set("n", "<c-S-V>", "a<c-r>+<esc>")
 
 vim.keymap.set({ "o", "x" }, "?", function()
     require "various-textobjs".diagnostic()

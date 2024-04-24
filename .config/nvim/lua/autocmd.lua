@@ -57,10 +57,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 })
             end, { desc = "[LSP] Go to previous diagnostic error" }
             },
-            { "<leader>K", function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
+            { "<leader>K", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(0), { bufnr = 0 }) end,
                 { desc = "[LSP] Toggle inlay hints" } },
             { "gK",     vim.diagnostic.open_float,                                        { desc = "[LSP] Open diagnostic float" } },
             { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
+            { "[e", function ()
+                vim.diagnostic.goto_prev({
+                    severity = vim.diagnostic.severity.ERROR
+                })
+            end, { desc = "[LSP] goto previous error" } },
+            { "]e", function ()
+                vim.diagnostic.goto_next({
+                    severity = vim.diagnostic.severity.ERROR
+                })
+            end, { desc = "[LSP] goto next error" } },
+            { "[w", function ()
+                vim.diagnostic.goto_prev({
+                    severity = vim.diagnostic.severity.WARN
+                })
+            end, { desc = "[LSP] goto previous error" } },
+            { "]w", function ()
+                vim.diagnostic.goto_next({
+                    severity = vim.diagnostic.severity.WARN
+                })
+            end, { desc = "[LSP] goto next error" } },
             { "[D", function()
                 vim.diagnostic.goto_prev({})
                 local n = 0

@@ -4,5 +4,5 @@ sort_by = "natural"
 
 [opener]
 open = [
-    {exec = 'linkhandler "$@"', desc = "Open"}
+    {run = 'linkhandler "$@"', desc = "Open"}
 ]

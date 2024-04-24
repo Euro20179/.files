@@ -123,6 +123,13 @@ vnoremap > >gv
 vnoremap \| !
 nnoremap \| !
 "}}}
+"paste from term {{{
+inoremap <c-s-v> <c-r>+
+nnoremap <c-s-v> a<c-r>+<esc>
+"}}}
+
+"Im tired of pressing ctrl-w and closing tabs
+inoremap <c-w> <nop>
 
 "It's honestly cleaner to do this in lua than viml
 lua <<EOF
