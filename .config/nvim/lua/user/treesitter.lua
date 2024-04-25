@@ -69,10 +69,7 @@ require 'nvim-treesitter.configs'.setup {
     },
     refactor = {
         smart_rename = {
-            enable = true,
-            keymaps = {
-                smart_rename = "grr"
-            }
+            enable = false,
         },
         navigation = {
             enable = true,
@@ -142,8 +139,8 @@ require 'nvim-treesitter.configs'.setup {
                 ["ii"] = "@conditional.inner",
                 ["al"] = "@loop.outer",
                 ["il"] = "@loop.inner",
-                ["is"] = "@block.inner",
-                ["as"] = "@block.outer",
+                ["i%"] = "@block.inner",
+                ["a%"] = "@block.outer",
                 ["i,"] = "@parameter.inner",
                 ["a,"] = "@parameter.outer",
                 ["i$"] = "@call.inner",

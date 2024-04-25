@@ -15,26 +15,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local ks = vim.keymap.set
         ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {
-            { "<leader>fs", vim.lsp.buf.document_symbol,                     { desc = "[LSP] [QF] document symbols" } },
-            { "gss",        vim.lsp.buf.document_symbol,                     { desc = "[LSP] [QF] Document symbols" } },
-            { "gsw",        vim.lsp.buf.workspace_symbol,                    { desc = "[LSP] [QF] Workspace symbols" } },
-            { "gsr",        vim.lsp.buf.references,                          { desc = "[LSP] [QF] References" } },
-            { "gso",        vim.lsp.buf.outgoing_calls,                      { desc = "[LSP] [QF] Outgoing calls" } },
-            { "gsi",        vim.lsp.buf.incoming_calls,                      { desc = "[LSP] [QF] Incoming calls" } },
-            { "<leader>fS", function() vim.lsp.buf.workspace_symbol("") end, { desc = "[LSP] [QF] Workspace symbols" } },
-            { "<leader>fr", vim.lsp.buf.references,                          { desc = "[LSP] [QF] References" } },
-            { "<leader>E", function()
+            { "<leader>fs", vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] document symbols" } },
+            { "gls",        vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
+            { "glw",        vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
+            { "glr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] References" } },
+            { "glo",        vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
+            { "gli",        vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
+            { "glm",        vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
+            { "<leader>ea", function()
                 vim.diagnostic.setqflist()
-            end, { desc = "[QF] Diagnostics" } },
-            { "<leader>r", ":IncRename ",             { desc = "Incremental rename" } },
+            end, { desc = "[QF] Diagnostics ALL" } },
+            { "<leader>ee", function()
+                vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
+            end, { desc = "[QF] Diagnostics ERROR" } },
+            { "<leader>ew", function()
+                vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.WARN })
+            end, { desc = "[QF] Diagnostics WARN" } },
+            { "<leader>ei", function()
+                vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.INFO })
+            end, { desc = "[QF] Diagnostics INFO" } },
+            { "<leader>eh", function()
+                vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.HINT })
+            end, { desc = "[QF] Diagnostics HINT" } },
+            { "crn",   vim.lsp.buf.rename,        { desc = "[LSP] rename" } },
             { "<leader>el", function()
                 local virt_text = vim.diagnostic.config().virtual_text
                 vim.diagnostic.config({ virtual_text = not virt_text })
-            end, { desc = "Toggle virtual text" } },
-            { "<a-e>",     vim.diagnostic.open_float, { desc = "[LSP] Show diagnostics" } },
-            --{ "glh",       vim.lsp.buf.hover }, commenting out to force myself to use K
-            { "<leader>a", vim.lsp.buf.code_action,   { desc = "[LSP] Select code action to perform" } },
-            { "<leader>A", function()
+            end, { desc = "[LSP] Toggle virtual text" } },
+            { "<a-e>", vim.diagnostic.open_float, { desc = "[LSP] Show diagnostics" } },
+            { "cra",   vim.lsp.buf.code_action,   { desc = "[LSP] Select code action to perform" } },
+            { "crA", function()
                 local n = 0
                 vim.lsp.buf.code_action({
                     filter = function()
@@ -61,22 +71,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 { desc = "[LSP] Toggle inlay hints" } },
             { "gK",     vim.diagnostic.open_float,                                        { desc = "[LSP] Open diagnostic float" } },
             { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
-            { "[e", function ()
+            { "[e", function()
                 vim.diagnostic.goto_prev({
                     severity = vim.diagnostic.severity.ERROR
                 })
             end, { desc = "[LSP] goto previous error" } },
-            { "]e", function ()
+            { "]e", function()
                 vim.diagnostic.goto_next({
                     severity = vim.diagnostic.severity.ERROR
                 })
             end, { desc = "[LSP] goto next error" } },
-            { "[w", function ()
+            { "[w", function()
                 vim.diagnostic.goto_prev({
                     severity = vim.diagnostic.severity.WARN
                 })
             end, { desc = "[LSP] goto previous error" } },
-            { "]w", function ()
+            { "]w", function()
                 vim.diagnostic.goto_next({
                     severity = vim.diagnostic.severity.WARN
                 })

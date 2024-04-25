@@ -75,8 +75,7 @@ local nShortcuts = {
     end, { desc = "[DAP] start session" } },
     -- }}}
     --telescope {{{
-    { "<leader>ej", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },
-    { "<leader>ee", function() require "mini.extra".pickers.diagnostic({ scope = "all" }) end, { desc = "[TELESCOPE] diagnostics" } },
+    { "<leader>fj", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },
     { "<leader>ft", function()
         local tagStack = vim.fn.gettagstack(0)
         local items = {}

@@ -3,6 +3,8 @@
 "OPTIONS{{{
 let g:mapleader = " "
 
+set list listchars=extends:❯,precedes:❮
+
 set nocp
 
 set lazyredraw
@@ -78,18 +80,23 @@ nnoremap <leader>b "_
 nnoremap <leader>B "+
 "}}}
 "Buffer/window shortcuts{{{
-nnoremap <leader>S <CMD>split \| wincmd j<CR>
-nnoremap <leader>V <CMD>vsplit \| wincmd l<CR>
-nnoremap <leader>l        <CMD>tabnext<cr>
-nnoremap <leader>h        <CMD>tabprev<CR>
-nnoremap <leader><c-l>    <CMD>bn<CR>'
-nnoremap <leader><c-h>    <CMD>bp<CR>
-nnoremap <leader>t        <CMD>tabnew<CR>
-nnoremap <leader>q        <CMD>tabclose<cr>
-nnoremap <right>          <c-w>>
-nnoremap <left>           <c-w><
-nnoremap <up>             <c-w>+
-nnoremap <down>           <c-w>-
+nnoremap  <leader>S      <CMD>split \|  wincmd  j<CR>
+nnoremap  <leader>V      <CMD>vsplit \|  wincmd  l<CR>
+nnoremap  ]t             <CMD>tabnext<CR>               
+nnoremap  [t             <CMD>tabprev<CR>               
+nnoremap  ]b             <CMD>bn<CR>'                   
+nnoremap  [b             <CMD>bp<CR>                    
+nnoremap  ]q             <CMD>cnext<CR>
+nnoremap  [q             <CMD>cprev<CR>
+nnoremap  ]l             <CMD>lnext<CR>
+nnoremap  [l             <CMD>lprev<CR>
+nnoremap  <leader>t      <CMD>tabnew<CR>                
+nnoremap  <leader>q      <CMD>tabclose<cr>              
+nnoremap  <right>        <c-w>>                         
+nnoremap  <left>         <c-w><                         
+nnoremap  <up>           <c-w>+                         
+nnoremap  <down>         <c-w>-                         
+
 
 funct <SID>navigateToVimWiki()
     call chdir(expand("~/Documents/vimwiki"))
@@ -130,6 +137,13 @@ nnoremap <c-s-v> a<c-r>+<esc>
 
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>
+
+"When entering cmdline toggle relativenumber
+augroup relnutoggle
+    au!
+    autocmd CmdlineEnter * set nornu | redraw
+    autocmd CmdlineLeave * set rnu | redraw
+augroup END
 
 "It's honestly cleaner to do this in lua than viml
 lua <<EOF

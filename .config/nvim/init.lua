@@ -1,6 +1,6 @@
 vim.loader.enable()
-local CONFIG_DIR = vim.fn.getenv("XDG_CONFIG_HOME")
-vim.cmd.source(CONFIG_DIR .. "/vim/.vimrc")
+local VIM_CONFIG_DIR = vim.fn.getenv("XDG_CONFIG_HOME")
+vim.cmd.source(VIM_CONFIG_DIR .. "/vim/.vimrc")
 
 require 'functions'
 require 'options'

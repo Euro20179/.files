@@ -103,9 +103,9 @@ function Color(scheme)
     vim.api.nvim_set_hl(0, "User5", { link = "Error" })
     vim.api.nvim_set_hl(0, "User6", { link = "DiagnosticWarning" })
 
-    -- vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
-    vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
-    vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
+    vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
+    -- vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
 
     --better quickfix{{{
     vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
