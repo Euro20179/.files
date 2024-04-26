@@ -136,14 +136,6 @@ local nShortcuts = {
     --Viewers {{{
     { "<leader>eu", "<cmd>lua require('undotree').toggle()<cr>" },
     { "<leader>n",  require 'oil'.toggle_float },
-    { "gO", function()
-        if vim.g._outline_cmd then
-            vim.cmd(vim.g._outline_cmd)
-        else
-            --fallback
-            vim.cmd [[SymbolsOutline]]
-        end
-    end, { desc = "symbols outline [OR] table of contents" } },
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():add() end },

@@ -10,7 +10,7 @@ export HISTFILE=~/.local/share/zsh_history
 
 export WORDCHARS="*?[]~=&;!#$%^(){}<>"
 
-setopt inc_append_history share_history
+setopt inc_append_history share_history EXTENDED_GLOB
 
 unsetopt BEEP
 

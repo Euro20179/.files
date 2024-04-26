@@ -15,13 +15,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local ks = vim.keymap.set
         ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {
-            { "<leader>fs", vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] document symbols" } },
-            { "gls",        vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
-            { "glw",        vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
-            { "glr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] References" } },
-            { "glo",        vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
-            { "gli",        vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
-            { "glm",        vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
+            { "gO",        vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
+            { "gsw",        vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
+            { "gsr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] References" } },
+            { "gso",        vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
+            { "gsi",        vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
+            { "gsm",        vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
             { "<leader>ea", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics ALL" } },
@@ -69,7 +68,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
             { "<leader>K", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(0), { bufnr = 0 }) end,
                 { desc = "[LSP] Toggle inlay hints" } },
-            { "gK",     vim.diagnostic.open_float,                                        { desc = "[LSP] Open diagnostic float" } },
+            { "gK",     "<c-w>d",                                        { desc = "[LSP] Open diagnostic float", remap = true} },
             { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
             { "[e", function()
                 vim.diagnostic.goto_prev({
@@ -92,7 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 })
             end, { desc = "[LSP] goto next error" } },
             { "[D", function()
-                vim.diagnostic.goto_prev({})
+                vim.diagnostic.goto_prev()
                 local n = 0
                 vim.lsp.buf.code_action({
                     filter = function(_)

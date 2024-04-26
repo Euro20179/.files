@@ -40,6 +40,7 @@ local configs = {
     f = "~/.config/foot/foot.ini",
     s = "~/.config/.shellrc",
     z = "~/.config/.zshrc",
+    v = "~/.config/vim/.vimrc",
     wl = "~/.config/wlinit"
 }
 local name_regex = vim.regex("\\(\\[\\)\\@<=.*\\(\\]\\)\\@=")
