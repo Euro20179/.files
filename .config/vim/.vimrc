@@ -1,3 +1,4 @@
+#!/bin/nvim -S
 "The point of this file is to be usable in vim and neovim
 
 "OPTIONS{{{

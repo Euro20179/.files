@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local key_maps = {
             { "gO",        vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
             { "gsw",        vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
-            { "gsr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] References" } },
             { "gso",        vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
             { "gsi",        vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
             { "gsm",        vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
@@ -36,7 +35,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "<leader>eh", function()
                 vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.HINT })
             end, { desc = "[QF] Diagnostics HINT" } },
-            { "crn",   vim.lsp.buf.rename,        { desc = "[LSP] rename" } },
             { "<leader>el", function()
                 local virt_text = vim.diagnostic.config().virtual_text
                 vim.diagnostic.config({ virtual_text = not virt_text })
@@ -112,7 +110,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         for _, value in ipairs(key_maps) do
             ks("n", value[1], value[2], value[3] or {})
         end
-        ks("i", "<c-s>", vim.lsp.buf.signature_help, { desc = "[LSP] Show function signature" })
     end
 })
 

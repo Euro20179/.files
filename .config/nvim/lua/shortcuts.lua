@@ -11,7 +11,6 @@ local gitLeader = "<M-g>"
 local dapLeader = "<M-d>"
 
 local macros = {}
-
 --Normal Mode{{{
 local nShortcuts = {
     --Macros {{{
@@ -101,7 +100,7 @@ local nShortcuts = {
     { "<leader>fb", function()
         local bufs = {}
         for _, bufno in ipairs(vim.api.nvim_list_bufs()) do
-            if not vim.api.nvim_buf_is_loaded(bufno) then
+            if not vim.api.nvim_buf_is_valid(bufno) then
                 goto continue
             end
             bufs[#bufs + 1] = vim.api.nvim_buf_get_name(bufno) .. ":" .. bufno
@@ -112,7 +111,9 @@ local nShortcuts = {
                 return
             end
             local sp = vim.split(item, ":")
-            vim.api.nvim_win_set_buf(0, tonumber(sp[1]) or 0)
+            vim.schedule(function ()
+                vim.api.nvim_win_set_buf(0, tonumber(sp[2]))
+            end)
         end)
     end, { desc = "[TELESCOPE] buffers" } },
     { "<leader>fe", ':bdel<cr>:lua require"mini.pick".builtin.files()<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
@@ -135,7 +136,7 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>eu", "<cmd>lua require('undotree').toggle()<cr>" },
-    { "<leader>n",  require 'oil'.toggle_float },
+    -- { "<leader>n",  require 'oil'.toggle_float },
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():add() end },

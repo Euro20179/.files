@@ -122,3 +122,4 @@ end
 
 --Color("tokyonight-moon")
 Color("catppuccin-macchiato")
+-- Color("kanagawa")

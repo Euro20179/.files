@@ -72,6 +72,12 @@ add { source = "catppuccin/nvim" }
 
 add { source = "ThePrimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
+-- aSetup({ source = "JonasLeonhard/broil", depends = { {
+--     source = "nvim-telescope/telescope-fzf-native.nvim",
+--     pre_install = "make",
+--     pre_checkout = "make"
+-- }} }, now, "broil", {})
+
 aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
     default_file_explorer = true,
     view_options = {
