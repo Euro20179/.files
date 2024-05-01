@@ -59,7 +59,7 @@ for _, name in ipairs({
 end
 
 add { source = "mfussenegger/nvim-dap" }
-add { source = "mxsdev/nvim-dap-vscode-js" }
+-- add { source = "mxsdev/nvim-dap-vscode-js" }
 add { source = "rcarriga/nvim-dap-ui" }
 add { source = "nvim-neotest/nvim-nio" }
 --}}}
@@ -70,7 +70,7 @@ add { source = "flazz/vim-colorschemes" }
 add { source = "folke/tokyonight.nvim" }
 add { source = "catppuccin/nvim" }
 
-add { source = "ThePrimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
+add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
 -- aSetup({ source = "JonasLeonhard/broil", depends = { {
 --     source = "nvim-telescope/telescope-fzf-native.nvim",
@@ -214,9 +214,9 @@ end)
 -- end)
 
 add { source = "altermo/ultimate-autopair.nvim" }
-later(function ()
-    require"ultimate-autopair.core".modes = {'i'}
-    require"ultimate-autopair".setup{}
+later(function()
+    require "ultimate-autopair.core".modes = { 'i' }
+    require "ultimate-autopair".setup {}
 end)
 
 add { source = "Euro20179/nvim-snippets" }
@@ -234,7 +234,7 @@ aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
 add { source = "jbyuki/quickmath.nvim" }
 
 -- aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
-add{ source = "tpope/vim-fugitive" }
+add { source = "tpope/vim-fugitive" }
 
 add { source = "ThePrimeagen/refactoring.nvim" }
 later(function() require("refactoring").setup() end)
@@ -244,15 +244,6 @@ aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
     dim = true
 })
 
-aSetup({ source = "MeanderingProgrammer/markdown.nvim" }, later, "render-markdown", {
-    headings = {
-        "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 ",
-    },
-    bullets = {
-        "•", "∘", "◆", "⬦"
-    }
-})
-
 add { source = "dustinblackman/oatmeal.nvim" }
 setup(later, "oatmeal", {
     backend = "ollama",
@@ -260,3 +251,30 @@ setup(later, "oatmeal", {
 })
 
 aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, now, "regedit", {})
+
+-- aSetup({ source = "huggingface/llm.nvim" }, later, "llm", {
+--     backend = "ollama",
+--     model = "llama3:latest",
+--     url = "http://localhost:11434/api/generate",
+-- })
+
+add { source = "fynnfluegge/monet.nvim" }
+aSetup({
+    source = "folke/noice.nvim",
+    depends = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify"
+    }
+}, later, "noice", {
+        messages = {
+            enabled = false
+        },
+        lsp = {
+            hover = {
+                enabled = false
+            },
+            signature = {
+                enabled = false
+            }
+        }
+})

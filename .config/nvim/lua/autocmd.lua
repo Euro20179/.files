@@ -12,6 +12,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("LspAttach", {
     group = conf_group,
     callback = function()
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+            vim.lsp.handlers.hover, {
+                border = "single",
+                title = "hover"
+            }
+        )
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+            vim.lsp.handlers.signature_help, {
+                border = "single",
+                title = "signature"
+            }
+        )
+
+        vim.diagnostic.config({
+            float = {
+                border = "single",
+                title = "diagnostic"
+            }
+        })
+
         local ks = vim.keymap.set
         ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {

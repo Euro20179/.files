@@ -34,3 +34,9 @@ local right = '%2*%{&filetype} '
 local center = '%3*%{v:lua.GetLspNames()}%*'
 
 vim.opt.statusline = left .. '%=' .. center .. '%=' .. right
+
+vim.diagnostic.config({
+    float = {
+        border = "single"
+    }
+})

@@ -85,7 +85,7 @@ cmp.setup({
         ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ['<c-l>'] = cmp.mapping.confirm(),
         ["<tab>"] = cmp.mapping(function(fallback)
-            local jumpable = vim.snippet.jumpable(1)
+            local jumpable = vim.snippet.active({ direction = 1 })
             if jumpable ~= 0 and jumpable ~= nil and jumpable ~= false then
                 vim.snippet.jump(1)
             elseif vim.snippet.active() then
@@ -95,7 +95,7 @@ cmp.setup({
             end
         end),
         ["<s-tab>"] = cmp.mapping(function(fallback)
-            if vim.snippet.jumpable(-1) then
+            if vim.snippet.active({ direction = -1 }) then
                 vim.snippet.jump(-1)
             elseif vim.snippet.active() then
                 vim.snippet.exit()

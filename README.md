@@ -12,9 +12,12 @@ The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
     - By far the best lightweight terminal,
 - colorscheme: [catppuccin](https://github.com/catppuccin/catppuccin)
     - The best colorscheme
+- fetch program: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 
-Very epic Desktop
-![Screenshot](./Pictures/system-images/dotfiles.png)
+
+## New screenshots
+Very Epic desktop
+![Screenshot](./Pictures/system-images/dotfiles4.png)
 
 Very epic calculator
 ![Screenshot](./Pictures/system-images/dotfiles-calc.png)

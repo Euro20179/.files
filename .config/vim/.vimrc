@@ -1,14 +1,23 @@
 #!/bin/nvim -S
 "The point of this file is to be usable in vim and neovim
 
+"vim compatible colorscheme
+color evening
+
+"syntax disabled by default in vim
+syntax enable
+
 "OPTIONS{{{
 let g:mapleader = " "
 
-set list listchars=extends:❯,precedes:❮
+set list listchars=tab:.\ 
 
 set nocp
 
-set lazyredraw
+if !has("nvim")
+    "messes up noice.nvim
+    set lazyredraw
+endif
 
 set scrolloff=3
 
@@ -35,8 +44,6 @@ set display+=uhex
 set formatoptions=jql
 
 set cursorline
-
-set fillchars=eob:󰅖
 
 "fixes weird bug with Telescope help_menu tags not being sorted and lazy complaining
 set tagcase=ignore
@@ -138,6 +145,7 @@ nnoremap <c-s-v> a<c-r>+<esc>
 
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>
+inoremap <c-backspace> <c-w>
 
 "When entering cmdline toggle relativenumber
 augroup relnutoggle
@@ -146,7 +154,6 @@ augroup relnutoggle
     autocmd CmdlineLeave * set rnu | redraw
 augroup END
 
-"{ 0xf0001, 0xf1af0, 2 }, conflicts with 'fillchars'
 call setcellwidths([
     \ [ 0xe5fa, 0xe6ac, 2 ],
     \ [ 0xea60, 0xebeb, 2 ],
@@ -165,7 +172,8 @@ call setcellwidths([
     \ [ 0xe300, 0xe3e3, 2 ],
     \ [ 0xe200, 0xe2a9, 2 ],
     \ [ 0xf000, 0xf2e0, 2 ],
-    \ [ 0xe700, 0xe7c5, 2 ]
+    \ [ 0xe700, 0xe7c5, 2 ],
+    \ [ 0xf0001, 0xf1af0, 2 ],
 \ ])
 
 if has("nvim")

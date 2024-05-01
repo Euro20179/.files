@@ -1,9 +1,5 @@
 vim.bo.equalprg = "prettier --parser markdown"
 
-if not vim.fn.execute("pwd"):match("Documents/vimwiki") then
-    vim.wo.conceallevel = 0
-end
-
 vim.api.nvim_set_keymap("n", "<Leader>tf", ':lua require("tablemd").format()<cr>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<Leader>tc", ':lua require("tablemd").insertColumn(false)<cr>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<Leader>td", ':lua require("tablemd").deleteColumn()<cr>', { noremap = true })

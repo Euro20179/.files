@@ -107,6 +107,10 @@ lspconfig['html'].setup{
 lspconfig['cssls'].setup{
     capabilities = capabilities
 }
+
+lspconfig['jsonls'].setup{
+    capabilities = capabilities
+}
 -- lspconfig['ltex'].setup{}
 -- lspconfig.vimls.setup{
 --   capabilities = capabilities,

@@ -6,6 +6,7 @@ require 'functions'
 require 'options'
 -- require 'init_lazy'
 require "plugins2"
+-- require"plugins3"
 require 'snippets'
 require 'shortcuts'
 require 'autocmd'
@@ -14,6 +15,9 @@ require 'filetypes'
 require 'user.init'
 require 'colorscheme'
 require "globals-setup"
+
+--sometimes lsp doesnt' start for some reason?
+vim.cmd[[LspStart]]
 
 -- require "discord".setup {
 --     token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord" )[1],
