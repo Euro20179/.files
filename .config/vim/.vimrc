@@ -150,8 +150,8 @@ inoremap <c-backspace> <c-w>
 "When entering cmdline toggle relativenumber
 augroup relnutoggle
     au!
-    autocmd CmdlineEnter * set nornu | redraw
-    autocmd CmdlineLeave * set rnu | redraw
+    autocmd CmdlineEnter * if &filetype != "help" | set nornu | redraw | endif
+    autocmd CmdlineLeave * if &filetype != "help" | set rnu | redraw | endif
 augroup END
 
 call setcellwidths([

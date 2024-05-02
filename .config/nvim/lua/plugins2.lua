@@ -226,7 +226,6 @@ aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winbl
 
 aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
     preview = {
-
         winblend = 0
     }
 })
@@ -259,22 +258,5 @@ aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/reg
 -- })
 
 add { source = "fynnfluegge/monet.nvim" }
-aSetup({
-    source = "folke/noice.nvim",
-    depends = {
-        "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify"
-    }
-}, later, "noice", {
-        messages = {
-            enabled = false
-        },
-        lsp = {
-            hover = {
-                enabled = false
-            },
-            signature = {
-                enabled = false
-            }
-        }
-})
+
+add { source = "rcarriga/nvim-notify" }
