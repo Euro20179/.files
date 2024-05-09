@@ -1,4 +1,4 @@
 #!/bin/sh
 
-librewolf -P default-default "$@"
+exec librewolf -P default-default "$@"
 # firefox-developer-edition -P default-release "$@"

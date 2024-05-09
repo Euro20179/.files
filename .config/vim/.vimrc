@@ -1,7 +1,7 @@
 #!/bin/nvim -S
 "The point of this file is to be usable in vim and neovim
 
-"vim compatible colorscheme
+"vim compatible default colorscheme
 color evening
 
 "syntax disabled by default in vim
@@ -14,10 +14,7 @@ set list listchars=tab:.\
 
 set nocp
 
-if !has("nvim")
-    "messes up noice.nvim
-    set lazyredraw
-endif
+set lazyredraw
 
 set scrolloff=3
 
@@ -146,6 +143,11 @@ nnoremap <c-s-v> a<c-r>+<esc>
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>
 inoremap <c-backspace> <c-w>
+
+if exists(":term")
+    "Shift space can cause the line to clear for some reason (very annoying)
+    tnoremap <S-Space> <space>
+endif
 
 "When entering cmdline toggle relativenumber
 augroup relnutoggle

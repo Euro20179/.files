@@ -230,7 +230,7 @@ local iShortcuts = {
     { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-w>", vim.snippet.exit, {desc = "[SNIPPET] exit"}}
+    { "<c-w>", vim.snippet.stop, {desc = "[SNIPPET] exit"}}
     -- }}}
 }
 for _, map in ipairs(iShortcuts) do

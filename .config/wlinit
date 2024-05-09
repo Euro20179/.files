@@ -32,8 +32,9 @@ restart-wallpaper
 
 dbus-update-activation-environment --systemd --all
 
-fcitx5 -d & disown
-#
+# killall fcitx5
+# fcitx5 -d & disown
+
 hyprland-autoname-workspaces & disown
 
 #needs manual intervention

@@ -29,6 +29,7 @@ lspconfig['elixirls'].setup{
 }
 
 lspconfig["kotlin_language_server"].setup {
+    capabilities = capabilities
 }
 
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
