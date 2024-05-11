@@ -260,3 +260,11 @@ aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/reg
 add { source = "fynnfluegge/monet.nvim" }
 
 add { source = "rcarriga/nvim-notify" }
+
+aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
+    hi = {
+        fg = "#f4b8e4"
+    }
+})
+
+add { source = "vim-scripts/vis" }

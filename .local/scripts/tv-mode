@@ -42,9 +42,9 @@ set.hyprland() {
 	else
 		notify-send -c tv-mode "TV MODE" "ON"
 		pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
+		hyprctl keyword monitor DP-1,disable
 		hyprctl keyword monitor HDMI-A-1,disable
 		hyprctl keyword monitor DP-2,preferred,0x0,1.5
-		hyprctl keyword monitor DP-1,disable
 		touch "$state_file"
         sleep 1
 		swww init

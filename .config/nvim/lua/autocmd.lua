@@ -36,10 +36,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {
             { "gO",        vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
-            { "gsw",        vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
-            { "gso",        vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
-            { "gsi",        vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
-            { "gsm",        vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
+            { "gsw",       vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
+            { "gso",       vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
+            { "gsi",       vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
+            { "gsm",       vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
+            { "gr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] Symbol References" } },
+            { "<leader>r", vim.lsp.buf.rename,           { desc = "[LSP] Rename Symbol" } },
             { "<leader>ea", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics ALL" } },
@@ -86,7 +88,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
             { "<leader>K", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(0), { bufnr = 0 }) end,
                 { desc = "[LSP] Toggle inlay hints" } },
-            { "gK",     "<c-w>d",                                        { desc = "[LSP] Open diagnostic float", remap = true} },
+            { "gK",     "<c-w>d",                                                         { desc = "[LSP] Open diagnostic float", remap = true } },
             { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
             { "[e", function()
                 vim.diagnostic.goto_prev({
@@ -130,6 +132,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         for _, value in ipairs(key_maps) do
             ks("n", value[1], value[2], value[3] or {})
         end
+
+        ks("i", "<c-s>", vim.lsp.buf.signature_help, { desc = "[LSP] Signature help" })
     end
 })
 

@@ -120,7 +120,7 @@ function Color(scheme)
     end
 end
 
---Color("tokyonight-moon")
+Color("tokyonight-moon")
 -- Color("catppuccin-macchiato")
-Color("monet")
+-- Color("monet")
 -- Color("kanagawa")
