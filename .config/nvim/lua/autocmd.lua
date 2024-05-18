@@ -36,10 +36,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {
             { "gO",        vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
-            { "gsw",       vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
-            { "gso",       vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
-            { "gsi",       vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
-            { "gsm",       vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
+            { "glw",       vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
+            { "glo",       vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
+            { "gli",       vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
+            { "glm",       vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
             { "gr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] Symbol References" } },
             { "<leader>r", vim.lsp.buf.rename,           { desc = "[LSP] Rename Symbol" } },
             { "<leader>ea", function()

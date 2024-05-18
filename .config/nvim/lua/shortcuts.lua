@@ -72,6 +72,7 @@ local nShortcuts = {
         require "dap".session()
         require "dap".continue()
     end, { desc = "[DAP] start session" } },
+    { dapLeader .. "o", require"dapui".toggle, { desc = "[DAPUI] toggle" } },
     -- }}}
     --telescope {{{
     { "<leader>fj", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },

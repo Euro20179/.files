@@ -42,7 +42,7 @@ add {
 add { source = "nushell/tree-sitter-nu" }
 add { source = "nvim-treesitter/nvim-treesitter-refactor" }
 
-add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
+-- add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 -- }}}
 
 --LSP+DAP{{{
@@ -60,7 +60,7 @@ end
 
 add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
-add { source = "rcarriga/nvim-dap-ui" }
+aSetup({ source = "rcarriga/nvim-dap-ui" }, later, "dapui", {})
 add { source = "nvim-neotest/nvim-nio" }
 --}}}
 

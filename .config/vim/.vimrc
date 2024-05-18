@@ -4,8 +4,11 @@
 "vim compatible default colorscheme
 color evening
 
-"syntax disabled by default in vim
-syntax enable
+"vim bad defaults
+if !has("nvim")
+    syntax enable
+    set mouse=a
+endif
 
 "OPTIONS{{{
 let g:mapleader = " "
@@ -38,7 +41,7 @@ set termguicolors
 
 set display+=uhex
 
-set formatoptions=jql
+"set formatoptions=jql
 
 set cursorline
 
@@ -80,6 +83,8 @@ nnoremap <leader>P "+P
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 nnoremap <leader>d "_d
+nnoremap x         "_x
+nnoremap X         "_X
 nnoremap <leader>c "_c
 nnoremap <leader>b "_
 nnoremap <leader>B "+
@@ -97,10 +102,10 @@ nnoremap  ]l             <CMD>lnext<CR>
 nnoremap  [l             <CMD>lprev<CR>
 nnoremap  <leader>t      <CMD>tabnew<CR>                
 nnoremap  <leader>q      <CMD>tabclose<cr>              
-nnoremap  <right>        <c-w>>                         
-nnoremap  <left>         <c-w><                         
-nnoremap  <up>           <c-w>+                         
-nnoremap  <down>         <c-w>-                         
+nnoremap  <right>        <CMD>wincmd ><CR>
+nnoremap  <left>         <CMD>wincmd <<CR>
+nnoremap  <up>           <CMD>wincmd +<CR>
+nnoremap  <down>         <CMD>wincmd -<CR>
 
 
 funct <SID>navigateToVimWiki()
@@ -144,6 +149,10 @@ nnoremap <c-s-v> a<c-r>+<esc>
 inoremap <c-w> <nop>
 inoremap <c-backspace> <c-w>
 
+"This SHOULD be the default (insert + fix indent)
+"no idea why it needs to be the literal bytes instead of <c-r><c-p>
+exec "inoremap <c-r> \<c-r>\<c-p>"
+
 if exists(":term")
     "Shift space can cause the line to clear for some reason (very annoying)
     tnoremap <S-Space> <space>
@@ -152,8 +161,8 @@ endif
 "When entering cmdline toggle relativenumber
 augroup relnutoggle
     au!
-    autocmd CmdlineEnter * if &filetype != "help" | set nornu | redraw | endif
-    autocmd CmdlineLeave * if &filetype != "help" | set rnu | redraw | endif
+    autocmd CmdlineEnter * if &filetype !=# "help" | set nornu | redraw | endif
+    autocmd CmdlineLeave * if &filetype !=# "help" | set rnu | redraw | endif
 augroup END
 
 call setcellwidths([

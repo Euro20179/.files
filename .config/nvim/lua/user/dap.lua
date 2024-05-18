@@ -10,9 +10,23 @@ dap.adapters.python = {
 }
 
 dap.adapters.lldb = {
-    type = "executable",
-    command = "lldb-vscode",
-    name = "lldb"
+    type = "server",
+    port = "${port}",
+    executable = {
+        command = "/home/euro/.local/share/nvim/mason/bin/codelldb",
+        args = { "--port", "${port}" }
+    }
+}
+
+dap.configurations.c = {
+    {
+        type = "lldb",
+        request = "launch",
+        program = "./a.out",
+        cwd = "${workspaceFolder}",
+        enableTelemetry = false,
+        stopOnEntry = false
+    }
 }
 
 dap.configurations.rust = {
