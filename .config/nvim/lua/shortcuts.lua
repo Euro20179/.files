@@ -231,8 +231,9 @@ local iShortcuts = {
     { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-w>", vim.snippet.stop, {desc = "[SNIPPET] exit"}}
+    { "<c-w>", vim.snippet.stop, {desc = "[SNIPPET] exit"}},
     -- }}}
+    -- { "<Right>", require"bropilot".accept_block, { desc = "[COPILOT] accept" } }
 }
 for _, map in ipairs(iShortcuts) do
     vim.keymap.set("i", map[1], map[2], map[3])

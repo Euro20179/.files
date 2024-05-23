@@ -14,7 +14,6 @@ The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
     - The best colorscheme
 - fetch program: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 
-
 ## New screenshots
 Very Epic desktop
 ![Screenshot](./Pictures/system-images/dotfiles4.png)

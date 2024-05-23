@@ -109,6 +109,8 @@ function Color(scheme)
 
     vim.api.nvim_set_hl(0, "LineNr", { foreground = "#1e2030" })
 
+    vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
+
     --better quickfix{{{
     vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
     --}}}

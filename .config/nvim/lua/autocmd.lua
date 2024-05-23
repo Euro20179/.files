@@ -40,6 +40,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "glo",       vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
             { "gli",       vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
             { "glm",       vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
+            { "glh",       function ()
+                vim.ui.select({ "Parents", "Children" }, {}, function (choice)
+                    if choice == "Parents" then
+                        vim.lsp.buf.typehierarchy("supertypes")
+                    else
+                        vim.lsp.buf.typehierarchy("subtypes")
+                    end
+                end)
+            end, { desc = "[LSP] [QF] Type heirarchy" } },
             { "gr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] Symbol References" } },
             { "<leader>r", vim.lsp.buf.rename,           { desc = "[LSP] Rename Symbol" } },
             { "<leader>ea", function()

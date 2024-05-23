@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# hyprland activity tracker
+
+"$HOME/Programs/Coding Projects/Python_things/hypr-activity-tracker/hat"

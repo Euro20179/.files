@@ -1,0 +1,70 @@
+#!/bin/python
+
+import json
+import time
+import os
+import subprocess
+import socket
+from types import FunctionType
+
+outputFile = f"{os.environ['XDG_DATA_HOME']}/hypr-activity-tracker/data2.list"
+
+class ActivityState:
+    def __init__(self, outputFn: FunctionType):
+        self.currentActivity = ""
+        self.currentActivityStartTime = 0
+        self.outputFn = outputFn
+
+    def newActivity(self, name: str):
+        endTime = int(round(time.time())) #round properly and make int
+
+        if callable(self.outputFn):
+            self.outputFn(self.currentActivity, self.currentActivityStartTime, endTime)
+
+        self.currentActivity = name
+        self.currentActivityStartTime = endTime #this gaurantees that the end time of the previous activity is the start time of the next activity
+
+def output(name: str, start: int, end: int):
+    with open(outputFile, "a") as f:
+        json.dump({
+            "name": name,
+            "start": start,
+            "end": end
+        }, f)
+        _ = f.write("\n")
+
+
+HYPRSOCKET = f"/run/user/1000/hypr/{os.environ['HYPRLAND_INSTANCE_SIGNATURE']}/.socket2.sock"
+
+trackActivity = ActivityState(output)
+
+def parseHyprMsg(msg: str):
+    if not msg.startswith("activewindowv2>>"):
+        return
+    id = f'0x{msg[len("activewindow2>>") + 1:]}'
+    clients = subprocess.check_output(["hyprctl", "clients", "-j"])
+    jsonData = json.loads(clients.decode("utf-8"))
+
+    client = tuple(filter(lambda item: item["address"] == id, jsonData))
+
+    if not len(client):
+        return
+
+    trackActivity.newActivity(client[0]['title'])
+
+with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client:
+    client.connect(HYPRSOCKET)
+
+    while True:
+        buf = bytes()
+        while True:
+            bs = client.recv(1024)
+            if len(bs) == 0:
+                exit(0)
+            buf += bs
+            if(buf.endswith(b'\n')):
+                break
+        lines = buf.split(b'\n')
+        for line in lines:
+            if not line: continue
+            parseHyprMsg(line.decode("utf-8"))
