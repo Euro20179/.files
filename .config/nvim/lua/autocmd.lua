@@ -95,7 +95,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 })
             end, { desc = "[LSP] Go to previous diagnostic error" }
             },
-            { "<leader>K", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(0), { bufnr = 0 }) end,
+            { "<leader>K", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 }) end,
                 { desc = "[LSP] Toggle inlay hints" } },
             { "gK",     "<c-w>d",                                                         { desc = "[LSP] Open diagnostic float", remap = true } },
             { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
