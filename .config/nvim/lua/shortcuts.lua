@@ -10,6 +10,10 @@ local gitLeader = "<M-g>"
 
 local dapLeader = "<M-d>"
 
+local discord = require'discord'
+
+vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
+
 local macros = {}
 --Normal Mode{{{
 local nShortcuts = {
@@ -113,7 +117,7 @@ local nShortcuts = {
             end
             local sp = vim.split(item, ":")
             vim.schedule(function ()
-                vim.api.nvim_win_set_buf(0, tonumber(sp[2]))
+                vim.api.nvim_win_set_buf(0, tonumber(sp[#sp]))
             end)
         end)
     end, { desc = "[TELESCOPE] buffers" } },

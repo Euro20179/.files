@@ -16,10 +16,7 @@ require 'user.init'
 require 'colorscheme'
 require "globals-setup"
 
---sometimes lsp doesnt' start for some reason?
-vim.cmd[[LspStart]]
-
--- require "discord".setup {
---     token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord" )[1],
---     user_id = "1190132846409564170"
--- }
+require "discord-ui".setup {
+   token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
+   user_id = "1190132846409564170"
+}

@@ -250,6 +250,8 @@ setup(later, "oatmeal", {
 })
 
 aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, now, "regedit", {})
+add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
+add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
 
 -- aSetup({ source = "huggingface/llm.nvim" }, later, "llm", {
 --     backend = "ollama",
@@ -279,3 +281,14 @@ add { source = "vim-scripts/vis" }
 --     debounce = 1000,
 --     auto_pull = true
 -- })
+
+aSetup({source = "cshuaimin/ssr.nvim"}, now, "ssr", {
+    keymaps = {
+        close = 'q',
+        next_match = 'n',
+        prev_match = 'N',
+        replace_confirm = "<CR>",
+        replace_all = "<leader><CR>"
+    }
+})
+
