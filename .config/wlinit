@@ -35,8 +35,6 @@ dbus-update-activation-environment --systemd --all
 killall fcitx5
 fcitx5 -d & disown
 
-hyprland-autoname-workspaces & disown
-
 #needs manual intervention
 /usr/lib/xdg-desktop-portal-termfilechooser -r & disown
 

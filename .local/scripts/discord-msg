@@ -2,7 +2,7 @@
 
 #this script is copied and modified from @justchokingaround on github
 
-read -r token < ~/Documents/APIKeys/discord
+read -r token < ~/Documents/APIKeys/discord2
 launcher () {
     rofi -dmenu -i -theme nord -p "${1:-"> "}"
 }

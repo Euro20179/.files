@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat $XDG_DOCUMENTS_HOME/emoji $XDG_DOCUMENTS_HOME/nerd-fonts |
+cat $XDG_DOCUMENTS_HOME/emoji $XDG_DOCUMENTS_HOME/nerd-fonts $XDG_DOCUMENTS_HOME/vim-digraphs |
     rofi -dmenu -theme cat-macchiato -matching glob|
     cut -f1 |
     wl-copy -n

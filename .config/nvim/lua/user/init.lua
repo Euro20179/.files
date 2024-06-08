@@ -4,7 +4,7 @@ require "user.treesitter"
 require 'user.whichkey'
 require "user.Lspconfig"
 -- require "user.color-picker"
-require "user.t-source"
+-- require "user.t-source"
 -- require "user.orgmode"
 -- require "user.duplicate"
 --require "user.sniprun"

@@ -272,14 +272,12 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
 add { source = "vim-scripts/vis" }
 
 -- aSetup({ source = "meeehdi-dev/bropilot.nvim" }, later, "bropilot", {
---     model = "codegemma:code",
---     prompt = {
---         prefix = "<|fim_prefix|>",
---         suffix = "<|fim_suffix|>",
---         middle = "<|fim_middle|>",
---     },
---     debounce = 1000,
---     auto_pull = true
+--     {
+--         model = "codegemma:code",
+--         prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
+--         debounce = 1000,
+--         auto_pull = true
+--     }
 -- })
 
 aSetup({source = "cshuaimin/ssr.nvim"}, now, "ssr", {
@@ -292,3 +290,5 @@ aSetup({source = "cshuaimin/ssr.nvim"}, now, "ssr", {
     }
 })
 
+add { source = "Aaronik/GPTModels.nvim" }
+add { source = "MunifTanjim/nui.nvim" }
