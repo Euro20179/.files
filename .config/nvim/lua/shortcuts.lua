@@ -185,27 +185,10 @@ local nShortcuts = {
     { "<A-f>e",          ':set foldmethod=expr<cr>' },
     --}}}
     -- Util Functions {{{
+    { utilLeader .. "x", ":!chmod +x \"%\"", { desc = "[UTIL] chmod +x the current file" } },
     { utilLeader .. "e", ":Neorg exec cursor<CR>" },
-    { utilLeader .. "W", "\"=v:lua.Rword()<cr>p" },
-    { utilLeader .. "y", function()
-        Ytfzf({
-            _on_done = function(selection)
-                local data = vim.split(selection[1], "|")
-                local url = data[#data]
-                vim.system({ "mpv", url })
-                -- vim.cmd([[!mpv ]] .. "\"" .. url .. "\"")
-            end
-        })
-    end },
-    { utilLeader .. "w", "<cmd>!detex % | wc -w<cr>" },
-    { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>" },
-    { utilLeader .. "n", function()
-        if vim.opt.relativenumber == true then
-            vim.opt.relativenumber = false
-        else
-            vim.opt.relativenumber = true
-        end
-    end },
+    { utilLeader .. "W", "\"=v:lua.Rword()<cr>p", { desc = "[UTIL] random word" } },
+    { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>", { desc = "[UTIL] Put the date with a format" } },
     { "<C-c><C-c>", "<cmd>CccPick<cr>" },
     { "<C-c><C-x>", "<cmd>CccConvert<cr>" },
     -- }}}
