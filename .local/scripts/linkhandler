@@ -11,12 +11,14 @@ EDITOR="$TERMINAL $EDITOR"
 #website="$(printf "%s" "$link" | grep -Po "://.*?/" | sed -E 's/(:\/)?\///g')"
 
 case "$mime" in
+    application/pdf) zathura "$link"; exit 0 ;;
     image/*) sxiv "$link"; exit 0 ;;
     text/*|plain/*)
         [ $LH_NO_EDIT = 1 ] && exit 1
          $EDITOR "$link"; exit 0 ;;
     video/*|audio/*) mpv "$link"; exit 0 ;;
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
+    inode/directory) mpv "$link"; exit 0 ;;
 esac
 case "$link" in
     *.swf) flashplayer "$link" ;;
@@ -42,7 +44,7 @@ case "$link" in
         SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
         notify-send "opening"
         mpv --profile=anime "${link#anime:}";;
-    anime:*) mpv --profile=anime "${link#anime:}" ;;
+    cloud://*) linkhandler "$CLOUD/${link#cloud://}" ;;
     sftp://*.m3u8)
         eval "$(ssh-agent -s)"
         SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
@@ -62,5 +64,6 @@ EOF
         #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
         [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" $MANPAGER "$link" ;;
     sftp://*) mpv "$link" ;;
+    *) "$BROWSER" "$link" ;;
 esac
 killall ssh-agent 2> /dev/null

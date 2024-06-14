@@ -10,4 +10,4 @@ if [ "$stream_uri" = "null" ]; then
 	false) stream_uri="$CLOUD/Shows/$name" ;;
 	esac
 fi
-mpv "$stream_uri"
+linkhandler "$stream_uri"

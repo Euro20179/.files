@@ -175,9 +175,7 @@ alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=
 #interactive stream editor
 alias ised='nvim -es'
 
-o () {
-    nvim **/*."$1"
-}
+alias o=linkhandler
 
 me () {
     disown 2> /dev/null 1>&2
