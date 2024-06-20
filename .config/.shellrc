@@ -13,7 +13,7 @@
 # THEMING #
 ###########
 # {{{
-export XCURSOR_SIZE=15
+export XCURSOR_SIZE=24
 export XCURSOR_THEME="Bibata-Modern-Ice"
 # export GTK_THEME='Catppuccin-Macchiato-Standard-Pink-Dark'
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -54,6 +54,8 @@ export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
 #some java apps don't work without this
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GTK_USE_PORTAL=1
+export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland,x11
 #fixes weird xdg-open bugs for some fucking reason
 [ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=X-generic
 # }}}
@@ -120,6 +122,8 @@ export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
 export MANPAGER="nvim +Man!"
+
+export GEMINI=kristall
 
 export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
