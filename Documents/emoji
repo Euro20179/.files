@@ -5032,3 +5032,745 @@
 🏴󠁧󠁢󠁥󠁮󠁧󠁿		flag: England
 🏴󠁧󠁢󠁳󠁣󠁴󠁿		flag: Scotland
 🏴󠁧󠁢󠁷󠁬󠁳󠁿		flag: Wales
+#︎		NUMBER SIGN text-style
+#️		NUMBER SIGN emoji-style
+*︎		ASTERISK text-style
+*️		ASTERISK emoji-style
+0︎		DIGIT ZERO text-style
+0️		DIGIT ZERO emoji-style
+1︎		DIGIT ONE text-style
+1️		DIGIT ONE emoji-style
+2︎		DIGIT TWO text-style
+2️		DIGIT TWO emoji-style
+3︎		DIGIT THREE text-style
+3️		DIGIT THREE emoji-style
+4︎		DIGIT FOUR text-style
+4️		DIGIT FOUR emoji-style
+5︎		DIGIT FIVE text-style
+5️		DIGIT FIVE emoji-style
+6︎		DIGIT SIX text-style
+6️		DIGIT SIX emoji-style
+7︎		DIGIT SEVEN text-style
+7️		DIGIT SEVEN emoji-style
+8︎		DIGIT EIGHT text-style
+8️		DIGIT EIGHT emoji-style
+9︎		DIGIT NINE text-style
+9️		DIGIT NINE emoji-style
+©︎		COPYRIGHT SIGN text-style
+©️		COPYRIGHT SIGN emoji-style
+®︎		REGISTERED SIGN text-style
+®️		REGISTERED SIGN emoji-style
+‼︎		DOUBLE EXCLAMATION MARK text-style
+‼️		DOUBLE EXCLAMATION MARK emoji-style
+⁉︎		EXCLAMATION QUESTION MARK text-style
+⁉️		EXCLAMATION QUESTION MARK emoji-style
+™︎		TRADE MARK SIGN text-style
+™️		TRADE MARK SIGN emoji-style
+ℹ︎		INFORMATION SOURCE text-style
+ℹ️		INFORMATION SOURCE emoji-style
+↔︎		LEFT RIGHT ARROW text-style
+↔️		LEFT RIGHT ARROW emoji-style
+↕︎		UP DOWN ARROW text-style
+↕️		UP DOWN ARROW emoji-style
+↖︎		NORTH WEST ARROW text-style
+↖️		NORTH WEST ARROW emoji-style
+↗︎		NORTH EAST ARROW text-style
+↗️		NORTH EAST ARROW emoji-style
+↘︎		SOUTH EAST ARROW text-style
+↘️		SOUTH EAST ARROW emoji-style
+↙︎		SOUTH WEST ARROW text-style
+↙️		SOUTH WEST ARROW emoji-style
+↩︎		LEFTWARDS ARROW WITH HOOK text-style
+↩️		LEFTWARDS ARROW WITH HOOK emoji-style
+↪︎		RIGHTWARDS ARROW WITH HOOK text-style
+↪️		RIGHTWARDS ARROW WITH HOOK emoji-style
+⌚︎		WATCH text-style
+⌚️		WATCH emoji-style
+⌛︎		HOURGLASS text-style
+⌛️		HOURGLASS emoji-style
+⌨︎		KEYBOARD text-style
+⌨️		KEYBOARD emoji-style
+⏏︎		EJECT SYMBOL text-style
+⏏️		EJECT SYMBOL emoji-style
+⏩︎		BLACK RIGHT-POINTING DOUBLE TRIANGLE text-style
+⏩️		BLACK RIGHT-POINTING DOUBLE TRIANGLE emoji-style
+⏪︎		BLACK LEFT-POINTING DOUBLE TRIANGLE text-style
+⏪️		BLACK LEFT-POINTING DOUBLE TRIANGLE emoji-style
+⏫︎		BLACK UP-POINTING DOUBLE TRIANGLE text-style
+⏫️		BLACK UP-POINTING DOUBLE TRIANGLE emoji-style
+⏬︎		BLACK DOWN-POINTING DOUBLE TRIANGLE text-style
+⏬️		BLACK DOWN-POINTING DOUBLE TRIANGLE emoji-style
+⏭︎		BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR text-style
+⏭️		BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR emoji-style
+⏮︎		BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR text-style
+⏮️		BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR emoji-style
+⏯︎		BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR text-style
+⏯️		BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR emoji-style
+⏰︎		ALARM CLOCK text-style
+⏰️		ALARM CLOCK emoji-style
+⏱︎		STOPWATCH text-style
+⏱️		STOPWATCH emoji-style
+⏲︎		TIMER CLOCK text-style
+⏲️		TIMER CLOCK emoji-style
+⏳︎		HOURGLASS WITH FLOWING SAND text-style
+⏳️		HOURGLASS WITH FLOWING SAND emoji-style
+⏸︎		DOUBLE VERTICAL BAR text-style
+⏸️		DOUBLE VERTICAL BAR emoji-style
+⏹︎		BLACK SQUARE FOR STOP text-style
+⏹️		BLACK SQUARE FOR STOP emoji-style
+⏺︎		BLACK CIRCLE FOR RECORD text-style
+⏺️		BLACK CIRCLE FOR RECORD emoji-style
+Ⓜ︎		CIRCLED LATIN CAPITAL LETTER M text-style
+Ⓜ️		CIRCLED LATIN CAPITAL LETTER M emoji-style
+▪︎		BLACK SMALL SQUARE text-style
+▪️		BLACK SMALL SQUARE emoji-style
+▫︎		WHITE SMALL SQUARE text-style
+▫️		WHITE SMALL SQUARE emoji-style
+▶︎		BLACK RIGHT-POINTING TRIANGLE text-style
+▶️		BLACK RIGHT-POINTING TRIANGLE emoji-style
+◀︎		BLACK LEFT-POINTING TRIANGLE text-style
+◀️		BLACK LEFT-POINTING TRIANGLE emoji-style
+◻︎		WHITE MEDIUM SQUARE text-style
+◻️		WHITE MEDIUM SQUARE emoji-style
+◼︎		BLACK MEDIUM SQUARE text-style
+◼️		BLACK MEDIUM SQUARE emoji-style
+◽︎		WHITE MEDIUM SMALL SQUARE text-style
+◽️		WHITE MEDIUM SMALL SQUARE emoji-style
+◾︎		BLACK MEDIUM SMALL SQUARE text-style
+◾️		BLACK MEDIUM SMALL SQUARE emoji-style
+☀︎		BLACK SUN WITH RAYS text-style
+☀️		BLACK SUN WITH RAYS emoji-style
+☁︎		CLOUD text-style
+☁️		CLOUD emoji-style
+☂︎		UMBRELLA text-style
+☂️		UMBRELLA emoji-style
+☃︎		SNOWMAN text-style
+☃️		SNOWMAN emoji-style
+☄︎		COMET text-style
+☄️		COMET emoji-style
+☎︎		BLACK TELEPHONE text-style
+☎️		BLACK TELEPHONE emoji-style
+☑︎		BALLOT BOX WITH CHECK text-style
+☑️		BALLOT BOX WITH CHECK emoji-style
+☔︎		UMBRELLA WITH RAIN DROPS text-style
+☔️		UMBRELLA WITH RAIN DROPS emoji-style
+☕︎		HOT BEVERAGE text-style
+☕️		HOT BEVERAGE emoji-style
+☘︎		SHAMROCK text-style
+☘️		SHAMROCK emoji-style
+☝︎		WHITE UP POINTING INDEX text-style
+☝️		WHITE UP POINTING INDEX emoji-style
+☠︎		SKULL AND CROSSBONES text-style
+☠️		SKULL AND CROSSBONES emoji-style
+☢︎		RADIOACTIVE SIGN text-style
+☢️		RADIOACTIVE SIGN emoji-style
+☣︎		BIOHAZARD SIGN text-style
+☣️		BIOHAZARD SIGN emoji-style
+☦︎		ORTHODOX CROSS text-style
+☦️		ORTHODOX CROSS emoji-style
+☪︎		STAR AND CRESCENT text-style
+☪️		STAR AND CRESCENT emoji-style
+☮︎		PEACE SYMBOL text-style
+☮️		PEACE SYMBOL emoji-style
+☯︎		YIN YANG text-style
+☯️		YIN YANG emoji-style
+☸︎		WHEEL OF DHARMA text-style
+☸️		WHEEL OF DHARMA emoji-style
+☹︎		WHITE FROWNING FACE text-style
+☹️		WHITE FROWNING FACE emoji-style
+☺︎		WHITE SMILING FACE text-style
+☺️		WHITE SMILING FACE emoji-style
+♀︎		FEMALE SIGN text-style
+♀️		FEMALE SIGN emoji-style
+♂︎		MALE SIGN text-style
+♂️		MALE SIGN emoji-style
+♈︎		ARIES text-style
+♈️		ARIES emoji-style
+♉︎		TAURUS text-style
+♉️		TAURUS emoji-style
+♊︎		GEMINI text-style
+♊️		GEMINI emoji-style
+♋︎		CANCER text-style
+♋️		CANCER emoji-style
+♌︎		LEO text-style
+♌️		LEO emoji-style
+♍︎		VIRGO text-style
+♍️		VIRGO emoji-style
+♎︎		LIBRA text-style
+♎️		LIBRA emoji-style
+♏︎		SCORPIUS text-style
+♏️		SCORPIUS emoji-style
+♐︎		SAGITTARIUS text-style
+♐️		SAGITTARIUS emoji-style
+♑︎		CAPRICORN text-style
+♑️		CAPRICORN emoji-style
+♒︎		AQUARIUS text-style
+♒️		AQUARIUS emoji-style
+♓︎		PISCES text-style
+♓️		PISCES emoji-style
+♟︎		BLACK CHESS PAWN text-style
+♟️		BLACK CHESS PAWN emoji-style
+♠︎		BLACK SPADE SUIT text-style
+♠️		BLACK SPADE SUIT emoji-style
+♣︎		BLACK CLUB SUIT text-style
+♣️		BLACK CLUB SUIT emoji-style
+♥︎		BLACK HEART SUIT text-style
+♥️		BLACK HEART SUIT emoji-style
+♦︎		BLACK DIAMOND SUIT text-style
+♦️		BLACK DIAMOND SUIT emoji-style
+♨︎		HOT SPRINGS text-style
+♨️		HOT SPRINGS emoji-style
+♻︎		BLACK UNIVERSAL RECYCLING SYMBOL text-style
+♻️		BLACK UNIVERSAL RECYCLING SYMBOL emoji-style
+♾︎		PERMANENT PAPER SIGN text-style
+♾️		PERMANENT PAPER SIGN emoji-style
+♿︎		WHEELCHAIR SYMBOL text-style
+♿️		WHEELCHAIR SYMBOL emoji-style
+⚒︎		HAMMER AND PICK text-style
+⚒️		HAMMER AND PICK emoji-style
+⚓︎		ANCHOR text-style
+⚓️		ANCHOR emoji-style
+⚔︎		CROSSED SWORDS text-style
+⚔️		CROSSED SWORDS emoji-style
+⚕︎		STAFF OF AESCULAPIUS text-style
+⚕️		STAFF OF AESCULAPIUS emoji-style
+⚖︎		SCALES text-style
+⚖️		SCALES emoji-style
+⚗︎		ALEMBIC text-style
+⚗️		ALEMBIC emoji-style
+⚙︎		GEAR text-style
+⚙️		GEAR emoji-style
+⚛︎		ATOM SYMBOL text-style
+⚛️		ATOM SYMBOL emoji-style
+⚜︎		FLEUR-DE-LIS text-style
+⚜️		FLEUR-DE-LIS emoji-style
+⚠︎		WARNING SIGN text-style
+⚠️		WARNING SIGN emoji-style
+⚡︎		HIGH VOLTAGE SIGN text-style
+⚡️		HIGH VOLTAGE SIGN emoji-style
+⚧︎		MALE WITH STROKE AND MALE AND FEMALE SIGN text-style
+⚧️		MALE WITH STROKE AND MALE AND FEMALE SIGN emoji-style
+⚪︎		MEDIUM WHITE CIRCLE text-style
+⚪️		MEDIUM WHITE CIRCLE emoji-style
+⚫︎		MEDIUM BLACK CIRCLE text-style
+⚫️		MEDIUM BLACK CIRCLE emoji-style
+⚰︎		COFFIN text-style
+⚰️		COFFIN emoji-style
+⚱︎		FUNERAL URN text-style
+⚱️		FUNERAL URN emoji-style
+⚽︎		SOCCER BALL text-style
+⚽️		SOCCER BALL emoji-style
+⚾︎		BASEBALL text-style
+⚾️		BASEBALL emoji-style
+⛄︎		SNOWMAN WITHOUT SNOW text-style
+⛄️		SNOWMAN WITHOUT SNOW emoji-style
+⛅︎		SUN BEHIND CLOUD text-style
+⛅️		SUN BEHIND CLOUD emoji-style
+⛈︎		THUNDER CLOUD AND RAIN text-style
+⛈️		THUNDER CLOUD AND RAIN emoji-style
+⛎︎		OPHIUCHUS text-style
+⛎️		OPHIUCHUS emoji-style
+⛏︎		PICK text-style
+⛏️		PICK emoji-style
+⛑︎		HELMET WITH WHITE CROSS text-style
+⛑️		HELMET WITH WHITE CROSS emoji-style
+⛓︎		CHAINS text-style
+⛓️		CHAINS emoji-style
+⛔︎		NO ENTRY text-style
+⛔️		NO ENTRY emoji-style
+⛩︎		SHINTO SHRINE text-style
+⛩️		SHINTO SHRINE emoji-style
+⛪︎		CHURCH text-style
+⛪️		CHURCH emoji-style
+⛰︎		MOUNTAIN text-style
+⛰️		MOUNTAIN emoji-style
+⛱︎		UMBRELLA ON GROUND text-style
+⛱️		UMBRELLA ON GROUND emoji-style
+⛲︎		FOUNTAIN text-style
+⛲️		FOUNTAIN emoji-style
+⛳︎		FLAG IN HOLE text-style
+⛳️		FLAG IN HOLE emoji-style
+⛴︎		FERRY text-style
+⛴️		FERRY emoji-style
+⛵︎		SAILBOAT text-style
+⛵️		SAILBOAT emoji-style
+⛷︎		SKIER text-style
+⛷️		SKIER emoji-style
+⛸︎		ICE SKATE text-style
+⛸️		ICE SKATE emoji-style
+⛹︎		PERSON WITH BALL text-style
+⛹️		PERSON WITH BALL emoji-style
+⛺︎		TENT text-style
+⛺️		TENT emoji-style
+⛽︎		FUEL PUMP text-style
+⛽️		FUEL PUMP emoji-style
+✂︎		BLACK SCISSORS text-style
+✂️		BLACK SCISSORS emoji-style
+✅︎		WHITE HEAVY CHECK MARK text-style
+✅️		WHITE HEAVY CHECK MARK emoji-style
+✈︎		AIRPLANE text-style
+✈️		AIRPLANE emoji-style
+✉︎		ENVELOPE text-style
+✉️		ENVELOPE emoji-style
+✊︎		RAISED FIST text-style
+✊️		RAISED FIST emoji-style
+✋︎		RAISED HAND text-style
+✋️		RAISED HAND emoji-style
+✌︎		VICTORY HAND text-style
+✌️		VICTORY HAND emoji-style
+✍︎		WRITING HAND text-style
+✍️		WRITING HAND emoji-style
+✏︎		PENCIL text-style
+✏️		PENCIL emoji-style
+✒︎		BLACK NIB text-style
+✒️		BLACK NIB emoji-style
+✔︎		HEAVY CHECK MARK text-style
+✔️		HEAVY CHECK MARK emoji-style
+✖︎		HEAVY MULTIPLICATION X text-style
+✖️		HEAVY MULTIPLICATION X emoji-style
+✝︎		LATIN CROSS text-style
+✝️		LATIN CROSS emoji-style
+✡︎		STAR OF DAVID text-style
+✡️		STAR OF DAVID emoji-style
+✨︎		SPARKLES text-style
+✨️		SPARKLES emoji-style
+✳︎		EIGHT SPOKED ASTERISK text-style
+✳️		EIGHT SPOKED ASTERISK emoji-style
+✴︎		EIGHT POINTED BLACK STAR text-style
+✴️		EIGHT POINTED BLACK STAR emoji-style
+❄︎		SNOWFLAKE text-style
+❄️		SNOWFLAKE emoji-style
+❇︎		SPARKLE text-style
+❇️		SPARKLE emoji-style
+❌︎		CROSS MARK text-style
+❌️		CROSS MARK emoji-style
+❎︎		NEGATIVE SQUARED CROSS MARK text-style
+❎️		NEGATIVE SQUARED CROSS MARK emoji-style
+❓︎		BLACK QUESTION MARK ORNAMENT text-style
+❓️		BLACK QUESTION MARK ORNAMENT emoji-style
+❔︎		WHITE QUESTION MARK ORNAMENT text-style
+❔️		WHITE QUESTION MARK ORNAMENT emoji-style
+❕︎		WHITE EXCLAMATION MARK ORNAMENT text-style
+❕️		WHITE EXCLAMATION MARK ORNAMENT emoji-style
+❗︎		HEAVY EXCLAMATION MARK SYMBOL text-style
+❗️		HEAVY EXCLAMATION MARK SYMBOL emoji-style
+❣︎		HEAVY HEART EXCLAMATION MARK ORNAMENT text-style
+❣️		HEAVY HEART EXCLAMATION MARK ORNAMENT emoji-style
+❤︎		HEAVY BLACK HEART text-style
+❤️		HEAVY BLACK HEART emoji-style
+➕︎		HEAVY PLUS SIGN text-style
+➕️		HEAVY PLUS SIGN emoji-style
+➖︎		HEAVY MINUS SIGN text-style
+➖️		HEAVY MINUS SIGN emoji-style
+➗︎		HEAVY DIVISION SIGN text-style
+➗️		HEAVY DIVISION SIGN emoji-style
+➡︎		BLACK RIGHTWARDS ARROW text-style
+➡️		BLACK RIGHTWARDS ARROW emoji-style
+➰︎		CURLY LOOP text-style
+➰️		CURLY LOOP emoji-style
+➿︎		DOUBLE CURLY LOOP text-style
+➿️		DOUBLE CURLY LOOP emoji-style
+⤴︎		ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS text-style
+⤴️		ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS emoji-style
+⤵︎		ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS text-style
+⤵️		ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS emoji-style
+⬅︎		LEFTWARDS BLACK ARROW text-style
+⬅️		LEFTWARDS BLACK ARROW emoji-style
+⬆︎		UPWARDS BLACK ARROW text-style
+⬆️		UPWARDS BLACK ARROW emoji-style
+⬇︎		DOWNWARDS BLACK ARROW text-style
+⬇️		DOWNWARDS BLACK ARROW emoji-style
+⬛︎		BLACK LARGE SQUARE text-style
+⬛️		BLACK LARGE SQUARE emoji-style
+⬜︎		WHITE LARGE SQUARE text-style
+⬜️		WHITE LARGE SQUARE emoji-style
+⭐︎		WHITE MEDIUM STAR text-style
+⭐️		WHITE MEDIUM STAR emoji-style
+⭕︎		HEAVY LARGE CIRCLE text-style
+⭕️		HEAVY LARGE CIRCLE emoji-style
+〰︎		WAVY DASH text-style
+〰️		WAVY DASH emoji-style
+〽︎		PART ALTERNATION MARK text-style
+〽️		PART ALTERNATION MARK emoji-style
+㊗︎		CIRCLED IDEOGRAPH CONGRATULATION text-style
+㊗️		CIRCLED IDEOGRAPH CONGRATULATION emoji-style
+㊙︎		CIRCLED IDEOGRAPH SECRET text-style
+㊙️		CIRCLED IDEOGRAPH SECRET emoji-style
+🀄︎		MAHJONG TILE RED DRAGON text-style
+🀄️		MAHJONG TILE RED DRAGON emoji-style
+🅰︎		NEGATIVE SQUARED LATIN CAPITAL LETTER A text-style
+🅰️		NEGATIVE SQUARED LATIN CAPITAL LETTER A emoji-style
+🅱︎		NEGATIVE SQUARED LATIN CAPITAL LETTER B text-style
+🅱️		NEGATIVE SQUARED LATIN CAPITAL LETTER B emoji-style
+🅾︎		NEGATIVE SQUARED LATIN CAPITAL LETTER O text-style
+🅾️		NEGATIVE SQUARED LATIN CAPITAL LETTER O emoji-style
+🅿︎		NEGATIVE SQUARED LATIN CAPITAL LETTER P text-style
+🅿️		NEGATIVE SQUARED LATIN CAPITAL LETTER P emoji-style
+🈂︎		SQUARED KATAKANA SA text-style
+🈂️		SQUARED KATAKANA SA emoji-style
+🈚︎		SQUARED CJK UNIFIED IDEOGRAPH-7121 text-style
+🈚️		SQUARED CJK UNIFIED IDEOGRAPH-7121 emoji-style
+🈯︎		SQUARED CJK UNIFIED IDEOGRAPH-6307 text-style
+🈯️		SQUARED CJK UNIFIED IDEOGRAPH-6307 emoji-style
+🈷︎		SQUARED CJK UNIFIED IDEOGRAPH-6708 text-style
+🈷️		SQUARED CJK UNIFIED IDEOGRAPH-6708 emoji-style
+🌍︎		EARTH GLOBE EUROPE-AFRICA text-style
+🌍️		EARTH GLOBE EUROPE-AFRICA emoji-style
+🌎︎		EARTH GLOBE AMERICAS text-style
+🌎️		EARTH GLOBE AMERICAS emoji-style
+🌏︎		EARTH GLOBE ASIA-AUSTRALIA text-style
+🌏️		EARTH GLOBE ASIA-AUSTRALIA emoji-style
+🌕︎		FULL MOON SYMBOL text-style
+🌕️		FULL MOON SYMBOL emoji-style
+🌜︎		LAST QUARTER MOON WITH FACE text-style
+🌜️		LAST QUARTER MOON WITH FACE emoji-style
+🌡︎		THERMOMETER text-style
+🌡️		THERMOMETER emoji-style
+🌤︎		WHITE SUN WITH SMALL CLOUD text-style
+🌤️		WHITE SUN WITH SMALL CLOUD emoji-style
+🌥︎		WHITE SUN BEHIND CLOUD text-style
+🌥️		WHITE SUN BEHIND CLOUD emoji-style
+🌦︎		WHITE SUN BEHIND CLOUD WITH RAIN text-style
+🌦️		WHITE SUN BEHIND CLOUD WITH RAIN emoji-style
+🌧︎		CLOUD WITH RAIN text-style
+🌧️		CLOUD WITH RAIN emoji-style
+🌨︎		CLOUD WITH SNOW text-style
+🌨️		CLOUD WITH SNOW emoji-style
+🌩︎		CLOUD WITH LIGHTNING text-style
+🌩️		CLOUD WITH LIGHTNING emoji-style
+🌪︎		CLOUD WITH TORNADO text-style
+🌪️		CLOUD WITH TORNADO emoji-style
+🌫︎		FOG text-style
+🌫️		FOG emoji-style
+🌬︎		WIND BLOWING FACE text-style
+🌬️		WIND BLOWING FACE emoji-style
+🌶︎		HOT PEPPER text-style
+🌶️		HOT PEPPER emoji-style
+🍸︎		COCKTAIL GLASS text-style
+🍸️		COCKTAIL GLASS emoji-style
+🍽︎		FORK AND KNIFE WITH PLATE text-style
+🍽️		FORK AND KNIFE WITH PLATE emoji-style
+🎓︎		GRADUATION CAP text-style
+🎓️		GRADUATION CAP emoji-style
+🎖︎		MILITARY MEDAL text-style
+🎖️		MILITARY MEDAL emoji-style
+🎗︎		REMINDER RIBBON text-style
+🎗️		REMINDER RIBBON emoji-style
+🎙︎		STUDIO MICROPHONE text-style
+🎙️		STUDIO MICROPHONE emoji-style
+🎚︎		LEVEL SLIDER text-style
+🎚️		LEVEL SLIDER emoji-style
+🎛︎		CONTROL KNOBS text-style
+🎛️		CONTROL KNOBS emoji-style
+🎞︎		FILM FRAMES text-style
+🎞️		FILM FRAMES emoji-style
+🎟︎		ADMISSION TICKETS text-style
+🎟️		ADMISSION TICKETS emoji-style
+🎧︎		HEADPHONE text-style
+🎧️		HEADPHONE emoji-style
+🎬︎		CLAPPER BOARD text-style
+🎬️		CLAPPER BOARD emoji-style
+🎭︎		PERFORMING ARTS text-style
+🎭️		PERFORMING ARTS emoji-style
+🎮︎		VIDEO GAME text-style
+🎮️		VIDEO GAME emoji-style
+🏂︎		SNOWBOARDER text-style
+🏂️		SNOWBOARDER emoji-style
+🏄︎		SURFER text-style
+🏄️		SURFER emoji-style
+🏆︎		TROPHY text-style
+🏆️		TROPHY emoji-style
+🏊︎		SWIMMER text-style
+🏊️		SWIMMER emoji-style
+🏋︎		WEIGHT LIFTER text-style
+🏋️		WEIGHT LIFTER emoji-style
+🏌︎		GOLFER text-style
+🏌️		GOLFER emoji-style
+🏍︎		RACING MOTORCYCLE text-style
+🏍️		RACING MOTORCYCLE emoji-style
+🏎︎		RACING CAR text-style
+🏎️		RACING CAR emoji-style
+🏔︎		SNOW CAPPED MOUNTAIN text-style
+🏔️		SNOW CAPPED MOUNTAIN emoji-style
+🏕︎		CAMPING text-style
+🏕️		CAMPING emoji-style
+🏖︎		BEACH WITH UMBRELLA text-style
+🏖️		BEACH WITH UMBRELLA emoji-style
+🏗︎		BUILDING CONSTRUCTION text-style
+🏗️		BUILDING CONSTRUCTION emoji-style
+🏘︎		HOUSE BUILDINGS text-style
+🏘️		HOUSE BUILDINGS emoji-style
+🏙︎		CITYSCAPE text-style
+🏙️		CITYSCAPE emoji-style
+🏚︎		DERELICT HOUSE BUILDING text-style
+🏚️		DERELICT HOUSE BUILDING emoji-style
+🏛︎		CLASSICAL BUILDING text-style
+🏛️		CLASSICAL BUILDING emoji-style
+🏜︎		DESERT text-style
+🏜️		DESERT emoji-style
+🏝︎		DESERT ISLAND text-style
+🏝️		DESERT ISLAND emoji-style
+🏞︎		NATIONAL PARK text-style
+🏞️		NATIONAL PARK emoji-style
+🏟︎		STADIUM text-style
+🏟️		STADIUM emoji-style
+🏠︎		HOUSE BUILDING text-style
+🏠️		HOUSE BUILDING emoji-style
+🏭︎		FACTORY text-style
+🏭️		FACTORY emoji-style
+🏳︎		WAVING WHITE FLAG text-style
+🏳️		WAVING WHITE FLAG emoji-style
+🏵︎		ROSETTE text-style
+🏵️		ROSETTE emoji-style
+🏷︎		LABEL text-style
+🏷️		LABEL emoji-style
+🐈︎		CAT text-style
+🐈️		CAT emoji-style
+🐕︎		DOG text-style
+🐕️		DOG emoji-style
+🐟︎		FISH text-style
+🐟️		FISH emoji-style
+🐦︎		BIRD text-style
+🐦️		BIRD emoji-style
+🐿︎		CHIPMUNK text-style
+🐿️		CHIPMUNK emoji-style
+👁︎		EYE text-style
+👁️		EYE emoji-style
+👂︎		EAR text-style
+👂️		EAR emoji-style
+👆︎		WHITE UP POINTING BACKHAND INDEX text-style
+👆️		WHITE UP POINTING BACKHAND INDEX emoji-style
+👇︎		WHITE DOWN POINTING BACKHAND INDEX text-style
+👇️		WHITE DOWN POINTING BACKHAND INDEX emoji-style
+👈︎		WHITE LEFT POINTING BACKHAND INDEX text-style
+👈️		WHITE LEFT POINTING BACKHAND INDEX emoji-style
+👉︎		WHITE RIGHT POINTING BACKHAND INDEX text-style
+👉️		WHITE RIGHT POINTING BACKHAND INDEX emoji-style
+👍︎		THUMBS UP SIGN text-style
+👍️		THUMBS UP SIGN emoji-style
+👎︎		THUMBS DOWN SIGN text-style
+👎️		THUMBS DOWN SIGN emoji-style
+👓︎		EYEGLASSES text-style
+👓️		EYEGLASSES emoji-style
+👪︎		FAMILY text-style
+👪️		FAMILY emoji-style
+👽︎		EXTRATERRESTRIAL ALIEN text-style
+👽️		EXTRATERRESTRIAL ALIEN emoji-style
+💣︎		BOMB text-style
+💣️		BOMB emoji-style
+💰︎		MONEY BAG text-style
+💰️		MONEY BAG emoji-style
+💳︎		CREDIT CARD text-style
+💳️		CREDIT CARD emoji-style
+💻︎		PERSONAL COMPUTER text-style
+💻️		PERSONAL COMPUTER emoji-style
+💿︎		OPTICAL DISC text-style
+💿️		OPTICAL DISC emoji-style
+📋︎		CLIPBOARD text-style
+📋️		CLIPBOARD emoji-style
+📚︎		BOOKS text-style
+📚️		BOOKS emoji-style
+📟︎		PAGER text-style
+📟️		PAGER emoji-style
+📤︎		OUTBOX TRAY text-style
+📤️		OUTBOX TRAY emoji-style
+📥︎		INBOX TRAY text-style
+📥️		INBOX TRAY emoji-style
+📦︎		PACKAGE text-style
+📦️		PACKAGE emoji-style
+📪︎		CLOSED MAILBOX WITH LOWERED FLAG text-style
+📪️		CLOSED MAILBOX WITH LOWERED FLAG emoji-style
+📫︎		CLOSED MAILBOX WITH RAISED FLAG text-style
+📫️		CLOSED MAILBOX WITH RAISED FLAG emoji-style
+📬︎		OPEN MAILBOX WITH RAISED FLAG text-style
+📬️		OPEN MAILBOX WITH RAISED FLAG emoji-style
+📭︎		OPEN MAILBOX WITH LOWERED FLAG text-style
+📭️		OPEN MAILBOX WITH LOWERED FLAG emoji-style
+📷︎		CAMERA text-style
+📷️		CAMERA emoji-style
+📹︎		VIDEO CAMERA text-style
+📹️		VIDEO CAMERA emoji-style
+📺︎		TELEVISION text-style
+📺️		TELEVISION emoji-style
+📻︎		RADIO text-style
+📻️		RADIO emoji-style
+📽︎		FILM PROJECTOR text-style
+📽️		FILM PROJECTOR emoji-style
+🔈︎		SPEAKER text-style
+🔈️		SPEAKER emoji-style
+🔍︎		LEFT-POINTING MAGNIFYING GLASS text-style
+🔍️		LEFT-POINTING MAGNIFYING GLASS emoji-style
+🔒︎		LOCK text-style
+🔒️		LOCK emoji-style
+🔓︎		OPEN LOCK text-style
+🔓️		OPEN LOCK emoji-style
+🕉︎		OM SYMBOL text-style
+🕉️		OM SYMBOL emoji-style
+🕊︎		DOVE OF PEACE text-style
+🕊️		DOVE OF PEACE emoji-style
+🕐︎		CLOCK FACE ONE OCLOCK text-style
+🕐️		CLOCK FACE ONE OCLOCK emoji-style
+🕑︎		CLOCK FACE TWO OCLOCK text-style
+🕑️		CLOCK FACE TWO OCLOCK emoji-style
+🕒︎		CLOCK FACE THREE OCLOCK text-style
+🕒️		CLOCK FACE THREE OCLOCK emoji-style
+🕓︎		CLOCK FACE FOUR OCLOCK text-style
+🕓️		CLOCK FACE FOUR OCLOCK emoji-style
+🕔︎		CLOCK FACE FIVE OCLOCK text-style
+🕔️		CLOCK FACE FIVE OCLOCK emoji-style
+🕕︎		CLOCK FACE SIX OCLOCK text-style
+🕕️		CLOCK FACE SIX OCLOCK emoji-style
+🕖︎		CLOCK FACE SEVEN OCLOCK text-style
+🕖️		CLOCK FACE SEVEN OCLOCK emoji-style
+🕗︎		CLOCK FACE EIGHT OCLOCK text-style
+🕗️		CLOCK FACE EIGHT OCLOCK emoji-style
+🕘︎		CLOCK FACE NINE OCLOCK text-style
+🕘️		CLOCK FACE NINE OCLOCK emoji-style
+🕙︎		CLOCK FACE TEN OCLOCK text-style
+🕙️		CLOCK FACE TEN OCLOCK emoji-style
+🕚︎		CLOCK FACE ELEVEN OCLOCK text-style
+🕚️		CLOCK FACE ELEVEN OCLOCK emoji-style
+🕛︎		CLOCK FACE TWELVE OCLOCK text-style
+🕛️		CLOCK FACE TWELVE OCLOCK emoji-style
+🕜︎		CLOCK FACE ONE-THIRTY text-style
+🕜️		CLOCK FACE ONE-THIRTY emoji-style
+🕝︎		CLOCK FACE TWO-THIRTY text-style
+🕝️		CLOCK FACE TWO-THIRTY emoji-style
+🕞︎		CLOCK FACE THREE-THIRTY text-style
+🕞️		CLOCK FACE THREE-THIRTY emoji-style
+🕟︎		CLOCK FACE FOUR-THIRTY text-style
+🕟️		CLOCK FACE FOUR-THIRTY emoji-style
+🕠︎		CLOCK FACE FIVE-THIRTY text-style
+🕠️		CLOCK FACE FIVE-THIRTY emoji-style
+🕡︎		CLOCK FACE SIX-THIRTY text-style
+🕡️		CLOCK FACE SIX-THIRTY emoji-style
+🕢︎		CLOCK FACE SEVEN-THIRTY text-style
+🕢️		CLOCK FACE SEVEN-THIRTY emoji-style
+🕣︎		CLOCK FACE EIGHT-THIRTY text-style
+🕣️		CLOCK FACE EIGHT-THIRTY emoji-style
+🕤︎		CLOCK FACE NINE-THIRTY text-style
+🕤️		CLOCK FACE NINE-THIRTY emoji-style
+🕥︎		CLOCK FACE TEN-THIRTY text-style
+🕥️		CLOCK FACE TEN-THIRTY emoji-style
+🕦︎		CLOCK FACE ELEVEN-THIRTY text-style
+🕦️		CLOCK FACE ELEVEN-THIRTY emoji-style
+🕧︎		CLOCK FACE TWELVE-THIRTY text-style
+🕧️		CLOCK FACE TWELVE-THIRTY emoji-style
+🕯︎		CANDLE text-style
+🕯️		CANDLE emoji-style
+🕰︎		MANTELPIECE CLOCK text-style
+🕰️		MANTELPIECE CLOCK emoji-style
+🕳︎		HOLE text-style
+🕳️		HOLE emoji-style
+🕴︎		MAN IN BUSINESS SUIT LEVITATING text-style
+🕴️		MAN IN BUSINESS SUIT LEVITATING emoji-style
+🕵︎		SLEUTH OR SPY text-style
+🕵️		SLEUTH OR SPY emoji-style
+🕶︎		DARK SUNGLASSES text-style
+🕶️		DARK SUNGLASSES emoji-style
+🕷︎		SPIDER text-style
+🕷️		SPIDER emoji-style
+🕸︎		SPIDER WEB text-style
+🕸️		SPIDER WEB emoji-style
+🕹︎		JOYSTICK text-style
+🕹️		JOYSTICK emoji-style
+🖇︎		LINKED PAPERCLIPS text-style
+🖇️		LINKED PAPERCLIPS emoji-style
+🖊︎		LOWER LEFT BALLPOINT PEN text-style
+🖊️		LOWER LEFT BALLPOINT PEN emoji-style
+🖋︎		LOWER LEFT FOUNTAIN PEN text-style
+🖋️		LOWER LEFT FOUNTAIN PEN emoji-style
+🖌︎		LOWER LEFT PAINTBRUSH text-style
+🖌️		LOWER LEFT PAINTBRUSH emoji-style
+🖍︎		LOWER LEFT CRAYON text-style
+🖍️		LOWER LEFT CRAYON emoji-style
+🖐︎		RAISED HAND WITH FINGERS SPLAYED text-style
+🖐️		RAISED HAND WITH FINGERS SPLAYED emoji-style
+🖥︎		DESKTOP COMPUTER text-style
+🖥️		DESKTOP COMPUTER emoji-style
+🖨︎		PRINTER text-style
+🖨️		PRINTER emoji-style
+🖱︎		THREE BUTTON MOUSE text-style
+🖱️		THREE BUTTON MOUSE emoji-style
+🖲︎		TRACKBALL text-style
+🖲️		TRACKBALL emoji-style
+🖼︎		FRAME WITH PICTURE text-style
+🖼️		FRAME WITH PICTURE emoji-style
+🗂︎		CARD INDEX DIVIDERS text-style
+🗂️		CARD INDEX DIVIDERS emoji-style
+🗃︎		CARD FILE BOX text-style
+🗃️		CARD FILE BOX emoji-style
+🗄︎		FILE CABINET text-style
+🗄️		FILE CABINET emoji-style
+🗑︎		WASTEBASKET text-style
+🗑️		WASTEBASKET emoji-style
+🗒︎		SPIRAL NOTE PAD text-style
+🗒️		SPIRAL NOTE PAD emoji-style
+🗓︎		SPIRAL CALENDAR PAD text-style
+🗓️		SPIRAL CALENDAR PAD emoji-style
+🗜︎		COMPRESSION text-style
+🗜️		COMPRESSION emoji-style
+🗝︎		OLD KEY text-style
+🗝️		OLD KEY emoji-style
+🗞︎		ROLLED-UP NEWSPAPER text-style
+🗞️		ROLLED-UP NEWSPAPER emoji-style
+🗡︎		DAGGER KNIFE text-style
+🗡️		DAGGER KNIFE emoji-style
+🗣︎		SPEAKING HEAD IN SILHOUETTE text-style
+🗣️		SPEAKING HEAD IN SILHOUETTE emoji-style
+🗨︎		LEFT SPEECH BUBBLE text-style
+🗨️		LEFT SPEECH BUBBLE emoji-style
+🗯︎		RIGHT ANGER BUBBLE text-style
+🗯️		RIGHT ANGER BUBBLE emoji-style
+🗳︎		BALLOT BOX WITH BALLOT text-style
+🗳️		BALLOT BOX WITH BALLOT emoji-style
+🗺︎		WORLD MAP text-style
+🗺️		WORLD MAP emoji-style
+😐︎		NEUTRAL FACE text-style
+😐️		NEUTRAL FACE emoji-style
+🚇︎		METRO text-style
+🚇️		METRO emoji-style
+🚍︎		ONCOMING BUS text-style
+🚍️		ONCOMING BUS emoji-style
+🚑︎		AMBULANCE text-style
+🚑️		AMBULANCE emoji-style
+🚔︎		ONCOMING POLICE CAR text-style
+🚔️		ONCOMING POLICE CAR emoji-style
+🚘︎		ONCOMING AUTOMOBILE text-style
+🚘️		ONCOMING AUTOMOBILE emoji-style
+🚭︎		NO SMOKING SYMBOL text-style
+🚭️		NO SMOKING SYMBOL emoji-style
+🚲︎		BICYCLE text-style
+🚲️		BICYCLE emoji-style
+🚹︎		MENS SYMBOL text-style
+🚹️		MENS SYMBOL emoji-style
+🚺︎		WOMENS SYMBOL text-style
+🚺️		WOMENS SYMBOL emoji-style
+🚼︎		BABY SYMBOL text-style
+🚼️		BABY SYMBOL emoji-style
+🛋︎		COUCH AND LAMP text-style
+🛋️		COUCH AND LAMP emoji-style
+🛍︎		SHOPPING BAGS text-style
+🛍️		SHOPPING BAGS emoji-style
+🛎︎		BELLHOP BELL text-style
+🛎️		BELLHOP BELL emoji-style
+🛏︎		BED text-style
+🛏️		BED emoji-style
+🛠︎		HAMMER AND WRENCH text-style
+🛠️		HAMMER AND WRENCH emoji-style
+🛡︎		SHIELD text-style
+🛡️		SHIELD emoji-style
+🛢︎		OIL DRUM text-style
+🛢️		OIL DRUM emoji-style
+🛣︎		MOTORWAY text-style
+🛣️		MOTORWAY emoji-style
+🛤︎		RAILWAY TRACK text-style
+🛤️		RAILWAY TRACK emoji-style
+🛥︎		MOTOR BOAT text-style
+🛥️		MOTOR BOAT emoji-style
+🛩︎		SMALL AIRPLANE text-style
+🛩️		SMALL AIRPLANE emoji-style
+🛰︎		SATELLITE text-style
+🛰️		SATELLITE emoji-style
+🛳︎		PASSENGER SHIP text-style
+🛳️		PASSENGER SHIP emoji-style

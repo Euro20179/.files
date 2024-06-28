@@ -150,7 +150,7 @@ export TRASH="$HOME/.local/share/trash"
 ###################
 # {{{
 alias "lman=MANPAGER=less man"
-alias u="paru"
+alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
 alias "dr=dragon -x"
 alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'

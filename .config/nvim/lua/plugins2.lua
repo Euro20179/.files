@@ -184,26 +184,26 @@ later(function()
     vim.ui.select = require "mini.pick".ui_select
 end)
 
-add { source = "uga-rosa/ccc.nvim" }
-later(function()
-    local ccc = require("ccc")
-    if vim.o.binary == false then
-        local mapping = ccc.mapping
-        ccc.setup {
-            inputs = {
-                ccc.input.hsl,
-                ccc.input.rgb
-            },
-            highlighter = {
-                auto_enable = true
-            },
-            mappings = {
-                ["$"] = mapping.set100
-            }
-        }
-    end
-end)
-
+-- add { source = "uga-rosa/ccc.nvim" }
+-- later(function()
+--     local ccc = require("ccc")
+--     if vim.o.binary == false then
+--         local mapping = ccc.mapping
+--         ccc.setup {
+--             inputs = {
+--                 ccc.input.hsl,
+--                 ccc.input.rgb
+--             },
+--             highlighter = {
+--                 auto_enable = true
+--             },
+--             mappings = {
+--                 ["$"] = mapping.set100
+--             }
+--         }
+--     end
+-- end)
+--
 -- add { source = "m4xshen/autoclose.nvim" }
 -- later(function()
 --     require "autoclose".setup {

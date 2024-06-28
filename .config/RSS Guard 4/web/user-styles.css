@@ -35,7 +35,7 @@
 
 /*if the website does not provide a background weird stuff happens*/
 html {
-    background: white;
+    background: var(--main);
 }
 
 #hnmain td[bgcolor="#ff6600"], #hnmain td[bgcolor="#ff6600"] * {
