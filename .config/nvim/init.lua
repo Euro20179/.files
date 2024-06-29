@@ -22,5 +22,5 @@ require "discord-ui".setup {
 }
 
 require"matrix.config".set_config({
-    homeserver = "https://matrix.org"
+    homeserver = "https://matrix.org",
 })

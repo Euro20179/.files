@@ -127,7 +127,7 @@ export GEMINI=kristall
 
 export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
-export TERMINAL="TERMINAL"
+export TERMINAL="foot"
 export MENU_LAUNCHER="os-menu"
 export MENU="menu"
 export IMAGE_VIEWER="display"
