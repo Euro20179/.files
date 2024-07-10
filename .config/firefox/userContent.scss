@@ -6,6 +6,17 @@
   font-family: sans-serif;
 }
 
+/*make <blink> work*/
+@keyframes --blink-anim {
+  67% {
+    opacity: 0;
+  }
+}
+blink {
+  animation: --blink-anim 1s step-end infinite;
+}
+/*</blink>*/
+
 /*make dark mode on every website*/
 // @-moz-document url-prefix("http") {
 //     *{
