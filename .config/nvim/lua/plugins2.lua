@@ -261,7 +261,7 @@ add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discor
 
 add { source = "fynnfluegge/monet.nvim" }
 
-add { source = "rcarriga/nvim-notify" }
+-- add { source = "rcarriga/nvim-notify" }
 
 aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     hi = {

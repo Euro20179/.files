@@ -107,7 +107,7 @@ function Color(scheme)
     -- vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
     -- vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
 
-    vim.api.nvim_set_hl(0, "LineNr", { foreground = "#1e2030" })
+    -- vim.api.nvim_set_hl(0, "LineNr", { foreground = "#1e2030" })
 
     vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
 

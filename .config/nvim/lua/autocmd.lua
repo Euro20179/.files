@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end)
             end, { desc = "[LSP] [QF] Type heirarchy" } },
             { "gr",        vim.lsp.buf.references,       { desc = "[LSP] [QF] Symbol References" } },
-            { "<leader>r", vim.lsp.buf.rename,           { desc = "[LSP] Rename Symbol" } },
+            { "crn", vim.lsp.buf.rename,           { desc = "[LSP] Rename Symbol" } },
             { "<leader>ea", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics ALL" } },

@@ -13,7 +13,7 @@ end
 
 vim.ui.select = require "mini.pick".ui_select
 
-vim.notify = require"notify"
+-- vim.notify = require"notify"
 
 -- turn the * register into a calculator register that reads/writes to system clipboard
 vim.g.clipboard = {
