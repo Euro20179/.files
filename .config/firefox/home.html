@@ -109,6 +109,10 @@
             border: 2px solid var(--secondary);
             border-radius: 5px;
         }
+
+        a {
+            color: var(--pink)
+        }
     </style>
 </head>
 
@@ -117,8 +121,13 @@
         <h1>Home</h1>
         <div id="main-image-container"></div>
         <form action="https://searx.be/search" method="POST">
-            <input id="search-box" name="q" type="search" placeholder="Search..." autofocus style="width: 20em;">
+            <input id="search-box" name="q" type="search" placeholder="Kagi..." autofocus style="width: 20em;">
         </form>
+        <form action="http://localhost:8090/yacysearch.html" method="GET">
+            <input id="search-box" name="query" type="search" placeholder="Yacy..." autofocus style="width: 20em;">
+        </form>
+        <br>
+        <a href="http://localhost:8090/Wiki.html">yacy wiki</a>
     </main>
 </body>
 <script>

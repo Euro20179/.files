@@ -29,7 +29,7 @@ set.hyprland() {
 		pactl set-default-sink 'alsa_output.pci-0000_2f_00.4.analog-stereo'
 		hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1,transform,3
 		hyprctl keyword monitor DP-1,1920x1080@165,0x790,1
-		hyprctl keyword monitor DP-2,preferred,auto,1,mirror,DP-1
+		hyprctl keyword monitor DP-2,disable
 		for i in {1..9}; do
 			[ "$((i % 2))" -eq 1 ] && 
                 hyprctl keyword wsbind "$i,HDMI-A-1,layoutopt:orientation:bottom" ||
@@ -42,13 +42,13 @@ set.hyprland() {
 	else
 		notify-send -c tv-mode "TV MODE" "ON"
 		pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
+		hyprctl keyword monitor DP-2,disable
 		hyprctl keyword monitor DP-1,disable
 		hyprctl keyword monitor HDMI-A-1,disable
 		hyprctl keyword monitor DP-2,preferred,0x0,1.5
 		touch "$state_file"
+        hyprpaper & disown
         sleep 1
-		swww init
-        swww img "$XDG_PICTURES_HOME/system-images/desktop.png"
 	fi
 	# #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
 	# if [ -f "$state_file" ]; then

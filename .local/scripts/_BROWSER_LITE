@@ -1,5 +1,8 @@
 #!/bin/sh
 
-exec librewolf -P default "$@"
+EXE=librewolf
+command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
+
+exec $EXE -P default "$@"
 
 #firefox-developer-edition -P Non-broken "$@"
