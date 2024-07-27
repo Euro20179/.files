@@ -96,7 +96,7 @@
             flex-direction: column;
         }
 
-        main{
+        main {
             display: flex;
             flex-direction: column;
             gap: 1em;
@@ -113,6 +113,11 @@
         a {
             color: var(--pink)
         }
+
+        #searches {
+            display: flex;
+            gap: 5ch;
+        }
     </style>
 </head>
 
@@ -120,14 +125,14 @@
     <main>
         <h1>Home</h1>
         <div id="main-image-container"></div>
-        <form action="https://searx.be/search" method="POST">
-            <input id="search-box" name="q" type="search" placeholder="Kagi..." autofocus style="width: 20em;">
-        </form>
-        <form action="http://localhost:8090/yacysearch.html" method="GET">
-            <input id="search-box" name="query" type="search" placeholder="Yacy..." autofocus style="width: 20em;">
-        </form>
-        <br>
-        <a href="http://localhost:8090/Wiki.html">yacy wiki</a>
+        <section id="searches">
+            <form action="https://searx.be/search" method="POST">
+                <input id="search-box" name="q" type="search" placeholder="Kagi..." autofocus style="width: 20em;">
+            </form>
+            <form action="http://localhost:8090/yacysearch.html" method="GET">
+                <input id="search-box" name="query" type="search" placeholder="Yacy..." autofocus style="width: 20em;">
+            </form>
+        </section>
     </main>
 </body>
 <script>
