@@ -1,7 +1,7 @@
 @import "../COMMON/colors.scss";
 
 //default scrollbar styling
-* {
+body {
   scrollbar-color: $pink $main;
   font-family: sans-serif;
 }
