@@ -220,6 +220,7 @@ alias rm="trash"
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
 alias p='cd $(zoxide query -l "Coding Projects/" "/" | fzf)'
 alias "TODO=$EDITOR $HOME/Documents/vimwiki/TODO.md"
+alias wishlist="$EDITOR $HOME/Documents/vimwiki/wishlist.md"
 alias "watchlist=$EDITOR $HOME/Documents/vimwiki/watchlist.m3u"
 alias "ds=cd ~/Downloads"
 alias "dF=cd ~/Documents"
