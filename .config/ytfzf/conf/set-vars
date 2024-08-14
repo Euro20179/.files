@@ -32,6 +32,9 @@ max_thread_count=40
 
 print_link_shortcut="alt-k"
 
+video_pref="bestvideo[height<=1080]"
+audio_pref="bestaudio"
+
 
 #if using wayland:
     # if in sway:
