@@ -1,5 +1,6 @@
 (include "./power-window/main.yuck")
 (include "./hyprland-bar/main.yuck")
+(include "./HDMI-A-1-bar/main.yuck")
 
 
 (defwindow hwinfo
