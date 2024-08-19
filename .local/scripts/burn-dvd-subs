@@ -1,0 +1,18 @@
+#!/bin/sh
+
+in="$1"
+
+subidx="$2"
+
+[ -z "$1" ] || [ -z "$2" ] && {
+    printf "Either the sub index or input file was not specified\n"
+    exit 1
+}
+
+output="$3"
+[ -z "$output" ] && {
+    printf "No output file\n"
+    exit 1
+}
+
+ffmpeg -i "$1" -filter_complex '[0:v:0][0:s:0]overlay[vid]' -map '[vid]' -map 0:a -c:a copy "$output"

@@ -67,9 +67,17 @@ lspconfig['lua_ls'].setup{
 -- }
 --
 
-lspconfig.gopls.setup{
-    capabilities = capabilities
-}
+lspconfig.gopls.setup({
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})
 
 -- lspconfig['pyright'].setup{ }
 
