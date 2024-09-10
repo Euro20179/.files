@@ -15,4 +15,4 @@ output="$3"
     exit 1
 }
 
-ffmpeg -i "$1" -filter_complex '[0:v:0][0:s:0]overlay[vid]' -map '[vid]' -map 0:a -c:a copy "$output"
+ffmpeg -i "$1" -filter_complex "[0:v:0][0:s:$2]overlay[vid]" -map '[vid]' -map 0:a -c:a copy "$output"

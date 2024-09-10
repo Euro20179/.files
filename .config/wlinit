@@ -43,3 +43,6 @@ fcitx5 -d & disown
 
 killall hyprland-activity-tracker
 hyprland-activity-tracker & disown
+
+kilall dvd-auto-play
+dvd-auto-play & disown
