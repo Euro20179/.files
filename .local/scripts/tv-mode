@@ -91,7 +91,7 @@ wayland)
 		waybar &
 		disown
 		;;
-	Hyprland)
+	Hyprland|X-generic)
 		set.hyprland
 		;;
 	esac

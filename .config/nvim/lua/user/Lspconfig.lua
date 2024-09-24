@@ -86,7 +86,7 @@ lspconfig['java_language_server'].setup {
     capabilities = capabilities
 }
 
-lspconfig['tsserver'].setup {
+lspconfig['ts_ls'].setup {
   capabilities = capabilities,
   --filetypes = { "typescript" },
   root_dir = function() return vim.loop.cwd() end,

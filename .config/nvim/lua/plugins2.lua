@@ -230,7 +230,8 @@ aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
     }
 })
 -- add { source = "kevinhwang91/nvim-bqf" }
-add { source = "jbyuki/quickmath.nvim" }
+-- add { source = "jbyuki/quickmath.nvim" }
+add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
 -- aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
 add { source = "tpope/vim-fugitive" }
