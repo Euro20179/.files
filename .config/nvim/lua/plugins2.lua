@@ -291,5 +291,12 @@ aSetup({source = "cshuaimin/ssr.nvim"}, now, "ssr", {
     }
 })
 
-add { source = "Aaronik/GPTModels.nvim" }
+aSetup({ source = "magicalne/nvim.ai" }, now, "ai", {
+    provider = "ollama",
+    ollama = {
+        model = "llama3.1:latest"
+    }
+})
+
 add { source = "MunifTanjim/nui.nvim" }
+

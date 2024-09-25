@@ -52,12 +52,27 @@ local function onload()
 
     local current_file = mp.get_property("playlist/" .. pos .. "/filename")
 
+    local playlistPath = mp.get_property("playlist/" .. pos .. "/playlist-path")
+
+    local playlistPathLen = string.len(playlistPath)
+    --current_file may contain the playlist path which may contain the season number
+    --this messes up episode-grabber
+    --remove the playlist path from current_file
+    if string.sub(current_file, 0, playlistPathLen) == playlistPath then
+        current_file = string.sub(current_file, playlistPathLen + 1)
+    end
+
+    if current_file:sub(0, 1) == "/" then
+        current_file = string.sub(current_file, 2)
+    end
+
     local ep = getEp(current_file, pp)
     if ep == nil then
         return
     end
 
     ep, _= string.gsub(ep, "\n", "")
+    print("Extracted episode: " .. ep)
     updateCurrEp(pp, ep)
 end
 

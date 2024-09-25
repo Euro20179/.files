@@ -1,4 +1,9 @@
 #!/bin/python
+
+#Arguments to this script must bee
+# <filename from a directory> <path to that directory>
+#the filename MUST NOT contain the directory that it resides in
+from pathlib import Path
 import sys
 import re
 import os
@@ -16,7 +21,9 @@ if len(files) == 0:
 regex = re.compile(r"((:?[\W_\-\. ]|E|OVA)?\d+[\W_\-\. ])")
 matches = regex.findall(currentFile)
 realMatches = matches
+currentFile = str(Path(directory) / Path(currentFile))
 for file in files:
+    file = str(Path(directory) / Path(file))
     if file == currentFile: continue
 
     match: list[str]
