@@ -3,6 +3,7 @@ require "user.cmp"
 require "user.treesitter"
 require 'user.whichkey'
 require "user.Lspconfig"
+require "user.multicursor"
 -- require "user.color-picker"
 -- require "user.t-source"
 -- require "user.orgmode"

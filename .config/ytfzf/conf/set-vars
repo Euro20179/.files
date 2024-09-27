@@ -46,7 +46,7 @@ audio_pref="bestaudio"
 #elif in tty:
     # use catimg
 if [ "$__is_fzf_preview" -eq 0 ]; then
-    load_thumbnail_viewer sixel
+    load_thumbnail_viewer chafa-sixel
     #[ $TERM = foot ] && {
     #    load_thumbnail_viewer sixel
     #} || [ "$XDG_SESSION_TYPE" = "wayland" ] && {

@@ -300,3 +300,4 @@ aSetup({ source = "magicalne/nvim.ai" }, now, "ai", {
 
 add { source = "MunifTanjim/nui.nvim" }
 
+aSetup({ source = "jake-stewart/multicursor.nvim" }, later, "multicursor-nvim", {})
