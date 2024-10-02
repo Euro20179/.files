@@ -40,3 +40,12 @@ vim.diagnostic.config({
         border = "single"
     }
 })
+
+vim.lsp.buf.hover = function()
+    local hc = require"hovercraft"
+    if hc.is_visible() then
+        hc.enter_popup()
+    else
+        hc.hover()
+    end
+end

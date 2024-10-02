@@ -1,4 +1,4 @@
-local opt = require"mp.options"
+local opt = require "mp.options"
 
 local options = {
     account_pin = ""
@@ -6,17 +6,21 @@ local options = {
 
 opt.read_options(options, mp.get_script_name())
 
-if options.account_pin == "" then
-    return
+local function setupLogin()
+    if options.account_pin == "" then
+        return ""
+    end
+
+    local base64Login = io.popen("printf ':%s' '" .. options.account_pin .. "' | base64")
+    if base64Login == nil then
+        return ""
+    end
+
+    local login = "Authorization: Basic " .. base64Login:read("a")
+    base64Login:close()
+    return login
 end
 
-local base64Login = io.popen("printf ':%s' '" .. options.account_pin .. "' | base64")
-if base64Login == nil then
-    return
-end
-
-local login = "Authorization: Basic " .. base64Login:read("a")
-base64Login:close()
 
 local function isAnime()
     return mp.get_property("working-directory"):match("/Anime") or mp.get_property("path"):match("/Anime/")
@@ -34,10 +38,12 @@ local function getEp(currentFile, path)
     return res
 end
 
+---@param login string
 ---@param location string
 ---@param num string
-local function updateCurrEp(location, num)
-    local req = io.popen("curl 'http://localhost:8080/api/v1/query?' -H '" .. login .. "' -G -d 'location=" .. location .. "' | jq '.ItemId'")
+local function updateCurrEp(login, location, num)
+    local req = io.popen("curl 'http://localhost:8080/api/v1/query?' -H '" ..
+    login .. "' -G -d 'location=" .. location .. "' | jq '.ItemId'")
     if req == nil then
         return
     end
@@ -47,7 +53,8 @@ local function updateCurrEp(location, num)
 
     itemId, _ = string.gsub(itemId, "\n", "")
 
-    req = io.popen("curl -H '" .. login .. "' 'http://localhost:8080/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
+    req = io.popen("curl -H '" ..
+    login .. "' 'http://localhost:8080/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
     if req == nil then
         return
     end
@@ -58,6 +65,13 @@ end
 
 local function onload()
     if not isAnime() then
+        return
+    end
+
+    local login = setupLogin()
+
+    if login == "" then
+        print("No account pin")
         return
     end
 
@@ -91,9 +105,9 @@ local function onload()
         return
     end
 
-    ep, _= string.gsub(ep, "\n", "")
+    ep, _ = string.gsub(ep, "\n", "")
     print("Extracted episode: " .. ep)
-    updateCurrEp(pp, ep)
+    updateCurrEp(login, pp, ep)
 end
 
 mp.register_event("file-loaded", onload)
