@@ -14,13 +14,8 @@ state_home=${XDG_STATE_HOME:-$HOME/.local/state}/xdg-desktop-portal.FileChooser
 mkdir -p "$state_home"
 
 if [ "$save" -eq 1 ]; then
-    notify-send "choose directory to save in"
-    cwd_file="$state_home/cwd"
-    $TERMINAL -e yazi --cwd-file="$cwd_file" "$(cat "$cwd_file")"
-	read -r cwd <"$cwd_file"
-    notify-send "$cwd"
     notify-send "Choose file to save in"
-	args=(--chooser-file="${out}" "$cwd")
+	args=(--chooser-file="${out}")
 	# args=(--choosefile="$out" "${path%/*}")
 elif [ "$dir" -eq 1 ]; then
     notify-send "Choose directory"

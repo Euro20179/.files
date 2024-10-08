@@ -6,6 +6,12 @@ local capabilities = require"cmp_nvim_lsp".default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- lspconfig['ast_grep'].setup{ capabilities = capabilities }
+--
+
+lspconfig["hls"].setup {
+    capabilities = capabilities,
+    filetypes = {"haskell"},
+}
 
 lspconfig['emmet_ls'].setup{
     capabilities = capabilities,
@@ -33,6 +39,7 @@ lspconfig['elixirls'].setup{
 lspconfig["kotlin_language_server"].setup {
     capabilities = capabilities
 }
+
 
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
 

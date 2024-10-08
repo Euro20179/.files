@@ -57,7 +57,7 @@ export GTK_USE_PORTAL=1
 export MOZ_ENABLE_WAYLAND=1
 export SDL_VIDEODRIVER=wayland,x11
 #fixes weird xdg-open bugs for some fucking reason
-[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=X-generic
+[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=Hyprland
 # }}}
 
 #################
