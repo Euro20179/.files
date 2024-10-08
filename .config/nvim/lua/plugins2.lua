@@ -244,12 +244,6 @@ aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
     dim = true
 })
 
-add { source = "dustinblackman/oatmeal.nvim" }
-setup(later, "oatmeal", {
-    backend = "ollama",
-    model = "gemma:latest"
-})
-
 aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, now, "regedit", {})
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
@@ -272,16 +266,25 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
 
 add { source = "vim-scripts/vis" }
 
--- aSetup({ source = "meeehdi-dev/bropilot.nvim" }, later, "bropilot", {
---     {
---         model = "codegemma:code",
---         prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
---         debounce = 1000,
---         auto_pull = true
---     }
--- })
+aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" } }, later, "bropilot",
+    {
+        model = "qwen2.5-coder:1.5b-base",
+        prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
+        model_params = {
+            stop = { "<|fim_pad|>", "<|endoftext|>" },
+            num_ctx = 8192,
+        },
+        debounce = 100,
+        auto_pull = true,
+        keymap = {
+            suggest = "<C-'>",
+            accept_block = "<C-Enter>",
+            accept_line = "<S-Enter>"
+        }
+    }
+)
 
-aSetup({source = "cshuaimin/ssr.nvim"}, now, "ssr", {
+aSetup({ source = "cshuaimin/ssr.nvim" }, now, "ssr", {
     keymaps = {
         close = 'q',
         next_match = 'n',

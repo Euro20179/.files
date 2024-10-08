@@ -77,10 +77,15 @@ local function onload()
 
     local pos = mp.get_property("playlist-playing-pos")
     if pos == -1 then
+        print("Unknown playing position")
         return
     end
 
     local pp = mp.get_property('playlist-path')
+    if pp == nil then
+        print("Not playing a playlist")
+        return
+    end
     local wd = mp.get_property("working-directory")
     pp = wd .. "/" .. pp
 
