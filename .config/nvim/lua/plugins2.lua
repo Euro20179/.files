@@ -184,6 +184,8 @@ later(function()
     vim.ui.select = require "mini.pick".ui_select
 end)
 
+add {   source = "https://github.com/NvChad/minty", depends = { "nvchad/volt" } }
+
 -- add { source = "uga-rosa/ccc.nvim" }
 -- later(function()
 --     local ccc = require("ccc")
@@ -306,3 +308,5 @@ add { source = "MunifTanjim/nui.nvim" }
 aSetup({ source = "jake-stewart/multicursor.nvim" }, later, "multicursor-nvim", {})
 
 aSetup({ source = "https://github.com/patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
+
+aSetup({ source = "https://github.com/Bekaboo/dropbar.nvim" }, later, "dropbar", {})

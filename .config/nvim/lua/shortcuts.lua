@@ -172,8 +172,6 @@ local nShortcuts = {
         require "neogit".open({ "push" })
     end },
     -- }}}
-    --lsp {{{
-    --}}}
     -- Treesitter {{{
     { "<leader>sr",      function() require "ssr".open() end },
     { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
@@ -189,8 +187,9 @@ local nShortcuts = {
     { utilLeader .. "e", ":Neorg exec cursor<CR>" },
     { utilLeader .. "W", "\"=v:lua.Rword()<cr>p", { desc = "[UTIL] random word" } },
     { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>", { desc = "[UTIL] Put the date with a format" } },
-    { "<C-c><C-c>", "<cmd>CccPick<cr>" },
-    { "<C-c><C-x>", "<cmd>CccConvert<cr>" },
+    { "<C-c><C-c>", function ()
+        vim.system({"foot", "goker", vim.fn.expand("<cWORD>")})
+    end, { desc = "[UTIL] Open color picker" }},
     -- }}}
     -- lazy {{{
     { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
