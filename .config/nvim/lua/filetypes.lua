@@ -13,6 +13,9 @@ vim.filetype.add({
                 if vim.endswith(line1, "nvim -l") then
                     return "lua"
                 end
+                if vim.endswith(line1, "nvim -S") then
+                    return "vim"
+                end
                 local pkgData = vim.split(line1, " ", {})
                 if #pkgData == 1 then
                     return

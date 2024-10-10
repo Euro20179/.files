@@ -84,7 +84,11 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
         show_hidden = true
     },
     columns = {
-        "icons"
+        "icon",
+        "permissions"
+    },
+    keymaps = {
+        ["yy"] = "actions.yank_entry"
     }
 })
 
@@ -184,36 +188,7 @@ later(function()
     vim.ui.select = require "mini.pick".ui_select
 end)
 
-add {   source = "https://github.com/NvChad/minty", depends = { "nvchad/volt" } }
-
--- add { source = "uga-rosa/ccc.nvim" }
--- later(function()
---     local ccc = require("ccc")
---     if vim.o.binary == false then
---         local mapping = ccc.mapping
---         ccc.setup {
---             inputs = {
---                 ccc.input.hsl,
---                 ccc.input.rgb
---             },
---             highlighter = {
---                 auto_enable = true
---             },
---             mappings = {
---                 ["$"] = mapping.set100
---             }
---         }
---     end
--- end)
---
--- add { source = "m4xshen/autoclose.nvim" }
--- later(function()
---     require "autoclose".setup {
---         options = {
---             pair_spaces = true
---         }
---     }
--- end)
+add { source = "https://github.com/NvChad/minty", depends = { "nvchad/volt" } }
 
 add { source = "altermo/ultimate-autopair.nvim" }
 later(function()
@@ -278,6 +253,7 @@ aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" }
         },
         debounce = 100,
         auto_pull = true,
+        auto_suggest= false,
         keymap = {
             suggest = "<C-'>",
             accept_block = "<C-Enter>",

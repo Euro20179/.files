@@ -204,6 +204,7 @@ vimwiki () {
 ############################
 # {{{
 alias nvim=$EDITOR
+alias n="$EDITOR +Oil"
 alias "vim=nvim"
 alias 'ls=lsd'
 alias "l=lsd --group-directories-first -A"

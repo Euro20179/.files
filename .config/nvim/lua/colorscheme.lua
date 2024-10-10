@@ -115,13 +115,13 @@ function Color(scheme)
     vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
     --}}}
 
-    if vim.g.neovide ~= nil then
-        vim.g.neovide_transparency = 0.8
-        vim.api.nvim_cmd({
-            cmd = "hi",
-            args = { "Normal", "guibg=NONE", "ctermbg=NONE" }
-        }, {})
-    end
+    -- if vim.g.neovide ~= nil then
+    --     vim.g.neovide_transparency = 0.8
+    --     vim.api.nvim_cmd({
+    --         cmd = "hi",
+    --         args = { "Normal", "guibg=NONE", "ctermbg=NONE" }
+    --     }, {})
+    -- end
 end
 
 -- Color("tokyonight-moon")

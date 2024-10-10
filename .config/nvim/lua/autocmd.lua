@@ -29,11 +29,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
             float = {
                 border = "single",
                 title = "diagnostic"
+            },
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = "",
+                    [vim.diagnostic.severity.WARN] = "⚠",
+                    [vim.diagnostic.severity.INFO] = "",
+                    [vim.diagnostic.severity.HINT] = ""
+                }
             }
         })
 
+
         local ks = vim.keymap.set
-        ks("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] goto definition" })
         local key_maps = {
             { "gls",  vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
             { "glw", vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
@@ -84,7 +92,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end, { desc = "[LSP] Perform first code action automatically" }
             },
             { "]D", function()
-                vim.diagnostic.goto_next()
+                vim.diagnostic.jump({ count = 1, pos = vim.api.nvim_win_get_cursor(0) })
                 local n = 0
                 vim.lsp.buf.code_action({
                     filter = function()
@@ -101,27 +109,38 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "gK",     "<c-w>d",                                                         { desc = "[LSP] Open diagnostic float", remap = true } },
             { "g<c-]>", function() vim.lsp.buf.type_definition({ reuse_win = true }) end, { desc = "[LSP] Go to type definition" } },
             { "[e", function()
-                vim.diagnostic.goto_prev({
+                vim.diagnostic.jump({
+                    count = -1,
+                    pos = vim.api.nvim_win_get_cursor(0),
                     severity = vim.diagnostic.severity.ERROR
                 })
             end, { desc = "[LSP] goto previous error" } },
             { "]e", function()
-                vim.diagnostic.goto_next({
+                vim.diagnostic.jump({
+                    count = 1,
+                    pos = vim.api.nvim_win_get_cursor(0),
                     severity = vim.diagnostic.severity.ERROR
                 })
             end, { desc = "[LSP] goto next error" } },
             { "[w", function()
-                vim.diagnostic.goto_prev({
+                vim.diagnostic.jump({
+                    count = -1,
+                    pos = vim.api.nvim_win_get_cursor(0),
                     severity = vim.diagnostic.severity.WARN
                 })
             end, { desc = "[LSP] goto previous error" } },
             { "]w", function()
-                vim.diagnostic.goto_next({
+                vim.diagnostic.jump({
+                    count = 1,
+                    pos = vim.api.nvim_win_get_cursor(0),
                     severity = vim.diagnostic.severity.WARN
                 })
             end, { desc = "[LSP] goto next error" } },
             { "[D", function()
-                vim.diagnostic.goto_prev()
+                vim.diagnostic.jump({
+                    count = -1,
+                    pos = vim.api.nvim_win_get_cursor(0),
+                })
                 local n = 0
                 vim.lsp.buf.code_action({
                     filter = function(_)
@@ -142,8 +161,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         for _, value in ipairs(key_maps) do
             ks("n", value[1], value[2], value[3] or {})
         end
-
-        ks("i", "<c-s>", vim.lsp.buf.signature_help, { desc = "[LSP] Signature help" })
     end
 })
 
