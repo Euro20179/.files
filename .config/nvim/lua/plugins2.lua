@@ -39,10 +39,9 @@ add { source = "nvim-tree/nvim-web-devicons" }
 add {
     source = "nvim-treesitter/nvim-treesitter",
 }
-add { source = "nushell/tree-sitter-nu" }
 add { source = "nvim-treesitter/nvim-treesitter-refactor" }
 
--- add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
+add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 -- }}}
 
 --LSP+DAP{{{
@@ -261,16 +260,6 @@ aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" }
         }
     }
 )
-
-aSetup({ source = "cshuaimin/ssr.nvim" }, now, "ssr", {
-    keymaps = {
-        close = 'q',
-        next_match = 'n',
-        prev_match = 'N',
-        replace_confirm = "<CR>",
-        replace_all = "<leader><CR>"
-    }
-})
 
 aSetup({ source = "magicalne/nvim.ai" }, now, "ai", {
     provider = "ollama",
