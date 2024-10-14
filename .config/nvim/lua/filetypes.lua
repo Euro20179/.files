@@ -1,10 +1,4 @@
 vim.filetype.add({
-    extension = {
-        typst = "typst"
-    }
-})
-
-vim.filetype.add({
     pattern = {
         [".*%.config/hypr/.*%.conf"] = "hyprlang",
         [".*%.nu"] = "nu",
