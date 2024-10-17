@@ -10,38 +10,13 @@ local gitLeader = "<M-g>"
 
 local dapLeader = "<M-d>"
 
-local discord = require'discord'
-
-vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
+-- local discord = require'discord'
+--
+-- vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
 
 local macros = {}
 --Normal Mode{{{
 local nShortcuts = {
-    --Macros {{{
-    { "<leader>ms", function()
-        local inp = vim.fn.input({ prompt = "register@name: " })
-        if inp == "" then
-            return
-        end
-        local dat = vim.split(inp, "@")
-        local name = dat[1]
-        local reg = dat[2]
-        macros[name] = reg
-    end, { desc = "[MACRO] Save macro" } },
-    { "<leader>mp", function()
-        local items = {}
-        for k, v in pairs(macros) do
-            items[#items + 1] = k .. "@" .. v .. " = " .. vim.fn.getreg(k)
-        end
-        vim.ui.select(items, { prompt = "Macro to play" }, function(macro)
-            if macro == nil then
-                return
-            end
-            local reg = vim.split(macro, "@")[1]
-            vim.cmd.norm("@" .. reg)
-        end)
-    end, { desc = "[MACRO] play macro" } },
-    --}}}
     -- dap {{{
     { dapLeader .. "s", function()
         local sidebar = widgets.sidebar(widgets.scopes)
@@ -204,6 +179,7 @@ local nShortcuts = {
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
     { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" }},
+    { "<a-m>", ":make<CR>", { desc = "copmile" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})

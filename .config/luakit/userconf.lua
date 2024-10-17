@@ -17,3 +17,14 @@ select.label_maker = function ()
 end
 
 editor.editor_cmd = "footclient nvim {file} +{line}"
+
+local files = {
+    "downloads.db",
+    "history.db",
+    "cookies.db"
+}
+for i = 1, #files, 1 do
+    local share = os.getenv("XDG_DATA_HOME")
+    local path = share .. "/luakit/" .. files[i]
+    os.remove(path)
+end

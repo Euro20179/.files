@@ -110,6 +110,7 @@ aSetup({ source = "smjonas/inc-rename.nvim" }, later, "inc_rename", {})
 add { source = "echasnovski/mini.nvim" }
 
 later(function()
+    -- require "mini.comment".setup {}
     require "mini.move".setup {
         mappings = {
             left = "mh",
@@ -123,7 +124,6 @@ later(function()
             line_up = "<leader>mk",
         }
     }
-    -- require "mini.comment".setup {}
     require "mini.surround".setup {
         custom_surroundings = {
             T = {
@@ -252,7 +252,7 @@ aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" }
         },
         debounce = 100,
         auto_pull = true,
-        auto_suggest= false,
+        auto_suggest = false,
         keymap = {
             suggest = "<C-'>",
             accept_block = "<C-Enter>",
