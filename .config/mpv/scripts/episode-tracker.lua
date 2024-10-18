@@ -42,8 +42,8 @@ end
 ---@param location string
 ---@param num string
 local function updateCurrEp(login, location, num)
-    local req = io.popen("curl 'http://localhost:8080/api/v1/query?' -H '" ..
-    login .. "' -G -d 'location=" .. location .. "' | jq '.ItemId'")
+    local req = io.popen("curl 'http://localhost:8080/api/v1/query-v3' -H '" ..
+    login .. "' -G -d 'search=location%20=%20" .. '"' .. location .. '"' .. "' | jq '.ItemId'")
     if req == nil then
         return
     end
