@@ -49,6 +49,7 @@
       "class<makemkv>": "📀",
       "class<vlc>": "󰕼",
       "class<.*Minecraft.*>": "󰍳",
+      "title<.*factorio.*>": "⚙️",
       "class<MultiMC>": "󰍳L",
       "class<thunderbird>": "",
       "title<.*nvim.*\\(foot\\)>": "",

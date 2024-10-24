@@ -275,3 +275,12 @@ aSetup({ source = "jake-stewart/multicursor.nvim" }, later, "multicursor-nvim", 
 aSetup({ source = "https://github.com/patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
 
 aSetup({ source = "https://github.com/Bekaboo/dropbar.nvim" }, later, "dropbar", {})
+
+aSetup({ source = "NStefan002/2048.nvim" }, later, "2048", {
+    keys = {
+        up = "<up>",
+        down = "<down>",
+        right = "<right>",
+        left = "<left>"
+    }
+})

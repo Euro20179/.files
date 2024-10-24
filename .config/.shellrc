@@ -54,6 +54,7 @@ export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
 #some java apps don't work without this
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GTK_USE_PORTAL=1
+export GDK_BACKEND=wayland
 export MOZ_ENABLE_WAYLAND=1
 export SDL_VIDEODRIVER=wayland,x11
 #fixes weird xdg-open bugs for some fucking reason
