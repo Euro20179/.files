@@ -187,8 +187,6 @@ later(function()
     vim.ui.select = require "mini.pick".ui_select
 end)
 
-add { source = "https://github.com/NvChad/minty", depends = { "nvchad/volt" } }
-
 add { source = "altermo/ultimate-autopair.nvim" }
 later(function()
     require "ultimate-autopair.core".modes = { 'i' }
