@@ -8,11 +8,11 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- lspconfig['ast_grep'].setup{ capabilities = capabilities }
 --
 
--- lspconfig["hls"].setup {
---     capabilities = capabilities,
---     filetypes = {"haskell"},
--- }
---
+lspconfig["hls"].setup {
+    capabilities = capabilities,
+    filetypes = {"haskell"},
+}
+
 lspconfig['emmet_ls'].setup{
     capabilities = capabilities,
     filetypes = { "html" }

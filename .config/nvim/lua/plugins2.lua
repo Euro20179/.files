@@ -103,8 +103,6 @@ add { source = "nvim-neorg/neorg",
     }
 }
 
-aSetup({ source = "smjonas/inc-rename.nvim" }, later, "inc_rename", {})
-
 -- aSetup({ source = "sindrets/diffview.nvim" }, later, "diffview", {})
 
 add { source = "echasnovski/mini.nvim" }
@@ -210,9 +208,6 @@ add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 -- aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
 add { source = "tpope/vim-fugitive" }
 
-add { source = "ThePrimeagen/refactoring.nvim" }
-later(function() require("refactoring").setup() end)
-
 aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
     highlight_on_key = true,
     dim = true
@@ -238,8 +233,6 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     }
 })
 
-add { source = "vim-scripts/vis" }
-
 aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" } }, later, "bropilot",
     {
         model = "qwen2.5-coder:1.5b-base",
@@ -259,26 +252,8 @@ aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" }
     }
 )
 
-aSetup({ source = "magicalne/nvim.ai" }, now, "ai", {
-    provider = "ollama",
-    ollama = {
-        model = "llama3.1:latest"
-    }
-})
-
 add { source = "MunifTanjim/nui.nvim" }
 
 aSetup({ source = "jake-stewart/multicursor.nvim" }, later, "multicursor-nvim", {})
 
 aSetup({ source = "https://github.com/patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
-
-aSetup({ source = "https://github.com/Bekaboo/dropbar.nvim" }, later, "dropbar", {})
-
-aSetup({ source = "NStefan002/2048.nvim" }, later, "2048", {
-    keys = {
-        up = "<up>",
-        down = "<down>",
-        right = "<right>",
-        left = "<left>"
-    }
-})
