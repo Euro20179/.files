@@ -8,8 +8,8 @@ aioUrl="http://localhost:8080/api/v1"
 [ -s "$tmpMetadata" ] && metadata="$(cat "${tmpMetadata}")" || metadata=$(curl "${aioUrl}/metadata/list-entries" 2>/dev/null | tee "$tmpMetadata")
 
 if [ "$displayThumbId" ]; then
-    thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<< "$metadata")
-    jq -rs ".[]|select(.ItemId==${displayThumbId}).Title" <<< "$metadata"
+    thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<<"$metadata")
+    jq -rs ".[]|select(.ItemId==${displayThumbId})|.Title + \" (\(.Rating))\" + \"<br><br>\" + .Description" <<<"$metadata" | pandoc -fhtml -tgfm
     if ! [ "$thumb" ]; then
         echo "NO THUMBNAIL"
     else
@@ -22,7 +22,8 @@ read -r -p "Account pin (press enter to skip): " pin
 
 auth=$(printf ":%s" "$pin" | base64)
 
-data=$(curl "${aioUrl}/query-v3" -G -d 'search=location!=""')
+#format 9 is special, because only the game id need be stored, in MediaDependant for it to be able to open it
+data=$(curl "${aioUrl}/query-v3" -G -d 'search=location!=""|format==9')
 
 ids=$(printf "%s" "$data" | jq -s '.[]|.ItemId')
 
@@ -36,6 +37,22 @@ getThumbPath() {
 
 id=$(printf "%s" "$display" | fzf --preview 'echo {} | rev | cut -d: -f 1 | rev | xargs -I.PL. '"$0"' .PL. '"${tmpMetadata}"' ' | rev | cut -d: -f 1 | rev)
 
-linkhandler media://"$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Location")"
+type="$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Type")"
+format="$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Format")"
+
+mdmeta=$(printf "%s" "$metadata" | jq -rs ".[]|select(.ItemId==${id}).MediaDependant")
+
+prefix="media://"
+case "$type" in
+    Game) prefix="exe://" ;;
+esac
+[ "$format" = 9 ] && { 
+    gameId=$(printf "%s" "$mdmeta" | jq -r '.["Game-steam-id"]')
+    [ "$gameId" != "null" ] &&  {
+        prefix="steam://rungameid/${gameId}"
+    }
+}
+
+linkhandler "${prefix}""$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Location")"
 
 rm "$tmpMetadata"

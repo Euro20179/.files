@@ -25,6 +25,8 @@ case "$link" in
     *.png|*.jpg|*.jpeg|*.webm|*.gif|*.webm|*.webp) mpv --loop "$link" & ;;
     *.m3u?) mpv "$link" ;;
     *.onion) tor "$link" ;;
+    # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
+    exe://*) "${link#exe://}" ;;
     media://*) mpv "${link#media://}" ;;
     https://cdn.discordapp.com/attachments/*)
         tmp=$(mktemp)
@@ -68,6 +70,6 @@ EOF
         #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
         [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" man "$link" ;;
     sftp://*) mpv "$link" ;;
-    *) "$BROWSER" "$link" ;;
+    *) xdg-open "$link" 2> /dev/null || "$BROWSER" "$link" ;;
 esac
 killall ssh-agent 2> /dev/null
