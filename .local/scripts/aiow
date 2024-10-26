@@ -1,0 +1,38 @@
+#!/bin/bash
+
+displayThumbId=$1
+
+aioUrl="http://localhost:8080/api/v1"
+
+metadata=$(curl "${aioUrl}/metadata/list-entries" 2>/dev/null)
+
+if [ "$displayThumbId" ]; then
+    thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<<"$metadata")
+    jq -rs ".[]|select(.ItemId==${displayThumbId}).Title" <<< "$metadata"
+    if ! [ "$thumb" ]; then
+        echo "NO THUMBNAIL"
+    else
+        printf "%s" "$thumb" | xargs -I{} curl "${aioUrl%/api/v1}{}" 2>/dev/null | chafa
+    fi
+    exit 0
+fi
+
+read -r -p "Account pin (press enter to skip): " pin
+
+auth=$(printf ":%s" "$pin" | base64)
+
+data=$(curl "${aioUrl}/query-v3" -G -d 'search=location!=""')
+
+ids=$(printf "%s" "$data" | jq -s '.[]|.ItemId')
+
+display=$(printf "%s" "$data" | jq -rs $'.[]|"\(.En_Title) : \(.ItemId)"')
+
+getThumbPath() {
+    id=$1
+
+    jq -rs ".[]|select(.ItemId==${id}).Thumbnail" <<<"$metadata"
+}
+
+id=$(printf "%s" "$display" | fzf --preview 'echo {} | rev | cut -d: -f 1 | rev | xargs '"$0"' ' | rev | cut -d: -f 1 | rev)
+
+linkhandler media://"$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Location")"

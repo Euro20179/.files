@@ -1,5 +1,9 @@
 #!/bin/python
 
+#This script pulls the episode number from <filename>
+    #(assuming the episode number is in the filename)
+    #if the episode number is not in the filename this script will fail
+
 #Arguments to this script must bee
 # <filename from a directory> <path to that directory>
 #the filename MUST NOT contain the directory that it resides in

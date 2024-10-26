@@ -1,5 +1,9 @@
 # Dotfiles
 
+This repository contains basically everything my system relies on, and all the scripts i use
+
+In addition I keep old dotfiles/scripts around justincase™️
+
 - The wallpapers i use are generally from [here](https://github.com/Gingeh/wallpapers)
 The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
 
