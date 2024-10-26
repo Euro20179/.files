@@ -1,13 +1,14 @@
 #!/bin/bash
 
 displayThumbId=$1
+tmpMetadata="${2:-$(mktemp)}"
 
 aioUrl="http://localhost:8080/api/v1"
 
-metadata=$(curl "${aioUrl}/metadata/list-entries" 2>/dev/null)
+[ -s "$tmpMetadata" ] && metadata="$(cat "${tmpMetadata}")" || metadata=$(curl "${aioUrl}/metadata/list-entries" 2>/dev/null | tee "$tmpMetadata")
 
 if [ "$displayThumbId" ]; then
-    thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<<"$metadata")
+    thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<< "$metadata")
     jq -rs ".[]|select(.ItemId==${displayThumbId}).Title" <<< "$metadata"
     if ! [ "$thumb" ]; then
         echo "NO THUMBNAIL"
@@ -33,6 +34,8 @@ getThumbPath() {
     jq -rs ".[]|select(.ItemId==${id}).Thumbnail" <<<"$metadata"
 }
 
-id=$(printf "%s" "$display" | fzf --preview 'echo {} | rev | cut -d: -f 1 | rev | xargs '"$0"' ' | rev | cut -d: -f 1 | rev)
+id=$(printf "%s" "$display" | fzf --preview 'echo {} | rev | cut -d: -f 1 | rev | xargs -I.PL. '"$0"' .PL. '"${tmpMetadata}"' ' | rev | cut -d: -f 1 | rev)
 
 linkhandler media://"$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Location")"
+
+rm "$tmpMetadata"
