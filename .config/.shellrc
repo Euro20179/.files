@@ -253,6 +253,8 @@ export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all,ctrl-u:deselect-all,ctrl-j:dow
 
 export MPV_WIN_SIZE=1000
 
+export AIO_SERVER="http://10.0.0.2:8888"
+
 py_color="38;2;254;227;107m\033[48;2;52;110;158"
 old_color="9"
 img_color="38;2;198;141;254"

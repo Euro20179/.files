@@ -3,7 +3,7 @@
 displayThumbId=$1
 tmpMetadata="${2:-$(mktemp)}"
 
-aioUrl="http://localhost:8080/api/v1"
+aioUrl=${AIO_SERVER:-"http://localhost:8080"}"/api/v1"
 
 [ -s "$tmpMetadata" ] && metadata="$(cat "${tmpMetadata}")" || metadata=$(curl "${aioUrl}/metadata/list-entries" 2>/dev/null | tee "$tmpMetadata")
 
@@ -17,10 +17,6 @@ if [ "$displayThumbId" ]; then
     fi
     exit 0
 fi
-
-read -r -p "Account pin (press enter to skip): " pin
-
-auth=$(printf ":%s" "$pin" | base64)
 
 #format 9 is special, because only the game id need be stored, in MediaDependant for it to be able to open it
 data=$(curl "${aioUrl}/query-v3" -G -d 'search=location!=""|format==9')
