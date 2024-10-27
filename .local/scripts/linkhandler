@@ -8,6 +8,13 @@ mime=$(file --mime-type "$*" | rev | cut -d: -f1 | rev | tr -d ' ')
 
 EDITOR="$TERMINAL $EDITOR"
 
+open_with_editor() {
+    modified_link="$1"
+
+    #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
+    [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || "${EDITOR}" "$modified_link"; exit 0
+}
+
 #website="$(printf "%s" "$link" | grep -Po "://.*?/" | sed -E 's/(:\/)?\///g')"
 
 case "$mime" in
@@ -15,7 +22,7 @@ case "$mime" in
     image/*) sxiv "$link"; exit 0 ;;
     text/*|plain/*)
         [ $LH_NO_EDIT = 1 ] && exit 1
-         $EDITOR "$link"; exit 0 ;;
+        open_with_editor "$link" ;;
     video/*|audio/*) mpv "$link"; exit 0 ;;
     application/x-shockwave-flash) flashplayer "$link"; exit 0 ;;
     inode/directory) mpv "$link"; exit 0 ;;
@@ -38,8 +45,8 @@ case "$link" in
         file_path=${link#*/blob/}
         repo="${link%%/blob/*}"
         repo="${repo#https://github.com/}"
-        $EDITOR "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
-    https://*/watch?v=*) mpv "$1" ;;
+        open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}" ;;
+    https://*/watch?v=*|https://youtu.be*) mpv "$1" ;;
     https://*|http://*|file:///*) nohup $BROWSER "$link" > /dev/null 2>&1 & ;;
     gemini://*) ${GEMINI:-kristall} "$link" ;;
     anime:sftp://*)
@@ -60,7 +67,7 @@ case "$link" in
     *.m3u8) mpv "$link" & ;;
     /*|~/*|./*)
         [ $LH_NO_EDIT = 1 ] && exit 1
-         $EDITOR "$link" ;;
+         open_with_editor "$link" ;;
     term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}";;
     wiki://*) "${BROWSER}" "https://wikipedia.org/wiki/${link#wiki://}" ;;
     man://*|man:)

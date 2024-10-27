@@ -209,7 +209,7 @@ alias n="$EDITOR +Oil"
 alias "vim=nvim"
 alias 'ls=lsd'
 alias "l=lsd --group-directories-first -A"
-alias "ll=ls -ASs --group-directories-first --color=auto"
+alias "ll=command ls -ASs --group-directories-first --color=auto"
 alias rm="trash"
 #`alias cd=z` is done in the zoxide autoload file because it must be done after zoxide does its stuff
 # }}}
