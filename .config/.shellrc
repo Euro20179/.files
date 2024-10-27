@@ -179,10 +179,9 @@ alias doase=doasedit
 alias send-vid="ytfzf -e discord-send --loop=0"
 alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME"
 
-#interactive stream editor
-alias ised='nvim -es'
-
 alias o=linkhandler
+
+alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'
 
 me () {
     disown 2> /dev/null 1>&2
@@ -191,12 +190,6 @@ me () {
     else
         printf "\033[31mBAD SHELL\n\033[0m"
     fi
-}
-
-vimwiki () {
-    [ -n "$1" ] && file="$1" || file="index.md"
-    printf "%s" "$file" | grep -qP '\..*$' || file="$file.md"
-    nvim $HOME/Documents/vimwiki/"$file"
 }
 # }}}
 
