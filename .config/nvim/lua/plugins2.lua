@@ -233,24 +233,31 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     }
 })
 
-aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" } }, later, "bropilot",
-    {
-        model = "qwen2.5-coder:1.5b-base",
-        prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
-        model_params = {
-            stop = { "<|fim_pad|>", "<|endoftext|>" },
-            num_ctx = 8192,
-        },
-        debounce = 100,
-        auto_pull = true,
-        auto_suggest = false,
-        keymap = {
-            suggest = "<C-'>",
-            accept_block = "<C-Enter>",
-            accept_line = "<S-Enter>"
-        }
-    }
-)
+vim.system({ "curl", "http://localhost:11434" }, {}, function(done)
+    if done.code ~= 0 then
+        return
+    end
+    vim.schedule(function()
+        aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" } }, later, "bropilot",
+            {
+                model = "qwen2.5-coder:1.5b-base",
+                prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
+                model_params = {
+                    stop = { "<|fim_pad|>", "<|endoftext|>" },
+                    num_ctx = 8192,
+                },
+                debounce = 100,
+                auto_pull = true,
+                auto_suggest = false,
+                keymap = {
+                    suggest = "<C-'>",
+                    accept_block = "<C-Enter>",
+                    accept_line = "<S-Enter>"
+                }
+            }
+        )
+    end)
+end)
 
 add { source = "MunifTanjim/nui.nvim" }
 
