@@ -13,6 +13,13 @@ endif
 "OPTIONS{{{
 let g:mapleader = " "
 
+set grepprg=rg\ --vimgrep\ $*
+
+if finddir(".git", ".;", 1) == ".git"
+    set grepprg=git\ grep\ -n\ $*
+    set grepformat=%f:%l:%m
+endif
+
 set list listchars=tab:.\ 
 
 set nocp

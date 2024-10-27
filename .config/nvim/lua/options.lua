@@ -1,11 +1,5 @@
 vim.opt.scbk = 100
 
---New [default](https://github.com/neovim/neovim/commit/20b38677c22b0ff19ea54396c7718b5a8f410ed4)
---if rg is available!!
---`rg --vimgrep -uuu $*` /dev/null 2>&1
---the problem with this is that rg doesn't accept /dev/null v well
-vim.opt.grepprg = "rg --vimgrep $*"
-
 -- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
