@@ -219,7 +219,7 @@ alias rm="trash"
 ############################
 # {{{
 #alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
-alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.norg'
+alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.md'
 alias p='cd $(zoxide query -l "Coding Projects/" "/" | fzf)'
 alias "TODO=$EDITOR $HOME/Documents/vimwiki/TODO.md"
 alias wishlist="$EDITOR $HOME/Documents/vimwiki/wishlist.md"
