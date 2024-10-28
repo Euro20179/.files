@@ -41,7 +41,7 @@ lspconfig["kotlin_language_server"].setup {
 }
 
 
-local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/lazy"}
+local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim"}
 
 lspconfig['lua_ls'].setup{
     settings= {

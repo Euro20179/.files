@@ -1,62 +1,29 @@
---local ls = require('luasnip')
---local fmt = require("luasnip.extras.fmt").fmt
---
---ls.add_snippets("sh", {
---    ls.s("printf", {
---	ls.t("printf \""),
---	ls.i(1, "%s\\n"),
---	ls.t("\" \""),
---	ls.i(2, "text"),
---	ls.t("\""),
---	ls.i(0)
---    })
---})
---
---ls.add_snippets("nroff", {
---    ls.s("fb", {
---	ls.t("\\fB"),
---	ls.i(1, "{text}"),
---	ls.t("\\fR"),
---	ls.i(0, "")
---    }),
---    ls.s("fi", {
---	ls.t("\\fI"),
---	ls.i(1, "{text}"),
---	ls.t("\\fR"),
---	ls.i(0, "")
---    }),
---    ls.s("b", {
---	ls.t(".B "),
---	ls.i(1, "{text}"),
---	ls.i(0)
---    }),
---    ls.s("i", {
---	ls.t(".I "),
---	ls.i(1, "{text}"),
---	ls.i(0)
---    })
---})
---
---
---ls.add_snippets("email", {
---    ls.s("email",
---        fmt([[> from: {from}
---> to: {to}
---> subject: {subject}
---> cc: {cc}
---> bcc: {bcc}
---> format: {format}
---> body: {body}]], {
---    from = ls.i(1, "[from]"),
---    to = ls.i(2, "[to (comma seperated)]"),
---    subject = ls.i(3, "[subject]"),
---    cc = ls.i(4, "[cc (comma separated)]"),
---    bcc = ls.i(5, "[bcc (comma separated)]"),
---    format = ls.c(6, {ls.t("html"), ls.t("text")}),
---    body = ls.i(7, "[body]")
---})
---    )
---})
---
---
---
+--This program automatically generates a package.json file for the
+--snippets folder based on the files that are in the snippets folder
+local snippetPath = vim.fn.stdpath("config") .. "/snippets/"
+
+local snippetFiles = vim.fn.readdir(snippetPath)
+
+local outputJson = {
+    name = "snippets",
+    description = "This package.json has been generated automatically by my config",
+    contributes = {
+        {
+            language = { "all" },
+            path = "./all.json"
+        }
+    }
+}
+
+local outputFile = snippetPath .. "package.json"
+for i=1,#snippetFiles do
+    local file = snippetFiles[i]
+    local lang = vim.split(file, ".json")[1]
+    outputJson.contributes[#outputJson.contributes+1] = {
+        language = { lang },
+        path = "./" .. file
+    }
+end
+
+local handle = vim.uv.fs_open(outputFile, "w", 420)
+vim.uv.fs_write(handle, vim.json.encode(outputJson) )

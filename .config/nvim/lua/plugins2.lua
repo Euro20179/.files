@@ -95,36 +95,9 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
         },
         trigger = {
             completion = {
-                keyword_regex = '.'
+                keyword_regex = '[%w_\\-#!]'
             }
         },
-        sources = {
-            completion = {
-                enabled_providers = { "snippets" }
-            },
-            providers = {
-                buffers = {
-                    name = "Buffer",
-                    module = "blink.cmp.sources.buffer",
-                    fallback_for = {}
-                },
-                snippets = {
-                    name = 'Snippets',
-                    module = 'blink.cmp.sources.snippets',
-                    score_offset = -3,
-                    opts = {
-                        friendly_snippets = true,
-                        search_paths = { vim.fn.stdpath('config') .. '/snippets' },
-                        global_snippets = { 'all' },
-                        extended_filetypes = {},
-                        ignored_filetypes = {},
-                    }
-
-                    --- Example usage for disabling the snippet provider after pressing trigger characters (i.e. ".")
-                    -- enabled = function(ctx) return ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter end,
-                },
-            }
-        }
     })
 
 add { source = "mfussenegger/nvim-dap" }
