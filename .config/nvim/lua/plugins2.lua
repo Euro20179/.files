@@ -58,8 +58,6 @@ end
 
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
 
--- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/calc-src" }
-
 aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets' } }, now,
     "blink-cmp", {
         highlight = {
@@ -104,7 +102,7 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
 
         sources = {
             completion = {
-                enabled_providers = { "lsp", "path", "snippets", "buffer"}
+                enabled_providers = { "lsp", "path", "snippets", "buffer" }
             },
         },
 
@@ -117,9 +115,9 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
                 auto_show_delay_ms = 0,
                 update_delay_ms = 0,
             },
-            -- ghost_text = {
-            --     enabled = true
-            -- }
+            ghost_text = {
+                enabled = true
+            }
         }
     })
 

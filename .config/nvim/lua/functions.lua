@@ -177,21 +177,22 @@ function OllamaGen(cmdData)
 end
 
 function OllamaDocument(cmdData)
-    local model = cmdData.fargs[1] or "mistral"
     local buf = vim.api.nvim_get_current_buf()
     if cmdData.line1 == nil then
         vim.notify("This command requires a range")
     end
     local lines = vim.api.nvim_buf_get_lines(0, cmdData.line1 - 1, cmdData.line2, false)
-    local json = vim.json.encode(table.concat(lines, "\n"))
     local commentstring = vim.api.nvim_get_option_value("commentstring", { buf = buf })
+    local data = {
+        model = "llama3.1",
+        prompt = table.concat(lines, "\n"),
+        system = "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Provide a description of the function, its parameters, the return value, and example usage"
+    }
     vim.system({
         "curl",
         "http://localhost:11434/api/generate",
         "-d",
-        '{"model": "' .. model .. '", "prompt": ' ..
-        json ..
-        ', "system": "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Provide a description of the function, its parameters, the return value, and example usage"}',
+        vim.json.encode(data)
     }, { text = true }, function(obj)
         local output_lines = vim.split(obj.stdout, "\n")
         vim.schedule(function()
