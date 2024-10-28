@@ -39,7 +39,6 @@ add { source = "nvim-tree/nvim-web-devicons" }
 add {
     source = "nvim-treesitter/nvim-treesitter",
 }
-add { source = "nvim-treesitter/nvim-treesitter-refactor" }
 
 add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 -- }}}
@@ -57,8 +56,16 @@ for _, name in ipairs({
     add { source = name }
 end
 
-aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets', "rafamadriz/friendly-snippets" } }, now,
+aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
+
+-- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/calc-src" }
+
+aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets' } }, now,
     "blink-cmp", {
+        highlight = {
+            ns = vim.api.nvim_create_namespace("blink_cmp"),
+            use_nvim_cmp_as_default = true
+        },
         keymap = {
             show = "<c-l>",
             accept = "<c-l>",
@@ -94,20 +101,25 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
             Operator = "",
             TypeParameter = ""
         },
-        trigger = {
+
+        sources = {
             completion = {
-                keyword_regex = '[%w_\\-#!]'
-            }
+                enabled_providers = { "lsp", "path", "snippets", "buffer"}
+            },
         },
+
         windows = {
+            autocomplete = {
+                border = 'rounded',
+            },
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 0,
                 update_delay_ms = 0,
             },
-            ghost_text = {
-                enabled = true
-            }
+            -- ghost_text = {
+            --     enabled = true
+            -- }
         }
     })
 
@@ -143,6 +155,10 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
     },
     keymaps = {
         yy = "actions.yank_entry",
+        yc = function()
+            local dir = require "oil".get_current_dir()
+            vim.fn.setreg("\"", dir)
+        end
     }
 })
 

@@ -112,6 +112,15 @@ function Color(scheme)
     vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
 
     vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
+ 
+    --this modifies the highlight, but vim.api.nvim_set_hl overwrites it
+    vim.cmd[[
+        hi DiagnosticUnderlineError gui=underline
+        hi DiagnosticUnderlineWarn gui=underline
+        hi DiagnosticUnderlineInfo gui=underline
+        hi DiagnosticUnderlineHint gui=underline
+        hi DiagnosticUnderlineOk gui=underline
+    ]]
 
     --better quickfix{{{
     vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })

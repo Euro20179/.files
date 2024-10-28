@@ -67,19 +67,6 @@ require 'nvim-treesitter.configs'.setup {
             show_help = "?"
         }
     },
-    refactor = {
-        smart_rename = {
-            enable = false,
-        },
-        navigation = {
-            enable = true,
-            keymaps = {
-                list_definitions = "gsD",
-                goto_next_usage = "<A-n>",
-                goto_previous_usage = "<A-p>",
-            }
-        }
-    },
     indent = {
         enable = true
     },

@@ -10,6 +10,17 @@ function GetDiagnostic(severity)
     return vim.diagnostic.get(0, { severity = severity })
 end
 
+function GetGitStats()
+    local cmd = vim.system({ "git", "diff", "--numstat", vim.fn.expand("%")}, {}):wait()
+    if cmd.stdout == "" or cmd.code ~= 0 then
+        return ""
+    end
+    local data = vim.split(cmd.stdout, "\t")
+    local add = data[1]
+    local sub = data[2]
+    return " (%#DiffAdd#+" .. add .. " %#DiffDelete#-" .. sub .. "%*) "
+end
+
 function FormatstatuslineDiag()
     local text = ""
     local errors = #GetDiagnostic(vim.diagnostic.severity.E)
@@ -23,7 +34,7 @@ function FormatstatuslineDiag()
     return text
 end
 
-local left = '%1*%f%2*%{&modified == v:true ? "*" : ""} %4*%p%%%* %{%v:lua.FormatstatuslineDiag()%}'
+local left = '%1*%f%2*%{&modified == v:true ? "*" : ""}%{%v:lua.GetGitStats()%} %4*%p%%%* %{%v:lua.FormatstatuslineDiag()%}'
 local right = '%2*%{&filetype} '
 local center = '%3*%{v:lua.GetLspNames()}%*'
 

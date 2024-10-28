@@ -47,6 +47,10 @@ local nShortcuts = {
     { dapLeader .. "p", function() require "dap".step_back() end,         { desc = "[DAP] step back" } },
     { dapLeader .. "i", function() require "dap".step_into() end,         { desc = "[DAP] step into" } },
     { dapLeader .. "I", function() require "dap".step_out() end,          { desc = "[DAP] step out" } },
+    { dapLeader .. "g", function ()
+        require"dap".session({ request = "attach", port = 5000 })
+        require"dap".continue()
+    end, { desc = "[DAP] start attach session" } },
     { dapLeader .. "r", function()
         require "dap".session()
         require "dap".continue()
@@ -205,14 +209,6 @@ end
 --Visual Mode{{{
 local vShortcuts = {
     { utilLeader .. "e", ":Exec<CR>" },
-    --treesitter{{{
-    { "<leader>sr",      function() require "ssr".open() end },
-    --}}}
-    -- move code {{{
-    { "<leader>r", function()
-        require("sniprun").run("v")
-    end }
-    -- }}}
 }
 for _, map in ipairs(vShortcuts) do
     vim.keymap.set("v", map[1], map[2])
