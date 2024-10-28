@@ -60,6 +60,7 @@ end
 aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets', "rafamadriz/friendly-snippets" } }, now,
     "blink-cmp", {
         keymap = {
+            show = "<c-l>",
             accept = "<c-l>",
             scroll_documentation_up = "<C-u>",
             scroll_documentation_down = "<C-d>",
@@ -81,7 +82,7 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
             Value = "",
             Enum = "",
             Keyword = "",
-            Snippet = "",
+            Snippet = "󱄽",
             Color = "",
             File = "",
             Reference = "",
@@ -98,8 +99,19 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
                 keyword_regex = '[%w_\\-#!]'
             }
         },
+        windows = {
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 0,
+                update_delay_ms = 0,
+            },
+            ghost_text = {
+                enabled = true
+            }
+        }
     })
 
+print("")
 add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
 aSetup({ source = "rcarriga/nvim-dap-ui" }, later, "dapui", {})
@@ -233,9 +245,6 @@ later(function()
     require "ultimate-autopair.core".modes = { 'i' }
     require "ultimate-autopair".setup {}
 end)
-
--- add { source = "Euro20179/nvim-snippets" }
--- setup(later, "nvim-snippets", {})
 
 aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
