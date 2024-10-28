@@ -70,7 +70,7 @@ search() {
 
 	keyword="${words[0]}"
 
-	path=$(rg -l "keyword=${keyword}\$" | head -n1)
+	path=$(rg -l "keyword=${keyword}\$" "$bookmark_dir" | head -n1)
 
 	if [ "$path" ]; then
 		url="$(grep "^url=" "$path" | cut -d '=' -f2-)"

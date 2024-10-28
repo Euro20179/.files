@@ -111,6 +111,8 @@ function Color(scheme)
 
     vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
 
+    vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
+
     --better quickfix{{{
     vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
     --}}}
@@ -125,6 +127,6 @@ function Color(scheme)
 end
 
 -- Color("tokyonight-moon")
-Color("catppuccin-macchiato")
+Color("tokyonight")
 -- Color("monet")
 -- Color("kanagawa")

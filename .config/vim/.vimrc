@@ -63,7 +63,7 @@ set exrc
 
 set nowrap
 
-set colorcolumn=100
+set colorcolumn=80
 
 "}}}
 

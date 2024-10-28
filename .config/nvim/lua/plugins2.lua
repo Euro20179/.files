@@ -47,15 +47,85 @@ add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 --LSP+DAP{{{
 for _, name in ipairs({
     "neovim/nvim-lspconfig",
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-nvim-lsp-document-symbol',
-    'hrsh7th/nvim-cmp',
+    -- 'hrsh7th/cmp-nvim-lsp',
+    -- 'hrsh7th/cmp-buffer',
+    -- 'hrsh7th/cmp-path',
+    -- 'hrsh7th/cmp-cmdline',
+    -- 'hrsh7th/cmp-nvim-lsp-document-symbol',
+    -- 'hrsh7th/nvim-cmp',
 }) do
     add { source = name }
 end
+
+aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets', "rafamadriz/friendly-snippets" } }, now,
+    "blink-cmp", {
+        keymap = {
+            accept = "<c-l>",
+            scroll_documentation_up = "<C-u>",
+            scroll_documentation_down = "<C-d>",
+            show_documentation = "<c-,>",
+            hide_documentation = "<c-s-,>"
+        },
+        kind_icons = {
+            Text = "",
+            Method = " ",
+            Function = "",
+            Constructor = "",
+            Field = "",
+            Variable = "𝑥",
+            Class = "",
+            Interface = "",
+            Module = "",
+            Property = "",
+            Unit = "",
+            Value = "",
+            Enum = "",
+            Keyword = "",
+            Snippet = "",
+            Color = "",
+            File = "",
+            Reference = "",
+            Folder = "",
+            EnumMember = "",
+            Constant = "",
+            Struct = "",
+            Event = "",
+            Operator = "",
+            TypeParameter = ""
+        },
+        trigger = {
+            completion = {
+                keyword_regex = '.'
+            }
+        },
+        sources = {
+            completion = {
+                enabled_providers = { "snippets" }
+            },
+            providers = {
+                buffers = {
+                    name = "Buffer",
+                    module = "blink.cmp.sources.buffer",
+                    fallback_for = {}
+                },
+                snippets = {
+                    name = 'Snippets',
+                    module = 'blink.cmp.sources.snippets',
+                    score_offset = -3,
+                    opts = {
+                        friendly_snippets = true,
+                        search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+                        global_snippets = { 'all' },
+                        extended_filetypes = {},
+                        ignored_filetypes = {},
+                    }
+
+                    --- Example usage for disabling the snippet provider after pressing trigger characters (i.e. ".")
+                    -- enabled = function(ctx) return ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter end,
+                },
+            }
+        }
+    })
 
 add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
@@ -87,7 +157,7 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
         "permissions"
     },
     keymaps = {
-        ["yy"] = "actions.yank_entry"
+        yy = "actions.yank_entry",
     }
 })
 
@@ -191,8 +261,8 @@ later(function()
     require "ultimate-autopair".setup {}
 end)
 
-add { source = "Euro20179/nvim-snippets" }
-setup(now, "nvim-snippets", {})
+-- add { source = "Euro20179/nvim-snippets" }
+-- setup(later, "nvim-snippets", {})
 
 aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
@@ -201,11 +271,9 @@ aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
         winblend = 0
     }
 })
--- add { source = "kevinhwang91/nvim-bqf" }
--- add { source = "jbyuki/quickmath.nvim" }
+
 add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
--- aSetup({ source = "NeogitOrg/neogit" }, later, "neogit", {})
 add { source = "tpope/vim-fugitive" }
 
 aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
@@ -213,15 +281,10 @@ aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
     dim = true
 })
 
-aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, now, "regedit", {})
+aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, later, "regedit", {})
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
 
--- aSetup({ source = "huggingface/llm.nvim" }, later, "llm", {
---     backend = "ollama",
---     model = "llama3:latest",
---     url = "http://localhost:11434/api/generate",
--- })
 
 add { source = "fynnfluegge/monet.nvim" }
 
@@ -233,8 +296,8 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     }
 })
 
-vim.system({ "curl", "http://localhost:11434" }, {}, function(done)
-    if done.code ~= 0 then
+vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
+    if res.code ~= 0 then
         return
     end
     vim.schedule(function()
