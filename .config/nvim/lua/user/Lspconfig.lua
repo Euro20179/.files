@@ -127,7 +127,13 @@ lspconfig['cssls'].setup{
 }
 
 lspconfig['jsonls'].setup{
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+        json = {
+            schemas = require"schemastore".json.schemas(),
+            validate = { enable = true }
+        }
+    }
 }
 -- lspconfig['ltex'].setup{}
 -- lspconfig.vimls.setup{

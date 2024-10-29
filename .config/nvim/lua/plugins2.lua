@@ -46,6 +46,8 @@ add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 
 --LSP+DAP{{{
 
+add { source = "b0o/Schemastore.nvim" }
+
 add { source = "neovim/nvim-lspconfig" }
 
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})

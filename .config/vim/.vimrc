@@ -77,13 +77,12 @@ if exists("&findexpr")
         endfun
     else
         if trim(system("command -v fd")) != ""
-            let g:_findexpr_cmd = "fd -H"
+            let g:_findexpr_cmd = 'fd --glob -H'
         else
             let g:_findexpr_cmd = "find -path"
         endif
         func FindFiles()
-            let s:cmd = g:_findexpr_cmd
-            let s:fnames = systemlist(s:cmd)
+            let s:fnames = systemlist(g:_findexpr_cmd)
             return s:fnames->filter("v:val =~? v:fname")
         endfun
     endif
@@ -97,6 +96,7 @@ if exists("&findexpr")
     endif
 endif
 
+nnoremap <A-s>           <CMD>setlocal spell! spelllang=en_us<CR>
 "}}}
 
 "LL and QF stuff{{{
@@ -159,8 +159,7 @@ nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
 
 "Syntax highlighting {{{
 nnoremap <c-n> <CMD>noh<CR>
-nnoremap <C-s>           <CMD>setlocal spell! spelllang=en_us<CR>
-nnoremap <A-s>           <CMD>syntax sync fromstart<CR>
+"nnoremap <A-s>           <CMD>syntax sync fromstart<CR>
 "}}}
 
 "Normal movement {{{
