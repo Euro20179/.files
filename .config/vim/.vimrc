@@ -72,14 +72,19 @@ set colorcolumn=80
 if exists("&findexpr")
     if finddir(".git") != ""
         func FindFiles()
-            let fnames = systemlist("git ls-files")
-            return fnames->filter("v:val =~? v:fname")
+            let s:fnames = systemlist("git ls-files")
+            return s:fnames->filter("v:val =~? v:fname")
         endfun
     else
+        if trim(system("command -v fd")) != ""
+            let g:_findexpr_cmd = "fd -H"
+        else
+            let g:_findexpr_cmd = "find -path"
+        endif
         func FindFiles()
-            let cmd = v:cmdcomplete ? $'fd {v:fname}' : "fd"
-            let fnames = systemlist(cmd)
-            return fnames->filter("v:val =~? v:fname")
+            let s:cmd = g:_findexpr_cmd
+            let s:fnames = systemlist(s:cmd)
+            return s:fnames->filter("v:val =~? v:fname")
         endfun
     endif
 

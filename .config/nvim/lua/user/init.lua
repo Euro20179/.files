@@ -3,11 +3,5 @@
 require "user.treesitter"
 require 'user.whichkey'
 require "user.Lspconfig"
--- require "user.multicursor"
--- require "user.color-picker"
--- require "user.t-source"
--- require "user.orgmode"
--- require "user.duplicate"
---require "user.sniprun"
 require "user.dap"
 require"user.lsplinks"
