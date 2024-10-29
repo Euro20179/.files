@@ -47,18 +47,18 @@ local nShortcuts = {
     { dapLeader .. "p", function() require "dap".step_back() end,         { desc = "[DAP] step back" } },
     { dapLeader .. "i", function() require "dap".step_into() end,         { desc = "[DAP] step into" } },
     { dapLeader .. "I", function() require "dap".step_out() end,          { desc = "[DAP] step out" } },
-    { dapLeader .. "g", function ()
-        require"dap".session({ request = "attach", port = 5000 })
-        require"dap".continue()
+    { dapLeader .. "g", function()
+        require "dap".session({ request = "attach", port = 5000 })
+        require "dap".continue()
     end, { desc = "[DAP] start attach session" } },
     { dapLeader .. "r", function()
         require "dap".session()
         require "dap".continue()
     end, { desc = "[DAP] start session" } },
-    { dapLeader .. "o", require"dapui".toggle, { desc = "[DAPUI] toggle" } },
+    { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAPUI] toggle" } },
     -- }}}
     --telescope {{{
-    { "<leader>fj", function() require "mini.extra".pickers.list { scope = "jump" } end,       { desc = "[TELESCOPE] jumplist" } },
+    { "<leader>fj",     function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
     { "<leader>ft", function()
         local tagStack = vim.fn.gettagstack(0)
         local items = {}
@@ -95,31 +95,23 @@ local nShortcuts = {
                 return
             end
             local sp = vim.split(item, ":")
-            vim.schedule(function ()
+            vim.schedule(function()
                 vim.api.nvim_win_set_buf(0, tonumber(sp[#sp]))
             end)
         end)
     end, { desc = "[TELESCOPE] buffers" } },
-    { "<leader>fe", ':bdel<cr>:lua require"mini.pick".builtin.files()<cr>', { desc = "[TELESCOPE] find files (delete current buffer)" } },
-    { "<leader>ff", require "mini.pick".builtin.files,                      { desc = "[TELESCOPE] find files" } },
-    { "<leader>fF", function()
-        require "mini.pick".builtin.cli({
-            command = { "fd", "-I" },
-        })
-        -- require "mini.pick".builtin.files({ tool = "fd" }, {spawn_opts = "-I"})
-    end, { desc = "[TELESCOPE] open any file, save current buffer in harpoon" } },
-    { "<leader>f/", require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
-    { "<C-S-p>",    function ()
+    { "<leader>f/",       require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
+    { "<C-S-p>", function()
         local keys = require "mini.extra".pickers.keymaps()
         if keys == nil then
             return
         end
         vim.api.nvim_feedkeys(keys.lhs, "n", true)
-    end,                        { desc = "[TELESCOPE] keymap pallete" } },
-    { "<leader>fH", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
+    end, { desc = "[TELESCOPE] keymap pallete" } },
+    { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
-    { "<leader>eu", "<cmd>lua require('undotree').toggle()<cr>" },
+    { "<leader>eu",       "<cmd>lua require('undotree').toggle()<cr>" },
     -- { "<leader>n",  require 'oil'.toggle_float },
     --}}}
     --buffer/window shortcuts{{{
@@ -162,32 +154,39 @@ local nShortcuts = {
     { "<A-f>e",          ':set foldmethod=expr<cr>' },
     --}}}
     -- Util Functions {{{
-    { utilLeader .. "x", ":!chmod +x \"%\"", { desc = "[UTIL] chmod +x the current file" } },
+    { utilLeader .. "x", ":!chmod +x \"%\"",                 { desc = "[UTIL] chmod +x the current file" } },
     { utilLeader .. "e", ":Neorg exec cursor<CR>" },
-    { utilLeader .. "W", "\"=v:lua.Rword()<cr>p", { desc = "[UTIL] random word" } },
-    { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>", { desc = "[UTIL] Put the date with a format" } },
-    { "<C-c><C-c>", function ()
-        vim.system({"foot", "goker", vim.fn.expand("<cWORD>")})
-    end, { desc = "[UTIL] Open color picker" }},
+    { utilLeader .. "W", "\"=v:lua.Rword()<cr>p",            { desc = "[UTIL] random word" } },
+    { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>",          { desc = "[UTIL] Put the date with a format" } },
+    { "<C-c><C-c>", function()
+        vim.system({ "foot", "goker", vim.fn.expand("<cWORD>") })
+    end, { desc = "[UTIL] Open color picker" } },
     -- }}}
     -- lazy {{{
     { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<leader>o",  "<cmd>Oil<CR>",                             { desc = "[FILE] Open oil" } },
+    { "<leader>o",  "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
-    { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" }},
-    { "<a-m>", ":make<CR>", { desc = "copmile" } },
+    { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" } },
+    { "<a-m>",     ":make<CR>", { desc = "copmile" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
 end
+
+local maps = vim.api.nvim_get_keymap("n")
+
+if vim.opt.findexpr == "" then
+    vim.keymap.set("n", "<leader>ff", require "mini.pick".builtin.files, { desc = "[TELESCOPE] find files" })
+end
+
 --}}}
 --}}}
 
@@ -197,7 +196,7 @@ local iShortcuts = {
     { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-w>", vim.snippet.stop, {desc = "[SNIPPET] exit"}},
+    { "<c-w>",      vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
     -- }}}
     -- { "<Right>", require"bropilot".accept_block, { desc = "[COPILOT] accept" } }
 }
@@ -231,10 +230,10 @@ end --}}}
 -- Terminal Mode {{{
 local tShortcuts = {
     { "<c-\\><c-\\>", "<c-\\><c-n>" },
-    { "<c-h>", "<cmd>wincmd h<CR>" },
-    { "<c-l>", "<cmd>wincmd l<CR>" },
-    { "<c-k>", "<cmd>wincmd k<CR>" },
-    { "<c-j>", "<cmd>wincmd j<CR>" },
+    { "<c-h>",        "<cmd>wincmd h<CR>" },
+    { "<c-l>",        "<cmd>wincmd l<CR>" },
+    { "<c-k>",        "<cmd>wincmd k<CR>" },
+    { "<c-j>",        "<cmd>wincmd j<CR>" },
 }
 for _, map in ipairs(tShortcuts) do
     vim.keymap.set("t", map[1], map[2])

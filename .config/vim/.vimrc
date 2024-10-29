@@ -65,6 +65,33 @@ set nowrap
 
 set colorcolumn=80
 
+
+"Setup findexpr, make <leader>ff find files using the :find command
+"Otherwise, later in shortcuts.lua, <leader>ff uses mini.builtins.findfiles
+"(similar to telescope)
+if exists("&findexpr")
+    if finddir(".git") != ""
+        func FindFiles()
+            let fnames = systemlist("git ls-files")
+            return fnames->filter("v:val =~? v:fname")
+        endfun
+    else
+        func FindFiles()
+            let cmd = v:cmdcomplete ? $'fd {v:fname}' : "fd"
+            let fnames = systemlist(cmd)
+            return fnames->filter("v:val =~? v:fname")
+        endfun
+    endif
+
+    set findexpr=FindFiles()
+
+    if function("nvim_set_keymap") != 0
+        call nvim_set_keymap("n", "<leader>ff", ":find ", {"desc": "[TELESCOPE] Find files and open", "noremap": v:true})
+    else
+        nnoremap <leader>ff :find 
+    endif
+endif
+
 "}}}
 
 "LL and QF stuff{{{
@@ -193,6 +220,7 @@ call setcellwidths([
     \ [ 0xe700, 0xe7c5, 2 ],
     \ [ 0xf0001, 0xf1af0, 2 ],
 \ ])
+
 
 if has("nvim")
     let s:vimpath = expand("$XDG_CONFIG_HOME/nvim/init.vim")

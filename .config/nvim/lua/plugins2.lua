@@ -81,6 +81,8 @@ aSetup({
         keymap = {
             ["<c-s>"] = { "show", "hide" },
             ["<c-l>"] = { "accept" },
+            [ "<c-n>" ] = { "select_next" }, 
+            [ "<c-p>" ] = { "select_prev" },
             ["<C-u>"] = { "scroll_documentation_up" },
             ["<C-d>"] = { "scroll_documentation_down" },
             ["<c-,>"] = { "show_documentation", "hide_documentation" },
@@ -312,7 +314,7 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
                     stop = { "<|fim_pad|>", "<|endoftext|>" },
                     num_ctx = 8192,
                 },
-                debounce = 100,
+                debounce = 500,
                 auto_pull = true,
                 auto_suggest = false,
                 keymap = {
