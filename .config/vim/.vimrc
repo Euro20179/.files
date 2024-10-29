@@ -2,7 +2,7 @@
 "The point of this file is to be usable in vim and neovim
 
 "vim compatible default colorscheme
-color evening
+color desert
 
 "vim bad defaults
 if !has("nvim")
@@ -165,7 +165,7 @@ if exists(":term")
     tnoremap <S-Space> <space>
 endif
 
-"When entering cmdline toggle relativenumber
+"When entering cmdline toggle relative-number
 augroup relnutoggle
     au!
     autocmd CmdlineEnter * if &filetype !=# "help" | set nornu | redraw | endif

@@ -58,7 +58,29 @@ end
 
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
 
-aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets' } }, now,
+local function buildBlink()
+    local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/.local/share/nvim/site/pack/deps/opt/blink.cmp")
+    vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
+        function(res)
+            vim.schedule(function()
+                if res.code ~= 0 then
+                    vim.notify(tostring(res.stderr))
+                else
+                    vim.notify("Built blink cmp")
+                end
+            end)
+        end
+    )
+end
+
+aSetup({
+        source = "Saghen/blink.cmp",
+        depends = { 'rafamadriz/friendly-snippets' },
+        hooks = {
+            post_checkout = buildBlink,
+            post_install = buildBlink,
+        }
+    }, now,
     "blink-cmp", {
         highlight = {
             ns = vim.api.nvim_create_namespace("blink_cmp"),
@@ -105,7 +127,11 @@ aSetup({ source = "Saghen/blink.cmp", depends = { 'rafamadriz/friendly-snippets'
                 enabled_providers = { "lsp", "path", "snippets", "buffer" }
             },
         },
-
+        trigger = {
+            completion = {
+                keyword_regex = "[%w#_\\-]"
+            }
+        },
         windows = {
             autocomplete = {
                 border = 'rounded',

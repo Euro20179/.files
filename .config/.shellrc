@@ -1,5 +1,7 @@
 #!/bin/sh
 
+command -v tmux > /dev/null 2>&1 && tmux
+
 ########
 # Foot #
 ########

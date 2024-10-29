@@ -1,0 +1,16 @@
+[bell]
+color = "#ff0000"
+duration = 4
+
+[colors.primary]
+background = "#0e1218"
+foreground = "#c5c8c6"
+
+[font]
+size = 12
+
+[font.normal]
+family = "jetbrainsmono"
+
+[window]
+opacity = 0.95

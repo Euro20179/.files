@@ -33,7 +33,7 @@ dap.configurations.rust = {
     {
         type = "lldb",
         request = "launch",
-        program = function ()
+        program = function()
             return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.input("filename: ")
         end,
         cwd = '${workspaceFolder}',
