@@ -1,7 +1,5 @@
 #!/bin/sh
 
-command -v tmux > /dev/null 2>&1 && tmux
-
 ########
 # Foot #
 ########
@@ -276,8 +274,10 @@ unset py_color old_color img_color video_color audio_color win_exe_color documen
     compressed_color c_color shell_lang_color markup_color js_color font_file_color powerpoint_color spreadsheet_color css_color java_color
 # }}}
 
-for file in "${XDG_CONFIG_HOME}/shell-autoload"/*; do
-    . "$file"
-done
+if ! [ "$TMUX" ]; then
+    for file in "${XDG_CONFIG_HOME}/shell-autoload"/*; do
+        . "$file"
+    done
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"
+fi
 
-. "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"

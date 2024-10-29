@@ -33,6 +33,7 @@ end
 --libraries{{{
 add { source = "nvim-lua/plenary.nvim" }
 add { source = "nvim-tree/nvim-web-devicons" }
+add { source = "MunifTanjim/nui.nvim" }
 --}}}
 
 -- Treesitter{{{
@@ -44,17 +45,8 @@ add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 -- }}}
 
 --LSP+DAP{{{
-for _, name in ipairs({
-    "neovim/nvim-lspconfig",
-    -- 'hrsh7th/cmp-nvim-lsp',
-    -- 'hrsh7th/cmp-buffer',
-    -- 'hrsh7th/cmp-path',
-    -- 'hrsh7th/cmp-cmdline',
-    -- 'hrsh7th/cmp-nvim-lsp-document-symbol',
-    -- 'hrsh7th/nvim-cmp',
-}) do
-    add { source = name }
-end
+
+add { source = "neovim/nvim-lspconfig" }
 
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
 
@@ -87,12 +79,11 @@ aSetup({
             use_nvim_cmp_as_default = true
         },
         keymap = {
-            show = "<c-l>",
-            accept = "<c-l>",
-            scroll_documentation_up = "<C-u>",
-            scroll_documentation_down = "<C-d>",
-            show_documentation = "<c-,>",
-            hide_documentation = "<c-s-,>"
+            ["<c-s>"] = { "show", "hide" },
+            ["<c-l>"] = { "accept" },
+            ["<C-u>"] = { "scroll_documentation_up" },
+            ["<C-d>"] = { "scroll_documentation_down" },
+            ["<c-,>"] = { "show_documentation", "hide_documentation" },
         },
         kind_icons = {
             Text = "",
@@ -147,14 +138,14 @@ aSetup({
         }
     })
 
-print("")
 add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
 aSetup({ source = "rcarriga/nvim-dap-ui" }, later, "dapui", {})
 add { source = "nvim-neotest/nvim-nio" }
---}}}
 
 aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
+--}}}
+
 
 add { source = "flazz/vim-colorschemes" }
 add { source = "folke/tokyonight.nvim" }
@@ -188,8 +179,6 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
 
 add { source = "folke/which-key.nvim" }
 
-add { source = "superhawk610/ascii-blocks.nvim" }
-
 add { source = "nvim-neorg/neorg",
     depends = {
         "pysan3/pathlib.nvim",
@@ -197,8 +186,6 @@ add { source = "nvim-neorg/neorg",
         "nvim-neorg/lua-utils.nvim"
     }
 }
-
--- aSetup({ source = "sindrets/diffview.nvim" }, later, "diffview", {})
 
 add { source = "echasnovski/mini.nvim" }
 
@@ -303,14 +290,8 @@ aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
     dim = true
 })
 
-aSetup({ source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/regedit" }, later, "regedit", {})
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
-
-
-add { source = "fynnfluegge/monet.nvim" }
-
--- add { source = "rcarriga/nvim-notify" }
 
 aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     hi = {
@@ -344,8 +325,4 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     end)
 end)
 
-add { source = "MunifTanjim/nui.nvim" }
-
-aSetup({ source = "jake-stewart/multicursor.nvim" }, later, "multicursor-nvim", {})
-
-aSetup({ source = "https://github.com/patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
+aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
