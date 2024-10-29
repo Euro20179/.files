@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Gets the number of lines tracked by the .files repo
+
+git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME ls-files -z | while read -r -d '' file; do
+    wc -l "$file"
+done

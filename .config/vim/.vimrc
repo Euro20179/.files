@@ -116,6 +116,7 @@ nnoremap <leader>/ :silent lgrep! \| lwindow<S-Left><S-Left>
 nnoremap <c-c><c-n> <CMD>cnext<CR>
 nnoremap <c-c><c-p> <CMD>cprev<CR>
 "}}}
+
 "Copy shortcuts{{{
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
@@ -128,6 +129,7 @@ nnoremap <leader>c "_c
 nnoremap <leader>b "_
 nnoremap <leader>B "+
 "}}}
+
 "Buffer/window shortcuts{{{
 nnoremap  <leader>S      <CMD>split \|  wincmd  j<CR>
 nnoremap  <leader>V      <CMD>vsplit \|  wincmd  l<CR>
@@ -154,34 +156,55 @@ endfu
 
 nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
 "}}}
+
 "Syntax highlighting {{{
 nnoremap <c-n> <CMD>noh<CR>
 nnoremap <C-s>           <CMD>setlocal spell! spelllang=en_us<CR>
 nnoremap <A-s>           <CMD>syntax sync fromstart<CR>
 "}}}
+
 "Normal movement {{{
 nnoremap <c-l>           <C-w>l
 nnoremap <c-j>           <C-w>j
 nnoremap <c-h>           <C-w>h
 nnoremap <c-k>           <C-w>k
 "}}}
+
 "copying in visual mode {{{
 vnoremap <leader>y       "+y
 vnoremap <leader>d       "_d
 vnoremap <leader>c       "_c
 vnoremap <leader>p       "+p
 "}}}
+
 "indents {{{
 vnoremap < <gv
 vnoremap > >gv
 "}}}
+
 "Better pipe mnemonic{{{
 vnoremap \| !
 nnoremap \| !
 "}}}
+
 "paste from term {{{
+
 inoremap <c-s-v> <c-r>+
 nnoremap <c-s-v> a<c-r>+<esc>
+"}}}
+
+"Text editing {{{
+nnoremap [<space> :execute ':norm O' \| :norm j<CR>
+nnoremap ]<space> :execute ':norm o' \| :norm k<CR>
+
+func AddLineAboveBelowMotion(type)
+    call append(line("'[") - 1, "")
+    call append(line("']") + 1, "")
+endfun
+
+nnoremap <silent> <leader>O :set opfunc=AddLineAboveBelowMotion<cr>g@
+
+vnoremap <leader>O :<BS><BS><BS><BS><BS>execute "'<norm O" \| execute "'>norm o" \| norm '< <CR>
 "}}}
 
 "Im tired of pressing ctrl-w and closing tabs
@@ -229,6 +252,7 @@ call setcellwidths([
 
 if has("nvim")
     let s:vimpath = expand("$XDG_CONFIG_HOME/nvim/init.vim")
+
     if filereadable(s:vimpath)
         exec "so " . s:vimpath
     else
@@ -237,4 +261,5 @@ if has("nvim")
             exec "so " . s:luapath
         end
     endif
+
 endif
