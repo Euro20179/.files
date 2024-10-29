@@ -14,12 +14,12 @@ vim.ui.select = require "mini.pick".ui_select
 vim.g.clipboard = {
     name = "test",
     copy = {
-        ["+"] = 'wl-copy',
-        ["*"] = 'wl-copy -p'
+        [ "+" ] = 'wl-copy',
+        [ "*" ] = 'wl-copy -p'
     },
     paste = {
-        ["+"] = 'wl-paste',
-        ["*"] = 'wl-paste -p'
+        [ "+" ] = 'wl-paste',
+        [ "*" ] = 'wl-paste -p'
     }
 }
 

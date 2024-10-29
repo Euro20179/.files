@@ -197,14 +197,20 @@ nnoremap <c-s-v> a<c-r>+<esc>
 nnoremap [<space> :execute ':norm O' \| :norm j<CR>
 nnoremap ]<space> :execute ':norm o' \| :norm k<CR>
 
-func AddLineAboveBelowMotion(type)
-    call append(line("'[") - 1, "")
-    call append(line("']") + 1, "")
+func AddLineAboveBelow(start, end)
+    call append(a:start - 1, "")
+    call append(a:end + 1, "")
 endfun
+
+command -addr=lines BlankLines call AddLineAboveBelow(<line1>, <line2>)
+
+func AddLineAboveBelowMotion(type)
+    call AddLineAboveBelow(line("'["), line("']"))
+endf
 
 nnoremap <silent> <leader>o :set opfunc=AddLineAboveBelowMotion<cr>g@
 
-vnoremap <leader>o :<BS><BS><BS><BS><BS>execute "'<norm O" \| execute "'>norm o" \| norm '< <CR>
+vnoremap <leader>o :BlankLines<CR>
 "}}}
 
 "Im tired of pressing ctrl-w and closing tabs

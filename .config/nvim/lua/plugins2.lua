@@ -79,13 +79,13 @@ aSetup({
             use_nvim_cmp_as_default = true
         },
         keymap = {
-            ["<c-s>"] = { "show", "hide" },
-            ["<c-l>"] = { "accept" },
+            [ "<c-s>" ] = { "show", "hide" },
+            [ "<c-l>" ] = { "accept" },
             [ "<c-n>" ] = { "select_next" }, 
             [ "<c-p>" ] = { "select_prev" },
-            ["<C-u>"] = { "scroll_documentation_up" },
-            ["<C-d>"] = { "scroll_documentation_down" },
-            ["<c-,>"] = { "show_documentation", "hide_documentation" },
+            [ "<C-u>" ] = { "scroll_documentation_up" },
+            [ "<C-d>" ] = { "scroll_documentation_down" },
+            [ "<c-,>" ] = { "show_documentation", "hide_documentation" },
         },
         kind_icons = {
             Text = "",
