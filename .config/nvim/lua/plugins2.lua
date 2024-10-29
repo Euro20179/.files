@@ -74,7 +74,7 @@ aSetup({
             post_checkout = buildBlink,
             post_install = buildBlink,
         }
-    }, now,
+    }, later,
     "blink-cmp", {
         highlight = {
             ns = vim.api.nvim_create_namespace("blink_cmp"),

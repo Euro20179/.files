@@ -59,6 +59,7 @@ local nShortcuts = {
     -- }}}
     --telescope {{{
     { "<leader>fj",     function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
+    { "<leader>ff",     require "mini.pick".builtin.files,                                   { desc = "[TELESCOPE] find files" } },
     { "<leader>ft", function()
         local tagStack = vim.fn.gettagstack(0)
         local items = {}
@@ -80,7 +81,7 @@ local nShortcuts = {
         vim.fn.setloclist(0, vim.fn.reverse(chgLst))
         vim.cmd.lwin()
     end },
-    { "<leader>fh", require "mini.pick".builtin.help,                       { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fh", require "mini.pick".builtin.help,      { desc = "[TELESCOPE] help tags" } },
     { "<leader>fb", function()
         local bufs = {}
         for _, bufno in ipairs(vim.api.nvim_list_bufs()) do
@@ -100,7 +101,7 @@ local nShortcuts = {
             end)
         end)
     end, { desc = "[TELESCOPE] buffers" } },
-    { "<leader>f/",       require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
+    { "<leader>f/", require "mini.pick".builtin.grep_live, { desc = "[TELESCOPE] grep" } },
     { "<C-S-p>", function()
         local keys = require "mini.extra".pickers.keymaps()
         if keys == nil then
@@ -167,7 +168,7 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<leader>fo",  "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
+    { "<leader>fo", "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
@@ -187,7 +188,6 @@ if vim.opt.findexpr == "" then
     vim.keymap.set("n", "<leader>ff", require "mini.pick".builtin.files, { desc = "[TELESCOPE] find files" })
 end
 
---}}}
 --}}}
 
 -- Insert Mode{{{
