@@ -4,9 +4,7 @@ vim.loader.enable()
 
 require 'functions'
 require 'options'
--- require 'init_lazy'
 require "plugins2"
--- require"plugins3"
 require 'snippets'
 require 'shortcuts'
 require 'autocmd'
