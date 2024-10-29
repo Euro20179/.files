@@ -202,9 +202,9 @@ func AddLineAboveBelowMotion(type)
     call append(line("']") + 1, "")
 endfun
 
-nnoremap <silent> <leader>O :set opfunc=AddLineAboveBelowMotion<cr>g@
+nnoremap <silent> <leader>o :set opfunc=AddLineAboveBelowMotion<cr>g@
 
-vnoremap <leader>O :<BS><BS><BS><BS><BS>execute "'<norm O" \| execute "'>norm o" \| norm '< <CR>
+vnoremap <leader>o :<BS><BS><BS><BS><BS>execute "'<norm O" \| execute "'>norm o" \| norm '< <CR>
 "}}}
 
 "Im tired of pressing ctrl-w and closing tabs

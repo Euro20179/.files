@@ -167,7 +167,7 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<leader>o",  "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
+    { "<leader>fo",  "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
