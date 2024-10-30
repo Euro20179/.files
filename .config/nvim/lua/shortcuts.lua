@@ -184,7 +184,7 @@ end
 
 local maps = vim.api.nvim_get_keymap("n")
 
-if vim.opt.findexpr == "" then
+if vim.fn.exists("&findexpr") and vim.opt.findexpr == "" then
     vim.keymap.set("n", "<leader>ff", require "mini.pick".builtin.files, { desc = "[TELESCOPE] find files" })
 end
 

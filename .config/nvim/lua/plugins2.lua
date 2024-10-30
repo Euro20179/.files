@@ -15,6 +15,8 @@ end
 require "mini.deps".setup({ path = { package = path_package } })
 --}}}
 
+vim.cmd[[packadd cfilter]]
+
 local miniDeps = require "mini.deps"
 local add = miniDeps.add
 local later = miniDeps.later
