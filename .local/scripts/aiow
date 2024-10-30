@@ -7,13 +7,20 @@ aioUrl=${AIO_SERVER:-"http://localhost:8080"}"/api/v1"
 
 [ -s "$tmpMetadata" ] && metadata="$(cat "${tmpMetadata}")" || metadata=$(curl "${aioUrl}/metadata/list-entries" 2>/dev/null | tee "$tmpMetadata")
 
+tmp="/tmp/aiow-${displayThumbId}.txt"
 if [ "$displayThumbId" ]; then
-    thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<<"$metadata")
-    jq -rs ".[]|select(.ItemId==${displayThumbId})|.Title + \" (\(.Rating))\" + \"<br><br>\" + .Description" <<<"$metadata" | pandoc -fhtml -tgfm
-    if ! [ "$thumb" ]; then
-        echo "NO THUMBNAIL"
+    if [ -s "$tmp" ];then
+        cat "$tmp"
     else
-        printf "%s" "$thumb" | xargs -I{} curl "${aioUrl%/api/v1}{}" 2>/dev/null | chafa
+        thumb=$(jq -rs ".[]|select(.ItemId==${displayThumbId}).Thumbnail" <<<"$metadata")
+        desc=$(jq -rs ".[]|select(.ItemId==${displayThumbId})|.Title + \" (\(.Rating))\" + \"<br><br>\" + .Description" <<<"$metadata" | pandoc -fhtml -tgfm)
+        printf "%s" "$desc" | tee -a "$tmp"
+        if ! [ "$thumb" ]; then
+            echo "NO THUMBNAIL"
+        else
+            desc_height=$(($(printf "%s" "$desc" | wc -l)))
+            printf "%s" "$thumb" | xargs -I{} curl "${aioUrl%/api/v1}{}" 2>/dev/null | chafa -s "$((FZF_PREVIEW_COLUMNS))x$((FZF_PREVIEW_LINES - desc_height))" | tee -a "$tmp"
+        fi
     fi
     exit 0
 fi
@@ -40,11 +47,11 @@ mdmeta=$(printf "%s" "$metadata" | jq -rs ".[]|select(.ItemId==${id}).MediaDepen
 
 prefix="media://"
 case "$type" in
-    Game) prefix="exe://" ;;
+Game) prefix="exe://" ;;
 esac
-[ "$format" = 9 ] && { 
+[ "$format" = 9 ] && {
     gameId=$(printf "%s" "$mdmeta" | jq -r '.["Game-steam-id"]')
-    [ "$gameId" != "null" ] &&  {
+    [ "$gameId" != "null" ] && {
         prefix="steam://rungameid/${gameId}"
     }
 }
