@@ -113,7 +113,7 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>eu",       "<cmd>lua require('undotree').toggle()<cr>" },
-    -- { "<leader>n",  require 'oil'.toggle_float },
+    { "<leader>O",  require 'oil'.open },
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():add() end },

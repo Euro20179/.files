@@ -55,7 +55,7 @@ add { source = "neovim/nvim-lspconfig" }
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
 
 local function buildBlink()
-    local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/.local/share/nvim/site/pack/deps/opt/blink.cmp")
+    local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/nvim/site/pack/deps/opt/blink.cmp")
     vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
         function(res)
             vim.schedule(function()
@@ -83,7 +83,7 @@ aSetup({
             use_nvim_cmp_as_default = true
         },
         keymap = {
-            [ "<c-s>" ] = { "show", "hide" },
+            [ "<c-q>" ] = { "show", "hide" },
             [ "<c-l>" ] = { "accept" },
             [ "<c-n>" ] = { "select_next" }, 
             [ "<c-p>" ] = { "select_prev" },
@@ -166,7 +166,7 @@ add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon
 -- }} }, now, "broil", {})
 
 aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
-    default_file_explorer = true,
+    default_file_explorer = false,
     view_options = {
         show_hidden = true
     },
