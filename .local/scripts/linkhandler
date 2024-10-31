@@ -14,7 +14,6 @@ open_with_editor() {
     exit 0
 }
 
-
 try_mime_handling() {
     #rev cut rev gets the last field
     mime=$(file --mime-type "$link" | rev | cut -d: -f1 | rev | tr -d ' ')
@@ -29,7 +28,8 @@ try_mime_handling() {
         ;;
     text/* | plain/*)
         [ $LH_NO_EDIT = 1 ] && exit 1
-        open_with_editor "$link"; exit 0
+        open_with_editor "$link"
+        exit 0
         ;;
     video/* | audio/*)
         mpv "$link"
@@ -46,7 +46,6 @@ try_mime_handling() {
     esac
 }
 
-
 [ -e "${link}" ] && try_mime_handling
 
 case "$link" in
@@ -54,6 +53,10 @@ case "$link" in
 *.png | *.jpg | *.jpeg | *.webm | *.gif | *.webm | *.webp) mpv --loop "$link" & ;;
 *.m3u?) mpv "$link" ;;
 *.onion) tor "$link" ;;
+*://cloud://*)
+    extra_protocol="${link%%cloud://*}"
+    new_link="${extra_protocol}${CLOUD}/${link#*://cloud://}"
+    linkhandler "$new_link"; exit;;
 # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
 exe://*) "${link#exe://}" ;;
 media://*) mpv "${link#media://}" ;;
@@ -81,7 +84,6 @@ anime:sftp://*)
     ;;
 cloud://*)
     path="$CLOUD/${link#cloud://}"
-    ! [ -e "$path" ] && path="$path".*
     linkhandler $path
     ;;
 sftp://*.m3u8)
