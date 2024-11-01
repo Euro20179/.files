@@ -74,29 +74,32 @@ function JumpCell(jumpCount)
 
     --gets all cells from all rows and flattens into a list
     ---@type table<TSNode>
-    local tblCells = vim.iter(tblRows):map(function(n)
-        if n == nil then
-            return {}
-        end
+    local tblCells = vim.iter(tblRows)
+        :filter(function(n) return n ~= nil end)
+        :map(function(n)
+            local cells = vim.iter(n:iter_children()):filter(function(rowChild)
+                return rowChild:type() == "pipe_table_cell"
+            end):totable()
 
-        local cells = vim.iter(n:iter_children()):filter(function(rowChild)
-            return rowChild:type() == "pipe_table_cell"
-        end):totable()
+            return cells
+        end)
+        :flatten(2)
+        :totable()
 
-        return cells
-    end):flatten(2):filter(function(n) return n ~= nil end):totable()
-
-    local ids = vim.iter(tblCells):map(function(n) return n:id() end):totable()
-
-    local cnIdx = vim.fn.index(ids, cursorNodeId)
+    local cursorNodeIndex, _ = vim.iter(tblCells)
+        :map(function(n) return n:id() end)
+        :enumerate()
+        :find(function(_, id)
+            return id == cursorNodeId
+        end)
 
     local nextCell
     if jumpCount > 0 then
-        nextCell = vim.iter(tblCells):nth(cnIdx + jumpCount + 1)
+        nextCell = vim.iter(tblCells):nth(cursorNodeIndex + jumpCount)
     else
         --take the first cnIdx nodes, reverse it, then grab the item
         --reverse it, that way index 1, is the first cell before the cursor
-        nextCell = vim.iter(tblCells):take(cnIdx):nth(vim.fn.abs(jumpCount))
+        nextCell = vim.iter(tblCells):take(cursorNodeIndex - 1):rev():nth(vim.fn.abs(jumpCount))
     end
 
     if nextCell == nil then
@@ -107,16 +110,19 @@ function JumpCell(jumpCount)
     vim.api.nvim_win_set_cursor(0, { nsr + 1, nsc })
 end
 
-
-vim.keymap.set("i", "<c-.>", function ()
+vim.keymap.set("i", "<c-.>", function()
     JumpCell(1)
 end)
 
-vim.keymap.set("i", "<c-s-.>", function ()
+vim.keymap.set("i", "<c-s-.>", function()
     JumpCell(-1)
 end)
 
-vim.api.nvim_buf_create_user_command(0, "Links", ":call setqflist(v:lua.MarkdownGetLinks())| cwin", {})
+vim.api.nvim_buf_create_user_command(0, "Links", function()
+    vim.fn.setqflist(MarkdownGetLinks())
+    vim.cmd.cwin()
+end, {})
+
 vim.keymap.set("n", "<a-l>", ":Links<CR>", {
     buffer = 0
 })
