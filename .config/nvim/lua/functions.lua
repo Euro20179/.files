@@ -341,8 +341,6 @@ function JumpChild(parentChildRelations)
         return
     end
 
-    local cursorNodeId = node:id()
-
     ---@type table<string>
     local possibleParents = vim.tbl_keys(parentChildRelations)
 
@@ -379,7 +377,7 @@ function JumpChild(parentChildRelations)
         end)
 
     if cursorNodeIndex == nil then
-        vim.notify(string.format("Cursor not in %s", node:type()), vim.log.levels.ERROR)
+        vim.notify(string.format("Cursor not in a child of %s", node:type()), vim.log.levels.ERROR)
         return
     end
 
@@ -411,20 +409,3 @@ vim.api.nvim_create_user_command("DisplayImg", DisplayImg, { nargs = "?" })
 vim.api.nvim_create_user_command("ChatBotComment", ChatBotComment, { range = true })
 -- vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})
 --
-
---normal is very slow, fix it by disabling autocmds
---could also run `noau normal`, but that's longer to type than `Norm`
-vim.api.nvim_create_user_command("Normal", function(dat)
-    local tbl = {}
-    tbl.args = dat.fargs
-    tbl.range = { dat.line1, dat.line2 }
-    tbl.cmd = "normal"
-    tbl.mods = {
-        noautocmd = true
-    }
-    vim.api.nvim_cmd(tbl, {})
-end, {
-    bang = true,
-    nargs = "+",
-    range = true
-})
