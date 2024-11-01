@@ -93,9 +93,14 @@ function JumpCell(jumpCount)
             return id == cursorNodeId
         end)
 
+    if cursorNodeIndex == nil then
+        vim.notify("Cursor not in table", vim.log.levels.ERROR)
+        return
+    end
+
     local nextCell
     if jumpCount > 0 then
-        nextCell = vim.iter(tblCells):nth(cursorNodeIndex + jumpCount)
+        nextCell = tblCells[cursorNodeIndex + jumpCount]
     else
         --take the first cnIdx nodes, reverse it, then grab the item
         --reverse it, that way index 1, is the first cell before the cursor
