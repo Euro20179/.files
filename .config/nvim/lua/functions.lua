@@ -186,7 +186,8 @@ function OllamaDocument(cmdData)
     local data = {
         model = "llama3.1",
         prompt = table.concat(lines, "\n"),
-        system = "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Provide a description of the function, its parameters, the return value, and example usage"
+        system =
+        "You are an ai that creates markdown formatted documentation that describes what the function does and how to use it. Only provide documentation do not provide any further explanation or output, do not put the documentation in a code block. Provide a description of the function, its parameters, the return value, and example usage"
     }
     vim.system({
         "curl",
@@ -210,7 +211,7 @@ function OllamaDocument(cmdData)
             end
             local split = vim.split(result, "\n")
             for i, line in ipairs(split) do
-                split[i] =  vim.fn.printf(commentstring, line)
+                split[i] = vim.fn.printf(commentstring, line)
             end
             vim.api.nvim_buf_set_lines(buf, cmdData.line1 - 2, cmdData.line1 - 1, false, split)
             -- local obuf = vim.api.nvim_create_buf(false, false)
@@ -239,7 +240,7 @@ function CreateSnippet()
     end
     local prefixes = vim.split(snip_prefixes, " ")
     local buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_create_autocmd({"WinEnter", "BufWinEnter"}, {
+    vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
         buffer = buf,
         command = "startinsert",
         once = true
@@ -259,7 +260,7 @@ function CreateSnippet()
     })
 end
 
-function GetLspNames ()
+function GetLspNames()
     local names = ""
     for _, lsp in ipairs(vim.lsp.get_clients()) do
         names = names .. lsp.name .. " "
@@ -270,15 +271,15 @@ function GetLspNames ()
     return ""
 end
 
-vim.api.nvim_create_user_command("X", function (data)
+vim.api.nvim_create_user_command("X", function(data)
     local args = data.args
     local buf = vim.api.nvim_create_buf(true, false)
     vim.cmd.split()
     vim.api.nvim_set_current_buf(buf)
     vim.cmd("term " .. args)
-end, {nargs = "*"})
+end, { nargs = "*" })
 
-vim.api.nvim_create_user_command("Screenshot", function (data)
+vim.api.nvim_create_user_command("Screenshot", function(data)
     local text = vim.api.nvim_buf_get_lines(0, data.line1 - 1, data.line2, false)
     local ext = data.fargs[1]
     local oFileName = vim.fn.tempname()
@@ -306,6 +307,99 @@ vim.api.nvim_create_user_command("Screenshot", function (data)
     }, { stdin = pngDat })
 end, { range = true, nargs = 1 })
 
+
+---@param parentNode TSNode
+---@param childName string
+local function getCorrectChildren(parentNode, childName)
+    ---@type table<TSNode>
+    local correctChildren = {}
+    for child in parentNode:iter_children() do
+        if child:type():match(childName) then
+            correctChildren[#correctChildren + 1] = child
+        end
+        for _, c in ipairs(getCorrectChildren(child, childName)) do
+            correctChildren[#correctChildren + 1] = c
+        end
+    end
+    return correctChildren
+end
+
+---@class JumpRelation
+---@field child_name string
+---@field jump_count number
+
+---@alias JumpRelationList table<string, JumpRelation>
+
+---
+---parentChildRelations is a table that looks something like this
+--[[
+{
+    pipe_table = {
+        child_name = "pipe_table_cell",
+        jump_count = 1
+    },
+    pipe_table_row = {
+        child_name = "*",
+        jumpCount = 1
+    }
+}
+]] --
+---@param parentChildRelations JumpRelationList
+function JumpChild(parentChildRelations)
+    local node = vim.treesitter.get_node {}
+    local cpos = vim.api.nvim_win_get_cursor(0)
+
+    if node == nil then
+        vim.notify("No ts node under cursor", vim.log.levels.ERROR)
+        return
+    end
+
+    local cursorNodeId = node:id()
+
+    ---@type table<string>
+    local possibleParents = vim.tbl_keys(parentChildRelations)
+
+    --finds the root of the table
+    while node ~= nil and node:parent() and vim.fn.index(possibleParents, node:type()) == -1 do
+        node = node:parent()
+    end
+
+    if node == nil or vim.fn.index(possibleParents, node:type()) == -1 then
+        vim.notify(string.format("Could not find root: %s", possibleParents[1]), vim.log.levels.ERROR)
+        return
+    end
+
+    local children = getCorrectChildren(node, parentChildRelations[node:type()].child_name)
+
+    local cursorNodeIndex, _ = vim.iter(children)
+        :enumerate()
+        :find(function(_, n)
+            return vim.treesitter.is_in_node_range(n, cpos[1] - 1, cpos[2])
+        end)
+
+    if cursorNodeIndex == nil then
+        vim.notify(string.format("Cursor not in %s", node:type()), vim.log.levels.ERROR)
+        return
+    end
+
+    local nextCell
+    local jumpCount = parentChildRelations[node:type()].jump_count or 1
+    if jumpCount > 0 then
+        nextCell = children[cursorNodeIndex + jumpCount]
+    elseif jumpCount < 0 then
+        --take the first cnIdx nodes, reverse it, then grab the item
+        --reverse it, that way index 1, is the first cell before the cursor
+        nextCell = vim.iter(children):take(cursorNodeIndex - 1):rev():nth(vim.fn.abs(jumpCount))
+    end
+
+    if nextCell == nil then
+        return
+    end
+
+    local nsr, nsc, _, _ = vim.treesitter.get_node_range(nextCell)
+    vim.api.nvim_win_set_cursor(0, { nsr + 1, nsc })
+end
+
 vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
@@ -319,10 +413,10 @@ vim.api.nvim_create_user_command("ChatBotComment", ChatBotComment, { range = tru
 
 --normal is very slow, fix it by disabling autocmds
 --could also run `noau normal`, but that's longer to type than `Norm`
-vim.api.nvim_create_user_command("Normal", function (dat)
+vim.api.nvim_create_user_command("Normal", function(dat)
     local tbl = {}
     tbl.args = dat.fargs
-    tbl.range = {dat.line1, dat.line2}
+    tbl.range = { dat.line1, dat.line2 }
     tbl.cmd = "normal"
     tbl.mods = {
         noautocmd = true
