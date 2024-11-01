@@ -261,13 +261,12 @@ function CreateSnippet()
 end
 
 function GetLspNames()
-    local names = ""
-    for _, lsp in ipairs(vim.lsp.get_clients()) do
-        names = names .. lsp.name .. " "
-    end
+    local names = vim.iter(vim.lsp.get_clients()):map(function(c) return c.name end):join(" ")
+
     if names ~= "" then
         return vim.trim("" .. names)
     end
+
     return ""
 end
 
@@ -328,22 +327,10 @@ end
 ---@field child_name string
 ---@field jump_count number
 
----@alias JumpRelationList table<string, JumpRelation>
+---@alias NodeType string
 
----
----parentChildRelations is a table that looks something like this
---[[
-{
-    pipe_table = {
-        child_name = "pipe_table_cell",
-        jump_count = 1
-    },
-    pipe_table_row = {
-        child_name = "*",
-        jumpCount = 1
-    }
-}
-]] --
+---@alias JumpRelationList table<NodeType, JumpRelation>
+
 ---@param parentChildRelations JumpRelationList
 function JumpChild(parentChildRelations)
     local node = vim.treesitter.get_node {}
@@ -359,7 +346,7 @@ function JumpChild(parentChildRelations)
     ---@type table<string>
     local possibleParents = vim.tbl_keys(parentChildRelations)
 
-    --finds the root of the table
+    --finds the parent of where the cursor is
     while node ~= nil and node:parent() and vim.fn.index(possibleParents, node:type()) == -1 do
         node = node:parent()
     end
@@ -374,6 +361,20 @@ function JumpChild(parentChildRelations)
     local cursorNodeIndex, _ = vim.iter(children)
         :enumerate()
         :find(function(_, n)
+            --the first child that the cursor is within is the child we want
+            --(probably)
+            --this is because this list of children is only the list that the user wants to jump between
+            --therefore there should not be extranious children unless the user puts a bad regex
+            --
+            --matching exactly by which node id the cursor is on often doesnt work
+            --because sometimes there's a group node with children nodes,
+            --and the user wants to select the group node,
+            --but the cursor will be on one of the children nodes
+            --eg:
+            --(string (st<cursor>ring_begin) (string_content) (string_end)),
+            --but the user wants to select the (string) node
+            --(string) will be the first matched child,
+            --because the tree is in order
             return vim.treesitter.is_in_node_range(n, cpos[1] - 1, cpos[2])
         end)
 
