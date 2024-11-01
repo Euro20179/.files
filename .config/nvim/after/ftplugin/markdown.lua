@@ -38,7 +38,12 @@ function MarkdownGetLinks()
     return links
 end
 
-function GotoCell(jumpCount)
+function JumpCell(jumpCount)
+    if jumpCount == 0 then
+        vim.notify("jumpCount cannot be 0", vim.log.levels.ERROR)
+        return
+    end
+
     local node = vim.treesitter.get_node {}
 
     if node == nil then
@@ -73,40 +78,28 @@ function GotoCell(jumpCount)
         if n == nil then
             return {}
         end
+
         local cells = vim.iter(n:iter_children()):filter(function(rowChild)
             return rowChild:type() == "pipe_table_cell"
         end):totable()
+
         return cells
     end):flatten(2):filter(function(n) return n ~= nil end):totable()
 
-    local cellsBeforeCursor = {}
-    local cellsAfterCursor = {}
-    local reachedCursor = false
-    for _, v in ipairs(tblCells) do
-        if v:id() == cursorNodeId then
-            reachedCursor = true
-            goto continue
-        end
-        if not reachedCursor then
-            cellsBeforeCursor[#cellsBeforeCursor+1] = v
-        else
-            cellsAfterCursor[#cellsAfterCursor+1] = v
-        end
-        ::continue::
-    end
+    local ids = vim.iter(tblCells):map(function(n) return n:id() end):totable()
 
-    --reverse it, that way index 1, is the first cell before the cursor
-    cellsBeforeCursor = vim.iter(cellsBeforeCursor):rev():totable()
+    local cnIdx = vim.fn.index(ids, cursorNodeId)
 
     local nextCell
     if jumpCount > 0 then
-        nextCell = cellsAfterCursor[jumpCount]
-    elseif jumpCount < 0 then
-        nextCell = cellsBeforeCursor[vim.fn.abs(jumpCount)]
+        nextCell = vim.iter(tblCells):nth(cnIdx + jumpCount + 1)
+    else
+        --take the first cnIdx nodes, reverse it, then grab the item
+        --reverse it, that way index 1, is the first cell before the cursor
+        nextCell = vim.iter(tblCells):take(cnIdx):nth(vim.fn.abs(jumpCount))
     end
 
     if nextCell == nil then
-        vim.notify(string.format("Cannot jump %d cell(s)", jumpCount), vim.log.levels.ERROR)
         return
     end
 
@@ -116,10 +109,11 @@ end
 
 
 vim.keymap.set("i", "<c-.>", function ()
-    GotoCell(1)
+    JumpCell(1)
 end)
+
 vim.keymap.set("i", "<c-s-.>", function ()
-    GotoCell(-1)
+    JumpCell(-1)
 end)
 
 vim.api.nvim_buf_create_user_command(0, "Links", ":call setqflist(v:lua.MarkdownGetLinks())| cwin", {})
