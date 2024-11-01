@@ -323,14 +323,14 @@ local function getCorrectChildren(parentNode, childName)
     return correctChildren
 end
 
----@class JumpRelation
+---@class NodeRelation
 ---@field child_name string
 
 ---@alias NodeName string
 
----@alias JumpRelationList table<NodeName, JumpRelation>
+---@alias NodeRelationList table<NodeName, NodeRelation>
 
----@param parentChildRelations JumpRelationList
+---@param parentChildRelations NodeRelationList
 function FindChildrenNearCursor(parentChildRelations)
     local node = vim.treesitter.get_node {}
     local cpos = vim.api.nvim_win_get_cursor(0)
@@ -391,6 +391,35 @@ end
 function JumpToNode(node)
     local nsr, nsc = vim.treesitter.get_node_range(node)
     vim.api.nvim_win_set_cursor(0, { nsr + 1, nsc })
+end
+
+---Jumps to the +-nth child node near the cursor relative to a parent
+---@param jumpCount number
+---@param parentChildRelations NodeRelationList
+function JumpToNearNodes(jumpCount, parentChildRelations)
+    if jumpCount == 0 then
+        return
+    end
+    local nearChildren = FindChildrenNearCursor(parentChildRelations)
+
+    if nearChildren == nil then
+        return
+    end
+
+    local tblToUse
+    if jumpCount > 0 then
+        tblToUse = nearChildren.after
+    else
+        tblToUse = nearChildren.before
+    end
+
+    jumpCount = vim.fn.abs(jumpCount)
+
+    if tblToUse[jumpCount] == nil then
+        return
+    end
+
+    JumpToNode(tblToUse[jumpCount])
 end
 
 vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })

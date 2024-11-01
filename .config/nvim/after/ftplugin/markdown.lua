@@ -40,32 +40,20 @@ end
 
 
 vim.keymap.set("i", "<c-.>", function()
-    local nearChildren = FindChildrenNearCursor({
+    JumpToNearNodes(1, {
         pipe_table = {
             child_name = "pipe_table_cell"
         }
     })
-
-    if nearChildren.after == nil or nearChildren.after[1] == nil then
-        return
-    end
-
-    JumpToNode(nearChildren.after[1])
 end)
 
 --use the new signature for JumpChild (parentChildRelations)
 vim.keymap.set("i", "<c-s-.>", function()
-    local nearChildren = FindChildrenNearCursor({
+    JumpToNearNodes(-1, {
         pipe_table = {
             child_name = "pipe_table_cell"
         }
     })
-
-    if nearChildren.before == nil or nearChildren.before[1] == nil then
-        return
-    end
-
-    JumpToNode(nearChildren.before[1])
 end)
 
 vim.api.nvim_buf_create_user_command(0, "Links", function()
