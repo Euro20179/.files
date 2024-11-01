@@ -38,6 +38,90 @@ function MarkdownGetLinks()
     return links
 end
 
+function GotoCell(jumpCount)
+    local node = vim.treesitter.get_node {}
+
+    if node == nil then
+        vim.notify("No ts node under cursor", vim.log.levels.ERROR)
+        return
+    end
+
+    local cursorNodeId = node:id()
+
+    --finds the root of the table
+    while node ~= nil and node:parent() and node:type() ~= "pipe_table" do
+        node = node:parent()
+    end
+
+    if node == nil then
+        vim.notify("Could not find table root", vim.log.levels.ERROR)
+        return
+    end
+
+    local tblChildren = vim.iter(node:iter_children())
+
+    ---@type table<TSNode>
+    local tblRows = tblChildren:filter(function(n)
+        return n:type() == "pipe_table_row" or n:type() == "pipe_table_header"
+    end):totable()
+
+    tblRows = vim.iter(tblRows):flatten():totable()
+
+    --gets all cells from all rows and flattens into a list
+    ---@type table<TSNode>
+    local tblCells = vim.iter(tblRows):map(function(n)
+        if n == nil then
+            return {}
+        end
+        local cells = vim.iter(n:iter_children()):filter(function(rowChild)
+            return rowChild:type() == "pipe_table_cell"
+        end):totable()
+        return cells
+    end):flatten(2):filter(function(n) return n ~= nil end):totable()
+
+    local cellsBeforeCursor = {}
+    local cellsAfterCursor = {}
+    local reachedCursor = false
+    for _, v in ipairs(tblCells) do
+        if v:id() == cursorNodeId then
+            reachedCursor = true
+            goto continue
+        end
+        if not reachedCursor then
+            cellsBeforeCursor[#cellsBeforeCursor+1] = v
+        else
+            cellsAfterCursor[#cellsAfterCursor+1] = v
+        end
+        ::continue::
+    end
+
+    --reverse it, that way index 1, is the first cell before the cursor
+    cellsBeforeCursor = vim.iter(cellsBeforeCursor):rev():totable()
+
+    local nextCell
+    if jumpCount > 0 then
+        nextCell = cellsAfterCursor[jumpCount]
+    elseif jumpCount < 0 then
+        nextCell = cellsBeforeCursor[vim.fn.abs(jumpCount)]
+    end
+
+    if nextCell == nil then
+        vim.notify(string.format("Cannot jump %d cell(s)", jumpCount), vim.log.levels.ERROR)
+        return
+    end
+
+    local nsr, nsc, _, _ = vim.treesitter.get_node_range(nextCell)
+    vim.api.nvim_win_set_cursor(0, { nsr + 1, nsc })
+end
+
+
+vim.keymap.set("i", "<c-.>", function ()
+    GotoCell(1)
+end)
+vim.keymap.set("i", "<c-s-.>", function ()
+    GotoCell(-1)
+end)
+
 vim.api.nvim_buf_create_user_command(0, "Links", ":call setqflist(v:lua.MarkdownGetLinks())| cwin", {})
 vim.keymap.set("n", "<a-l>", ":Links<CR>", {
     buffer = 0
