@@ -1,0 +1,18 @@
+#!/bin/nvim -S
+
+let s:file = argv(0)
+if s:file == ""
+    echoerr "No file given"
+    exit
+endif
+
+let s:colorscheme = argv(1)
+if s:colorscheme != ""
+    execute 'color ' . s:colorscheme
+endif
+
+execute 'edit ' . s:file
+TOhtml /tmp/nvim-file.html
+"special profile because librewolf hangs when using in-use profiles
+!librewolf -P nvim-screenshot --screenshot file://%
+qall!

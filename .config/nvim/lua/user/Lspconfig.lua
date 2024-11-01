@@ -136,7 +136,7 @@ lspconfig['jsonls'].setup{
     }
 }
 -- lspconfig['ltex'].setup{}
--- lspconfig.vimls.setup{
---   capabilities = capabilities,
---   isNeovim = true
--- }
+lspconfig.vimls.setup{
+  capabilities = capabilities,
+  isNeovim = true
+}

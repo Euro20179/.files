@@ -292,11 +292,6 @@ add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
 add { source = "tpope/vim-fugitive" }
 
-aSetup({ source = "jinh0/eyeliner.nvim" }, later, "eyeliner", {
-    highlight_on_key = true,
-    dim = true
-})
-
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
 
