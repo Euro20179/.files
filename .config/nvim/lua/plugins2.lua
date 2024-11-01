@@ -255,7 +255,8 @@ later(function()
             prefix = "yd"
         },
         replace = {
-            prefix = "yr"
+            prefix = "<Plug>" --also disable, use v<motion>"<reg>p instead of <reg>yr<motion>
+                              --more portable, possibly make own version to use <reg>yr<motion>
         },
         sort = {
             prefix = '<Plug>' --disable sort feature, by setting an inacessable key

@@ -325,20 +325,19 @@ end
 
 ---@class JumpRelation
 ---@field child_name string
----@field jump_count number
 
----@alias NodeType string
+---@alias NodeName string
 
----@alias JumpRelationList table<NodeType, JumpRelation>
+---@alias JumpRelationList table<NodeName, JumpRelation>
 
 ---@param parentChildRelations JumpRelationList
-function JumpChild(parentChildRelations)
+function FindChildrenNearCursor(parentChildRelations)
     local node = vim.treesitter.get_node {}
     local cpos = vim.api.nvim_win_get_cursor(0)
 
     if node == nil then
         vim.notify("No ts node under cursor", vim.log.levels.ERROR)
-        return
+        return {}
     end
 
     ---@type table<string>
@@ -351,7 +350,7 @@ function JumpChild(parentChildRelations)
 
     if node == nil or vim.fn.index(possibleParents, node:type()) == -1 then
         vim.notify(string.format("Could not find root: %s", possibleParents[1]), vim.log.levels.ERROR)
-        return
+        return {}
     end
 
     local children = getCorrectChildren(node, parentChildRelations[node:type()].child_name)
@@ -378,24 +377,19 @@ function JumpChild(parentChildRelations)
 
     if cursorNodeIndex == nil then
         vim.notify(string.format("Cursor not in a child of %s", node:type()), vim.log.levels.ERROR)
-        return
+        return {}
     end
 
-    local nextCell
-    local jumpCount = parentChildRelations[node:type()].jump_count or 1
-    if jumpCount > 0 then
-        nextCell = children[cursorNodeIndex + jumpCount]
-    elseif jumpCount < 0 then
-        --take the first cnIdx nodes, reverse it, then grab the item
-        --reverse it, that way index 1, is the first cell before the cursor
-        nextCell = vim.iter(children):take(cursorNodeIndex - 1):rev():nth(vim.fn.abs(jumpCount))
-    end
+    return {
+        currentNode = children[cursorNodeIndex],
+        before = vim.iter(vim.list_slice(children, 0, cursorNodeIndex - 1)):rev():totable(),
+        after = vim.list_slice(children, cursorNodeIndex + 1)
+    }
+end
 
-    if nextCell == nil then
-        return
-    end
-
-    local nsr, nsc, _, _ = vim.treesitter.get_node_range(nextCell)
+---@param node TSNode
+function JumpToNode(node)
+    local nsr, nsc = vim.treesitter.get_node_range(node)
     vim.api.nvim_win_set_cursor(0, { nsr + 1, nsc })
 end
 
