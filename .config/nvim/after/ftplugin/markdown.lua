@@ -38,6 +38,9 @@ function MarkdownGetLinks()
     return links
 end
 
+--TODO:
+--make this generic, so that the cursor can jump between children within any type of container
+--eg: jumping between (identifiers) in python (parameters)
 function JumpCell(jumpCount)
     if jumpCount == 0 then
         vim.notify("jumpCount cannot be 0", vim.log.levels.ERROR)
@@ -58,7 +61,7 @@ function JumpCell(jumpCount)
         node = node:parent()
     end
 
-    if node == nil then
+    if node == nil or node:type() ~= "pipe_table" then
         vim.notify("Could not find table root", vim.log.levels.ERROR)
         return
     end
