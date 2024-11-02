@@ -6,6 +6,39 @@ function Rword()
     return words[math.random(1, #words)]
 end
 
+function Ssrange(line1, line2)
+    local lines = vim.api.nvim_buf_get_lines(0, line1 - 1, line2, false)
+
+    local tmpFile = vim.fn.tempname()
+
+    vim.api.nvim_cmd({
+        cmd = "TOhtml",
+        args = { tmpFile },
+        range = { line1, line2 }
+    }, {})
+
+    --exit the TOhtml window+buffer
+    vim.api.nvim_cmd({
+        cmd = "quit",
+        bang = true
+    }, {})
+
+    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
+end
+
+function Ssbuffer(bufNo)
+    local curBuf = vim.api.nvim_win_get_buf(0)
+    vim.api.nvim_win_set_buf(0, bufNo)
+
+    local tmpFile = vim.fn.tempname()
+    vim.cmd.TOhtml(tmpFile)
+    vim.cmd.quit()
+
+    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
+
+    vim.api.nvim_win_set_buf(0, curBuf)
+end
+
 function Ssfile(file)
     if file == "" then
         return
@@ -14,12 +47,16 @@ function Ssfile(file)
     local curWin = vim.api.nvim_get_current_win()
     local curBuf = vim.api.nvim_win_get_buf(curWin)
     local buf = vim.api.nvim_create_buf(false, true)
+
+    local filetype = vim.bo.filetype
+
     vim.api.nvim_win_set_buf(curWin, buf)
     vim.cmd.edit(file)
+    vim.bo.filetype = filetype
 
     vim.cmd.TOhtml("/tmp/nvim-file.html")
     vim.cmd.quit()
-    vim.system({"librewolf", "-P", "nvim-screenshot", "--screenshot", "file:///tmp/nvim-file.html"})
+    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file:///tmp/nvim-file.html" })
 
     vim.api.nvim_win_set_buf(curWin, curBuf)
 end
@@ -440,13 +477,20 @@ function JumpToNearNodes(jumpCount, parentChildRelations)
     JumpToNode(tblToUse[jumpCount])
 end
 
-vim.api.nvim_create_user_command("Ssfile", function (data)
+vim.api.nvim_create_user_command("Ssfile", function(data)
     local file = data.args
-    if file == "" then
-        file = vim.fn.expand("%")
+    --range, no file
+    if data.count >= 0 then
+        Ssrange(data.line1, data.line2)
+    --no range, no file
+    elseif file == "" then
+        Ssbuffer(0)
+    --no range, file
+    else
+        Ssfile(file)
     end
-    Ssfile(file)
-end, { complete = "file", nargs = "?" })
+end, { complete = "file", nargs = "?", range = true })
+
 vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})

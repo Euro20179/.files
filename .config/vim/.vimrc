@@ -193,8 +193,8 @@ nnoremap <c-s-v> a<c-r>+<esc>
 "}}}
 
 "Text editing {{{
-nnoremap [<space> :execute ':norm O' \| :norm j<CR>
-nnoremap ]<space> :execute ':norm o' \| :norm k<CR>
+nnoremap [<space> :execute ':norm O' \| call setline(".", "") \| noh \| :norm j<CR>
+nnoremap ]<space> :execute ':norm o' \| call setline(".", "") \| noh \| :norm k<CR>
 
 func AddLineAboveBelow(start, end)
     call append(a:start - 1, "")
