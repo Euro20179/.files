@@ -14,7 +14,6 @@ local dapLeader = "<M-d>"
 --
 -- vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
 
-local macros = {}
 --Normal Mode{{{
 local nShortcuts = {
     -- dap {{{
@@ -82,6 +81,26 @@ local nShortcuts = {
         vim.cmd.lwin()
     end },
     { "<leader>fh", require "mini.pick".builtin.help,      { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fT", function ()
+        local tabs = {}
+        for _, tabno in ipairs(vim.api.nvim_list_tabpages()) do
+            local tabWin = vim.api.nvim_tabpage_get_win(tabno)
+            local tabWinBuf = vim.api.nvim_win_get_buf(tabWin)
+            local tabWinBufName = vim.api.nvim_buf_get_name(tabWinBuf)
+            tabs[#tabs+1] = tabWinBufName .. ":" .. tabno
+        end
+
+        vim.ui.select(tabs, {}, function (item)
+            if item == nil then
+                return
+            end
+
+            local tabInfo = vim.split(item, ":")
+            vim.schedule(function()
+                vim.api.nvim_set_current_tabpage(tonumber(tabInfo[#tabInfo]))
+            end)
+        end)
+    end, { desc = "[TELESCOPE] tabs" } },
     { "<leader>fb", function()
         local bufs = {}
         for _, bufno in ipairs(vim.api.nvim_list_bufs()) do
@@ -122,10 +141,10 @@ local nShortcuts = {
     { "<A-l>",            function() harpoon:list():select(3) end },
     { "<A-;>",            function() harpoon:list():select(4) end },
     { "<A-'>",            function() harpoon:list():select(5) end },
-    { "<leader>6",        function() harpoon:list():select(6) end },
-    { "<leader>7",        function() harpoon:list():select(7) end },
-    { "<leader>8",        function() harpoon:list():select(8) end },
-    { "<leader>9",        function() harpoon:list():select(9) end },
+    { "<leader>1",        function() harpoon:list():select(6) end },
+    { "<leader>2",        function() harpoon:list():select(7) end },
+    { "<leader>3",        function() harpoon:list():select(8) end },
+    { "<leader>4",        function() harpoon:list():select(9) end },
     { "<leader>T",        function() GotoTerminalBuf() end },
     --}}}
     -- Git {{{
@@ -181,8 +200,6 @@ local nShortcuts = {
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
 end
-
-local maps = vim.api.nvim_get_keymap("n")
 
 if not vim.fn.exists("&findexpr") or vim.opt.findexpr == "" then
     vim.keymap.set("n", "<leader>ff", require "mini.pick".builtin.files, { desc = "[TELESCOPE] find files" })
