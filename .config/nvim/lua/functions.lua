@@ -1,3 +1,5 @@
+local tohtml = require "tohtml"
+
 function Rword()
     local words = {}
     for line in io.lines("/home/euro/Documents/words.txt") do
@@ -11,17 +13,11 @@ function Ssrange(line1, line2)
 
     local tmpFile = vim.fn.tempname()
 
-    vim.api.nvim_cmd({
-        cmd = "TOhtml",
-        args = { tmpFile },
+    local html = tohtml.tohtml(0, {
         range = { line1, line2 }
-    }, {})
+    })
 
-    --exit the TOhtml window+buffer
-    vim.api.nvim_cmd({
-        cmd = "quit",
-        bang = true
-    }, {})
+    vim.fn.writefile(html, tmpFile)
 
     vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
 end
@@ -29,10 +25,11 @@ end
 function Ssbuffer(bufNo)
     local curBuf = vim.api.nvim_win_get_buf(0)
     vim.api.nvim_win_set_buf(0, bufNo)
+    local html = tohtml.tohtml(0)
 
     local tmpFile = vim.fn.tempname()
-    vim.cmd.TOhtml(tmpFile)
-    vim.cmd.quit()
+
+    vim.fn.writefile(html, tmpFile)
 
     vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
 
@@ -44,21 +41,25 @@ function Ssfile(file)
         return
     end
 
-    local curWin = vim.api.nvim_get_current_win()
-    local curBuf = vim.api.nvim_win_get_buf(curWin)
-    local buf = vim.api.nvim_create_buf(false, true)
+    local text = vim.fn.readfile(file)
+    local buf = vim.api.nvim_create_buf(true, false)
+    local win = vim.api.nvim_open_win(buf, false, {
+        split = "left"
+    })
 
-    local filetype = vim.bo.filetype
+    vim.api.nvim_buf_set_lines(buf, 0, 1, false, text)
+    vim.api.nvim_win_set_buf(win, buf)
+    local bufFt = vim.filetype.match({ filename = file })
+    vim.api.nvim_set_option_value("filetype", bufFt, {buf = buf})
 
-    vim.api.nvim_win_set_buf(curWin, buf)
-    vim.cmd.edit(file)
-    vim.bo.filetype = filetype
+    local tmpFile = vim.fn.tempname()
+    local html = tohtml.tohtml(win)
+    vim.fn.writefile(html, tmpFile)
 
-    vim.cmd.TOhtml("/tmp/nvim-file.html")
-    vim.cmd.quit()
-    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file:///tmp/nvim-file.html" })
-
-    vim.api.nvim_win_set_buf(curWin, curBuf)
+    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
+    vim.api.nvim_buf_delete(buf, {
+        force = true
+    })
 end
 
 function Ytfzf(data)
@@ -482,10 +483,10 @@ vim.api.nvim_create_user_command("Ssfile", function(data)
     --range, no file
     if data.count >= 0 then
         Ssrange(data.line1, data.line2)
-    --no range, no file
+        --no range, no file
     elseif file == "" then
         Ssbuffer(0)
-    --no range, file
+        --no range, file
     else
         Ssfile(file)
     end
