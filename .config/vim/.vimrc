@@ -228,8 +228,8 @@ endif
 "When entering cmdline toggle relative-number
 augroup relnutoggle
     au!
-    autocmd CmdlineEnter * if &filetype !=# "help" | set nornu | redraw | endif
-    autocmd CmdlineLeave * if &filetype !=# "help" | set rnu | redraw | endif
+    autocmd CmdlineEnter * if &rnu != 0 || &nu != 0 | set nornu | redraw | endif
+    autocmd CmdlineLeave * if &rnu != 0 || &nu != 0 | set rnu | redraw | endif
 augroup END
 
 call setcellwidths([
