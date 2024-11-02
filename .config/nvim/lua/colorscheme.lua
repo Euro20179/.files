@@ -73,10 +73,7 @@ function Color(scheme)
     }, {})
 
     vim.api.nvim_cmd({
-        -- args = { 'nord' },
-        -- args = { "catppuccin-macchiato" },
         args = { scheme },
-        -- args = { "candy" },
         cmd = "colorscheme"
     }, {})
 

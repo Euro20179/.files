@@ -6,6 +6,24 @@ function Rword()
     return words[math.random(1, #words)]
 end
 
+function Ssfile(file)
+    if file == "" then
+        return
+    end
+
+    local curWin = vim.api.nvim_get_current_win()
+    local curBuf = vim.api.nvim_win_get_buf(curWin)
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_win_set_buf(curWin, buf)
+    vim.cmd.edit(file)
+
+    vim.cmd.TOhtml("/tmp/nvim-file.html")
+    vim.cmd.quit()
+    vim.system({"librewolf", "-P", "nvim-screenshot", "--screenshot", "file:///tmp/nvim-file.html"})
+
+    vim.api.nvim_win_set_buf(curWin, curBuf)
+end
+
 function Ytfzf(data)
     require("user.telescope").telescope_ytfzf(data)
 end
@@ -422,6 +440,13 @@ function JumpToNearNodes(jumpCount, parentChildRelations)
     JumpToNode(tblToUse[jumpCount])
 end
 
+vim.api.nvim_create_user_command("Ssfile", function (data)
+    local file = data.args
+    if file == "" then
+        file = vim.fn.expand("%")
+    end
+    Ssfile(file)
+end, { complete = "file", nargs = "?" })
 vim.api.nvim_create_user_command("OGen", OllamaGen, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("ODocument", OllamaDocument, { range = true, nargs = "?" })
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
