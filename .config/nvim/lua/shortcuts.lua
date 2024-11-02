@@ -265,9 +265,9 @@ end
 -- ]]
 --}}}
 
-vim.keymap.set({ "o", "x" }, "?", function()
-    require "various-textobjs".diagnostic()
-end)
+-- vim.keymap.set({ "o", "x" }, "?", function()
+--     require "various-textobjs".diagnostic()
+-- end)
 
 -- local surround_prefix = "s"
 -- local surround_chars = { "{", "[", "(", "'", '"', "<", "}", "]", ")" }

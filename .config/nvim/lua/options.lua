@@ -10,14 +10,36 @@ function GetDiagnostic(severity)
     return vim.diagnostic.get(0, { severity = severity })
 end
 
-function GetGitStats()
+---@class GitStatsCache
+---@field add? string
+---@field sub? string
+local gitStatsCache = {}
+
+local function calcGitStats()
     local cmd = vim.system({ "git", "diff", "--numstat", vim.fn.expand("%")}, {}):wait()
     if cmd.stdout == "" or cmd.code ~= 0 then
-        return ""
+        return "", ""
     end
     local data = vim.split(cmd.stdout, "\t")
     local add = data[1]
     local sub = data[2]
+    return add, sub
+end
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+    callback = function ()
+        local add, sub = calcGitStats()
+        gitStatsCache.add = add
+        gitStatsCache.sub = sub
+    end
+})
+
+function GetGitStats()
+    local add = gitStatsCache.add
+    local sub = gitStatsCache.sub
+    if add == nil then
+        add, sub = calcGitStats()
+    end
     return " (%#DiffAdd#+" .. add .. " %#DiffDelete#-" .. sub .. "%*) "
 end
 
