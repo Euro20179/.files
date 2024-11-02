@@ -214,7 +214,7 @@ vnoremap <leader>o :BlankLines<CR>
 
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>
-inoremap <c-backspace> <c-w>
+inoremap <c-bs> <c-w>
 
 "This SHOULD be the default (insert + fix indent)
 "no idea why it needs to be the literal bytes instead of <c-r><c-p>
