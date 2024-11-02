@@ -1,21 +1,23 @@
 #!/bin/nvim -S
 
-let s:scheme = trim(execute("colorscheme"), "\000")
-
-"The new vim default colorscheme messes up colors probably with TOhtml
-colorscheme vim
-execute 'colorscheme ' . s:scheme
-
 let s:file = argv(0)
 if s:file == ""
     echoerr "No file given"
     exit
 endif
 
-let s:colorscheme = argv(1)
-if s:colorscheme != ""
-    execute 'color ' . s:colorscheme
+let s:selectedScheme = trim(execute("colorscheme"), "\000")
+
+if has("nvim")
+    "The new neovim default colorscheme messes up colors probably with TOhtml
+    colorscheme vim
 endif
+
+let s:cmdlineScheme = argv(1)
+if s:cmdlineScheme != ""
+    let s:selectedScheme = s:cmdlineScheme
+endif
+execute 'colorscheme ' . s:selectedScheme
 
 execute 'edit ' . s:file
 
@@ -27,7 +29,10 @@ else
     norm zR
 endif
 
-TOhtml /tmp/nvim-file.html
-"special profile because librewolf hangs when using in-use profiles
-!librewolf -P nvim-screenshot --screenshot file:///tmp/nvim-file.html
+TOhtml
+silent w!
+let s:filename = expand("%:p")
+execute '!firefox --screenshot file://' . s:filename
+echo s:filename
+silent execute '!rm ' . s:filename
 qall!
