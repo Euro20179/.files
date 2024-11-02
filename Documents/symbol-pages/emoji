@@ -59,6 +59,7 @@
 😪		sleepy face
 🤤		drooling face
 😴		sleeping face
+🫩		face with bags under eyes
 😷		face with medical mask
 🤒		face with thermometer
 🤕		face with head-bandage
@@ -1658,12 +1659,12 @@
 🤶🏽		Mrs. Claus: medium skin tone
 🤶🏾		Mrs. Claus: medium-dark skin tone
 🤶🏿		Mrs. Claus: dark skin tone
-🧑‍🎄		mx claus
-🧑🏻‍🎄		mx claus: light skin tone
-🧑🏼‍🎄		mx claus: medium-light skin tone
-🧑🏽‍🎄		mx claus: medium skin tone
-🧑🏾‍🎄		mx claus: medium-dark skin tone
-🧑🏿‍🎄		mx claus: dark skin tone
+🧑‍🎄		Mx Claus
+🧑🏻‍🎄		Mx Claus: light skin tone
+🧑🏼‍🎄		Mx Claus: medium-light skin tone
+🧑🏽‍🎄		Mx Claus: medium skin tone
+🧑🏾‍🎄		Mx Claus: medium-dark skin tone
+🧑🏿‍🎄		Mx Claus: dark skin tone
 🦸		superhero
 🦸🏻		superhero: light skin tone
 🦸🏼		superhero: medium-light skin tone
@@ -3472,6 +3473,7 @@
 🧑‍🧒		family: adult, child
 🧑‍🧒‍🧒		family: adult, child, child
 👣		footprints
+🫆		fingerprint
 🏻		light skin tone
 🏼		medium-light skin tone
 🏽		medium skin tone
@@ -3593,6 +3595,11 @@
 🐚		spiral shell
 🪸		coral
 🪼		jellyfish
+🦀		crab
+🦞		lobster
+🦐		shrimp
+🦑		squid
+🦪		oyster
 🐌		snail
 🦋		butterfly
 🐛		bug
@@ -3641,6 +3648,7 @@
 🪹		empty nest
 🪺		nest with eggs
 🍄		mushroom
+🪾		leafless tree
 🍇		grapes
 🍈		melon
 🍉		watermelon
@@ -3680,6 +3688,7 @@
 🫚		ginger root
 🫛		pea pod
 🍄‍🟫		brown mushroom
+🫜		root vegetable
 🍞		bread
 🥐		croissant
 🥖		baguette bread
@@ -3731,11 +3740,6 @@
 🥟		dumpling
 🥠		fortune cookie
 🥡		takeout box
-🦀		crab
-🦞		lobster
-🦐		shrimp
-🦑		squid
-🦪		oyster
 🍦		soft ice cream
 🍧		shaved ice
 🍨		ice cream
@@ -4223,6 +4227,7 @@
 🪘		long drum
 🪇		maracas
 🪈		flute
+🪉		harp
 📱		mobile phone
 📲		mobile phone with arrow
 ☎️		telephone
@@ -4400,6 +4405,7 @@
 🧰		toolbox
 🧲		magnet
 🪜		ladder
+🪏		shovel
 ⚗️		alembic
 ⚗		alembic
 🧪		test tube
@@ -4645,6 +4651,7 @@
 ®		registered
 ™️		trade mark
 ™		trade mark
+🫟		splatter
 		
 		
 *️⃣		keycap: *
@@ -4822,6 +4829,7 @@
 🇨🇳		flag: China
 🇨🇴		flag: Colombia
 🇨🇵		flag: Clipperton Island
+🇨🇶		flag: Sark
 🇨🇷		flag: Costa Rica
 🇨🇺		flag: Cuba
 🇨🇻		flag: Cape Verde
