@@ -18,6 +18,15 @@ if s:colorscheme != ""
 endif
 
 execute 'edit ' . s:file
+
+let s:presnapshot = argv(2)
+if s:presnapshot != ""
+    execute s:presnapshot
+else
+    "unfold all folds
+    norm zR
+endif
+
 TOhtml /tmp/nvim-file.html
 "special profile because librewolf hangs when using in-use profiles
 !librewolf -P nvim-screenshot --screenshot file:///tmp/nvim-file.html
