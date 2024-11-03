@@ -68,6 +68,7 @@ vim.diagnostic.config({
     }
 })
 
+
 vim.lsp.buf.hover = function()
     local hc = require"hovercraft"
     if hc.is_visible() then

@@ -1,4 +1,5 @@
 local opt = require "mp.options"
+local utils = require"mp.utils"
 
 local options = {
     account_pin = ""
@@ -42,8 +43,9 @@ end
 ---@param location string
 ---@param num string
 local function updateCurrEp(login, location, num)
-    local req = io.popen("curl 'http://localhost:8080/api/v1/query-v3' -H '" ..
-    login .. "' -G -d 'search=location%20=%20" .. '"' .. location .. '"' .. "' | jq '.ItemId'")
+    _, location = utils.split_path(location)
+    local req = io.popen("curl 'http://10.0.0.2:8888/api/v1/query-v3' -H '" ..
+    login .. "' -G -d 'search=location%20%7E%20" .. '"%25' .. location .. '"' .. "' | jq '.ItemId'")
     if req == nil then
         return
     end
@@ -54,7 +56,7 @@ local function updateCurrEp(login, location, num)
     itemId, _ = string.gsub(itemId, "\n", "")
 
     req = io.popen("curl -H '" ..
-    login .. "' 'http://localhost:8080/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
+    login .. "' 'http://10.0.0.2:8888/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
     if req == nil then
         return
     end
