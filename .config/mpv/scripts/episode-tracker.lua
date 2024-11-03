@@ -89,7 +89,9 @@ local function onload()
         return
     end
     local wd = mp.get_property("working-directory")
-    pp = wd .. "/" .. pp
+    if not pp:match("^/")  then
+        pp = wd .. "/" .. pp
+    end
 
     local current_file = mp.get_property("playlist/" .. pos .. "/filename")
 
