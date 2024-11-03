@@ -50,17 +50,15 @@ function InsertRow(rowCount)
     local cursorRow = nodes.currentNode
     local count = 0
     for child in cursorRow:iter_children() do
-        if not child:named() then
+        if child:type() ~= "pipe_table_cell" then
             goto continue
         end
         count = count + 1
         ::continue::
     end
+
     for _ = 0, rowCount - 1, 1 do
-        local rowText = ""
-        for _ = 1, count, 1 do
-            rowText = rowText .. "| "
-        end
+        local rowText = string.rep("| ", count)
         vim.fn.append(vim.fn.line("."), rowText .. "|")
     end
 end
@@ -70,6 +68,7 @@ vim.keymap.set("i", "<a-r>", function ()
     local pos = vim.api.nvim_win_get_cursor(0)
     vim.api.nvim_win_set_cursor(0, { pos[1] + 1, 1 })
 end, { desc = "[MARKDOWN-TABLE]: Add row below" })
+
 vim.api.nvim_create_user_command("MRow", function(data)
     InsertRow(tonumber(data.args) or 1)
 end, { nargs = "?" })
