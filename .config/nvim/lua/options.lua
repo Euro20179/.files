@@ -5,7 +5,6 @@ vim.opt.scbk = 100
 
 -- vim.o.winbar = "%{%v:lua.Winbar()%}"
 
-
 function GetDiagnostic(severity)
     return vim.diagnostic.get(0, { severity = severity })
 end

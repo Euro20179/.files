@@ -386,9 +386,16 @@ end
 
 ---@alias NodeRelationList table<NodeName, NodeRelation>
 
+---@class CursorNodeRelations
+---@field currentNode TSNode
+---@field before table<TSNode>
+---@field after table<TSNode>
+
 ---@param parentChildRelations NodeRelationList
+---@return CursorNodeRelations
 function FindChildrenNearCursor(parentChildRelations)
     local node = vim.treesitter.get_node {}
+    vim.print(node:type())
     local cpos = vim.api.nvim_win_get_cursor(0)
 
     if node == nil then
