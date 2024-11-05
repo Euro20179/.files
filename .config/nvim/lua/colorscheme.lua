@@ -101,8 +101,9 @@ function Color(scheme)
     vim.api.nvim_set_hl(0, "User6", { link = "DiagnosticWarning" })
 
     vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
-    -- vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
-    -- vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
+    vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
+    vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { background = "NONE" })
 
     -- vim.api.nvim_set_hl(0, "LineNr", { foreground = "#1e2030" })
 

@@ -9,8 +9,6 @@ function Rword()
 end
 
 function Ssrange(line1, line2)
-    local lines = vim.api.nvim_buf_get_lines(0, line1 - 1, line2, false)
-
     local tmpFile = vim.fn.tempname()
 
     local html = tohtml.tohtml(0, {
@@ -19,7 +17,7 @@ function Ssrange(line1, line2)
 
     vim.fn.writefile(html, tmpFile)
 
-    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
+    vim.system({ "firefox", "--screenshot", "file://" .. tmpFile })
 end
 
 function Ssbuffer(bufNo)
@@ -31,7 +29,7 @@ function Ssbuffer(bufNo)
 
     vim.fn.writefile(html, tmpFile)
 
-    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
+    vim.system({ "firefox", "--screenshot", "file://" .. tmpFile })
 
     vim.api.nvim_win_set_buf(0, curBuf)
 end
@@ -50,25 +48,22 @@ function Ssfile(file)
     vim.api.nvim_buf_set_lines(buf, 0, 1, false, text)
     vim.api.nvim_win_set_buf(win, buf)
     local bufFt = vim.filetype.match({ filename = file })
-    vim.api.nvim_set_option_value("filetype", bufFt, {buf = buf})
+    vim.api.nvim_set_option_value("filetype", bufFt, { buf = buf })
 
     local tmpFile = vim.fn.tempname()
     local html = tohtml.tohtml(win)
     vim.fn.writefile(html, tmpFile)
 
-    vim.system({ "librewolf", "-P", "nvim-screenshot", "--screenshot", "file://" .. tmpFile })
+    vim.system({ "firefox", "--screenshot", "file://" .. tmpFile })
     vim.api.nvim_buf_delete(buf, {
         force = true
     })
 end
 
-function Ytfzf(data)
-    require("user.telescope").telescope_ytfzf(data)
-end
-
 function EditSheet()
     local file = vim.api.nvim_buf_get_name(0)
     GotoTerminalBuf()
+    vim.cmd.sleep("500ms")
     vim.api.nvim_feedkeys('i' .. "sheet " .. file .. "\n", "n", false)
 end
 

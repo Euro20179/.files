@@ -300,7 +300,10 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     }
 })
 
-add { source = "meeehdi-dev/bropilot.nvim" }
+add { source = "meeehdi-dev/bropilot.nvim" , depends = {
+    "nvim-lua/plenary.nvim",
+    "j-hui/fidget.nvim"
+}}
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
         return
