@@ -65,35 +65,18 @@ set nowrap
 
 set colorcolumn=80
 
-
-"Setup findexpr, make <leader>ff find files using the :find command
-"Otherwise, later in shortcuts.lua, <leader>ff uses mini.builtins.findfiles
-"(similar to telescope)
-if exists("&findexpr")
-    if finddir(".git") != ""
-        func FindFiles()
-            let s:fnames = systemlist("git ls-files")
-            return s:fnames->filter("v:val =~? v:fname")
-        endfun
-    else
-        if trim(system("command -v fd")) != ""
-            let g:_findexpr_cmd = 'fd --glob -H'
-        else
-            let g:_findexpr_cmd = "find -path"
-        endif
-        func FindFiles()
-            let s:fnames = systemlist(g:_findexpr_cmd)
-            return s:fnames->filter("v:val =~? v:fname")
-        endfun
-    endif
-
-    set findexpr=FindFiles()
-
-    if function("nvim_set_keymap") != 0
-        call nvim_set_keymap("n", "<leader>ff", ":find ", {"desc": "[TELESCOPE] Find files and open", "noremap": v:true})
-    else
-        nnoremap <leader>ff :find 
-    endif
+if exists("&findfunc")
+    "if finddir(".git") != ""
+    "    func FindFiles(cmda, cmdc)
+    "        let fnames = systemlist("git ls-files")
+    "        return fnames->filter('v:val =~? a:cmda')
+    "    endfun
+    "else
+    func FindFiles(cmda, cmdc)
+        return glob('**/' . a:cmda . '*', v:false, v:true)
+    endfun
+    "endif
+    set findfunc=FindFiles
 endif
 
 nnoremap <A-s>           <CMD>setlocal spell! spelllang=en_us<CR>

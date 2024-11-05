@@ -43,12 +43,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         local ks = vim.keymap.set
         local key_maps = {
-            { "gls",  vim.lsp.buf.document_symbol,  { desc = "[LSP] [QF] Document symbols" } },
+            { "gls",  "gO",  { desc = "[LSP] [QF] Document symbols", remap = true } },
             { "glw", vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
             { "glo", vim.lsp.buf.outgoing_calls,   { desc = "[LSP] [QF] Outgoing calls" } },
             { "gli", vim.lsp.buf.incoming_calls,   { desc = "[LSP] [QF] Incoming calls" } },
-            { "glm", vim.lsp.buf.implementation,   { desc = "[LSP] [QF] Implementations" } },
-            { "glr", vim.lsp.buf.references,      { desc = "[LSP] [QF] References" } },
+            { "glm", "gri",   { desc = "[LSP] [QF] Implementations", remap = true } },
+            { "glr", "grr",      { desc = "[LSP] [QF] References", remap = true } },
             { "glh", function()
                 vim.ui.select({ "Parents", "Children" }, {}, function(choice)
                     if choice == "Parents" then
@@ -59,7 +59,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end)
             end, { desc = "[LSP] [QF] Type heirarchy" } },
             { "crn",   vim.lsp.buf.rename,        { desc = "[LSP] Rename Symbol" } },
-            { "<c-s>", vim.lsp.buf.signature_help, { desc = "[LSP] Signature" } },
             { "<leader>ea", function()
                 vim.diagnostic.setqflist()
             end, { desc = "[QF] Diagnostics ALL" } },
@@ -80,7 +79,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 vim.diagnostic.config({ virtual_text = not virt_text })
             end, { desc = "[LSP] Toggle virtual text" } },
             { "<a-e>", vim.diagnostic.open_float, { desc = "[LSP] Show diagnostics" } },
-            { "cra",   vim.lsp.buf.code_action,   { desc = "[LSP] Select code action to perform" } },
+            { "cra",   "gra",   { desc = "[LSP] Select code action to perform", remap = true } },
             { "crA", function()
                 local n = 0
                 vim.lsp.buf.code_action({

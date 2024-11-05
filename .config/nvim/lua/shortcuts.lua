@@ -201,7 +201,7 @@ for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
 end
 
-if not vim.fn.exists("&findexpr") or vim.opt.findexpr == "" then
+if vim.fn.exists("&findexpr") == 0 or vim.opt.findexpr == "" then
     vim.keymap.set("n", "<leader>ff", require "mini.pick".builtin.files, { desc = "[TELESCOPE] find files" })
 end
 

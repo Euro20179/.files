@@ -153,7 +153,6 @@ aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 --}}}
 
 
-add { source = "flazz/vim-colorschemes" }
 add { source = "folke/tokyonight.nvim" }
 add { source = "catppuccin/nvim" }
 
@@ -301,12 +300,13 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     }
 })
 
+add { source = "meeehdi-dev/bropilot.nvim" }
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
         return
     end
     vim.schedule(function()
-        aSetup({ source = "meeehdi-dev/bropilot.nvim", depends = { "j-hui/fidget.nvim" } }, later, "bropilot",
+        setup(later, "bropilot",
             {
                 model = "qwen2.5-coder:1.5b-base",
                 prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
