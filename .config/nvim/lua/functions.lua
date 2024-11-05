@@ -8,6 +8,11 @@ function Rword()
     return words[math.random(1, #words)]
 end
 
+local function sswebsite(url)
+    local browser = vim.env["BROWSER"] or "firefox"
+    vim.system({browser, '--new-instance', "--screenshot", url })
+end
+
 function Ssrange(line1, line2)
     local tmpFile = vim.fn.tempname()
 
@@ -17,7 +22,8 @@ function Ssrange(line1, line2)
 
     vim.fn.writefile(html, tmpFile)
 
-    vim.system({ "firefox", "--screenshot", "file://" .. tmpFile })
+    sswebsite("file://" .. tmpFile)
+
 end
 
 function Ssbuffer(bufNo)
@@ -29,7 +35,7 @@ function Ssbuffer(bufNo)
 
     vim.fn.writefile(html, tmpFile)
 
-    vim.system({ "firefox", "--screenshot", "file://" .. tmpFile })
+    sswebsite("file://" .. tmpFile)
 
     vim.api.nvim_win_set_buf(0, curBuf)
 end
@@ -54,7 +60,7 @@ function Ssfile(file)
     local html = tohtml.tohtml(win)
     vim.fn.writefile(html, tmpFile)
 
-    vim.system({ "firefox", "--screenshot", "file://" .. tmpFile })
+    sswebsite("file://" .. tmpFile)
     vim.api.nvim_buf_delete(buf, {
         force = true
     })
