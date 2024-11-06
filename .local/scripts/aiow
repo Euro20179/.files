@@ -39,6 +39,7 @@ getThumbPath() {
 }
 
 id=$(printf "%s" "$display" | fzf --preview 'echo {} | rev | cut -d: -f 1 | rev | xargs -I.PL. '"$0"' .PL. '"${tmpMetadata}"' ' | rev | cut -d: -f 1 | rev)
+[ -z "$id" ] && exit
 
 type="$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Type")"
 format="$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Format")"

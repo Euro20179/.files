@@ -304,8 +304,10 @@ add { source = "meeehdi-dev/bropilot.nvim" , depends = {
     "nvim-lua/plenary.nvim",
     "j-hui/fidget.nvim"
 }}
+
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
+        vim.notify("Local llm is not running, not starting borpilot", vim.log.levels.INFO)
         return
     end
     vim.schedule(function()
