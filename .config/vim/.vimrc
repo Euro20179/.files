@@ -20,7 +20,7 @@ if finddir(".git", ".;", 1) == ".git"
     set grepformat=%f:%l:%m
 endif
 
-set list listchars=tab:.\ 
+set list listchars=tab:^\ ,trail:.
 
 set nocp
 
@@ -194,6 +194,8 @@ nnoremap <silent> <leader>o :set opfunc=AddLineAboveBelowMotion<cr>g@
 
 vnoremap <leader>o :BlankLines<CR>
 "}}}
+
+nnoremap <leader>fh :help\ 
 
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>
