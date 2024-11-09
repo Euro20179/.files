@@ -63,56 +63,55 @@
 --     -- highlight! CmpItemKindTypeParameter guifg=#ffffff guibg=#58B5A8
 --     -- ]]
 -- end
---
 
-function Color(scheme)
-    --for legacy colorschemes
-    vim.api.nvim_cmd({
-        args = { "vim" },
-        cmd = "colorscheme"
-    }, {})
+local clrGroup = vim.api.nvim_create_augroup("conf-colorscheme", { clear = true })
 
-    vim.api.nvim_cmd({
-        args = { scheme },
-        cmd = "colorscheme"
-    }, {})
+vim.api.nvim_create_autocmd("ColorSchemePre", {
+    group = clrGroup,
 
-    -- vim.api.nvim_set_hl(0, "Normal", { bg = "#161b2f" })
+    command = "colorscheme vim",
+})
 
-    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
-    vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "TelescopeMatching" })
-    vim.api.nvim_set_hl(0, "CmpItemKindFunction", { link = "@function" })
-    vim.api.nvim_set_hl(0, "CmpItemKindField", { link = "@field" })
-    vim.api.nvim_set_hl(0, "CmpItemKindOperator", { link = "@operator" })
-    vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { link = "@keyword" })
-    vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "@lsp.type.enumMember" })
-    vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "@lsp.type.enum" })
-    vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", blend = 100 })
-    vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", italic = true, fg = "#6e738d" })
-    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = clrGroup,
 
-    vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+    callback = function()
+        -- vim.api.nvim_set_hl(0, "Normal", { bg = "#161b2f" })
 
-    vim.api.nvim_set_hl(0, "User1", { link = "@label" })
-    vim.api.nvim_set_hl(0, "User2", { link = "@namespace" })
-    vim.api.nvim_set_hl(0, "User3", { link = "@property" })
-    vim.api.nvim_set_hl(0, "User4", { link = "@number" })
-    vim.api.nvim_set_hl(0, "User5", { link = "Error" })
-    vim.api.nvim_set_hl(0, "User6", { link = "DiagnosticWarning" })
+        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
+        vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "TelescopeMatching" })
+        vim.api.nvim_set_hl(0, "CmpItemKindFunction", { link = "@function" })
+        vim.api.nvim_set_hl(0, "CmpItemKindField", { link = "@field" })
+        vim.api.nvim_set_hl(0, "CmpItemKindOperator", { link = "@operator" })
+        vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { link = "@keyword" })
+        vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "@lsp.type.enumMember" })
+        vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "@lsp.type.enum" })
+        vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", blend = 100 })
+        vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", italic = true, fg = "#6e738d" })
+        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
 
-    vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
-    vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
-    vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { background = "NONE" })
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
-    -- vim.api.nvim_set_hl(0, "LineNr", { foreground = "#1e2030" })
+        vim.api.nvim_set_hl(0, "User1", { link = "@label" })
+        vim.api.nvim_set_hl(0, "User2", { link = "@namespace" })
+        vim.api.nvim_set_hl(0, "User3", { link = "@property" })
+        vim.api.nvim_set_hl(0, "User4", { link = "@number" })
+        vim.api.nvim_set_hl(0, "User5", { link = "Error" })
+        vim.api.nvim_set_hl(0, "User6", { link = "DiagnosticWarning" })
 
-    vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
+        vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
+        vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { background = "NONE" })
 
-    vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
+        -- vim.api.nvim_set_hl(0, "LineNr", { foreground = "#1e2030" })
 
-    --this modifies the highlight, but vim.api.nvim_set_hl overwrites it
-    vim.cmd [[
+        vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
+
+        vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
+
+        --this modifies the highlight, but vim.api.nvim_set_hl overwrites it
+        vim.cmd [[
         hi DiagnosticUnderlineError gui=underline
         hi DiagnosticUnderlineWarn gui=underline
         hi DiagnosticUnderlineInfo gui=underline
@@ -120,20 +119,13 @@ function Color(scheme)
         hi DiagnosticUnderlineOk gui=underline
     ]]
 
-    --better quickfix{{{
-    vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
-    --}}}
+        --better quickfix{{{
+        vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
+    end
+})
 
-    -- if vim.g.neovide ~= nil then
-    --     vim.g.neovide_transparency = 0.8
-    --     vim.api.nvim_cmd({
-    --         cmd = "hi",
-    --         args = { "Normal", "guibg=NONE", "ctermbg=NONE" }
-    --     }, {})
-    -- end
-end
-
+vim.cmd[[color tokyonight]]
 -- Color("tokyonight-moon")
-Color("tokyonight")
+-- Color("tokyonight")
 -- Color("monet")
 -- Color("kanagawa")
