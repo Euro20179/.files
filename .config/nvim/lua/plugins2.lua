@@ -15,7 +15,7 @@ end
 require "mini.deps".setup({ path = { package = path_package } })
 --}}}
 
-vim.cmd[[packadd cfilter]]
+-- vim.cmd[[packadd cfilter]]
 
 local miniDeps = require "mini.deps"
 local add = miniDeps.add
@@ -130,9 +130,6 @@ aSetup({
             }
         },
         windows = {
-            autocomplete = {
-                border = 'rounded',
-            },
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 0,

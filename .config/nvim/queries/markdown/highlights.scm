@@ -26,3 +26,6 @@
                             (paragraph) @markup.list.checked)
 ;}}}
 
+((language) @label.markdown (#set! @label.markdown conceal ""))
+
+
