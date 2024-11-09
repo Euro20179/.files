@@ -54,7 +54,7 @@ local nShortcuts = {
         require "dap".session()
         require "dap".continue()
     end, { desc = "[DAP] start session" } },
-    { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAPUI] toggle" } },
+    { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAP] toggle" } },
     -- }}}
     --telescope {{{
     { "<leader>fj",     function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
@@ -148,24 +148,12 @@ local nShortcuts = {
     { "<leader>T",        function() GotoTerminalBuf() end },
     --}}}
     -- Git {{{
-    { gitLeader .. "l",
-        function()
-            local neogit = require("neogit")
-            neogit.open({ "log" })
-        end
-    },
-    { gitLeader .. "c", function()
-        require "neogit".open({ "commit" })
-    end },
-    { gitLeader .. "d",       "<cmd>DiffviewOpen<cr>" },
-    { gitLeader .. gitLeader, "<cmd>Neogit<cr>" },
-    { gitLeader .. "p", function()
-        require "neogit".open({ "push" })
-    end },
+    { gitLeader .. "l", ":G log<CR>", { desc = "[GIT]: log" } },
+    { gitLeader .. "c", "<cmd>G commit<CR>", { desc = "[GIT]: commit" } },
+    { gitLeader .. "d",       "<cmd>G diff<cr>", { desc = "[GIT]: diff" } },
+    { gitLeader .. "p", "<cmd>G push<CR>", { desc = "[GIT]: push" } },
     -- }}}
     -- Treesitter {{{
-    { "<leader>sr",      function() require "ssr".open() end },
-    { "<A-r>",           "<cmd>RegexplainerToggle<cr>" },
     { "glt",             "<cmd>Inspect<cr>" },
     -- }}}
     --syntax highlighting{{{
