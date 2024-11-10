@@ -126,10 +126,6 @@ function Winbar()
     return text
 end
 
-function P(...)
-    vim.print(...)
-end
-
 function ChatBotComment(data)
     OllamaDocument(data)
 end
@@ -396,7 +392,6 @@ end
 ---@return CursorNodeRelations
 function FindChildrenNearCursor(parentChildRelations)
     local node = vim.treesitter.get_node {}
-    vim.print(node:type())
     local cpos = vim.api.nvim_win_get_cursor(0)
 
     if node == nil then
@@ -479,7 +474,7 @@ function JumpToNearNodes(jumpCount, parentChildRelations)
 
     jumpCount = vim.fn.abs(jumpCount)
 
-    if tblToUse[jumpCount] == nil then
+    if tblToUse == nil or tblToUse[jumpCount] == nil then
         return
     end
 

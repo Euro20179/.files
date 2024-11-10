@@ -26,7 +26,7 @@ local nShortcuts = {
         sidebar.open()
     end, { desc = "[DAP] open frames" } },
     { dapLeader .. "<leader>", function()
-        require "dap".repl.toggle()
+        require "lua.user.plugin-setup.dap".repl.toggle()
     end, { desc = "[DAP] open repl" } },
     { dapLeader .. "k", function()
         widgets.hover()
@@ -39,20 +39,20 @@ local nShortcuts = {
         local sidebar = widgets.sidebar(widgets.expression)
         sidebar.open()
     end, { desc = "[DAP] open expressions" } },
-    { dapLeader .. "b", function() require "dap".toggle_breakpoint() end, { desc = "[DAP] toggle breakpoint" } },
-    { dapLeader .. "P", function() require "dap".pause() end,             { desc = "[DAP] pause" } },
-    { dapLeader .. "c", function() require "dap".continue() end,          { desc = "[DAP] continue" } },
-    { dapLeader .. "n", function() require "dap".step_over() end,         { desc = "[DAP] step over" } },
-    { dapLeader .. "p", function() require "dap".step_back() end,         { desc = "[DAP] step back" } },
-    { dapLeader .. "i", function() require "dap".step_into() end,         { desc = "[DAP] step into" } },
-    { dapLeader .. "I", function() require "dap".step_out() end,          { desc = "[DAP] step out" } },
+    { dapLeader .. "b", function() require "lua.user.plugin-setup.dap".toggle_breakpoint() end, { desc = "[DAP] toggle breakpoint" } },
+    { dapLeader .. "P", function() require "lua.user.plugin-setup.dap".pause() end,             { desc = "[DAP] pause" } },
+    { dapLeader .. "c", function() require "lua.user.plugin-setup.dap".continue() end,          { desc = "[DAP] continue" } },
+    { dapLeader .. "n", function() require "lua.user.plugin-setup.dap".step_over() end,         { desc = "[DAP] step over" } },
+    { dapLeader .. "p", function() require "lua.user.plugin-setup.dap".step_back() end,         { desc = "[DAP] step back" } },
+    { dapLeader .. "i", function() require "lua.user.plugin-setup.dap".step_into() end,         { desc = "[DAP] step into" } },
+    { dapLeader .. "I", function() require "lua.user.plugin-setup.dap".step_out() end,          { desc = "[DAP] step out" } },
     { dapLeader .. "g", function()
-        require "dap".session({ request = "attach", port = 5000 })
-        require "dap".continue()
+        require "lua.user.plugin-setup.dap".session({ request = "attach", port = 5000 })
+        require "lua.user.plugin-setup.dap".continue()
     end, { desc = "[DAP] start attach session" } },
     { dapLeader .. "r", function()
-        require "dap".session()
-        require "dap".continue()
+        require "lua.user.plugin-setup.dap".session()
+        require "lua.user.plugin-setup.dap".continue()
     end, { desc = "[DAP] start session" } },
     { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAP] toggle" } },
     -- }}}
@@ -175,7 +175,7 @@ local nShortcuts = {
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF",         require "mini.misc".zoom },
-    { "<leader>fo", "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
+    { "<leader>fO", "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",

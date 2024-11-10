@@ -1,7 +1,7 @@
 -- require "user.cmp"
 -- require "user.telescope"
-require "user.treesitter"
-require 'user.whichkey'
-require "user.Lspconfig"
-require "user.dap"
-require"user.lsplinks"
+require "user.plugin-setup.treesitter"
+require 'user.plugin-setup.whichkey'
+require "user.plugin-setup.Lspconfig"
+-- require "user.plugin-setup.dap"
+require"user.plugin-setup.lsplinks"
