@@ -3,7 +3,9 @@ local lspconfig = require("lspconfig")
 
 -- local capabilities = require"cmp_nvim_lsp".default_capabilities()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+capabilities = require"blink.cmp".get_lsp_capabilities(capabilities)
 
 -- lspconfig['ast_grep'].setup{ capabilities = capabilities }
 --

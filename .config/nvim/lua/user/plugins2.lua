@@ -69,79 +69,80 @@ local function buildBlink()
     )
 end
 
--- aSetup({
---         source = "file:///home/euro/Programs/GithubContribs/blink.cmp",
---         depends = { 'rafamadriz/friendly-snippets' },
---         hooks = {
---             post_checkout = buildBlink,
---             post_install = buildBlink,
---         }
---     }, later,
---     "blink-cmp", {
---         highlight = {
---             ns = vim.api.nvim_create_namespace("blink_cmp"),
---             use_nvim_cmp_as_default = true
---         },
---         keymap = {
---             preset = "default",
---             ["<c-q>"] = { "show", "hide" },
---             ["<c-l>"] = { "accept" },
---             ["<c-n>"] = { "select_next" },
---             ["<c-p>"] = { "select_prev" },
---             ["<C-u>"] = { "scroll_documentation_up" },
---             ["<C-d>"] = { "scroll_documentation_down" },
---             ["<c-,>"] = { "show_documentation", "hide_documentation" },
---         },
---         kind_icons = {
---             Text = "",
---             Method = " ",
---             Function = "",
---             Constructor = "",
---             Field = "",
---             Variable = "𝑥",
---             Class = "",
---             Interface = "",
---             Module = "",
---             Property = "",
---             Unit = "",
---             Value = "",
---             Enum = "",
---             Keyword = "",
---             Snippet = "󱄽",
---             Color = "",
---             File = "",
---             Reference = "",
---             Folder = "",
---             EnumMember = "",
---             Constant = "",
---             Struct = "",
---             Event = "",
---             Operator = "",
---             TypeParameter = ""
---         },
---
---         sources = {
---             completion = {
---                 enabled_providers = { "lsp", "path", "snippets", "buffer" }
---             },
---         },
---         trigger = {
---             completion = {
---                 keyword_regex = "[%w#_\\-]"
---             }
---         },
---         windows = {
---             documentation = {
---                 auto_show = true,
---                 auto_show_delay_ms = 0,
---                 update_delay_ms = 0,
---             },
---             -- ghost_text = {
---             --     enabled = true
---             -- }
---         }
---     }
--- )
+aSetup({
+        source = "Saghen/blink.cmp",
+        -- source = "file:///home/euro/Programs/GithubContribs/blink.cmp",
+        depends = { 'rafamadriz/friendly-snippets' },
+        hooks = {
+            post_checkout = buildBlink,
+            post_install = buildBlink,
+        }
+    }, later,
+    "blink-cmp", {
+        highlight = {
+            ns = vim.api.nvim_create_namespace("blink_cmp"),
+            use_nvim_cmp_as_default = true
+        },
+        keymap = {
+            preset = "default",
+            ["<c-q>"] = { "show", "hide" },
+            ["<c-l>"] = { "accept" },
+            ["<c-n>"] = { "select_next" },
+            ["<c-p>"] = { "select_prev" },
+            ["<C-u>"] = { "scroll_documentation_up" },
+            ["<C-d>"] = { "scroll_documentation_down" },
+            ["<c-,>"] = { "show_documentation", "hide_documentation" },
+        },
+        kind_icons = {
+            Text = "",
+            Method = " ",
+            Function = "",
+            Constructor = "",
+            Field = "",
+            Variable = "𝑥",
+            Class = "",
+            Interface = "",
+            Module = "",
+            Property = "",
+            Unit = "",
+            Value = "",
+            Enum = "",
+            Keyword = "",
+            Snippet = "󱄽",
+            Color = "",
+            File = "",
+            Reference = "",
+            Folder = "",
+            EnumMember = "",
+            Constant = "",
+            Struct = "",
+            Event = "",
+            Operator = "",
+            TypeParameter = ""
+        },
+
+        sources = {
+            completion = {
+                enabled_providers = { "lsp", "path", "snippets", "buffer" }
+            },
+        },
+        trigger = {
+            completion = {
+                keyword_regex = "[%w#_\\-]"
+            }
+        },
+        windows = {
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 0,
+                update_delay_ms = 0,
+            },
+            -- ghost_text = {
+            --     enabled = true
+            -- }
+        }
+    }
+)
 
 add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
