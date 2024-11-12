@@ -33,9 +33,12 @@ end
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     callback = function ()
-        local add, sub = calcGitStats()
-        gitStatsCache.add = add
-        gitStatsCache.sub = sub
+        local co = coroutine.create(function()
+            local add, sub = calcGitStats()
+            gitStatsCache.add = add
+            gitStatsCache.sub = sub
+        end)
+        coroutine.resume(co)
     end
 })
 
