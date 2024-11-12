@@ -24,6 +24,8 @@ local function calcGitStats()
     local data = vim.split(cmd.stdout, "\t")
     local add = data[1]
     local sub = data[2]
+    gitStatsCache.add = add
+    gitStatsCache.sub = sub
     return add, sub
 end
 

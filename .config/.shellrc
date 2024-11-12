@@ -109,6 +109,7 @@ export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
 export NEOFETCH_IMAGE=$(fd . "$SYSTEM_IMAGES/neofetch" | shuf | head -n1)
 export SHELL_LIB="$HOME/.local/lib/shell"
 export CLOUD="/home/cloud"
+export AIO_SERVER="https://cloud:8887"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"

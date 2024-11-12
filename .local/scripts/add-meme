@@ -1,0 +1,33 @@
+#!/bin/bash
+
+tmp="$(mktemp)"
+
+#let user choose location/file
+xdg-desktop-portal.FileChooser 0 0 1 "$CLOUD/Pictures" "$tmp"
+
+path="$(cat "$tmp")"
+[ -z "$path" ] && exit
+
+case "$(printf "%s\n" "use clipboard" "take screenshot" | rofi -dmenu -theme cat-macchiato)" in
+    "use clipboard")
+        wl-paste -t image/png > "$path"
+        ;;
+    "take screenshot")
+        scr-wayland "" libjxl && wl-paste -t image/png > "$path"
+        ;;
+esac
+
+password="$(echo "" | rofi -dmenu -theme cat-macchiato-dmenu-center -p "Passowrd: ")"
+[ -z "$password" ] && exit
+
+auth="$(printf ":%s" "$password" | base64)"
+
+memesCollectionId=4004013603757597042
+
+curl "http://cloud:8888/api/v1/add-entry" -H "Authorization: Basic $auth" \
+    -G -d "type=Meme" \
+    -d "title=${path##*/}" \
+    -d "format=7" \
+    -d "location=${path/\/home\/euro/\/home\/cloud\/DRIVE}" \
+    -d "parentId=${memesCollectionId}" \
+    -d "get-metadata=on" && notify-send -i "${path}" "Saved meme" || notify-send "Failed to save"

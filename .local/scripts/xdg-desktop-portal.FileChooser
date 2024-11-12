@@ -8,8 +8,6 @@ out="$5"
 
 declare -a args
 
-[ "$out" ] && wl-copy <<< "$path"
-
 state_home=${XDG_STATE_HOME:-$HOME/.local/state}/xdg-desktop-portal.FileChooser
 mkdir -p "$state_home"
 
