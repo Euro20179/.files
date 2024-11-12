@@ -1,6 +1,7 @@
 #!/bin/bash
 
-read -r volume <<< $(pamixer --get-volume)
+read -r volume <<< $(wpctl get-volume "@DEFAULT_AUDIO_SINK@")
+volume=${volume#*0.}
 read -r mic <<< $(pactl get-source-volume $(pactl get-default-source) | grep -o '[[:digit:]]\+%' | head -n 1)
 
 action="$1"
