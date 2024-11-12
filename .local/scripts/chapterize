@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#This script reads an input file (should be a dvd iso file)
+#gets all the chapters (should be episodic chapters)
+#then for each chapter, extracts it and puts it into $output_dir
+#the number of the episode will be the highest number alr in $ouptut_dir + 1
+
+input="$1"
+output_dir="$2"
+
+[ -z "$input" ] && {
+    printf "Must specify an input dvd iso file\n"
+    exit 1
+}
+
+[ -z "$output_dir" ] && {
+    printf "Must specify an output directory for numbered chapter seperated videos\n"
+    exit 1
+}
+
+chapters=$(ffprobe -f dvdvideo -show_chapters -print_format csv "$1")
+
+printf "%s" "$chapters" | while IFS="," read -r _ nr _ sframe start eframe end; do
+    max="$(ls -1 "$output_dir" | sort -n | tail -n1)"
+    max="${max%.mkv}"
+    max="$((max+1))"
+    ffmpeg -f dvdvideo -ss "${start}" -i "${input}" -map 0 -c copy -t "${end}" "${output_dir}/${max}.mkv" <&-
+done
+
