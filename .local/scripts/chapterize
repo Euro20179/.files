@@ -24,6 +24,6 @@ printf "%s" "$chapters" | while IFS="," read -r _ nr _ sframe start eframe end; 
     max="$(ls -1 "$output_dir" | sort -n | tail -n1)"
     max="${max%.mkv}"
     max="$((max+1))"
-    ffmpeg -f dvdvideo -ss "${start}" -i "${input}" -map 0 -c copy -t "${end}" "${output_dir}/${max}.mkv" <&-
+    ffmpeg -f dvdvideo -i "${input}" -ss "${start}" -map 0 -c copy -to "${end}" "${output_dir}/${max}.mkv" <&-
 done
 
