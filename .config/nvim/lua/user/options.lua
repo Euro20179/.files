@@ -19,13 +19,15 @@ local gitStatsCache = {}
 local function calcGitStats()
     local cmd = vim.system({ "git", "diff", "--numstat", vim.fn.expand("%")}, {}):wait()
     if cmd.stdout == "" or cmd.code ~= 0 then
+        gitStatsCache.add = "0"
+        gitStatsCache.sub = "0"
         return "", ""
     end
     local data = vim.split(cmd.stdout, "\t")
     local add = data[1]
     local sub = data[2]
-    gitStatsCache.add = add
-    gitStatsCache.sub = sub
+    gitStatsCache.add = add or "0"
+    gitStatsCache.sub = sub or "0"
     return add, sub
 end
 
@@ -70,7 +72,6 @@ vim.diagnostic.config({
         border = "single"
     }
 })
-
 
 vim.lsp.buf.hover = function()
     local hc = require"hovercraft"
