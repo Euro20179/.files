@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read -r -p "name: " name
+
+[ -d "${CLOUD}/GIT/${name}" ] && printf "Repo already exists\n" && exit 1
+
+mkdir "${CLOUD}/GIT/${name}"
+
+git init --bare "${CLOUD}/GIT/${name}"
+
+git remote add cloud cloud@cloud:"${CLOUD}"/DRIVE/GIT/"${name}"
