@@ -162,7 +162,7 @@ local nShortcuts = {
     { "<A-f>e",          ':set foldmethod=expr<cr>' },
     --}}}
     -- Util Functions {{{
-    { utilLeader .. "x", ":!chmod +x \"%\"",                 { desc = "[UTIL] chmod +x the current file" } },
+    { utilLeader .. "x", ":!chmod +x \"%\"<CR>",                 { desc = "[UTIL] chmod +x the current file" } },
     { utilLeader .. "e", ":Neorg exec cursor<CR>" },
     { utilLeader .. "W", "\"=v:lua.Rword()<cr>p",            { desc = "[UTIL] random word" } },
     { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>",          { desc = "[UTIL] Put the date with a format" } },

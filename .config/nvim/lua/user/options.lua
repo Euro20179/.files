@@ -48,6 +48,9 @@ function GetGitStats()
     if add == nil then
         add, sub = calcGitStats()
     end
+    if add == "0" and sub == "0" then
+        return ""
+    end
     return " (%#DiffAdd#+" .. add .. " %#DiffDelete#-" .. sub .. "%*) "
 end
 
