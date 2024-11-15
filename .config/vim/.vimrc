@@ -215,6 +215,8 @@ vnoremap <leader>o :BlankLines<CR>
 
 nnoremap <leader>fh :help 
 
+nnoremap <c-k> K
+
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>
 inoremap <c-bs> <c-w>
