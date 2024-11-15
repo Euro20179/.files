@@ -2,7 +2,7 @@ local tohtml = require "tohtml"
 
 local function sswebsite(url)
     local browser = vim.env["BROWSER"] or "firefox"
-    vim.system({browser, '--new-instance', "--screenshot", url })
+    vim.system({ browser, '--new-instance', "--screenshot", url })
 end
 
 function Ssrange(line1, line2)
@@ -15,7 +15,6 @@ function Ssrange(line1, line2)
     vim.fn.writefile(html, tmpFile)
 
     sswebsite("file://" .. tmpFile)
-
 end
 
 function Ssbuffer(bufNo)
@@ -37,23 +36,34 @@ function Ssfile(file)
         return
     end
 
-    local text = vim.fn.readfile(file)
-    local buf = vim.api.nvim_create_buf(true, false)
-    local win = vim.api.nvim_open_win(buf, false, {
+    local bufnr = vim.api.nvim_create_buf(true, false)
+
+    local ok = pcall(vim.api.nvim_buf_set_name, bufnr, file)
+    if not ok then
+        local existingBufnr = vim.iter(vim.api.nvim_list_bufs())
+            :find(function(buf)
+                --bufname() returns the bufname as listed by :ls
+                --nvim_buf_get_name returns the full path for the bufname
+                --we ned to check both because nvim_buf_set_name errors on both
+                return vim.fn.bufname(buf) == file or vim.api.nvim_buf_get_name(buf) == file
+            end)
+        Ssbuffer(existingBufnr)
+        -- Ssbuffer(
+        return
+    end
+
+    vim.fn.bufload(bufnr)
+
+    local win = vim.api.nvim_open_win(bufnr, false, {
         split = "left"
     })
-
-    vim.api.nvim_buf_set_lines(buf, 0, 1, false, text)
-    vim.api.nvim_win_set_buf(win, buf)
-    local bufFt = vim.filetype.match({ filename = file })
-    vim.api.nvim_set_option_value("filetype", bufFt, { buf = buf })
 
     local tmpFile = vim.fn.tempname()
     local html = tohtml.tohtml(win)
     vim.fn.writefile(html, tmpFile)
 
     sswebsite("file://" .. tmpFile)
-    vim.api.nvim_buf_delete(buf, {
+    vim.api.nvim_buf_delete(bufnr, {
         force = true
     })
 end

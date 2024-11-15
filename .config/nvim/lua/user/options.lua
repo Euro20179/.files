@@ -2,6 +2,8 @@ vim.opt.scbk = 100
 
 vim.opt.undofile = true
 
+vim.opt.fillchars = { msgsep = "‾" }
+
 -- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
