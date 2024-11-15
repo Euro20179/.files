@@ -80,7 +80,9 @@ local nShortcuts = {
         vim.fn.setloclist(0, vim.fn.reverse(chgLst))
         vim.cmd.lwin()
     end },
-    { "<leader>fh", require "mini.pick".builtin.help,      { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fh", function()
+        require "mini.pick".builtin.help()
+    end,      { desc = "[TELESCOPE] help tags" } },
     { "<leader>fT", function ()
         local tabs = {}
         for _, tabno in ipairs(vim.api.nvim_list_tabpages()) do

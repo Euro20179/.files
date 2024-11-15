@@ -243,9 +243,6 @@ later(function()
     require "mini.indentscope".setup {
         delay = 0
     }
-    require "mini.bracketed".setup {
-        treesitter = { suffix = "n", options = {} }
-    }
     require "mini.operators".setup {
         exchange = {
             prefix = "yx"

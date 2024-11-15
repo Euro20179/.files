@@ -134,16 +134,21 @@ nnoremap <leader>B "+
 "Buffer/window shortcuts{{{
 nnoremap  <leader>S      <CMD>split \|  wincmd  j<CR>
 nnoremap  <leader>V      <CMD>vsplit \|  wincmd  l<CR>
-nnoremap  ]t             <CMD>tabnext<CR>               
-nnoremap  [t             <CMD>tabprev<CR>               
-nnoremap  ]b             <CMD>bn<CR>'                   
-nnoremap  [b             <CMD>bp<CR>                    
-nnoremap  ]q             <CMD>cnext<CR>
-nnoremap  [q             <CMD>cprev<CR>
-nnoremap  ]l             <CMD>lnext<CR>
-nnoremap  [l             <CMD>lprev<CR>
-nnoremap  <leader>t      <CMD>tabnew<CR>                
-nnoremap  <leader>q      <CMD>tabclose<cr>              
+
+nnoremap  ]t             <CMD>tabnext<CR>
+nnoremap  [t             <CMD>tabprev<CR>
+
+if !has("nvim") "these are mapped by default in nvim
+    nnoremap  ]b             <CMD>bn<CR>
+    nnoremap  [b             <CMD>bp<CR>
+    nnoremap  ]q             <CMD>cnext<CR>
+    nnoremap  [q             <CMD>cprev<CR>
+    nnoremap  ]l             <CMD>lnext<CR>
+    nnoremap  [l             <CMD>lprev<CR>
+endif
+
+nnoremap  <leader>t      <CMD>tabnew<CR>
+nnoremap  <leader>q      <CMD>tabclose<cr>
 nnoremap  <right>        <CMD>wincmd ><CR>
 nnoremap  <left>         <CMD>wincmd <<CR>
 nnoremap  <up>           <CMD>wincmd +<CR>
@@ -215,7 +220,7 @@ vnoremap <leader>o :BlankLines<CR>
 
 nnoremap <leader>fh :help 
 
-nnoremap <c-k> K
+nnoremap <c-s-k> K
 
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>

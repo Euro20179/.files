@@ -1,4 +1,12 @@
 vim.filetype.add({
+    extension = {
+        txt = function(path)
+            if path:match("nvim/doc/.*%.txt$") then
+                return "help"
+            end
+            return "text"
+        end
+    },
     pattern = {
         [".*%.config/hypr/.*%.conf"] = "hyprlang",
         [".*%.nu"] = "nu",
