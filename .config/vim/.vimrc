@@ -2,7 +2,11 @@
 "The point of this file is to be usable in vim and neovim
 
 "vim compatible default colorscheme
-color desert
+try
+    color sorbet
+catch /Cannot find color scheme '\w\+'/
+    color desert
+endtry
 
 "vim bad defaults
 if !has("nvim")
@@ -13,6 +17,9 @@ if !has("nvim")
     set autoindent
     set autoread
     set laststatus=2
+
+    set wildmenu
+    set wildoptions=pum
 
     if exists("&incsearch")
         set incsearch
