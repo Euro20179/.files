@@ -6,8 +6,19 @@ color desert
 
 "vim bad defaults
 if !has("nvim")
+    filetype on
     syntax enable
+
     set mouse=a
+    set autoindent
+    set autoread
+    set laststatus=2
+
+    if exists("&incsearch")
+        set incsearch
+    endif
+
+    so $XDG_CONFIG_HOME/vim/user/statusline.vim
 endif
 
 "OPTIONS{{{
@@ -195,7 +206,7 @@ nnoremap <silent> <leader>o :set opfunc=AddLineAboveBelowMotion<cr>g@
 vnoremap <leader>o :BlankLines<CR>
 "}}}
 
-nnoremap <leader>fh :help\ 
+nnoremap <leader>fh :help 
 
 "Im tired of pressing ctrl-w and closing tabs
 inoremap <c-w> <nop>

@@ -4,6 +4,8 @@ read -r -p "name: " name
 
 [ -d "${CLOUD}/GIT/${name}" ] && printf "Repo already exists\n" && exit 1
 
+[ -e "${CLOUD}/GIT/${name}" ] && printf "File already exists with %s (non-directory)\n" "$name" && exit 1
+
 mkdir "${CLOUD}/GIT/${name}"
 
 git init --bare "${CLOUD}/GIT/${name}"
