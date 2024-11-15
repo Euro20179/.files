@@ -1,6 +1,9 @@
 let g:gitStatsCache = {}
 
 function s:calcGitStats()
+    if !finddir(".git")
+        return [0, 0]
+    endif
     ":silent prevents the terminal from going into 'cooked mode'
     "whatever the hell that is, the end effect is it prevents
     "garbled ansi codes from appearing in vim on the first draw
