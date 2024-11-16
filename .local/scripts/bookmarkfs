@@ -61,7 +61,7 @@ copy() {
 search() {
 	q="$*"
     kwd_bookmarks=$(rg 'keyword=(.+)' $bookmark_dir | sed "s_${bookmark_dir}/__" | awk -F':keyword=' '{print $2, $1}')
-	[ -z "$q" ] && q="$(echo "$kwd_bookmarks" | rofi -dmenu -p "Query: " -theme cat-macchiato)"
+	[ -z "$q" ] && q="$(echo "$kwd_bookmarks" | rofi -format f -dmenu -p "Query: " -theme cat-macchiato)"
 
 
 	[ -z "$q" ] && return 1

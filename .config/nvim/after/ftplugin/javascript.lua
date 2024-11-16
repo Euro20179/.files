@@ -1,30 +1,18 @@
--- local dap = require "dap"
---
--- local HOME = vim.fn.getenv("HOME")
---
--- require "dap-vscode-js".setup({
---     node_path = "node",
---     debugger_path = HOME .. "/Programs/vscode-js-debug",
---     adapters = { "pwa-node" }
--- })
---
--- for _, lang in ipairs({ "typescript", "javascript" }) do
---     dap.configurations[lang] = {
---         {
---             type = "pwa-node",
---             request = "launch",
---             name = "Launch File",
---             program = "${file}",
---             cwd = "${workspaceFolder}",
---             sourceMaps = false,
---             skipFiles = { "<node_interals>/**", "node_modules/*", "node_modules/", "node_modules/**", "node_modules/**/*" }
---         },
---         {
---             type = "pwa-node",
---             request = "attach",
---             name = "Attach",
---             processId = require "dap.utils".pick_process,
---             cwd = "${workspaceFolder}"
---         }
---     }
--- end
+local function wrapTry(cmdData)
+    if cmdData.range == 0 then
+        vim.notify("No range given", vim.log.levels.ERROR)
+        return
+    end
+
+    vim.cmd.norm(tostring(cmdData.line1) .. "GOtry{")
+    vim.api.nvim_cmd({
+        cmd = "norm",
+        range = {cmdData.line1 + 1},
+        args = {">" .. tostring(cmdData.line2 - cmdData.line1) .. "j"}
+    }, {})
+    vim.cmd.norm(tostring(cmdData.line2 + 1) .. "Go}\rcatch(err){\r}")
+    vim.cmd.norm("O")
+end
+vim.api.nvim_create_user_command("WrapTry", wrapTry, {
+    range = true,
+})

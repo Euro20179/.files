@@ -5,7 +5,7 @@ local conf_group = vim.api.nvim_create_augroup("config", {
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = conf_group,
     callback = function()
-        vim.highlight.on_yank({ timeout = 200, higroup = "RedrawDebugNormal" })
+        vim.hl.on_yank({ timeout = 100, higroup = "Visual" })
     end
 })
 
@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             signs = {
                 text = {
                     [vim.diagnostic.severity.ERROR] = "",
-                    [vim.diagnostic.severity.WARN] = "⚠",
+                    [vim.diagnostic.severity.WARN] = "",
                     [vim.diagnostic.severity.INFO] = "",
                     [vim.diagnostic.severity.HINT] = ""
                 }
