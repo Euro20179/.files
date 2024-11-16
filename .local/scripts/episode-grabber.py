@@ -22,21 +22,26 @@ files = os.listdir(directory)
 if len(files) == 0:
     exit(1)
 
-regex = re.compile(r"((:?[\W_\-\. ]|E|OVA)?\d+[\W_\-\. ])")
+#finds a number "that looks like an episode number"
+#such a number is prefixed optionally with any of [\W_-. ], E, OVA, or \dx
+#and the suffix MUST match [\W_-. ]
+#this will match something like S03E10, or S1x30 or NAME 3.mkv, etc...
+regex = re.compile(r"([\W_\-\. ]|E|OVA|\dx)?(\d+[\W_\-\. ])")
 matches = regex.findall(currentFile)
 realMatches = matches
 currentFile = str(Path(directory) / Path(currentFile))
+#then if that number appears in multiple files, it is not the episode number
 for file in files:
     file = str(Path(directory) / Path(file))
     if file == currentFile: continue
 
-    match: list[str]
+    match: tuple[str]
     for match in matches:
-        if match[0] in file:
+        if "".join(match) in file:
             if match in realMatches:
                 realMatches.remove(match)
     if len(realMatches) == 1:
         break
 
-numMatch: str = realMatches[0][0]
-_ = sys.stdout.write(str(numMatch[1:-1]))
+numMatch: str = realMatches[0]
+_ = sys.stdout.write(numMatch[1][:-1])

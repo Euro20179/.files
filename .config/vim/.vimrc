@@ -226,6 +226,9 @@ nnoremap <c-s-k> K
 inoremap <c-w> <nop>
 inoremap <c-bs> <c-w>
 
+cnoremap <c-w> <nop>
+cnoremap <c-bs> <c-w>
+
 "This SHOULD be the default (insert + fix indent)
 "no idea why it needs to be the literal bytes instead of <c-r><c-p>
 exec "inoremap <c-r> \<c-r>\<c-p>"
