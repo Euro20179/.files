@@ -1,6 +1,10 @@
 #!/bin/zsh
 USE_POWERLINE="true"
 
+isnt_vim () {
+    [ -z "$VIM" ] && [ -z "$NVIM" ]
+}
+
 #makes it not error on no glob match
 set -3
 
@@ -46,17 +50,17 @@ elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} == '' ]
     echo -ne '\e['"$INSBEAM"' q'
 fi
 }
-[ -z "$IN_VIM" ] && zle -N zle-keymap-select
+isnt_vim && zle -N zle-keymap-select
 # #initial cursor
 zle-line-init(){
 zle -K viins
 #beam
 echo -ne "\e['"$INSBEAM"' q"
 }
-[ -z "$IN_VIM" ] && zle -N zle-line-init
+isnt_vim && zle -N zle-line-init
 # #initial cursor
-[ -z "$IN_VIM" ] && echo -ne '\e['"$INSBEAM"' q'
-[ -z "$IN_VIM" ] && preexec() { echo -ne '\e['"$INSBEAM"' q'; }
+isnt_vim && echo -ne '\e['"$INSBEAM"' q'
+isnt_vim && preexec() { echo -ne '\e['"$INSBEAM"' q'; }
 #END CURSOR
 
 chpwd () {
@@ -102,7 +106,7 @@ precmd () {
 
 new_line=$'\n'
 
-if [ -z "$IN_VIM" ]; then
+if isnt_vim; then
     PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}$new_line%F{reset} '
 else
     PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{%(?.green.red)}$new_line>%F{reset} '
@@ -129,7 +133,7 @@ alias "ref=clear; source ~/.config/.zshrc"
 
 source ~/.config/.shellrc
 
-if [ "$IN_VIM" ]; then
+if [ "$VIM" ] && [ -z "$NVIM" ]; then
     unalias ls
     alias l='ls -A --color=always -S --group-directories-first'
 fi
