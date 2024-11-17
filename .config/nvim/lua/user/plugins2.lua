@@ -182,8 +182,6 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
     }
 })
 
-add { source = "folke/which-key.nvim" }
-
 add { source = "nvim-neorg/neorg",
     depends = {
         "pysan3/pathlib.nvim",
@@ -288,8 +286,8 @@ add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
 add { source = "tpope/vim-fugitive" }
 
-add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
-add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
+-- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
+-- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
 
 aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     hi = {
