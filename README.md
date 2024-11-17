@@ -6,7 +6,7 @@ In addition I keep old dotfiles/scripts around justincase™️
 
 - The wallpapers i use are generally from <del>[here](https://github.com/Gingeh/wallpapers)</del>
     - the repo has been deleted, use [web archive](https://cloud/wallpapers-mirror/)
-The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
+The one currently in use is `minimalistic/hashtags-black.png`
 
 - WM: [hyprland](https://github.com/hyprwm/Hyprland)
 - bar: [waybar](https://github.com/Alexays/Waybar/)
@@ -19,9 +19,10 @@ The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
     - The best colorscheme
 - fetch program: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 
-## New screenshots
-Very Epic desktop
-![Screenshot](./Pictures/system-images/dotfiles4.png)
+## Screenshots
 
-Very epic calculator
-![Screenshot](./Pictures/system-images/dotfiles-calc.png)
+Very Epic desktop
+![Screenshot](./Pictures/system-images/dotfiles5.png)
+
+Emoji selector
+[!Screenshot](./Pictures/system-images/dotfiles-emoji-selector.png)
