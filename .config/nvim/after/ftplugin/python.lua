@@ -15,3 +15,6 @@ end
 vim.api.nvim_create_user_command("WrapTry", wrapTry, {
     range = true,
 })
+
+vim.keymap.set("x", "<a-u>w", "<CMD>WrapTry<CR>", { desc = "[UTIL] Wrap try" })
+vim.keymap.set("n", "<a-u>w", ":.WrapTry<CR>", { desc = "[UTIL] Wrap try" })

@@ -245,10 +245,10 @@ later(function()
     }
     require "mini.operators".setup {
         exchange = {
-            prefix = "yx"
+            prefix = "cx"
         },
         multiply = {
-            prefix = "yd"
+            prefix = "<Plug>" --also disable, never use it, blocks y when in visual mode
         },
         replace = {
             prefix = "<Plug>" --also disable, use v<motion>"<reg>p instead of <reg>yr<motion>

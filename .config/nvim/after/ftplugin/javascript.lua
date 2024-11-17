@@ -13,6 +13,10 @@ local function wrapTry(cmdData)
     vim.cmd.norm(tostring(cmdData.line2 + 1) .. "Go}\rcatch(err){\r}")
     vim.cmd.norm("O")
 end
+
 vim.api.nvim_create_user_command("WrapTry", wrapTry, {
     range = true,
 })
+
+vim.keymap.set("x", "<a-u>w", ":'<,'>WrapTry<CR>", { desc = "[UTIL] Wrap try" })
+vim.keymap.set("n", "<a-u>w", ":.WrapTry<CR>", { desc = "[UTIL] Wrap try" })
