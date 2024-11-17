@@ -4,7 +4,8 @@ This repository contains basically everything my system relies on, and all the s
 
 In addition I keep old dotfiles/scripts around justincase™️
 
-- The wallpapers i use are generally from [here](https://github.com/Gingeh/wallpapers)
+- The wallpapers i use are generally from <del>[here](https://github.com/Gingeh/wallpapers)</del>
+    - the repo has been deleted, use [web archive](https://cloud/wallpapers-mirror/)
 The one currently in use is `misc/cat_bunnies.png` (wierd name for pokemon lol)
 
 - WM: [hyprland](https://github.com/hyprwm/Hyprland)
