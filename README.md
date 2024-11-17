@@ -25,4 +25,4 @@ Very Epic desktop
 ![Screenshot](./Pictures/system-images/dotfiles5.png)
 
 Emoji selector
-[!Screenshot](./Pictures/system-images/dotfiles-emoji-selector.png)
+![Screenshot](./Pictures/system-images/dotfiles-emoji-selector.png)
