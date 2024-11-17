@@ -82,17 +82,17 @@ local nShortcuts = {
     end },
     { "<leader>fh", function()
         require "mini.pick".builtin.help()
-    end,      { desc = "[TELESCOPE] help tags" } },
-    { "<leader>fT", function ()
+    end, { desc = "[TELESCOPE] help tags" } },
+    { "<leader>fT", function()
         local tabs = {}
         for _, tabno in ipairs(vim.api.nvim_list_tabpages()) do
             local tabWin = vim.api.nvim_tabpage_get_win(tabno)
             local tabWinBuf = vim.api.nvim_win_get_buf(tabWin)
             local tabWinBufName = vim.api.nvim_buf_get_name(tabWinBuf)
-            tabs[#tabs+1] = tabWinBufName .. ":" .. tabno
+            tabs[#tabs + 1] = tabWinBufName .. ":" .. tabno
         end
 
-        vim.ui.select(tabs, {}, function (item)
+        vim.ui.select(tabs, {}, function(item)
             if item == nil then
                 return
             end
@@ -122,7 +122,7 @@ local nShortcuts = {
             end)
         end)
     end, { desc = "[TELESCOPE] buffers" } },
-    { "<leader>f/", require "mini.pick".builtin.grep_live, { desc = "[TELESCOPE] grep" } },
+    { "<leader>f/",       require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
     { "<C-S-p>", function()
         local keys = require "mini.extra".pickers.keymaps()
         if keys == nil then
@@ -134,7 +134,7 @@ local nShortcuts = {
     --}}}
     --Viewers {{{
     { "<leader>eu",       "<cmd>lua require('undotree').toggle()<cr>" },
-    { "<leader>O",  require 'oil'.open },
+    { "<leader>O",        require 'oil'.open },
     --}}}
     --buffer/window shortcuts{{{
     { "<leader><leader>", function() harpoon:list():add() end },
@@ -150,24 +150,24 @@ local nShortcuts = {
     { "<leader>T",        function() GotoTerminalBuf() end },
     --}}}
     -- Git {{{
-    { gitLeader .. "l", ":G log<CR>", { desc = "[GIT]: log" } },
-    { gitLeader .. "c", "<cmd>G commit<CR>", { desc = "[GIT]: commit" } },
-    { gitLeader .. "d",       "<cmd>G diff<cr>", { desc = "[GIT]: diff" } },
-    { gitLeader .. "p", "<cmd>G push<CR>", { desc = "[GIT]: push" } },
+    { gitLeader .. "l",   ":G log<CR>",                                                { desc = "[GIT]: log" } },
+    { gitLeader .. "c",   "<cmd>G commit<CR>",                                         { desc = "[GIT]: commit" } },
+    { gitLeader .. "d",   "<cmd>G diff<cr>",                                           { desc = "[GIT]: diff" } },
+    { gitLeader .. "p",   "<cmd>G push<CR>",                                           { desc = "[GIT]: push" } },
     -- }}}
     -- Treesitter {{{
-    { "glt",             "<cmd>Inspect<cr>" },
+    { "glt",              "<cmd>Inspect<cr>" },
     -- }}}
     --syntax highlighting{{{
-    { "<A-f>s",          ":set foldmethod=syntax<cr>" },
-    { "<A-f>m",          ':set foldmethod=marker<cr>' },
-    { "<A-f>e",          ':set foldmethod=expr<cr>' },
+    { "<A-f>s",           ":set foldmethod=syntax<cr>" },
+    { "<A-f>m",           ':set foldmethod=marker<cr>' },
+    { "<A-f>e",           ':set foldmethod=expr<cr>' },
     --}}}
     -- Util Functions {{{
-    { utilLeader .. "x", ":!chmod +x \"%\"<CR>",                 { desc = "[UTIL] chmod +x the current file" } },
-    { utilLeader .. "e", ":Neorg exec cursor<CR>" },
-    { utilLeader .. "W", "\"=v:lua.Rword()<cr>p",            { desc = "[UTIL] random word" } },
-    { utilLeader .. "d", "<cmd>lua Fmt_date()<cr>",          { desc = "[UTIL] Put the date with a format" } },
+    { utilLeader .. "x",  ":!chmod +x \"%\"<CR>",                                      { desc = "[UTIL] chmod +x the current file" } },
+    { utilLeader .. "e",  ":Neorg exec cursor<CR>" },
+    { utilLeader .. "W",  "\"=v:lua.Rword()<cr>p",                                     { desc = "[UTIL] random word" } },
+    { utilLeader .. "d",  "<cmd>lua Fmt_date()<cr>",                                   { desc = "[UTIL] Put the date with a format" } },
     { "<C-c><C-c>", function()
         vim.system({ "foot", "goker", vim.fn.expand("<cWORD>") })
     end, { desc = "[UTIL] Open color picker" } },
@@ -253,6 +253,13 @@ end
 --     aunmenu PopUp
 --     nnoremenu PopUp.hi :lua print("hi")<cr>
 -- ]]
+--}}}
+
+--extra {{{
+
+--only exists in some filetypes
+vim.keymap.set("x", "<a-u>w", ":'<,'>WrapTry<CR>", { desc = "[UTIL] Wrap try" })
+vim.keymap.set("n", "<a-u>w", ":.WrapTry<CR>", { desc = "[UTIL] Wrap try" })
 --}}}
 
 -- vim.keymap.set({ "o", "x" }, "?", function()

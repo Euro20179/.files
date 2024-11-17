@@ -1,4 +1,3 @@
-
 function Rword()
     local words = {}
     for line in io.lines("/home/euro/Documents/words.txt") do
@@ -95,9 +94,35 @@ function GetLspNames()
     return ""
 end
 
-
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
 vim.api.nvim_create_user_command("Preview", PreviewFile, {})
 -- vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 -- vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})
 --
+
+function WrapTryGeneric(cmdData)
+    if cmdData.range == 0 then
+        vim.notify("No range given", vim.log.levels.ERROR)
+        return
+    end
+
+    vim.cmd.norm(tostring(cmdData.line1) .. "GOtry{")
+    vim.api.nvim_cmd({
+        cmd = "norm",
+        range = { cmdData.line1 + 1 },
+        args = { ">" .. tostring(cmdData.line2 - cmdData.line1) .. "j" }
+    }, {})
+    vim.cmd.norm(tostring(cmdData.line2 + 1) .. "Go}\rcatch(err){\r}")
+    vim.cmd.norm("O")
+end
+
+vim.api.nvim_create_user_command("WrapTry", function(cmdData)
+    if WrapTry ~= nil then
+        WrapTry(cmdData)
+    else
+        vim.notify("WrapTry does not exist for filetype: " .. vim.bo.filetype, vim.log.levels.WARN)
+        WrapTryGeneric(cmdData)
+    end
+end, {
+    range = true,
+})

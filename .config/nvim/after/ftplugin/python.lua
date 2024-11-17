@@ -1,4 +1,4 @@
-local function wrapTry(cmdData)
+function WrapTry(cmdData)
     if cmdData.range == 0 then
         vim.notify("No range given", vim.log.levels.ERROR)
         return
@@ -10,11 +10,5 @@ local function wrapTry(cmdData)
         range = {cmdData.line1 + 1},
         args = {">" .. tostring(cmdData.line2 - cmdData.line1) .. "j"}
     }, {})
-    vim.cmd.norm(tostring(cmdData.line2 + 1) .. "Goexcept Exception as e:\rpass")
+    vim.cmd.norm(tostring(cmdData.line2 + 1) .. "Go\bexcept Exception as e:\rpass")
 end
-vim.api.nvim_create_user_command("WrapTry", wrapTry, {
-    range = true,
-})
-
-vim.keymap.set("x", "<a-u>w", "<CMD>WrapTry<CR>", { desc = "[UTIL] Wrap try" })
-vim.keymap.set("n", "<a-u>w", ":.WrapTry<CR>", { desc = "[UTIL] Wrap try" })
