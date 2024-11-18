@@ -31,10 +31,9 @@ done
 #ffmpeg skips the last episode because of the fencepost problem
 #get the last episode which starts at the end of the last chapter
 IFS=, read -r _ _ _ _ _ _ end <<EOF
-$(printf "%s" "$chapters" | tail -n2)
+$(printf "%s" "$chapters" | tail -n1)
 EOF
 max="$(ls -1 "$output_dir" | sort -n | tail -n1)"
 max="${max%.mkv}"
 max="$((max+1))"
-echo "${end}"
 ffmpeg -f dvdvideo -ss "${end}" -i "${input}" -map 0 -c copy "${output_dir}/${max}.mkv"
