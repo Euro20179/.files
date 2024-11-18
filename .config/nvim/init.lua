@@ -1,3 +1,8 @@
+if vim.fn.findfile("${XDG_CONFIG_HOME}/vim/vimrc") ~= "" then
+    vim.cmd.source("${XDG_CONFIG_HOME}/vim/vimrc")
+elseif vim.fn.findfile("~/.vimrc") ~= "" then
+    vim.cmd.source("~/.vimrc")
+end
 vim.loader.enable()
 
 require 'user.functions'
