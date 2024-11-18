@@ -1,9 +1,9 @@
-enew! | e! clipboard edit
-setlocal buftype=acwrite
+enew! | e clipboard edit
+setl buftype=acwrite
 
-function! <SID>onclose()
+function! s:onclose()
     let @+ = join(getline("1", "$"), "\n")
     q!
 endfun
 
-autocmd BufWriteCmd <buffer> call <SID>onclose()
+autocmd BufWriteCmd <buffer> call s:onclose()
