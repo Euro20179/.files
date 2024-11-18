@@ -200,10 +200,10 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     -- Movement {{{
-    { "<C-bs>",     "<C-w>" },
+    -- { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-w>",      vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
+    { "<c-d>",      vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
     -- }}}
     -- { "<Right>", require"bropilot".accept_block, { desc = "[COPILOT] accept" } }
 }

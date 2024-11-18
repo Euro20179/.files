@@ -153,6 +153,7 @@ export TRASH="$HOME/.local/share/trash"
 # PROGRAM ALIASES #
 ###################
 # {{{
+alias t=tmux' attach'
 alias "lman=MANPAGER=less man"
 alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua

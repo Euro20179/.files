@@ -1,0 +1,3 @@
+#!/bin/sh
+
+tmux new-session -s nvim-calculator nvim +'nnoremap yy :let x = @a \| execute "QalcYank a" \| let @+ = @a \| let @a = x<CR>' +Qalc +startinsert || tmux attach -t 'nvim-calculator'
