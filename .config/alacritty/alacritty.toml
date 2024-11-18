@@ -7,7 +7,7 @@ background = "#0e1218"
 foreground = "#c5c8c6"
 
 [font]
-size = 12
+size = 14
 
 [font.normal]
 family = "jetbrainsmono"
