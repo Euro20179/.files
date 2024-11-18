@@ -243,7 +243,7 @@ later(function()
     }
     require "mini.operators".setup {
         exchange = {
-            prefix = "cx"
+            prefix = "yx"
         },
         multiply = {
             prefix = "<Plug>" --also disable, never use it, blocks y when in visual mode

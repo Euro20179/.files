@@ -38,6 +38,8 @@ if finddir(".git", ".;", 1) == ".git"
     set grepformat=%f:%l:%m
 endif
 
+set timeoutlen=300
+
 set list listchars=tab:^\ ,trail:.
 
 set nocp
