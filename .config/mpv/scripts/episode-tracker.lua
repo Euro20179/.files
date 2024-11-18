@@ -1,5 +1,5 @@
 local opt = require "mp.options"
-local utils = require"mp.utils"
+local utils = require "mp.utils"
 
 local options = {
     account_pin = ""
@@ -24,7 +24,15 @@ end
 
 
 local function isAnime()
-    return mp.get_property("working-directory"):match("/Anime") or mp.get_property("path"):match("/Anime/")
+    local dirs = { "Anime", "Shows" }
+    local workingDir = mp.get_property("working-directory")
+    local path = mp.get_property("path")
+    for _, dir in pairs(dirs) do
+        if workingDir:match(string.format("/%s", dir)) or path:match(string.format("/%s/", dir)) then
+            return true
+        end
+    end
+    return false
 end
 
 ---@param currentFile string
@@ -43,9 +51,10 @@ end
 ---@param location string
 ---@param num string
 local function updateCurrEp(login, location, num)
-    _, location = utils.split_path(location)
+    local cloud = os.getenv("CLOUD") or ""
+    location = location:gsub(cloud, "cloud:/")
     local req = io.popen("curl 'http://10.0.0.2:8888/api/v1/query-v3' -H '" ..
-    login .. "' -G -d 'search=location%20%7E%20" .. '"%25' .. location .. '"' .. "' | jq '.ItemId'")
+        login .. "' -G -d 'search=location%20%7E%20" .. '"%25' .. location .. '"' .. "' | jq '.ItemId'")
     if req == nil then
         return
     end
@@ -56,7 +65,8 @@ local function updateCurrEp(login, location, num)
     itemId, _ = string.gsub(itemId, "\n", "")
 
     req = io.popen("curl -H '" ..
-    login .. "' 'http://10.0.0.2:8888/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
+        login ..
+        "' 'http://10.0.0.2:8888/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
     if req == nil then
         return
     end
@@ -89,7 +99,7 @@ local function onload()
         return
     end
     local wd = mp.get_property("working-directory")
-    if not pp:match("^/")  then
+    if not pp:match("^/") then
         pp = wd .. "/" .. pp
     end
 
