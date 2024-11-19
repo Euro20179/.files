@@ -207,6 +207,11 @@ later(function()
             line_up = "<leader>mk",
         }
     }
+    require "mini.clue".setup {
+        clues = {
+        require"mini.clue".gen_clues.z()
+        }
+    }
     require "mini.surround".setup {
         custom_surroundings = {
             T = {
@@ -265,6 +270,7 @@ later(function()
             end
         }
     }
+
     vim.ui.select = require "mini.pick".ui_select
 end)
 

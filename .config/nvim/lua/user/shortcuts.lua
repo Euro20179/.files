@@ -14,6 +14,21 @@ local dapLeader = "<M-d>"
 --
 -- vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
 
+-- z= override to use vim.ui.select {{{
+vim.keymap.set("n", "z=", function()
+    local word = vim.fn.expand("<cword>")
+    vim.ui.select(vim.fn.spellsuggest(word), {
+        prompt = "fix spell"
+    }, function(item)
+        if item == nil then
+            return
+        end
+
+        vim.cmd.norm("ciw" .. item)
+    end)
+end)
+-- }}}
+
 --Normal Mode{{{
 local nShortcuts = {
     -- dap {{{

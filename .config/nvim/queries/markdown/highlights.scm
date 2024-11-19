@@ -27,5 +27,3 @@
 ;}}}
 
 ((language) @label.markdown (#set! @label.markdown conceal ""))
-
-
