@@ -15,7 +15,7 @@ end
 require "mini.deps".setup({ path = { package = path_package } })
 --}}}
 
-vim.cmd[[packadd cfilter]]
+vim.cmd.packadd "cfilter"
 
 local miniDeps = require "mini.deps"
 local add = miniDeps.add
@@ -158,12 +158,6 @@ add { source = "catppuccin/nvim" }
 
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
--- aSetup({ source = "JonasLeonhard/broil", depends = { {
---     source = "nvim-telescope/telescope-fzf-native.nvim",
---     pre_install = "make",
---     pre_checkout = "make"
--- }} }, now, "broil", {})
-
 aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
     default_file_explorer = false,
     view_options = {
@@ -196,22 +190,18 @@ later(function()
     -- require "mini.comment".setup {}
     require "mini.move".setup {
         mappings = {
-            left = "mh",
-            right = "ml",
-            down = "mj",
-            up = "mk",
+            left = "<a-h>",
+            right = "<a-l>",
+            down = "<a-j>",
+            up = "<a-k>",
 
-            line_left = "<leader>mh",
-            line_right = "<leader>ml",
-            line_down = "<leader>mj",
-            line_up = "<leader>mk",
+            line_left = "<a-h>",
+            line_right = "<a-l>",
+            line_down = "<a-j>",
+            line_up = "<a-k>",
         }
     }
-    require "mini.clue".setup {
-        clues = {
-        require"mini.clue".gen_clues.z()
-        }
-    }
+
     require "mini.surround".setup {
         custom_surroundings = {
             T = {
@@ -231,21 +221,13 @@ later(function()
             update_n_lines = '<plug>'
         }
     }
-    require "mini.splitjoin".setup {
-        join = {
-            hooks_post = {
-                function()
-                    vim.api.nvim_cmd({
-                        cmd = "norm",
-                        args = { "ysi% " }
-                    }, {})
-                end
-            }
-        }
-    }
+
+    require "mini.splitjoin".setup {}
+
     require "mini.indentscope".setup {
         delay = 0
     }
+
     require "mini.operators".setup {
         exchange = {
             prefix = "<leader>x"
@@ -261,6 +243,7 @@ later(function()
             prefix = '<Plug>' --disable sort feature, by setting an inacessable key
         }
     }
+
     require "mini.pick".setup {
         window = {
             config = function()

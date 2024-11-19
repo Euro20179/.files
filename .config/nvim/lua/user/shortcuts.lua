@@ -182,7 +182,7 @@ local nShortcuts = {
     { utilLeader .. "x",  ":!chmod +x \"%\"<CR>",                                      { desc = "[UTIL] chmod +x the current file" } },
     { utilLeader .. "e",  ":Neorg exec cursor<CR>" },
     { utilLeader .. "W",  "\"=v:lua.Rword()<cr>p",                                     { desc = "[UTIL] random word" } },
-    { utilLeader .. "d",  "<cmd>lua Fmt_date()<cr>",                                   { desc = "[UTIL] Put the date with a format" } },
+    { utilLeader .. "d",  ":!rm \"%\"<CR>",                                            { desc = "[UTIL] Delete the current file" } },
     { "<C-c><C-c>", function()
         vim.system({ "foot", "goker", vim.fn.expand("<cWORD>") })
     end, { desc = "[UTIL] Open color picker" } },
