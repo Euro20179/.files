@@ -288,6 +288,3 @@ if ! [ "$TMUX" ]; then
     done
     . "${XDG_CONFIG_HOME:-$HOME/.config}/.shellprofile"
 fi
-
-#something somewhere is setting this, i have no idea where
-unset VIMINIT

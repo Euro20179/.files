@@ -217,13 +217,13 @@ later(function()
             },
         },
         mappings = {
-            add = 'ys',
+            add = '<leader>s',
             delete = 'ds',
-            find = 'Yf',
-            find_left = 'YF',
-            highlight = 'Yh',
+            find = '<plug>',
+            find_left = '<plug>',
+            highlight = '<plug>',
             replace = 'cs',
-            update_n_lines = 'Yn'
+            update_n_lines = '<plug>'
         }
     }
     require "mini.splitjoin".setup {
@@ -243,13 +243,13 @@ later(function()
     }
     require "mini.operators".setup {
         exchange = {
-            prefix = "yx"
+            prefix = "<leader>x"
         },
         multiply = {
             prefix = "<Plug>" --also disable, never use it, blocks y when in visual mode
         },
         replace = {
-            prefix = "<Plug>" --also disable, use v<motion>"<reg>p instead of <reg>yr<motion>
+            prefix = "<leader>r" --also disable, use v<motion>"<reg>p instead of <reg>yr<motion>
             --more portable, possibly make own version to use <reg>yr<motion>
         },
         sort = {
@@ -303,7 +303,7 @@ add { source = "meeehdi-dev/bropilot.nvim", depends = {
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
         vim.schedule(function()
-            vim.notify("Local llm is not running, not starting borpilot", vim.log.levels.INFO)
+            -- vim.notify("Local llm is not running, not starting borpilot", vim.log.levels.INFO)
         end)
         return
     end
@@ -330,3 +330,5 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
 end)
 
 aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
+
+aSetup({ source = "meznaric/key-analyzer.nvim" }, later, "key-analyzer", {})

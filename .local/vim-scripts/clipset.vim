@@ -1,7 +1,5 @@
-enew! | e clipboard edit
+enew! | e clipboard set
 setl buftype=acwrite
-
-call setline(1, @+[:-2])
 
 function! s:onclose()
     let @+ = join(getline("1", "$"), "\n")

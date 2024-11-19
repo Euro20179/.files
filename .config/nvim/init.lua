@@ -3,11 +3,12 @@ if vim.fn.findfile("${XDG_CONFIG_HOME}/vim/vimrc") ~= "" then
 elseif vim.fn.findfile("~/.vimrc") ~= "" then
     vim.cmd.source("~/.vimrc")
 end
+
 vim.loader.enable()
 
 require 'user.functions'
 require 'user.options'
-require "user.plugins2"
+require 'user.plugins2'
 require 'user.snippets'
 require 'user.shortcuts'
 require 'user.autocmd'
@@ -15,7 +16,7 @@ require 'user.autocmd'
 require 'user.filetypes'
 require 'user.init'
 require 'user.colorscheme'
-require "user.globals-setup"
+require 'user.globals-setup'
 -- require "discord-ui".setup {
 --    token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
 --    user_id = "1190132846409564170"
