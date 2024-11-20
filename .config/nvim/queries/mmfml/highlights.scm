@@ -24,7 +24,7 @@
 ((link
    (simple_marked_text (plain) @markup.link)))
 
-((link (link_url)  @markup.link.url))
+((link (link_url) @markup.link.url))
 
 ((footnote_ref (plain) @markup.link.url))
 

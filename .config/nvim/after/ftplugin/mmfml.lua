@@ -4,18 +4,25 @@ vim.api.nvim_set_hl(0, "@markup.mmfml.highlight", {
 })
 
 ---@param node TSNode
+---@param type string
 ---@return TSNode[]
-local function findLinksInNode(node)
+local function findNodeTypeInNode(node, type)
     if node == nil then
         return {}
     end
-    if node:type() == "link_url" then
+    if node:type() == type then
         return { node }
     end
     return vim.iter(node:iter_children()):map(function(child)
-        local childLinks = findLinksInNode(child)
-        return vim.iter(childLinks):flatten(1):totable()[1]
+        local childLinks = findNodeTypeInNode(child, type)
+        return childLinks
     end):totable()
+end
+
+---@param node TSNode
+---@return TSNode[]
+local function findLinksInNode(node)
+    return findNodeTypeInNode(node, "link_url")
 end
 
 ---@return TSNode[]
@@ -29,27 +36,34 @@ local function getLinks()
     ---@param node TSTree
     return vim.iter(tree):map(function(node)
         return findLinksInNode(node:root())
-    end):totable()[1]
-    -- ---@param child TSNode
-    -- vim.iter(t:children()):map(function(child)
-    --     local childLinks = findLinksInNode(child)
-    --     vim.list_extend(links, childLinks)
-    -- end)
-    -- return links
+    end):totable()
 end
 
 ---@param node TSNode
 ---@return TSNode[]
 local function findAnchorsInNode(node)
-    if node == nil then
+    return findNodeTypeInNode(node, "anchor")
+end
+
+local function getHeaders()
+    local parser = vim.treesitter.get_parser(0, "mmfml", {})
+    if parser == nil then
         return {}
     end
-    if node:type() == "anchor" then
-        return { node }
-    end
-    return vim.iter(node:iter_children()):map(function(child)
-        local childAnchors = findAnchorsInNode(child)
-        return vim.iter(childAnchors):flatten(1):totable()[1]
+
+    local tree = parser:parse()
+    ---@param node TSTree
+    return vim.iter(tree):map(function(node)
+        local h1 = findNodeTypeInNode(node:root(), "header1")
+        local h2 = findNodeTypeInNode(node:root(), "header2")
+        local h3 = findNodeTypeInNode(node:root(), "header3")
+        local h4 = findNodeTypeInNode(node:root(), "header4")
+        local h5 = findNodeTypeInNode(node:root(), "header5")
+        local h6 = findNodeTypeInNode(node:root(), "header6")
+        local items = vim.iter({h1, h2, h3, h4, h5, h6}):flatten(100):filter(function (l)
+            return #l > 0
+        end):totable()
+        return items
     end):totable()
 end
 
@@ -63,7 +77,20 @@ local function getAnchors()
     ---@param node TSTree
     return vim.iter(tree):map(function(node)
         return findAnchorsInNode(node:root())
-    end):totable()[1]
+    end):totable()
+end
+
+local function getFootnoteBlocks()
+    local parser = vim.treesitter.get_parser(0, "mmfml", {})
+    if parser == nil then
+        return {}
+    end
+
+    local tree = parser:parse()
+
+    return vim.iter(tree):map(function(node)
+        return findNodeTypeInNode(node:root(), "footnote_block_name")
+    end):totable()
 end
 
 local function getRangeOfNode(node)
@@ -77,8 +104,28 @@ local function getRangeOfNode(node)
 end
 
 local function normalmode_tagfunc(pattern, info)
-    local anchorNodes = getAnchors()
-    local links = vim.fn.flatten(vim.iter(anchorNodes):map(function(node)
+    local anchorNodes = vim.iter(getAnchors()):flatten(100):totable()
+    local footnoteNodes = vim.iter(getFootnoteBlocks()):flatten(100):totable()
+    local headerNodes = vim.iter(getHeaders()):flatten():totable()
+
+    local headers = vim.fn.flatten(vim.iter(headerNodes):map(function(node)
+        local text = getRangeOfNode(node)
+
+        if text == nil then
+            return {}
+        end
+
+        if text:match(".*=+%s*" .. pattern) then
+            return {
+                name = text,
+                filename = info.buf_ffname,
+                cmd = '/' .. text
+            }
+        end
+        return {}
+    end):totable())
+
+    local anchorLinks = vim.fn.flatten(vim.iter(anchorNodes):map(function(node)
         local text = getRangeOfNode(node)
         if text == pattern or text == "#" .. pattern .. "#" then
             local searchPattern = pattern
@@ -90,17 +137,48 @@ local function normalmode_tagfunc(pattern, info)
         end
         return {}
     end):totable())
-    return links
+
+    local footnotes = vim.fn.flatten(vim.iter(footnoteNodes):map(function(node)
+        local text = getRangeOfNode(node)
+        if text == pattern or text == '^[' .. pattern .. ']' then
+            local pos = vim.fn.searchpos([[^\^\[]] .. text .. [[\]:\n\s*\zs\(\_.*\)\{-}\ze\_^\[\/]] .. text .. [[\]\_$]], "n")
+            return {
+                name = text,
+                filename = info.buf_ffname,
+                cmd = '/\\%' .. tostring(pos[1]) .. 'l' .. '\\%' .. tostring(pos[2]) .. 'c'
+            }
+        end
+        return {}
+    end):totable())
+
+    local all = {}
+    all = vim.list_extend(all, anchorLinks)
+    all = vim.list_extend(all, footnotes)
+    all = vim.list_extend(all, headers)
+
+    return all
+
 end
 
 local function insert_complete_tagfunc(pattern, info)
     local patternreg = vim.regex(pattern)
-    return vim.fn.flatten(vim.iter(getLinks()):map(function(node)
+
+    local allTags = vim.iter(getLinks()):flatten(100):totable()
+    allTags = vim.list_extend(allTags, vim.iter(getAnchors()):flatten(100):totable())
+    allTags = vim.list_extend(allTags, vim.iter(getFootnoteBlocks()):flatten(100):totable())
+    allTags = vim.list_extend(allTags, vim.iter(getHeaders()):flatten(100):totable())
+
+    return vim.fn.flatten(vim.iter(allTags):map(function(node)
         local text = getRangeOfNode(node)
+
+        if text == nil then
+            return {}
+        end
+
         local start, end_ = patternreg:match_str(text)
         if start ~= nil then
             return {
-                name = text,
+                name = vim.fn.trim(text, "=|#[] "),
                 filename = vim.fn.expand("%"),
                 cmd = '/|' .. text .. '|'
             }
@@ -125,7 +203,6 @@ vim.api.nvim_create_user_command("Links", function()
     vim.fn.setloclist(0, vim.iter(getLinks()):map(function(linknode)
         local row, col, erow, ecol = linknode:range()
         if row == nil or col == nil or erow == nil or ecol == nil then
-            vim.print(row, col, erow, ecol)
             vim.notify("A disaster has happened, the range for the linknode is undefined")
             return
         end
@@ -153,6 +230,6 @@ vim.keymap.set("n", "gf", function()
 end)
 
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
-vim.opt_local.iskeyword = "!-~,^*,^|,^\",192-255"
+vim.opt_local.iskeyword = "!-~,^[,^],^*,^|,^\",192-255"
 
-vim.b.link_search = [=[\[[^\]]\+\]|\zs.\ze[^)]*|]=]
+vim.b.link_search = [=[|\zs.\ze[^)]*|]=]
