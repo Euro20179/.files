@@ -27,6 +27,17 @@ parser_config.hypr = {
     filetype = "hypr",
 }
 
+parser_config.mmfml = {
+    install_info = {
+        url = "/home/euro/Programs/Coding Projects/treesitter/mmfml",
+        files = { "src/parser.c" },
+        branch = "main",
+        generate_requires_npm = false,
+        requires_generate_from_grammar = false,
+    },
+    filetype = "mmfml"
+}
+
 parser_config.bircle = {
     install_info = {
         url = "/home/euro/Programs/Coding Projects/treesitter/bircle",

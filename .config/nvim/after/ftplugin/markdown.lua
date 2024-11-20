@@ -54,7 +54,7 @@ function InsertRow(rowCount)
     end
 end
 
-vim.keymap.set("i", "<a-r>", function ()
+vim.keymap.set("i", "<a-r>", function()
     InsertRow()
     local pos = vim.api.nvim_win_get_cursor(0)
     vim.api.nvim_win_set_cursor(0, { pos[1] + 1, 1 })
@@ -82,10 +82,12 @@ vim.keymap.set("i", "<c-s-.>", function()
 end, { desc = "[MARKDOWN-TABLE]: Jump to previous cell" })
 
 vim.api.nvim_buf_create_user_command(0, "Links", function()
-    vim.fn.setqflist(MarkdownGetLinks())
-    vim.cmd.cwin()
+    vim.fn.setloclist(0, MarkdownGetLinks())
+    vim.cmd.lwin()
 end, {})
 
 vim.keymap.set("n", "<a-l>", ":Links<CR>", {
     buffer = 0
 })
+
+vim.b.link_search = [=[\[[^\]]\+\](\zs.\ze[^)]*)]=]

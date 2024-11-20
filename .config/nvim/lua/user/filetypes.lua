@@ -1,5 +1,6 @@
 vim.filetype.add({
     extension = {
+        mmfml = "mmfml",
         txt = function(path)
             if path:match("nvim/doc/.*%.txt$") then
                 return "help"
