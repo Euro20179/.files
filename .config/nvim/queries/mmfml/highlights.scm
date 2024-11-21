@@ -8,6 +8,8 @@
 ((pre_sample) @markup.raw)
 ((code_block) @markup.raw)
 
+((divider) @punctuation)
+
 ; ((code_block_end_arrow) @conceal (#set! conceal ""))
 ((code_block_start_arrow) @conceal (#set! conceal ""))
 
@@ -19,7 +21,7 @@
 
 ((anchor) @label)
 
-((list_indicator) @markup.list)
+((list) @markup.list)
 
 ((link
    (simple_marked_text (plain) @markup.link)))
