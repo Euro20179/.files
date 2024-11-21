@@ -200,7 +200,7 @@ end
 
 vim.api.nvim_create_user_command("Links", function()
     ---@param linknode TSNode
-    vim.fn.setloclist(0, vim.iter(getLinks()):map(function(linknode)
+    vim.fn.setloclist(0, vim.iter(getLinks()):flatten(100):map(function(linknode)
         local row, col, erow, ecol = linknode:range()
         if row == nil or col == nil or erow == nil or ecol == nil then
             vim.notify("A disaster has happened, the range for the linknode is undefined")

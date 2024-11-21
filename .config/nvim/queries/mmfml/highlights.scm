@@ -26,16 +26,17 @@
 
 ((link (link_url) @markup.link.url))
 
-((footnote_ref (plain) @markup.link.url))
+((footnote_ref (footnote_name_text) @markup.link.url))
 
 
-((footnote_block) @attribute)
+((footnote_start) @attribute)
+((footnote_end) @attribute)
 
 ((backslash) @conceal (#set! conceal ""))
 
 (code_block (language) @label)
 
-((escaped_char) @operator)
+; ((escaped_char) @operator)
 
 ((pre_sample_start) @conceal (#set! conceal ""))
 ((bold_start) @conceal (#set! conceal ""))
