@@ -106,7 +106,7 @@ end
 local function normalmode_tagfunc(pattern, info)
     local anchorNodes = vim.iter(getAnchors()):flatten(100):totable()
     local footnoteNodes = vim.iter(getFootnoteBlocks()):flatten(100):totable()
-    local headerNodes = vim.iter(getHeaders()):flatten():totable()
+    local headerNodes = vim.iter(getHeaders()):flatten(100):totable()
 
     local headers = vim.fn.flatten(vim.iter(headerNodes):map(function(node)
         local text = getRangeOfNode(node)
@@ -228,6 +228,68 @@ vim.keymap.set("n", "gf", function()
     --make it so that if the file doesn't exist, it edits anyway
     vim.cmd.edit("<cfile>")
 end)
+
+vim.keymap.set('n', "[h", function ()
+    local cursorPos = vim.fn.getpos('.')
+
+    vim.cmd.mark "'"
+
+    ---@param node TSNode
+    local headers = vim.iter(getHeaders()):flatten(100):filter(function (node)
+        local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
+        if cursorPos[2] > srow then
+            return true
+        end
+        return false
+    end):totable()
+    table.sort(headers, function (node, node2)
+        local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
+        local srow2, _, _, _ = vim.treesitter.get_node_range(node2)
+        if srow < srow2 then
+            return false
+        else
+            return true
+        end
+    end)
+
+    if #headers < 1 then
+        return
+    end
+
+    local srow, scol, errow, ecol = headers[1]:range()
+    vim.fn.setpos('.', {0, srow, scol, 0})
+end, { remap = true })
+
+vim.keymap.set('n', "]h", function ()
+    local cursorPos = vim.fn.getpos('.')
+
+    vim.cmd.mark "'"
+
+    ---@param node TSNode
+    local headers = vim.iter(getHeaders()):flatten(100):filter(function (node)
+        local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
+        if cursorPos[2] < srow then
+            return true
+        end
+        return false
+    end):totable()
+    table.sort(headers, function (node, node2)
+        local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
+        local srow2, _, _, _ = vim.treesitter.get_node_range(node2)
+        if srow > srow2 then
+            return false
+        else
+            return true
+        end
+    end)
+
+    if #headers < 1 then
+        return
+    end
+
+    local srow, scol, errow, ecol = headers[1]:range()
+    vim.fn.setpos('.', {0, srow, scol, 0})
+end, { remap = true })
 
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
 vim.opt_local.iskeyword = "!-~,^[,^],^*,^|,^\",192-255"

@@ -89,8 +89,8 @@ aSetup({
             ["<c-l>"] = { "accept" },
             ["<c-n>"] = { "select_next" },
             ["<c-p>"] = { "select_prev" },
-            ["<C-u>"] = { "scroll_documentation_up" },
-            ["<C-d>"] = { "scroll_documentation_down" },
+            ["<C-f>"] = { "scroll_documentation_up" },
+            ["<C-b>"] = { "scroll_documentation_down" },
             ["<c-,>"] = { "show_documentation", "hide_documentation" },
         },
         kind_icons = {
