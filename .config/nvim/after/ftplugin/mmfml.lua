@@ -237,7 +237,7 @@ vim.keymap.set('n', "[h", function ()
     ---@param node TSNode
     local headers = vim.iter(getHeaders()):flatten(100):filter(function (node)
         local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
-        if cursorPos[2] > srow then
+        if cursorPos[2] - 1 > srow then
             return true
         end
         return false
@@ -257,7 +257,7 @@ vim.keymap.set('n', "[h", function ()
     end
 
     local srow, scol, errow, ecol = headers[1]:range()
-    vim.fn.setpos('.', {0, srow, scol, 0})
+    vim.fn.setpos('.', {0, srow + 1, scol, 0})
 end, { remap = true })
 
 vim.keymap.set('n', "]h", function ()
@@ -268,7 +268,7 @@ vim.keymap.set('n', "]h", function ()
     ---@param node TSNode
     local headers = vim.iter(getHeaders()):flatten(100):filter(function (node)
         local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
-        if cursorPos[2] < srow then
+        if cursorPos[2] - 1 < srow then
             return true
         end
         return false
@@ -288,7 +288,7 @@ vim.keymap.set('n', "]h", function ()
     end
 
     local srow, scol, errow, ecol = headers[1]:range()
-    vim.fn.setpos('.', {0, srow, scol, 0})
+    vim.fn.setpos('.', {0, srow + 1, scol, 0})
 end, { remap = true })
 
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
