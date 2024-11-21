@@ -244,6 +244,8 @@ augroup relnutoggle
     autocmd CmdlineLeave * if &rnu != 0 || &nu != 0 | set rnu | redraw | endif
 augroup END
 
+call digraph_set("*s", "ₓ")
+
 call setcellwidths([
     \ [ 0xe5fa, 0xe6ac, 2 ],
     \ [ 0xea60, 0xebeb, 2 ],

@@ -291,7 +291,35 @@ vim.keymap.set('n', "]h", function ()
     vim.fn.setpos('.', {0, srow + 1, scol, 0})
 end, { remap = true })
 
+vim.api.nvim_create_user_command("Divider", function (cmdData)
+    local endCol = vim.b.mmfml_textwidth or 80
+
+    local charCount = endCol - 1
+    if #cmdData.fargs == 2 then
+        charCount = tonumber(cmdData.fargs[2]) or endCol - 1
+    end
+
+    local line = vim.fn.line(".")
+    if cmdData.range > 0 then
+        line = cmdData.line1
+    end
+
+    local lineText = vim.fn.getline(line)
+    if not cmdData.bang and lineText ~= "" then
+        vim.notify(string.format("line %d is not empty, use ! to replace", line))
+    end
+
+    local char = "-"
+    if #cmdData.fargs > 0 then
+        char = cmdData.fargs[1]
+    end
+
+    vim.fn.setline(line, string.rep(char, charCount))
+end, { range = true, bang = true, nargs = "*" })
+
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
 vim.opt_local.iskeyword = "!-~,^[,^],^*,^|,^\",192-255"
 
 vim.b.link_search = [=[|\zs.\ze[^)]*|]=]
+
+vim.b.mmfml_textwidth = vim.wo.colorcolumn
