@@ -94,6 +94,12 @@ function GetLspNames()
     return ""
 end
 
+function ListBufNames()
+    return vim.iter(vim.api.nvim_list_bufs()):map(function(buf)
+        return vim.api.nvim_buf_get_name(buf)
+    end):filter(function(name) return name ~= "" end):totable()
+end
+
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
 vim.api.nvim_create_user_command("Preview", PreviewFile, {})
 -- vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })

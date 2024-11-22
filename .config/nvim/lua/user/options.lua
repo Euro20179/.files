@@ -89,3 +89,5 @@ vim.lsp.buf.hover = function()
         hc.hover()
     end
 end
+
+vim.o.winbar = [====[%{luaeval("vim.fn.join(vim.iter(require'harpoon':list().items):enumerate():map(function(i, item) return tostring(i) .. ' ' .. item.value end):filter(function(item) return item ~= '' end):totable(), ' | ')")}]====]
