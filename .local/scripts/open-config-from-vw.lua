@@ -1,5 +1,8 @@
 #!/bin/nvim -S
 
+--immediately delete the first buffer
+vim.cmd.bdel(1)
+
 vim.cmd.cd("${XDG_CONFIG_HOME}")
 local items = {}
 local dirs = vim.fn.split(vim.fn.execute("!fd --max-depth=1 --type d"), "\n")
