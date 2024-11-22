@@ -5,6 +5,11 @@
 ((header5) @markup.heading )
 ((header6) @markup.heading )
 
+((metadata_key) @tag)
+((metadata_value) @string)
+; ((metadata_open) @conceal (#set! conceal ">"))
+; ((metadata_close) @conceal (#set! conceal ""))
+
 ((pre_sample) @markup.raw)
 ((code_block) @markup.raw)
 
