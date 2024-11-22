@@ -195,10 +195,10 @@ later(function()
             down = "<a-j>",
             up = "<a-k>",
 
-            line_left = "<a-h>",
-            line_right = "<a-l>",
-            line_down = "<a-j>",
-            line_up = "<a-k>",
+            line_left = "<Plug>",
+            line_right = "<plug>",
+            line_down = "<plug>",
+            line_up = "<plug>",
         }
     }
 
