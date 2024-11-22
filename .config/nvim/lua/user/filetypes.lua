@@ -14,7 +14,7 @@ vim.filetype.add({
         [".*Documents/TODO"] = "markdown",
         [".*"] = {
             ---@diagnostic disable-next-line: unused-vararg
-            function(_path, bufnr, ...)
+            function(path, bufnr, ...)
                 local line1 = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]
                 if line1 == nil then
                     return
@@ -23,6 +23,9 @@ vim.filetype.add({
                     return "lua"
                 end
                 if vim.endswith(line1, "nvim -S") then
+                    if vim.endswith(path, ".lua") then
+                        return "lua"
+                    end
                     return "vim"
                 end
                 local pkgData = vim.split(line1, " ", {})
