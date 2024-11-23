@@ -66,3 +66,10 @@
 ((higlight_end) @conceal (#set! conceal ""))
 ((pre_sample_end) @conceal (#set! conceal ""))
 ((anchor_end) @conceal (#set! conceal ""))
+
+((word) @_w (#eq? @_w "NOTE:")) @comment.note
+((word) @_w (#eq? @_w "TODO:")) @comment.todo
+[
+ ((word) @_w1 (#eq? @_w1 "WARN:"))
+ ((word) @_w2 (#eq? @_w2 "WARNING:"))
+] @comment.warning

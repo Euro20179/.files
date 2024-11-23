@@ -159,7 +159,7 @@ nnoremap  <down>         <CMD>wincmd -<CR>
 
 funct <SID>navigateToVimWiki()
     call chdir(expand("~/Documents/vimwiki"))
-    edit index.norg
+    edit index.mmfml
 endfu
 
 nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
