@@ -24,7 +24,7 @@ The one currently in use is `minimalistic/hashtags-black.png`
 ## Screenshots
 
 Very Epic desktop
-![Screenshot](./Pictures/system-images/dotfiles5.png)
+![Screenshot](../Pictures/system-images/dotfiles5.png)
 
 Emoji selector
-![Screenshot](./Pictures/system-images/dotfiles-emoji-selector.png)
+![Screenshot](../Pictures/system-images/dotfiles-emoji-selector.png)
