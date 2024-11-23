@@ -1,17 +1,21 @@
-((header1) @markup.heading )
-((header2) @markup.heading )
-((header3) @markup.heading )
-((header4) @markup.heading )
-((header5) @markup.heading )
-((header6) @markup.heading )
+[
+    (header1)
+    (header2)
+    (header3)
+    (header4)
+    (header5)
+    (header6)
+] @markup.heading
 
 ((metadata_key) @tag)
 ((metadata_value) @string)
 ; ((metadata_open) @conceal (#set! conceal ">"))
 ; ((metadata_close) @conceal (#set! conceal ""))
 
-((pre_sample) @markup.raw)
-((code_block) @markup.raw)
+[
+ (pre_sample)
+ (code_block)
+] @markup.raw
 
 ((divider) @punctuation)
 

@@ -87,7 +87,7 @@ require 'nvim-treesitter.configs'.setup {
             init_selection = "<leader>vn",
             node_incremental = 'gin',
             scope_incremental = "gis",
-            node_decremental = "gip",
+            node_decremental = "giN",
         }
     },
     textobjects = {
