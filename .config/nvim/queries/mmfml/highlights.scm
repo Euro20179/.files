@@ -14,13 +14,15 @@
 
 [
  (pre_sample)
- (code_block)
 ] @markup.raw
 
 ((divider) @punctuation)
 
+((code_block_start) @conceal (#set! conceal ""))
+((code_block_end) @conceal (#set! conceal ""))
+
 ; ((code_block_end_arrow) @conceal (#set! conceal ""))
-((code_block_start_arrow) @conceal (#set! conceal ""))
+; ((code_block_start_arrow) @conceal (#set! conceal ""))
 
 ((higlight) @markup.mmfml.highlight)
 ((strikethrough) @markup.strikethrough)
@@ -63,7 +65,7 @@
 
 ((backslash) @conceal (#set! conceal ""))
 
-(code_block (language) @label)
+; (code_block (language) @label)
 
 ; ((escaped_char) @operator)
 
