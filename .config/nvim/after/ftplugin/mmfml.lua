@@ -54,16 +54,7 @@ local function getHeaders()
     local tree = parser:parse()
     ---@param node TSTree
     return vim.iter(tree):map(function(node)
-        local h1 = findNodeTypeInNode(node:root(), "header1")
-        local h2 = findNodeTypeInNode(node:root(), "header2")
-        local h3 = findNodeTypeInNode(node:root(), "header3")
-        local h4 = findNodeTypeInNode(node:root(), "header4")
-        local h5 = findNodeTypeInNode(node:root(), "header5")
-        local h6 = findNodeTypeInNode(node:root(), "header6")
-        local items = vim.iter({h1, h2, h3, h4, h5, h6}):flatten(100):filter(function (l)
-            return #l > 0
-        end):totable()
-        return items
+        return findNodeTypeInNode(node:root(), "header")
     end):totable()
 end
 
