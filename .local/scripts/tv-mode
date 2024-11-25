@@ -27,64 +27,38 @@ set.hyprland() {
     if [ -f "$state_file" ]; then
         notify-send -c tv-mode "TV MODE" "OFF"
         pactl set-default-sink 'alsa_output.pci-0000_2f_00.4.analog-stereo'
-        hyprctl keyword monitor DP-2,disable
-        hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1,transform,3
-        hyprctl keyword monitor DP-1,1920x1080@165,0x790,1
-        sleep 5
-        # for i in {1..9}; do
-        # 	[ "$((i % 2))" -eq 1 ] &&
-        #               hyprctl keyword wsbind "$i,HDMI-A-1,layoutopt:orientation:bottom" ||
-        #               hyprctl keyword wsbind "$i,DP-1"
-        # done
+        hyprctl dispatch dpms off DP-2
+        hyprctl dispatch dpms on DP-1
+        hyprctl dispatch dpms on HDMI-A-1
         for i in {1..4}; do
-            hyprctl keyword wsbind "$i,DP-1"
+            hyprctl keyword workspace "${i},monitor:DP-1"
         done
         for i in {5..9}; do
-            hyprctl keyword wsbind "$i,HDMI-A-1,layoutopt:orientation:bottom"
+            hyprctl keyword workspace "${i},monitor:HDMI-A-1,layoutopt:orientation:bottom"
         done
+        hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1,transform,3
+        hyprctl keyword monitor DP-1,1920x1080@165,0x790,1
+        hyprctl keyword monitor DP-2,disable
         rm "$state_file"
-        sleep 1
-        swww init
-        swww img "$XDG_PICTURES_HOME/system-images/desktop.png"
+        # restart-wallpaper
     else
         notify-send -c tv-mode "TV MODE" "ON"
         pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
-        hyprctl keyword monitor DP-2,disable
-        sleep 1
-        hyprctl keyword monitor DP-1,disable
-        sleep 1
-        hyprctl keyword monitor HDMI-A-1,disable
-        sleep 1
-        hyprctl keyword monitor DP-2,preferred,0x0,1.5
-        sleep 5
-        touch "$state_file"
+        hyprctl dispatch dpms on DP-2
+        hyprctl dispatch dpms off DP-1
+        hyprctl dispatch dpms off HDMI-A-1
+
         for i in {1..9}; do
-            hyprctl keyword wsbind "$i,DP-2"
+            hyprctl keyword workspace "${i},monitor:DP-2"
         done
-        hyprpaper &
-        disown
-        sleep 1
+
+        hyprctl keyword monitor DP-2,preferred,0x0,1.5
+
+        hyprctl keyword monitor DP-1,disable
+        hyprctl keyword monitor HDMI-A-1,disable
+        touch "$state_file"
+        # restart-wallpaper
     fi
-    # #crashes if i try to disable and renable moitors, so lets just move everything to DP-1 !!!
-    # if [ -f "$state_file" ]; then
-    #     notify-send -c tv-mode "TV MODE" "OFF"
-    #     hyprctl keyword monitor DP-2,disable
-    #     hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
-    #     hyprctl keyword monitor DP-1,1920x1080@165,0x0,1
-    #     for i in {1..9}; do
-    #         [ "$((i%2))" -eq 1 ] && hyprctl keyword wsbind "$i,HDMI-A-1" || hyprctl keyword wsbind "$i,DP-1"
-    #     done
-    #     rm "$state_file"
-    # else
-    #     hyprctl keyword monitor DP-2,preferred,0x0,1
-    #     hyprctl keyword monitor HDMI-A-1,disable
-    #     hyprctl keyword monitor DP-1,disable
-    #     notify-send -c tv-mode "TV MODE" "ON"
-    #     for i in {1..9}; do
-    #         hyprctl keyword wsbind "$i,DP-3"
-    #     done
-    #     touch "$state_file"
-    # fi
 }
 
 case "$XDG_SESSION_TYPE" in
