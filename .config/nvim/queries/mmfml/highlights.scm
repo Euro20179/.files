@@ -32,8 +32,26 @@
 
 ((list) @markup.list)
 
-((link
-   (simple_marked_text (plain) @markup.link)))
+((list)
+ .
+ ((simple_marked_text
+    (box) @markup.list.checked.markdown (#eq? @markup.list.checked.markdown "[x]") (#set! conceal "✅︎"))))
+
+((list)
+ .
+ ((simple_marked_text
+    (box) @conceal (#eq? @conceal "[ ]") (#set! conceal ""))))
+
+((simple_marked_text
+   (box
+     (simple_marked_text) @markup.link))
+ .
+ ((simple_marked_text) @_spacer (#match? @_spacer "^\\s*$"))?
+ .
+ (simple_marked_text (link)))
+
+; ((link
+;    (simple_marked_text (plain) @markup.link)))
 
 ((link (link_url) @markup.link.url))
 
