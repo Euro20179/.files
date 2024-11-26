@@ -53,6 +53,15 @@
  .
  (simple_marked_text (link)))
 
+; ((simple_marked_text
+;    (box
+;      (simple_marked_text) @_text (#eq? @_text "date")))
+;  .
+;  ((simple_marked_text) @_spacer (#match? @_spacer "^\\s*$"))?
+;  .
+;  (simple_marked_text (plain . (word) @number (#match? @number "^[[:digit:]\\-]+$"))))
+
+
 ; ((link
 ;    (simple_marked_text (plain) @markup.link)))
 

@@ -65,6 +65,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 local virt_text = vim.diagnostic.config().virtual_text
                 vim.diagnostic.config({ virtual_text = not virt_text })
             end, { desc = "[LSP] Toggle virtual text" } },
+            { "<c-n>", function ()
+                GotoNthRelativeReference(1)
+            end, { desc = "[LSP]: Jump to the next reference" } },
+            { "<c-p>", function ()
+                GotoNthRelativeReference(-1)
+            end, { desc = "[LSP]: Jump to the previous reference" } },
             { "<a-e>", vim.diagnostic.open_float, { desc = "[LSP] Show diagnostics" } },
             { "cra",   "gra",   { desc = "[LSP] Select code action to perform", remap = true } },
             { "crA", function()
