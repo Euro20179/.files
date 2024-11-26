@@ -50,7 +50,13 @@ parser_config.bircle = {
 }
 
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = {},
+    ensure_installed = {"c", "lua", "vim", "vimdoc", "query"},
+    sync_install = false,
+    auto_install = true,
+    ignore_install = {},
+
+    modules = {},
+
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = { "org" }
@@ -63,6 +69,7 @@ require 'nvim-treesitter.configs'.setup {
         --     -- return false
         -- end
     },
+
     playground = {
         enable = true,
         keybinds = {
@@ -78,9 +85,11 @@ require 'nvim-treesitter.configs'.setup {
             show_help = "?"
         }
     },
+
     indent = {
         enable = true
     },
+
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -90,16 +99,19 @@ require 'nvim-treesitter.configs'.setup {
             node_decremental = "giN",
         }
     },
+
     textobjects = {
         swap = {
             enable = true,
             swap_next = {
                 ["<A-n>"] = "@parameter.inner",
             },
+
             swap_previous = {
                 ["<A-p>"] = "@parameter.inner",
             },
         },
+
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
@@ -108,20 +120,24 @@ require 'nvim-treesitter.configs'.setup {
                 ["]]"] = { query = "@class.outer", desc = "Next class start" },
                 ["]%"] = "@block.outer"
             },
+
             goto_next_end = {
                 ["]F"] = "@function.outer",
                 ["]["] = "@class.outer",
             },
+
             goto_previous_start = {
                 ["[f"] = "@function.outer",
                 ["[["] = "@class.outer",
                 ["[%"] = "@block.outer"
             },
+
             goto_previous_end = {
                 ["[F"] = "@function.outer",
                 ["[]"] = "@class.outer",
             },
         },
+
         lsp_interop = {
             enable = true,
             peek_definition_code = {
@@ -129,6 +145,7 @@ require 'nvim-treesitter.configs'.setup {
                 ["<leader>C"] = "@class.outer",
             }
         },
+
         select = {
             enable = true,
             keymaps = {

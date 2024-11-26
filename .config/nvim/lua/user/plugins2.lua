@@ -233,10 +233,10 @@ later(function()
             prefix = "<leader>x"
         },
         multiply = {
-            prefix = "<Plug>" --also disable, never use it, blocks y when in visual mode
+            prefix = "<Plug>" --also disable, never use it
         },
         replace = {
-            prefix = "<leader>r" --also disable, use v<motion>"<reg>p instead of <reg>yr<motion>
+            prefix = "<leader>r"
             --more portable, possibly make own version to use <reg>yr<motion>
         },
         sort = {
