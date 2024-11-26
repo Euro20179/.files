@@ -9,6 +9,7 @@ function ExecSelection(cmdData)
         vim.cmd["!"](table.concat(lines, ";"))
     else
         GotoTerminalBuf()
+        vim.cmd.sleep("500ms")
         vim.api.nvim_feedkeys('i' .. table.concat(lines, "\n") .. "\n", "n", false)
     end
 end

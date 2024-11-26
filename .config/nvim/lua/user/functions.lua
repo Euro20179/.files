@@ -67,7 +67,6 @@ function Winbar()
 end
 
 function GotoTerminalBuf()
-    local harpoon = require "harpoon"
     for _, tid in ipairs(vim.api.nvim_list_tabpages()) do
         for _, wid in ipairs(vim.api.nvim_tabpage_list_wins(tid)) do
             local bid = vim.api.nvim_win_get_buf(wid)
@@ -79,8 +78,6 @@ function GotoTerminalBuf()
             end
         end
     end
-    -- if no term buf found
-    harpoon:list():append()
     vim.cmd.terminal()
 end
 

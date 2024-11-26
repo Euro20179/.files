@@ -201,6 +201,7 @@ local nShortcuts = {
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
     { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" } },
     { "<a-m>",     ":make<CR>", { desc = "copmile" } },
+    { "g:",        ":= ", { desc = "[CMD]: lua expression" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
