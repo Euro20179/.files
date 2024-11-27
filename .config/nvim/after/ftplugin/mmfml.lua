@@ -366,7 +366,7 @@ vim.keymap.set("n", "gO", function()
     local anchors = vim.iter(getAnchors()):flatten(100):totable()
 
     local bufNr = vim.api.nvim_win_get_buf(0)
-    local bufName = vim.api.nvim_buf_get_name(bufNr)
+    local bufName = vim.fn.expand("%:t")
 
     local list = {}
     for _, anchor in pairs(anchors) do
