@@ -166,7 +166,7 @@ nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
 "}}}
 
 "Syntax highlighting {{{
-nnoremap <c-n> <CMD>noh<CR>
+nnoremap <c-/> <CMD>noh<CR>
 "nnoremap <A-s>           <CMD>syntax sync fromstart<CR>
 "}}}
 
