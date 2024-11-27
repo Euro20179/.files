@@ -1,0 +1,30 @@
+#!/bin/bash
+
+excludeRegex="${1:-(image/[^ ])}"
+commit="${2:-HEAD}"
+
+echo "$commit"
+
+mkdir /tmp/get-lines
+
+git ls-tree -r "${commit}" --format="%(objectname)$(printf '\t')%(path)"| while read -r hash file; do {
+        filename=/tmp/get-lines/${hash}-${file##*/}
+        git cat-file -p "$hash" > "${filename}"
+        ft="$(nvim -u <(echo) -l ~/.local/scripts/file-detect.lua "${filename}" 2>&1)"
+
+        [ "$ft" = nil ] && ft=$(file --mime-type "${filename}" | awk '{print $NF}')
+
+        printf "%s\t%s\t%s\n" "$file" "$(git cat-file -p "$hash" | wc -l)" "$ft"
+    } &
+ done | grep -vP "$excludeRegex" | awk '
+{
+    TOTAL_LINES += $2
+    m[$3]+=$2
+}
+END{
+    for (name in m){
+        printf "%s: %d (%f%%)\n", name, m[name], m[name] / TOTAL_LINES * 100
+    }
+}
+' | sort -nr -k2
+rm -r /tmp/get-lines

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ -z "$1" ] && {
+    printf "No input\n"
+    exit
+}
+
+[ -z "$2" ] && {
+    printf "No output\n"
+    exit
+}
+
+ffmpeg -i "${1}" -map 0 -c copy -c:v libx265 -preset 6 "${2}"
