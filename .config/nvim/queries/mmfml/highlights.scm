@@ -31,7 +31,7 @@
 ((italic) @markup.italic)
 ((underline) @markup.underline)
 
-((anchor) @label)
+((anchor) @keyword.directive)
 
 ((list) @markup.list)
 
@@ -47,7 +47,7 @@
 
 ((simple_marked_text
    (box
-     (simple_marked_text) @markup.link))
+     (simple_marked_text) @markup.link.label))
  .
  ((simple_marked_text) @_spacer (#match? @_spacer "^\\s*$"))?
  .
@@ -75,7 +75,7 @@
 
 ((backslash) @conceal (#set! conceal ""))
 
-; (code_block (language) @label)
+(code_block (language) @comment)
 
 ; ((escaped_char) @operator)
 
