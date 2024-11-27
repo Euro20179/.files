@@ -119,7 +119,7 @@ local function normalmode_tagfunc(pattern, info)
     local anchorLinks = vim.fn.flatten(vim.iter(anchorNodes):map(function(node)
         local text = getRangeOfNode(node)
         if text == pattern or text == "#" .. pattern .. "#" then
-            local searchPattern = pattern
+            local searchPattern = '#' .. pattern .. '#'
             return {
                 name = text,
                 filename = info.buf_ffname,
@@ -132,7 +132,8 @@ local function normalmode_tagfunc(pattern, info)
     local footnotes = vim.fn.flatten(vim.iter(footnoteNodes):map(function(node)
         local text = getRangeOfNode(node)
         if text == pattern or text == '^[' .. pattern .. ']' then
-            local pos = vim.fn.searchpos([[^\^\[]] .. text .. [[\]:\n\s*\zs\(\_.*\)\{-}\ze\_^\[\/]] .. text .. [[\]\_$]], "n")
+            local pos = vim.fn.searchpos([[^\^\[]] .. text .. [[\]:\n\s*\zs\(\_.*\)\{-}\ze\_^\[\/]] .. text .. [[\]\_$]],
+                "n")
             return {
                 name = text,
                 filename = info.buf_ffname,
@@ -148,7 +149,6 @@ local function normalmode_tagfunc(pattern, info)
     all = vim.list_extend(all, headers)
 
     return all
-
 end
 
 local function insert_complete_tagfunc(pattern, info)
@@ -220,20 +220,20 @@ vim.keymap.set("n", "gf", function()
     vim.cmd.edit("<cfile>")
 end)
 
-vim.keymap.set('n', "[h", function ()
+vim.keymap.set('n', "[h", function()
     local cursorPos = vim.fn.getpos('.')
 
     vim.cmd.mark "'"
 
     ---@param node TSNode
-    local headers = vim.iter(getHeaders()):flatten(100):filter(function (node)
+    local headers = vim.iter(getHeaders()):flatten(100):filter(function(node)
         local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
         if cursorPos[2] - 1 > srow then
             return true
         end
         return false
     end):totable()
-    table.sort(headers, function (node, node2)
+    table.sort(headers, function(node, node2)
         local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
         local srow2, _, _, _ = vim.treesitter.get_node_range(node2)
         if srow < srow2 then
@@ -248,23 +248,23 @@ vim.keymap.set('n', "[h", function ()
     end
 
     local srow, scol, errow, ecol = headers[1]:range()
-    vim.fn.setpos('.', {0, srow + 1, scol, 0})
+    vim.fn.setpos('.', { 0, srow + 1, scol, 0 })
 end, { remap = true })
 
-vim.keymap.set('n', "]h", function ()
+vim.keymap.set('n', "]h", function()
     local cursorPos = vim.fn.getpos('.')
 
     vim.cmd.mark "'"
 
     ---@param node TSNode
-    local headers = vim.iter(getHeaders()):flatten(100):filter(function (node)
+    local headers = vim.iter(getHeaders()):flatten(100):filter(function(node)
         local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
         if cursorPos[2] - 1 < srow then
             return true
         end
         return false
     end):totable()
-    table.sort(headers, function (node, node2)
+    table.sort(headers, function(node, node2)
         local srow, scol, erow, ecol = vim.treesitter.get_node_range(node)
         local srow2, _, _, _ = vim.treesitter.get_node_range(node2)
         if srow > srow2 then
@@ -279,10 +279,10 @@ vim.keymap.set('n', "]h", function ()
     end
 
     local srow, scol, errow, ecol = headers[1]:range()
-    vim.fn.setpos('.', {0, srow + 1, scol, 0})
+    vim.fn.setpos('.', { 0, srow + 1, scol, 0 })
 end, { remap = true })
 
-vim.api.nvim_create_user_command("Divline", function (cmdData)
+vim.api.nvim_create_user_command("Divline", function(cmdData)
     local endCol = vim.b.mmfml_textwidth or 80
 
     local charCount = endCol - 1
@@ -358,6 +358,46 @@ vim.api.nvim_create_user_command("Divword", function(cmdData)
 
     vim.fn.setline(line, finalText)
 end, { range = true, bang = true, nargs = "*" })
+
+vim.keymap.set("n", "gO", function()
+    ---@type TSNode[]
+    local headers = vim.iter(getHeaders()):flatten(100):totable()
+    ---@type TSNode[]
+    local anchors = vim.iter(getAnchors()):flatten(100):totable()
+
+    local bufNr = vim.api.nvim_win_get_buf(0)
+    local bufName = vim.api.nvim_buf_get_name(bufNr)
+
+    local list = {}
+    for _, anchor in pairs(anchors) do
+        local sr, sc, er, ec = anchor:range(false)
+        list[#list + 1] = {
+            bufnr = bufNr,
+            filename = bufName,
+            lnum = sr + 1,
+            col = sc,
+            end_lnum = er + 1,
+            end_col = ec,
+            text = vim.treesitter.get_node_text(anchor, bufNr, {})
+        }
+    end
+
+    for _, anchor in pairs(headers) do
+        local sr, sc, er, ec = anchor:range(false)
+        list[#list + 1] = {
+            bufnr = bufNr,
+            filename = bufName,
+            lnum = sr + 1,
+            col = sc,
+            end_lnum = er + 1,
+            end_col = ec,
+            text = vim.treesitter.get_node_text(anchor, bufNr, {})
+        }
+    end
+
+    vim.fn.setloclist(0, list)
+    vim.cmd.lwin()
+end, { buffer = true })
 
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
 vim.opt_local.iskeyword = "!-~,^[,^],^*,^|,^\",192-255"

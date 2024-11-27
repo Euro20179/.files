@@ -155,6 +155,7 @@ aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 
 add { source = "folke/tokyonight.nvim" }
 add { source = "catppuccin/nvim" }
+add { source = "xero/evangelion.nvim" }
 
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
