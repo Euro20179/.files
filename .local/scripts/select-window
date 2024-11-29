@@ -1,0 +1,8 @@
+#!/bin/bash
+
+window=$(hyprctl clients -j |
+    jq -r '.[]|"\(.title)\t\(.address)"' |
+    column -t -s $'\t' -o $'\t' |
+    rofi -i -dmenu -theme cat-macchiato | cut -d $'\t' -f2)
+
+hyprctl dispatch focuswindow address:"${window}"
