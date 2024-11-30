@@ -177,9 +177,11 @@ alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
 
 alias doase=doasedit
 alias send-vid="ytfzf -e discord-send --loop=0"
-# alias config="git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME"
+
 config () {
-    lazygit -g ~/Programs/GithubContribs/dotfiles -w $HOME
+    [ -n "$*" ] && {
+        git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME "$@"
+    } || lazygit -g ~/Programs/GithubContribs/dotfiles -w $HOME
 }
 
 alias o=linkhandler
