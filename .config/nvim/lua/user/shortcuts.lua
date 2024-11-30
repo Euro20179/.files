@@ -14,8 +14,6 @@ local dapLeader = "<M-d>"
 --
 -- vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
 
-vim.keymap.set("n", "<leader>G", LazyGitTerm, { desc = "[GIT]: Open lazygit in nvim term" })
-
 -- z= override to use vim.ui.select {{{
 vim.keymap.set("n", "z=", function()
     local word = vim.fn.expand("<cword>")
