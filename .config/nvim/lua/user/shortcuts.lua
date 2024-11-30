@@ -14,6 +14,8 @@ local dapLeader = "<M-d>"
 --
 -- vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
 
+vim.keymap.set("n", "<leader>G", LazyGitTerm, { desc = "[GIT]: Open lazygit in nvim term" })
+
 -- z= override to use vim.ui.select {{{
 vim.keymap.set("n", "z=", function()
     local word = vim.fn.expand("<cword>")
@@ -72,8 +74,8 @@ local nShortcuts = {
     -- { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAP] toggle" } },
     -- }}}
     --telescope {{{
-    { "<leader>fj",     function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
-    { "<leader>ff",     require "mini.pick".builtin.files,                                   { desc = "[TELESCOPE] find files" } },
+    { "<leader>fj", function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
+    { "<leader>ff", require "mini.pick".builtin.files,                                   { desc = "[TELESCOPE] find files" } },
     { "<leader>ft", function()
         local tagStack = vim.fn.gettagstack(0)
         local items = {}
@@ -201,7 +203,7 @@ local nShortcuts = {
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
     { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" } },
     { "<a-m>",     ":make<CR>", { desc = "copmile" } },
-    { "g:",        ":= ", { desc = "[CMD]: lua expression" } },
+    { "g:",        ":= ",       { desc = "[CMD]: lua expression" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
