@@ -139,6 +139,9 @@ aSetup({
             -- ghost_text = {
             --     enabled = true
             -- }
+        },
+        fuzzy = {
+            use_frecency = false,
         }
     }
 )
