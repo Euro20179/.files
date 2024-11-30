@@ -16,6 +16,7 @@ require "mini.deps".setup({ path = { package = path_package } })
 --}}}
 
 vim.cmd.packadd "cfilter"
+vim.cmd.packadd{"termdebug", bang = true}
 
 local miniDeps = require "mini.deps"
 local add = miniDeps.add
@@ -35,14 +36,12 @@ end
 --libraries{{{
 add { source = "nvim-lua/plenary.nvim" }
 add { source = "nvim-tree/nvim-web-devicons" }
-add { source = "MunifTanjim/nui.nvim" }
+-- add { source = "MunifTanjim/nui.nvim" }
+-- add { source = "nvim-neotest/nvim-nio" }
 --}}}
 
 -- Treesitter{{{
-add {
-    source = "nvim-treesitter/nvim-treesitter",
-}
-
+add { source = "nvim-treesitter/nvim-treesitter" }
 add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 -- }}}
 
@@ -144,18 +143,32 @@ aSetup({
     }
 )
 
-add { source = "mfussenegger/nvim-dap" }
+-- add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
-aSetup({ source = "rcarriga/nvim-dap-ui" }, later, "dapui", {})
-add { source = "nvim-neotest/nvim-nio" }
+-- aSetup({ source = "rcarriga/nvim-dap-ui" }, later, "dapui", {})
 
 aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 --}}}
 
-
+-- Themes {{{
 add { source = "folke/tokyonight.nvim" }
 add { source = "catppuccin/nvim" }
 add { source = "xero/evangelion.nvim" }
+-- }}}
+
+-- Navigation {{{
+
+aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
+    hi = {
+        fg = "#f4b8e4"
+    }
+})
+
+aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
+    preview = {
+        winblend = 0
+    }
+})
 
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
@@ -176,15 +189,18 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
         end
     }
 })
+-- }}}
 
+-- Neorg {{{
 add { source = "nvim-neorg/neorg",
     depends = {
         "pysan3/pathlib.nvim",
         "vhyrro/luarocks.nvim",
         "nvim-neorg/lua-utils.nvim"
     }
-}
+}-- }}}
 
+-- Mini{{{
 add { source = "echasnovski/mini.nvim" }
 
 later(function()
@@ -256,7 +272,7 @@ later(function()
     }
 
     vim.ui.select = require "mini.pick".ui_select
-end)
+end)-- }}}
 
 -- add { source = "altermo/ultimate-autopair.nvim" }
 -- later(function()
@@ -266,24 +282,12 @@ end)
 
 aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
-aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
-    preview = {
-        winblend = 0
-    }
-})
-
 add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
 add { source = "tpope/vim-fugitive" }
 
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
-
-aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
-    hi = {
-        fg = "#f4b8e4"
-    }
-})
 
 add { source = "meeehdi-dev/bropilot.nvim", depends = {
     "nvim-lua/plenary.nvim",
@@ -292,9 +296,6 @@ add { source = "meeehdi-dev/bropilot.nvim", depends = {
 
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
-        vim.schedule(function()
-            -- vim.notify("Local llm is not running, not starting borpilot", vim.log.levels.INFO)
-        end)
         return
     end
     vim.schedule(function()

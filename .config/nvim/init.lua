@@ -17,6 +17,7 @@ require 'user.filetypes'
 require 'user.init'
 require 'user.colorscheme'
 require 'user.globals-setup'
+
 -- require "discord-ui".setup {
 --    token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
 --    user_id = "1190132846409564170"

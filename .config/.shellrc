@@ -183,6 +183,8 @@ alias o=linkhandler
 
 alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'
 
+alias te=trash-empty
+
 me () {
     disown 2> /dev/null 1>&2
     if [ "$?" -ne 127 ]; then

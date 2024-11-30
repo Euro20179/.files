@@ -1,7 +1,7 @@
 local harpoon = require "harpoon"
 harpoon:setup()
 
-local widgets = require "dap.ui.widgets"
+-- local widgets = require "dap.ui.widgets"
 
 -- local moveline = require("moveline")
 local utilLeader = "<M-u>"
@@ -32,28 +32,28 @@ end)
 --Normal Mode{{{
 local nShortcuts = {
     -- dap {{{
-    { dapLeader .. "s", function()
-        local sidebar = widgets.sidebar(widgets.scopes)
-        sidebar.open()
-    end, { desc = "[DAP] open scopes" } },
-    { dapLeader .. "f", function()
-        local sidebar = widgets.sidebar(widgets.frames)
-        sidebar.open()
-    end, { desc = "[DAP] open frames" } },
-    { dapLeader .. "<leader>", function()
-        require "lua.user.plugin-setup.dap".repl.toggle()
-    end, { desc = "[DAP] open repl" } },
-    { dapLeader .. "k", function()
-        widgets.hover()
-    end, { desc = "[DAP] hover widget" } },
-    { dapLeader .. "t", function()
-        local sidebar = widgets.sidebar(widgets.threads)
-        sidebar.open()
-    end, { desc = "[DAP] open threads" } },
-    { dapLeader .. "e", function()
-        local sidebar = widgets.sidebar(widgets.expression)
-        sidebar.open()
-    end, { desc = "[DAP] open expressions" } },
+    -- { dapLeader .. "s", function()
+    --     local sidebar = widgets.sidebar(widgets.scopes)
+    --     sidebar.open()
+    -- end, { desc = "[DAP] open scopes" } },
+    -- { dapLeader .. "f", function()
+    --     local sidebar = widgets.sidebar(widgets.frames)
+    --     sidebar.open()
+    -- end, { desc = "[DAP] open frames" } },
+    -- { dapLeader .. "<leader>", function()
+    --     require "lua.user.plugin-setup.dap".repl.toggle()
+    -- end, { desc = "[DAP] open repl" } },
+    -- { dapLeader .. "k", function()
+    --     widgets.hover()
+    -- end, { desc = "[DAP] hover widget" } },
+    -- { dapLeader .. "t", function()
+    --     local sidebar = widgets.sidebar(widgets.threads)
+    --     sidebar.open()
+    -- end, { desc = "[DAP] open threads" } },
+    -- { dapLeader .. "e", function()
+    --     local sidebar = widgets.sidebar(widgets.expression)
+    --     sidebar.open()
+    -- end, { desc = "[DAP] open expressions" } },
     { dapLeader .. "b", function() require "lua.user.plugin-setup.dap".toggle_breakpoint() end, { desc = "[DAP] toggle breakpoint" } },
     { dapLeader .. "P", function() require "lua.user.plugin-setup.dap".pause() end,             { desc = "[DAP] pause" } },
     { dapLeader .. "c", function() require "lua.user.plugin-setup.dap".continue() end,          { desc = "[DAP] continue" } },
@@ -69,7 +69,7 @@ local nShortcuts = {
         require "lua.user.plugin-setup.dap".session()
         require "lua.user.plugin-setup.dap".continue()
     end, { desc = "[DAP] start session" } },
-    { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAP] toggle" } },
+    -- { dapLeader .. "o", require "dapui".toggle,                                              { desc = "[DAP] toggle" } },
     -- }}}
     --telescope {{{
     { "<leader>fj",     function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
