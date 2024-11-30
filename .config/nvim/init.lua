@@ -26,4 +26,3 @@ require 'user.globals-setup'
 -- require"matrix.config".set_config({
 --     homeserver = "https://matrix.org",
 -- })
-

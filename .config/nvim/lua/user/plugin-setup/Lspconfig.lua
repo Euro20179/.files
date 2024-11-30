@@ -5,34 +5,34 @@ local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-capabilities = require"blink.cmp".get_lsp_capabilities(capabilities)
+capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
 
-lspconfig['ast_grep'].setup{ capabilities = capabilities }
+lspconfig['ast_grep'].setup { capabilities = capabilities }
 
 lspconfig["hls"].setup {
     capabilities = capabilities,
-    filetypes = {"haskell"},
+    filetypes = { "haskell" },
 }
 
-lspconfig['emmet_ls'].setup{
+lspconfig['emmet_ls'].setup {
     capabilities = capabilities,
     filetypes = { "html" }
 }
 
-lspconfig["basedpyright"].setup{
+lspconfig["basedpyright"].setup {
     capabilities = capabilities
 }
 
-lspconfig['nushell'].setup{
+lspconfig['nushell'].setup {
     capabilities = capabilities
 }
 
-lspconfig["raku_navigator"].setup{
+lspconfig["raku_navigator"].setup {
     capabilities = capabilities,
-    cmd = {"raku-navigator", "--stdio"}
+    cmd = { "raku-navigator", "--stdio" }
 }
 
-lspconfig['elixirls'].setup{
+lspconfig['elixirls'].setup {
     capabilities = capabilities,
     cmd = { "/home/euro/.local/share/nvim/mason/bin/elixir-ls" }
 }
@@ -42,10 +42,10 @@ lspconfig["kotlin_language_server"].setup {
 }
 
 
-local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/site/pack/deps/opt"}
+local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/site/pack/deps/opt" }
 
-lspconfig['lua_ls'].setup{
-    settings= {
+lspconfig['lua_ls'].setup {
+    settings = {
         Lua = {
             hint = { enable = true },
             completion = {
@@ -76,15 +76,15 @@ lspconfig['lua_ls'].setup{
 --
 
 lspconfig.gopls.setup({
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+        },
     },
-  },
 })
 
 -- lspconfig['pyright'].setup{ }
@@ -95,49 +95,49 @@ lspconfig['java_language_server'].setup {
 }
 
 lspconfig['ts_ls'].setup {
-  capabilities = capabilities,
-  --filetypes = { "typescript" },
-  root_dir = function() return vim.loop.cwd() end,
+    capabilities = capabilities,
+    --filetypes = { "typescript" },
+    root_dir = function() return vim.loop.cwd() end,
 }
 -- lspconfig['marksman'].setup{
 --     capabilities = capabilities
 -- }
 -- lspconfig['jedi_language_server'].setup {
-  -- capabilities = capabilities
+-- capabilities = capabilities
 -- }
 lspconfig['rust_analyzer'].setup {
-  capabilities = capabilities,
+    capabilities = capabilities,
 }
 -- lspconfig['pylsp'].setup {
 --   capabilities = capabilities
 -- }
 
-lspconfig['bashls'].setup{
-  capabilities = capabilities
-}
-
-lspconfig['clangd'].setup{
-  capabilities = capabilities,
-  filetypes = { "c", "cpp" },
-}
-lspconfig['html'].setup{
-    capabilities = capabilities
-}
-lspconfig['cssls'].setup{
+lspconfig['bashls'].setup {
     capabilities = capabilities
 }
 
-lspconfig['jsonls'].setup{
+lspconfig['clangd'].setup {
+    capabilities = capabilities,
+    filetypes = { "c", "cpp" },
+}
+lspconfig['html'].setup {
+    capabilities = capabilities
+}
+lspconfig['cssls'].setup {
+    capabilities = capabilities
+}
+
+lspconfig['jsonls'].setup {
     capabilities = capabilities,
     settings = {
         json = {
-            schemas = require"schemastore".json.schemas(),
+            schemas = require "schemastore".json.schemas(),
             validate = { enable = true }
         }
     }
 }
 -- lspconfig['ltex'].setup{}
-lspconfig.vimls.setup{
-  capabilities = capabilities,
-  isNeovim = true
+lspconfig.vimls.setup {
+    capabilities = capabilities,
+    isNeovim = true
 }

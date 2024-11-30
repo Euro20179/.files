@@ -16,7 +16,7 @@ require "mini.deps".setup({ path = { package = path_package } })
 --}}}
 
 vim.cmd.packadd "cfilter"
-vim.cmd.packadd{"termdebug", bang = true}
+vim.cmd.packadd { "termdebug", bang = true }
 
 local miniDeps = require "mini.deps"
 local add = miniDeps.add
@@ -198,7 +198,7 @@ add { source = "nvim-neorg/neorg",
         "vhyrro/luarocks.nvim",
         "nvim-neorg/lua-utils.nvim"
     }
-}-- }}}
+} -- }}}
 
 -- Mini{{{
 add { source = "echasnovski/mini.nvim" }
@@ -272,7 +272,7 @@ later(function()
     }
 
     vim.ui.select = require "mini.pick".ui_select
-end)-- }}}
+end) -- }}}
 
 -- add { source = "altermo/ultimate-autopair.nvim" }
 -- later(function()

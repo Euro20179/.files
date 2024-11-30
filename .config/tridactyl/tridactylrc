@@ -1,0 +1,3 @@
+set editorcmd $TERMINAL nvim "%f"
+
+bindurl ^https://github.com/[^\/]+/[^\/]+\?$ normal <Space>d composite js location.toString() | shellescape | exclaim_quiet cd ~/Downloads && git clone
