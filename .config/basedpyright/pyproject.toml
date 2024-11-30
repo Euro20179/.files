@@ -1,6 +1,8 @@
 [tool.basedpyright]
 reportAny=false
+reportExplicitAny=false
 reportUnknownVariableType=false
 reportUnknownArgumentType=false
 reportUnknownParameterType=false
 reportUnusedCallResult=false
+reportUnknownMemberType=false
