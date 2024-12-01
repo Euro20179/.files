@@ -11,6 +11,11 @@
 
 /*end floorp*/
 
+//slight transparency on the whole window
+#main-window {
+  opacity: 90%;
+}
+
 /*disable window decroations*/
 .titlebar-buttonbox-container {
   display: none !important;
@@ -127,6 +132,7 @@ tab:where([visuallyselected="true"]) {
 #navigator-toolbox {
   display: flex;
   flex-direction: row-reverse;
+  background: color-mix(in srgb, $main, transparent 90%) !important;
   // display: grid;
   // grid-template-columns: min-content 1fr;
   // grid-template-areas:
