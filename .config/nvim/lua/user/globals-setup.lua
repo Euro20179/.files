@@ -11,16 +11,5 @@ vim.ui.select = require "mini.pick".ui_select
 
 -- vim.notify = require"notify"
 
-vim.g.clipboard = {
-    name = "test",
-    copy = {
-        [ "+" ] = require("vim.ui.clipboard.osc52").copy("+"),
-        [ "*" ] = require("vim.ui.clipboard.osc52").copy("*")
-    },
-    paste = {
-        [ "+" ] = require("vim.ui.clipboard.osc52").paste("+"),
-        [ "*" ] = require("vim.ui.clipboard.osc52").paste("*")
-    }
-}
 
 vim.g.neovide_cursor_animation_length = 0

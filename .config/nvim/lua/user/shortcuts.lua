@@ -191,7 +191,15 @@ local nShortcuts = {
     { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
-    { "ZF",         require "mini.misc".zoom },
+    { "ZF",         function()
+        require "mini.misc".zoom(0, {
+            width = vim.o.columns - 10,
+            height = vim.o.lines - 4,
+            col = 5,
+            row = 2,
+            border = "single"
+        })
+    end },
     { "<leader>fO", "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
