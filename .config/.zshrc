@@ -25,6 +25,7 @@ bindkey '^a' beginning-of-line
 bindkey '^g' end-of-line
 bindkey '^e' forward-word
 bindkey '^p' backward-word
+bindkey '^r' history-incremental-search-backward
 bindkey '^[[27;2;13~' accept-line
 
 #allow better tab completion

@@ -125,8 +125,10 @@ tab:where([visuallyselected="true"]) {
 /*put tabs inline with url bar*/
 
 #navigator-toolbox {
-  display: grid;
-  grid-template-columns: min-content 1fr;
+  display: flex;
+  flex-direction: row-reverse;
+  // display: grid;
+  // grid-template-columns: min-content 1fr;
   // grid-template-areas:
   //     "a b b"
   //     "c c c";
@@ -136,6 +138,11 @@ tab:where([visuallyselected="true"]) {
   // grid-area: b;
   grid-column: 2;
   grid-row: 1;
+}
+
+/*idk what this is, but it makes tabs not take up the entire rest of the toolbar*/
+#toolbar-menubar {
+  display: none;
 }
 
 #nav-bar.browser-toolbar {

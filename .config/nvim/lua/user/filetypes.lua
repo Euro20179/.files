@@ -1,6 +1,7 @@
 vim.filetype.add({
     extension = {
         mmfml = "mmfml",
+        nu = "nu",
         txt = function(path)
             if path:match("nvim/doc/.*%.txt$") then
                 return "help"
@@ -10,7 +11,6 @@ vim.filetype.add({
     },
     pattern = {
         [".*%.config/hypr/.*%.conf"] = "hyprlang",
-        [".*%.nu"] = "nu",
         [".*Documents/TODO"] = "markdown",
         [".*"] = {
             ---@diagnostic disable-next-line: unused-vararg
