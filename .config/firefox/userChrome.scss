@@ -73,12 +73,12 @@ toolbar {
 
 tab[selected="true"] {
   background-color: $secondary !important;
-  border-top: 3px solid $sky !important;
+  border-left: 3px solid $sky !important;
 }
 
 tab:not([selected="true"]) {
   background-color: $main !important;
-  border-top: 3px solid $warn !important;
+  border-left: 3px solid $warn !important;
 }
 
 tab:not([selected="true"]):is(:hover, :focus) {
