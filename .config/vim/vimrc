@@ -21,6 +21,8 @@ if !has("nvim")
     set wildmenu
     set wildoptions=pum
 
+    set viminfofile=NONE
+
     if exists("&incsearch")
         set incsearch
     endif
