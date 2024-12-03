@@ -132,7 +132,9 @@ local function normalmode_tagfunc(pattern, info)
     local footnotes = vim.fn.flatten(vim.iter(footnoteNodes):map(function(node)
         local text = getRangeOfNode(node)
         if text == pattern or text == '^[' .. pattern .. ']' then
-            local pos = vim.fn.searchpos([[^\^\[]] .. text .. [[\]:\n\s*\zs\(\_.*\)\{-}]],
+            --vim regex is CRAZY,
+            --an optional end of line in the middle of the regex is crazy
+            local pos = vim.fn.searchpos([[^\^\[]] .. text .. [[\]:\s*\(\_$\n\)\?\s*\zs.]],
                 "n")
             return {
                 name = text,
