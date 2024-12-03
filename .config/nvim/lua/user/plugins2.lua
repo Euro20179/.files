@@ -82,6 +82,13 @@ aSetup({
             ns = vim.api.nvim_create_namespace("blink_cmp"),
             use_nvim_cmp_as_default = true
         },
+        completion = {
+            menu = {
+                draw = {
+                    treesitter = true
+                }
+            },
+        },
         keymap = {
             preset = "default",
             ["<c-q>"] = { "show", "hide" },
@@ -176,7 +183,7 @@ aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
 aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
-    default_file_explorer = false,
+    default_file_explorer = true,
     view_options = {
         show_hidden = true
     },
@@ -327,8 +334,7 @@ aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
 
 aSetup({ source = "meznaric/key-analyzer.nvim" }, later, "key-analyzer", {})
 
-aSetup({source = "abecodes/tabout.nvim"}, later, "tabout", {})
+aSetup({ source = "abecodes/tabout.nvim" }, later, "tabout", {})
 
 -- add{ source = "altermo/nelisp" }
 --
-
