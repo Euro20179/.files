@@ -227,7 +227,7 @@ local iShortcuts = {
     -- { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-d>",      vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
+    { "<c-bs>",      vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
     -- }}}
     -- { "<Right>", require"bropilot".accept_block, { desc = "[COPILOT] accept" } }
 }
