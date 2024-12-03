@@ -124,8 +124,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
 })
 
-vim.cmd.color("evangelion")
--- vim.cmd[[color tokyonight]]
+-- vim.cmd.color("evangelion")
+vim.cmd[[color tokyonight]]
 -- Color("tokyonight-moon")
 -- Color("tokyonight")
 -- Color("monet")
