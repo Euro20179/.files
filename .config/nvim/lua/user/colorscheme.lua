@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
 
-        vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
+        -- vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
 
         --this modifies the highlight, but vim.api.nvim_set_hl overwrites it
         vim.cmd [[
