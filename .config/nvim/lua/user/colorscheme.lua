@@ -121,11 +121,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         --better quickfix{{{
         vim.api.nvim_set_hl(0, "BqfPreviewFloat", { background = "#161b2f" })
+        --}}}
     end
 })
 
+vim.cmd.color("onenord")
 -- vim.cmd.color("evangelion")
-vim.cmd[[color tokyonight]]
+-- vim.cmd[[color tokyonight]]
 -- Color("tokyonight-moon")
 -- Color("monet")
 -- Color("kanagawa")

@@ -161,9 +161,16 @@ aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 --}}}
 
 -- Themes {{{
-add { source = "folke/tokyonight.nvim" }
-add { source = "catppuccin/nvim" }
-add { source = "xero/evangelion.nvim" }
+for _, theme in pairs({
+    "folke/tokyonight.nvim",
+    "catppuccin/nvim" ,
+    "xero/evangelion.nvim",
+    "bluz71/vim-moonfly-colors",
+    "savq/melange-nvim",
+    "rmehri01/onenord.nvim",
+}) do
+    add { source = theme }
+end
 -- }}}
 
 -- Navigation {{{
