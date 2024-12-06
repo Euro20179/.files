@@ -168,7 +168,7 @@ for _, theme in pairs({
     "bluz71/vim-moonfly-colors",
     "savq/melange-nvim",
     "rmehri01/onenord.nvim",
-    "tanvirtin/monokai.nvim"
+    "loctvl842/monokai-pro.nvim"
 }) do
     add { source = theme }
 end

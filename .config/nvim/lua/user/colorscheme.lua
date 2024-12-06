@@ -125,7 +125,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
 })
 
-vim.cmd.color("monokai_pro")
+vim.cmd.color("monokai-pro-default")
 -- vim.cmd.color("onenord")
 -- vim.cmd.color("evangelion")
 -- vim.cmd[[color tokyonight]]
