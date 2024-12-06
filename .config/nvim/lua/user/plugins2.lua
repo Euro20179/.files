@@ -182,12 +182,7 @@ aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
     }
 })
 
-aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {
-    preview = {
-        winblend = 0
-    }
-})
-
+aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {})
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
 aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {

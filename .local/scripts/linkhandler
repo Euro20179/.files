@@ -10,7 +10,7 @@ open_with_editor() {
     modified_link="$1"
 
     #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
-    [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || ${EDITOR} "$modified_link"
+    [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || ${GUIEDITOR} "$modified_link"
     exit 0
 }
 

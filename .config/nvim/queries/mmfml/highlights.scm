@@ -15,7 +15,7 @@
 
 [
  (pre_sample)
-] @markup.raw
+] @string
 
 ((divider) @punctuation)
 
@@ -49,7 +49,7 @@
    (box
      (simple_marked_text) @markup.link.label))
  .
- ((simple_marked_text) @_spacer (#match? @_spacer "^\\s*$"))?
+ ((simple_marked_text) @_spacer (#vim-match? @_spacer "^[[:space:]\\n]*$"))?
  .
  (simple_marked_text (link)))
 
