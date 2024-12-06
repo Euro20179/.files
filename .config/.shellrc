@@ -135,7 +135,7 @@ export IMAGE_VIEWER="display"
 export EDITOR="nvim"
 export OPENER="xdg-open"
 export EMAIL="thunderbird -mail"
-export CALENDAR="thunderbird --calendar"
+export CALENDAR="$TERMINAL -e nvim $CLOUD/CAL.mmfml"
 export VIDEO_PLAYER="mpv --geometry=1000"
 export AUDIO_PLAYER="mpv --no-video"
 export MATRIX="nheko"
@@ -229,6 +229,12 @@ p() {
 }
 
 alias "TODO=$EDITOR +'exec \"norm gO\" | wincmd k' $CLOUD/TODO.mmfml"
+
+CAL () {
+    m=$(date +%B)
+    $EDITOR +'exec "norm gO" | wincmd k' +Lfilter'! /Calendar/' +'Lfilter /'"$m/" +"/= $m" $CLOUD/CAL.mmfml
+}
+
 alias wishlist="$EDITOR $HOME/Documents/vimwiki/wishlist.md"
 alias "watchlist=$EDITOR $HOME/Documents/vimwiki/watchlist.m3u"
 alias "ds=cd ~/Downloads"

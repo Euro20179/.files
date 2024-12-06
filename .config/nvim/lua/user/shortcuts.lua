@@ -73,7 +73,6 @@ local nShortcuts = {
     -- }}}
     --telescope {{{
     { "<leader>fj", function() require "mini.extra".pickers.list { scope = "jump" } end, { desc = "[TELESCOPE] jumplist" } },
-    { "<leader>ff", require "mini.pick".builtin.files,                                   { desc = "[TELESCOPE] find files" } },
     { "<leader>ft", function()
         local tagStack = vim.fn.gettagstack(0)
         local items = {}

@@ -99,6 +99,8 @@ if exists("&findfunc")
     endfun
     "endif
     set findfunc=FindFiles
+
+    nnoremap <leader>ff :find 
 endif
 
 nnoremap <A-s>           <CMD>setlocal spell! spelllang=en_us<CR>
