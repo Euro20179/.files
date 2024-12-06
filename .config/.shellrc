@@ -107,6 +107,7 @@ export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
 export NEOFETCH_IMAGE=$(fd . "$SYSTEM_IMAGES/neofetch" | shuf | head -n1)
 export SHELL_LIB="$HOME/.local/lib/shell"
 export CLOUD="/home/cloud"
+export WIKI="$CLOUD/Documents/vimwiki"
 export AIO_SERVER="https://cloud:8887"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
@@ -136,7 +137,7 @@ export GUIEDITOR=neovide
 export EDITOR="nvim"
 export OPENER="xdg-open"
 export EMAIL="thunderbird -mail"
-export CALENDAR="m=\$(date +%B); $GUIEDITOR $CLOUD/CAL.mmfml -- +exec' \"norm gO\" | wincmd k' +Lfilter'! /Calendar/' +Lfilter/\"\$m/\" +\"/= \$m\""
+export CALENDAR="m=\$(date +%B); $GUIEDITOR $WIKI/CAL.mmfml -- +exec' \"norm gO\" | wincmd k' +Lfilter'! /Calendar/' +Lfilter/\"\$m/\" +\"/= \$m\""
 export VIDEO_PLAYER="mpv --geometry=1000"
 export AUDIO_PLAYER="mpv --no-video"
 export MATRIX="nheko"
@@ -229,11 +230,11 @@ p() {
     nvim +"if exists(':Oil') | Oil . | else Explore . | endif" "$file"
 }
 
-alias "TODO=$EDITOR +'exec \"norm gO\" | wincmd k' $CLOUD/TODO.mmfml"
+alias "TODO=$EDITOR +'exec \"norm gO\" | wincmd k' $WIKI/TODO.mmfml"
 
 CAL () {
     m=$(date +%B)
-    $EDITOR +'exec "norm gO" | wincmd k' +Lfilter'! /Calendar/' +'Lfilter /'"$m/" +"/= $m" $CLOUD/CAL.mmfml
+    $EDITOR +'exec "norm gO" | wincmd k' +Lfilter'! /Calendar/' +'Lfilter /'"$m/" +"/= $m" $WIKI/CAL.mmfml
 }
 
 alias wishlist="$EDITOR $HOME/Documents/vimwiki/wishlist.md"
