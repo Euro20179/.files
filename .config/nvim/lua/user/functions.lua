@@ -13,26 +13,6 @@ function EditSheet()
     vim.api.nvim_feedkeys('i' .. "sheet " .. file .. "\n", "n", false)
 end
 
-function PreviewFile()
-    local filename = vim.api.nvim_buf_get_name(0)
-    local out = vim.fn.tempname()
-    local command = ({
-        asciidoc = { "asciidoc", "-o", out, filename },
-        markdown = { "pandoc", "-fgfm", "-thtml", "-o", out, filename }
-    })[vim.bo.filetype]
-
-    if command == nil then
-        vim.print(vim.bo.filetype .. " Does not have a preview command")
-        return
-    end
-
-    vim.system(command):wait()
-
-    local browser = vim.fn.getenv("BROWSER_SCRIPTING") or vim.fn.getenv("BROWSER") or "firefox"
-    vim.cmd.echo('"' .. out .. '"')
-    vim.system({ browser, out })
-end
-
 function Diff_since_tag()
     vim.ui.input({ prompt = "Tag: " }, function(text)
         vim.cmd([[read !git diff ]] .. text)
@@ -99,7 +79,6 @@ end
 
 
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
-vim.api.nvim_create_user_command("Preview", PreviewFile, {})
 -- vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 -- vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})
 --

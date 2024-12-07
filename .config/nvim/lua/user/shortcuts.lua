@@ -136,7 +136,7 @@ local nShortcuts = {
             end)
         end)
     end, { desc = "[TELESCOPE] buffers" } },
-    { "<leader>f/",       require "mini.pick".builtin.grep_live,                       { desc = "[TELESCOPE] grep" } },
+    { "<leader>f/", require "mini.pick".builtin.grep_live,                               { desc = "[TELESCOPE] grep" } },
     { "<C-S-p>", function()
         local keys = require "mini.extra".pickers.keymaps()
         if keys == nil then
@@ -190,25 +190,26 @@ local nShortcuts = {
     { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
     { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
-    { "ZF",         function()
+    { "ZF", function()
         require "mini.misc".zoom(0, {
             width = vim.o.columns - 10,
             height = vim.o.lines - 4,
             col = 5,
             row = 2,
-            border = "single"
+            border = "single",
+            title = vim.api.nvim_buf_get_name(0)
         })
     end },
-    { "<leader>fO", "<cmd>Oil<CR>",          { desc = "[FILE] Open oil" } },
+    { "<leader>fO", "<cmd>Oil<CR>", { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
-    { "<leader>R", ":Regedit ", { desc = "[REGEDIT] edit a register" } },
-    { "<a-m>",     ":make<CR>", { desc = "copmile" } },
-    { "g:",        ":= ",       { desc = "[CMD]: lua expression" } },
+    { "<leader>R",  ":Regedit ",    { desc = "[REGEDIT] edit a register" } },
+    { "<a-m>",      ":make<CR>",    { desc = "copmile" } },
+    { "g:",         ":= ",          { desc = "[CMD]: lua expression" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -226,7 +227,7 @@ local iShortcuts = {
     -- { "<C-bs>",     "<C-w>" },
     { "<c-space>l", "<Esc>:tabnext<CR>" },
     { "<c-space>h", "<Esc>:tabprev<CR>" },
-    { "<c-bs>",      vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
+    { "<c-bs>",     vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
     -- }}}
     -- { "<Right>", require"bropilot".accept_block, { desc = "[COPILOT] accept" } }
 }
@@ -240,7 +241,7 @@ local vShortcuts = {
     { utilLeader .. "e", ":Exec<CR>" },
 }
 for _, map in ipairs(vShortcuts) do
-    vim.keymap.set("v", map[1], map[2])
+    vim.keymap.set("x", map[1], map[2])
 end --}}}
 
 -- Select Mode {{{
@@ -248,9 +249,6 @@ local sShortcuts = {
     --luasnip {{{
     { "<Tab>",   "<cmd>lua vim.snippet.jump(1)<Cr>" },
     { "<S-Tab>", "<cmd>lua vim.snippet.jump(-1)<Cr>" },
-    --visual also binds this for some reason?
-    { "C",       "C",                                expr = true },
-    { "D",       "D",                                expr = true },
     --}}}
 }
 for _, map in ipairs(sShortcuts) do
