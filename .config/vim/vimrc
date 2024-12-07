@@ -268,18 +268,3 @@ call setcellwidths([
     \ [ 0xe700, 0xe7c5, 2 ],
     \ [ 0xf0001, 0xf1af0, 2 ],
 \ ])
-
-
-"if has("nvim")
-"    let s:vimpath = expand("$XDG_CONFIG_HOME/nvim/init.vim")
-"
-"    if filereadable(s:vimpath)
-"        exec "so " . s:vimpath
-"    else
-"        let s:luapath = expand("$XDG_CONFIG_HOME/nvim/init.lua")
-"        if filereadable(s:luapath)
-"            exec "so " . s:luapath
-"        end
-"    endif
-"
-"endif

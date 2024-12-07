@@ -163,7 +163,7 @@ aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 -- Themes {{{
 for _, theme in pairs({
     "folke/tokyonight.nvim",
-    "catppuccin/nvim" ,
+    "catppuccin/nvim",
     "xero/evangelion.nvim",
     "bluz71/vim-moonfly-colors",
     "savq/melange-nvim",
@@ -307,11 +307,37 @@ add { source = "meeehdi-dev/bropilot.nvim", depends = {
     "j-hui/fidget.nvim"
 } }
 
+add { source = "olimorris/codecompanion.nvim", depends = {
+    "nvim-lua/plenary.nvim",
+    "j-hui/fidget.nvim"
+} }
+
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
         return
     end
+
     vim.schedule(function()
+        vim.g.codecompanion_adapter = "llama3.1"
+        setup(later, "codecompanion", {
+            adapters = {
+                ["llama3.1"] = function()
+                    return require "codecompanion.adapters".extend("ollama", {
+                        name = "llama3.1",
+                        schema = {
+                            model = {
+                                default = "llama3.1:latest"
+                            }
+                        },
+                        env = {
+                            url = "http://localhost:11434",
+                            api_key = "",
+                        }
+                    })
+                end
+            }
+        })
+
         setup(later, "bropilot",
             {
                 model = "qwen2.5-coder:1.5b-base",
