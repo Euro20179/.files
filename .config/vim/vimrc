@@ -119,9 +119,6 @@ nnoremap <c-q> <CMD>call <SID>toggleQFWinType("cwin", "cclose")<CR>
 nnoremap <c-s-q> <CMD>call <SID>toggleQFWinType("lwin", "lclose")<CR>
 
 nnoremap <leader>/ :silent lgrep! \| lwindow<S-Left><S-Left>
-
-nnoremap <c-c><c-n> <CMD>cnext<CR>
-nnoremap <c-c><c-p> <CMD>cprev<CR>
 "}}}
 
 "Copy shortcuts{{{

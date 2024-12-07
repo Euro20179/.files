@@ -13,3 +13,4 @@ vim.ui.select = require "mini.pick".ui_select
 
 
 vim.g.neovide_cursor_animation_length = 0
+vim.g.neovide_transparency = 0.7

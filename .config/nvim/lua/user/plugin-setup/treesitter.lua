@@ -59,7 +59,7 @@ require 'nvim-treesitter.configs'.setup {
 
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "org" }
+        additional_vim_regex_highlighting = { "org", "vim"}
         -- disable = function(lang, buf)
         --     -- I genuinely have no idea why this file is so laggy, but the problem has to do with require("treesitter.locals") or whatever that module is called
         --     if vim.api.nvim_buf_get_name(buf) == "/home/euro/Programs/Coding Projects/JS Things/bircle/src/commands.ts" then
