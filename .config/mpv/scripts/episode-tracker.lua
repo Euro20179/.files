@@ -52,7 +52,7 @@ end
 ---@param num string
 local function updateCurrEp(login, location, num)
     local cloud = os.getenv("CLOUD") or ""
-    location = location:gsub(cloud, "cloud:/")
+    location = location:gsub(cloud, "$CLOUD")
     local req = io.popen("curl 'http://10.0.0.2:8888/api/v1/query-v3' -H '" ..
         login .. "' -G -d 'search=location%20%7E%20" .. '"%25' .. location .. '"' .. "' | jq '.ItemId'")
     if req == nil then
