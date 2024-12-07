@@ -217,10 +217,10 @@ vim.keymap.set("n", "<a-l>", ":Links<CR>", {
     buffer = 0
 })
 
-vim.keymap.set("n", "gf", function()
-    --make it so that if the file doesn't exist, it edits anyway
-    vim.cmd.edit("<cfile>")
-end)
+-- vim.keymap.set("n", "gf", function()
+--     --make it so that if the file doesn't exist, it edits anyway
+--     vim.cmd.edit("<cfile>")
+-- end)
 
 vim.keymap.set('n', "[h", function()
     local cursorPos = vim.fn.getpos('.')
