@@ -5,6 +5,7 @@ link="$*"
 : "${LH_NO_EDIT=0}"
 
 # EDITOR="$TERMINAL $EDITOR"
+#
 
 open_with_editor() {
     modified_link="$1"

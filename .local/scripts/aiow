@@ -57,6 +57,8 @@ esac
     }
 }
 
-linkhandler "${prefix}""$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Location")"
+location="$(printf "%s" "$data" | jq -rs ".[]|select(.ItemId==${id}).Location")"
+location=${location/\$CLOUD/$CLOUD}
+linkhandler "${prefix}""${location}"
 
 rm "$tmpMetadata"
