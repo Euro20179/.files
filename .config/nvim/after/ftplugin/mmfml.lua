@@ -403,6 +403,7 @@ end, { buffer = true })
 
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
 vim.opt_local.iskeyword = "!-~,^[,^],^*,^|,^\",192-255"
+vim.opt_local.conceallevel = 0
 
 vim.b.link_search = [=[|\zs.\ze[^)]*|]=]
 
