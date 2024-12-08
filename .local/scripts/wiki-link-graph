@@ -118,7 +118,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "plotly":
             g.add_edge(str(edge), str(connection))
     # g.barnes_hut(gravity=-8000, central_gravity=1.5)
     g.force_atlas_2based()
-    g.show("/tmp/wiki-link-graph.html", notebook=False)
+    g.show("vimwikigraph.html", notebook=False)
 
 else:
     print(f"""
