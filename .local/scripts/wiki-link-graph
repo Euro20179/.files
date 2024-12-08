@@ -52,6 +52,8 @@ def extract_mmfml_links(text: str, cwd: Path):
     for match in link_re.findall(text):
         if re.match(r".*://.*", match):
             yield match
+        elif "/" not in match and "." not in match:
+            continue
         else:
             yield Path(f"{cwd}/{match}").resolve()
 
@@ -80,7 +82,7 @@ def traverse(start: Path):
         cur = stack.pop()
         visited.add(cur)
         for link in extract_links(cur):
-            graph.add_edge(cur, str(link))
+            graph.add_edge(cur, link)
             if link in visited:
                 continue
             if os.path.exists(link):
@@ -110,13 +112,13 @@ if len(sys.argv) > 1 and sys.argv[1] == "plotly":
         height = '1000',
     )
     for edge in graph.edges:
-        g.add_node(str(edge), label=str(edge))
+        g.add_node(str(edge), size=len(graph.edges[edge]) * 2)
         for connection in graph.edges[edge]:
-            g.add_node(str(connection), label=str(connection))
+            g.add_node(str(connection), size=len(graph.edges.get(connection, [1])) * 2)
             g.add_edge(str(edge), str(connection))
     # g.barnes_hut(gravity=-8000, central_gravity=1.5)
     g.force_atlas_2based()
-    g.show('test.html', notebook=False)
+    g.show("/tmp/wiki-link-graph.html", notebook=False)
 
 else:
     print(f"""
