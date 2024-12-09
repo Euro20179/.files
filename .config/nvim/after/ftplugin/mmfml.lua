@@ -3,6 +3,24 @@ vim.api.nvim_set_hl(0, "@markup.mmfml.highlight", {
     fg = "black"
 })
 
+local function falsey(val)
+        if val == 0 or val == "" or val == nil then
+        return true
+        end
+        return false
+end
+
+local function getScreenWidth()
+    local width = vim.b.mmfml_textwidth
+    if falsey(width) then
+        width = vim.bo.textwidth
+    end
+    if falsey(width) then
+        width = 80
+    end
+    return width
+end
+
 ---@param node TSNode
 ---@param type string
 ---@return TSNode[]
@@ -285,7 +303,7 @@ vim.keymap.set('n', "]h", function()
 end, { remap = true })
 
 vim.api.nvim_create_user_command("Divline", function(cmdData)
-    local endCol = vim.b.mmfml_textwidth or 80
+    local endCol = getScreenWidth()
 
     local charCount = endCol - 1
     if #cmdData.fargs == 2 then
@@ -312,7 +330,7 @@ vim.api.nvim_create_user_command("Divline", function(cmdData)
 end, { range = true, bang = true, nargs = "*" })
 
 vim.api.nvim_create_user_command("Divword", function(cmdData)
-    local endCol = vim.b.mmfml_textwidth or 80
+    local endCol = getScreenWidth()
 
     local charCount = endCol
     if #cmdData.fargs > 2 then
@@ -407,4 +425,4 @@ vim.opt_local.conceallevel = 0
 
 vim.b.link_search = [=[|\zs.\ze[^)]*|]=]
 
-vim.b.mmfml_textwidth = vim.wo.colorcolumn
+vim.b.mmfml_textwidth = vim.bo.textwidth
