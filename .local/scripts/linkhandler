@@ -11,7 +11,13 @@ open_with_editor() {
     modified_link="$1"
 
     #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
-    [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || ${GUIEDITOR} "$modified_link"
+    [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || {
+        if tty; then
+            "$EDITOR" "$modified_link"
+        else
+            ${GUIEDITOR} "$modified_link"
+        fi
+    }
     exit 0
 }
 
@@ -57,7 +63,9 @@ case "$link" in
 *://cloud://*)
     extra_protocol="${link%%cloud://*}"
     new_link="${extra_protocol}${CLOUD}/${link#*://cloud://}"
-    linkhandler "$new_link"; exit;;
+    linkhandler "$new_link"
+    exit
+    ;;
 # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
 exe://*) "${link#exe://}" ;;
 media://*) mpv "${link#media://}" ;;
