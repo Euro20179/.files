@@ -1,1306 +1,1306 @@
-^@	0x00	null (nul) (digraph)
-^A	0x01	start of heading (soh) (digraph)
-^B	0x02	start of text (stx) (digraph)
-^C	0x03	end of text (etx) (digraph)
-^D	0x04	end of transmission (eot) (digraph)
-^E	0x05	enquiry (enq) (digraph)
-^F	0x06	acknowledge (ack) (digraph)
-^G	0x07	bell (bel) (digraph)
-^H	0x08	backspace (bs) (digraph)
-^I	0x09	character tabulation (ht) (digraph)
-^@	0x0a	line feed (lf) (digraph)
-^K	0x0b	line tabulation (vt) (digraph)
-^L	0x0c	form feed (ff) (digraph)
-^M	0x0d	carriage return (cr) (digraph)
-^N	0x0e	shift out (so) (digraph)
-^O	0x0f	shift in (si) (digraph)
-^P	0x10	datalink escape (dle) (digraph)
-^Q	0x11	device control one (dc1) (digraph)
-^R	0x12	device control two (dc2) (digraph)
-^S	0x13	device control three (dc3) (digraph)
-^T	0x14	device control four (dc4) (digraph)
-^U	0x15	negative acknowledge (nak) (digraph)
-^V	0x16	synchronous idle (syn) (digraph)
-^W	0x17	end of transmission block (etb) (digraph)
-^X	0x18	cancel (can) (digraph)
-^Y	0x19	end of medium (em) (digraph)
-^Z	0x1a	substitute (sub) (digraph)
-^[	0x1b	escape (esc) (digraph)
-^\	0x1c	file separator (is4) (digraph)
-^]	0x1d	group separator (is3) (digraph)
-^^	0x1e	record separator (is2) (digraph)
-^_	0x1f	unit separator (is1) (digraph)
-0x20	space (digraph)
-#	0x23	number sign (digraph)
-$	0x24	dollar sign (digraph)
-@	0x40	commercial at (digraph)
-[	0x5b	left square bracket (digraph)
-\	0x5c	reverse solidus (digraph)
-]	0x5d	right square bracket (digraph)
-^	0x5e	circumflex accent (digraph)
-`	0x60	grave accent (digraph)
-{	0x7b	left curly bracket (digraph)
-|	0x7c	vertical line (digraph)
-}	0x7d	right curly bracket (digraph)
-~	0x7e	tilde (digraph)
-^?	0x7f	delete (del) (digraph)
-~@	0x80	padding character (pad) (digraph)
-~A	0x81	high octet preset (hop) (digraph)
-~B	0x82	break permitted here (bph) (digraph)
-~C	0x83	no break here (nbh) (digraph)
-~D	0x84	index (ind) (digraph)
-~E	0x85	next line (nel) (digraph)
-~F	0x86	start of selected area (ssa) (digraph)
-~G	0x87	end of selected area (esa) (digraph)
-~H	0x88	character tabulation set (hts) (digraph)
-~I	0x89	character tabulation with justification (htj) (digraph)
-~J	0x8a	line tabulation set (vts) (digraph)
-~K	0x8b	partial line forward (pld) (digraph)
-~L	0x8c	partial line backward (plu) (digraph)
-~M	0x8d	reverse line feed (ri) (digraph)
-~N	0x8e	single-shift two (ss2) (digraph)
-~O	0x8f	single-shift three (ss3) (digraph)
-~P	0x90	device control string (dcs) (digraph)
-~Q	0x91	private use one (pu1) (digraph)
-~R	0x92	private use two (pu2) (digraph)
-~S	0x93	set transmit state (sts) (digraph)
-~T	0x94	cancel character (cch) (digraph)
-~U	0x95	message waiting (mw) (digraph)
-~V	0x96	start of guarded area (spa) (digraph)
-~W	0x97	end of guarded area (epa) (digraph)
-~X	0x98	start of string (sos) (digraph)
-~Y	0x99	single graphic character introducer (sgci) (digraph)
-~Z	0x9a	single character introducer (sci) (digraph)
-~[	0x9b	control sequence introducer (csi) (digraph)
-~\	0x9c	string terminator (st) (digraph)
-~]	0x9d	operating system command (osc) (digraph)
-~^	0x9e	privacy message (pm) (digraph)
-~_	0x9f	application program command (apc) (digraph)
-|	0xa0	no-break space (digraph)
-¡	0xa1	inverted exclamation mark (digraph)
-¢	0xa2	cent sign (digraph)
-£	0xa3	pound sign (digraph)
-¤	0xa4	currency sign (digraph)
-¥	0xa5	yen sign (digraph)
-¦	0xa6	broken bar (digraph)
-§	0xa7	section sign (digraph)
-¨	0xa8	diaeresis (digraph)
-©	0xa9	copyright sign (digraph)
-ª	0xaa	feminine ordinal indicator (digraph)
-«	0xab	left-pointing double angle quotation mark (digraph)
-¬	0xac	not sign (digraph)
-­	0xad	soft hyphen (digraph)
-®	0xae	registered sign (digraph)
-¯	0xaf	macron (digraph)
-°	0xb0	degree sign (digraph)
-±	0xb1	plus-minus sign (digraph)
-²	0xb2	superscript two (digraph)
-³	0xb3	superscript three (digraph)
-´	0xb4	acute accent (digraph)
-µ	0xb5	micro sign (digraph)
-¶	0xb6	pilcrow sign (digraph)
-·	0xb7	middle dot (digraph)
-¸	0xb8	cedilla (digraph)
-¹	0xb9	superscript one (digraph)
-º	0xba	masculine ordinal indicator (digraph)
-»	0xbb	right-pointing double angle quotation mark (digraph)
-¼	0xbc	vulgar fraction one quarter (digraph)
-½	0xbd	vulgar fraction one half (digraph)
-¾	0xbe	vulgar fraction three quarters (digraph)
-¿	0xbf	inverted question mark (digraph)
-À	0xc0	latin capital letter a with grave (digraph)
-Á	0xc1	latin capital letter a with acute (digraph)
-Â	0xc2	latin capital letter a with circumflex (digraph)
-Ã	0xc3	latin capital letter a with tilde (digraph)
-Ä	0xc4	latin capital letter a with diaeresis (digraph)
-Å	0xc5	latin capital letter a with ring above (digraph)
-Æ	0xc6	latin capital letter ae (digraph)
-Ç	0xc7	latin capital letter c with cedilla (digraph)
-È	0xc8	latin capital letter e with grave (digraph)
-É	0xc9	latin capital letter e with acute (digraph)
-Ê	0xca	latin capital letter e with circumflex (digraph)
-Ë	0xcb	latin capital letter e with diaeresis (digraph)
-Ì	0xcc	latin capital letter i with grave (digraph)
-Í	0xcd	latin capital letter i with acute (digraph)
-Î	0xce	latin capital letter i with circumflex (digraph)
-Ï	0xcf	latin capital letter i with diaeresis (digraph)
-Ð	0xd0	latin capital letter eth (icelandic) (digraph)
-Ñ	0xd1	latin capital letter n with tilde (digraph)
-Ò	0xd2	latin capital letter o with grave (digraph)
-Ó	0xd3	latin capital letter o with acute (digraph)
-Ô	0xd4	latin capital letter o with circumflex (digraph)
-Õ	0xd5	latin capital letter o with tilde (digraph)
-Ö	0xd6	latin capital letter o with diaeresis (digraph)
-×	0xd7	multiplication sign (digraph)
-Ø	0xd8	latin capital letter o with stroke (digraph)
-Ù	0xd9	latin capital letter u with grave (digraph)
-Ú	0xda	latin capital letter u with acute (digraph)
-Û	0xdb	latin capital letter u with circumflex (digraph)
-Ü	0xdc	latin capital letter u with diaeresis (digraph)
-Ý	0xdd	latin capital letter y with acute (digraph)
-Þ	0xde	latin capital letter thorn (icelandic) (digraph)
-ß	0xdf	latin small letter sharp s (german) (digraph)
-à	0xe0	latin small letter a with grave (digraph)
-á	0xe1	latin small letter a with acute (digraph)
-â	0xe2	latin small letter a with circumflex (digraph)
-ã	0xe3	latin small letter a with tilde (digraph)
-ä	0xe4	latin small letter a with diaeresis (digraph)
-å	0xe5	latin small letter a with ring above (digraph)
-æ	0xe6	latin small letter ae (digraph)
-ç	0xe7	latin small letter c with cedilla (digraph)
-è	0xe8	latin small letter e with grave (digraph)
-é	0xe9	latin small letter e with acute (digraph)
-ê	0xea	latin small letter e with circumflex (digraph)
-ë	0xeb	latin small letter e with diaeresis (digraph)
-ì	0xec	latin small letter i with grave (digraph)
-í	0xed	latin small letter i with acute (digraph)
-î	0xee	latin small letter i with circumflex (digraph)
-ï	0xef	latin small letter i with diaeresis (digraph)
-ð	0xf0	latin small letter eth (icelandic) (digraph)
-ñ	0xf1	latin small letter n with tilde (digraph)
-ò	0xf2	latin small letter o with grave (digraph)
-ó	0xf3	latin small letter o with acute (digraph)
-ô	0xf4	latin small letter o with circumflex (digraph)
-õ	0xf5	latin small letter o with tilde (digraph)
-ö	0xf6	latin small letter o with diaeresis (digraph)
-÷	0xf7	division sign (digraph)
-ø	0xf8	latin small letter o with stroke (digraph)
-ù	0xf9	latin small letter u with grave (digraph)
-ú	0xfa	latin small letter u with acute (digraph)
-û	0xfb	latin small letter u with circumflex (digraph)
-ü	0xfc	latin small letter u with diaeresis (digraph)
-ý	0xfd	latin small letter y with acute (digraph)
-þ	0xfe	latin small letter thorn (icelandic) (digraph)
-ÿ	0xff	latin small letter y with diaeresis (digraph)
-Ā	0100	latin capital letter a with macron (digraph)
-ā	0101	latin small letter a with macron (digraph)
-Ă	0102	latin capital letter a with breve (digraph)
-ă	0103	latin small letter a with breve (digraph)
-Ą	0104	latin capital letter a with ogonek (digraph)
-ą	0105	latin small letter a with ogonek (digraph)
-Ć	0106	latin capital letter c with acute (digraph)
-ć	0107	latin small letter c with acute (digraph)
-Ĉ	0108	latin capital letter c with circumflex (digraph)
-ĉ	0109	latin small letter c with circumflex (digraph)
-Ċ	010A	latin capital letter c with dot above (digraph)
-ċ	010B	latin small letter c with dot above (digraph)
-Č	010C	latin capital letter c with caron (digraph)
-č	010D	latin small letter c with caron (digraph)
-Ď	010E	latin capital letter d with caron (digraph)
-ď	010F	latin small letter d with caron (digraph)
-Đ	0110	latin capital letter d with stroke (digraph)
-đ	0111	latin small letter d with stroke (digraph)
-Ē	0112	latin capital letter e with macron (digraph)
-ē	0113	latin small letter e with macron (digraph)
-Ĕ	0114	latin capital letter e with breve (digraph)
-ĕ	0115	latin small letter e with breve (digraph)
-Ė	0116	latin capital letter e with dot above (digraph)
-ė	0117	latin small letter e with dot above (digraph)
-Ę	0118	latin capital letter e with ogonek (digraph)
-ę	0119	latin small letter e with ogonek (digraph)
-Ě	011A	latin capital letter e with caron (digraph)
-ě	011B	latin small letter e with caron (digraph)
-Ĝ	011C	latin capital letter g with circumflex (digraph)
-ĝ	011D	latin small letter g with circumflex (digraph)
-Ğ	011E	latin capital letter g with breve (digraph)
-ğ	011F	latin small letter g with breve (digraph)
-Ġ	0120	latin capital letter g with dot above (digraph)
-ġ	0121	latin small letter g with dot above (digraph)
-Ģ	0122	latin capital letter g with cedilla (digraph)
-ģ	0123	latin small letter g with cedilla (digraph)
-Ĥ	0124	latin capital letter h with circumflex (digraph)
-ĥ	0125	latin small letter h with circumflex (digraph)
-Ħ	0126	latin capital letter h with stroke (digraph)
-ħ	0127	latin small letter h with stroke (digraph)
-Ĩ	0128	latin capital letter i with tilde (digraph)
-ĩ	0129	latin small letter i with tilde (digraph)
-Ī	012A	latin capital letter i with macron (digraph)
-ī	012B	latin small letter i with macron (digraph)
-Ĭ	012C	latin capital letter i with breve (digraph)
-ĭ	012D	latin small letter i with breve (digraph)
-Į	012E	latin capital letter i with ogonek (digraph)
-į	012F	latin small letter i with ogonek (digraph)
-İ	0130	latin capital letter i with dot above (digraph)
-ı	0131	latin small letter dotless i (digraph)
-Ĳ	0132	latin capital ligature ij (digraph)
-ĳ	0133	latin small ligature ij (digraph)
-Ĵ	0134	latin capital letter j with circumflex (digraph)
-ĵ	0135	latin small letter j with circumflex (digraph)
-Ķ	0136	latin capital letter k with cedilla (digraph)
-ķ	0137	latin small letter k with cedilla (digraph)
-ĸ	0138	latin small letter kra (digraph)
-Ĺ	0139	latin capital letter l with acute (digraph)
-ĺ	013A	latin small letter l with acute (digraph)
-Ļ	013B	latin capital letter l with cedilla (digraph)
-ļ	013C	latin small letter l with cedilla (digraph)
-Ľ	013D	latin capital letter l with caron (digraph)
-ľ	013E	latin small letter l with caron (digraph)
-Ŀ	013F	latin capital letter l with middle dot (digraph)
-ŀ	0140	latin small letter l with middle dot (digraph)
-Ł	0141	latin capital letter l with stroke (digraph)
-ł	0142	latin small letter l with stroke (digraph)
-Ń	0143	latin capital letter n with acute ` (digraph)
-ń	0144	latin small letter n with acute ` (digraph)
-Ņ	0145	latin capital letter n with cedilla ` (digraph)
-ņ	0146	latin small letter n with cedilla ` (digraph)
-Ň	0147	latin capital letter n with caron ` (digraph)
-ň	0148	latin small letter n with caron ` (digraph)
-ŉ	0149	latin small letter n preceded by apostrophe ` (digraph)
-Ŋ	014A	latin capital letter eng (digraph)
-ŋ	014B	latin small letter eng (digraph)
-Ō	014C	latin capital letter o with macron (digraph)
-ō	014D	latin small letter o with macron (digraph)
-Ŏ	014E	latin capital letter o with breve (digraph)
-ŏ	014F	latin small letter o with breve (digraph)
-Ő	0150	latin capital letter o with double acute (digraph)
-ő	0151	latin small letter o with double acute (digraph)
-Œ	0152	latin capital ligature oe (digraph)
-œ	0153	latin small ligature oe (digraph)
-Ŕ	0154	latin capital letter r with acute (digraph)
-ŕ	0155	latin small letter r with acute (digraph)
-Ŗ	0156	latin capital letter r with cedilla (digraph)
-ŗ	0157	latin small letter r with cedilla (digraph)
-Ř	0158	latin capital letter r with caron (digraph)
-ř	0159	latin small letter r with caron (digraph)
-Ś	015A	latin capital letter s with acute (digraph)
-ś	015B	latin small letter s with acute (digraph)
-Ŝ	015C	latin capital letter s with circumflex (digraph)
-ŝ	015D	latin small letter s with circumflex (digraph)
-Ş	015E	latin capital letter s with cedilla (digraph)
-ş	015F	latin small letter s with cedilla (digraph)
-Š	0160	latin capital letter s with caron (digraph)
-š	0161	latin small letter s with caron (digraph)
-Ţ	0162	latin capital letter t with cedilla (digraph)
-ţ	0163	latin small letter t with cedilla (digraph)
-Ť	0164	latin capital letter t with caron (digraph)
-ť	0165	latin small letter t with caron (digraph)
-Ŧ	0166	latin capital letter t with stroke (digraph)
-ŧ	0167	latin small letter t with stroke (digraph)
-Ũ	0168	latin capital letter u with tilde (digraph)
-ũ	0169	latin small letter u with tilde (digraph)
-Ū	016A	latin capital letter u with macron (digraph)
-ū	016B	latin small letter u with macron (digraph)
-Ŭ	016C	latin capital letter u with breve (digraph)
-ŭ	016D	latin small letter u with breve (digraph)
-Ů	016E	latin capital letter u with ring above (digraph)
-ů	016F	latin small letter u with ring above (digraph)
-Ű	0170	latin capital letter u with double acute (digraph)
-ű	0171	latin small letter u with double acute (digraph)
-Ų	0172	latin capital letter u with ogonek (digraph)
-ų	0173	latin small letter u with ogonek (digraph)
-Ŵ	0174	latin capital letter w with circumflex (digraph)
-ŵ	0175	latin small letter w with circumflex (digraph)
-Ŷ	0176	latin capital letter y with circumflex (digraph)
-ŷ	0177	latin small letter y with circumflex (digraph)
-Ÿ	0178	latin capital letter y with diaeresis (digraph)
-Ź	0179	latin capital letter z with acute (digraph)
-ź	017A	latin small letter z with acute (digraph)
-Ż	017B	latin capital letter z with dot above (digraph)
-ż	017C	latin small letter z with dot above (digraph)
-Ž	017D	latin capital letter z with caron (digraph)
-ž	017E	latin small letter z with caron (digraph)
-Ơ	01A0	latin capital letter o with horn (digraph)
-ơ	01A1	latin small letter o with horn (digraph)
-Ƣ	01A2	latin capital letter oi (digraph)
-ƣ	01A3	latin small letter oi (digraph)
-Ʀ	01A6	latin letter yr (digraph)
-Ư	01AF	latin capital letter u with horn (digraph)
-ư	01B0	latin small letter u with horn (digraph)
-Ƶ	01B5	latin capital letter z with stroke (digraph)
-ƶ	01B6	latin small letter z with stroke (digraph)
-Ʒ	01B7	latin capital letter ezh (digraph)
-Ǎ	01CD	latin capital letter a with caron (digraph)
-ǎ	01CE	latin small letter a with caron (digraph)
-Ǐ	01CF	latin capital letter i with caron (digraph)
-ǐ	01D0	latin small letter i with caron (digraph)
-Ǒ	01D1	latin capital letter o with caron (digraph)
-ǒ	01D2	latin small letter o with caron (digraph)
-Ǔ	01D3	latin capital letter u with caron (digraph)
-ǔ	01D4	latin small letter u with caron (digraph)
-Ǟ	01DE	latin capital letter a with diaeresis and macron (digraph)
-ǟ	01DF	latin small letter a with diaeresis and macron (digraph)
-Ǡ	01E0	latin capital letter a with dot above and macron (digraph)
-ǡ	01E1	latin small letter a with dot above and macron (digraph)
-Ǣ	01E2	latin capital letter ae with macron (digraph)
-ǣ	01E3	latin small letter ae with macron (digraph)
-Ǥ	01E4	latin capital letter g with stroke (digraph)
-ǥ	01E5	latin small letter g with stroke (digraph)
-Ǧ	01E6	latin capital letter g with caron (digraph)
-ǧ	01E7	latin small letter g with caron (digraph)
-Ǩ	01E8	latin capital letter k with caron (digraph)
-ǩ	01E9	latin small letter k with caron (digraph)
-Ǫ	01EA	latin capital letter o with ogonek (digraph)
-ǫ	01EB	latin small letter o with ogonek (digraph)
-Ǭ	01EC	latin capital letter o with ogonek and macron (digraph)
-ǭ	01ED	latin small letter o with ogonek and macron (digraph)
-Ǯ	01EE	latin capital letter ezh with caron (digraph)
-ǯ	01EF	latin small letter ezh with caron (digraph)
-ǰ	01F0	latin small letter j with caron (digraph)
-Ǵ	01F4	latin capital letter g with acute (digraph)
-ǵ	01F5	latin small letter g with acute (digraph)
-ʿ	02BF	modifier letter left half ring (digraph)
-ˇ	02C7	caron (digraph)
-˘	02D8	breve (digraph)
-˙	02D9	dot above (digraph)
-˚	02DA	ring above (digraph)
-˛	02DB	ogonek (digraph)
-˝	02DD	double acute accent (digraph)
-Ά	0386	greek capital letter alpha with tonos (digraph)
-Έ	0388	greek capital letter epsilon with tonos (digraph)
-Ή	0389	greek capital letter eta with tonos (digraph)
-Ί	038A	greek capital letter iota with tonos (digraph)
-Ό	038C	greek capital letter omicron with tonos (digraph)
-Ύ	038E	greek capital letter upsilon with tonos (digraph)
-Ώ	038F	greek capital letter omega with tonos (digraph)
-ΐ	0390	greek small letter iota with dialytika and tonos (digraph)
-Α	0391	greek capital letter alpha (digraph)
-Β	0392	greek capital letter beta (digraph)
-Γ	0393	greek capital letter gamma (digraph)
-Δ	0394	greek capital letter delta (digraph)
-Ε	0395	greek capital letter epsilon (digraph)
-Ζ	0396	greek capital letter zeta (digraph)
-Η	0397	greek capital letter eta (digraph)
-Θ	0398	greek capital letter theta (digraph)
-Ι	0399	greek capital letter iota (digraph)
-Κ	039A	greek capital letter kappa (digraph)
-Λ	039B	greek capital letter lamda (aka lambda) (digraph)
-Μ	039C	greek capital letter mu (digraph)
-Ν	039D	greek capital letter nu (digraph)
-Ξ	039E	greek capital letter xi (digraph)
-Ο	039F	greek capital letter omicron (digraph)
-Π	03A0	greek capital letter pi (digraph)
-Ρ	03A1	greek capital letter rho (digraph)
-Σ	03A3	greek capital letter sigma (digraph)
-Τ	03A4	greek capital letter tau (digraph)
-Υ	03A5	greek capital letter upsilon (digraph)
-Φ	03A6	greek capital letter phi (digraph)
-Χ	03A7	greek capital letter chi (digraph)
-Ψ	03A8	greek capital letter psi (digraph)
-Ω	03A9	greek capital letter omega (digraph)
-Ϊ	03AA	greek capital letter iota with dialytika (digraph)
-Ϋ	03AB	greek capital letter upsilon with dialytika (digraph)
-ά	03AC	greek small letter alpha with tonos (digraph)
-έ	03AD	greek small letter epsilon with tonos (digraph)
-ή	03AE	greek small letter eta with tonos (digraph)
-ί	03AF	greek small letter iota with tonos (digraph)
-ΰ	03B0	greek small letter upsilon with dialytika and tonos (digraph)
-α	03B1	greek small letter alpha (digraph)
-β	03B2	greek small letter beta (digraph)
-γ	03B3	greek small letter gamma (digraph)
-δ	03B4	greek small letter delta (digraph)
-ε	03B5	greek small letter epsilon (digraph)
-ζ	03B6	greek small letter zeta (digraph)
-η	03B7	greek small letter eta (digraph)
-θ	03B8	greek small letter theta (digraph)
-ι	03B9	greek small letter iota (digraph)
-κ	03BA	greek small letter kappa (digraph)
-λ	03BB	greek small letter lamda (aka lambda) (digraph)
-μ	03BC	greek small letter mu (digraph)
-ν	03BD	greek small letter nu (digraph)
-ξ	03BE	greek small letter xi (digraph)
-ο	03BF	greek small letter omicron (digraph)
-π	03C0	greek small letter pi (digraph)
-ρ	03C1	greek small letter rho (digraph)
-ς	03C2	greek small letter final sigma (digraph)
-σ	03C3	greek small letter sigma (digraph)
-τ	03C4	greek small letter tau (digraph)
-υ	03C5	greek small letter upsilon (digraph)
-φ	03C6	greek small letter phi (digraph)
-χ	03C7	greek small letter chi (digraph)
-ψ	03C8	greek small letter psi (digraph)
-ω	03C9	greek small letter omega (digraph)
-ϊ	03CA	greek small letter iota with dialytika (digraph)
-ϋ	03CB	greek small letter upsilon with dialytika (digraph)
-ό	03CC	greek small letter omicron with tonos (digraph)
-ύ	03CD	greek small letter upsilon with tonos (digraph)
-ώ	03CE	greek small letter omega with tonos (digraph)
-Ϙ	03D8	greek letter archaic koppa (digraph)
-ϙ	03D9	greek small letter archaic koppa (digraph)
-Ϛ	03DA	greek letter stigma (digraph)
-ϛ	03DB	greek small letter stigma (digraph)
-Ϝ	03DC	greek letter digamma (digraph)
-ϝ	03DD	greek small letter digamma (digraph)
-Ϟ	03DE	greek letter koppa (digraph)
-ϟ	03DF	greek small letter koppa (digraph)
-Ϡ	03E0	greek letter sampi (digraph)
-ϡ	03E1	greek small letter sampi (digraph)
-ϴ	03F4	greek capital theta symbol (digraph)
-ϵ	03F5	greek lunate epsilon symbol (digraph)
-Ё	0401	cyrillic capital letter io (digraph)
-Ђ	0402	cyrillic capital letter dje (digraph)
-Ѓ	0403	cyrillic capital letter gje (digraph)
-Є	0404	cyrillic capital letter ukrainian ie (digraph)
-Ѕ	0405	cyrillic capital letter dze (digraph)
-І	0406	cyrillic capital letter byelorussian-ukrainian i (digraph)
-Ї	0407	cyrillic capital letter yi (digraph)
-Ј	0408	cyrillic capital letter je (digraph)
-Љ	0409	cyrillic capital letter lje (digraph)
-Њ	040A	cyrillic capital letter nje (digraph)
-Ћ	040B	cyrillic capital letter tshe (digraph)
-Ќ	040C	cyrillic capital letter kje (digraph)
-Ў	040E	cyrillic capital letter short u (digraph)
-Џ	040F	cyrillic capital letter dzhe (digraph)
-А	0410	cyrillic capital letter a (digraph)
-Б	0411	cyrillic capital letter be (digraph)
-В	0412	cyrillic capital letter ve (digraph)
-Г	0413	cyrillic capital letter ghe (digraph)
-Д	0414	cyrillic capital letter de (digraph)
-Е	0415	cyrillic capital letter ie (digraph)
-Ж	0416	cyrillic capital letter zhe (digraph)
-З	0417	cyrillic capital letter ze (digraph)
-И	0418	cyrillic capital letter i (digraph)
-Й	0419	cyrillic capital letter short i (digraph)
-К	041A	cyrillic capital letter ka (digraph)
-Л	041B	cyrillic capital letter el (digraph)
-М	041C	cyrillic capital letter em (digraph)
-Н	041D	cyrillic capital letter en (digraph)
-О	041E	cyrillic capital letter o (digraph)
-П	041F	cyrillic capital letter pe (digraph)
-Р	0420	cyrillic capital letter er (digraph)
-С	0421	cyrillic capital letter es (digraph)
-Т	0422	cyrillic capital letter te (digraph)
-У	0423	cyrillic capital letter u (digraph)
-Ф	0424	cyrillic capital letter ef (digraph)
-Х	0425	cyrillic capital letter ha (digraph)
-Ц	0426	cyrillic capital letter tse (digraph)
-Ч	0427	cyrillic capital letter che (digraph)
-Ш	0428	cyrillic capital letter sha (digraph)
-Щ	0429	cyrillic capital letter shcha (digraph)
-Ъ	042A	cyrillic capital letter hard sign (digraph)
-Ы	042B	cyrillic capital letter yeru (digraph)
-Ь	042C	cyrillic capital letter soft sign (digraph)
-Э	042D	cyrillic capital letter e (digraph)
-Ю	042E	cyrillic capital letter yu (digraph)
-Я	042F	cyrillic capital letter ya (digraph)
-а	0430	cyrillic small letter a (digraph)
-б	0431	cyrillic small letter be (digraph)
-в	0432	cyrillic small letter ve (digraph)
-г	0433	cyrillic small letter ghe (digraph)
-д	0434	cyrillic small letter de (digraph)
-е	0435	cyrillic small letter ie (digraph)
-ж	0436	cyrillic small letter zhe (digraph)
-з	0437	cyrillic small letter ze (digraph)
-и	0438	cyrillic small letter i (digraph)
-й	0439	cyrillic small letter short i (digraph)
-к	043A	cyrillic small letter ka (digraph)
-л	043B	cyrillic small letter el (digraph)
-м	043C	cyrillic small letter em (digraph)
-н	043D	cyrillic small letter en (digraph)
-о	043E	cyrillic small letter o (digraph)
-п	043F	cyrillic small letter pe (digraph)
-р	0440	cyrillic small letter er (digraph)
-с	0441	cyrillic small letter es (digraph)
-т	0442	cyrillic small letter te (digraph)
-у	0443	cyrillic small letter u (digraph)
-ф	0444	cyrillic small letter ef (digraph)
-х	0445	cyrillic small letter ha (digraph)
-ц	0446	cyrillic small letter tse (digraph)
-ч	0447	cyrillic small letter che (digraph)
-ш	0448	cyrillic small letter sha (digraph)
-щ	0449	cyrillic small letter shcha (digraph)
-ъ	044A	cyrillic small letter hard sign (digraph)
-ы	044B	cyrillic small letter yeru (digraph)
-ь	044C	cyrillic small letter soft sign (digraph)
-э	044D	cyrillic small letter e (digraph)
-ю	044E	cyrillic small letter yu (digraph)
-я	044F	cyrillic small letter ya (digraph)
-ё	0451	cyrillic small letter io (digraph)
-ђ	0452	cyrillic small letter dje (digraph)
-ѓ	0453	cyrillic small letter gje (digraph)
-є	0454	cyrillic small letter ukrainian ie (digraph)
-ѕ	0455	cyrillic small letter dze (digraph)
-і	0456	cyrillic small letter byelorussian-ukrainian i (digraph)
-ї	0457	cyrillic small letter yi (digraph)
-ј	0458	cyrillic small letter je (digraph)
-љ	0459	cyrillic small letter lje (digraph)
-њ	045A	cyrillic small letter nje (digraph)
-ћ	045B	cyrillic small letter tshe (digraph)
-ќ	045C	cyrillic small letter kje (digraph)
-ў	045E	cyrillic small letter short u (digraph)
-џ	045F	cyrillic small letter dzhe (digraph)
-Ѣ	0462	cyrillic capital letter yat (digraph)
-ѣ	0463	cyrillic small letter yat (digraph)
-Ѫ	046A	cyrillic capital letter big yus (digraph)
-ѫ	046B	cyrillic small letter big yus (digraph)
-Ѳ	0472	cyrillic capital letter fita (digraph)
-ѳ	0473	cyrillic small letter fita (digraph)
-Ѵ	0474	cyrillic capital letter izhitsa (digraph)
-ѵ	0475	cyrillic small letter izhitsa (digraph)
-Ҁ	0480	cyrillic capital letter koppa (digraph)
-ҁ	0481	cyrillic small letter koppa (digraph)
-Ґ	0490	cyrillic capital letter ghe with upturn (digraph)
-ґ	0491	cyrillic small letter ghe with upturn (digraph)
-א	05D0	hebrew letter alef (digraph)
-ב	05D1	hebrew letter bet (digraph)
-ג	05D2	hebrew letter gimel (digraph)
-ד	05D3	hebrew letter dalet (digraph)
-ה	05D4	hebrew letter he (digraph)
-ו	05D5	hebrew letter vav (digraph)
-ז	05D6	hebrew letter zayin (digraph)
-ח	05D7	hebrew letter het (digraph)
-ט	05D8	hebrew letter tet (digraph)
-י	05D9	hebrew letter yod (digraph)
-ך	05DA	hebrew letter final kaf (digraph)
-כ	05DB	hebrew letter kaf (digraph)
-ל	05DC	hebrew letter lamed (digraph)
-ם	05DD	hebrew letter final mem (digraph)
-מ	05DE	hebrew letter mem (digraph)
-ן	05DF	hebrew letter final nun ` (digraph)
-נ	05E0	hebrew letter nun ` (digraph)
-ס	05E1	hebrew letter samekh (digraph)
-ע	05E2	hebrew letter ayin (digraph)
-ף	05E3	hebrew letter final pe (digraph)
-פ	05E4	hebrew letter pe (digraph)
-ץ	05E5	hebrew letter final tsadi (digraph)
-צ	05E6	hebrew letter tsadi (digraph)
-ק	05E7	hebrew letter qof (digraph)
-ר	05E8	hebrew letter resh (digraph)
-ש	05E9	hebrew letter shin (digraph)
-ת	05EA	hebrew letter tav (digraph)
-،	060C	arabic comma (digraph)
-؛	061B	arabic semicolon (digraph)
-؟	061F	arabic question mark (digraph)
-ء	0621	arabic letter hamza (digraph)
-آ	0622	arabic letter alef with madda above (digraph)
-أ	0623	arabic letter alef with hamza above (digraph)
-ؤ	0624	arabic letter waw with hamza above (digraph)
-إ	0625	arabic letter alef with hamza below (digraph)
-ئ	0626	arabic letter yeh with hamza above (digraph)
-ا	0627	arabic letter alef (digraph)
-ب	0628	arabic letter beh (digraph)
-ة	0629	arabic letter teh marbuta (digraph)
-ت	062A	arabic letter teh (digraph)
-ث	062B	arabic letter theh (digraph)
-ج	062C	arabic letter jeem (digraph)
-ح	062D	arabic letter hah (digraph)
-خ	062E	arabic letter khah (digraph)
-د	062F	arabic letter dal (digraph)
-ذ	0630	arabic letter thal (digraph)
-ر	0631	arabic letter reh (digraph)
-ز	0632	arabic letter zain (digraph)
-س	0633	arabic letter seen (digraph)
-ش	0634	arabic letter sheen (digraph)
-ص	0635	arabic letter sad (digraph)
-ض	0636	arabic letter dad (digraph)
-ط	0637	arabic letter tah (digraph)
-ظ	0638	arabic letter zah (digraph)
-ع	0639	arabic letter ain (digraph)
-غ	063A	arabic letter ghain (digraph)
-ـ	0640	arabic tatweel (digraph)
-ف	0641	arabic letter feh (digraph)
-ق	0642	arabic letter qaf (digraph)
-ك	0643	arabic letter kaf (digraph)
-ل	0644	arabic letter lam (digraph)
-م	0645	arabic letter meem (digraph)
-ن	0646	arabic letter noon (digraph)
-ه	0647	arabic letter heh (digraph)
-و	0648	arabic letter waw (digraph)
-ى	0649	arabic letter alef maksura (digraph)
-ي	064A	arabic letter yeh (digraph)
-064B	arabic fathatan (digraph)
-064C	arabic dammatan (digraph)
-064D	arabic kasratan (digraph)
-064E	arabic fatha (digraph)
-064F	arabic damma (digraph)
-0650	arabic kasra (digraph)
-0651	arabic shadda (digraph)
-0652	arabic sukun (digraph)
-0670	arabic letter superscript alef (digraph)
-پ	067E	arabic letter peh (digraph)
-ڤ	06A4	arabic letter veh (digraph)
-گ	06AF	arabic letter gaf (digraph)
-۰	06F0	extended arabic-indic digit zero (digraph)
-۱	06F1	extended arabic-indic digit one (digraph)
-۲	06F2	extended arabic-indic digit two (digraph)
-۳	06F3	extended arabic-indic digit three (digraph)
-۴	06F4	extended arabic-indic digit four (digraph)
-۵	06F5	extended arabic-indic digit five (digraph)
-۶	06F6	extended arabic-indic digit six (digraph)
-۷	06F7	extended arabic-indic digit seven (digraph)
-۸	06F8	extended arabic-indic digit eight (digraph)
-۹	06F9	extended arabic-indic digit nine (digraph)
-Ḃ	1E02	latin capital letter b with dot above (digraph)
-ḃ	1E03	latin small letter b with dot above (digraph)
-Ḇ	1E06	latin capital letter b with line below (digraph)
-ḇ	1E07	latin small letter b with line below (digraph)
-Ḋ	1E0A	latin capital letter d with dot above (digraph)
-ḋ	1E0B	latin small letter d with dot above (digraph)
-Ḏ	1E0E	latin capital letter d with line below (digraph)
-ḏ	1E0F	latin small letter d with line below (digraph)
-Ḑ	1E10	latin capital letter d with cedilla (digraph)
-ḑ	1E11	latin small letter d with cedilla (digraph)
-Ḟ	1E1E	latin capital letter f with dot above (digraph)
-ḟ	1E1F	latin small letter f with dot above (digraph)
-Ḡ	1E20	latin capital letter g with macron (digraph)
-ḡ	1E21	latin small letter g with macron (digraph)
-Ḣ	1E22	latin capital letter h with dot above (digraph)
-ḣ	1E23	latin small letter h with dot above (digraph)
-Ḧ	1E26	latin capital letter h with diaeresis (digraph)
-ḧ	1E27	latin small letter h with diaeresis (digraph)
-Ḩ	1E28	latin capital letter h with cedilla (digraph)
-ḩ	1E29	latin small letter h with cedilla (digraph)
-Ḱ	1E30	latin capital letter k with acute (digraph)
-ḱ	1E31	latin small letter k with acute (digraph)
-Ḵ	1E34	latin capital letter k with line below (digraph)
-ḵ	1E35	latin small letter k with line below (digraph)
-Ḻ	1E3A	latin capital letter l with line below (digraph)
-ḻ	1E3B	latin small letter l with line below (digraph)
-Ḿ	1E3E	latin capital letter m with acute (digraph)
-ḿ	1E3F	latin small letter m with acute (digraph)
-Ṁ	1E40	latin capital letter m with dot above (digraph)
-ṁ	1E41	latin small letter m with dot above (digraph)
-Ṅ	1E44	latin capital letter n with dot above ` (digraph)
-ṅ	1E45	latin small letter n with dot above ` (digraph)
-Ṉ	1E48	latin capital letter n with line below ` (digraph)
-ṉ	1E49	latin small letter n with line below ` (digraph)
-Ṕ	1E54	latin capital letter p with acute (digraph)
-ṕ	1E55	latin small letter p with acute (digraph)
-Ṗ	1E56	latin capital letter p with dot above (digraph)
-ṗ	1E57	latin small letter p with dot above (digraph)
-Ṙ	1E58	latin capital letter r with dot above (digraph)
-ṙ	1E59	latin small letter r with dot above (digraph)
-Ṟ	1E5E	latin capital letter r with line below (digraph)
-ṟ	1E5F	latin small letter r with line below (digraph)
-Ṡ	1E60	latin capital letter s with dot above (digraph)
-ṡ	1E61	latin small letter s with dot above (digraph)
-Ṫ	1E6A	latin capital letter t with dot above (digraph)
-ṫ	1E6B	latin small letter t with dot above (digraph)
-Ṯ	1E6E	latin capital letter t with line below (digraph)
-ṯ	1E6F	latin small letter t with line below (digraph)
-Ṽ	1E7C	latin capital letter v with tilde (digraph)
-ṽ	1E7D	latin small letter v with tilde (digraph)
-Ẁ	1E80	latin capital letter w with grave (digraph)
-ẁ	1E81	latin small letter w with grave (digraph)
-Ẃ	1E82	latin capital letter w with acute (digraph)
-ẃ	1E83	latin small letter w with acute (digraph)
-Ẅ	1E84	latin capital letter w with diaeresis (digraph)
-ẅ	1E85	latin small letter w with diaeresis (digraph)
-Ẇ	1E86	latin capital letter w with dot above (digraph)
-ẇ	1E87	latin small letter w with dot above (digraph)
-Ẋ	1E8A	latin capital letter x with dot above (digraph)
-ẋ	1E8B	latin small letter x with dot above (digraph)
-Ẍ	1E8C	latin capital letter x with diaeresis (digraph)
-ẍ	1E8D	latin small letter x with diaeresis (digraph)
-Ẏ	1E8E	latin capital letter y with dot above (digraph)
-ẏ	1E8F	latin small letter y with dot above (digraph)
-Ẑ	1E90	latin capital letter z with circumflex (digraph)
-ẑ	1E91	latin small letter z with circumflex (digraph)
-Ẕ	1E94	latin capital letter z with line below (digraph)
-ẕ	1E95	latin small letter z with line below (digraph)
-ẖ	1E96	latin small letter h with line below (digraph)
-ẗ	1E97	latin small letter t with diaeresis (digraph)
-ẘ	1E98	latin small letter w with ring above (digraph)
-ẙ	1E99	latin small letter y with ring above (digraph)
-Ả	1EA2	latin capital letter a with hook above (digraph)
-ả	1EA3	latin small letter a with hook above (digraph)
-Ẻ	1EBA	latin capital letter e with hook above (digraph)
-ẻ	1EBB	latin small letter e with hook above (digraph)
-Ẽ	1EBC	latin capital letter e with tilde (digraph)
-ẽ	1EBD	latin small letter e with tilde (digraph)
-Ỉ	1EC8	latin capital letter i with hook above (digraph)
-ỉ	1EC9	latin small letter i with hook above (digraph)
-Ỏ	1ECE	latin capital letter o with hook above (digraph)
-ỏ	1ECF	latin small letter o with hook above (digraph)
-Ủ	1EE6	latin capital letter u with hook above (digraph)
-ủ	1EE7	latin small letter u with hook above (digraph)
-Ỳ	1EF2	latin capital letter y with grave (digraph)
-ỳ	1EF3	latin small letter y with grave (digraph)
-Ỷ	1EF6	latin capital letter y with hook above (digraph)
-ỷ	1EF7	latin small letter y with hook above (digraph)
-Ỹ	1EF8	latin capital letter y with tilde (digraph)
-ỹ	1EF9	latin small letter y with tilde (digraph)
-ἀ	1F00	greek small letter alpha with psili (digraph)
-ἁ	1F01	greek small letter alpha with dasia (digraph)
-ἂ	1F02	greek small letter alpha with psili and varia (digraph)
-ἃ	1F03	greek small letter alpha with dasia and varia (digraph)
-ἄ	1F04	greek small letter alpha with psili and oxia (digraph)
-ἅ	1F05	greek small letter alpha with dasia and oxia (digraph)
-ἆ	1F06	greek small letter alpha with psili and perispomeni (digraph)
-ἇ	1F07	greek small letter alpha with dasia and perispomeni (digraph)
- 	2002	en space (digraph)
- 	2003	em space (digraph)
- 	2004	three-per-em space (digraph)
- 	2005	four-per-em space (digraph)
- 	2006	six-per-em space (digraph)
- 	2009	thin space (digraph)
- 	200A	hair space (digraph)
-‐	2010	hyphen (digraph)
-–	2013	en dash ` (digraph)
-—	2014	em dash (digraph)
-―	2015	horizontal bar (digraph)
-‖	2016	double vertical line (digraph)
-‗	2017	double low line (digraph)
-‘	2018	left single quotation mark (digraph)
-’	2019	right single quotation mark (digraph)
-‚	201A	single low-9 quotation mark (digraph)
-‛	201B	single high-reversed-9 quotation mark (digraph)
-“	201C	left double quotation mark (digraph)
-”	201D	right double quotation mark (digraph)
-„	201E	double low-9 quotation mark (digraph)
-‟	201F	double high-reversed-9 quotation mark (digraph)
-†	2020	dagger (digraph)
-‡	2021	double dagger (digraph)
-•	2022	bullet (digraph)
-‥	2025	two dot leader (digraph)
-…	2026	horizontal ellipsis (digraph)
-‰	2030	per mille sign (digraph)
-′	2032	prime (digraph)
-″	2033	double prime (digraph)
-‴	2034	triple prime (digraph)
-⁗	2057	quadruple prime (digraph)
-‵	2035	reversed prime (digraph)
-‶	2036	reversed double prime (digraph)
-‷	2037	reversed triple prime (digraph)
-‸	2038	caret (digraph)
-‹	2039	single left-pointing angle quotation mark (digraph)
-›	203A	single right-pointing angle quotation mark (digraph)
-※	203B	reference mark (digraph)
-‾	203E	overline (digraph)
-⁄	2044	fraction slash (digraph)
-⁰	2070	superscript zero (digraph)
-⁴	2074	superscript four (digraph)
-⁵	2075	superscript five (digraph)
-⁶	2076	superscript six (digraph)
-⁷	2077	superscript seven (digraph)
-⁸	2078	superscript eight (digraph)
-⁹	2079	superscript nine (digraph)
-⁺	207A	superscript plus sign (digraph)
-⁻	207B	superscript minus (digraph)
-⁼	207C	superscript equals sign (digraph)
-⁽	207D	superscript left parenthesis (digraph)
-⁾	207E	superscript right parenthesis (digraph)
-ⁿ	207F	superscript latin small letter n ` (digraph)
-₀	2080	subscript zero (digraph)
-₁	2081	subscript one (digraph)
-₂	2082	subscript two (digraph)
-₃	2083	subscript three (digraph)
-₄	2084	subscript four (digraph)
-₅	2085	subscript five (digraph)
-₆	2086	subscript six (digraph)
-₇	2087	subscript seven (digraph)
-₈	2088	subscript eight (digraph)
-₉	2089	subscript nine (digraph)
-₊	208A	subscript plus sign (digraph)
-₋	208B	subscript minus (digraph)
-₌	208C	subscript equals sign (digraph)
-₍	208D	subscript left parenthesis (digraph)
-₎	208E	subscript right parenthesis (digraph)
-₤	20A4	lira sign (digraph)
-₧	20A7	peseta sign (digraph)
-₩	20A9	won sign (digraph)
-€	20AC	euro sign (digraph)
-₽	20BD	rouble sign (digraph)
-₽	20BD	rouble sign (digraph)
-℃	2103	degree celsius (digraph)
-℅	2105	care of (digraph)
-℉	2109	degree fahrenheit (digraph)
-№	2116	numero sign (digraph)
-℗	2117	sound recording copyright (digraph)
-℞	211E	prescription take (digraph)
-℠	2120	service mark (digraph)
-™	2122	trade mark sign (digraph)
-Ω	2126	ohm sign (digraph)
-Å	212B	angstrom sign (digraph)
-⅓	2153	vulgar fraction one third (digraph)
-⅔	2154	vulgar fraction two thirds (digraph)
-⅕	2155	vulgar fraction one fifth (digraph)
-⅖	2156	vulgar fraction two fifths (digraph)
-⅗	2157	vulgar fraction three fifths (digraph)
-⅘	2158	vulgar fraction four fifths (digraph)
-⅙	2159	vulgar fraction one sixth (digraph)
-⅚	215A	vulgar fraction five sixths (digraph)
-⅛	215B	vulgar fraction one eighth (digraph)
-⅜	215C	vulgar fraction three eighths (digraph)
-⅝	215D	vulgar fraction five eighths (digraph)
-⅞	215E	vulgar fraction seven eighths (digraph)
-Ⅰ	2160	roman numeral one (digraph)
-Ⅱ	2161	roman numeral two (digraph)
-Ⅲ	2162	roman numeral three (digraph)
-Ⅳ	2163	roman numeral four (digraph)
-Ⅴ	2164	roman numeral five (digraph)
-Ⅵ	2165	roman numeral six (digraph)
-Ⅶ	2166	roman numeral seven (digraph)
-Ⅷ	2167	roman numeral eight (digraph)
-Ⅸ	2168	roman numeral nine (digraph)
-Ⅹ	2169	roman numeral ten (digraph)
-Ⅺ	216A	roman numeral eleven (digraph)
-Ⅻ	216B	roman numeral twelve (digraph)
-ⅰ	2170	small roman numeral one (digraph)
-ⅱ	2171	small roman numeral two (digraph)
-ⅲ	2172	small roman numeral three (digraph)
-ⅳ	2173	small roman numeral four (digraph)
-ⅴ	2174	small roman numeral five (digraph)
-ⅵ	2175	small roman numeral six (digraph)
-ⅶ	2176	small roman numeral seven (digraph)
-ⅷ	2177	small roman numeral eight (digraph)
-ⅸ	2178	small roman numeral nine (digraph)
-ⅹ	2179	small roman numeral ten (digraph)
-ⅺ	217A	small roman numeral eleven (digraph)
-ⅻ	217B	small roman numeral twelve (digraph)
-←	2190	leftwards arrow (digraph)
-↑	2191	upwards arrow (digraph)
-→	2192	rightwards arrow (digraph)
-↓	2193	downwards arrow (digraph)
-↔	2194	left right arrow (digraph)
-↕	2195	up down arrow (digraph)
-⇐	21D0	leftwards double arrow (digraph)
-⇒	21D2	rightwards double arrow (digraph)
-⇔	21D4	left right double arrow (digraph)
-∀	2200	for all (digraph)
-∂	2202	partial differential (digraph)
-∃	2203	there exists (digraph)
-∅	2205	empty set (digraph)
-∆	2206	increment (digraph)
-∇	2207	nabla (digraph)
-∈	2208	element of (digraph)
-∋	220B	contains as member (digraph)
-∏	220F	n-ary product ` (digraph)
-∑	2211	n-ary summation ` (digraph)
-−	2212	minus sign (digraph)
-∓	2213	minus-or-plus sign (digraph)
-∗	2217	asterisk operator (digraph)
-∘	2218	ring operator (digraph)
-∙	2219	bullet operator (digraph)
-√	221A	square root (digraph)
-∝	221D	proportional to (digraph)
-∞	221E	infinity (digraph)
-∟	221F	right angle (digraph)
-∠	2220	angle (digraph)
-∥	2225	parallel to (digraph)
-∧	2227	logical and (digraph)
-∨	2228	logical or (digraph)
-∩	2229	intersection (digraph)
-∪	222A	union (digraph)
-∫	222B	integral (digraph)
-∬	222C	double integral (digraph)
-∮	222E	contour integral (digraph)
-∴	2234	therefore (digraph)
-∵	2235	because (digraph)
-∶	2236	ratio (digraph)
-∷	2237	proportion (digraph)
-∼	223C	tilde operator (digraph)
-∾	223E	inverted lazy s (digraph)
-≃	2243	asymptotically equal to (digraph)
-≅	2245	approximately equal to (digraph)
-≈	2248	almost equal to (digraph)
-≌	224C	all equal to (digraph)
-≓	2253	image of or approximately equal to (digraph)
-≠	2260	not equal to (digraph)
-≡	2261	identical to (digraph)
-≤	2264	less-than or equal to (digraph)
-≥	2265	greater-than or equal to (digraph)
-≪	226A	much less-than (digraph)
-≫	226B	much greater-than (digraph)
-≮	226E	not less-than (digraph)
-≯	226F	not greater-than (digraph)
-⊂	2282	subset of (digraph)
-⊃	2283	superset of (digraph)
-⊆	2286	subset of or equal to (digraph)
-⊇	2287	superset of or equal to (digraph)
-⊙	2299	circled dot operator (digraph)
-⊚	229A	circled ring operator (digraph)
-⊥	22A5	up tack (digraph)
-⋅	22C5	dot operator (digraph)
-⋮	22EE	vertical ellipsis (digraph)
-⋯	22EF	midline horizontal ellipsis (digraph)
-⌂	2302	house (digraph)
-⌈	2308	left ceiling (digraph)
-⌉	2309	right ceiling (digraph)
-⌊	230A	left floor (digraph)
-⌋	230B	right floor (digraph)
-⌐	2310	reversed not sign (digraph)
-⌒	2312	arc (digraph)
-⌕	2315	telephone recorder (digraph)
-⌠	2320	top half integral (digraph)
-⌡	2321	bottom half integral (digraph)
-〈	2329	left-pointing angle bracket (digraph)
-〉	232A	right-pointing angle bracket (digraph)
-␣	2423	open box (digraph)
-⑀	2440	ocr hook (digraph)
-⑁	2441	ocr chair (digraph)
-⑂	2442	ocr fork (digraph)
-⑃	2443	ocr inverted fork (digraph)
-⑆	2446	ocr branch bank identification (digraph)
-⑇	2447	ocr amount of check (digraph)
-⑈	2448	ocr dash (digraph)
-⑉	2449	ocr customer account number (digraph)
-⒈	2488	digit one full stop (digraph)
-⒉	2489	digit two full stop (digraph)
-⒊	248A	digit three full stop (digraph)
-⒋	248B	digit four full stop (digraph)
-⒌	248C	digit five full stop (digraph)
-⒍	248D	digit six full stop (digraph)
-⒎	248E	digit seven full stop (digraph)
-⒏	248F	digit eight full stop (digraph)
-⒐	2490	digit nine full stop (digraph)
-─	2500	box drawings light horizontal (digraph)
-━	2501	box drawings heavy horizontal (digraph)
-│	2502	box drawings light vertical (digraph)
-┃	2503	box drawings heavy vertical (digraph)
-┄	2504	box drawings light triple dash horizontal (digraph)
-┅	2505	box drawings heavy triple dash horizontal (digraph)
-┆	2506	box drawings light triple dash vertical (digraph)
-┇	2507	box drawings heavy triple dash vertical (digraph)
-┈	2508	box drawings light quadruple dash horizontal (digraph)
-┉	2509	box drawings heavy quadruple dash horizontal (digraph)
-┊	250A	box drawings light quadruple dash vertical (digraph)
-┋	250B	box drawings heavy quadruple dash vertical (digraph)
-┌	250C	box drawings light down and right (digraph)
-┍	250D	box drawings down light and right heavy (digraph)
-┎	250E	box drawings down heavy and right light (digraph)
-┏	250F	box drawings heavy down and right (digraph)
-┐	2510	box drawings light down and left (digraph)
-┑	2511	box drawings down light and left heavy (digraph)
-┒	2512	box drawings down heavy and left light (digraph)
-┓	2513	box drawings heavy down and left (digraph)
-└	2514	box drawings light up and right (digraph)
-┕	2515	box drawings up light and right heavy (digraph)
-┖	2516	box drawings up heavy and right light (digraph)
-┗	2517	box drawings heavy up and right (digraph)
-┘	2518	box drawings light up and left (digraph)
-┙	2519	box drawings up light and left heavy (digraph)
-┚	251A	box drawings up heavy and left light (digraph)
-┛	251B	box drawings heavy up and left (digraph)
-├	251C	box drawings light vertical and right (digraph)
-┝	251D	box drawings vertical light and right heavy (digraph)
-┠	2520	box drawings vertical heavy and right light (digraph)
-┣	2523	box drawings heavy vertical and right (digraph)
-┤	2524	box drawings light vertical and left (digraph)
-┥	2525	box drawings vertical light and left heavy (digraph)
-┨	2528	box drawings vertical heavy and left light (digraph)
-┫	252B	box drawings heavy vertical and left (digraph)
-┬	252C	box drawings light down and horizontal (digraph)
-┯	252F	box drawings down light and horizontal heavy (digraph)
-┰	2530	box drawings down heavy and horizontal light (digraph)
-┳	2533	box drawings heavy down and horizontal (digraph)
-┴	2534	box drawings light up and horizontal (digraph)
-┷	2537	box drawings up light and horizontal heavy (digraph)
-┸	2538	box drawings up heavy and horizontal light (digraph)
-┻	253B	box drawings heavy up and horizontal (digraph)
-┼	253C	box drawings light vertical and horizontal (digraph)
-┿	253F	box drawings vertical light and horizontal heavy (digraph)
-╂	2542	box drawings vertical heavy and horizontal light (digraph)
-╋	254B	box drawings heavy vertical and horizontal (digraph)
-╱	2571	box drawings light diagonal upper right to lower left (digraph)
-╲	2572	box drawings light diagonal upper left to lower right (digraph)
-▀	2580	upper half block (digraph)
-▄	2584	lower half block (digraph)
-█	2588	full block (digraph)
-▌	258C	left half block (digraph)
-▐	2590	right half block (digraph)
-░	2591	light shade (digraph)
-▒	2592	medium shade (digraph)
-▓	2593	dark shade (digraph)
-■	25A0	black square (digraph)
-□	25A1	white square (digraph)
-▢	25A2	white square with rounded corners (digraph)
-▣	25A3	white square containing black small square (digraph)
-▤	25A4	square with horizontal fill (digraph)
-▥	25A5	square with vertical fill (digraph)
-▦	25A6	square with orthogonal crosshatch fill (digraph)
-▧	25A7	square with upper left to lower right fill (digraph)
-▨	25A8	square with upper right to lower left fill (digraph)
-▩	25A9	square with diagonal crosshatch fill (digraph)
-▪	25AA	black small square (digraph)
-▬	25AC	black rectangle (digraph)
-▭	25AD	white rectangle (digraph)
-▲	25B2	black up-pointing triangle (digraph)
-△	25B3	white up-pointing triangle (digraph)
-▶	25B6	black right-pointing triangle (digraph)
-▷	25B7	white right-pointing triangle (digraph)
-▼	25BC	black down-pointing triangle (digraph)
-▽	25BD	white down-pointing triangle (digraph)
-◀	25C0	black left-pointing triangle (digraph)
-◁	25C1	white left-pointing triangle (digraph)
-◆	25C6	black diamond (digraph)
-◇	25C7	white diamond (digraph)
-◊	25CA	lozenge (digraph)
-○	25CB	white circle (digraph)
-◎	25CE	bullseye (digraph)
-●	25CF	black circle (digraph)
-◐	25D0	circle with left half black (digraph)
-◑	25D1	circle with right half black (digraph)
-◘	25D8	inverse bullet (digraph)
-◙	25D9	inverse white circle (digraph)
-◢	25E2	black lower right triangle (digraph)
-◣	25E3	black lower left triangle (digraph)
-★	2605	black star (digraph)
-☆	2606	white star (digraph)
-☜	261C	white left pointing index (digraph)
-☞	261E	white right pointing index (digraph)
-☺	263A	white smiling face (digraph)
-☻	263B	black smiling face (digraph)
-☼	263C	white sun with rays (digraph)
-♀	2640	female sign (digraph)
-♂	2642	male sign (digraph)
-♠	2660	black spade suit (digraph)
-♡	2661	white heart suit (digraph)
-♢	2662	white diamond suit (digraph)
-♣	2663	black club suit (digraph)
-♩	2669	quarter note ` (digraph)
-♪	266A	eighth note ` (digraph)
-♫	266B	beamed eighth notes (digraph)
-♭	266D	music flat sign (digraph)
-♮	266E	music natural sign (digraph)
-♯	266F	music sharp sign (digraph)
-✓	2713	check mark (digraph)
-✗	2717	ballot x (digraph)
-✠	2720	maltese cross (digraph)
-　	3000	ideographic space (digraph)
-、	3001	ideographic comma (digraph)
-。	3002	ideographic full stop (digraph)
-〃	3003	ditto mark (digraph)
-〄	3004	japanese industrial standard symbol (digraph)
-々	3005	ideographic iteration mark (digraph)
-〆	3006	ideographic closing mark (digraph)
-〇	3007	ideographic number zero (digraph)
-《	300A	left double angle bracket (digraph)
-》	300B	right double angle bracket (digraph)
-「	300C	left corner bracket (digraph)
-」	300D	right corner bracket (digraph)
-『	300E	left white corner bracket (digraph)
-』	300F	right white corner bracket (digraph)
-【	3010	left black lenticular bracket (digraph)
-】	3011	right black lenticular bracket (digraph)
-〒	3012	postal mark (digraph)
-〓	3013	geta mark (digraph)
-〔	3014	left tortoise shell bracket (digraph)
-〕	3015	right tortoise shell bracket (digraph)
-〖	3016	left white lenticular bracket (digraph)
-〗	3017	right white lenticular bracket (digraph)
-〜	301C	wave dash (digraph)
-ぁ	3041	hiragana letter small a (digraph)
-あ	3042	hiragana letter a (digraph)
-ぃ	3043	hiragana letter small i (digraph)
-い	3044	hiragana letter i (digraph)
-ぅ	3045	hiragana letter small u (digraph)
-う	3046	hiragana letter u (digraph)
-ぇ	3047	hiragana letter small e (digraph)
-え	3048	hiragana letter e (digraph)
-ぉ	3049	hiragana letter small o (digraph)
-お	304A	hiragana letter o (digraph)
-か	304B	hiragana letter ka (digraph)
-が	304C	hiragana letter ga (digraph)
-き	304D	hiragana letter ki (digraph)
-ぎ	304E	hiragana letter gi (digraph)
-く	304F	hiragana letter ku (digraph)
-ぐ	3050	hiragana letter gu (digraph)
-け	3051	hiragana letter ke (digraph)
-げ	3052	hiragana letter ge (digraph)
-こ	3053	hiragana letter ko (digraph)
-ご	3054	hiragana letter go (digraph)
-さ	3055	hiragana letter sa (digraph)
-ざ	3056	hiragana letter za (digraph)
-し	3057	hiragana letter si (digraph)
-じ	3058	hiragana letter zi (digraph)
-す	3059	hiragana letter su (digraph)
-ず	305A	hiragana letter zu (digraph)
-せ	305B	hiragana letter se (digraph)
-ぜ	305C	hiragana letter ze (digraph)
-そ	305D	hiragana letter so (digraph)
-ぞ	305E	hiragana letter zo (digraph)
-た	305F	hiragana letter ta (digraph)
-だ	3060	hiragana letter da (digraph)
-ち	3061	hiragana letter ti (digraph)
-ぢ	3062	hiragana letter di (digraph)
-っ	3063	hiragana letter small tu (digraph)
-つ	3064	hiragana letter tu (digraph)
-づ	3065	hiragana letter du (digraph)
-て	3066	hiragana letter te (digraph)
-で	3067	hiragana letter de (digraph)
-と	3068	hiragana letter to (digraph)
-ど	3069	hiragana letter do (digraph)
-な	306A	hiragana letter na (digraph)
-に	306B	hiragana letter ni (digraph)
-ぬ	306C	hiragana letter nu (digraph)
-ね	306D	hiragana letter ne (digraph)
-の	306E	hiragana letter no (digraph)
-は	306F	hiragana letter ha (digraph)
-ば	3070	hiragana letter ba (digraph)
-ぱ	3071	hiragana letter pa (digraph)
-ひ	3072	hiragana letter hi (digraph)
-び	3073	hiragana letter bi (digraph)
-ぴ	3074	hiragana letter pi (digraph)
-ふ	3075	hiragana letter hu (digraph)
-ぶ	3076	hiragana letter bu (digraph)
-ぷ	3077	hiragana letter pu (digraph)
-へ	3078	hiragana letter he (digraph)
-べ	3079	hiragana letter be (digraph)
-ぺ	307A	hiragana letter pe (digraph)
-ほ	307B	hiragana letter ho (digraph)
-ぼ	307C	hiragana letter bo (digraph)
-ぽ	307D	hiragana letter po (digraph)
-ま	307E	hiragana letter ma (digraph)
-み	307F	hiragana letter mi (digraph)
-む	3080	hiragana letter mu (digraph)
-め	3081	hiragana letter me (digraph)
-も	3082	hiragana letter mo (digraph)
-ゃ	3083	hiragana letter small ya (digraph)
-や	3084	hiragana letter ya (digraph)
-ゅ	3085	hiragana letter small yu (digraph)
-ゆ	3086	hiragana letter yu (digraph)
-ょ	3087	hiragana letter small yo (digraph)
-よ	3088	hiragana letter yo (digraph)
-ら	3089	hiragana letter ra (digraph)
-り	308A	hiragana letter ri (digraph)
-る	308B	hiragana letter ru (digraph)
-れ	308C	hiragana letter re (digraph)
-ろ	308D	hiragana letter ro (digraph)
-ゎ	308E	hiragana letter small wa (digraph)
-わ	308F	hiragana letter wa (digraph)
-ゐ	3090	hiragana letter wi (digraph)
-ゑ	3091	hiragana letter we (digraph)
-を	3092	hiragana letter wo (digraph)
-ん	3093	hiragana letter n ` (digraph)
-ゔ	3094	hiragana letter vu (digraph)
-゛	309B	katakana-hiragana voiced sound mark (digraph)
-゜	309C	katakana-hiragana semi-voiced sound mark (digraph)
-ゝ	309D	hiragana iteration mark (digraph)
-ゞ	309E	hiragana voiced iteration mark (digraph)
-ァ	30A1	katakana letter small a (digraph)
-ア	30A2	katakana letter a (digraph)
-ィ	30A3	katakana letter small i (digraph)
-イ	30A4	katakana letter i (digraph)
-ゥ	30A5	katakana letter small u (digraph)
-ウ	30A6	katakana letter u (digraph)
-ェ	30A7	katakana letter small e (digraph)
-エ	30A8	katakana letter e (digraph)
-ォ	30A9	katakana letter small o (digraph)
-オ	30AA	katakana letter o (digraph)
-カ	30AB	katakana letter ka (digraph)
-ガ	30AC	katakana letter ga (digraph)
-キ	30AD	katakana letter ki (digraph)
-ギ	30AE	katakana letter gi (digraph)
-ク	30AF	katakana letter ku (digraph)
-グ	30B0	katakana letter gu (digraph)
-ケ	30B1	katakana letter ke (digraph)
-ゲ	30B2	katakana letter ge (digraph)
-コ	30B3	katakana letter ko (digraph)
-ゴ	30B4	katakana letter go (digraph)
-サ	30B5	katakana letter sa (digraph)
-ザ	30B6	katakana letter za (digraph)
-シ	30B7	katakana letter si (digraph)
-ジ	30B8	katakana letter zi (digraph)
-ス	30B9	katakana letter su (digraph)
-ズ	30BA	katakana letter zu (digraph)
-セ	30BB	katakana letter se (digraph)
-ゼ	30BC	katakana letter ze (digraph)
-ソ	30BD	katakana letter so (digraph)
-ゾ	30BE	katakana letter zo (digraph)
-タ	30BF	katakana letter ta (digraph)
-ダ	30C0	katakana letter da (digraph)
-チ	30C1	katakana letter ti (digraph)
-ヂ	30C2	katakana letter di (digraph)
-ッ	30C3	katakana letter small tu (digraph)
-ツ	30C4	katakana letter tu (digraph)
-ヅ	30C5	katakana letter du (digraph)
-テ	30C6	katakana letter te (digraph)
-デ	30C7	katakana letter de (digraph)
-ト	30C8	katakana letter to (digraph)
-ド	30C9	katakana letter do (digraph)
-ナ	30CA	katakana letter na (digraph)
-ニ	30CB	katakana letter ni (digraph)
-ヌ	30CC	katakana letter nu (digraph)
-ネ	30CD	katakana letter ne (digraph)
-ノ	30CE	katakana letter no (digraph)
-ハ	30CF	katakana letter ha (digraph)
-バ	30D0	katakana letter ba (digraph)
-パ	30D1	katakana letter pa (digraph)
-ヒ	30D2	katakana letter hi (digraph)
-ビ	30D3	katakana letter bi (digraph)
-ピ	30D4	katakana letter pi (digraph)
-フ	30D5	katakana letter hu (digraph)
-ブ	30D6	katakana letter bu (digraph)
-プ	30D7	katakana letter pu (digraph)
-ヘ	30D8	katakana letter he (digraph)
-ベ	30D9	katakana letter be (digraph)
-ペ	30DA	katakana letter pe (digraph)
-ホ	30DB	katakana letter ho (digraph)
-ボ	30DC	katakana letter bo (digraph)
-ポ	30DD	katakana letter po (digraph)
-マ	30DE	katakana letter ma (digraph)
-ミ	30DF	katakana letter mi (digraph)
-ム	30E0	katakana letter mu (digraph)
-メ	30E1	katakana letter me (digraph)
-モ	30E2	katakana letter mo (digraph)
-ャ	30E3	katakana letter small ya (digraph)
-ヤ	30E4	katakana letter ya (digraph)
-ュ	30E5	katakana letter small yu (digraph)
-ユ	30E6	katakana letter yu (digraph)
-ョ	30E7	katakana letter small yo (digraph)
-ヨ	30E8	katakana letter yo (digraph)
-ラ	30E9	katakana letter ra (digraph)
-リ	30EA	katakana letter ri (digraph)
-ル	30EB	katakana letter ru (digraph)
-レ	30EC	katakana letter re (digraph)
-ロ	30ED	katakana letter ro (digraph)
-ヮ	30EE	katakana letter small wa (digraph)
-ワ	30EF	katakana letter wa (digraph)
-ヰ	30F0	katakana letter wi (digraph)
-ヱ	30F1	katakana letter we (digraph)
-ヲ	30F2	katakana letter wo (digraph)
-ン	30F3	katakana letter n ` (digraph)
-ヴ	30F4	katakana letter vu (digraph)
-ヵ	30F5	katakana letter small ka (digraph)
-ヶ	30F6	katakana letter small ke (digraph)
-ヷ	30F7	katakana letter va (digraph)
-ヸ	30F8	katakana letter vi (digraph)
-ヹ	30F9	katakana letter ve (digraph)
-ヺ	30FA	katakana letter vo (digraph)
-・	30FB	katakana middle dot (digraph)
-ー	30FC	katakana-hiragana prolonged sound mark (digraph)
-ヽ	30FD	katakana iteration mark (digraph)
-ヾ	30FE	katakana voiced iteration mark (digraph)
-ㄅ	3105	bopomofo letter b (digraph)
-ㄆ	3106	bopomofo letter p (digraph)
-ㄇ	3107	bopomofo letter m (digraph)
-ㄈ	3108	bopomofo letter f (digraph)
-ㄉ	3109	bopomofo letter d (digraph)
-ㄊ	310A	bopomofo letter t (digraph)
-ㄋ	310B	bopomofo letter n ` (digraph)
-ㄌ	310C	bopomofo letter l (digraph)
-ㄍ	310D	bopomofo letter g (digraph)
-ㄎ	310E	bopomofo letter k (digraph)
-ㄏ	310F	bopomofo letter h (digraph)
-ㄐ	3110	bopomofo letter j (digraph)
-ㄑ	3111	bopomofo letter q (digraph)
-ㄒ	3112	bopomofo letter x (digraph)
-ㄓ	3113	bopomofo letter zh (digraph)
-ㄔ	3114	bopomofo letter ch (digraph)
-ㄕ	3115	bopomofo letter sh (digraph)
-ㄖ	3116	bopomofo letter r (digraph)
-ㄗ	3117	bopomofo letter z (digraph)
-ㄘ	3118	bopomofo letter c (digraph)
-ㄙ	3119	bopomofo letter s (digraph)
-ㄚ	311A	bopomofo letter a (digraph)
-ㄛ	311B	bopomofo letter o (digraph)
-ㄜ	311C	bopomofo letter e (digraph)
-ㄞ	311E	bopomofo letter ai (digraph)
-ㄟ	311F	bopomofo letter ei (digraph)
-ㄠ	3120	bopomofo letter au (digraph)
-ㄡ	3121	bopomofo letter ou (digraph)
-ㄢ	3122	bopomofo letter an (digraph)
-ㄣ	3123	bopomofo letter en (digraph)
-ㄤ	3124	bopomofo letter ang (digraph)
-ㄥ	3125	bopomofo letter eng (digraph)
-ㄦ	3126	bopomofo letter er (digraph)
-ㄧ	3127	bopomofo letter i (digraph)
-ㄨ	3128	bopomofo letter u (digraph)
-ㄩ	3129	bopomofo letter iu (digraph)
-ㄪ	312A	bopomofo letter v (digraph)
-ㄫ	312B	bopomofo letter ng (digraph)
-ㄬ	312C	bopomofo letter gn (digraph)
-㈠	3220	parenthesized ideograph one (digraph)
-㈡	3221	parenthesized ideograph two (digraph)
-㈢	3222	parenthesized ideograph three (digraph)
-㈣	3223	parenthesized ideograph four (digraph)
-㈤	3224	parenthesized ideograph five (digraph)
-㈥	3225	parenthesized ideograph six (digraph)
-㈦	3226	parenthesized ideograph seven (digraph)
-㈧	3227	parenthesized ideograph eight (digraph)
-㈨	3228	parenthesized ideograph nine (digraph)
-ﬀ	FB00	latin small ligature ff (digraph)
-ﬁ	FB01	latin small ligature fi (digraph)
-ﬂ	FB02	latin small ligature fl (digraph)
-ﬅ	FB05	latin small ligature long s t (digraph)
-ﬆ	FB06	latin small ligature st (digraph)
+^@	0x00	null (nul) [DIGRAPH]
+^A	0x01	start of heading (soh) [DIGRAPH]
+^B	0x02	start of text (stx) [DIGRAPH]
+^C	0x03	end of text (etx) [DIGRAPH]
+^D	0x04	end of transmission (eot) [DIGRAPH]
+^E	0x05	enquiry (enq) [DIGRAPH]
+^F	0x06	acknowledge (ack) [DIGRAPH]
+^G	0x07	bell (bel) [DIGRAPH]
+^H	0x08	backspace (bs) [DIGRAPH]
+^I	0x09	character tabulation (ht) [DIGRAPH]
+^@	0x0a	line feed (lf) [DIGRAPH]
+^K	0x0b	line tabulation (vt) [DIGRAPH]
+^L	0x0c	form feed (ff) [DIGRAPH]
+^M	0x0d	carriage return (cr) [DIGRAPH]
+^N	0x0e	shift out (so) [DIGRAPH]
+^O	0x0f	shift in (si) [DIGRAPH]
+^P	0x10	datalink escape (dle) [DIGRAPH]
+^Q	0x11	device control one (dc1) [DIGRAPH]
+^R	0x12	device control two (dc2) [DIGRAPH]
+^S	0x13	device control three (dc3) [DIGRAPH]
+^T	0x14	device control four (dc4) [DIGRAPH]
+^U	0x15	negative acknowledge (nak) [DIGRAPH]
+^V	0x16	synchronous idle (syn) [DIGRAPH]
+^W	0x17	end of transmission block (etb) [DIGRAPH]
+^X	0x18	cancel (can) [DIGRAPH]
+^Y	0x19	end of medium (em) [DIGRAPH]
+^Z	0x1a	substitute (sub) [DIGRAPH]
+^[	0x1b	escape (esc) [DIGRAPH]
+^\	0x1c	file separator (is4) [DIGRAPH]
+^]	0x1d	group separator (is3) [DIGRAPH]
+^^	0x1e	record separator (is2) [DIGRAPH]
+^_	0x1f	unit separator (is1) [DIGRAPH]
+0x20	space [DIGRAPH]
+#	0x23	number sign [DIGRAPH]
+$	0x24	dollar sign [DIGRAPH]
+@	0x40	commercial at [DIGRAPH]
+[	0x5b	left square bracket [DIGRAPH]
+\	0x5c	reverse solidus [DIGRAPH]
+]	0x5d	right square bracket [DIGRAPH]
+^	0x5e	circumflex accent [DIGRAPH]
+`	0x60	grave accent [DIGRAPH]
+{	0x7b	left curly bracket [DIGRAPH]
+|	0x7c	vertical line [DIGRAPH]
+}	0x7d	right curly bracket [DIGRAPH]
+~	0x7e	tilde [DIGRAPH]
+^?	0x7f	delete (del) [DIGRAPH]
+~@	0x80	padding character (pad) [DIGRAPH]
+~A	0x81	high octet preset (hop) [DIGRAPH]
+~B	0x82	break permitted here (bph) [DIGRAPH]
+~C	0x83	no break here (nbh) [DIGRAPH]
+~D	0x84	index (ind) [DIGRAPH]
+~E	0x85	next line (nel) [DIGRAPH]
+~F	0x86	start of selected area (ssa) [DIGRAPH]
+~G	0x87	end of selected area (esa) [DIGRAPH]
+~H	0x88	character tabulation set (hts) [DIGRAPH]
+~I	0x89	character tabulation with justification (htj) [DIGRAPH]
+~J	0x8a	line tabulation set (vts) [DIGRAPH]
+~K	0x8b	partial line forward (pld) [DIGRAPH]
+~L	0x8c	partial line backward (plu) [DIGRAPH]
+~M	0x8d	reverse line feed (ri) [DIGRAPH]
+~N	0x8e	single-shift two (ss2) [DIGRAPH]
+~O	0x8f	single-shift three (ss3) [DIGRAPH]
+~P	0x90	device control string (dcs) [DIGRAPH]
+~Q	0x91	private use one (pu1) [DIGRAPH]
+~R	0x92	private use two (pu2) [DIGRAPH]
+~S	0x93	set transmit state (sts) [DIGRAPH]
+~T	0x94	cancel character (cch) [DIGRAPH]
+~U	0x95	message waiting (mw) [DIGRAPH]
+~V	0x96	start of guarded area (spa) [DIGRAPH]
+~W	0x97	end of guarded area (epa) [DIGRAPH]
+~X	0x98	start of string (sos) [DIGRAPH]
+~Y	0x99	single graphic character introducer (sgci) [DIGRAPH]
+~Z	0x9a	single character introducer (sci) [DIGRAPH]
+~[	0x9b	control sequence introducer (csi) [DIGRAPH]
+~\	0x9c	string terminator (st) [DIGRAPH]
+~]	0x9d	operating system command (osc) [DIGRAPH]
+~^	0x9e	privacy message (pm) [DIGRAPH]
+~_	0x9f	application program command (apc) [DIGRAPH]
+|	0xa0	no-break space [DIGRAPH]
+¡	0xa1	inverted exclamation mark [DIGRAPH]
+¢	0xa2	cent sign [DIGRAPH]
+£	0xa3	pound sign [DIGRAPH]
+¤	0xa4	currency sign [DIGRAPH]
+¥	0xa5	yen sign [DIGRAPH]
+¦	0xa6	broken bar [DIGRAPH]
+§	0xa7	section sign [DIGRAPH]
+¨	0xa8	diaeresis [DIGRAPH]
+©	0xa9	copyright sign [DIGRAPH]
+ª	0xaa	feminine ordinal indicator [DIGRAPH]
+«	0xab	left-pointing double angle quotation mark [DIGRAPH]
+¬	0xac	not sign [DIGRAPH]
+­	0xad	soft hyphen [DIGRAPH]
+®	0xae	registered sign [DIGRAPH]
+¯	0xaf	macron [DIGRAPH]
+°	0xb0	degree sign [DIGRAPH]
+±	0xb1	plus-minus sign [DIGRAPH]
+²	0xb2	superscript two [DIGRAPH]
+³	0xb3	superscript three [DIGRAPH]
+´	0xb4	acute accent [DIGRAPH]
+µ	0xb5	micro sign [DIGRAPH]
+¶	0xb6	pilcrow sign [DIGRAPH]
+·	0xb7	middle dot [DIGRAPH]
+¸	0xb8	cedilla [DIGRAPH]
+¹	0xb9	superscript one [DIGRAPH]
+º	0xba	masculine ordinal indicator [DIGRAPH]
+»	0xbb	right-pointing double angle quotation mark [DIGRAPH]
+¼	0xbc	vulgar fraction one quarter [DIGRAPH]
+½	0xbd	vulgar fraction one half [DIGRAPH]
+¾	0xbe	vulgar fraction three quarters [DIGRAPH]
+¿	0xbf	inverted question mark [DIGRAPH]
+À	0xc0	latin capital letter a with grave [DIGRAPH]
+Á	0xc1	latin capital letter a with acute [DIGRAPH]
+Â	0xc2	latin capital letter a with circumflex [DIGRAPH]
+Ã	0xc3	latin capital letter a with tilde [DIGRAPH]
+Ä	0xc4	latin capital letter a with diaeresis [DIGRAPH]
+Å	0xc5	latin capital letter a with ring above [DIGRAPH]
+Æ	0xc6	latin capital letter ae [DIGRAPH]
+Ç	0xc7	latin capital letter c with cedilla [DIGRAPH]
+È	0xc8	latin capital letter e with grave [DIGRAPH]
+É	0xc9	latin capital letter e with acute [DIGRAPH]
+Ê	0xca	latin capital letter e with circumflex [DIGRAPH]
+Ë	0xcb	latin capital letter e with diaeresis [DIGRAPH]
+Ì	0xcc	latin capital letter i with grave [DIGRAPH]
+Í	0xcd	latin capital letter i with acute [DIGRAPH]
+Î	0xce	latin capital letter i with circumflex [DIGRAPH]
+Ï	0xcf	latin capital letter i with diaeresis [DIGRAPH]
+Ð	0xd0	latin capital letter eth (icelandic) [DIGRAPH]
+Ñ	0xd1	latin capital letter n with tilde [DIGRAPH]
+Ò	0xd2	latin capital letter o with grave [DIGRAPH]
+Ó	0xd3	latin capital letter o with acute [DIGRAPH]
+Ô	0xd4	latin capital letter o with circumflex [DIGRAPH]
+Õ	0xd5	latin capital letter o with tilde [DIGRAPH]
+Ö	0xd6	latin capital letter o with diaeresis [DIGRAPH]
+×	0xd7	multiplication sign [DIGRAPH]
+Ø	0xd8	latin capital letter o with stroke [DIGRAPH]
+Ù	0xd9	latin capital letter u with grave [DIGRAPH]
+Ú	0xda	latin capital letter u with acute [DIGRAPH]
+Û	0xdb	latin capital letter u with circumflex [DIGRAPH]
+Ü	0xdc	latin capital letter u with diaeresis [DIGRAPH]
+Ý	0xdd	latin capital letter y with acute [DIGRAPH]
+Þ	0xde	latin capital letter thorn (icelandic) [DIGRAPH]
+ß	0xdf	latin small letter sharp s (german) [DIGRAPH]
+à	0xe0	latin small letter a with grave [DIGRAPH]
+á	0xe1	latin small letter a with acute [DIGRAPH]
+â	0xe2	latin small letter a with circumflex [DIGRAPH]
+ã	0xe3	latin small letter a with tilde [DIGRAPH]
+ä	0xe4	latin small letter a with diaeresis [DIGRAPH]
+å	0xe5	latin small letter a with ring above [DIGRAPH]
+æ	0xe6	latin small letter ae [DIGRAPH]
+ç	0xe7	latin small letter c with cedilla [DIGRAPH]
+è	0xe8	latin small letter e with grave [DIGRAPH]
+é	0xe9	latin small letter e with acute [DIGRAPH]
+ê	0xea	latin small letter e with circumflex [DIGRAPH]
+ë	0xeb	latin small letter e with diaeresis [DIGRAPH]
+ì	0xec	latin small letter i with grave [DIGRAPH]
+í	0xed	latin small letter i with acute [DIGRAPH]
+î	0xee	latin small letter i with circumflex [DIGRAPH]
+ï	0xef	latin small letter i with diaeresis [DIGRAPH]
+ð	0xf0	latin small letter eth (icelandic) [DIGRAPH]
+ñ	0xf1	latin small letter n with tilde [DIGRAPH]
+ò	0xf2	latin small letter o with grave [DIGRAPH]
+ó	0xf3	latin small letter o with acute [DIGRAPH]
+ô	0xf4	latin small letter o with circumflex [DIGRAPH]
+õ	0xf5	latin small letter o with tilde [DIGRAPH]
+ö	0xf6	latin small letter o with diaeresis [DIGRAPH]
+÷	0xf7	division sign [DIGRAPH]
+ø	0xf8	latin small letter o with stroke [DIGRAPH]
+ù	0xf9	latin small letter u with grave [DIGRAPH]
+ú	0xfa	latin small letter u with acute [DIGRAPH]
+û	0xfb	latin small letter u with circumflex [DIGRAPH]
+ü	0xfc	latin small letter u with diaeresis [DIGRAPH]
+ý	0xfd	latin small letter y with acute [DIGRAPH]
+þ	0xfe	latin small letter thorn (icelandic) [DIGRAPH]
+ÿ	0xff	latin small letter y with diaeresis [DIGRAPH]
+Ā	0100	latin capital letter a with macron [DIGRAPH]
+ā	0101	latin small letter a with macron [DIGRAPH]
+Ă	0102	latin capital letter a with breve [DIGRAPH]
+ă	0103	latin small letter a with breve [DIGRAPH]
+Ą	0104	latin capital letter a with ogonek [DIGRAPH]
+ą	0105	latin small letter a with ogonek [DIGRAPH]
+Ć	0106	latin capital letter c with acute [DIGRAPH]
+ć	0107	latin small letter c with acute [DIGRAPH]
+Ĉ	0108	latin capital letter c with circumflex [DIGRAPH]
+ĉ	0109	latin small letter c with circumflex [DIGRAPH]
+Ċ	010A	latin capital letter c with dot above [DIGRAPH]
+ċ	010B	latin small letter c with dot above [DIGRAPH]
+Č	010C	latin capital letter c with caron [DIGRAPH]
+č	010D	latin small letter c with caron [DIGRAPH]
+Ď	010E	latin capital letter d with caron [DIGRAPH]
+ď	010F	latin small letter d with caron [DIGRAPH]
+Đ	0110	latin capital letter d with stroke [DIGRAPH]
+đ	0111	latin small letter d with stroke [DIGRAPH]
+Ē	0112	latin capital letter e with macron [DIGRAPH]
+ē	0113	latin small letter e with macron [DIGRAPH]
+Ĕ	0114	latin capital letter e with breve [DIGRAPH]
+ĕ	0115	latin small letter e with breve [DIGRAPH]
+Ė	0116	latin capital letter e with dot above [DIGRAPH]
+ė	0117	latin small letter e with dot above [DIGRAPH]
+Ę	0118	latin capital letter e with ogonek [DIGRAPH]
+ę	0119	latin small letter e with ogonek [DIGRAPH]
+Ě	011A	latin capital letter e with caron [DIGRAPH]
+ě	011B	latin small letter e with caron [DIGRAPH]
+Ĝ	011C	latin capital letter g with circumflex [DIGRAPH]
+ĝ	011D	latin small letter g with circumflex [DIGRAPH]
+Ğ	011E	latin capital letter g with breve [DIGRAPH]
+ğ	011F	latin small letter g with breve [DIGRAPH]
+Ġ	0120	latin capital letter g with dot above [DIGRAPH]
+ġ	0121	latin small letter g with dot above [DIGRAPH]
+Ģ	0122	latin capital letter g with cedilla [DIGRAPH]
+ģ	0123	latin small letter g with cedilla [DIGRAPH]
+Ĥ	0124	latin capital letter h with circumflex [DIGRAPH]
+ĥ	0125	latin small letter h with circumflex [DIGRAPH]
+Ħ	0126	latin capital letter h with stroke [DIGRAPH]
+ħ	0127	latin small letter h with stroke [DIGRAPH]
+Ĩ	0128	latin capital letter i with tilde [DIGRAPH]
+ĩ	0129	latin small letter i with tilde [DIGRAPH]
+Ī	012A	latin capital letter i with macron [DIGRAPH]
+ī	012B	latin small letter i with macron [DIGRAPH]
+Ĭ	012C	latin capital letter i with breve [DIGRAPH]
+ĭ	012D	latin small letter i with breve [DIGRAPH]
+Į	012E	latin capital letter i with ogonek [DIGRAPH]
+į	012F	latin small letter i with ogonek [DIGRAPH]
+İ	0130	latin capital letter i with dot above [DIGRAPH]
+ı	0131	latin small letter dotless i [DIGRAPH]
+Ĳ	0132	latin capital ligature ij [DIGRAPH]
+ĳ	0133	latin small ligature ij [DIGRAPH]
+Ĵ	0134	latin capital letter j with circumflex [DIGRAPH]
+ĵ	0135	latin small letter j with circumflex [DIGRAPH]
+Ķ	0136	latin capital letter k with cedilla [DIGRAPH]
+ķ	0137	latin small letter k with cedilla [DIGRAPH]
+ĸ	0138	latin small letter kra [DIGRAPH]
+Ĺ	0139	latin capital letter l with acute [DIGRAPH]
+ĺ	013A	latin small letter l with acute [DIGRAPH]
+Ļ	013B	latin capital letter l with cedilla [DIGRAPH]
+ļ	013C	latin small letter l with cedilla [DIGRAPH]
+Ľ	013D	latin capital letter l with caron [DIGRAPH]
+ľ	013E	latin small letter l with caron [DIGRAPH]
+Ŀ	013F	latin capital letter l with middle dot [DIGRAPH]
+ŀ	0140	latin small letter l with middle dot [DIGRAPH]
+Ł	0141	latin capital letter l with stroke [DIGRAPH]
+ł	0142	latin small letter l with stroke [DIGRAPH]
+Ń	0143	latin capital letter n with acute ` [DIGRAPH]
+ń	0144	latin small letter n with acute ` [DIGRAPH]
+Ņ	0145	latin capital letter n with cedilla ` [DIGRAPH]
+ņ	0146	latin small letter n with cedilla ` [DIGRAPH]
+Ň	0147	latin capital letter n with caron ` [DIGRAPH]
+ň	0148	latin small letter n with caron ` [DIGRAPH]
+ŉ	0149	latin small letter n preceded by apostrophe ` [DIGRAPH]
+Ŋ	014A	latin capital letter eng [DIGRAPH]
+ŋ	014B	latin small letter eng [DIGRAPH]
+Ō	014C	latin capital letter o with macron [DIGRAPH]
+ō	014D	latin small letter o with macron [DIGRAPH]
+Ŏ	014E	latin capital letter o with breve [DIGRAPH]
+ŏ	014F	latin small letter o with breve [DIGRAPH]
+Ő	0150	latin capital letter o with double acute [DIGRAPH]
+ő	0151	latin small letter o with double acute [DIGRAPH]
+Œ	0152	latin capital ligature oe [DIGRAPH]
+œ	0153	latin small ligature oe [DIGRAPH]
+Ŕ	0154	latin capital letter r with acute [DIGRAPH]
+ŕ	0155	latin small letter r with acute [DIGRAPH]
+Ŗ	0156	latin capital letter r with cedilla [DIGRAPH]
+ŗ	0157	latin small letter r with cedilla [DIGRAPH]
+Ř	0158	latin capital letter r with caron [DIGRAPH]
+ř	0159	latin small letter r with caron [DIGRAPH]
+Ś	015A	latin capital letter s with acute [DIGRAPH]
+ś	015B	latin small letter s with acute [DIGRAPH]
+Ŝ	015C	latin capital letter s with circumflex [DIGRAPH]
+ŝ	015D	latin small letter s with circumflex [DIGRAPH]
+Ş	015E	latin capital letter s with cedilla [DIGRAPH]
+ş	015F	latin small letter s with cedilla [DIGRAPH]
+Š	0160	latin capital letter s with caron [DIGRAPH]
+š	0161	latin small letter s with caron [DIGRAPH]
+Ţ	0162	latin capital letter t with cedilla [DIGRAPH]
+ţ	0163	latin small letter t with cedilla [DIGRAPH]
+Ť	0164	latin capital letter t with caron [DIGRAPH]
+ť	0165	latin small letter t with caron [DIGRAPH]
+Ŧ	0166	latin capital letter t with stroke [DIGRAPH]
+ŧ	0167	latin small letter t with stroke [DIGRAPH]
+Ũ	0168	latin capital letter u with tilde [DIGRAPH]
+ũ	0169	latin small letter u with tilde [DIGRAPH]
+Ū	016A	latin capital letter u with macron [DIGRAPH]
+ū	016B	latin small letter u with macron [DIGRAPH]
+Ŭ	016C	latin capital letter u with breve [DIGRAPH]
+ŭ	016D	latin small letter u with breve [DIGRAPH]
+Ů	016E	latin capital letter u with ring above [DIGRAPH]
+ů	016F	latin small letter u with ring above [DIGRAPH]
+Ű	0170	latin capital letter u with double acute [DIGRAPH]
+ű	0171	latin small letter u with double acute [DIGRAPH]
+Ų	0172	latin capital letter u with ogonek [DIGRAPH]
+ų	0173	latin small letter u with ogonek [DIGRAPH]
+Ŵ	0174	latin capital letter w with circumflex [DIGRAPH]
+ŵ	0175	latin small letter w with circumflex [DIGRAPH]
+Ŷ	0176	latin capital letter y with circumflex [DIGRAPH]
+ŷ	0177	latin small letter y with circumflex [DIGRAPH]
+Ÿ	0178	latin capital letter y with diaeresis [DIGRAPH]
+Ź	0179	latin capital letter z with acute [DIGRAPH]
+ź	017A	latin small letter z with acute [DIGRAPH]
+Ż	017B	latin capital letter z with dot above [DIGRAPH]
+ż	017C	latin small letter z with dot above [DIGRAPH]
+Ž	017D	latin capital letter z with caron [DIGRAPH]
+ž	017E	latin small letter z with caron [DIGRAPH]
+Ơ	01A0	latin capital letter o with horn [DIGRAPH]
+ơ	01A1	latin small letter o with horn [DIGRAPH]
+Ƣ	01A2	latin capital letter oi [DIGRAPH]
+ƣ	01A3	latin small letter oi [DIGRAPH]
+Ʀ	01A6	latin letter yr [DIGRAPH]
+Ư	01AF	latin capital letter u with horn [DIGRAPH]
+ư	01B0	latin small letter u with horn [DIGRAPH]
+Ƶ	01B5	latin capital letter z with stroke [DIGRAPH]
+ƶ	01B6	latin small letter z with stroke [DIGRAPH]
+Ʒ	01B7	latin capital letter ezh [DIGRAPH]
+Ǎ	01CD	latin capital letter a with caron [DIGRAPH]
+ǎ	01CE	latin small letter a with caron [DIGRAPH]
+Ǐ	01CF	latin capital letter i with caron [DIGRAPH]
+ǐ	01D0	latin small letter i with caron [DIGRAPH]
+Ǒ	01D1	latin capital letter o with caron [DIGRAPH]
+ǒ	01D2	latin small letter o with caron [DIGRAPH]
+Ǔ	01D3	latin capital letter u with caron [DIGRAPH]
+ǔ	01D4	latin small letter u with caron [DIGRAPH]
+Ǟ	01DE	latin capital letter a with diaeresis and macron [DIGRAPH]
+ǟ	01DF	latin small letter a with diaeresis and macron [DIGRAPH]
+Ǡ	01E0	latin capital letter a with dot above and macron [DIGRAPH]
+ǡ	01E1	latin small letter a with dot above and macron [DIGRAPH]
+Ǣ	01E2	latin capital letter ae with macron [DIGRAPH]
+ǣ	01E3	latin small letter ae with macron [DIGRAPH]
+Ǥ	01E4	latin capital letter g with stroke [DIGRAPH]
+ǥ	01E5	latin small letter g with stroke [DIGRAPH]
+Ǧ	01E6	latin capital letter g with caron [DIGRAPH]
+ǧ	01E7	latin small letter g with caron [DIGRAPH]
+Ǩ	01E8	latin capital letter k with caron [DIGRAPH]
+ǩ	01E9	latin small letter k with caron [DIGRAPH]
+Ǫ	01EA	latin capital letter o with ogonek [DIGRAPH]
+ǫ	01EB	latin small letter o with ogonek [DIGRAPH]
+Ǭ	01EC	latin capital letter o with ogonek and macron [DIGRAPH]
+ǭ	01ED	latin small letter o with ogonek and macron [DIGRAPH]
+Ǯ	01EE	latin capital letter ezh with caron [DIGRAPH]
+ǯ	01EF	latin small letter ezh with caron [DIGRAPH]
+ǰ	01F0	latin small letter j with caron [DIGRAPH]
+Ǵ	01F4	latin capital letter g with acute [DIGRAPH]
+ǵ	01F5	latin small letter g with acute [DIGRAPH]
+ʿ	02BF	modifier letter left half ring [DIGRAPH]
+ˇ	02C7	caron [DIGRAPH]
+˘	02D8	breve [DIGRAPH]
+˙	02D9	dot above [DIGRAPH]
+˚	02DA	ring above [DIGRAPH]
+˛	02DB	ogonek [DIGRAPH]
+˝	02DD	double acute accent [DIGRAPH]
+Ά	0386	greek capital letter alpha with tonos [DIGRAPH]
+Έ	0388	greek capital letter epsilon with tonos [DIGRAPH]
+Ή	0389	greek capital letter eta with tonos [DIGRAPH]
+Ί	038A	greek capital letter iota with tonos [DIGRAPH]
+Ό	038C	greek capital letter omicron with tonos [DIGRAPH]
+Ύ	038E	greek capital letter upsilon with tonos [DIGRAPH]
+Ώ	038F	greek capital letter omega with tonos [DIGRAPH]
+ΐ	0390	greek small letter iota with dialytika and tonos [DIGRAPH]
+Α	0391	greek capital letter alpha [DIGRAPH]
+Β	0392	greek capital letter beta [DIGRAPH]
+Γ	0393	greek capital letter gamma [DIGRAPH]
+Δ	0394	greek capital letter delta [DIGRAPH]
+Ε	0395	greek capital letter epsilon [DIGRAPH]
+Ζ	0396	greek capital letter zeta [DIGRAPH]
+Η	0397	greek capital letter eta [DIGRAPH]
+Θ	0398	greek capital letter theta [DIGRAPH]
+Ι	0399	greek capital letter iota [DIGRAPH]
+Κ	039A	greek capital letter kappa [DIGRAPH]
+Λ	039B	greek capital letter lamda (aka lambda) [DIGRAPH]
+Μ	039C	greek capital letter mu [DIGRAPH]
+Ν	039D	greek capital letter nu [DIGRAPH]
+Ξ	039E	greek capital letter xi [DIGRAPH]
+Ο	039F	greek capital letter omicron [DIGRAPH]
+Π	03A0	greek capital letter pi [DIGRAPH]
+Ρ	03A1	greek capital letter rho [DIGRAPH]
+Σ	03A3	greek capital letter sigma [DIGRAPH]
+Τ	03A4	greek capital letter tau [DIGRAPH]
+Υ	03A5	greek capital letter upsilon [DIGRAPH]
+Φ	03A6	greek capital letter phi [DIGRAPH]
+Χ	03A7	greek capital letter chi [DIGRAPH]
+Ψ	03A8	greek capital letter psi [DIGRAPH]
+Ω	03A9	greek capital letter omega [DIGRAPH]
+Ϊ	03AA	greek capital letter iota with dialytika [DIGRAPH]
+Ϋ	03AB	greek capital letter upsilon with dialytika [DIGRAPH]
+ά	03AC	greek small letter alpha with tonos [DIGRAPH]
+έ	03AD	greek small letter epsilon with tonos [DIGRAPH]
+ή	03AE	greek small letter eta with tonos [DIGRAPH]
+ί	03AF	greek small letter iota with tonos [DIGRAPH]
+ΰ	03B0	greek small letter upsilon with dialytika and tonos [DIGRAPH]
+α	03B1	greek small letter alpha [DIGRAPH]
+β	03B2	greek small letter beta [DIGRAPH]
+γ	03B3	greek small letter gamma [DIGRAPH]
+δ	03B4	greek small letter delta [DIGRAPH]
+ε	03B5	greek small letter epsilon [DIGRAPH]
+ζ	03B6	greek small letter zeta [DIGRAPH]
+η	03B7	greek small letter eta [DIGRAPH]
+θ	03B8	greek small letter theta [DIGRAPH]
+ι	03B9	greek small letter iota [DIGRAPH]
+κ	03BA	greek small letter kappa [DIGRAPH]
+λ	03BB	greek small letter lamda (aka lambda) [DIGRAPH]
+μ	03BC	greek small letter mu [DIGRAPH]
+ν	03BD	greek small letter nu [DIGRAPH]
+ξ	03BE	greek small letter xi [DIGRAPH]
+ο	03BF	greek small letter omicron [DIGRAPH]
+π	03C0	greek small letter pi [DIGRAPH]
+ρ	03C1	greek small letter rho [DIGRAPH]
+ς	03C2	greek small letter final sigma [DIGRAPH]
+σ	03C3	greek small letter sigma [DIGRAPH]
+τ	03C4	greek small letter tau [DIGRAPH]
+υ	03C5	greek small letter upsilon [DIGRAPH]
+φ	03C6	greek small letter phi [DIGRAPH]
+χ	03C7	greek small letter chi [DIGRAPH]
+ψ	03C8	greek small letter psi [DIGRAPH]
+ω	03C9	greek small letter omega [DIGRAPH]
+ϊ	03CA	greek small letter iota with dialytika [DIGRAPH]
+ϋ	03CB	greek small letter upsilon with dialytika [DIGRAPH]
+ό	03CC	greek small letter omicron with tonos [DIGRAPH]
+ύ	03CD	greek small letter upsilon with tonos [DIGRAPH]
+ώ	03CE	greek small letter omega with tonos [DIGRAPH]
+Ϙ	03D8	greek letter archaic koppa [DIGRAPH]
+ϙ	03D9	greek small letter archaic koppa [DIGRAPH]
+Ϛ	03DA	greek letter stigma [DIGRAPH]
+ϛ	03DB	greek small letter stigma [DIGRAPH]
+Ϝ	03DC	greek letter digamma [DIGRAPH]
+ϝ	03DD	greek small letter digamma [DIGRAPH]
+Ϟ	03DE	greek letter koppa [DIGRAPH]
+ϟ	03DF	greek small letter koppa [DIGRAPH]
+Ϡ	03E0	greek letter sampi [DIGRAPH]
+ϡ	03E1	greek small letter sampi [DIGRAPH]
+ϴ	03F4	greek capital theta symbol [DIGRAPH]
+ϵ	03F5	greek lunate epsilon symbol [DIGRAPH]
+Ё	0401	cyrillic capital letter io [DIGRAPH]
+Ђ	0402	cyrillic capital letter dje [DIGRAPH]
+Ѓ	0403	cyrillic capital letter gje [DIGRAPH]
+Є	0404	cyrillic capital letter ukrainian ie [DIGRAPH]
+Ѕ	0405	cyrillic capital letter dze [DIGRAPH]
+І	0406	cyrillic capital letter byelorussian-ukrainian i [DIGRAPH]
+Ї	0407	cyrillic capital letter yi [DIGRAPH]
+Ј	0408	cyrillic capital letter je [DIGRAPH]
+Љ	0409	cyrillic capital letter lje [DIGRAPH]
+Њ	040A	cyrillic capital letter nje [DIGRAPH]
+Ћ	040B	cyrillic capital letter tshe [DIGRAPH]
+Ќ	040C	cyrillic capital letter kje [DIGRAPH]
+Ў	040E	cyrillic capital letter short u [DIGRAPH]
+Џ	040F	cyrillic capital letter dzhe [DIGRAPH]
+А	0410	cyrillic capital letter a [DIGRAPH]
+Б	0411	cyrillic capital letter be [DIGRAPH]
+В	0412	cyrillic capital letter ve [DIGRAPH]
+Г	0413	cyrillic capital letter ghe [DIGRAPH]
+Д	0414	cyrillic capital letter de [DIGRAPH]
+Е	0415	cyrillic capital letter ie [DIGRAPH]
+Ж	0416	cyrillic capital letter zhe [DIGRAPH]
+З	0417	cyrillic capital letter ze [DIGRAPH]
+И	0418	cyrillic capital letter i [DIGRAPH]
+Й	0419	cyrillic capital letter short i [DIGRAPH]
+К	041A	cyrillic capital letter ka [DIGRAPH]
+Л	041B	cyrillic capital letter el [DIGRAPH]
+М	041C	cyrillic capital letter em [DIGRAPH]
+Н	041D	cyrillic capital letter en [DIGRAPH]
+О	041E	cyrillic capital letter o [DIGRAPH]
+П	041F	cyrillic capital letter pe [DIGRAPH]
+Р	0420	cyrillic capital letter er [DIGRAPH]
+С	0421	cyrillic capital letter es [DIGRAPH]
+Т	0422	cyrillic capital letter te [DIGRAPH]
+У	0423	cyrillic capital letter u [DIGRAPH]
+Ф	0424	cyrillic capital letter ef [DIGRAPH]
+Х	0425	cyrillic capital letter ha [DIGRAPH]
+Ц	0426	cyrillic capital letter tse [DIGRAPH]
+Ч	0427	cyrillic capital letter che [DIGRAPH]
+Ш	0428	cyrillic capital letter sha [DIGRAPH]
+Щ	0429	cyrillic capital letter shcha [DIGRAPH]
+Ъ	042A	cyrillic capital letter hard sign [DIGRAPH]
+Ы	042B	cyrillic capital letter yeru [DIGRAPH]
+Ь	042C	cyrillic capital letter soft sign [DIGRAPH]
+Э	042D	cyrillic capital letter e [DIGRAPH]
+Ю	042E	cyrillic capital letter yu [DIGRAPH]
+Я	042F	cyrillic capital letter ya [DIGRAPH]
+а	0430	cyrillic small letter a [DIGRAPH]
+б	0431	cyrillic small letter be [DIGRAPH]
+в	0432	cyrillic small letter ve [DIGRAPH]
+г	0433	cyrillic small letter ghe [DIGRAPH]
+д	0434	cyrillic small letter de [DIGRAPH]
+е	0435	cyrillic small letter ie [DIGRAPH]
+ж	0436	cyrillic small letter zhe [DIGRAPH]
+з	0437	cyrillic small letter ze [DIGRAPH]
+и	0438	cyrillic small letter i [DIGRAPH]
+й	0439	cyrillic small letter short i [DIGRAPH]
+к	043A	cyrillic small letter ka [DIGRAPH]
+л	043B	cyrillic small letter el [DIGRAPH]
+м	043C	cyrillic small letter em [DIGRAPH]
+н	043D	cyrillic small letter en [DIGRAPH]
+о	043E	cyrillic small letter o [DIGRAPH]
+п	043F	cyrillic small letter pe [DIGRAPH]
+р	0440	cyrillic small letter er [DIGRAPH]
+с	0441	cyrillic small letter es [DIGRAPH]
+т	0442	cyrillic small letter te [DIGRAPH]
+у	0443	cyrillic small letter u [DIGRAPH]
+ф	0444	cyrillic small letter ef [DIGRAPH]
+х	0445	cyrillic small letter ha [DIGRAPH]
+ц	0446	cyrillic small letter tse [DIGRAPH]
+ч	0447	cyrillic small letter che [DIGRAPH]
+ш	0448	cyrillic small letter sha [DIGRAPH]
+щ	0449	cyrillic small letter shcha [DIGRAPH]
+ъ	044A	cyrillic small letter hard sign [DIGRAPH]
+ы	044B	cyrillic small letter yeru [DIGRAPH]
+ь	044C	cyrillic small letter soft sign [DIGRAPH]
+э	044D	cyrillic small letter e [DIGRAPH]
+ю	044E	cyrillic small letter yu [DIGRAPH]
+я	044F	cyrillic small letter ya [DIGRAPH]
+ё	0451	cyrillic small letter io [DIGRAPH]
+ђ	0452	cyrillic small letter dje [DIGRAPH]
+ѓ	0453	cyrillic small letter gje [DIGRAPH]
+є	0454	cyrillic small letter ukrainian ie [DIGRAPH]
+ѕ	0455	cyrillic small letter dze [DIGRAPH]
+і	0456	cyrillic small letter byelorussian-ukrainian i [DIGRAPH]
+ї	0457	cyrillic small letter yi [DIGRAPH]
+ј	0458	cyrillic small letter je [DIGRAPH]
+љ	0459	cyrillic small letter lje [DIGRAPH]
+њ	045A	cyrillic small letter nje [DIGRAPH]
+ћ	045B	cyrillic small letter tshe [DIGRAPH]
+ќ	045C	cyrillic small letter kje [DIGRAPH]
+ў	045E	cyrillic small letter short u [DIGRAPH]
+џ	045F	cyrillic small letter dzhe [DIGRAPH]
+Ѣ	0462	cyrillic capital letter yat [DIGRAPH]
+ѣ	0463	cyrillic small letter yat [DIGRAPH]
+Ѫ	046A	cyrillic capital letter big yus [DIGRAPH]
+ѫ	046B	cyrillic small letter big yus [DIGRAPH]
+Ѳ	0472	cyrillic capital letter fita [DIGRAPH]
+ѳ	0473	cyrillic small letter fita [DIGRAPH]
+Ѵ	0474	cyrillic capital letter izhitsa [DIGRAPH]
+ѵ	0475	cyrillic small letter izhitsa [DIGRAPH]
+Ҁ	0480	cyrillic capital letter koppa [DIGRAPH]
+ҁ	0481	cyrillic small letter koppa [DIGRAPH]
+Ґ	0490	cyrillic capital letter ghe with upturn [DIGRAPH]
+ґ	0491	cyrillic small letter ghe with upturn [DIGRAPH]
+א	05D0	hebrew letter alef [DIGRAPH]
+ב	05D1	hebrew letter bet [DIGRAPH]
+ג	05D2	hebrew letter gimel [DIGRAPH]
+ד	05D3	hebrew letter dalet [DIGRAPH]
+ה	05D4	hebrew letter he [DIGRAPH]
+ו	05D5	hebrew letter vav [DIGRAPH]
+ז	05D6	hebrew letter zayin [DIGRAPH]
+ח	05D7	hebrew letter het [DIGRAPH]
+ט	05D8	hebrew letter tet [DIGRAPH]
+י	05D9	hebrew letter yod [DIGRAPH]
+ך	05DA	hebrew letter final kaf [DIGRAPH]
+כ	05DB	hebrew letter kaf [DIGRAPH]
+ל	05DC	hebrew letter lamed [DIGRAPH]
+ם	05DD	hebrew letter final mem [DIGRAPH]
+מ	05DE	hebrew letter mem [DIGRAPH]
+ן	05DF	hebrew letter final nun ` [DIGRAPH]
+נ	05E0	hebrew letter nun ` [DIGRAPH]
+ס	05E1	hebrew letter samekh [DIGRAPH]
+ע	05E2	hebrew letter ayin [DIGRAPH]
+ף	05E3	hebrew letter final pe [DIGRAPH]
+פ	05E4	hebrew letter pe [DIGRAPH]
+ץ	05E5	hebrew letter final tsadi [DIGRAPH]
+צ	05E6	hebrew letter tsadi [DIGRAPH]
+ק	05E7	hebrew letter qof [DIGRAPH]
+ר	05E8	hebrew letter resh [DIGRAPH]
+ש	05E9	hebrew letter shin [DIGRAPH]
+ת	05EA	hebrew letter tav [DIGRAPH]
+،	060C	arabic comma [DIGRAPH]
+؛	061B	arabic semicolon [DIGRAPH]
+؟	061F	arabic question mark [DIGRAPH]
+ء	0621	arabic letter hamza [DIGRAPH]
+آ	0622	arabic letter alef with madda above [DIGRAPH]
+أ	0623	arabic letter alef with hamza above [DIGRAPH]
+ؤ	0624	arabic letter waw with hamza above [DIGRAPH]
+إ	0625	arabic letter alef with hamza below [DIGRAPH]
+ئ	0626	arabic letter yeh with hamza above [DIGRAPH]
+ا	0627	arabic letter alef [DIGRAPH]
+ب	0628	arabic letter beh [DIGRAPH]
+ة	0629	arabic letter teh marbuta [DIGRAPH]
+ت	062A	arabic letter teh [DIGRAPH]
+ث	062B	arabic letter theh [DIGRAPH]
+ج	062C	arabic letter jeem [DIGRAPH]
+ح	062D	arabic letter hah [DIGRAPH]
+خ	062E	arabic letter khah [DIGRAPH]
+د	062F	arabic letter dal [DIGRAPH]
+ذ	0630	arabic letter thal [DIGRAPH]
+ر	0631	arabic letter reh [DIGRAPH]
+ز	0632	arabic letter zain [DIGRAPH]
+س	0633	arabic letter seen [DIGRAPH]
+ش	0634	arabic letter sheen [DIGRAPH]
+ص	0635	arabic letter sad [DIGRAPH]
+ض	0636	arabic letter dad [DIGRAPH]
+ط	0637	arabic letter tah [DIGRAPH]
+ظ	0638	arabic letter zah [DIGRAPH]
+ع	0639	arabic letter ain [DIGRAPH]
+غ	063A	arabic letter ghain [DIGRAPH]
+ـ	0640	arabic tatweel [DIGRAPH]
+ف	0641	arabic letter feh [DIGRAPH]
+ق	0642	arabic letter qaf [DIGRAPH]
+ك	0643	arabic letter kaf [DIGRAPH]
+ل	0644	arabic letter lam [DIGRAPH]
+م	0645	arabic letter meem [DIGRAPH]
+ن	0646	arabic letter noon [DIGRAPH]
+ه	0647	arabic letter heh [DIGRAPH]
+و	0648	arabic letter waw [DIGRAPH]
+ى	0649	arabic letter alef maksura [DIGRAPH]
+ي	064A	arabic letter yeh [DIGRAPH]
+064B	arabic fathatan [DIGRAPH]
+064C	arabic dammatan [DIGRAPH]
+064D	arabic kasratan [DIGRAPH]
+064E	arabic fatha [DIGRAPH]
+064F	arabic damma [DIGRAPH]
+0650	arabic kasra [DIGRAPH]
+0651	arabic shadda [DIGRAPH]
+0652	arabic sukun [DIGRAPH]
+0670	arabic letter superscript alef [DIGRAPH]
+پ	067E	arabic letter peh [DIGRAPH]
+ڤ	06A4	arabic letter veh [DIGRAPH]
+گ	06AF	arabic letter gaf [DIGRAPH]
+۰	06F0	extended arabic-indic digit zero [DIGRAPH]
+۱	06F1	extended arabic-indic digit one [DIGRAPH]
+۲	06F2	extended arabic-indic digit two [DIGRAPH]
+۳	06F3	extended arabic-indic digit three [DIGRAPH]
+۴	06F4	extended arabic-indic digit four [DIGRAPH]
+۵	06F5	extended arabic-indic digit five [DIGRAPH]
+۶	06F6	extended arabic-indic digit six [DIGRAPH]
+۷	06F7	extended arabic-indic digit seven [DIGRAPH]
+۸	06F8	extended arabic-indic digit eight [DIGRAPH]
+۹	06F9	extended arabic-indic digit nine [DIGRAPH]
+Ḃ	1E02	latin capital letter b with dot above [DIGRAPH]
+ḃ	1E03	latin small letter b with dot above [DIGRAPH]
+Ḇ	1E06	latin capital letter b with line below [DIGRAPH]
+ḇ	1E07	latin small letter b with line below [DIGRAPH]
+Ḋ	1E0A	latin capital letter d with dot above [DIGRAPH]
+ḋ	1E0B	latin small letter d with dot above [DIGRAPH]
+Ḏ	1E0E	latin capital letter d with line below [DIGRAPH]
+ḏ	1E0F	latin small letter d with line below [DIGRAPH]
+Ḑ	1E10	latin capital letter d with cedilla [DIGRAPH]
+ḑ	1E11	latin small letter d with cedilla [DIGRAPH]
+Ḟ	1E1E	latin capital letter f with dot above [DIGRAPH]
+ḟ	1E1F	latin small letter f with dot above [DIGRAPH]
+Ḡ	1E20	latin capital letter g with macron [DIGRAPH]
+ḡ	1E21	latin small letter g with macron [DIGRAPH]
+Ḣ	1E22	latin capital letter h with dot above [DIGRAPH]
+ḣ	1E23	latin small letter h with dot above [DIGRAPH]
+Ḧ	1E26	latin capital letter h with diaeresis [DIGRAPH]
+ḧ	1E27	latin small letter h with diaeresis [DIGRAPH]
+Ḩ	1E28	latin capital letter h with cedilla [DIGRAPH]
+ḩ	1E29	latin small letter h with cedilla [DIGRAPH]
+Ḱ	1E30	latin capital letter k with acute [DIGRAPH]
+ḱ	1E31	latin small letter k with acute [DIGRAPH]
+Ḵ	1E34	latin capital letter k with line below [DIGRAPH]
+ḵ	1E35	latin small letter k with line below [DIGRAPH]
+Ḻ	1E3A	latin capital letter l with line below [DIGRAPH]
+ḻ	1E3B	latin small letter l with line below [DIGRAPH]
+Ḿ	1E3E	latin capital letter m with acute [DIGRAPH]
+ḿ	1E3F	latin small letter m with acute [DIGRAPH]
+Ṁ	1E40	latin capital letter m with dot above [DIGRAPH]
+ṁ	1E41	latin small letter m with dot above [DIGRAPH]
+Ṅ	1E44	latin capital letter n with dot above ` [DIGRAPH]
+ṅ	1E45	latin small letter n with dot above ` [DIGRAPH]
+Ṉ	1E48	latin capital letter n with line below ` [DIGRAPH]
+ṉ	1E49	latin small letter n with line below ` [DIGRAPH]
+Ṕ	1E54	latin capital letter p with acute [DIGRAPH]
+ṕ	1E55	latin small letter p with acute [DIGRAPH]
+Ṗ	1E56	latin capital letter p with dot above [DIGRAPH]
+ṗ	1E57	latin small letter p with dot above [DIGRAPH]
+Ṙ	1E58	latin capital letter r with dot above [DIGRAPH]
+ṙ	1E59	latin small letter r with dot above [DIGRAPH]
+Ṟ	1E5E	latin capital letter r with line below [DIGRAPH]
+ṟ	1E5F	latin small letter r with line below [DIGRAPH]
+Ṡ	1E60	latin capital letter s with dot above [DIGRAPH]
+ṡ	1E61	latin small letter s with dot above [DIGRAPH]
+Ṫ	1E6A	latin capital letter t with dot above [DIGRAPH]
+ṫ	1E6B	latin small letter t with dot above [DIGRAPH]
+Ṯ	1E6E	latin capital letter t with line below [DIGRAPH]
+ṯ	1E6F	latin small letter t with line below [DIGRAPH]
+Ṽ	1E7C	latin capital letter v with tilde [DIGRAPH]
+ṽ	1E7D	latin small letter v with tilde [DIGRAPH]
+Ẁ	1E80	latin capital letter w with grave [DIGRAPH]
+ẁ	1E81	latin small letter w with grave [DIGRAPH]
+Ẃ	1E82	latin capital letter w with acute [DIGRAPH]
+ẃ	1E83	latin small letter w with acute [DIGRAPH]
+Ẅ	1E84	latin capital letter w with diaeresis [DIGRAPH]
+ẅ	1E85	latin small letter w with diaeresis [DIGRAPH]
+Ẇ	1E86	latin capital letter w with dot above [DIGRAPH]
+ẇ	1E87	latin small letter w with dot above [DIGRAPH]
+Ẋ	1E8A	latin capital letter x with dot above [DIGRAPH]
+ẋ	1E8B	latin small letter x with dot above [DIGRAPH]
+Ẍ	1E8C	latin capital letter x with diaeresis [DIGRAPH]
+ẍ	1E8D	latin small letter x with diaeresis [DIGRAPH]
+Ẏ	1E8E	latin capital letter y with dot above [DIGRAPH]
+ẏ	1E8F	latin small letter y with dot above [DIGRAPH]
+Ẑ	1E90	latin capital letter z with circumflex [DIGRAPH]
+ẑ	1E91	latin small letter z with circumflex [DIGRAPH]
+Ẕ	1E94	latin capital letter z with line below [DIGRAPH]
+ẕ	1E95	latin small letter z with line below [DIGRAPH]
+ẖ	1E96	latin small letter h with line below [DIGRAPH]
+ẗ	1E97	latin small letter t with diaeresis [DIGRAPH]
+ẘ	1E98	latin small letter w with ring above [DIGRAPH]
+ẙ	1E99	latin small letter y with ring above [DIGRAPH]
+Ả	1EA2	latin capital letter a with hook above [DIGRAPH]
+ả	1EA3	latin small letter a with hook above [DIGRAPH]
+Ẻ	1EBA	latin capital letter e with hook above [DIGRAPH]
+ẻ	1EBB	latin small letter e with hook above [DIGRAPH]
+Ẽ	1EBC	latin capital letter e with tilde [DIGRAPH]
+ẽ	1EBD	latin small letter e with tilde [DIGRAPH]
+Ỉ	1EC8	latin capital letter i with hook above [DIGRAPH]
+ỉ	1EC9	latin small letter i with hook above [DIGRAPH]
+Ỏ	1ECE	latin capital letter o with hook above [DIGRAPH]
+ỏ	1ECF	latin small letter o with hook above [DIGRAPH]
+Ủ	1EE6	latin capital letter u with hook above [DIGRAPH]
+ủ	1EE7	latin small letter u with hook above [DIGRAPH]
+Ỳ	1EF2	latin capital letter y with grave [DIGRAPH]
+ỳ	1EF3	latin small letter y with grave [DIGRAPH]
+Ỷ	1EF6	latin capital letter y with hook above [DIGRAPH]
+ỷ	1EF7	latin small letter y with hook above [DIGRAPH]
+Ỹ	1EF8	latin capital letter y with tilde [DIGRAPH]
+ỹ	1EF9	latin small letter y with tilde [DIGRAPH]
+ἀ	1F00	greek small letter alpha with psili [DIGRAPH]
+ἁ	1F01	greek small letter alpha with dasia [DIGRAPH]
+ἂ	1F02	greek small letter alpha with psili and varia [DIGRAPH]
+ἃ	1F03	greek small letter alpha with dasia and varia [DIGRAPH]
+ἄ	1F04	greek small letter alpha with psili and oxia [DIGRAPH]
+ἅ	1F05	greek small letter alpha with dasia and oxia [DIGRAPH]
+ἆ	1F06	greek small letter alpha with psili and perispomeni [DIGRAPH]
+ἇ	1F07	greek small letter alpha with dasia and perispomeni [DIGRAPH]
+ 	2002	en space [DIGRAPH]
+ 	2003	em space [DIGRAPH]
+ 	2004	three-per-em space [DIGRAPH]
+ 	2005	four-per-em space [DIGRAPH]
+ 	2006	six-per-em space [DIGRAPH]
+ 	2009	thin space [DIGRAPH]
+ 	200A	hair space [DIGRAPH]
+‐	2010	hyphen [DIGRAPH]
+–	2013	en dash ` [DIGRAPH]
+—	2014	em dash [DIGRAPH]
+―	2015	horizontal bar [DIGRAPH]
+‖	2016	double vertical line [DIGRAPH]
+‗	2017	double low line [DIGRAPH]
+‘	2018	left single quotation mark [DIGRAPH]
+’	2019	right single quotation mark [DIGRAPH]
+‚	201A	single low-9 quotation mark [DIGRAPH]
+‛	201B	single high-reversed-9 quotation mark [DIGRAPH]
+“	201C	left double quotation mark [DIGRAPH]
+”	201D	right double quotation mark [DIGRAPH]
+„	201E	double low-9 quotation mark [DIGRAPH]
+‟	201F	double high-reversed-9 quotation mark [DIGRAPH]
+†	2020	dagger [DIGRAPH]
+‡	2021	double dagger [DIGRAPH]
+•	2022	bullet [DIGRAPH]
+‥	2025	two dot leader [DIGRAPH]
+…	2026	horizontal ellipsis [DIGRAPH]
+‰	2030	per mille sign [DIGRAPH]
+′	2032	prime [DIGRAPH]
+″	2033	double prime [DIGRAPH]
+‴	2034	triple prime [DIGRAPH]
+⁗	2057	quadruple prime [DIGRAPH]
+‵	2035	reversed prime [DIGRAPH]
+‶	2036	reversed double prime [DIGRAPH]
+‷	2037	reversed triple prime [DIGRAPH]
+‸	2038	caret [DIGRAPH]
+‹	2039	single left-pointing angle quotation mark [DIGRAPH]
+›	203A	single right-pointing angle quotation mark [DIGRAPH]
+※	203B	reference mark [DIGRAPH]
+‾	203E	overline [DIGRAPH]
+⁄	2044	fraction slash [DIGRAPH]
+⁰	2070	superscript zero [DIGRAPH]
+⁴	2074	superscript four [DIGRAPH]
+⁵	2075	superscript five [DIGRAPH]
+⁶	2076	superscript six [DIGRAPH]
+⁷	2077	superscript seven [DIGRAPH]
+⁸	2078	superscript eight [DIGRAPH]
+⁹	2079	superscript nine [DIGRAPH]
+⁺	207A	superscript plus sign [DIGRAPH]
+⁻	207B	superscript minus [DIGRAPH]
+⁼	207C	superscript equals sign [DIGRAPH]
+⁽	207D	superscript left parenthesis [DIGRAPH]
+⁾	207E	superscript right parenthesis [DIGRAPH]
+ⁿ	207F	superscript latin small letter n ` [DIGRAPH]
+₀	2080	subscript zero [DIGRAPH]
+₁	2081	subscript one [DIGRAPH]
+₂	2082	subscript two [DIGRAPH]
+₃	2083	subscript three [DIGRAPH]
+₄	2084	subscript four [DIGRAPH]
+₅	2085	subscript five [DIGRAPH]
+₆	2086	subscript six [DIGRAPH]
+₇	2087	subscript seven [DIGRAPH]
+₈	2088	subscript eight [DIGRAPH]
+₉	2089	subscript nine [DIGRAPH]
+₊	208A	subscript plus sign [DIGRAPH]
+₋	208B	subscript minus [DIGRAPH]
+₌	208C	subscript equals sign [DIGRAPH]
+₍	208D	subscript left parenthesis [DIGRAPH]
+₎	208E	subscript right parenthesis [DIGRAPH]
+₤	20A4	lira sign [DIGRAPH]
+₧	20A7	peseta sign [DIGRAPH]
+₩	20A9	won sign [DIGRAPH]
+€	20AC	euro sign [DIGRAPH]
+₽	20BD	rouble sign [DIGRAPH]
+₽	20BD	rouble sign [DIGRAPH]
+℃	2103	degree celsius [DIGRAPH]
+℅	2105	care of [DIGRAPH]
+℉	2109	degree fahrenheit [DIGRAPH]
+№	2116	numero sign [DIGRAPH]
+℗	2117	sound recording copyright [DIGRAPH]
+℞	211E	prescription take [DIGRAPH]
+℠	2120	service mark [DIGRAPH]
+™	2122	trade mark sign [DIGRAPH]
+Ω	2126	ohm sign [DIGRAPH]
+Å	212B	angstrom sign [DIGRAPH]
+⅓	2153	vulgar fraction one third [DIGRAPH]
+⅔	2154	vulgar fraction two thirds [DIGRAPH]
+⅕	2155	vulgar fraction one fifth [DIGRAPH]
+⅖	2156	vulgar fraction two fifths [DIGRAPH]
+⅗	2157	vulgar fraction three fifths [DIGRAPH]
+⅘	2158	vulgar fraction four fifths [DIGRAPH]
+⅙	2159	vulgar fraction one sixth [DIGRAPH]
+⅚	215A	vulgar fraction five sixths [DIGRAPH]
+⅛	215B	vulgar fraction one eighth [DIGRAPH]
+⅜	215C	vulgar fraction three eighths [DIGRAPH]
+⅝	215D	vulgar fraction five eighths [DIGRAPH]
+⅞	215E	vulgar fraction seven eighths [DIGRAPH]
+Ⅰ	2160	roman numeral one [DIGRAPH]
+Ⅱ	2161	roman numeral two [DIGRAPH]
+Ⅲ	2162	roman numeral three [DIGRAPH]
+Ⅳ	2163	roman numeral four [DIGRAPH]
+Ⅴ	2164	roman numeral five [DIGRAPH]
+Ⅵ	2165	roman numeral six [DIGRAPH]
+Ⅶ	2166	roman numeral seven [DIGRAPH]
+Ⅷ	2167	roman numeral eight [DIGRAPH]
+Ⅸ	2168	roman numeral nine [DIGRAPH]
+Ⅹ	2169	roman numeral ten [DIGRAPH]
+Ⅺ	216A	roman numeral eleven [DIGRAPH]
+Ⅻ	216B	roman numeral twelve [DIGRAPH]
+ⅰ	2170	small roman numeral one [DIGRAPH]
+ⅱ	2171	small roman numeral two [DIGRAPH]
+ⅲ	2172	small roman numeral three [DIGRAPH]
+ⅳ	2173	small roman numeral four [DIGRAPH]
+ⅴ	2174	small roman numeral five [DIGRAPH]
+ⅵ	2175	small roman numeral six [DIGRAPH]
+ⅶ	2176	small roman numeral seven [DIGRAPH]
+ⅷ	2177	small roman numeral eight [DIGRAPH]
+ⅸ	2178	small roman numeral nine [DIGRAPH]
+ⅹ	2179	small roman numeral ten [DIGRAPH]
+ⅺ	217A	small roman numeral eleven [DIGRAPH]
+ⅻ	217B	small roman numeral twelve [DIGRAPH]
+←	2190	leftwards arrow [DIGRAPH]
+↑	2191	upwards arrow [DIGRAPH]
+→	2192	rightwards arrow [DIGRAPH]
+↓	2193	downwards arrow [DIGRAPH]
+↔	2194	left right arrow [DIGRAPH]
+↕	2195	up down arrow [DIGRAPH]
+⇐	21D0	leftwards double arrow [DIGRAPH]
+⇒	21D2	rightwards double arrow [DIGRAPH]
+⇔	21D4	left right double arrow [DIGRAPH]
+∀	2200	for all [DIGRAPH]
+∂	2202	partial differential [DIGRAPH]
+∃	2203	there exists [DIGRAPH]
+∅	2205	empty set [DIGRAPH]
+∆	2206	increment [DIGRAPH]
+∇	2207	nabla [DIGRAPH]
+∈	2208	element of [DIGRAPH]
+∋	220B	contains as member [DIGRAPH]
+∏	220F	n-ary product ` [DIGRAPH]
+∑	2211	n-ary summation ` [DIGRAPH]
+−	2212	minus sign [DIGRAPH]
+∓	2213	minus-or-plus sign [DIGRAPH]
+∗	2217	asterisk operator [DIGRAPH]
+∘	2218	ring operator [DIGRAPH]
+∙	2219	bullet operator [DIGRAPH]
+√	221A	square root [DIGRAPH]
+∝	221D	proportional to [DIGRAPH]
+∞	221E	infinity [DIGRAPH]
+∟	221F	right angle [DIGRAPH]
+∠	2220	angle [DIGRAPH]
+∥	2225	parallel to [DIGRAPH]
+∧	2227	logical and [DIGRAPH]
+∨	2228	logical or [DIGRAPH]
+∩	2229	intersection [DIGRAPH]
+∪	222A	union [DIGRAPH]
+∫	222B	integral [DIGRAPH]
+∬	222C	double integral [DIGRAPH]
+∮	222E	contour integral [DIGRAPH]
+∴	2234	therefore [DIGRAPH]
+∵	2235	because [DIGRAPH]
+∶	2236	ratio [DIGRAPH]
+∷	2237	proportion [DIGRAPH]
+∼	223C	tilde operator [DIGRAPH]
+∾	223E	inverted lazy s [DIGRAPH]
+≃	2243	asymptotically equal to [DIGRAPH]
+≅	2245	approximately equal to [DIGRAPH]
+≈	2248	almost equal to [DIGRAPH]
+≌	224C	all equal to [DIGRAPH]
+≓	2253	image of or approximately equal to [DIGRAPH]
+≠	2260	not equal to [DIGRAPH]
+≡	2261	identical to [DIGRAPH]
+≤	2264	less-than or equal to [DIGRAPH]
+≥	2265	greater-than or equal to [DIGRAPH]
+≪	226A	much less-than [DIGRAPH]
+≫	226B	much greater-than [DIGRAPH]
+≮	226E	not less-than [DIGRAPH]
+≯	226F	not greater-than [DIGRAPH]
+⊂	2282	subset of [DIGRAPH]
+⊃	2283	superset of [DIGRAPH]
+⊆	2286	subset of or equal to [DIGRAPH]
+⊇	2287	superset of or equal to [DIGRAPH]
+⊙	2299	circled dot operator [DIGRAPH]
+⊚	229A	circled ring operator [DIGRAPH]
+⊥	22A5	up tack [DIGRAPH]
+⋅	22C5	dot operator [DIGRAPH]
+⋮	22EE	vertical ellipsis [DIGRAPH]
+⋯	22EF	midline horizontal ellipsis [DIGRAPH]
+⌂	2302	house [DIGRAPH]
+⌈	2308	left ceiling [DIGRAPH]
+⌉	2309	right ceiling [DIGRAPH]
+⌊	230A	left floor [DIGRAPH]
+⌋	230B	right floor [DIGRAPH]
+⌐	2310	reversed not sign [DIGRAPH]
+⌒	2312	arc [DIGRAPH]
+⌕	2315	telephone recorder [DIGRAPH]
+⌠	2320	top half integral [DIGRAPH]
+⌡	2321	bottom half integral [DIGRAPH]
+〈	2329	left-pointing angle bracket [DIGRAPH]
+〉	232A	right-pointing angle bracket [DIGRAPH]
+␣	2423	open box [DIGRAPH]
+⑀	2440	ocr hook [DIGRAPH]
+⑁	2441	ocr chair [DIGRAPH]
+⑂	2442	ocr fork [DIGRAPH]
+⑃	2443	ocr inverted fork [DIGRAPH]
+⑆	2446	ocr branch bank identification [DIGRAPH]
+⑇	2447	ocr amount of check [DIGRAPH]
+⑈	2448	ocr dash [DIGRAPH]
+⑉	2449	ocr customer account number [DIGRAPH]
+⒈	2488	digit one full stop [DIGRAPH]
+⒉	2489	digit two full stop [DIGRAPH]
+⒊	248A	digit three full stop [DIGRAPH]
+⒋	248B	digit four full stop [DIGRAPH]
+⒌	248C	digit five full stop [DIGRAPH]
+⒍	248D	digit six full stop [DIGRAPH]
+⒎	248E	digit seven full stop [DIGRAPH]
+⒏	248F	digit eight full stop [DIGRAPH]
+⒐	2490	digit nine full stop [DIGRAPH]
+─	2500	box drawings light horizontal [DIGRAPH]
+━	2501	box drawings heavy horizontal [DIGRAPH]
+│	2502	box drawings light vertical [DIGRAPH]
+┃	2503	box drawings heavy vertical [DIGRAPH]
+┄	2504	box drawings light triple dash horizontal [DIGRAPH]
+┅	2505	box drawings heavy triple dash horizontal [DIGRAPH]
+┆	2506	box drawings light triple dash vertical [DIGRAPH]
+┇	2507	box drawings heavy triple dash vertical [DIGRAPH]
+┈	2508	box drawings light quadruple dash horizontal [DIGRAPH]
+┉	2509	box drawings heavy quadruple dash horizontal [DIGRAPH]
+┊	250A	box drawings light quadruple dash vertical [DIGRAPH]
+┋	250B	box drawings heavy quadruple dash vertical [DIGRAPH]
+┌	250C	box drawings light down and right [DIGRAPH]
+┍	250D	box drawings down light and right heavy [DIGRAPH]
+┎	250E	box drawings down heavy and right light [DIGRAPH]
+┏	250F	box drawings heavy down and right [DIGRAPH]
+┐	2510	box drawings light down and left [DIGRAPH]
+┑	2511	box drawings down light and left heavy [DIGRAPH]
+┒	2512	box drawings down heavy and left light [DIGRAPH]
+┓	2513	box drawings heavy down and left [DIGRAPH]
+└	2514	box drawings light up and right [DIGRAPH]
+┕	2515	box drawings up light and right heavy [DIGRAPH]
+┖	2516	box drawings up heavy and right light [DIGRAPH]
+┗	2517	box drawings heavy up and right [DIGRAPH]
+┘	2518	box drawings light up and left [DIGRAPH]
+┙	2519	box drawings up light and left heavy [DIGRAPH]
+┚	251A	box drawings up heavy and left light [DIGRAPH]
+┛	251B	box drawings heavy up and left [DIGRAPH]
+├	251C	box drawings light vertical and right [DIGRAPH]
+┝	251D	box drawings vertical light and right heavy [DIGRAPH]
+┠	2520	box drawings vertical heavy and right light [DIGRAPH]
+┣	2523	box drawings heavy vertical and right [DIGRAPH]
+┤	2524	box drawings light vertical and left [DIGRAPH]
+┥	2525	box drawings vertical light and left heavy [DIGRAPH]
+┨	2528	box drawings vertical heavy and left light [DIGRAPH]
+┫	252B	box drawings heavy vertical and left [DIGRAPH]
+┬	252C	box drawings light down and horizontal [DIGRAPH]
+┯	252F	box drawings down light and horizontal heavy [DIGRAPH]
+┰	2530	box drawings down heavy and horizontal light [DIGRAPH]
+┳	2533	box drawings heavy down and horizontal [DIGRAPH]
+┴	2534	box drawings light up and horizontal [DIGRAPH]
+┷	2537	box drawings up light and horizontal heavy [DIGRAPH]
+┸	2538	box drawings up heavy and horizontal light [DIGRAPH]
+┻	253B	box drawings heavy up and horizontal [DIGRAPH]
+┼	253C	box drawings light vertical and horizontal [DIGRAPH]
+┿	253F	box drawings vertical light and horizontal heavy [DIGRAPH]
+╂	2542	box drawings vertical heavy and horizontal light [DIGRAPH]
+╋	254B	box drawings heavy vertical and horizontal [DIGRAPH]
+╱	2571	box drawings light diagonal upper right to lower left [DIGRAPH]
+╲	2572	box drawings light diagonal upper left to lower right [DIGRAPH]
+▀	2580	upper half block [DIGRAPH]
+▄	2584	lower half block [DIGRAPH]
+█	2588	full block [DIGRAPH]
+▌	258C	left half block [DIGRAPH]
+▐	2590	right half block [DIGRAPH]
+░	2591	light shade [DIGRAPH]
+▒	2592	medium shade [DIGRAPH]
+▓	2593	dark shade [DIGRAPH]
+■	25A0	black square [DIGRAPH]
+□	25A1	white square [DIGRAPH]
+▢	25A2	white square with rounded corners [DIGRAPH]
+▣	25A3	white square containing black small square [DIGRAPH]
+▤	25A4	square with horizontal fill [DIGRAPH]
+▥	25A5	square with vertical fill [DIGRAPH]
+▦	25A6	square with orthogonal crosshatch fill [DIGRAPH]
+▧	25A7	square with upper left to lower right fill [DIGRAPH]
+▨	25A8	square with upper right to lower left fill [DIGRAPH]
+▩	25A9	square with diagonal crosshatch fill [DIGRAPH]
+▪	25AA	black small square [DIGRAPH]
+▬	25AC	black rectangle [DIGRAPH]
+▭	25AD	white rectangle [DIGRAPH]
+▲	25B2	black up-pointing triangle [DIGRAPH]
+△	25B3	white up-pointing triangle [DIGRAPH]
+▶	25B6	black right-pointing triangle [DIGRAPH]
+▷	25B7	white right-pointing triangle [DIGRAPH]
+▼	25BC	black down-pointing triangle [DIGRAPH]
+▽	25BD	white down-pointing triangle [DIGRAPH]
+◀	25C0	black left-pointing triangle [DIGRAPH]
+◁	25C1	white left-pointing triangle [DIGRAPH]
+◆	25C6	black diamond [DIGRAPH]
+◇	25C7	white diamond [DIGRAPH]
+◊	25CA	lozenge [DIGRAPH]
+○	25CB	white circle [DIGRAPH]
+◎	25CE	bullseye [DIGRAPH]
+●	25CF	black circle [DIGRAPH]
+◐	25D0	circle with left half black [DIGRAPH]
+◑	25D1	circle with right half black [DIGRAPH]
+◘	25D8	inverse bullet [DIGRAPH]
+◙	25D9	inverse white circle [DIGRAPH]
+◢	25E2	black lower right triangle [DIGRAPH]
+◣	25E3	black lower left triangle [DIGRAPH]
+★	2605	black star [DIGRAPH]
+☆	2606	white star [DIGRAPH]
+☜	261C	white left pointing index [DIGRAPH]
+☞	261E	white right pointing index [DIGRAPH]
+☺	263A	white smiling face [DIGRAPH]
+☻	263B	black smiling face [DIGRAPH]
+☼	263C	white sun with rays [DIGRAPH]
+♀	2640	female sign [DIGRAPH]
+♂	2642	male sign [DIGRAPH]
+♠	2660	black spade suit [DIGRAPH]
+♡	2661	white heart suit [DIGRAPH]
+♢	2662	white diamond suit [DIGRAPH]
+♣	2663	black club suit [DIGRAPH]
+♩	2669	quarter note ` [DIGRAPH]
+♪	266A	eighth note ` [DIGRAPH]
+♫	266B	beamed eighth notes [DIGRAPH]
+♭	266D	music flat sign [DIGRAPH]
+♮	266E	music natural sign [DIGRAPH]
+♯	266F	music sharp sign [DIGRAPH]
+✓	2713	check mark [DIGRAPH]
+✗	2717	ballot x [DIGRAPH]
+✠	2720	maltese cross [DIGRAPH]
+　	3000	ideographic space [DIGRAPH]
+、	3001	ideographic comma [DIGRAPH]
+。	3002	ideographic full stop [DIGRAPH]
+〃	3003	ditto mark [DIGRAPH]
+〄	3004	japanese industrial standard symbol [DIGRAPH]
+々	3005	ideographic iteration mark [DIGRAPH]
+〆	3006	ideographic closing mark [DIGRAPH]
+〇	3007	ideographic number zero [DIGRAPH]
+《	300A	left double angle bracket [DIGRAPH]
+》	300B	right double angle bracket [DIGRAPH]
+「	300C	left corner bracket [DIGRAPH]
+」	300D	right corner bracket [DIGRAPH]
+『	300E	left white corner bracket [DIGRAPH]
+』	300F	right white corner bracket [DIGRAPH]
+【	3010	left black lenticular bracket [DIGRAPH]
+】	3011	right black lenticular bracket [DIGRAPH]
+〒	3012	postal mark [DIGRAPH]
+〓	3013	geta mark [DIGRAPH]
+〔	3014	left tortoise shell bracket [DIGRAPH]
+〕	3015	right tortoise shell bracket [DIGRAPH]
+〖	3016	left white lenticular bracket [DIGRAPH]
+〗	3017	right white lenticular bracket [DIGRAPH]
+〜	301C	wave dash [DIGRAPH]
+ぁ	3041	hiragana letter small a [DIGRAPH]
+あ	3042	hiragana letter a [DIGRAPH]
+ぃ	3043	hiragana letter small i [DIGRAPH]
+い	3044	hiragana letter i [DIGRAPH]
+ぅ	3045	hiragana letter small u [DIGRAPH]
+う	3046	hiragana letter u [DIGRAPH]
+ぇ	3047	hiragana letter small e [DIGRAPH]
+え	3048	hiragana letter e [DIGRAPH]
+ぉ	3049	hiragana letter small o [DIGRAPH]
+お	304A	hiragana letter o [DIGRAPH]
+か	304B	hiragana letter ka [DIGRAPH]
+が	304C	hiragana letter ga [DIGRAPH]
+き	304D	hiragana letter ki [DIGRAPH]
+ぎ	304E	hiragana letter gi [DIGRAPH]
+く	304F	hiragana letter ku [DIGRAPH]
+ぐ	3050	hiragana letter gu [DIGRAPH]
+け	3051	hiragana letter ke [DIGRAPH]
+げ	3052	hiragana letter ge [DIGRAPH]
+こ	3053	hiragana letter ko [DIGRAPH]
+ご	3054	hiragana letter go [DIGRAPH]
+さ	3055	hiragana letter sa [DIGRAPH]
+ざ	3056	hiragana letter za [DIGRAPH]
+し	3057	hiragana letter si [DIGRAPH]
+じ	3058	hiragana letter zi [DIGRAPH]
+す	3059	hiragana letter su [DIGRAPH]
+ず	305A	hiragana letter zu [DIGRAPH]
+せ	305B	hiragana letter se [DIGRAPH]
+ぜ	305C	hiragana letter ze [DIGRAPH]
+そ	305D	hiragana letter so [DIGRAPH]
+ぞ	305E	hiragana letter zo [DIGRAPH]
+た	305F	hiragana letter ta [DIGRAPH]
+だ	3060	hiragana letter da [DIGRAPH]
+ち	3061	hiragana letter ti [DIGRAPH]
+ぢ	3062	hiragana letter di [DIGRAPH]
+っ	3063	hiragana letter small tu [DIGRAPH]
+つ	3064	hiragana letter tu [DIGRAPH]
+づ	3065	hiragana letter du [DIGRAPH]
+て	3066	hiragana letter te [DIGRAPH]
+で	3067	hiragana letter de [DIGRAPH]
+と	3068	hiragana letter to [DIGRAPH]
+ど	3069	hiragana letter do [DIGRAPH]
+な	306A	hiragana letter na [DIGRAPH]
+に	306B	hiragana letter ni [DIGRAPH]
+ぬ	306C	hiragana letter nu [DIGRAPH]
+ね	306D	hiragana letter ne [DIGRAPH]
+の	306E	hiragana letter no [DIGRAPH]
+は	306F	hiragana letter ha [DIGRAPH]
+ば	3070	hiragana letter ba [DIGRAPH]
+ぱ	3071	hiragana letter pa [DIGRAPH]
+ひ	3072	hiragana letter hi [DIGRAPH]
+び	3073	hiragana letter bi [DIGRAPH]
+ぴ	3074	hiragana letter pi [DIGRAPH]
+ふ	3075	hiragana letter hu [DIGRAPH]
+ぶ	3076	hiragana letter bu [DIGRAPH]
+ぷ	3077	hiragana letter pu [DIGRAPH]
+へ	3078	hiragana letter he [DIGRAPH]
+べ	3079	hiragana letter be [DIGRAPH]
+ぺ	307A	hiragana letter pe [DIGRAPH]
+ほ	307B	hiragana letter ho [DIGRAPH]
+ぼ	307C	hiragana letter bo [DIGRAPH]
+ぽ	307D	hiragana letter po [DIGRAPH]
+ま	307E	hiragana letter ma [DIGRAPH]
+み	307F	hiragana letter mi [DIGRAPH]
+む	3080	hiragana letter mu [DIGRAPH]
+め	3081	hiragana letter me [DIGRAPH]
+も	3082	hiragana letter mo [DIGRAPH]
+ゃ	3083	hiragana letter small ya [DIGRAPH]
+や	3084	hiragana letter ya [DIGRAPH]
+ゅ	3085	hiragana letter small yu [DIGRAPH]
+ゆ	3086	hiragana letter yu [DIGRAPH]
+ょ	3087	hiragana letter small yo [DIGRAPH]
+よ	3088	hiragana letter yo [DIGRAPH]
+ら	3089	hiragana letter ra [DIGRAPH]
+り	308A	hiragana letter ri [DIGRAPH]
+る	308B	hiragana letter ru [DIGRAPH]
+れ	308C	hiragana letter re [DIGRAPH]
+ろ	308D	hiragana letter ro [DIGRAPH]
+ゎ	308E	hiragana letter small wa [DIGRAPH]
+わ	308F	hiragana letter wa [DIGRAPH]
+ゐ	3090	hiragana letter wi [DIGRAPH]
+ゑ	3091	hiragana letter we [DIGRAPH]
+を	3092	hiragana letter wo [DIGRAPH]
+ん	3093	hiragana letter n ` [DIGRAPH]
+ゔ	3094	hiragana letter vu [DIGRAPH]
+゛	309B	katakana-hiragana voiced sound mark [DIGRAPH]
+゜	309C	katakana-hiragana semi-voiced sound mark [DIGRAPH]
+ゝ	309D	hiragana iteration mark [DIGRAPH]
+ゞ	309E	hiragana voiced iteration mark [DIGRAPH]
+ァ	30A1	katakana letter small a [DIGRAPH]
+ア	30A2	katakana letter a [DIGRAPH]
+ィ	30A3	katakana letter small i [DIGRAPH]
+イ	30A4	katakana letter i [DIGRAPH]
+ゥ	30A5	katakana letter small u [DIGRAPH]
+ウ	30A6	katakana letter u [DIGRAPH]
+ェ	30A7	katakana letter small e [DIGRAPH]
+エ	30A8	katakana letter e [DIGRAPH]
+ォ	30A9	katakana letter small o [DIGRAPH]
+オ	30AA	katakana letter o [DIGRAPH]
+カ	30AB	katakana letter ka [DIGRAPH]
+ガ	30AC	katakana letter ga [DIGRAPH]
+キ	30AD	katakana letter ki [DIGRAPH]
+ギ	30AE	katakana letter gi [DIGRAPH]
+ク	30AF	katakana letter ku [DIGRAPH]
+グ	30B0	katakana letter gu [DIGRAPH]
+ケ	30B1	katakana letter ke [DIGRAPH]
+ゲ	30B2	katakana letter ge [DIGRAPH]
+コ	30B3	katakana letter ko [DIGRAPH]
+ゴ	30B4	katakana letter go [DIGRAPH]
+サ	30B5	katakana letter sa [DIGRAPH]
+ザ	30B6	katakana letter za [DIGRAPH]
+シ	30B7	katakana letter si [DIGRAPH]
+ジ	30B8	katakana letter zi [DIGRAPH]
+ス	30B9	katakana letter su [DIGRAPH]
+ズ	30BA	katakana letter zu [DIGRAPH]
+セ	30BB	katakana letter se [DIGRAPH]
+ゼ	30BC	katakana letter ze [DIGRAPH]
+ソ	30BD	katakana letter so [DIGRAPH]
+ゾ	30BE	katakana letter zo [DIGRAPH]
+タ	30BF	katakana letter ta [DIGRAPH]
+ダ	30C0	katakana letter da [DIGRAPH]
+チ	30C1	katakana letter ti [DIGRAPH]
+ヂ	30C2	katakana letter di [DIGRAPH]
+ッ	30C3	katakana letter small tu [DIGRAPH]
+ツ	30C4	katakana letter tu [DIGRAPH]
+ヅ	30C5	katakana letter du [DIGRAPH]
+テ	30C6	katakana letter te [DIGRAPH]
+デ	30C7	katakana letter de [DIGRAPH]
+ト	30C8	katakana letter to [DIGRAPH]
+ド	30C9	katakana letter do [DIGRAPH]
+ナ	30CA	katakana letter na [DIGRAPH]
+ニ	30CB	katakana letter ni [DIGRAPH]
+ヌ	30CC	katakana letter nu [DIGRAPH]
+ネ	30CD	katakana letter ne [DIGRAPH]
+ノ	30CE	katakana letter no [DIGRAPH]
+ハ	30CF	katakana letter ha [DIGRAPH]
+バ	30D0	katakana letter ba [DIGRAPH]
+パ	30D1	katakana letter pa [DIGRAPH]
+ヒ	30D2	katakana letter hi [DIGRAPH]
+ビ	30D3	katakana letter bi [DIGRAPH]
+ピ	30D4	katakana letter pi [DIGRAPH]
+フ	30D5	katakana letter hu [DIGRAPH]
+ブ	30D6	katakana letter bu [DIGRAPH]
+プ	30D7	katakana letter pu [DIGRAPH]
+ヘ	30D8	katakana letter he [DIGRAPH]
+ベ	30D9	katakana letter be [DIGRAPH]
+ペ	30DA	katakana letter pe [DIGRAPH]
+ホ	30DB	katakana letter ho [DIGRAPH]
+ボ	30DC	katakana letter bo [DIGRAPH]
+ポ	30DD	katakana letter po [DIGRAPH]
+マ	30DE	katakana letter ma [DIGRAPH]
+ミ	30DF	katakana letter mi [DIGRAPH]
+ム	30E0	katakana letter mu [DIGRAPH]
+メ	30E1	katakana letter me [DIGRAPH]
+モ	30E2	katakana letter mo [DIGRAPH]
+ャ	30E3	katakana letter small ya [DIGRAPH]
+ヤ	30E4	katakana letter ya [DIGRAPH]
+ュ	30E5	katakana letter small yu [DIGRAPH]
+ユ	30E6	katakana letter yu [DIGRAPH]
+ョ	30E7	katakana letter small yo [DIGRAPH]
+ヨ	30E8	katakana letter yo [DIGRAPH]
+ラ	30E9	katakana letter ra [DIGRAPH]
+リ	30EA	katakana letter ri [DIGRAPH]
+ル	30EB	katakana letter ru [DIGRAPH]
+レ	30EC	katakana letter re [DIGRAPH]
+ロ	30ED	katakana letter ro [DIGRAPH]
+ヮ	30EE	katakana letter small wa [DIGRAPH]
+ワ	30EF	katakana letter wa [DIGRAPH]
+ヰ	30F0	katakana letter wi [DIGRAPH]
+ヱ	30F1	katakana letter we [DIGRAPH]
+ヲ	30F2	katakana letter wo [DIGRAPH]
+ン	30F3	katakana letter n ` [DIGRAPH]
+ヴ	30F4	katakana letter vu [DIGRAPH]
+ヵ	30F5	katakana letter small ka [DIGRAPH]
+ヶ	30F6	katakana letter small ke [DIGRAPH]
+ヷ	30F7	katakana letter va [DIGRAPH]
+ヸ	30F8	katakana letter vi [DIGRAPH]
+ヹ	30F9	katakana letter ve [DIGRAPH]
+ヺ	30FA	katakana letter vo [DIGRAPH]
+・	30FB	katakana middle dot [DIGRAPH]
+ー	30FC	katakana-hiragana prolonged sound mark [DIGRAPH]
+ヽ	30FD	katakana iteration mark [DIGRAPH]
+ヾ	30FE	katakana voiced iteration mark [DIGRAPH]
+ㄅ	3105	bopomofo letter b [DIGRAPH]
+ㄆ	3106	bopomofo letter p [DIGRAPH]
+ㄇ	3107	bopomofo letter m [DIGRAPH]
+ㄈ	3108	bopomofo letter f [DIGRAPH]
+ㄉ	3109	bopomofo letter d [DIGRAPH]
+ㄊ	310A	bopomofo letter t [DIGRAPH]
+ㄋ	310B	bopomofo letter n ` [DIGRAPH]
+ㄌ	310C	bopomofo letter l [DIGRAPH]
+ㄍ	310D	bopomofo letter g [DIGRAPH]
+ㄎ	310E	bopomofo letter k [DIGRAPH]
+ㄏ	310F	bopomofo letter h [DIGRAPH]
+ㄐ	3110	bopomofo letter j [DIGRAPH]
+ㄑ	3111	bopomofo letter q [DIGRAPH]
+ㄒ	3112	bopomofo letter x [DIGRAPH]
+ㄓ	3113	bopomofo letter zh [DIGRAPH]
+ㄔ	3114	bopomofo letter ch [DIGRAPH]
+ㄕ	3115	bopomofo letter sh [DIGRAPH]
+ㄖ	3116	bopomofo letter r [DIGRAPH]
+ㄗ	3117	bopomofo letter z [DIGRAPH]
+ㄘ	3118	bopomofo letter c [DIGRAPH]
+ㄙ	3119	bopomofo letter s [DIGRAPH]
+ㄚ	311A	bopomofo letter a [DIGRAPH]
+ㄛ	311B	bopomofo letter o [DIGRAPH]
+ㄜ	311C	bopomofo letter e [DIGRAPH]
+ㄞ	311E	bopomofo letter ai [DIGRAPH]
+ㄟ	311F	bopomofo letter ei [DIGRAPH]
+ㄠ	3120	bopomofo letter au [DIGRAPH]
+ㄡ	3121	bopomofo letter ou [DIGRAPH]
+ㄢ	3122	bopomofo letter an [DIGRAPH]
+ㄣ	3123	bopomofo letter en [DIGRAPH]
+ㄤ	3124	bopomofo letter ang [DIGRAPH]
+ㄥ	3125	bopomofo letter eng [DIGRAPH]
+ㄦ	3126	bopomofo letter er [DIGRAPH]
+ㄧ	3127	bopomofo letter i [DIGRAPH]
+ㄨ	3128	bopomofo letter u [DIGRAPH]
+ㄩ	3129	bopomofo letter iu [DIGRAPH]
+ㄪ	312A	bopomofo letter v [DIGRAPH]
+ㄫ	312B	bopomofo letter ng [DIGRAPH]
+ㄬ	312C	bopomofo letter gn [DIGRAPH]
+㈠	3220	parenthesized ideograph one [DIGRAPH]
+㈡	3221	parenthesized ideograph two [DIGRAPH]
+㈢	3222	parenthesized ideograph three [DIGRAPH]
+㈣	3223	parenthesized ideograph four [DIGRAPH]
+㈤	3224	parenthesized ideograph five [DIGRAPH]
+㈥	3225	parenthesized ideograph six [DIGRAPH]
+㈦	3226	parenthesized ideograph seven [DIGRAPH]
+㈧	3227	parenthesized ideograph eight [DIGRAPH]
+㈨	3228	parenthesized ideograph nine [DIGRAPH]
+ﬀ	FB00	latin small ligature ff [DIGRAPH]
+ﬁ	FB01	latin small ligature fi [DIGRAPH]
+ﬂ	FB02	latin small ligature fl [DIGRAPH]
+ﬅ	FB05	latin small ligature long s t [DIGRAPH]
+ﬆ	FB06	latin small ligature st [DIGRAPH]
