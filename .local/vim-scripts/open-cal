@@ -16,10 +16,9 @@ let qflist = []
 
 let buf = bufnr()
 
-"for all matches get all the items
-for match in range(matches.total)
-    "move the cursor to that match
-    call search(regex)
+"move the cursor to the next match
+while search(regex, "W")
+    "call search(regex)
     "get all the items (which ends at the end of the paragraph)
     "indicated by the `}` mark
     let items = getline(".", "'}")
@@ -28,9 +27,14 @@ for match in range(matches.total)
         if items[itemNr] == ""
             continue
         endif
-        let qflist = add(qflist, #{bufnr: buf, lnum: lineNr + itemNr, text: items[itemNr], col: stridx(items[itemNr], "-") + 1})
+        let qflist = add(qflist, #{
+                    \ bufnr: buf,
+                    \ lnum: lineNr + itemNr,
+                    \ text: items[itemNr],
+                    \ col: stridx(items[itemNr], "-") + 1
+                    \ })
     endfor
-endfor
+endwhile
 
 call setqflist(qflist)
 
