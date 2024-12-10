@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=linkhandler
+Exec=linkhandler %u
+Type=Application
+MimeType=x-scheme-handler/set;x-scheme-handler/man;
