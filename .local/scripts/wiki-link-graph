@@ -103,7 +103,6 @@ if len(sys.argv) > 1 and sys.argv[1] == "links":
         printed.add(edge)
 if len(sys.argv) > 1 and sys.argv[1] == "plotly":
     from pyvis.network import Network
-    import networkx as nx
     g = Network(
         directed=True,
         select_menu=True,
