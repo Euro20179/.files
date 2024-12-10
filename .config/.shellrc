@@ -208,7 +208,7 @@ alias "TODO=$EDITOR +'exec \"norm gO\" | wincmd k' $WIKI/TODO.mmfml"
 
 CAL () {
     m=$(date +%B)
-    $EDITOR +'exec "norm gO" | wincmd k' +Lfilter'! /Calendar/' +'Lfilter /'"$m/" +"/= $m" $WIKI/CAL.mmfml
+    $EDITOR -S "$HOME/.local/vim-scripts/open-cal"
 }
 
 alias wishlist="$EDITOR $HOME/Documents/vimwiki/wishlist.md"

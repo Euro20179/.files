@@ -1,0 +1,34 @@
+e $WIKI/CAL.mmfml
+let month = strftime("%B")
+let day = strftime("%d")
+
+"finds the line of the first item for all sections partaining to this day
+let regex = "= " . month . '\_.\{-}\_^\s\+== ' . '16' . '\n\zs\_.\{-}\ze\n\n'
+echom regex
+
+"find all items belonging to the current day
+let matches = searchcount(#{pattern: regex, maxcount: 0})
+
+let qflist = []
+
+let buf = bufnr()
+
+"for all matches get all the items
+for match in range(matches.total)
+    "move the cursor to that match
+    call search(regex)
+    "get all the items (which ends at the end of the paragraph)
+    "indicated by the `}` mark
+    let items = getline(".", "'}")
+    let lineNr = line('.')
+    for itemNr in range(len(items))
+        if items[itemNr] == ""
+            continue
+        endif
+        let qflist = add(qflist, #{bufnr: buf, lnum: lineNr + itemNr, text: items[itemNr], col: stridx(items[itemNr], "-") + 1})
+    endfor
+endfor
+
+call setqflist(qflist)
+
+cwin
