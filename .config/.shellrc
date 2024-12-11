@@ -204,7 +204,7 @@ p() {
     nvim +"if exists(':Oil') | Oil . | else Explore . | endif" "$file"
 }
 
-alias "TODO=$EDITOR +'exec \"norm gO\" | wincmd k' $WIKI/TODO.mmfml"
+alias "TODO=$EDITOR $WIKI/TODO.mmfml"
 
 CAL () {
     m=$(date +%B)
