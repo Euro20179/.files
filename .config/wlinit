@@ -48,3 +48,5 @@ kilall dvd-auto-play
 dvd-auto-play & disown
 
 export XDG_CURRENT_DESKTOP=Hyprland
+
+eval $CALENDAR

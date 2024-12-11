@@ -10,7 +10,7 @@ let regex = "= " . month . '\_.\{-}\_^\s\+== ' . day . '\n\zs\_.\{-}\ze\n\n'
 echom regex
 
 "find all items belonging to the current day
-let matches = searchcount(#{pattern: regex, maxcount: 0})
+"let matches = searchcount(#{pattern: regex, maxcount: 0})
 
 let qflist = []
 
@@ -38,4 +38,12 @@ endwhile
 
 call setqflist(qflist)
 
-cwin
+
+if len(getqflist()) == 0
+    execute '/^= ' . month . '$'
+else
+    cwin
+endif
+
+noh
+
