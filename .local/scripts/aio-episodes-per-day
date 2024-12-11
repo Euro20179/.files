@@ -1,5 +1,5 @@
 #!/bin/sh
 
 aio s '#finished & #show' printf \
-    "{info.En_Title.replace(':', '-')}: {events and (x := list(filter(lambda x: x.Event in ('Finished', 'Viewing') and x.Timestamp != 0, events))) and len(x) > 1 and (int(meta.md().get('Show-episodes', '1')) or 1) / (ts2td((x[1] - x[0]) / 1000).days or 1) or 0}" \
+    "{info.En_Title.replace(':', '-')}: {events and (x := list(filter(lambda x: x.Event in ('Finished', 'Viewing') and x.Timestamp != 0, events))) and len(x) > 1 and (int(meta.md().get('Show-episodes', '1')) or 1) / ((ts2td((x[-1] - x[-2]) / 1000).total_seconds() or 86400) / 86400) or 0}" \
     | sort -n -k 2 -t ':'
