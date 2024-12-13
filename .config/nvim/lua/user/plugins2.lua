@@ -128,9 +128,7 @@ aSetup({
         },
 
         sources = {
-            completion = {
-                enabled_providers = { "lsp", "path", "snippets", "buffer" }
-            },
+            default = { "lsp", "path", "snippets", "buffer" }
         },
         trigger = {
             completion = {
