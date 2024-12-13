@@ -78,17 +78,34 @@ aSetup({
         }
     }, later,
     "blink-cmp", {
-        highlight = {
-            ns = vim.api.nvim_create_namespace("blink_cmp"),
-            use_nvim_cmp_as_default = true
-        },
         completion = {
             menu = {
                 draw = {
                     treesitter = true
                 }
             },
+
+            keyword = {
+                regex = [==[[#_-]\|\k]==],
+            },
+
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 0,
+                update_delay_ms = 0
+            },
+
+            ghost_text = {
+                enabled = true
+            },
+
+            accept = {
+                auto_brackets = {
+                    enabled = false
+                }
+            }
         },
+
         keymap = {
             preset = "default",
             ["<c-q>"] = { "show", "hide" },
@@ -99,52 +116,42 @@ aSetup({
             ["<C-b>"] = { "scroll_documentation_down" },
             ["<c-,>"] = { "show_documentation", "hide_documentation" },
         },
-        kind_icons = {
-            Text = "",
-            Method = " ",
-            Function = "",
-            Constructor = "",
-            Field = "",
-            Variable = "𝑥",
-            Class = "",
-            Interface = "",
-            Module = "",
-            Property = "",
-            Unit = "",
-            Value = "",
-            Enum = "",
-            Keyword = "",
-            Snippet = "󱄽",
-            Color = "",
-            File = "",
-            Reference = "",
-            Folder = "",
-            EnumMember = "",
-            Constant = "",
-            Struct = "",
-            Event = "",
-            Operator = "",
-            TypeParameter = ""
+        appearance = {
+            highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+            use_nvim_cmp_as_default = true,
+            kind_icons = {
+                Text = "",
+                Method = " ",
+                Function = "",
+                Constructor = "",
+                Field = "",
+                Variable = "𝑥",
+                Class = "",
+                Interface = "",
+                Module = "",
+                Property = "",
+                Unit = "",
+                Value = "",
+                Enum = "",
+                Keyword = "",
+                Snippet = "󱄽",
+                Color = "",
+                File = "",
+                Reference = "",
+                Folder = "",
+                EnumMember = "",
+                Constant = "",
+                Struct = "",
+                Event = "",
+                Operator = "",
+                TypeParameter = ""
+            },
         },
 
         sources = {
             default = { "lsp", "path", "snippets", "buffer" }
         },
-        trigger = {
-            completion = {
-                keyword_regex = "[%w#_\\-]"
-            }
-        },
-        windows = {
-            documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 0,
-                update_delay_ms = 0,
-            },
-            -- ghost_text = {
-            --     enabled = true
-            -- }
-        },
+
         fuzzy = {
             use_frecency = false,
         }

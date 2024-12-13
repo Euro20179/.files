@@ -86,9 +86,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { link = "@keyword" })
         vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "@lsp.type.enumMember" })
         vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "@lsp.type.enum" })
+        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
+        vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment" })
+
         vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", blend = 100 })
         vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", italic = true, fg = "#6e738d" })
-        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true })
 
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
