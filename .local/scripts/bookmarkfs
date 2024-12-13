@@ -27,7 +27,7 @@ open() {
 }
 
 add() {
-	folder=$(fd --type d --base-directory "$bookmark_dir" | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
+	folder=$(ls -F1A | grep / | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
 	[ -z "$folder" ] && exit
 	mkdir -p "${bookmark_dir}/$folder"
 	IFS="|" read name url tags prompt keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags' --add-entry='prompt' --add-entry='keyword')"
