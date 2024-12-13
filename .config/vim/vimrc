@@ -247,7 +247,9 @@ augroup END
 
 call digraph_set("*s", "ₓ")
 
+let s:hs = char2nr("☭")
 call setcellwidths([
+    \ [ s:hs, s:hs, 2], 
     \ [ 0xe5fa, 0xe6ac, 2 ],
     \ [ 0xea60, 0xebeb, 2 ],
     \ [ 0xe000, 0xe00a, 2 ],
