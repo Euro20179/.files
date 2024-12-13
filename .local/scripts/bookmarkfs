@@ -6,7 +6,7 @@ bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
 
 open() {
 	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
-		printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"
+		printf "%s\t#tags %s\n" "$line" "$(sed -n '/^tags=/s/^tags=//p' "$bookmark_dir/$line")"
 	done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit
@@ -14,10 +14,11 @@ open() {
 	file="${file%%  *}"
 
 	path="${bookmark_dir}/${file}"
-	requested_exec="$(grep '^exec=' "$path" | cut -d '=' -f2-)"
-	do_prompt="$(grep '^prompt=' "$path" | cut -d '=' -f2-)"
+    text=$(cat "$path")
+	requested_exec="$(grep '^exec=' <<< "$text" | cut -d '=' -f2-)"
+	do_prompt="$(grep '^prompt=' <<< "$text" | cut -d '=' -f2-)"
 	prompt="${do_prompt}"
-	url="$(grep "^url=" "$path" | cut -d '=' -f2-)"
+	url="$(grep "^url=" <<< "$text" | cut -d '=' -f2-)"
 	[ "$do_prompt" = "true" ] && prompt=""
 	[ "$do_prompt" ] && {
 		query=$(printf | rofi -theme cat-macchiato-dmenu-center -dmenu -p "${prompt}")
@@ -27,7 +28,7 @@ open() {
 }
 
 add() {
-	folder=$(ls -F1A | grep / | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
+	folder=$(fd --type d --base-directory "$bookmark_dir" | grep / | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
 	[ -z "$folder" ] && exit
 	mkdir -p "${bookmark_dir}/$folder"
 	IFS="|" read name url tags prompt keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags' --add-entry='prompt' --add-entry='keyword')"
