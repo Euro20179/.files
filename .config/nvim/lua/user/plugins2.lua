@@ -108,6 +108,7 @@ aSetup({
 
         keymap = {
             preset = "default",
+            ["<Tab>"] = {},
             ["<c-q>"] = { "show", "hide" },
             ["<c-l>"] = { "accept" },
             ["<c-n>"] = { "select_next" },
@@ -149,7 +150,7 @@ aSetup({
         },
 
         sources = {
-            default = { "lsp", "path", "snippets", "buffer" }
+            default = { "lsp", "path", "snippets", "buffer" },
         },
 
         fuzzy = {
