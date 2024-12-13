@@ -16,24 +16,17 @@ open() {
 	path="${bookmark_dir}/${file}"
 	text=$(cat "$path")
 	requested_exec="$(grep '^exec=' <<<"$text" | cut -d '=' -f2-)"
-	do_prompt="$(grep '^prompt=' <<<"$text" | cut -d '=' -f2-)"
-	prompt="${do_prompt}"
 	url="$(grep "^url=" <<<"$text" | cut -d '=' -f2-)"
-	[ "$do_prompt" = "true" ] && prompt=""
-	[ "$do_prompt" ] && {
-		query=$(printf | rofi -theme cat-macchiato-dmenu-center -dmenu -p "${prompt}")
-		linkhandler "$(printf "$url" "$query")"
-	} || linkhandler "${url}"
-
+    linkhandler "${url}"
 }
 
 add() {
 	folder=$(find "$bookmark_dir/" -type d -printf '%P/\n' | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
 	[ -z "$folder" ] && exit
 	mkdir -p "${bookmark_dir}/$folder"
-	IFS="|" read name url tags prompt keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags' --add-entry='prompt' --add-entry='keyword')"
+	IFS="|" read name url tags keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags'  --add-entry='keyword')"
 	[ -z "$url" ] && { zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1; }
-	printf "url=%s\ntags=%s\nprompt=%s\nkeyword=%s" "$url" "$tags" "$prompt" "$keyword" >"${bookmark_dir}/${folder}/${name}"
+	printf "url=%s\ntags=%s\nkeyword=%s" "$url" "$tags" "$keyword" >"${bookmark_dir}/${folder}/${name}"
 }
 
 remove() {
