@@ -5,7 +5,7 @@ action=$1
 bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
 
 open() {
-	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
+	file=$(find "$bookmark_dir/" -type f -printf "%P\n" | while read -r line; do
 		printf "%s\t#tags %s\n" "$line" "$(sed -n '/^tags=/s/^tags=//p' "$bookmark_dir/$line")"
 	done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
 
@@ -28,7 +28,7 @@ open() {
 }
 
 add() {
-	folder=$(fd --type d --base-directory "$bookmark_dir" | grep / | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
+	folder=$(find "$bookmark_dir/" -type d -printf '%P/\n' | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
 	[ -z "$folder" ] && exit
 	mkdir -p "${bookmark_dir}/$folder"
 	IFS="|" read name url tags prompt keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags' --add-entry='prompt' --add-entry='keyword')"
@@ -37,7 +37,7 @@ add() {
 }
 
 remove() {
-	file=$(fd --type f --base-directory "$bookmark_dir" | rofi -p "remove" -i -dmenu -theme cat-macchiato)
+	file=$(find "$bookmark_dir/" -type f -printf "%P\n" | rofi -p "remove" -i -dmenu -theme cat-macchiato)
 	[ -z "$file" ] && exit
 	path="${bookmark_dir}/${file}"
 
@@ -47,7 +47,7 @@ remove() {
 }
 
 copy() {
-	file=$(fd --type f --base-directory "$bookmark_dir" | while read -r line; do
+	file=$(find "$bookmark_dir/" -type f -printf "%P\n" | while read -r line; do
 		printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"
 	done | column -s$'\t' -t -c 1000 | rofi -p "copy" -i -dmenu -theme cat-macchiato)
 
