@@ -14,11 +14,11 @@ open() {
 	file="${file%%  *}"
 
 	path="${bookmark_dir}/${file}"
-    text=$(cat "$path")
-	requested_exec="$(grep '^exec=' <<< "$text" | cut -d '=' -f2-)"
-	do_prompt="$(grep '^prompt=' <<< "$text" | cut -d '=' -f2-)"
+	text=$(cat "$path")
+	requested_exec="$(grep '^exec=' <<<"$text" | cut -d '=' -f2-)"
+	do_prompt="$(grep '^prompt=' <<<"$text" | cut -d '=' -f2-)"
 	prompt="${do_prompt}"
-	url="$(grep "^url=" <<< "$text" | cut -d '=' -f2-)"
+	url="$(grep "^url=" <<<"$text" | cut -d '=' -f2-)"
 	[ "$do_prompt" = "true" ] && prompt=""
 	[ "$do_prompt" ] && {
 		query=$(printf | rofi -theme cat-macchiato-dmenu-center -dmenu -p "${prompt}")
@@ -61,13 +61,12 @@ copy() {
 
 search() {
 	q="$*"
-    kwd_bookmarks=$(rg 'keyword=(.+)' $bookmark_dir | sed "s_${bookmark_dir}/__" | awk -F':keyword=' '{print $2, $1}')
+	kwd_bookmarks=$(rg 'keyword=(.+)' $bookmark_dir | sed "s_${bookmark_dir}/__" | awk -F':keyword=' '{print $2, $1}')
 	[ -z "$q" ] && q="$(echo "$kwd_bookmarks" | rofi -format f -dmenu -p "Query: " -theme cat-macchiato)"
-
 
 	[ -z "$q" ] && return 1
 
-    words=($q)
+	words=($q)
 
 	keyword="${words[0]}"
 
@@ -87,7 +86,8 @@ add | a) add ;;
 remove | r) remove ;;
 copy | c) copy ;;
 search | s)
-    shift;
-    search  "$@";;
+	shift
+	search "$@"
+	;;
 *) printf "%s\n" "$action is not a valid action" ;;
 esac
