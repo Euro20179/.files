@@ -1,0 +1,142 @@
+#!/bin/python
+
+"""
+This script parses my calendar file
+
+layed out as such
+
+= Year
+== Month
+=== Day
+- event for the day
+
+Any line not matching one of those patterns is skipped
+
+
+All dates and events are printed at the end in the form of:
+    {event} {Month} {day}
+"""
+import datetime
+import functools
+import os
+import re
+import time
+
+from collections import defaultdict
+from pprint import pprint
+
+calFile = os.environ.get("CALFILE")
+if calFile == None:
+    print("No $CALFILE")
+    exit(1)
+
+with open(calFile, "r") as f:
+    text = f.read()
+
+
+dates: defaultdict[
+    str,
+    defaultdict[
+        str,
+        defaultdict[
+            int,
+            list[str]
+        ]
+    ]
+] = defaultdict(
+    functools.partial(
+        defaultdict,
+        functools.partial(
+            defaultdict,
+            list
+        )
+    )
+)
+
+curTime = datetime.datetime.now()
+
+curSection = [str(curTime.year), curTime.strftime("%B"), str(curTime.day)]
+
+def parseDate(date: str):
+    """
+        `date` must be a string of the form [MM/]DD[/YYYY]
+    """
+
+    match = re.findall(r"(\d\d/)?(\d\d)(/\d\d\d\d)?", date)
+    m, d, y = match[0]
+
+    if m:
+        month = int(m.replace("/", ""))
+    else:
+        try:
+            month = time.strptime(curSection[1], "%B").tm_mon
+        except Exception:
+            month = curTime.month
+
+    if y:
+        year = int(y.replace("/", ""))
+    else:
+        try:
+            year = time.strptime(curSection[0], "%Y").tm_year
+        except Exception:
+            year = curTime.year
+
+    date = datetime.datetime(month=month, year=year, day=int(d))
+
+    return date
+
+def dateRangeToDateList(start: str, end: str) -> list[datetime.datetime]:
+    start = parseDate(start)
+    end = parseDate(end)
+
+    delta = (end - start).days
+    return [start + datetime.timedelta(n) for n in range(delta + 1)]
+
+for line in text.split('\n'):
+    line = line.strip()
+
+    if not line:
+        continue
+
+    if not line.startswith('=') and not line.startswith("-"):
+        continue
+
+    if re.match(r"^=+$", line):
+        continue
+
+    dt = None
+
+    if line.startswith("==="):
+        dt = 2
+    elif line.startswith('=='):
+        dt = 1
+    elif line.startswith('='):
+        dt = 0
+
+    if dt == None or " " not in line:
+        #day actually spans a range of dates
+        if "->" in curSection[2]:
+            start, _, end = curSection[2].split(" ")
+            for date in dateRangeToDateList(start, end):
+                dates[str(date.year)][date.strftime("%B")][str(date.day)].append(line)
+        else:
+            dates[curSection[0]][curSection[1]][curSection[2]].append(line)
+        continue
+
+    data = line.replace("=", "").strip()
+
+    if dt == 0:
+        if not data.isnumeric():
+            data = str(curTime.year)
+
+    curSection[dt] = data
+
+
+
+for year in dates:
+    months = dates[year]
+    for month in months:
+        days = months[month]
+        for day in days:
+            for activity in days[day]:
+                print(activity, year, month, day)
