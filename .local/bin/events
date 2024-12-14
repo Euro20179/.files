@@ -25,7 +25,6 @@ import time
 import sys
 
 from collections import defaultdict
-from pprint import pprint
 from calendar import month_name
 
 calFile = os.environ.get("CALFILE")
@@ -149,6 +148,11 @@ for year in sorted(dates, key=int):
         for day in sorted(days, key=int):
             for activity in days[day]:
                 td = datetime.datetime(year=int(year), month=time.strptime(month, "%B").tm_mon, day=int(day))
+
+                #if the day has passed, dont print it
+                if (td - curTime).days < 0:
+                    continue
+
                 #the funky dt math is to make it days away rounded up instead of the default rounded down
                 print(fmt.format(event=activity, month=month, day=day, year=year, dt=math.ceil((td - curTime).total_seconds() / 86400)))
                 # print(activity, year, month, day, (td - curTime).days, "days away")
