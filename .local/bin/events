@@ -16,6 +16,7 @@ Any line not matching one of those patterns is skipped
 All dates and events are printed at the end in the form of:
     {event} {Month} {day}
 """
+from calendar import month_name
 import datetime
 import functools
 import os
@@ -133,10 +134,12 @@ for line in text.split('\n'):
 
 
 
-for year in dates:
+#Now this is what i call sorting
+ms = list(month_name)
+for year in sorted(dates, key=int):
     months = dates[year]
-    for month in months:
+    for month in sorted(months, key=ms.index):
         days = months[month]
-        for day in days:
+        for day in sorted(days, key=int):
             for activity in days[day]:
                 print(activity, year, month, day)
