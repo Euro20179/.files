@@ -129,20 +129,16 @@ export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 ###################
 # {{{
 alias t=tmux' attach'
-alias "lman=MANPAGER=less man"
 alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
-alias "dr=dragon -x"
+alias "dr=ripdrag"
 alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 #It's really annoying that wget leaves the .wget_hists file or whatever
 alias "wget=wget --no-hsts"
 alias 's=bookmarkfs search'
 alias "bc=bc -l"
-alias strack="$HOME/Programs/Coding\\ Projects/Python_things/strack-cli/main.py"
 alias "less=less -r"
-
-alias 'q=exit'
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
@@ -151,9 +147,6 @@ alias Q='nvim +Qalc +startinsert'
 
 alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
-
-alias doase=doasedit
-alias send-vid="ytfzf -e discord-send --loop=0"
 
 config () {
     [ -n "$*" ] && {
