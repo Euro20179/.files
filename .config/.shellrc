@@ -108,6 +108,7 @@ export NEOFETCH_IMAGE=$(fd . "$SYSTEM_IMAGES/neofetch" | shuf | head -n1)
 export SHELL_LIB="$HOME/.local/lib/shell"
 export CLOUD="/home/cloud"
 export WIKI="$CLOUD/Documents/vimwiki"
+export CALFILE="$CLOUD/CAL.md"
 export AIO_SERVER="https://cloud:8887"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"

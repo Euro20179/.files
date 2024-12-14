@@ -6,7 +6,7 @@ let month = strftime("%B")
 let day = strftime("%d")
 
 "finds the line of the first item for all sections partaining to this day
-let regex = "= " . month . '\_.\{-}\_^\s\+== ' . day . '\n\zs\_.\{-}\ze\n\n'
+let regex = "== " . month . '\_.\{-}\_^\s\+=== ' . day . '\n\zs\_.\{-}\ze\n\n'
 echom regex
 
 "find all items belonging to the current day
@@ -40,7 +40,7 @@ call setqflist(qflist)
 
 
 if len(getqflist()) == 0
-    execute '/^= ' . month . '$'
+    execute '/^== ' . month . '$'
 else
     cwin
 endif
