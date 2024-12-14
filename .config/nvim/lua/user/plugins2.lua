@@ -109,6 +109,8 @@ aSetup({
         keymap = {
             preset = "default",
             ["<Tab>"] = {},
+            ["<Up>"] = {},
+            ["<Down>"] = {},
             ["<c-q>"] = { "show", "hide" },
             ["<c-l>"] = { "accept" },
             ["<c-n>"] = { "select_next" },
