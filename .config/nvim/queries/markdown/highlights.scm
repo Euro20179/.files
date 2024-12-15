@@ -27,3 +27,4 @@
 ;}}}
 
 ((language) @label.markdown (#set! @label.markdown conceal ""))
+((code_fence_content) . (fenced_code_block_delimiter) @_d (#set! @_d conceal ""))
