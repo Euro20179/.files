@@ -15,7 +15,7 @@
 
 [
  (pre_sample)
-] @string
+] @markup.raw
 
 ((divider) @punctuation)
 
@@ -76,6 +76,7 @@
 ((backslash) @conceal (#set! conceal ""))
 
 (code_block (language) @comment)
+((code_block_start) . (code_text) @markup.raw)
 
 ; ((escaped_char) @operator)
 
