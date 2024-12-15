@@ -1,5 +1,6 @@
 vim.filetype.add({
     extension = {
+        amml = "amml",
         mmfml = "mmfml",
         nu = "nu",
         txt = function(path)

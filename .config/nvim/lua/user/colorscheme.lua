@@ -119,6 +119,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         hi DiagnosticUnderlineInfo gui=underline
         hi DiagnosticUnderlineHint gui=underline
         hi DiagnosticUnderlineOk gui=underline
+
+        hi Keyword gui=italic
     ]]
 
         --better quickfix{{{
@@ -127,10 +129,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
 })
 
-vim.cmd.color("monokai-pro-default")
+-- vim.cmd.color("monokai-pro-default")
 -- vim.cmd.color("onenord")
 -- vim.cmd.color("evangelion")
 -- vim.cmd[[color tokyonight]]
+vim.cmd[[color catppuccin]]
 -- Color("tokyonight-moon")
 -- Color("monet")
 -- Color("kanagawa")
