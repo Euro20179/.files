@@ -246,6 +246,8 @@ augroup relnutoggle
 augroup END
 
 call digraph_set("*s", "ₓ")
+call digraph_set("BZ", "ℤ")
+call digraph_set("BR", "ℝ")
 
 let s:hs = char2nr("☭")
 call setcellwidths([

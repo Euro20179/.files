@@ -109,7 +109,7 @@ new_line=$'\n'
 esc=$'\x1b'
 
 if isnt_vim; then
-    PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{white} $((start ? $(date +%s%3N)-start : 0))ms%F{%(?.green.red)}$new_line%F{reset} '
+    PS1=$'%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{white} $((start ? $(date +%s%3N)-start : 0))ms%F{%(?.green.red)}$new_line%F{reset} '
 else
     PS1='%F{%(?.green.red)}%(?..%?)%F{reset}%(?.. - )%F{yellow}[$fileCount]%F{reset} %F{039}$pwd%F{reset} %F{magenta}$curr_branch% %F{reset}%F{white} $((start ? $(date +%s%3N)-start : 0))ms%F{%(?.green.red)}$new_line>%F{reset} '
 fi
