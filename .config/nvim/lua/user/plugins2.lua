@@ -81,7 +81,9 @@ aSetup({
         completion = {
             menu = {
                 draw = {
-                    treesitter = true
+                    treesitter = {
+                        "lsp",
+                    }
                 }
             },
 
