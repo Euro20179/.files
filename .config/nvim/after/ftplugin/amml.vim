@@ -1,0 +1,3 @@
+abbr -> →
+abbr <- ←
+abbr != ≠
