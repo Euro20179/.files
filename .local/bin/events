@@ -94,8 +94,8 @@ def dateRangeToDateList(start: str, end: str) -> list[datetime.datetime]:
     delta = (end - start).days
     return [start + datetime.timedelta(n) for n in range(delta + 1)]
 
-for line in text.split('\n'):
-    line = line.strip()
+for origLine in text.split('\n'):
+    line = origLine.strip()
 
     if not line:
         continue
@@ -120,9 +120,9 @@ for line in text.split('\n'):
         if "->" in curSection[2]:
             start, _, end = curSection[2].split(" ")
             for date in dateRangeToDateList(start, end):
-                dates[str(date.year)][date.strftime("%B")][str(date.day)].append(line)
+                dates[str(date.year)][date.strftime("%B")][str(date.day)].append(origLine)
         else:
-            dates[curSection[0]][curSection[1]][curSection[2]].append(line)
+            dates[curSection[0]][curSection[1]][curSection[2]].append(origLine)
         continue
 
     data = line.replace("=", "").strip()

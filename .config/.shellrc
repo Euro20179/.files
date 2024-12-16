@@ -160,7 +160,8 @@ alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'
 
 alias te=trash-empty
 
-alias today='events "{event}" | grep "$(date +"%Y %B %d")"'
+alias today='events | grep "$(date +"%B/%d/%Y")" | awk -F "ON" "{print \$1}"'
+alias tomorrow='events | grep "$(date -d tomorrow +"%B/%d/%Y")" | awk -F "ON" "{print \$1}"'
 
 me () {
     disown 2> /dev/null 1>&2
