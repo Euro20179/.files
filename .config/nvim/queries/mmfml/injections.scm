@@ -7,6 +7,9 @@
          .
        (code) @injection.content
  (#set! injection.language "amml"))
-((inline_code
-   (language) @injection.language
-   (code) @injection.content))
+
+(
+ (inline_code_start) @injection.language
+     (#match? @injection.language "[^$]")
+     (#offset! @injection.language 0 1 0 -1)
+         . (code) @injection.content)
