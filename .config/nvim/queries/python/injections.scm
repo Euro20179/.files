@@ -1,9 +1,11 @@
 ;;extends
 
-((string
-   (string_content) @injection.content) @_outer
- (#set! injection.language "regex")
- (#match? @_outer "^r"))
+(string
+  (string_start) @_outer
+  .
+  (string_content) @injection.content
+  (#match? @_outer "^r")
+  (#set! injection.language "regex"))
 
 (function_definition body:
                      (block
