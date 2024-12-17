@@ -23,6 +23,8 @@
 
 (string) @string
 
+(unit_name) @label
+
 [
  "("
  ")"
