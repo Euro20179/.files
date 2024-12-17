@@ -1,39 +1,22 @@
 #!/bin/sh
 
-#This script reads an input file (should be a dvd iso file)
-#gets all the chapters (should be episodic chapters)
-#then for each chapter, extracts it and puts it into $output_dir
-#the number of the episode will be the highest number alr in $ouptut_dir + 1
-
 input="$1"
 output_dir="$2"
 
 [ -z "$input" ] && {
-    printf "Must specify an input dvd iso file\n"
+    printf "%s\n" "Must provide input file"
     exit 1
 }
 
-[ -z "$output_dir" ] && {
-    printf "Must specify an output directory for numbered chapter seperated videos\n"
+[ -z "$output_dir" ] || ! [ -d "$output_dir" ] || [ "$(ls -1 "$output_dir" | wc -l)" -gt 0 ] && {
+    printf "%s\n" "Must provide an empty output directory"
     exit 1
 }
 
-chapters=$(ffprobe -f dvdvideo -show_chapters -print_format csv "$1")
-
-printf "%s\n" "$chapters" | while IFS="," read -r _ nr _ sframe start eframe end; do
-    max="$(ls -1 "$output_dir" | sort -n | tail -n1)"
-    max="${max%.mkv}"
-    max="$((max+1))"
-    duration=$(echo "${end} - ${start}" | bc)
-    ffmpeg -f dvdvideo -ss "${start}" -i "${input}" -map 0 -c copy -t "${duration}" "${output_dir}/${max}.mkv" <&-
-done
-
-#ffmpeg skips the last episode because of the fencepost problem
-#get the last episode which starts at the end of the last chapter
-IFS=, read -r _ _ _ _ _ _ end <<EOF
-$(printf "%s" "$chapters" | tail -n1)
-EOF
-max="$(ls -1 "$output_dir" | sort -n | tail -n1)"
-max="${max%.mkv}"
-max="$((max+1))"
-ffmpeg -f dvdvideo -ss "${end}" -i "${input}" -map 0 -c copy "${output_dir}/${max}.mkv"
+ffprobe -i "$input" -show_chapters -of json |
+    jq -r '.chapters|.[]|"\(.start_time) \((.end_time|tonumber) - (.start_time|tonumber))"' |
+    while read -r start duration; do
+        echo "$start" "${duration%.*}"
+        count=$(ls -1 "$output_dir" | wc -l)
+        ffmpeg -ss "$start" -i "$input" -map 0 -c copy -t "${duration%.*}" "$output_dir"/$((count+1)).mkv
+    done

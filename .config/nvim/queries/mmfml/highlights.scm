@@ -22,6 +22,10 @@
 ((code_block_start) @conceal (#set! conceal ""))
 ((code_block_end) @conceal (#set! conceal ""))
 
+((inline_code_start) @conceal (#set! conceal ""))
+((inline_code_start) (language) @conceal (#set! conceal ""))
+((inline_code_end) @conceal (#set! conceal ""))
+
 ; ((code_block_end_arrow) @conceal (#set! conceal ""))
 ; ((code_block_start_arrow) @conceal (#set! conceal ""))
 
