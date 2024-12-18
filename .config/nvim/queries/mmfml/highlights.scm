@@ -66,7 +66,12 @@
 ((list)
  .
  ((simple_marked_text
-    (box) @markup.list.checked.markdown (#eq? @markup.list.checked.markdown "[x]") (#set! conceal "✅︎"))))
+    (box) @markup.list.checked (#eq? @markup.list.checked "[x]") (#set! conceal "✅︎"))))
+
+((list)
+ .
+ ((simple_marked_text
+    (box) @boolean (#eq? @boolean "[?]") (#set! conceal ""))))
 
 ((list)
  .
