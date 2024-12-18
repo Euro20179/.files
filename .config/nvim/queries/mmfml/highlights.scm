@@ -15,7 +15,21 @@
 
 [
  (pre_sample)
+ (quote)
 ] @markup.raw
+
+((simple_marked_text
+  (plain
+    ((non_word) @_indicator (#eq? @_indicator ">")) @punctuation .
+    )
+  )
+ .
+ (simple_marked_text
+   .
+   (quote)))
+
+(quote_author_indicator) @punctuation
+(quote_author) @markup.italic
 
 ((divider) @punctuation)
 
@@ -85,26 +99,26 @@
 ; ((escaped_char) @operator)
 
 ((pre_sample_start) @conceal (#set! conceal ""))
+((quote_start) @conceal (#set! conceal ""))
 ((bold_start) @conceal (#set! conceal ""))
 ((italic_start) @conceal (#set! conceal ""))
 ((strikethrough_start) @conceal (#set! conceal ""))
 ((underline_start) @conceal (#set! conceal ""))
 ((higlight_start) @conceal (#set! conceal ""))
-((pre_sample_start) @conceal (#set! conceal ""))
 ((anchor_start) @conceal (#set! conceal ""))
 
 ((pre_sample_end) @conceal (#set! conceal ""))
+((quote_end) @conceal (#set! conceal ""))
 ((bold_end) @conceal (#set! conceal ""))
 ((italic_end) @conceal (#set! conceal ""))
 ((strikethrough_end) @conceal (#set! conceal ""))
 ((underline_end) @conceal (#set! conceal ""))
 ((higlight_end) @conceal (#set! conceal ""))
-((pre_sample_end) @conceal (#set! conceal ""))
 ((anchor_end) @conceal (#set! conceal ""))
 
-((word) @_w (#eq? @_w "NOTE:")) @comment.note
-((word) @_w (#eq? @_w "TODO:")) @comment.todo
+((word) @_w (#eq? @_w "NOTE") . (non_word) @_n (#eq? @_n ":")) @comment.note
+((word) @_w (#eq? @_w "TODO") . (non_word) @_n (#eq? @_n ":")) @comment.todo
 [
- ((word) @_w1 (#eq? @_w1 "WARN:"))
- ((word) @_w2 (#eq? @_w2 "WARNING:"))
+ ((word) @_w1 (#eq? @_w1 "WARN:") . (non_word) @_n (#eq? @_n ":"))
+ ((word) @_w2 (#eq? @_w2 "WARNING:") . (non_word) @_n (#eq? @_n ":"))
 ] @comment.warning

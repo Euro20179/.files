@@ -1,6 +1,13 @@
 #!/bin/bash
 
 read -r -p "name: " name
+read -r -p "description: " description
+read -r -p "public [Y/n]: " public
+
+case "$public" in
+    [Nn]) public=0 ;;
+    *) public=1 ;;
+esac
 
 [ -d "${CLOUD}/GIT/${name}" ] && printf "Repo already exists\n" && exit 1
 
@@ -9,5 +16,8 @@ read -r -p "name: " name
 mkdir "${CLOUD}/GIT/${name}"
 
 git init --bare "${CLOUD}/GIT/${name}"
+printf "%s" "$description" > "${CLOUD}/GIT/${name}/description"
+[ "$public" = 1 ] && touch "${CLOUD}/GIT/${name}/git-daemon-export-ok"
+
 
 git remote add cloud cloud@cloud:"${CLOUD}"/DRIVE/GIT/"${name}"
