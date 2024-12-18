@@ -8,8 +8,8 @@
     ; (header6)
 ] @markup.heading
 
-((metadata_key) @tag)
-((metadata_value) @string)
+; ((metadata_key) @tag)
+; ((metadata_value) @string)
 ; ((metadata_open) @conceal (#set! conceal ">"))
 ; ((metadata_close) @conceal (#set! conceal ""))
 
@@ -69,7 +69,9 @@
  .
  ((simple_marked_text) @_spacer (#vim-match? @_spacer "^[[:space:]\\n]*$"))?
  .
- (simple_marked_text (link)))
+ (simple_marked_text (link) @markup.link (#set! @markup.link conceal "") )
+ (#gsub! @markup.link "|(.*)|" "%1")
+ (#set! @markup.link.label url @markup.link))
 
 ; ((simple_marked_text
 ;    (box
