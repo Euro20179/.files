@@ -119,6 +119,5 @@
 ((word) @_w (#eq? @_w "NOTE") . (non_word) @_n (#eq? @_n ":")) @comment.note
 ((word) @_w (#eq? @_w "TODO") . (non_word) @_n (#eq? @_n ":")) @comment.todo
 [
- ((word) @_w1 (#eq? @_w1 "WARN:") . (non_word) @_n (#eq? @_n ":"))
- ((word) @_w2 (#eq? @_w2 "WARNING:") . (non_word) @_n (#eq? @_n ":"))
+ ((word) @_w1 (#vim-match? @_w1 "^WARN\%[ING]$") . (non_word) @_n (#eq? @_n ":"))
 ] @comment.warning
