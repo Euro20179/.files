@@ -46,6 +46,7 @@
 ((anchor) @keyword.directive)
 
 ((divider) @punctuation)
+((non_word) @punctuation (#match? @punctuation "^[\\u2500-\\u257f\\u2580-\\u259f]+$"))
 
 ((list) @markup.list)
 
@@ -53,8 +54,15 @@
  (header)
 ] @markup.heading
 
+;Text surrounded by dividers is a header
+((simple_marked_text (divider))
+ .
+ (simple_marked_text (plain (word)) @markup.heading)
+ .
+ (simple_marked_text (divider)))
+
 [
- (pre_sample)
+ (pre_sample_text)
  (quote)
 ] @markup.raw
 

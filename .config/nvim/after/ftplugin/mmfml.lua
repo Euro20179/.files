@@ -4,10 +4,10 @@ vim.api.nvim_set_hl(0, "@markup.mmfml.highlight", {
 })
 
 local function falsey(val)
-        if val == 0 or val == "" or val == nil then
+    if val == 0 or val == "" or val == nil then
         return true
-        end
-        return false
+    end
+    return false
 end
 
 local function getScreenWidth()
@@ -211,7 +211,7 @@ end
 
 vim.api.nvim_create_user_command("Links", function()
     ---@param linknode TSNode
-    vim.fn.setloclist(0, vim.iter(getLinks()):flatten(100):map(function(linknode)
+    local links = vim.iter(getLinks()):flatten(100):map(function(linknode)
         local row, col, erow, ecol = linknode:range()
         if row == nil or col == nil or erow == nil or ecol == nil then
             vim.notify("A disaster has happened, the range for the linknode is undefined")
@@ -227,7 +227,9 @@ vim.api.nvim_create_user_command("Links", function()
             end_lnum = erow + 1,
             text = text
         }
-    end):totable())
+    end):totable()
+
+    vim.fn.setloclist(0, links)
     vim.cmd.lwin()
 end, {})
 
