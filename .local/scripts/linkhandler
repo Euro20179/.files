@@ -57,6 +57,7 @@ try_mime_handling() {
     esac
 }
 
+
 [ -e "${link}" ] && try_mime_handling
 
 case "$link" in

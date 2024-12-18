@@ -65,12 +65,14 @@
 
 ((simple_marked_text
    (box
-     (simple_marked_text) @markup.link.label))
+     "[" @_boxb (#set! @_boxb conceal "")
+     (simple_marked_text) @markup.link.label
+     "]" @_boxb
+    ))
  .
  ((simple_marked_text) @_spacer (#vim-match? @_spacer "^[[:space:]\\n]*$"))?
  .
- (simple_marked_text (link) @markup.link (#set! @markup.link conceal "") )
- (#gsub! @markup.link "|(.*)|" "%1")
+ (simple_marked_text (link  (link_url) @markup.link)  @_full (#set! @_full conceal "") )
  (#set! @markup.link.label url @markup.link))
 
 ; ((simple_marked_text
