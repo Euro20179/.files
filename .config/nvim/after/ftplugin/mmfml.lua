@@ -45,7 +45,7 @@ local function nodeToHTML(node)
     elseif t == "divider" then
         return "<code>" .. gt(node, 0, {}) .. "</code>"
     elseif t == "space" then
-        return "<code>" .. gt(node, 0, {}) .. "</code>"
+        return "<code style='white-space: pre'>" .. gt(node, 0, {}) .. "</code>"
     elseif t == "footnote_start" then
         return "<sup>["
     elseif t == "footnote_name_text" or t == "footnote_block_name" then
@@ -83,7 +83,7 @@ local function nodeToHTML(node)
     elseif t == "quote_author" then
         return gt(node, 0, {}) .. "</cite>"
     elseif t == "pre_sample_start" then
-        return "<code>"
+        return "<code style='white-space: pre'>"
     elseif t == "pre_sample_text" then
         return gt(node, 0, {})
     elseif t == "pre_sample_end" then
@@ -104,7 +104,10 @@ local function nodeToHTML(node)
         local text = gt(node, 0, {})
         return "<a href=\"" .. vim.fn.trim(text, " ") .. '">' .. text .. "</a>"
     elseif t== "list" then
-        return "<br>" .. gt(node, 0, {})
+        local text = gt(node, 0, {})
+        local firstChar, _ = text:find('[^%s]')
+        local whiteSpace = vim.fn.slice(text, 0, firstChar - 1)
+        return "<br>" .. "<code style='white-space: pre'>" .. whiteSpace .. "</code>" .. gt(node, 0, {})
     elseif t == "code_block_start" then
         return "<pre>"
     elseif t == "code_block_end" then
@@ -115,7 +118,7 @@ local function nodeToHTML(node)
         return "<code>&gt;" .. gt(node, 0, {}) .. "</code><br>"
     elseif t == "inline_code_start" then
         local language = vim.fn.trim(gt(node, 0, {}), "$")
-        return "<code><span>" .. language .. ":</span>"
+        return "<code style='white-space: pre'><span>" .. language .. ":</span>"
     elseif t == "code" then
         return gt(node, 0, {})
     elseif t == "inline_code_end" then
