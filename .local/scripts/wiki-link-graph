@@ -103,7 +103,8 @@ if len(sys.argv) > 1 and sys.argv[1] == "links":
             print(edge)
         for node in graph.edges[edge]:
             if node not in printed:
-                print(node)
+                p = re.sub(r"^" + os.environ["WIKI"], "$WIKI", str(node))
+                print(p)
             printed.add(node)
         printed.add(edge)
 elif len(sys.argv) > 1 and sys.argv[1] == "plotly":
@@ -116,10 +117,14 @@ elif len(sys.argv) > 1 and sys.argv[1] == "plotly":
         height = '1000',
     )
     for edge in graph.edges:
-        g.add_node(str(edge), size=len(graph.edges[edge]) * 2)
+        ep = str(edge)
+        ep = re.sub(r"^" + os.environ["WIKI"], "$WIKI", ep)
+        g.add_node(ep, size=len(graph.edges[edge]) * 2)
         for connection in graph.edges[edge]:
-            g.add_node(str(connection), size=len(graph.edges.get(connection, [1])) * 2)
-            g.add_edge(str(edge), str(connection))
+            p = str(connection)
+            p = re.sub(r"^" + os.environ["WIKI"], "$WIKI", p)
+            g.add_node(p, size=len(graph.edges.get(connection, [1])) * 2)
+            g.add_edge(ep, p)
     # g.barnes_hut(gravity=-8000, central_gravity=1.5)
     g.force_atlas_2based()
     g.show("vimwikigraph.html", notebook=False)
