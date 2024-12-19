@@ -22,6 +22,140 @@ local function getScreenWidth()
 end
 
 ---@param node TSNode
+local function nodeToHTML(node)
+    if node:child_count() > 0 then
+        local html = ""
+        for child in node:iter_children() do
+            html = html .. nodeToHTML(child)
+        end
+        return html
+    end
+
+    local t = node:type()
+    local gt = vim.treesitter.get_node_text
+
+    if t == "line_break" then
+        return "<br>"
+    elseif t == "paragraph_separation" then
+        return "<br><br>"
+    elseif t == "word" then
+        return "<span>" .. gt(node, 0, {}) .. "</span>"
+    elseif t== "non_word" then
+        return "<span>" .. gt(node, 0, {}) .. "</span>"
+    elseif t == "divider" then
+        return "<code>" .. gt(node, 0, {}) .. "</code>"
+    elseif t == "space" then
+        return "<code>" .. gt(node, 0, {}) .. "</code>"
+    elseif t == "footnote_start" then
+        return "<sup>["
+    elseif t == "footnote_name_text" or t == "footnote_block_name" then
+        return gt(node, 0, {})
+    elseif t == "footnote_end" then
+        return "]</sup>"
+    elseif t == "bold_start" then
+        return "<strong>"
+    elseif t == "bold_end" then
+        return "</strong>"
+    elseif t == "italic_start" then
+        return "<i>"
+    elseif t == "italic_end" then
+        return "</i>"
+    elseif t == "underline_start" then
+        return "<u>"
+    elseif t == "underline_end" then
+        return "</u>"
+    elseif t == "strikethrough_start" then
+        return "<del>"
+    elseif t == "strikethrough_end" then
+        return "</del>"
+    elseif t == "highlight_start" then
+        return "<mark>"
+    elseif t == "highlight_end" then
+        return "</mark>"
+    elseif t == "quote_start" then
+        return "<blockquote>" .. gt(node, 0, {})
+    elseif t == "quote_text" then
+        return gt(node, 0, {})
+    elseif t == "quote_end" then
+        return gt(node, 0, {}) .. "</blockquote>"
+    elseif t == "quote_author_indicator" then
+        return "<cite>" .. gt(node, 0, {})
+    elseif t == "quote_author" then
+        return gt(node, 0, {}) .. "</cite>"
+    elseif t == "pre_sample_start" then
+        return "<code>"
+    elseif t == "pre_sample_text" then
+        return gt(node, 0, {})
+    elseif t == "pre_sample_end" then
+        return "</code>"
+    elseif t == "header" then
+        local fullHT = gt(node, 0, {})
+
+        local spaceIdx = vim.fn.stridx(fullHT, ' ')
+
+        local eqCount = vim.fn.count(vim.fn.slice(fullHT, 0, spaceIdx), "=")
+
+        local ht = vim.fn.trim(fullHT, " =")
+
+        local headerLevel = vim.fn.min({eqCount, 6})
+
+        return "<h" .. tostring(headerLevel) .. ">" .. ht .. "</h" .. tostring(headerLevel) .. ">"
+    elseif t == "link_url" then
+        local text = gt(node, 0, {})
+        return "<a href=\"" .. vim.fn.trim(text, " ") .. '">' .. text .. "</a>"
+    elseif t== "list" then
+        return "<br>" .. gt(node, 0, {})
+    elseif t == "code_block_start" then
+        return "<pre>"
+    elseif t == "code_block_end" then
+        return "</pre>"
+    elseif t == "code_text" then
+        return gt(node, 0, {})
+    elseif t == "language" then
+        return "<code>&gt;" .. gt(node, 0, {}) .. "</code><br>"
+    elseif t == "inline_code_start" then
+        local language = vim.fn.trim(gt(node, 0, {}), "$")
+        return "<code><span>" .. language .. ":</span>"
+    elseif t == "code" then
+        return gt(node, 0, {})
+    elseif t == "inline_code_end" then
+        return "</code>"
+    end
+    return ""
+end
+
+local function toHTML()
+    local parser = vim.treesitter.get_parser(0, "mmfml")
+
+    if parser == nil then
+        return
+    end
+
+    local langTree = parser:parse()
+
+    local html = ""
+    for _, tree in pairs(langTree) do
+        local root = tree:root()
+        html = html .. nodeToHTML(root)
+    end
+
+    local out = vim.fn.tempname() .. ".html"
+    local f = io.open(out, "w")
+
+    if f == nil then
+        return
+    end
+
+    f:write(html)
+    f:close()
+    vim.cmd.execute('"vsplit " .. "' .. out .. '"')
+
+    vim.fs.rm(out)
+end
+
+vim.api.nvim_create_user_command("ExportHTML", toHTML, {})
+
+---@param node TSNode
 ---@param type string
 ---@return TSNode[]
 local function findNodeTypeInNode(node, type)
