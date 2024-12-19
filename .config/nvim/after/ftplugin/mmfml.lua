@@ -133,7 +133,7 @@ local function toHTML()
 
     local langTree = parser:parse()
 
-    local html = ""
+    local html = "<head><meta charset=\"utf-8\"></head>"
     for _, tree in pairs(langTree) do
         local root = tree:root()
         html = html .. nodeToHTML(root)
