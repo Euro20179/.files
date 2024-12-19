@@ -36,7 +36,8 @@ def get_link_extractor(name: str):
 def no_links(*args):
     yield ""
 
-def extract_norg_links(text: str, cwd: Path):
+def extract_norg_links(text: bytes, cwd: Path):
+    text = text.decode("utf-8")
     norg_link_re = re.compile(r"\[[^\]]+\]\{:([^\}]+):\}")
     X_file_link_re = re.compile(r"\[[^\]]+\]\{/ ([^\}]+)\}")
     proto_link_re = re.compile(r"\[[^\]]+\]{([^\}]+://[^\}]+)}")
@@ -47,18 +48,20 @@ def extract_norg_links(text: str, cwd: Path):
     for match in proto_link_re.findall(text):
         yield match
 
-def extract_mmfml_links(text: str, cwd: Path):
+def extract_mmfml_links(text: bytes, cwd: Path):
     link_re = re.compile(r"(?<!\\)\|\s*([^\|\n]+)\s*\|")
+    text = text.decode("utf-8")
     for match in link_re.findall(text):
         if re.match(r".*://.*", match):
-            yield match
+            yield match.strip()
         elif "/" not in match and "." not in match:
             continue
         else:
-            yield Path(f"{cwd}/{match}").resolve()
+            yield Path(f"{cwd}/{match.strip()}").resolve()
 
-def extract_md_links(text: str, cwd: Path):
+def extract_md_links(text: bytes, cwd: Path):
     link_re = re.compile(r"\[[^\]]+\]\(([^\)]+)\)")
+    text = text.decode("utf-8")
     for match in link_re.findall(text):
         if re.match(r".*://.*", match):
             yield match
@@ -67,7 +70,7 @@ def extract_md_links(text: str, cwd: Path):
 
 def extract_links(file_path: Path):
     link_extractor = get_link_extractor(str(file_path))
-    with open(file_path, "r") as f:
+    with open(file_path, "rb") as f:
         dir = Path(file_path.parent)
         for link in link_extractor(f.read(), dir):
             if link:
@@ -80,16 +83,18 @@ def traverse(start: Path):
     visited = set()
     while len(stack):
         cur = stack.pop()
-        visited.add(cur)
+        if str(cur) in visited:
+            continue
+        visited.add(str(cur))
         for link in extract_links(cur):
             graph.add_edge(cur, link)
-            if link in visited:
+            if str(link) in visited:
                 continue
             if os.path.exists(link):
                 stack.append(link)
     return graph
 
-graph = traverse(Path(f"{os.environ['HOME']}/Documents/vimwiki/index.norg"))
+graph = traverse(Path(f"{os.environ['WIKI']}/index.mmfml"))
 
 if len(sys.argv) > 1 and sys.argv[1] == "links":
     printed = set()
@@ -101,7 +106,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "links":
                 print(node)
             printed.add(node)
         printed.add(edge)
-if len(sys.argv) > 1 and sys.argv[1] == "plotly":
+elif len(sys.argv) > 1 and sys.argv[1] == "plotly":
     from pyvis.network import Network
     g = Network(
         directed=True,
@@ -119,6 +124,8 @@ if len(sys.argv) > 1 and sys.argv[1] == "plotly":
     g.force_atlas_2based()
     g.show("vimwikigraph.html", notebook=False)
 
+elif len(sys.argv) > 1 and sys.argv[1] == "NONE":
+    pass
 else:
     print(f"""
     digraph G {{
