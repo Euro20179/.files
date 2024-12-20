@@ -15,10 +15,16 @@ vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
 
                 vim.uv.fs_stat(file, function(err, file_data)
                     if err ~= nil then
-                        vim.schedule(function()
-                            vim.notify("Failed to stat file " .. err, vim.log.levels.ERROR)
-                        end)
-                        return
+                        if not vim.startswith(err, "ENOENT") then
+                            vim.schedule(function()
+                                vim.notify("Failed to stat file " .. err, vim.log.levels.ERROR)
+                            end)
+                            return
+                        end
+
+                        -- if the file doesn't exist, set file_data
+                        -- this is mode: 0o655
+                        file_data = { mode = 0b110110110, size = 0 }
                     end
 
                     local mode = file_data.mode
