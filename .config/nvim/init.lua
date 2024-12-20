@@ -18,6 +18,18 @@ require 'user.init'
 require 'user.colorscheme'
 require 'user.globals-setup'
 
+vim.cmd.packadd[[gemini]]
+local g = require"gemini"
+g.setup{
+    certificates = {
+        ["bbs.geminispace.org"] = {
+            cert = "~/.local/share/amfora/geminispace-org-cert.pem",
+            key = "~/.local/share/amfora/geminispace-org-key.pem",
+        }
+    }
+}
+g.addmime("text/x-mmfml", "mmfml")
+
 -- require "discord-ui".setup {
 --    token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
 --    user_id = "1190132846409564170"

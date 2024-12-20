@@ -4,8 +4,6 @@ export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
 export MANPAGER="nvim +Man!"
 
-export GEMINI=kristall
-
 export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL="foot"
@@ -26,3 +24,6 @@ export UNICODE_PICKER="pick-emoji"
 export LOCKER="lock"
 #export LOCKER="gtklock -t 'Funbook Air'"
 export TRASH="$HOME/.local/share/trash"
+
+export GEMINI="_GEMINI"
+
