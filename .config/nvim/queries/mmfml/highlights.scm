@@ -113,23 +113,23 @@
 
 
 ;simple conceals {{{
-((pre_sample_start) @conceal (#set! conceal ""))
-((quote_start) @conceal (#set! conceal ""))
-((bold_start) @conceal (#set! conceal ""))
-((italic_start) @conceal (#set! conceal ""))
-((strikethrough_start) @conceal (#set! conceal ""))
-((underline_start) @conceal (#set! conceal ""))
-((higlight_start) @conceal (#set! conceal ""))
-((anchor_start) @conceal (#set! conceal ""))
+((pre_sample_start) @punctuation (#set! conceal ""))
+((quote_start) @punctuation (#set! conceal ""))
+((bold_start) @punctuation (#set! conceal ""))
+((italic_start) @punctuation (#set! conceal ""))
+((strikethrough_start) @punctuation (#set! conceal ""))
+((underline_start) @punctuation (#set! conceal ""))
+((higlight_start) @punctuation (#set! conceal ""))
+((anchor_start) @punctuation (#set! conceal ""))
 
-((pre_sample_end) @conceal (#set! conceal ""))
-((quote_end) @conceal (#set! conceal ""))
-((bold_end) @conceal (#set! conceal ""))
-((italic_end) @conceal (#set! conceal ""))
-((strikethrough_end) @conceal (#set! conceal ""))
-((underline_end) @conceal (#set! conceal ""))
-((higlight_end) @conceal (#set! conceal ""))
-((anchor_end) @conceal (#set! conceal ""))
+((pre_sample_end) @punctuation (#set! conceal ""))
+((quote_end) @punctuation (#set! conceal ""))
+((bold_end) @punctuation (#set! conceal ""))
+((italic_end) @punctuation (#set! conceal ""))
+((strikethrough_end) @punctuation (#set! conceal ""))
+((underline_end) @punctuation (#set! conceal ""))
+((higlight_end) @punctuation (#set! conceal ""))
+((anchor_end) @punctuation (#set! conceal ""))
 ; }}}
 
 ;highlighted words {{{
