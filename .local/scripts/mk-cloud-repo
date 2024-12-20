@@ -19,5 +19,7 @@ git init --bare "${CLOUD}/GIT/${name}"
 printf "%s" "$description" > "${CLOUD}/GIT/${name}/description"
 [ "$public" = 1 ] && touch "${CLOUD}/GIT/${name}/git-daemon-export-ok"
 
+#enables dumb http git protocol
+mv "${CLOUD}/GIT/${name}/hooks/post-update.sample" "${CLOUD}/GIT/${name}/hooks/post-update"
 
 git remote add cloud cloud@cloud:"${CLOUD}"/DRIVE/GIT/"${name}"
