@@ -95,7 +95,7 @@
      "]" @_boxb
     ))
  .
- ((simple_marked_text) @_spacer (#vim-match? @_spacer "^[[:space:]\\n]*$"))?
+ ([(simple_marked_text) (line_break)] @_spacer (#vim-match? @_spacer "^[[:space:]\\n]*$"))?
  .
  (simple_marked_text (link  (link_url) @markup.link)  @_full (#set! @_full conceal "") )
  (#set! @markup.link.label url @markup.link))
