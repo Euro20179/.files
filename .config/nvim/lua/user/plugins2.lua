@@ -215,13 +215,13 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
 -- }}}
 
 -- Neorg {{{
-add { source = "nvim-neorg/neorg",
-    depends = {
-        "pysan3/pathlib.nvim",
-        "vhyrro/luarocks.nvim",
-        "nvim-neorg/lua-utils.nvim"
-    }
-} -- }}}
+-- add { source = "nvim-neorg/neorg",
+--     depends = {
+--         "pysan3/pathlib.nvim",
+--         "vhyrro/luarocks.nvim",
+--         "nvim-neorg/lua-utils.nvim"
+--     }
+-- } -- }}}
 
 -- Mini{{{
 add { source = "echasnovski/mini.nvim" }
