@@ -69,7 +69,7 @@ function FormatstatuslineDiag()
     return text
 end
 
-local left = '%1*%f%2*%{&modified == v:true ? "*" : ""}%{%v:lua.GetGitStats()%} %4*%p%%%* %{%v:lua.FormatstatuslineDiag()%}'
+local left = '%1*%f%2*%{&modified == v:true ? "*" : ""}%{%v:lua.GetGitStats()%} %4*[%l:%v] %p%%%* %{%v:lua.FormatstatuslineDiag()%}'
 local right = '%2*%{&filetype} '
 local center = '%3*%{v:lua.GetLspNames()}%*'
 
