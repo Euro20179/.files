@@ -21,6 +21,10 @@ vim.filetype.add({
                     return
                 end
 
+                if line1 == ">mmfmlmeta" then
+                    return "mmfml"
+                end
+
                 --nvim lua {{{
                 if vim.endswith(line1, "nvim -l") then
                     return "lua"

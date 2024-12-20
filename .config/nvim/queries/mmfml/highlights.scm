@@ -66,8 +66,6 @@
  (quote)
 ] @markup.raw
 
-((backslash) @conceal (#set! conceal ""))
-
 ;}}}
 
 ; Checkboxes {{{
