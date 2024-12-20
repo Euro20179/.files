@@ -70,11 +70,16 @@ def extract_md_links(text: bytes, cwd: Path):
 
 def extract_links(file_path: Path):
     link_extractor = get_link_extractor(str(file_path))
-    with open(file_path, "rb") as f:
-        dir = Path(file_path.parent)
-        for link in link_extractor(f.read(), dir):
-            if link:
-                yield link
+    if os.path.isdir(file_path):
+        dir = Path(file_path)
+        for file in os.listdir(file_path):
+            yield dir / file
+    else:
+        with open(file_path, "rb") as f:
+            dir = Path(file_path.parent)
+            for link in link_extractor(f.read(), dir):
+                if link:
+                    yield link
 
 def traverse(start: Path):
     graph = Graph()
