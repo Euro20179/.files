@@ -26,7 +26,7 @@ vim.ui.open = function(item, opts)
     end
 
     local cmd = {"linkhandler"}
-    if opts.cmd ~= nil then
+    if opts ~= nil and opts.cmd ~= nil then
         ---@type string[]
         cmd = opts.cmd
     end
