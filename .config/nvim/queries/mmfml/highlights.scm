@@ -109,7 +109,6 @@
 ((footnote_end) @attribute)
 ;}}}
 
-
 ;simple conceals {{{
 ((pre_sample_start) @punctuation (#set! conceal ""))
 ((quote_start) @punctuation (#set! conceal ""))
@@ -128,6 +127,13 @@
 ((underline_end) @punctuation (#set! conceal ""))
 ((higlight_end) @punctuation (#set! conceal ""))
 ((anchor_end) @punctuation (#set! conceal ""))
+
+(([
+ (hidden_start)
+ (hidden_end)
+]) @punctuation (#set! conceal "⚠️"))
+
+((hidden_start) . (simple_marked_text) @conceal (#set! conceal "⚠️"))
 ; }}}
 
 ;highlighted words {{{
