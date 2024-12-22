@@ -21,6 +21,7 @@ require 'user.globals-setup'
 vim.cmd.packadd[[gemini]]
 local g = require"gemini"
 g.setup{
+    bookmark_file = vim.fn.stdpath("config") .. "/gemini-bookmarks",
     certificates = {
         ["bbs.geminispace.org"] = {
             cert = "~/.local/share/amfora/geminispace-org-cert.pem",

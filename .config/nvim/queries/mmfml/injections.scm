@@ -3,7 +3,7 @@
    (code_text) @injection.content
    ))
 
-((inline_code_start)
+((inline_code_start) @_s (#eq? @_s "$$")
          .
        (code) @injection.content
  (#set! injection.language "amml"))
