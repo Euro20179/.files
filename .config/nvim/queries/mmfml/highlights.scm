@@ -54,6 +54,9 @@
  (header)
 ] @markup.heading
 
+;text following a divider is a heading
+((simple_marked_text (divider) @_d (#match? @_d "^\\=+$")) . (line_break) . (simple_marked_text) @markup.heading)
+
 ;Text surrounded by dividers is a header
 ((simple_marked_text (divider))
  .
