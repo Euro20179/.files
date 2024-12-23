@@ -58,11 +58,12 @@
 ((simple_marked_text (divider) @_d (#match? @_d "^\\=+$")) . (line_break) . (simple_marked_text) @markup.heading)
 
 ;Text surrounded by dividers is a header
-((simple_marked_text (divider))
+;(the header must be 5+ chars on each side)
+((simple_marked_text (divider) @_d (#match? @_d ".{5,}"))
  .
  (simple_marked_text (plain (word)) @markup.heading)
  .
- (simple_marked_text (divider)))
+ (simple_marked_text (divider) @_d))
 
 [
  (pre_sample_text)
