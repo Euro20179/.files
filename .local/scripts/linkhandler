@@ -51,7 +51,7 @@ try_mime_handling() {
         exit 0
         ;;
     inode/directory)
-        nvim +Oil "$link"
+        $GUIEDITOR +Oil "$link"
         exit 0
         ;;
     esac

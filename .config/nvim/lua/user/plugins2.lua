@@ -196,7 +196,7 @@ aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {})
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }
 
 aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
-    default_file_explorer = true,
+    default_file_explorer = false,
     view_options = {
         show_hidden = true
     },
