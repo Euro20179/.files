@@ -305,11 +305,7 @@ end) -- }}}
 
 aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
-vim.api.nvim_create_user_command("Qalc", function()
-    vim.api.nvim_del_user_command("Qalc")
-    add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
-    vim.cmd[[Qalc]]
-end, {})
+add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
 add { source = "tpope/vim-fugitive" }
 
@@ -376,8 +372,6 @@ end)
 aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
 
 aSetup({ source = "meznaric/key-analyzer.nvim" }, later, "key-analyzer", {})
-
-aSetup({ source = "abecodes/tabout.nvim" }, later, "tabout", {})
 
 -- add{ source = "altermo/nelisp" }
 --
