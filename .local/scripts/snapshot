@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo btrfs subvolume delete /home/home-backup-*
+sudo btrfs subvolume snapshot /home /home/home-backup-"$(date)"
