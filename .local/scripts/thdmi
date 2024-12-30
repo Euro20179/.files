@@ -14,4 +14,4 @@ hyprctl monitors | grep -q HDMI-A-1
 is_on="$(($?^1))"
 
 [ "$is_on" -eq 1 ] && hyprctl keyword monitor HDMI-A-1,disable
-[ "$is_on" -eq 0 ] && hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
+[ "$is_on" -eq 0 ] && hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1,transform,3
