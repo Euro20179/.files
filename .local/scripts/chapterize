@@ -8,15 +8,26 @@ output_dir="$2"
     exit 1
 }
 
-[ -z "$output_dir" ] || ! [ -d "$output_dir" ] || [ "$(ls -1 "$output_dir" | wc -l)" -gt 0 ] && {
-    printf "%s\n" "Must provide an empty output directory"
+[ -z "$output_dir" ] || ! [ -d "$output_dir" ]  && {
+    printf "ERROR: output directory does not exist"
     exit 1
 }
 
-ffprobe -i "$input" -show_chapters -of json |
-    jq -r '.chapters|.[]|"\(.start_time) \((.end_time|tonumber) - (.start_time|tonumber))"' |
-    while read -r start duration; do
-        echo "$start" "${duration%.*}"
-        count=$(ls -1 "$output_dir" | wc -l)
-        ffmpeg -ss "$start" -i "$input" -map 0 -c copy -t "${duration%.*}" "$output_dir"/$((count+1)).mkv
-    done
+if [ "$(ls -1 "$output_dir" | wc -l)" -gt 0 ]; then
+    printf "%s\n" "WARNING: output directory is not empty"
+fi
+
+params=""
+start=$(($(ls -1 "$output_dir" | wc -l)))
+durations=$(ffprobe -i "$input" -show_chapters -of json 2>/dev/null |
+    jq -r '.chapters|.[]|"\(.start_time) \(.end_time|tonumber)"' |
+    # jq -r '.chapters|.[]|"\(.start_time) \((.end_time|tonumber) - (.start_time|tonumber))"' |
+    awk "{printf \"%s %s %s %s %s \", \"-ss\", \$1, \"-map 0 -c copy -t\", \$2, \"$output_dir/\"$start+NR \".mkv\"}")
+# echo "$durations"
+ffmpeg -i "$input" $durations
+# ffmpeg $durations
+    # while read -r start duration; do
+    #     echo "${start%.*}" "${duration%.*}"
+    #     count=$(ls -1 "$output_dir" | wc -l)
+    #     # ffmpeg -ss "${start%.*}" -i "$input" -map 0 -c copy -t "${duration%.*}" "$output_dir"/$((count+1)).mkv
+    # done
