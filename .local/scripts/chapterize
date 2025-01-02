@@ -22,7 +22,7 @@ start=$(($(ls -1 "$output_dir" | wc -l)))
 durations=$(ffprobe -i "$input" -show_chapters -of json 2>/dev/null |
     jq -r '.chapters|.[]|"\(.start_time) \(.end_time|tonumber)"' |
     # jq -r '.chapters|.[]|"\(.start_time) \((.end_time|tonumber) - (.start_time|tonumber))"' |
-    awk "{printf \"%s %s %s %s %s \", \"-ss\", \$1, \"-map 0 -c copy -t\", \$2, \"$output_dir/\"$start+NR \".mkv\"}")
+    awk "{printf \"%s %s %s %s %s \", \"-ss\", \$1, \"-map 0 -c copy -to\", \$2, \"$output_dir/\"$start+NR \".mkv\"}")
 # echo "$durations"
 ffmpeg -i "$input" $durations
 # ffmpeg $durations
