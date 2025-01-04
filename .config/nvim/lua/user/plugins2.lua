@@ -87,9 +87,9 @@ aSetup({
                 }
             },
 
-            keyword = {
-                regex = [==[[#_-]\|\k]==],
-            },
+            -- keyword = {
+            --     regex = [==[[#_-]\|\k]==],
+            -- },
 
             documentation = {
                 auto_show = true,
