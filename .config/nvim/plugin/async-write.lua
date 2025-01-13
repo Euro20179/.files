@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
 
                         vim.schedule(function()
                             local lines = table.concat(
-                                vim.api.nvim_buf_get_lines(curBuf, 0, -1, false),
+                                vim.api.nvim_buf_get_lines(curBuf, 0, vim.api.nvim_buf_line_count(curBuf), false),
                                 "\n"
                             )
                             vim.uv.fs_write(fd, lines, nil, function(err, bytes)

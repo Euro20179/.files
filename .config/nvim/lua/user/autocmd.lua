@@ -2,12 +2,14 @@ local conf_group = vim.api.nvim_create_augroup("config", {
     clear = true
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-    group = conf_group,
-    callback = function()
-        vim.hl.on_yank({ timeout = 100, higroup = "Visual" })
-    end
-})
+if vim.hl and vim.hl.on_yank ~= nil then
+    vim.api.nvim_create_autocmd("TextYankPost", {
+        group = conf_group,
+        callback = function()
+            vim.hl.on_yank({ timeout = 100, higroup = "Visual" })
+        end
+    })
+end
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = conf_group,
