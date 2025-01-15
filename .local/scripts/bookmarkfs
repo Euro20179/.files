@@ -6,7 +6,7 @@ bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
 
 open() {
 	file=$(find "$bookmark_dir/" -type f -printf "%P\n" | while read -r line; do
-		printf "%s\t#tags %s\n" "$line" "$(sed -n '/^tags=/s/^tags=//p' "$bookmark_dir/$line")"
+		printf "%s\n" "$line"
 	done | column -s$'\t' -t -c 1000 | rofi -p "open" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit
@@ -24,9 +24,9 @@ add() {
 	folder=$(find "$bookmark_dir/" -type d -printf '%P/\n' | rofi -p 'folder' -i -dmenu -theme cat-macchiato)
 	[ -z "$folder" ] && exit
 	mkdir -p "${bookmark_dir}/$folder"
-	IFS="|" read name url tags keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='tags'  --add-entry='keyword')"
+	IFS="|" read name url keyword <<<"$(zenity --forms --add-entry='name' --add-entry='url' --add-entry='keyword')"
 	[ -z "$url" ] && { zenity --question --text="<b>$(wl-paste)</b>\nwill be used as the url since you did not provide one" && url="$(wl-paste)" || exit 1; }
-	printf "url=%s\ntags=%s\nkeyword=%s" "$url" "$tags" "$keyword" >"${bookmark_dir}/${folder}/${name}"
+	printf "url=%s\nkeyword=%s" "$url" "$keyword" >"${bookmark_dir}/${folder}/${name}"
 }
 
 remove() {
@@ -41,7 +41,7 @@ remove() {
 
 copy() {
 	file=$(find "$bookmark_dir/" -type f -printf "%P\n" | while read -r line; do
-		printf "%s\t#tags %s\n" "$line" "$(grep 'tags=' "$bookmark_dir/$line" | cut -d '=' -f2-)"
+		printf "%s\n" "$line"
 	done | column -s$'\t' -t -c 1000 | rofi -p "copy" -i -dmenu -theme cat-macchiato)
 
 	[ -z "$file" ] && exit

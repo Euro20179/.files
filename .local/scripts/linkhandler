@@ -96,6 +96,9 @@ anime:sftp://*)
     notify-send "opening"
     mpv --profile=anime "${link#anime:}"
     ;;
+cloud:*)
+    path="$CLOUD/${link#cloud:}"
+    linkhandler "$path" ;;
 cloud://*)
     path="$CLOUD/${link#cloud://}"
     linkhandler $path
