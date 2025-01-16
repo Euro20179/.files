@@ -12,7 +12,7 @@ open_with_editor() {
 
     #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
     [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || {
-        if tty; then
+        if tty 2> /dev/null 1>&2; then
             "$EDITOR" "$modified_link"
         else
             ${GUIEDITOR} "$modified_link"
@@ -57,7 +57,6 @@ try_mime_handling() {
     esac
 }
 
-
 [ -e "${link}" ] && try_mime_handling
 
 case "$link" in
@@ -96,11 +95,15 @@ anime:sftp://*)
     notify-send "opening"
     mpv --profile=anime "${link#anime:}"
     ;;
-cloud:*)
-    path="$CLOUD/${link#cloud:}"
-    linkhandler "$path" ;;
-cloud://*)
-    path="$CLOUD/${link#cloud://}"
+cloud:*//*)
+    extra="${link#cloud:}"
+    extra="${extra%%//*}"
+    case "$extra" in
+        /*) path="${extra#/}://$CLOUD/${link#cloud:*//}" ;;
+        :*) path="${extra#:}:$CLOUD/${link#cloud:*//}" ;;
+        *) path="$CLOUD/${link#cloud:*//}" ;;
+    esac
+    echo "$path"
     linkhandler $path
     ;;
 sftp://*.m3u8)
