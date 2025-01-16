@@ -18,116 +18,106 @@ open_with_editor() {
             ${GUIEDITOR} "$modified_link"
         fi
     }
-    exit 0
+    return 0
 }
 
 try_mime_handling() {
     #rev cut rev gets the last field
     mime=$(file --mime-type "$link" | rev | cut -d: -f1 | rev | tr -d ' ')
     case "$mime" in
-    application/pdf | application/epub*)
-        zathura "$link"
-        exit 0
-        ;;
-    image/*)
-        sxiv "$link"
-        exit 0
-        ;;
-    text/html)
-        $BROWSER "$link"
-        exit 0
-        ;;
-    text/* | plain/*)
-        [ $LH_NO_EDIT = 1 ] && exit 1
-        open_with_editor "$link"
-        exit 0
-        ;;
-    video/* | audio/*)
-        mpv "$link"
-        exit 0
-        ;;
-    application/x-shockwave-flash)
-        flashplayer "$link"
-        exit 0
-        ;;
-    inode/directory)
-        $GUIEDITOR +Oil "$link"
-        exit 0
-        ;;
+        application/pdf | application/epub*) zathura "$link" ;;
+        image/*) sxiv "$link" ;;
+        text/html) $BROWSER "$link" ;;
+        text/* | plain/*)
+            [ $LH_NO_EDIT = 1 ] && exit 1
+            open_with_editor "$link" ;;
+        video/* | audio/*) mpv "$link" ;;
+        application/x-shockwave-flash) flashplayer "$link" ;;
+        inode/directory) $GUIEDITOR +Oil "$link" ;;
+        *) return 1 ;;
+    esac
+    return 0
+}
+
+try_custom_uri() {
+    case "$link" in
+        *.swf) flashplayer "$link" ;;
+        *.png | *.jpg | *.jpeg | *.webm | *.gif | *.webm | *.webp) mpv --loop "$link" & ;;
+        *.m3u?) mpv "$link" ;;
+        *.onion) tor "$link" ;;
+        *://cloud://*)
+            extra_protocol="${link%%cloud://*}"
+            new_link="${extra_protocol}${CLOUD}/${link#*://cloud://}"
+            linkhandler "$new_link"
+            exit
+            ;;
+        # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
+        exe://*) "${link#exe://}" ;;
+        media://*) mpv "${link#media://}" ;;
+        https://cdn.discordapp.com/attachments/*)
+            tmp=$(mktemp)
+            curl "$link" >"$tmp"
+            linkhandler "$tmp"
+            rm "$tmp"
+            ;;
+        https://github.com/*/blob/*)
+            [ $LH_NO_EDIT = 1 ] && exit 1
+            file_path=${link#*/blob/}
+            repo="${link%%/blob/*}"
+            repo="${repo#https://github.com/}"
+            open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}"
+            ;;
+        https://*/watch?v=* | https://youtu.be*) mpv "$1" ;;
+        https://* | http://* | file:///*) nohup $BROWSER "$link" >/dev/null 2>&1 & ;;
+        gemini://*) ${GEMINI:-kristall} "$link" ;;
+        anime:sftp://*)
+            eval "$(ssh-agent -s)"
+            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
+            notify-send "opening"
+            mpv --profile=anime "${link#anime:}"
+            ;;
+        sftp://*.m3u8)
+            eval "$(ssh-agent -s)"
+            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
+            notify-send "opening"
+            mpv "$link"
+            ;;
+        #all other m3u8's go to mpv
+        *.m3u8) mpv "$link" & ;;
+        term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}" ;;
+        man://* | man:)
+            grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man://}"; }
+$MANPAGER
+EOF
+            #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
+            [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" man "$link"
+            ;;
+        sftp://*) mpv "$link" ;;
+        /* | ~/* | ./*)
+            [ $LH_NO_EDIT = 1 ] && exit 1
+            open_with_editor "$link"
+            ;;
+        *) xdg-open "$link" 2>/dev/null || "$BROWSER" "$link" ;;
     esac
 }
 
-[ -e "${link}" ] && try_mime_handling
-
-case "$link" in
-*.swf) flashplayer "$link" ;;
-*.png | *.jpg | *.jpeg | *.webm | *.gif | *.webm | *.webp) mpv --loop "$link" & ;;
-*.m3u?) mpv "$link" ;;
-*.onion) tor "$link" ;;
-*://cloud://*)
-    extra_protocol="${link%%cloud://*}"
-    new_link="${extra_protocol}${CLOUD}/${link#*://cloud://}"
-    linkhandler "$new_link"
-    exit
-    ;;
-# steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
-exe://*) "${link#exe://}" ;;
-media://*) mpv "${link#media://}" ;;
-https://cdn.discordapp.com/attachments/*)
-    tmp=$(mktemp)
-    curl "$link" >"$tmp"
-    linkhandler "$tmp"
-    rm "$tmp"
-    ;;
-https://github.com/*/blob/*)
-    [ $LH_NO_EDIT = 1 ] && exit 1
-    file_path=${link#*/blob/}
-    repo="${link%%/blob/*}"
-    repo="${repo#https://github.com/}"
-    open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}"
-    ;;
-https://*/watch?v=* | https://youtu.be*) mpv "$1" ;;
-https://* | http://* | file:///*) nohup $BROWSER "$link" >/dev/null 2>&1 & ;;
-gemini://*) ${GEMINI:-kristall} "$link" ;;
-anime:sftp://*)
-    eval "$(ssh-agent -s)"
-    SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
-    notify-send "opening"
-    mpv --profile=anime "${link#anime:}"
-    ;;
-cloud:*//*)
-    extra="${link#cloud:}"
-    extra="${extra%%//*}"
-    case "$extra" in
-        /*) path="${extra#/}://$CLOUD/${link#cloud:*//}" ;;
-        :*) path="${extra#:}:$CLOUD/${link#cloud:*//}" ;;
-        *) path="$CLOUD/${link#cloud:*//}" ;;
+#modifies $link
+expand_path_uri() {
+    case "$link" in
+        cloud:*//*)
+            extra="${link#cloud:}"
+            extra="${extra%%//*}"
+            case "$extra" in
+                /*) path="${extra#/}://$CLOUD/${link#cloud:*//}" ;;
+                :*) path="${extra#:}:$CLOUD/${link#cloud:*//}" ;;
+                *) path="$CLOUD/${link#cloud:*//}" ;;
+            esac
+            link="$path" ;;
+        wiki://*) link="https://wikipedia.org/wiki/${link#wiki://}" ;;
     esac
-    echo "$path"
-    linkhandler $path
-    ;;
-sftp://*.m3u8)
-    eval "$(ssh-agent -s)"
-    SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
-    notify-send "opening"
-    mpv "$link"
-    ;;
-#all other m3u8's go to mpv
-*.m3u8) mpv "$link" & ;;
-/* | ~/* | ./*)
-    [ $LH_NO_EDIT = 1 ] && exit 1
-    open_with_editor "$link"
-    ;;
-term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}" ;;
-wiki://*) "${BROWSER}" "https://wikipedia.org/wiki/${link#wiki://}" ;;
-man://* | man:)
-    grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man://}"; }
-$MANPAGER
-EOF
-    #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
-    [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" man "$link"
-    ;;
-sftp://*) mpv "$link" ;;
-*) xdg-open "$link" 2>/dev/null || "$BROWSER" "$link" ;;
-esac
+}
+
+expand_path_uri
+[ -e "${link}" ] && try_mime_handling || try_custom_uri
+
 killall ssh-agent 2>/dev/null
