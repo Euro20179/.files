@@ -55,9 +55,10 @@ try_custom_uri() {
         # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
         jellyfin://*)
             show="${link#jellyfin://}"
-            IFS=:
-            read -r show season episode <<< "$show"
-            aiow -d '\(if .Type != "Series" then "\(.SeriesName)\t" else "" end)[\(.Type)\(if .Type == "Episode" then
+            IFS=: read -r show season episode <<< "$show"
+            show="$(printf "%s" "$show" | jq -sRr @uri)"
+            echo "$show"
+            aiow -d '\(if .Type != "Series" then "\(.SeriesName) " else "" end)[\(.Type)\(if .Type == "Episode" then
                     " : \(.IndexNumber), S\(.ParentIndexNumber)"
                 elif .Type == "Season" then
                     " : S\(.IndexNumber)"

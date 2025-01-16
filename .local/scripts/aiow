@@ -1,6 +1,6 @@
 #!/bin/bash
 
-display_fmt="\(.Name)"
+display_fmt="[\(.Type)] \(.Name)"
 
 while getopts "W:d:" OPT; do
     case "$OPT" in
@@ -10,14 +10,15 @@ while getopts "W:d:" OPT; do
     esac
 done
 
-display_fmt="$display_fmt\t\(.Id)"
+display_fmt="$display_fmt\t\(if .RunTimeTicks then .RunTimeTicks/10000000/60 else 0 end)\t\(.Id)"
 
 shift $((OPTIND - 1))
 
 search="$1"
 : "${queryParams="${2:-IncludeItemTypes=Series,Movie}"}"
-queryParams="&Recursive=True&fields=Path&${queryParams}"
+queryParams="Recursive=True&fields=Path&${queryParams}"
 
+[ "$search" ] && queryParams="searchTerm=${search}&${queryParams}"
 
 jellyfinapi="https://cloud:9999/jellyfin"
 jellyfinkey=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-apikey)
@@ -31,7 +32,7 @@ cache="$(mktemp -d)"
 
 episodes () {
     id="$1"
-    sid="$1"
+    sid="$2"
 
     [ -f "$cache/eps.$id" ] && epItems=$(cat "$cache/eps.$id") ||
         epItems=$(curl "$jellyfinapi/Shows/$id/Episodes?seasonId=$id&userId=&fields=Path" \
@@ -42,7 +43,7 @@ episodes () {
     jellyfinItems=$epItems
 
     id=$(echo "$epItems" | jq -r '.Items|.[]|"\(.Name)\t\(.Id)"' | column -t -s $'\t'|
-            fzf --expect "ctrl-h" | awk '{printf $NF}')
+            fzf --preview "$0 -W {}" --expect "ctrl-h" | awk '{printf $NF}')
 
     case "$id" in
         ctrl-h*) seasons "$sid" ;;
@@ -52,6 +53,7 @@ episodes () {
 
 seasons () {
     id="$1"
+    sid="$1"
 
     [ -f "$cache/seasons.$id" ] && seasonItems=$(cat "$cache/seasons.$id") ||
         seasonItems=$(curl "$jellyfinapi/Shows/$id/Seasons?userId=$userid&fields=Path" \
@@ -62,26 +64,25 @@ seasons () {
     jellyfinItems=$seasonItems
 
     id=$(echo "$seasonItems" | jq -r '.Items|.[]|"\(.Name)\t\(.Id)"' | column -t -s $'\t'|
-            fzf --expect "ctrl-l,ctrl-h" | awk '{printf $NF}')
+            fzf --preview "$0 -W {}" --expect "ctrl-l,ctrl-h" | awk '{printf $NF}')
 
     case "$id" in
-        ctrl-h*) display 1 ;;
+        ctrl-h*) main_display 1 ;;
         ctrl-l*)
             id="${id#*ctrl-l}"
-            episodes "$id" ;;
+            episodes "$id" "$sid" ;;
         *) id="${id#$'\n'}"
     esac
 
 }
 
-display() {
+main_display() {
     #whether or not this is called from a submenu
     local back=${1:-0}
     [ -f "$cache/all" ] && jellyfinItems=$(cat "$cache/all") ||
-        jellyfinItems=$(curl "$jellyfinapi/Users/$userid/Items?searchTerm=${search}${queryParams}" \
+        jellyfinItems=$(curl "$jellyfinapi/Users/$userid/Items?${queryParams}" \
             -H "Authorization: MediaBrowser Token=\"$jellyfinkey\"" -k | tee "$cache/all")
-    # echo "$jellyfinItems"
-    names=$(echo "$jellyfinItems" | jq -r '.Items|.[]|"'"${display_fmt}"'"' | column -t -s $'\t')
+    names=$(echo "$jellyfinItems" | jq -r '.Items|.[]|"'"${display_fmt}"'"' | column -t -s $'\t' -o $'\t')
     id=$(echo "$names" | fzf -1 --preview "$0 -W {}" --expect "ctrl-l" | awk '{print $NF}')
     case "$id" in
         ctrl-l*)
@@ -95,14 +96,16 @@ display() {
 }
 
 thumbnail() {
-    id="$(printf "%s" "$item" | awk "{print \$NF}")"
+    IFS=$'\t' read -r name minutes id <<< "$item"
     [ -f "$sixel_cache/$id.sixel" ] &&
         cat "$sixel_cache/$id.sixel" ||
         curl "$jellyfinapi/Items/$id/Images/Primary?width=400" -k 2> /dev/null | img2sixel - | tee "$sixel_cache/$id.sixel"
+    printf "\x1b[32m%s\x1b[0m\n" "$name"
+    printf "\x1b[33m%s\x1b[0m minutes\n" "$minutes"
 }
 
 if [ -z "$mode" ]; then
-    display
+    main_display
 elif [ "$mode" = "thumbnail" ]; then
     thumbnail
 fi
