@@ -2,10 +2,23 @@
 
 display_fmt="[\(.Type)] \(.Name)"
 
-while getopts "W:d:" OPT; do
+while getopts "W:d:o:s:h" OPT; do
     case "$OPT" in
         W) mode=thumbnail; item=$OPTARG ;;
         d) display_fmt="$OPTARG" ;;
+        o) on_select=$OPTARG ;;
+        s) season_idx=$OPTARG ;;
+        h) cat <<EOF && exit 0;;
+aiow [opts] [search [queryParams]]
+    Parameters
+        search: search query
+        queryParams: params to pass to jellyfin
+    Options:
+        -d: display format, defualt: [\(.Type)] \(.Name) "\t" MUST NOT appear
+        -o: what happens when the main entry is selected, default: ""
+            the other option is "s" which opens the season selection
+        -s: season index, the season to automatically select if season menu is opened
+EOF
         *) : ;;
     esac
 done
@@ -63,6 +76,11 @@ seasons () {
 
     jellyfinItems=$seasonItems
 
+    if [ "$season_idx" ]; then
+        id="$(echo "$seasonItems" | jq -r ".Items.[]|select(.IndexNumber==$season_idx).Id")"
+        return 0
+    fi
+
     id=$(echo "$seasonItems" | jq -r '.Items|.[]|"\(.Name)\t\(.Id)"' | column -t -s $'\t'|
             fzf --preview "$0 -W {}" --expect "ctrl-l,ctrl-h" | awk '{printf $NF}')
 
@@ -79,19 +97,30 @@ seasons () {
 main_display() {
     #whether or not this is called from a submenu
     local back=${1:-0}
+
     [ -f "$cache/all" ] && jellyfinItems=$(cat "$cache/all") ||
         jellyfinItems=$(curl "$jellyfinapi/Users/$userid/Items?${queryParams}" \
             -H "Authorization: MediaBrowser Token=\"$jellyfinkey\"" -k | tee "$cache/all")
+
     names=$(echo "$jellyfinItems" | jq -r '.Items|.[]|"'"${display_fmt}"'"' | column -t -s $'\t' -o $'\t')
+
     id=$(echo "$names" | fzf -1 --preview "$0 -W {}" --expect "ctrl-l" | awk '{print $NF}')
+
     case "$id" in
         ctrl-l*)
             id="${id#*ctrl-l*$'\n'}"
             seasons "$id" ;;
         *) id="${id#$'\n'}"
     esac
+
     [ $back = 1 ] && return 0
+
+    case "$on_select" in
+        s) seasons "$id" ;;
+    esac
+
     location=$(printf "%s" "$jellyfinItems" | jq -r ".Items|.[]|select(.Id==\"$id\")|.Path")
+
     linkhandler media://"${location}"
 }
 
@@ -100,6 +129,7 @@ thumbnail() {
     [ -f "$sixel_cache/$id.sixel" ] &&
         cat "$sixel_cache/$id.sixel" ||
         curl "$jellyfinapi/Items/$id/Images/Primary?width=400" -k 2> /dev/null | img2sixel - | tee "$sixel_cache/$id.sixel"
+    printf "\x1b[37m%s\x1b[0m\n" "$id"
     printf "\x1b[32m%s\x1b[0m\n" "$name"
     printf "\x1b[33m%s\x1b[0m minutes\n" "$minutes"
 }

@@ -53,18 +53,31 @@ try_custom_uri() {
             exit
             ;;
         # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
-        jellyfin://*)
-            show="${link#jellyfin://}"
-            IFS=: read -r show season episode <<< "$show"
+        jellyfin:*//*)
+            #planned uri
+            # jellyfin:[type]//{search}[/s[number][/[number]]]
+            # eg: jellyfin://friends/s: will list the seasons of the selected result
+            # eg: jellyfin://friends/s10: will play season 10 of the selected result
+            # eg: jellyfin://friends/s/5: will play episode 5 of the selected result's season
+            # eg: jellyfin://friends/s1/10: will play season 1 episode 10 of the selected result
+            type="${link#jellyfin:}"
+            type="${type%//*}"
+
+            [ -z "$type" ] && type="Series,Movie,Episode"
+
+            show="${link#jellyfin:*//}"
+            args=(--)
+
+            [[ "$show" =~ /s$ ]] && show="${show%/s}" && args=(-os)
+            [[ "$show" =~ /s[[:digit:]]*$ ]] && args=(-os -s"${show#*/s}") && show="${show%/*}"
             show="$(printf "%s" "$show" | jq -sRr @uri)"
-            echo "$show"
             aiow -d '\(if .Type != "Series" then "\(.SeriesName) " else "" end)[\(.Type)\(if .Type == "Episode" then
                     " : \(.IndexNumber), S\(.ParentIndexNumber)"
                 elif .Type == "Season" then
                     " : S\(.IndexNumber)"
                 else
                     ""
-                end)] \(.Name)' "$show" 'IncludeItemTypes=Series,Movie,Episode'
+                end)] \(.Name)' "${args[@]}" "$show" "IncludeItemTypes=$type"
             ;;
         exe://*) "${link#exe://}" ;;
         media://*) mpv "${link#media://}" ;;
