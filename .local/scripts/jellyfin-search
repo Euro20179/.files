@@ -1,0 +1,12 @@
+#!/bin/bash
+
+jellyfinapi="https://cloud:9999/jellyfin"
+jellyfinkey=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-apikey)
+userid=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-userid)
+
+search=$1
+queryParams=$2
+
+[ "$queryParams" ] && queryParams="&${queryParams}"
+
+curl "$jellyfinapi/Items?searchTerm=${search}&userId=${userid}&recursive=True${queryParams}" -H "Authorization: MediaBrowser Token=\"$jellyfinkey\"" -k

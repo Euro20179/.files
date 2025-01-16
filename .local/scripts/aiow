@@ -1,0 +1,110 @@
+#!/bin/bash
+
+display_fmt="\(.Name)"
+
+while getopts "W:d:" OPT; do
+    case "$OPT" in
+        W) mode=thumbnail; item=$OPTARG ;;
+        d) display_fmt="$OPTARG" ;;
+        *) : ;;
+    esac
+done
+
+display_fmt="$display_fmt\t\(.Id)"
+
+shift $((OPTIND - 1))
+
+search="$1"
+: "${queryParams="${2:-IncludeItemTypes=Series,Movie}"}"
+queryParams="&Recursive=True&fields=Path&${queryParams}"
+
+
+jellyfinapi="https://cloud:9999/jellyfin"
+jellyfinkey=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-apikey)
+userid=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-userid)
+
+sixel_cache="${XDG_CACHE_HOME}/aiow"
+
+mkdir -p "$sixel_cache"
+
+cache="$(mktemp -d)"
+
+episodes () {
+    id="$1"
+    sid="$1"
+
+    [ -f "$cache/eps.$id" ] && epItems=$(cat "$cache/eps.$id") ||
+        epItems=$(curl "$jellyfinapi/Shows/$id/Episodes?seasonId=$id&userId=&fields=Path" \
+            -H "Authorization: MediaBrowser Token=\"$jellyfinkey\"" -k | tee "$cache/seasons.$id")
+
+    [[ "$seasonItems" =~ \"Not\ Found\" ]] && return 1
+
+    jellyfinItems=$epItems
+
+    id=$(echo "$epItems" | jq -r '.Items|.[]|"\(.Name)\t\(.Id)"' | column -t -s $'\t'|
+            fzf --expect "ctrl-h" | awk '{printf $NF}')
+
+    case "$id" in
+        ctrl-h*) seasons "$sid" ;;
+        *) id="${id#$'\n'}"
+    esac
+}
+
+seasons () {
+    id="$1"
+
+    [ -f "$cache/seasons.$id" ] && seasonItems=$(cat "$cache/seasons.$id") ||
+        seasonItems=$(curl "$jellyfinapi/Shows/$id/Seasons?userId=$userid&fields=Path" \
+            -H "Authorization: MediaBrowser Token=\"$jellyfinkey\"" -k | tee "$cache/seasons.$id")
+
+    [[ "$seasonItems" =~ \"Not\ Found\" ]] && return 1
+
+    jellyfinItems=$seasonItems
+
+    id=$(echo "$seasonItems" | jq -r '.Items|.[]|"\(.Name)\t\(.Id)"' | column -t -s $'\t'|
+            fzf --expect "ctrl-l,ctrl-h" | awk '{printf $NF}')
+
+    case "$id" in
+        ctrl-h*) display 1 ;;
+        ctrl-l*)
+            id="${id#*ctrl-l}"
+            episodes "$id" ;;
+        *) id="${id#$'\n'}"
+    esac
+
+}
+
+display() {
+    #whether or not this is called from a submenu
+    local back=${1:-0}
+    [ -f "$cache/all" ] && jellyfinItems=$(cat "$cache/all") ||
+        jellyfinItems=$(curl "$jellyfinapi/Users/$userid/Items?searchTerm=${search}${queryParams}" \
+            -H "Authorization: MediaBrowser Token=\"$jellyfinkey\"" -k | tee "$cache/all")
+    # echo "$jellyfinItems"
+    names=$(echo "$jellyfinItems" | jq -r '.Items|.[]|"'"${display_fmt}"'"' | column -t -s $'\t')
+    id=$(echo "$names" | fzf -1 --preview "$0 -W {}" --expect "ctrl-l" | awk '{print $NF}')
+    case "$id" in
+        ctrl-l*)
+            id="${id#*ctrl-l*$'\n'}"
+            seasons "$id" ;;
+        *) id="${id#$'\n'}"
+    esac
+    [ $back = 1 ] && return 0
+    location=$(printf "%s" "$jellyfinItems" | jq -r ".Items|.[]|select(.Id==\"$id\")|.Path")
+    linkhandler media://"${location}"
+}
+
+thumbnail() {
+    id="$(printf "%s" "$item" | awk "{print \$NF}")"
+    [ -f "$sixel_cache/$id.sixel" ] &&
+        cat "$sixel_cache/$id.sixel" ||
+        curl "$jellyfinapi/Items/$id/Images/Primary?width=400" -k 2> /dev/null | img2sixel - | tee "$sixel_cache/$id.sixel"
+}
+
+if [ -z "$mode" ]; then
+    display
+elif [ "$mode" = "thumbnail" ]; then
+    thumbnail
+fi
+
+rm -r "$cache"

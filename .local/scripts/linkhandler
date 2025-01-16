@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 #LH_NO_EDIT is used in my nvim config to say, dont edit just exit with an error to let nvim handle the editing
 
 link="$*"
 : "${LH_NO_EDIT=0}"
+: "${LINKHANDLER_EXPAND_ONLY:-0}"
 
 # EDITOR="$TERMINAL $EDITOR"
 #
@@ -33,7 +34,7 @@ try_mime_handling() {
             open_with_editor "$link" ;;
         video/* | audio/*) mpv "$link" ;;
         application/x-shockwave-flash) flashplayer "$link" ;;
-        inode/directory) $GUIEDITOR +Oil "$link" ;;
+        inode/directory) open_with_editor "$link" ;;
         *) return 1 ;;
     esac
     return 0
@@ -52,6 +53,18 @@ try_custom_uri() {
             exit
             ;;
         # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
+        jellyfin://*)
+            show="${link#jellyfin://}"
+            IFS=:
+            read -r show season episode <<< "$show"
+            aiow -d '\(if .Type != "Series" then "\(.SeriesName)\t" else "" end)[\(.Type)\(if .Type == "Episode" then
+                    " : \(.IndexNumber), S\(.ParentIndexNumber)"
+                elif .Type == "Season" then
+                    " : S\(.IndexNumber)"
+                else
+                    ""
+                end)] \(.Name)' "$show" 'IncludeItemTypes=Series,Movie,Episode'
+            ;;
         exe://*) "${link#exe://}" ;;
         media://*) mpv "${link#media://}" ;;
         https://cdn.discordapp.com/attachments/*)
@@ -61,14 +74,14 @@ try_custom_uri() {
             rm "$tmp"
             ;;
         https://github.com/*/blob/*)
-            [ $LH_NO_EDIT = 1 ] && exit 1
+            [ "$LH_NO_EDIT" = 1 ] && exit 1
             file_path=${link#*/blob/}
             repo="${link%%/blob/*}"
             repo="${repo#https://github.com/}"
             open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}"
             ;;
         https://*/watch?v=* | https://youtu.be*) mpv "$link" ;;
-        https://* | http://* | file:///*) nohup $BROWSER "$link" >/dev/null 2>&1 & ;;
+        https://* | http://* | file:///*) nohup "$BROWSER" "$link" >/dev/null 2>&1 & ;;
         gemini://*) ${GEMINI:-kristall} "$link" ;;
         term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}" ;;
         man://* | man:)
@@ -80,7 +93,7 @@ EOF
             ;;
         sftp://*) mpv "$link" ;;
         /* | ~/* | ./*)
-            [ $LH_NO_EDIT = 1 ] && exit 1
+            [ "$LH_NO_EDIT" = 1 ] && exit 1
             open_with_editor "$link"
             ;;
         *) xdg-open "$link" 2>/dev/null || "$BROWSER" "$link" ;;
@@ -99,12 +112,10 @@ expand_path_uri() {
                 *) path="$CLOUD/${link#cloud:*//}" ;;
             esac
             link="$path" ;;
+        vimwiki:*) link="$WIKI/${link#vimwiki:}" ;;
         wiki://*) link="https://wikipedia.org/wiki/${link#wiki://}" ;;
 
-        anime:sftp://*)
-            eval "$(ssh-agent -s)"
-            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
-            link="${link#anime:}" ;;
+        anime:sftp://*) link="${link#anime:}" ;;&
         sftp://*)
             eval "$(ssh-agent -s)"
             SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud ;;
@@ -112,6 +123,10 @@ expand_path_uri() {
 }
 
 expand_path_uri
+if [ "$LINKHANDLER_EXPAND_ONLY" = 1 ]; then
+    printf "%s\n" "$link"
+    exit 0
+fi
 [ -e "${link}" ] && try_mime_handling || try_custom_uri
 
 killall ssh-agent 2>/dev/null
