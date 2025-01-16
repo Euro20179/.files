@@ -67,23 +67,9 @@ try_custom_uri() {
             repo="${repo#https://github.com/}"
             open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}"
             ;;
-        https://*/watch?v=* | https://youtu.be*) mpv "$1" ;;
+        https://*/watch?v=* | https://youtu.be*) mpv "$link" ;;
         https://* | http://* | file:///*) nohup $BROWSER "$link" >/dev/null 2>&1 & ;;
         gemini://*) ${GEMINI:-kristall} "$link" ;;
-        anime:sftp://*)
-            eval "$(ssh-agent -s)"
-            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
-            notify-send "opening"
-            mpv --profile=anime "${link#anime:}"
-            ;;
-        sftp://*.m3u8)
-            eval "$(ssh-agent -s)"
-            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
-            notify-send "opening"
-            mpv "$link"
-            ;;
-        #all other m3u8's go to mpv
-        *.m3u8) mpv "$link" & ;;
         term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}" ;;
         man://* | man:)
             grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man://}"; }
@@ -114,6 +100,14 @@ expand_path_uri() {
             esac
             link="$path" ;;
         wiki://*) link="https://wikipedia.org/wiki/${link#wiki://}" ;;
+
+        anime:sftp://*)
+            eval "$(ssh-agent -s)"
+            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud
+            link="${link#anime:}" ;;
+        sftp://*)
+            eval "$(ssh-agent -s)"
+            SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud ;;
     esac
 }
 
