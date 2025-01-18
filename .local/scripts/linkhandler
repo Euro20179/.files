@@ -24,7 +24,7 @@ open_with_editor() {
 
     #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
     [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || {
-        if "${inTerminal}"; then
+        if [ "${inTerminal}" = 1 ]; then
             "$EDITOR" "$modified_link"
         else
             ${GUIEDITOR} "$modified_link"
@@ -134,6 +134,7 @@ EOF
 
 #modifies $link
 expand_path_uri() {
+    local prev="$link"
     case "$link" in
         cloud:*//*)
             extra="${link#cloud:}"
@@ -164,14 +165,12 @@ expand_path_uri() {
             esac ;;
         file:/*) link="${link#file:/}" ;;
     esac
+
+    [ "$prev" = "$link" ]
 }
 
-prev=""
 #expand until it is no longer a path uri
-while [ "$link" != "$prev" ]; do
-    prev="$link"
-    expand_path_uri
-done
+until expand_path_uri; do :; done
 
 if [ "$LINKHANDLER_EXPAND_ONLY" = 1 ]; then
     printf "%s\n" "$link"
