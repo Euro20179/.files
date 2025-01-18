@@ -200,6 +200,9 @@ aSetup({ source = "stevearc/oil.nvim" }, now, "oil", {
         "icon",
         "permissions"
     },
+    view_options = {
+        show_hidden = true,
+    },
     keymaps = {
         yc = function()
             local dir = require "oil".get_current_dir()
