@@ -58,8 +58,8 @@ try_custom_uri() {
             # jellyfin:[type]//{search}[/s[number][/[number]]]
             # eg: jellyfin://friends/s: will list the seasons of the selected result
             # eg: jellyfin://friends/s10: will play season 10 of the selected result
-            # eg: jellyfin://friends/s/5: will play episode 5 of the selected result's season
-            # eg: jellyfin://friends/s1/10: will play season 1 episode 10 of the selected result
+            # eg: jellyfin://friends/s[eE]5: will play episode 5 of the selected result's season
+            # eg: jellyfin://friends/s1[eE]10: will play season 1 episode 10 of the selected result
             type="${link#jellyfin:}"
             type="${type%//*}"
 
@@ -95,7 +95,7 @@ try_custom_uri() {
             open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}"
             ;;
         https://*/watch?v=* | https://youtu.be*) mpv "$link" ;;
-        https://* | http://* | file:///*) nohup "$BROWSER" "$link" >/dev/null 2>&1 & ;;
+        https://* | http://*) nohup "$BROWSER" "$link" >/dev/null 2>&1 & ;;
         gemini://*) ${GEMINI:-kristall} "$link" ;;
         term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}" ;;
         man://* | man:)
@@ -133,6 +133,8 @@ expand_path_uri() {
         sftp://*)
             eval "$(ssh-agent -s)"
             SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud ;;
+
+        file://*) link="${link#file://}"
     esac
 }
 
