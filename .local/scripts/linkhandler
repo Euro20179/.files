@@ -1,6 +1,15 @@
 #!/bin/bash
 #LH_NO_EDIT is used in my nvim config to say, dont edit just exit with an error to let nvim handle the editing
 
+while getopts "e" OPT; do
+    case "$OPT" in
+        e) LINKHANDLER_EXPAND_ONLY=1 ;;
+        *) : ;;
+    esac
+done
+
+shift "$((OPTIND-1))"
+
 link="$*"
 : "${LH_NO_EDIT=0}"
 : "${LINKHANDLER_EXPAND_ONLY:-0}"
@@ -8,12 +17,14 @@ link="$*"
 # EDITOR="$TERMINAL $EDITOR"
 #
 
+tty 2> /dev/null 1>&2 && inTerminal=1 || inTerminal=0
+
 open_with_editor() {
     modified_link="$1"
 
     #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
     [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || {
-        if tty 2> /dev/null 1>&2; then
+        if "${inTerminal}"; then
             "$EDITOR" "$modified_link"
         else
             ${GUIEDITOR} "$modified_link"
@@ -97,7 +108,7 @@ try_custom_uri() {
         https://*/watch?v=* | https://youtu.be*) mpv "$link" ;;
         https://* | http://*) nohup "$BROWSER" "$link" >/dev/null 2>&1 & ;;
         gemini://*) ${GEMINI:-kristall} "$link" ;;
-        term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e "${link#term://}" ;;
+        term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e ${link#term://} ;;
         man://* | man:)
             grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man://}"; }
 $MANPAGER
@@ -105,7 +116,14 @@ EOF
             #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
             [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" man "$link"
             ;;
-        sftp://*) mpv "$link" ;;
+        sftp://*|ftp://*)
+            mpv "$link" || {
+                if [ "$inTerminal" = 1 ]; then
+                    lftp "$link"
+                else
+                    $TERMINAL -e lftp "$link"
+                fi
+            };;
         /* | ~/* | ./*)
             [ "$LH_NO_EDIT" = 1 ] && exit 1
             open_with_editor "$link"
@@ -134,11 +152,27 @@ expand_path_uri() {
             eval "$(ssh-agent -s)"
             SSH_ASKPASS="$HOME/.local/scripts/ssh-askpass" ssh-add ~/.ssh/id_cloud ;;
 
-        file://*) link="${link#file://}"
+        file:///*) link="${link#file://}" ;;
+        file://*/*)
+            authority="${link#file://}"
+            authority="${authority%%/*}"
+            path="${link#file://"${authority}"}"
+            case "$authority" in
+                localhost) link="$path" ;;
+                cloud) link="cloud://${path#/}" ;;
+                *) link="ftp://$authority${path}" ;;
+            esac ;;
+        file:/*) link="${link#file:/}" ;;
     esac
 }
 
-expand_path_uri
+prev=""
+#expand until it is no longer a path uri
+while [ "$link" != "$prev" ]; do
+    prev="$link"
+    expand_path_uri
+done
+
 if [ "$LINKHANDLER_EXPAND_ONLY" = 1 ]; then
     printf "%s\n" "$link"
     exit 0
