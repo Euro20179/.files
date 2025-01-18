@@ -109,13 +109,14 @@ try_custom_uri() {
         https://* | http://*) nohup "$BROWSER" "$link" >/dev/null 2>&1 & ;;
         gemini://*) ${GEMINI:-kristall} "$link" ;;
         term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e ${link#term://} ;;
-        man://* | man:)
-            grep -q '.*nvim.*' <<EOF || [ "$NVIM" ] && { link="${link#man://}"; }
-$MANPAGER
-EOF
-            #If nvim is open and man:// was opened from nvim, open in a new tab in the current instance of nvim
-            [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tab Man $link<CR>" || "${TERMINAL}" man "$link"
-            ;;
+        man://*|man:*)
+            link="${link#man://}"
+            link="${link#man:}"
+            if [ "$inTerminal" = 1 ]; then
+                man "${link}"
+            else
+                $TERMINAL -e man "${link}"
+            fi ;;
         sftp://*|ftp://*)
             mpv "$link" || {
                 if [ "$inTerminal" = 1 ]; then
