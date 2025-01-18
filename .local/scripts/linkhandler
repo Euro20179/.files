@@ -108,7 +108,10 @@ try_custom_uri() {
         https://*/watch?v=* | https://youtu.be*) mpv "$link" ;;
         https://* | http://*) nohup "$BROWSER" "$link" >/dev/null 2>&1 & ;;
         gemini://*) ${GEMINI:-kristall} "$link" ;;
-        term://*) "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e ${link#term://} ;;
+        term://*) 
+            set -f
+            "${TERMINAL}" "${TERMINAL_HOLD_OPT:="-H"}" -e ${link#term://}
+            set +f ;;
         man://*|man:*)
             link="${link#man://}"
             link="${link#man:}"
@@ -117,7 +120,7 @@ try_custom_uri() {
             else
                 $TERMINAL -e man "${link}"
             fi ;;
-        sftp://*|ftp://*)
+        sftp://*|ftp://*|ftps://*)
             mpv "$link" || {
                 if [ "$inTerminal" = 1 ]; then
                     lftp "$link"
