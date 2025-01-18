@@ -201,15 +201,13 @@ p() {
     nvim +"if exists(':Oil') | Oil . | else Explore . | endif" "$file"
 }
 
-alias "TODO=$EDITOR $WIKI/TODO.mmfml"
+alias TODO='linkhandler vw:TODO.mmfml'
 
 CAL () {
     m=$(date +%B)
     $EDITOR -S "$HOME/.local/vim-scripts/open-cal"
 }
 
-alias wishlist="$EDITOR $HOME/Documents/vimwiki/wishlist.md"
-alias "watchlist=$EDITOR $HOME/Documents/vimwiki/watchlist.m3u"
 alias "ds=cd ~/Downloads"
 alias "dF=cd ~/Documents"
 alias "dm=cd ~/Pictures/memes"

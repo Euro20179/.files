@@ -38,6 +38,7 @@ try_mime_handling() {
     mime=$(file --mime-type "$link" | rev | cut -d: -f1 | rev | tr -d ' ')
     case "$mime" in
         application/pdf | application/epub*) zathura "$link" ;;
+        image/svg+xml) "$BROWSER" "$link" ;;
         image/*) sxiv "$link" ;;
         text/html) $BROWSER "$link" ;;
         text/* | plain/*)
@@ -149,7 +150,17 @@ expand_path_uri() {
                 *) path="$CLOUD/${link#cloud:*//}" ;;
             esac
             link="$path" ;;
-        vimwiki:*) link="$WIKI/${link#vimwiki:}" ;;
+        vw:*)
+            link="$WIKI/${link#vw:}"
+            if [ "${link:$((${#link}-1))}" = '/' ]; then
+                for ext in mmfml md norg org html; do
+                    if [ -f "$link"index."$ext" ]; then
+                        link="$link"index."$ext"
+                        break
+                    fi
+                done
+            fi
+            ;;
         wiki://*) link="https://wikipedia.org/wiki/${link#wiki://}" ;;
 
         anime:sftp://*) link="${link#anime:}" ;;&
