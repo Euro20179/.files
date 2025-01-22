@@ -131,8 +131,12 @@ try_custom_uri() {
             } ;;
         calc:*)
             ans="$(qalc -t "${link#calc:}")"
-            wl-copy -n <<< "$ans"
-            notify-send "$ans" ;;
+            #stolen from d-calc
+            case "$XDG_SESSION_TYPE" in
+                wayland) wl-copy  -- "$ans" ;;
+                X11) xclip -i <<< "$ans" ;;
+            esac
+            notify-send -- "$ans" ;;
         /* | ~/* | ./*)
             [ "$LH_NO_EDIT" = 1 ] && exit 1
             open_with_editor "$link"

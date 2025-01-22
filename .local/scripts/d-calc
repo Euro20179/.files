@@ -1,23 +1,13 @@
 #!/bin/bash
 
-end() {
-    [ -z "$ans" ] && return
-    case "$XDG_SESSION_TYPE" in
-	wayland) wl-copy  -- "$ans" ;;
-	X11) xclip -i <<< "$ans" ;;
-    esac
-    notify-send -- "$e" "$ans"
-}
-
 [ -n "$*" ] && { 
     e="${*#*://}"
-    ans="$(qalc -t "$e")"
 }
 
 [ -z "$*" ] && {
     e="$(printf "" | rofi -dmenu -p "Calc: " -theme cat-macchiato-dmenu-center -theme-str '#element-text selected { background-color: transparent; }')" 
-    [ -z "$e" ] && exit
-    ans="$(qalc -t "$e")"
 }
 
-end
+[ -z "$e" ] && exit
+
+linkhandler "calc:$e"
