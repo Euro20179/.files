@@ -1,122 +1,125 @@
-(include "./power-window/main.yuck")
-(include "./hyprland-bar/main.yuck")
-(include "./HDMI-A-1-bar/main.yuck")
+;(include "./power-window/main.yuck")
+;(include "./hyprland-bar/main.yuck")
+;(include "./HDMI-A-1-bar/main.yuck")
 
 
 (defwindow hwinfo
            :monitor 1
            :stacking "fg"
+            :focusable "ondemand"
+    :exclusive true
            :geometry (geometry :x "0%"
-                               :y "20px"
-                               :width "5%"
-                               :anchor "top right")
-  (box :class "outer-box"
-      :orientation "h"
-      :space-evenly false
-      (cpu)
-      (gpu_usage)
-      (mem)
-  )
+                               :y "0"
+                               :width "50%"
+                               :anchor "top center")
+  (input :onaccept "linkhandler '{}' < /dev/null &> /dev/null")
+  ;(box :class "outer-box"
+  ;    :orientation "h"
+  ;    :space-evenly false
+  ;    (cpu)
+  ;    (gpu_usage)
+  ;    (mem)
+  ;)
 )
 
-(defpoll memp :interval "1s"
-              :initial "0"
-              `free -m | sed -n 2p | awk '{print $3 / $2 * 100}'`)
-
-(defvar center_progress -150)
-
-(defwidget mem []
-    (box :class "mem-box"
-         :orientation "v"
-         :spacing -300
-        (label :text "${round(EWW_RAM.used_mem / 1024 / 1024, 0)} / ${round(EWW_RAM.total_mem / 1024 / 1024, 0)}")
-        (circular-progress :value {EWW_RAM.used_mem_perc} :start-at 0 :thickness 10 :clockwise true :class "mem-usage" :width 300)
-    )
-)
-
-(defpoll gpup :interval "1s"
-              :initial "0"
-               `cat /sys/class/hwmon/hwmon1/device/gpu_busy_percent`
-)
-
-(defpoll gvram_use :interval "1s"
-               :initial "0"
-               `echo "scale=2;" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_used)" "/ 1024 / 1024"| bc`
-)
-
-(defpoll gvram_total_use :interval "1s"
-               :initial "0"
-               `echo "scale=2;" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_total)" "/ 1024 / 1024"| bc`
-)
-
-(defpoll gvram_total :interval "1s"
-                     :initial "0"
-                  `printf "scale=2; (%s / 1024 / 1024) / (%s / 1024 / 1024) * 100 \n" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_used)" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_total)" | bc`
-)
-
-(defwidget gpu_usage []
-    (box :orientation "v"
-         :class "gpu-usage-outer-box"
-         :spacing -200
-        (box
-            :spacing -150
-            (label :text "${gvram_use} / ${gvram_total_use}" :class "gvram-label")
-            (circular-progress :value {gvram_use / 8176 * 100} :start-at 0 :thickness 10 :clockwise true :class "gpu-mem-usage" :height 200)
-        )
-        (progress :class "gpu-usage" :value gpup)
-    )
-)
-
-(defwidget cpu []
-    (box :orientation "v"
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[0].freq / 1000}")
-            (progress :class "core-0" :value {EWW_CPU.cores[0].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[1].freq / 1000}")
-            (progress :class "core-1" :value {EWW_CPU.cores[1].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[2].freq / 1000}")
-            (progress :class "core-2" :value {EWW_CPU.cores[2].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[3].freq / 1000}")
-            (progress :class "core-3" :value {EWW_CPU.cores[3].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[4].freq / 1000}")
-            (progress :class "core-4" :value {EWW_CPU.cores[4].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[5].freq / 1000}")
-            (progress :class "core-5" :value {EWW_CPU.cores[5].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[6].freq / 1000}")
-            (progress :class "core-6" :value {EWW_CPU.cores[6].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[7].freq / 1000}")
-            (progress :class "core-7" :value {EWW_CPU.cores[7].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[8].freq / 1000}")
-            (progress :class "core-8" :value {EWW_CPU.cores[8].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[9].freq / 1000}")
-            (progress :class "core-9" :value {EWW_CPU.cores[9].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[10].freq / 1000}")
-            (progress :class "core-10" :value {EWW_CPU.cores[10].usage})
-        )
-        (box :orientation "h"
-            (label :text "${EWW_CPU.cores[11].freq / 1000}")
-            (progress :class "core-11" :value {EWW_CPU.cores[11].usage})
-        )
-        (progress :value {EWW_CPU.avg} :start-at 0 :thickness 10 :clockwise true :class "cpu-usage" :width {center_progress * -1})
-    )
-)
+;(defpoll memp :interval "1s"
+;              :initial "0"
+;              `free -m | sed -n 2p | awk '{print $3 / $2 * 100}'`)
+;
+;(defvar center_progress -150)
+;
+;(defwidget mem []
+;    (box :class "mem-box"
+;         :orientation "v"
+;         :spacing -300
+;        (label :text "${round(EWW_RAM.used_mem / 1024 / 1024, 0)} / ${round(EWW_RAM.total_mem / 1024 / 1024, 0)}")
+;        (circular-progress :value {EWW_RAM.used_mem_perc} :start-at 0 :thickness 10 :clockwise true :class "mem-usage" :width 300)
+;    )
+;)
+;
+;(defpoll gpup :interval "1s"
+;              :initial "0"
+;               `cat /sys/class/hwmon/hwmon1/device/gpu_busy_percent`
+;)
+;
+;(defpoll gvram_use :interval "1s"
+;               :initial "0"
+;               `echo "scale=2;" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_used)" "/ 1024 / 1024"| bc`
+;)
+;
+;(defpoll gvram_total_use :interval "1s"
+;               :initial "0"
+;               `echo "scale=2;" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_total)" "/ 1024 / 1024"| bc`
+;)
+;
+;(defpoll gvram_total :interval "1s"
+;                     :initial "0"
+;                  `printf "scale=2; (%s / 1024 / 1024) / (%s / 1024 / 1024) * 100 \n" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_used)" "$(cat /sys/class/hwmon/hwmon1/device/mem_info_vram_total)" | bc`
+;)
+;
+;(defwidget gpu_usage []
+;    (box :orientation "v"
+;         :class "gpu-usage-outer-box"
+;         :spacing -200
+;        (box
+;            :spacing -150
+;            (label :text "${gvram_use} / ${gvram_total_use}" :class "gvram-label")
+;            (circular-progress :value {gvram_use / 8176 * 100} :start-at 0 :thickness 10 :clockwise true :class "gpu-mem-usage" :height 200)
+;        )
+;        (progress :class "gpu-usage" :value gpup)
+;    )
+;)
+;
+;(defwidget cpu []
+;    (box :orientation "v"
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[0].freq / 1000}")
+;            (progress :class "core-0" :value {EWW_CPU.cores[0].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[1].freq / 1000}")
+;            (progress :class "core-1" :value {EWW_CPU.cores[1].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[2].freq / 1000}")
+;            (progress :class "core-2" :value {EWW_CPU.cores[2].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[3].freq / 1000}")
+;            (progress :class "core-3" :value {EWW_CPU.cores[3].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[4].freq / 1000}")
+;            (progress :class "core-4" :value {EWW_CPU.cores[4].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[5].freq / 1000}")
+;            (progress :class "core-5" :value {EWW_CPU.cores[5].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[6].freq / 1000}")
+;            (progress :class "core-6" :value {EWW_CPU.cores[6].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[7].freq / 1000}")
+;            (progress :class "core-7" :value {EWW_CPU.cores[7].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[8].freq / 1000}")
+;            (progress :class "core-8" :value {EWW_CPU.cores[8].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[9].freq / 1000}")
+;            (progress :class "core-9" :value {EWW_CPU.cores[9].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[10].freq / 1000}")
+;            (progress :class "core-10" :value {EWW_CPU.cores[10].usage})
+;        )
+;        (box :orientation "h"
+;            (label :text "${EWW_CPU.cores[11].freq / 1000}")
+;            (progress :class "core-11" :value {EWW_CPU.cores[11].usage})
+;        )
+;        (progress :value {EWW_CPU.avg} :start-at 0 :thickness 10 :clockwise true :class "cpu-usage" :width {center_progress * -1})
+;    )
+;)

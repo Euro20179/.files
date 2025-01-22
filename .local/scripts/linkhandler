@@ -122,18 +122,30 @@ try_custom_uri() {
                 $TERMINAL -e man "${link}"
             fi ;;
         sftp://*|ftp://*|ftps://*)
-            mpv "$link" || {
+            [ "$inTerminal" = 1 ] && mpv "$link" || {
                 if [ "$inTerminal" = 1 ]; then
                     lftp "$link"
                 else
                     $TERMINAL -e lftp "$link"
-                fi
-            };;
+                fi 
+            } ;;
+        calc:*)
+            ans="$(qalc -t "${link#calc:}")"
+            wl-copy -n <<< "$ans"
+            notify-send "$ans" ;;
         /* | ~/* | ./*)
             [ "$LH_NO_EDIT" = 1 ] && exit 1
             open_with_editor "$link"
             ;;
-        *) xdg-open "$link" 2>/dev/null || "$BROWSER" "$link" ;;
+        #otherwise, infinite loop
+        cloud:) exit 0 ;;
+        *) xdg-open "$link" 2>/dev/null || {
+            if [[ "$link" =~ :// ]]; then
+                "$BROWSER" "$link"
+            else
+                "$BROWSER" --search "$link"
+            fi
+        } ;;
     esac
 }
 
@@ -186,6 +198,7 @@ expand_path_uri() {
 
 #expand until it is no longer a path uri
 until expand_path_uri; do :; done
+
 
 if [ "$LINKHANDLER_EXPAND_ONLY" = 1 ]; then
     printf "%s\n" "$link"
