@@ -5,7 +5,7 @@
     background-color:  rgba(30, 30, 46, 100%);
     border-color:       rgba(171, 233, 179, 100%);
     text-color:         #cad3f5;
-    font:            "Fantasque Sans Mono 10";
+    font:            "Fantasque Sans Mono 15";
 }
 
 #window {
@@ -13,12 +13,23 @@
     location:   north;
     width:      50%;
     padding:    4px;
+    border: 2px;
+    border-radius: 5px;
+    border-color: #cad3f5;
     children:   [ horibox ];
 }
 
 #horibox {
     orientation: horizontal;
     children:   [ prompt, entry, listview ];
+}
+
+#prompt {
+    background-color: #82a1e0;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 0 5px;
+    color: #24273a;
 }
 
 #listview {

@@ -4,7 +4,7 @@
 
 
 (defwindow hwinfo
-           :monitor 1
+           :monitor 0
            :stacking "fg"
             :focusable "ondemand"
     :exclusive true

@@ -9,6 +9,14 @@
     horizontal-align: 0.5;
 }
 
+
+#prompt {
+    background-color: #82a1e0;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 0 5px;
+    color: #24273a;
+}
 #window {
     anchor:     center;
     location:   center;

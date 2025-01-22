@@ -4,6 +4,8 @@ export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
 export MANPAGER="nvim +Man!"
 
+export WIKI_READER="kiwix-desktop"
+
 export PAGER=pager
 export TERMINAL_HOLD_OPT='-H'
 export TERMINAL="foot"
