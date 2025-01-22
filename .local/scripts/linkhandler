@@ -138,7 +138,7 @@ try_custom_uri() {
             open_with_editor "$link"
             ;;
         #otherwise, infinite loop
-        cloud:) exit 0 ;;
+        cloud:*) exit 0 ;;
         *) xdg-open "$link" 2>/dev/null || {
             if [[ "$link" =~ :// ]]; then
                 "$BROWSER" "$link"

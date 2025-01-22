@@ -21,6 +21,7 @@
 
 #horibox {
     orientation: horizontal;
+    width: 100%;
     children:   [ prompt, entry, listview ];
 }
 
@@ -40,7 +41,7 @@
 
 #entry {
     expand:     false;
-    width:      10em;
+    width:      100%;
 }
 
 #element {
