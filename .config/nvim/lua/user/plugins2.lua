@@ -33,6 +33,10 @@ local function aSetup(addOpts, when, name, opts)
     setup(when, name, opts)
 end
 
+-- aSetup({
+--     source = "nvzone/typr", depends = { "nvzone/volt" },
+-- }, later, "typr", {})
+
 --libraries{{{
 add { source = "nvim-lua/plenary.nvim" }
 add { source = "nvim-tree/nvim-web-devicons" }

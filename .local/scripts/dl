@@ -1,0 +1,3 @@
+#!/bin/sh
+
+yt-dlp --embed-subs --sub-langs all --embed-thumbnail --embed-metadata -o "$HOME/Downloads/%(title)s.%(ext)s" "$1"
