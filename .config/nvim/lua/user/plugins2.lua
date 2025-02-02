@@ -178,6 +178,7 @@ aSetup({ source = "williamboman/mason.nvim" }, later, "mason", {})
 for _, theme in pairs({
     "folke/tokyonight.nvim",
     "catppuccin/nvim",
+    "dgox16/oldworld.nvim",
     "xero/evangelion.nvim",
     "bluz71/vim-moonfly-colors",
     "savq/melange-nvim",
