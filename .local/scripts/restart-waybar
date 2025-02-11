@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 killall waybar
 for mon in "${XDG_CONFIG_HOME}/waybar/"*.json; do
     waybar -c "$mon" -s "${mon%.json}.css" & disown
