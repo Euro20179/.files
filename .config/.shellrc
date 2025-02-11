@@ -128,6 +128,7 @@ export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 # PROGRAM ALIASES #
 ###################
 # {{{
+#
 alias t=tmux' attach'
 alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
@@ -179,6 +180,7 @@ me () {
 # {{{
 alias nvim=$EDITOR
 alias n="$EDITOR +Oil"
+alias sxiv=nsxiv
 alias "vim=nvim"
 alias 'ls=lsd'
 alias "l=lsd --hyperlink auto --group-directories-first -A"
