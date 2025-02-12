@@ -1,3 +1,7 @@
 #!/bin/sh
 
-nvim "$@"
+if tty > /dev/null 2>&1; then
+    nvim "$@"
+else
+    neovide "$@"
+fi

@@ -15,7 +15,7 @@
 # {{{
 export XCURSOR_SIZE=24
 export XCURSOR_THEME="Bibata-Modern-Ice"
-# export GTK_THEME='Catppuccin-Macchiato-Standard-Pink-Dark'
+export GTK_THEME='catppuccin-macchiato-blue-standard+default'
 export QT_QPA_PLATFORMTHEME=qt5ct
 # }}}
 

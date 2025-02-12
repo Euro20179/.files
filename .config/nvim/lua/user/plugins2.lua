@@ -62,6 +62,7 @@ local function buildBlink()
     vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
         function(res)
             vim.schedule(function()
+                vim.notify("Please wait while blink is being built...")
                 if res.code ~= 0 then
                     vim.notify(tostring(res.stderr))
                 else

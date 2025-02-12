@@ -1,0 +1,86 @@
+#!/bin/bash
+
+action=$1
+
+baseUrl="https://marks.cloud1:9999"
+
+token="$(cat $XDG_DOCUMENTS_HOME/APIKeys/linkding)"
+
+cache=/tmp/linkding-cache
+
+[ -f "$cache" ] && marks="$(cat "$cache")" || marks=$(curl "$baseUrl/api/bookmarks" -L -k -H "Authorization: Token $token" | tee "$cache")
+
+select_bookmark () {
+        printf "%s" "$marks" |
+            jq -r '.results.[]|"\(if .title != "" then .title elif .description == "" then .url else .description end)\t\(.url)\t#\(.tag_names|join(" "))"' |
+            column -t -s $'\t' -o $'\t\t\t' |
+            rofi -dmenu -theme cat-macchiato -matching glob -i |
+            cut -f4 | tr -d '[:space:]'
+}
+
+open() {
+    link=$(select_bookmark)
+                        #ensure process is not linked to a tty
+    [ -z "$link" ] && exit 0
+    linkhandler "$link" <&- 1<&- 2<&-
+}
+
+remove() {
+    id=$(printf "%s" "$marks" |
+        jq -r '.results.[]|"\(if .title != "" then .title elif .description == "" then .url else .description end)\t\(.id)\t#\(.tag_names|join(" "))"' |
+            column -t -s $'\t' -o $'\t\t\t' |
+            rofi -dmenu -theme cat-macchiato -matching glob -i |
+            cut -f4)
+
+    [ -z "$id" ] && exit 0
+
+    yad --question --text "Are you sure you want to delete ${id}" || exit 0
+
+    curl -X DELETE "$baseUrl/api/bookmarks/$id/" -L -k -H "Authorization: Token $token" && notify-send "Successfully deleted" || notify-send "Failed to delete"
+}
+
+copy() {
+    link=$(select_bookmark)
+    wl-copy -n <<< "$link"
+}
+
+search() {
+    bookmarks=$(printf "%s" "$marks" | jq -r '.results.[]|select(.tag_names|index("search-engine") > -1)')
+    keywords=$(printf "%s" "$bookmarks" | jq -r '"\(.title)\t\(.description|split("\n")[0])\t\(.description|split("\n")[1:]|join("\n"))\t\(.url)"' | sed 's/\tkwd=/\t/')
+    query="$1"
+    [ -z "$query" ] && query="$(echo "$keywords" | rofi -format f -dmenu -p "Query: " -theme cat-macchiato)"
+    [ -z "$query" ] && exit 0
+    read -r -a words <<< "$query"
+    keyword="${words[0]}"
+    url=$(printf "%s" "$keywords\n" | grep -F "$keyword"$'\t' | cut -f4)
+    if [ "$url" ]; then
+        linkhandler "$(printf "$url" "${words[*]:1}")"
+    else
+        $BROWSER --search "$query"
+    fi
+}
+
+add() {
+    IFS="|" read -r url title tags description <<< "$(yad --form --field=url:CE --field=title:CE --field=tags:CE --field=description:TXT)"
+    tags="$(printf "%s" "$tags" | sed -e 's/\([^ ]\+\)/"\1",/g' -e 's/,$//')"
+    curl -X POST \
+        "$baseUrl/api/bookmarks/" -k -d \
+        "{\"url\": \"$url\", \"title\": \"$title\", \"description\": \"$description\", \"notes\": \"\", \"is_archived\": false, \"unread\": false, \"shared\": false, \"tag_names\": [$tags]}" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Token $token"
+
+}
+
+list-tags() {
+    curl "$baseUrl/api/tags" -H "Authorization: Token $token" -kL | jq -r '.results.[].name'
+}
+
+case "$action" in
+    open|o) open ;;
+    remove|r) remove ;;
+    copy|c) copy ;;
+    search|s) search "$2" ;;
+    add|a) add ;;
+    list-tags) list-tags ;;
+    *) printf "%s\n" "$action is not a valid action" ;;
+esac

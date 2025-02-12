@@ -59,7 +59,9 @@ search() {
 
 	[ -z "$q" ] && return 1
 
+    set -f
 	words=($q)
+    set +f
 
 	keyword="${words[0]}"
 
