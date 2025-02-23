@@ -6,21 +6,27 @@ baseUrl="https://marks.cloud1:9999"
 
 token="$(cat $XDG_DOCUMENTS_HOME/APIKeys/linkding)"
 
-cache=/tmp/linkding-cache
+cache=/tmp/linkding-cache-$(date +%H)
 
-[ -f "$cache" ] && marks="$(cat "$cache")" || marks=$(curl "$baseUrl/api/bookmarks" -L -k -H "Authorization: Token $token" | tee "$cache")
+if [ -f "$cache" ]; then
+    marks=$(cat "$cache")
+else
+    #if the cache file does not exist, it's time to refresh the cache, delete all old cache files
+    rm /tmp/linkding-cache*
+    marks=$(curl "$baseUrl/api/bookmarks" -L -k -H "Authorization: Token $token" | tee "$cache")
+fi
 
-select_bookmark () {
-        printf "%s" "$marks" |
-            jq -r '.results.[]|"\(if .title != "" then .title elif .description == "" then .url else .description end)\t\(.url)\t#\(.tag_names|join(" "))"' |
-            column -t -s $'\t' -o $'\t\t\t' |
-            rofi -dmenu -theme cat-macchiato -matching glob -i |
-            cut -f4 | tr -d '[:space:]'
+select_bookmark() {
+    printf "%s" "$marks" |
+        jq -r '.results.[]|"\(if .title != "" then .title elif .description == "" then .url else .description end)\t\(.url)\t#\(.tag_names|join(" "))"' |
+        column -t -s $'\t' -o $'\t\t\t' |
+        rofi -dmenu -theme cat-macchiato -matching glob -i |
+        cut -f4 | tr -d '[:space:]'
 }
 
 open() {
     link=$(select_bookmark)
-                        #ensure process is not linked to a tty
+    #ensure process is not linked to a tty
     [ -z "$link" ] && exit 0
     linkhandler "$link" <&- 1<&- 2<&-
 }
@@ -28,9 +34,9 @@ open() {
 remove() {
     id=$(printf "%s" "$marks" |
         jq -r '.results.[]|"\(if .title != "" then .title elif .description == "" then .url else .description end)\t\(.id)\t#\(.tag_names|join(" "))"' |
-            column -t -s $'\t' -o $'\t\t\t' |
-            rofi -dmenu -theme cat-macchiato -matching glob -i |
-            cut -f4)
+        column -t -s $'\t' -o $'\t\t\t' |
+        rofi -dmenu -theme cat-macchiato -matching glob -i |
+        cut -f4)
 
     [ -z "$id" ] && exit 0
 
@@ -41,7 +47,7 @@ remove() {
 
 copy() {
     link=$(select_bookmark)
-    wl-copy -n <<< "$link"
+    wl-copy -n <<<"$link"
 }
 
 search() {
@@ -50,7 +56,7 @@ search() {
     query="$1"
     [ -z "$query" ] && query="$(echo "$keywords" | rofi -format f -dmenu -p "Query: " -theme cat-macchiato)"
     [ -z "$query" ] && exit 0
-    read -r -a words <<< "$query"
+    read -r -a words <<<"$query"
     keyword="${words[0]}"
     url=$(printf "%s" "$keywords\n" | grep -F "$keyword"$'\t' | cut -f4)
     if [ "$url" ]; then
@@ -61,7 +67,7 @@ search() {
 }
 
 add() {
-    IFS="|" read -r url title tags description <<< "$(yad --form --field=url:CE --field=title:CE --field=tags:CE --field=description:TXT)"
+    IFS="|" read -r url title tags description <<<"$(yad --form --field=url:CE --field=title:CE --field=tags:CE --field=description:TXT)"
     tags="$(printf "%s" "$tags" | sed -e 's/\([^ ]\+\)/"\1",/g' -e 's/,$//')"
     curl -X POST \
         "$baseUrl/api/bookmarks/" -k -d \
@@ -76,11 +82,11 @@ list-tags() {
 }
 
 case "$action" in
-    open|o) open ;;
-    remove|r) remove ;;
-    copy|c) copy ;;
-    search|s) search "$2" ;;
-    add|a) add ;;
-    list-tags) list-tags ;;
-    *) printf "%s\n" "$action is not a valid action" ;;
+open | o) open ;;
+remove | r) remove ;;
+copy | c) copy ;;
+search | s) search "$2" ;;
+add | a) add ;;
+list-tags) list-tags ;;
+*) printf "%s\n" "$action is not a valid action" ;;
 esac

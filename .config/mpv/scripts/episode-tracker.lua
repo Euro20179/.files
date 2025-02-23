@@ -17,7 +17,7 @@ local function setupLogin()
         return ""
     end
 
-    local login = "Authorization: Basic " .. base64Login:read("a")
+    local login = "Authorization: Basic " .. base64Login:read("*a")
     base64Login:close()
     return login
 end
@@ -42,38 +42,42 @@ local function getEp(currentFile, path)
     if pfile == nil then
         return
     end
-    local res = pfile:read("a")
+    local res = pfile:read("*a")
     pfile:close()
     return res
+end
+
+local function getEpisodeAIOId(location)
+    local cloud = os.getenv("CLOUD") or ""
+    location = location:gsub("\\$CLOUD", cloud)
+    local idProg = io.popen("getAIOId '" .. location .. "'")
+    if idProg == nil then
+        return ""
+    end
+
+    local id = idProg:read("*a")
+    idProg:close()
+    return id
 end
 
 ---@param login string
 ---@param location string
 ---@param num string
 local function updateCurrEp(login, location, num)
-    local cloud = os.getenv("CLOUD") or ""
 
-    location = location:gsub(" ", "%%20")
-    local replacedLocation = location:gsub(cloud, "$CLOUD")
-
-    local req = io.popen("curl 'http://10.0.0.2:8888/api/v1/query-v3' -H '" ..
-        login .. "' -G -d 'search=location%20%7E%20" .. '"%25' .. location .. '"%20|%20location%20%7E%20"%25' .. replacedLocation .. '"' .. "' | jq '.ItemId'")
-    if req == nil then
-        return
+    local itemId = getEpisodeAIOId(location)
+    if itemId == "" then
+        print("Item has no AIO ItemId")
+        return ""
     end
 
-    local itemId = req:read("a")
-    req:close()
-
-    itemId, _ = string.gsub(itemId, "\n", "")
-
-    req = io.popen("curl -H '" ..
+    local req = io.popen("curl -H '" ..
         login ..
         "' 'http://10.0.0.2:8888/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
     if req == nil then
         return
     end
-    local res = req:read('a')
+    local res = req:read("*a")
     print(res)
     req:close()
 end

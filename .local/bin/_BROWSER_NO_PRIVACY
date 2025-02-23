@@ -1,0 +1,3 @@
+#!/bin/sh
+
+zen-browser -P no-privacy "$@"

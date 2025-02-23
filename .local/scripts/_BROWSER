@@ -1,7 +1,10 @@
 #!/bin/sh
 
-EXE=librewolf
-command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
+# EXE=librewolf
+# command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
+#
+# exec $EXE -P default-default "$@"
 
-exec $EXE -P default-default "$@"
-# firefox-developer-edition -P default-release "$@"
+# # firefox-developer-edition -P default-release "$@"
+
+zen-browser -P "Default (release)" "$@"

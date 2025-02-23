@@ -39,7 +39,7 @@ try_mime_handling() {
     case "$mime" in
         application/pdf | application/epub*) zathura "$link" ;;
         image/svg+xml) "$BROWSER" "$link" ;;
-        image/*) sxiv "$link" ;;
+        image/*) nsxiv "$link" ;;
         text/html) $BROWSER "$link" ;;
         text/* | plain/*)
             [ $LH_NO_EDIT = 1 ] && exit 1

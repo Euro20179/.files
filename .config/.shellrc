@@ -114,6 +114,7 @@ export AIO_SERVER="https://cloud:8887"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
 export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"
+export PATH="${PATH}:/opt/servo"
 export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 # }}}
 
