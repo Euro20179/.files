@@ -47,6 +47,13 @@ try_mime_handling() {
         video/* | audio/*) mpv "$link" ;;
         application/x-shockwave-flash) flashplayer "$link" ;;
         inode/directory) open_with_editor "$link" ;;
+        application/json) 
+            notify-send "$inTerminal"
+            if [ "$inTerminal" = 1 ]; then
+                fx "$link"
+            else
+                $TERMINAL -e fx "$link"
+            fi ;;
         *) return 1 ;;
     esac
     return 0
@@ -143,6 +150,7 @@ try_custom_uri() {
             ;;
         #otherwise, infinite loop
         cloud:*) exit 0 ;;
+        =*) open_with_editor "$(which "${link#=}")" ;;
         *) xdg-open "$link" 2>/dev/null || {
             if [[ "$link" =~ :// ]]; then
                 "$BROWSER" "$link"
