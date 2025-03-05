@@ -103,7 +103,7 @@ aSetup({
             },
 
             ghost_text = {
-                enabled = true
+                enabled = false
             },
 
             accept = {
