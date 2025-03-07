@@ -1,3 +1,25 @@
+local function centerPad(text, size)
+    if #text >= size then
+        return text
+    end
+
+    local needed = size - #text
+    local left = vim.fn.floor(needed / 2)
+    local right = vim.fn.ceil(needed / 2)
+
+    local final = ""
+    for _ = 1, left do
+        final = final .. ' '
+    end
+
+    final = final .. text
+
+    for _ = 1, right do
+        final = final .. ' '
+    end
+
+    return final
+end
 
 local function falsey(val)
     if val == 0 or val == "" or val == nil then
@@ -16,6 +38,58 @@ local function getScreenWidth()
     end
     return width
 end
+
+vim.api.nvim_create_user_command("Boxify", function (args)
+
+    if args.range ~= 2 then
+        vim.notify("A visual range must be selected", vim.log.levels.ERROR)
+        return
+    end
+
+    local sl = vim.fn.line("'<") - 1
+    local sc = vim.fn.col("'<") - 1
+    local el = vim.fn.line("'>") - 1
+    local ec = vim.fn.col("'>")
+
+    local text = vim.api.nvim_buf_get_text(0, sl, sc, el, ec, {})
+
+    local lineCount = #text
+    local longestLineLen = #text[1]
+    for _, line in ipairs(text) do
+        if #line > longestLineLen then
+            longestLineLen = #line
+        end
+    end
+
+    local newText = {}
+
+    -- top line {{{
+    newText[1] = '┌'
+    for i = 1, longestLineLen do
+        newText[1] = newText[1] .. '─'
+    end
+    newText[1] = newText[1] .. '┐'
+    -- }}}
+
+    -- middle text {{{
+    for _, line in ipairs(text) do
+        line = '│' .. centerPad(line, longestLineLen) .. '│'
+        newText[#newText+1] = line
+    end
+    -- }}}
+
+    -- bottom line {{{
+    local last = #newText + 1
+    newText[last] = '└'
+    for i = 1, longestLineLen do
+        newText[last] = newText[last] .. '─'
+    end
+    newText[last] = newText[last] .. '┘'
+    -- }}}
+
+    vim.api.nvim_buf_set_text(0, sl, sc, el, ec - 1, newText)
+
+end, { range = true })
 
 vim.api.nvim_create_user_command("Divline", function(cmdData)
     local endCol = getScreenWidth()
