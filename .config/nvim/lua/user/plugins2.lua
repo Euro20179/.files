@@ -334,6 +334,11 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     vim.schedule(function()
         vim.g.codecompanion_adapter = "llama3.1"
         setup(later, "codecompanion", {
+            strategies = {
+                chat = {
+                    adapter = "llama3.1"
+                },
+            },
             adapters = {
                 ["llama3.1"] = function()
                     return require "codecompanion.adapters".extend("ollama", {
