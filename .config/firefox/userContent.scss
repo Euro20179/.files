@@ -12,9 +12,24 @@ body {
     opacity: 0;
   }
 }
+
 blink {
   animation: --blink-anim 1s step-end infinite;
 }
+
+@-moz-document url-prefix("http://rpi.seceurity.place:4433") {
+
+  body,
+  html {
+    background-color: var(--main);
+    color: var(--text-color);
+  }
+
+  a {
+    color: var(--link-color);
+  }
+}
+
 /*</blink>*/
 
 /*make dark mode on every website*/
@@ -404,225 +419,243 @@ blink {
 // }
 //
 @-moz-document domain("discord.com") {
-    :root{
-        --mention-background: var(--secondary) !important;
-        --mention-foreground: var(--main) !important;
-    }
+  :root {
+    --mention-background: var(--secondary) !important;
+    --mention-foreground: var(--main) !important;
+  }
 
-    /*blocks the dumb ad thing*/
-    aside[class="banner-3BK9qN"]{
-        display: none !important;
-    }
+  /*blocks the dumb ad thing*/
+  aside[class="banner-3BK9qN"] {
+    display: none !important;
+  }
 
-    main[class*=chatContent]{
-        background: var(--main) !important;
-    }
+  main[class*=chatContent] {
+    background: var(--main) !important;
+  }
 
-    a:not([data-list-item-id*=private-channels]){
-        color: var(--link-color) !important;
-    }
+  a:not([data-list-item-id*=private-channels]) {
+    color: var(--link-color) !important;
+  }
 
-    [data-list-item-id*=private-channels] *{
-        color: var(--secondary) !important;
-    }
+  [data-list-item-id*=private-channels] * {
+    color: var(--secondary) !important;
+  }
 
-    /*messages*/
-    div[class*=message][class*=mentioned]{
-        background: var(--warn)!important;
-        border: 1px solid transparent;
-        border-radius: 10px !important;
-    }
+  /*messages*/
+  div[class*=message][class*=mentioned] {
+    background: var(--warn) !important;
+    border: 1px solid transparent;
+    border-radius: 10px !important;
+  }
 
-    /*make mentioned text black*/
-    div[class*=message][class*=mentioned] div[id*=message-content]{
-        color: var(--main) !important;
-    }
+  /*make mentioned text black*/
+  div[class*=message][class*=mentioned] div[id*=message-content] {
+    color: var(--main) !important;
+  }
 
-    div[class*=message][class*=mentioned] div[id*=message-content] code.inline{
-        color: var(--leaf) !important;
-    }
+  div[class*=message][class*=mentioned] div[id*=message-content] code.inline {
+    color: var(--leaf) !important;
+  }
 
-    /*remove weird bar on left of mentioned*/
-    div[class*=message][class*=mentioned]::before{
-        content: unset !important;
-    }
+  /*remove weird bar on left of mentioned*/
+  div[class*=message][class*=mentioned]::before {
+    content: unset !important;
+  }
 
-    /*input box background*/
-    [class*=channelTextArea] [class*=inner]{
-        background: var(--secondary) !important;
-        font-weight: bold !important;
-    }
+  /*input box background*/
+  [class*=channelTextArea] [class*=inner] {
+    background: var(--secondary) !important;
+    font-weight: bold !important;
+  }
 
-    /*chat box*/
-    [class*=channelTextArea] [class*=inner] *{
-        color: var(--leaf) !important;
-        fill: var(--leaf) !important;
-        caret-color: var(--leaf) !important;
-    }
+  /*chat box*/
+  [class*=channelTextArea] [class*=inner] * {
+    color: var(--leaf) !important;
+    fill: var(--leaf) !important;
+    caret-color: var(--leaf) !important;
+  }
 
-    /*emoji input*/
-    [class*=emojiButton] *{
-        filter: none  !important;
-        background-color : var(--leaf) !important;
-        background-image: none !important;
-        border: 1px solid transparent;
-        border-radius: 50% !important;
-    }
+  /*emoji input*/
+  [class*=emojiButton] * {
+    filter: none !important;
+    background-color: var(--leaf) !important;
+    background-image: none !important;
+    border: 1px solid transparent;
+    border-radius: 50% !important;
+  }
 
-    /*channel listing*/
-    #channels{
-        border-right: 1px solid var(--secondary) !important;
-        background-color: var(--main) !important;
-    }
+  /*channel listing*/
+  #channels {
+    border-right: 1px solid var(--secondary) !important;
+    background-color: var(--main) !important;
+  }
 
-    /*channel names*/
-    #channels li div[class*=name]{
-        color: var(--secondary) !important;
-        filter: brightness(190%) !important;
-    }
+  /*channel names*/
+  #channels li div[class*=name] {
+    color: var(--secondary) !important;
+    filter: brightness(190%) !important;
+  }
 
-    /*# before channel name*/
-    #channels li a path{
-        fill: var(--secondary) !important;
-    }
+  /*# before channel name*/
+  #channels li a path {
+    fill: var(--secondary) !important;
+  }
 
-    #channels li[class*=selected] a {
-        background: none !important
-    }
+  #channels li[class*=selected] a {
+    background: none !important
+  }
 
-    /*when a channel is selected*/
-    #channels li[class*=selected] > div > div{
-        background-color: var(--secondary) !important;
-    }
-    #channels li[class*=selected] > div > div div[class*=name]{
-        color: black !important;
-    }
-    #channels li[class*=selected] a path{
-        fill: var(--main) !important;
-    }
+  /*when a channel is selected*/
+  #channels li[class*=selected]>div>div {
+    background-color: var(--secondary) !important;
+  }
 
-    /*channel name background color on hover*/
-    #channels li:hover > div > div{
-        background-color: var(--secondary) !important;
-    }
-    #channels li:hover > div > div div[class*=name]{
-        color: black !important;
-    }
-    #channels li:hover a path{
-        fill: var(--main) !important;
-    }
+  #channels li[class*=selected]>div>div div[class*=name] {
+    color: black !important;
+  }
 
-    /*members listing*/
-    aside[class*=membersWrap]{
-        background: var(--main) !important;
-        border-left: 1px solid var(--secondary) !important;
-    }
+  #channels li[class*=selected] a path {
+    fill: var(--main) !important;
+  }
 
-    [class*=members] [class*=member]{
-        background: none !important;
-    }
+  /*channel name background color on hover*/
+  #channels li:hover>div>div {
+    background-color: var(--secondary) !important;
+  }
 
-    /*server header in top left*/
-    nav > div[class*=container-1]{
-        background-color: var(--secondary) !important;
-    }
+  #channels li:hover>div>div div[class*=name] {
+    color: black !important;
+  }
 
-    /*channel label*/
-    section[aria-label*="Channel"]{
-        background: var(--main) !important;
-    }
+  #channels li:hover a path {
+    fill: var(--main) !important;
+  }
 
-    [aria-label="Servers sidebar"] {
-      display: none !important;
-    }
+  /*members listing*/
+  aside[class*=membersWrap] {
+    background: var(--main) !important;
+    border-left: 1px solid var(--secondary) !important;
+  }
 
-    body:has(:is(#channels, [aria-label="Servers sidebar"], [aria-label="Private channels"]):hover) [aria-label="Servers sidebar"] {
-      display: unset !important;
-    }
+  [class*=members] [class*=member] {
+    background: none !important;
+  }
+
+  /*server header in top left*/
+  nav>div[class*=container-1] {
+    background-color: var(--secondary) !important;
+  }
+
+  /*channel label*/
+  section[aria-label*="Channel"] {
+    background: var(--main) !important;
+  }
+
+  [aria-label="Servers sidebar"] {
+    display: none !important;
+  }
+
+  body:has(:is(#channels, [aria-label="Servers sidebar"], [aria-label="Private channels"]):hover) [aria-label="Servers sidebar"] {
+    display: unset !important;
+  }
 }
 
 @-moz-document domain("news.ycombinator.com") {
-    /*
+  /*
      * BEGIN hackernews
      */
 
-    :root {
-        --main: #262634;
-        --secondary: #646489ff;
-        --secondary-bright: #9e9ed9;
-        --highlight: #81C8BE;
-        --link-color: var(--highlight);
-        --highlight-secondary: #689C9A;
-        --text-color: white;
-        --warn: #F8BD96;
-        --error: #7D71B7;
-        --leaf: #ABE9B3;
-    }
+  :root {
+    --main: #262634;
+    --secondary: #646489ff;
+    --secondary-bright: #9e9ed9;
+    --highlight: #81C8BE;
+    --link-color: var(--highlight);
+    --highlight-secondary: #689C9A;
+    --text-color: white;
+    --warn: #F8BD96;
+    --error: #7D71B7;
+    --leaf: #ABE9B3;
+  }
 
-    #hnmain td[bgcolor="#ff6600"], #hnmain td[bgcolor="#ff6600"] * {
-        color: transparent !important;
-        background: transparent !important;
-    }
+  #hnmain td[bgcolor="#ff6600"],
+  #hnmain td[bgcolor="#ff6600"] * {
+    color: transparent !important;
+    background: transparent !important;
+  }
 
-    #hnmain td[bgcolor="#ff6600"] img {
-        display: none !important;
-    }
+  #hnmain td[bgcolor="#ff6600"] img {
+    display: none !important;
+  }
 
-    #hnmain td[bgcolor="#ff6600"]::before {
-        content: "HackerNews";
-        color: var(--warn);
-        margin: 10px !important;
-        display: block !important;
-        text-align: center;
-        font-size: 1.2em;
-    }
+  #hnmain td[bgcolor="#ff6600"]::before {
+    content: "HackerNews";
+    color: var(--warn);
+    margin: 10px !important;
+    display: block !important;
+    text-align: center;
+    font-size: 1.2em;
+  }
 
-    #hnmain .comment {
-        border: 1px solid;
-        border-radius: 5px;
-        padding: 10px;
-    }
+  #hnmain .comment {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+  }
 
-    #hnmain form[action="comment"] {
-        display: none !important;
-    }
+  #hnmain form[action="comment"] {
+    display: none !important;
+  }
 
-    #hnmain .titleline {
-        font-size: 1.2em;
-        font-weight: bolder;
-    }
+  #hnmain .titleline {
+    font-size: 1.2em;
+    font-weight: bolder;
+  }
 
-    #hnmain, body, html {
-        background-color: var(--main) !important;
-    }
+  #hnmain,
+  body,
+  html {
+    background-color: var(--main) !important;
+  }
 
-    #hnmain * {
-        color: var(--text-color) !important;
-    }
+  #hnmain * {
+    color: var(--text-color) !important;
+  }
 
-    /*
+  /*
      * END hackernews
      */
 
 }
 
 @-moz-document domain("libreddit"), domain("libreddit.privacydev.net"), domain("libreddit.localhost") {
-    body {
-        --accent: #babbf1 !important; /* lavender */
-        --green: #a6d189 !important; /* green */
-        --text: #c6d0f5 !important; /* text */
-        --foreground: #232634 !important; /* crust */
-        --background: #303446 !important; /* base */
-        --outside: #232634 !important; /* crust */
-        --post: #232634 !important; /* crust */
-        --panel-border: none !important;
-        --highlighted: #414559 !important; /* surface0 */
-        --visited: #737994 !important; /* overlay0 */
-        --shadow: 0 0 0 transparent !important;
+  body {
+    --accent: #babbf1 !important;
+    /* lavender */
+    --green: #a6d189 !important;
+    /* green */
+    --text: #c6d0f5 !important;
+    /* text */
+    --foreground: #232634 !important;
+    /* crust */
+    --background: #303446 !important;
+    /* base */
+    --outside: #232634 !important;
+    /* crust */
+    --post: #232634 !important;
+    /* crust */
+    --panel-border: none !important;
+    --highlighted: #414559 !important;
+    /* surface0 */
+    --visited: #737994 !important;
+    /* overlay0 */
+    --shadow: 0 0 0 transparent !important;
 
-        --nsfw: #ef9f76 !important; /* peach */
-        --admin: #ea999c !important; /* maroon */
-    }
+    --nsfw: #ef9f76 !important;
+    /* peach */
+    --admin: #ea999c !important;
+    /* maroon */
+  }
 }
 
 // @-moz-document domain("kagi.com") {

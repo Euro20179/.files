@@ -24,7 +24,7 @@ $very-transparent: #00000033;
 $transparent: #00000055;
 $bad: var(--error);
 $good: var(--highlight);
-$link-color: var(--highlight);
+$link-color: var(--pink);
 $background: linear-gradient(var(--highlight), var(--main));
 
 :root {
@@ -54,6 +54,6 @@ $background: linear-gradient(var(--highlight), var(--main));
     --transparent: #00000055;
     --bad: var(--error);
     --good: var(--highlight);
-    --link-color: var(--highlight);
+    --link-color: var(--pink);
     --background: linear-gradient(var(--highlight), var(--main));
 }
