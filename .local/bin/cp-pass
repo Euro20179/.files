@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#pass {{{
+# if [ "$1" = "otp" ]; then
+#     pass | rofi -dmenu -i -theme nord | cut -d' ' -f2- | tr -d '\n' | xargs -0 pass otp | tr -d '\n' | wl-copy -p && wl-paste -p | xargs wtype
+# else
+#     pass | rofi -dmenu -i -theme nord | cut -d' ' -f2- | tr -d '\n' | xargs -0 pass show | tr -d '\n' | wl-copy
+# fi
+#}}}
+
+rbw unlocked || rbw unlock
+
+if [ "$1" = "otp" ]; then
+    rbw list | rofi -dmenu -theme nord -i | xargs rbw code | wl-copy -n
+else
+    rbw list | rofi -dmenu -theme nord -i | xargs rbw get | wl-copy -n
+fi
