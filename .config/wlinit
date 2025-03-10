@@ -44,6 +44,9 @@ fcitx5 -d & disown
 killall hyprland-activity-tracker
 hyprland-activity-tracker & disown
 
+killall jellyfin-mpv-shim
+jellyfin-mpv-shim & disown
+
 # kilall dvd-auto-play
 # dvd-auto-play & disown
 

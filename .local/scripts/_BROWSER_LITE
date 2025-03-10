@@ -1,10 +1,10 @@
 #!/bin/sh
 
-zen-browser -P discord "$@"
+# zen-browser -P discord "$@"
 
-# EXE=librewolf
-# command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
-#
-# exec $EXE -P default "$@"
+EXE=librewolf
+command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
 
-#firefox-developer-edition -P Non-broken "$@"
+exec $EXE -P default "$@"
+
+# firefox-developer-edition -P Non-broken "$@"
