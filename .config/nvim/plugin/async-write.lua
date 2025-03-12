@@ -1,5 +1,5 @@
 --[==[
-This plugin is simply meant to make :w asyncronous when writing to my sshfs mounts
+    This plugin is simply meant to make :w asyncronous when writing to my sshfs mounts
 ]==]
 
 vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {

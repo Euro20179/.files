@@ -33,6 +33,11 @@ endif
 "OPTIONS{{{
 let g:mapleader = " "
 
+"writebackup overwrites birth time, and it's annoying
+"yeah, yeah i could overwrite the file but the odds of that are incredibly
+"low, I also keep backups.
+set nowritebackup
+
 set grepprg=rg\ --vimgrep\ $*
 
 if finddir(".git", ".;", 1) == ".git"

@@ -1,24 +1,24 @@
 @import "../COMMON/colors.scss";
 
 //default scrollbar styling
-body {
-  scrollbar-color: $pink $main;
-  background: var(--main);
-  color: var(--text-color);
-}
-
-a {
-  color: var(--link-color);
-}
-
-em {
-  text-decoration: underline;
-}
-
-mark {
-  background-color: var(--highlight);
-  color: var(--main);
-}
+// body {
+//   scrollbar-color: $pink $main;
+//   background: var(--main);
+//   color: var(--text-color);
+// }
+//
+// a {
+//   color: var(--link-color);
+// }
+//
+// em {
+//   text-decoration: underline;
+// }
+//
+// mark {
+//   background-color: var(--highlight);
+//   color: var(--main);
+// }
 
 /*make <blink> work*/
 @keyframes --blink-anim {
