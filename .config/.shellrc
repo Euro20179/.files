@@ -111,6 +111,8 @@ export WIKI="$CLOUD/Documents/vimwiki"
 export CALFILE="$CLOUD/CAL.md"
 export AIO_SERVER="https://cloud:8887"
 
+export DIARY_FILE="$XDG_DOCUMENTS_HOME/.diary.zip"
+
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
 export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"

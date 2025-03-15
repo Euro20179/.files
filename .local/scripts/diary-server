@@ -1,0 +1,5 @@
+#!/bin/sh
+rm -r "${XDG_DOCUMENTS_HOME}/diary/"*
+unzip -d "${XDG_DOCUMENTS_HOME}/diary" "$DIARY_FILE"
+cd "$HOME/Programs/Coding Projects/go/github.com/euro/site" || exit 1
+exec ./start

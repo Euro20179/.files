@@ -6,8 +6,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
-
-lspconfig['ast_grep'].setup { capabilities = capabilities }
+--
+-- lspconfig['ast_grep'].setup { capabilities = capabilities }
 
 lspconfig["hls"].setup {
     capabilities = capabilities,
