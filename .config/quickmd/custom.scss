@@ -1,45 +1,45 @@
 @import "../COMMON/colors.scss";
 
-body, html {
-    background: $main;
-}
-
-* {
-    color: $text-color !important;
-}
-
-pre, code {
-    border: none !important;
-    outline: none !important;
-    background: $secondary !important;
-    padding-top: 1ex !important; /*looks really weird without this*/
-}
-
-img {
-    border: 1px solid $secondary !important;
-    border-radius: 1em !important;
-}
-
-table {
-    border-collapse: collapse !important;
-}
-
-table, tr, td, th, tbody {
-    background: $main !important;
-    border-color: $text-color !important;
-}
-
-a {
-    color: $pink !important;
-}
-
-[type=checkbox] {
-    appearance: none !important;
-    width: 10px;
-    height: 10px;
-    background-color: $secondary !important;
-}
-
-[type=checkbox]:checked {
-    background-color: $green !important;
-}
+// body, html {
+//     background: $main;
+// }
+//
+// * {
+//     color: $text-color ;
+// }
+//
+// pre, code {
+//     border: none ;
+//     outline: none ;
+//     background: $secondary ;
+//     padding-top: 1ex ; /*looks really weird without this*/
+// }
+//
+// img {
+//     border: 1px solid $secondary ;
+//     border-radius: 1em ;
+// }
+//
+// table {
+//     border-collapse: collapse ;
+// }
+//
+// table, tr, td, th, tbody {
+//     background: $main ;
+//     border-color: $text-color ;
+// }
+//
+// a {
+//     color: $pink ;
+// }
+//
+// [type=checkbox] {
+//     appearance: none ;
+//     width: 10px;
+//     height: 10px;
+//     background-color: $secondary ;
+// }
+//
+// [type=checkbox]:checked {
+//     background-color: $green ;
+// }

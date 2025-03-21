@@ -12,7 +12,7 @@ local function setupLogin()
         return ""
     end
 
-    local base64Login = io.popen("printf ':%s' '" .. options.account_pin .. "' | base64")
+    local base64Login = io.popen("printf 'euro:%s' '" .. options.account_pin .. "' | base64")
     if base64Login == nil then
         return ""
     end
@@ -73,7 +73,7 @@ local function updateCurrEp(login, location, num)
 
     local req = io.popen("curl -H '" ..
         login ..
-        "' 'http://10.0.0.2:8888/api/v1/engagement/mod-entry?id=" .. itemId .. "&current-position=" .. num .. "'")
+        "' 'http://10.0.0.2:8888/api/v1/engagement/mod-entry?uid=1&id=" .. itemId .. "&current-position=" .. num .. "'")
     if req == nil then
         return
     end
