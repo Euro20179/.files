@@ -16,7 +16,6 @@ if !has("nvim")
     set mouse=a
     set autoindent
     set autoread
-    set laststatus=2
 
     set wildmenu
     set wildoptions=pum
@@ -27,6 +26,7 @@ if !has("nvim")
         set incsearch
     endif
 
+    "laststatus is in this file
     so $XDG_CONFIG_HOME/vim/user/statusline.vim
 endif
 

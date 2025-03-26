@@ -58,3 +58,5 @@ let right = "%{&filetype}"
 let center = ""
 
 let &statusline = left .. "%=" .. center .. "%=" .. right
+
+set laststatus=1

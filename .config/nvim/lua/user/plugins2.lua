@@ -192,11 +192,11 @@ end
 
 -- Navigation {{{
 
-aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
-    hi = {
-        fg = "#f4b8e4"
-    }
-})
+-- aSetup({ source = "nvim-zh/colorful-winsep.nvim" }, later, "colorful-winsep", {
+--     hi = {
+--         fg = "#f4b8e4"
+--     }
+-- })
 
 aSetup({ source = "kevinhwang91/nvim-bqf" }, later, "bqf", {})
 add { source = "theprimeagen/harpoon", monitor = "harpoon2", checkout = "harpoon2" }

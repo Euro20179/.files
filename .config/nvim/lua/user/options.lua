@@ -4,6 +4,10 @@ vim.opt.undofile = true
 
 vim.opt.fillchars = { msgsep = "‾" }
 
+vim.opt.winborder = "single"
+
+vim.g.health = {style = "float"}
+
 -- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 

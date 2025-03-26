@@ -131,6 +131,7 @@ keymap = [
 	{ on = [ "d", "<Space>" ], run = "cd --interactive", desc = "Go to a directory interactively" },
     { on = [ "d", "p" ], run = "cd ~/Pictures", desc = "Go to pictures folder"},
     { on = [ "d", "m" ], run = "cd ~/Pictures/memes", desc = "Go to memes folder"},
+    { on = [ "d", "w" ], run = "cd ~/Pictures/wallpapers", desc = "Go to wallpapers folder" },
 
 	# Help
 	{ on = [ "~" ], run = "help", desc = "Open help" },
