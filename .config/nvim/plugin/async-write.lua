@@ -7,6 +7,12 @@ vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
     callback = function ()
         vim.api.nvim_create_autocmd("BufWriteCmd", {
             callback = function()
+                local last_cmd
+
+                vim.schedule(function()
+                    last_cmd = vim.fn.getreg(":")
+                end)
+
                 local file = vim.fn.expand("%:p")
 
                 local curBuf = vim.api.nvim_win_get_buf(0)
@@ -59,6 +65,9 @@ vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
                                     local lineCount = vim.api.nvim_buf_line_count(curBuf)
                                     vim.notify(string.format([["%s" %dL, %dB written]], file, lineCount, size))
                                     vim.bo.modified = false
+                                    if last_cmd == "x" or last_cmd == "exit" then
+                                        vim.cmd.exit()
+                                    end
                                 end)
                             end)
                         end)
