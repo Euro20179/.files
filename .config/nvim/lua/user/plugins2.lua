@@ -53,8 +53,6 @@ add { source = "nvim-treesitter/nvim-treesitter-textobjects" }
 
 add { source = "b0o/Schemastore.nvim" }
 
-add { source = "neovim/nvim-lspconfig" }
-
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
 
 local function buildBlink()

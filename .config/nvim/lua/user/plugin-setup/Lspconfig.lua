@@ -1,8 +1,6 @@
-local lspconfig = require("lspconfig")
-
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 vim.lsp.config("*", { capabilities = capabilities })
 
@@ -69,16 +67,13 @@ vim.lsp.config["ts_ls"] = {
 }
 vim.lsp.enable "ts_ls"
 
-lspconfig['rust_analyzer'].setup {
-    capabilities = capabilities,
+vim.lsp.config["rust_analyzer"] = {
+    cmd = { "rust-analyzer" },
+    root_markers = { "Cargo.toml", ".git" },
+    filetypes = { "rust" }
 }
--- lspconfig['pylsp'].setup {
---   capabilities = capabilities
--- }
+vim.lsp.enable "rust_analyzer"
 
--- lspconfig['bashls'].setup {
---     capabilities = capabilities
--- }
 
 vim.lsp.config["bashls"] = {
     cmd = { "bash-language-server", "start" },
@@ -87,28 +82,40 @@ vim.lsp.config["bashls"] = {
 }
 vim.lsp.enable("bashls")
 
-lspconfig['clangd'].setup {
-    capabilities = capabilities,
+vim.lsp.config["clangd"] = {
+    cmd = {"clangd"},
     filetypes = { "c", "cpp" },
+    root_markers = { ".git", "Makefile" }
 }
--- lspconfig['html'].setup {
---     capabilities = capabilities
--- }
-lspconfig['cssls'].setup {
-    capabilities = capabilities
-}
+vim.lsp.enable "clangd"
 
-lspconfig['jsonls'].setup {
-    capabilities = capabilities,
+vim.lsp.config["cssls"] = {
+    cmd = { "vscode-css-language-server", "--stdio" },
+    filetypes = { "css", "scss" },
+    root_markers = { "index.html", ".git" },
     settings = {
-        json = {
-            schemas = require "schemastore".json.schemas(),
-            validate = { enable = true }
-        }
+        css = { validate = true },
+        scss = { validate = true },
     }
 }
--- lspconfig['ltex'].setup{}
-lspconfig.vimls.setup {
-    capabilities = capabilities,
-    isNeovim = true
+vim.lsp.enable "cssls"
+
+vim.lsp.config["jsonls"] = {
+    cmd = { "vscode-json-language-server", "--stdio" },
+    filtypes = { "json" },
+    root_dir = function() return vim.uv.cwd() end
 }
+vim.lsp.enable "jsonls"
+
+vim.lsp.config["vimls"] = {
+    cmd = { "vim-language-server", "--stdio" },
+    filetypes = { "vim" },
+    init_options = {
+        isNeovim = true,
+        diagnostic = { enable = true },
+        suggest = { fromVimruntime = true, fromRuntimepath = true }
+    },
+    root_markers = { ".git" }
+}
+
+vim.lsp.enable "vimls"
