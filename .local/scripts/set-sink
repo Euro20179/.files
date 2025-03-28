@@ -1,0 +1,24 @@
+#!/bin/sh
+
+wpctl  status |
+    awk "BEGIN { sinks = \"no\" }
+
+        !/[[:digit:]]/ { sinks = \"no\" }
+
+        /Sinks:/ { sinks = \"yes\" }
+
+        {
+            if (sinks != \"no\") {
+                sources[len++] = \$0
+            }
+        }
+
+        END {
+                for(i = 0; i < len; i++)
+                    print sources[i]
+            }" |
+    sed -e 1d -e '$d' |
+    rofi -theme nord -dmenu |
+    grep -o '[[:digit:]]*' |
+    head -n1 |
+    xargs wpctl set-default
