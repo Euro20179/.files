@@ -2,25 +2,40 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+---Setup an lsp server
+---@param name string
+---@param settings vim.lsp.Config
+local function setupLSP(name, settings)
+    vim.lsp.config[name] = settings
+    vim.lsp.enable(name)
+end
+
 vim.lsp.config("*", { capabilities = capabilities })
 
-vim.lsp.config["emmet"] = {
+setupLSP("emmet", {
     cmd = { "emmet-ls", "--stdio" },
     filetypes = { "html" },
     root_dir = "."
-}
-vim.lsp.enable("emmet")
+})
 
-vim.lsp.config["basedpyright"] = {
+setupLSP("basedpyright", {
     cmd = { "basedpyright-langserver", "--stdio" },
     filetypes = { "python" },
-    root_markers = { ".git" }
-}
-vim.lsp.enable "basedpyright"
+    root_markers = { ".git" },
+    settings = {
+        basedpyright = {
+            analysis = {
+                inlayHints = {
+                    callArgumentNames = true
+                }
+            }
+        }
+    }
+})
 
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/site/pack/deps/opt" }
 
-vim.lsp.config["luals"] = {
+setupLSP("luals", {
     cmd = { "lua-language-server" },
     filetypes = { "lua" },
     root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
@@ -39,12 +54,11 @@ vim.lsp.config["luals"] = {
             }
         },
     },
-}
-
-vim.lsp.enable("luals")
+})
 
 
-vim.lsp.config["gopls"] = {
+
+setupLSP("gopls", {
     cmd = { "gopls", "serve" },
     filetypes = { "go" },
     root_markers = { "go.mod", ".git" },
@@ -57,39 +71,46 @@ vim.lsp.config["gopls"] = {
             gofumpt = true,
         }
     }
-}
-vim.lsp.enable "gopls"
+})
 
-vim.lsp.config["ts_ls"] = {
+local TS_LS_SETTINGS = {
+    inlayHints = {
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = true
+    },
+}
+
+setupLSP("ts_ls", {
     cmd = { "typescript-language-server", "--stdio" },
     root_markers = { ".git", "node_modules" },
-    filetypes = { "typescript", "javascript" }
-}
-vim.lsp.enable "ts_ls"
+    filetypes = { "typescript", "javascript" },
+    settings = {
+        javascript = TS_LS_SETTINGS,
+        typescript = TS_LS_SETTINGS
+    }
+})
 
-vim.lsp.config["rust_analyzer"] = {
+setupLSP("rust_analyzer", {
     cmd = { "rust-analyzer" },
     root_markers = { "Cargo.toml", ".git" },
     filetypes = { "rust" }
-}
-vim.lsp.enable "rust_analyzer"
+})
 
 
-vim.lsp.config["bashls"] = {
+setupLSP("bashls", {
     cmd = { "bash-language-server", "start" },
     filetypes = { "bash", "sh" },
     root_markers = { ".git" }
-}
-vim.lsp.enable("bashls")
+})
 
-vim.lsp.config["clangd"] = {
-    cmd = {"clangd"},
+setupLSP("clangd", {
+    cmd = { "clangd" },
     filetypes = { "c", "cpp" },
     root_markers = { ".git", "Makefile" }
-}
-vim.lsp.enable "clangd"
+})
 
-vim.lsp.config["cssls"] = {
+setupLSP("cssls", {
     cmd = { "vscode-css-language-server", "--stdio" },
     filetypes = { "css", "scss" },
     root_markers = { "index.html", ".git" },
@@ -97,17 +118,15 @@ vim.lsp.config["cssls"] = {
         css = { validate = true },
         scss = { validate = true },
     }
-}
-vim.lsp.enable "cssls"
+})
 
-vim.lsp.config["jsonls"] = {
+setupLSP("jsonls", {
     cmd = { "vscode-json-language-server", "--stdio" },
     filtypes = { "json" },
     root_dir = function() return vim.uv.cwd() end
-}
-vim.lsp.enable "jsonls"
+})
 
-vim.lsp.config["vimls"] = {
+setupLSP("vimls", {
     cmd = { "vim-language-server", "--stdio" },
     filetypes = { "vim" },
     init_options = {
@@ -116,6 +135,5 @@ vim.lsp.config["vimls"] = {
         suggest = { fromVimruntime = true, fromRuntimepath = true }
     },
     root_markers = { ".git" }
-}
+})
 
-vim.lsp.enable "vimls"
