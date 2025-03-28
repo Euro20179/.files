@@ -1,50 +1,31 @@
 local lspconfig = require("lspconfig")
 
 
--- local capabilities = require"cmp_nvim_lsp".default_capabilities()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
---
--- lspconfig['ast_grep'].setup { capabilities = capabilities }
 
-lspconfig["hls"].setup {
-    capabilities = capabilities,
-    filetypes = { "haskell" },
+vim.lsp.config("*", { capabilities = capabilities })
+
+vim.lsp.config["emmet"] = {
+    cmd = { "emmet-ls", "--stdio" },
+    filetypes = { "html" },
+    root_dir = "."
 }
+vim.lsp.enable("emmet")
 
-lspconfig['emmet_ls'].setup {
-    capabilities = capabilities,
-    filetypes = { "html" }
+vim.lsp.config["basedpyright"] = {
+    cmd = { "basedpyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_markers = { ".git" }
 }
-
-lspconfig["basedpyright"].setup {
-    capabilities = capabilities
-}
-
-lspconfig['nushell'].setup {
-    capabilities = capabilities
-}
-
-lspconfig["raku_navigator"].setup {
-    capabilities = capabilities,
-    cmd = { "raku-navigator", "--stdio" }
-}
-
-lspconfig['elixirls'].setup {
-    capabilities = capabilities,
-    cmd = { "/home/euro/.local/share/nvim/mason/bin/elixir-ls" }
-}
-
-lspconfig["kotlin_language_server"].setup {
-    capabilities = capabilities
-}
-
+vim.lsp.enable "basedpyright"
 
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/site/pack/deps/opt" }
 
-lspconfig['lua_ls'].setup {
+vim.lsp.config["luals"] = {
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
     settings = {
         Lua = {
             hint = { enable = true },
@@ -60,22 +41,15 @@ lspconfig['lua_ls'].setup {
             }
         },
     },
-    capabilities = capabilities
 }
 
--- lspconfig.perlnavigator.setup{
---     cmd = {
---         "node", "/home/euro/Programs/PerlNavigator/server/out/server.js", "--stdio"
---     },
---     settings = {
---         perlnavigator = {
---             perlPath = "perl"
---         }
---     }
--- }
---
+vim.lsp.enable("luals")
 
-lspconfig.gopls.setup({
+
+vim.lsp.config["gopls"] = {
+    cmd = { "gopls", "serve" },
+    filetypes = { "go" },
+    root_markers = { "go.mod", ".git" },
     settings = {
         gopls = {
             analyses = {
@@ -83,28 +57,18 @@ lspconfig.gopls.setup({
             },
             staticcheck = true,
             gofumpt = true,
-        },
-    },
-})
-
--- lspconfig['pyright'].setup{ }
-
-lspconfig['java_language_server'].setup {
-    cmd = { "/home/euro/Programs/java-language-server/dist/lang_server_linux.sh" },
-    capabilities = capabilities
+        }
+    }
 }
+vim.lsp.enable "gopls"
 
-lspconfig['ts_ls'].setup {
-    capabilities = capabilities,
-    --filetypes = { "typescript" },
-    root_dir = function() return vim.loop.cwd() end,
+vim.lsp.config["ts_ls"] = {
+    cmd = { "typescript-language-server", "--stdio" },
+    root_markers = { ".git", "node_modules" },
+    filetypes = { "typescript", "javascript" }
 }
--- lspconfig['marksman'].setup{
---     capabilities = capabilities
--- }
--- lspconfig['jedi_language_server'].setup {
--- capabilities = capabilities
--- }
+vim.lsp.enable "ts_ls"
+
 lspconfig['rust_analyzer'].setup {
     capabilities = capabilities,
 }
@@ -112,17 +76,24 @@ lspconfig['rust_analyzer'].setup {
 --   capabilities = capabilities
 -- }
 
-lspconfig['bashls'].setup {
-    capabilities = capabilities
+-- lspconfig['bashls'].setup {
+--     capabilities = capabilities
+-- }
+
+vim.lsp.config["bashls"] = {
+    cmd = { "bash-language-server", "start" },
+    filetypes = { "bash", "sh" },
+    root_markers = { ".git" }
 }
+vim.lsp.enable("bashls")
 
 lspconfig['clangd'].setup {
     capabilities = capabilities,
     filetypes = { "c", "cpp" },
 }
-lspconfig['html'].setup {
-    capabilities = capabilities
-}
+-- lspconfig['html'].setup {
+--     capabilities = capabilities
+-- }
 lspconfig['cssls'].setup {
     capabilities = capabilities
 }

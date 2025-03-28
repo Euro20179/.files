@@ -92,9 +92,9 @@ aSetup({
                 }
             },
 
-            -- keyword = {
-            --     regex = [==[[#_-]\|\k]==],
-            -- },
+            keyword = {
+                range = "prefix",
+            },
 
             documentation = {
                 auto_show = true,
