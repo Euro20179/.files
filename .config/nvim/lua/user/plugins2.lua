@@ -314,11 +314,6 @@ add { source = "tpope/vim-fugitive" }
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
 
-add { source = "meeehdi-dev/bropilot.nvim", depends = {
-    "nvim-lua/plenary.nvim",
-    "j-hui/fidget.nvim"
-} }
-
 add { source = "olimorris/codecompanion.nvim", depends = {
     "nvim-lua/plenary.nvim",
     "j-hui/fidget.nvim"
@@ -354,25 +349,6 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
                 end
             }
         })
-
-        setup(later, "bropilot",
-            {
-                model = "qwen2.5-coder:1.5b-base",
-                prompt = { prefix = "<|fim_prefix|>", suffix = "<|fim_suffix|>", middle = "<|fim_middle|>", },
-                model_params = {
-                    stop = { "<|fim_pad|>", "<|endoftext|>" },
-                    num_ctx = 8192,
-                },
-                debounce = 500,
-                auto_pull = true,
-                auto_suggest = false,
-                keymap = {
-                    suggest = "<C-'>",
-                    accept_block = "<C-Enter>",
-                    accept_line = "<S-Enter>"
-                }
-            }
-        )
     end)
 end)
 

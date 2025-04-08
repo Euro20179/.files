@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ssh cloud cd services/aio-limas ';' git pull origin master
+[ -z "$1" ] && \
+    ssh cloud cd services/aio-limas ';' GO=/home/cloud/go/bin/go ./buildonly && \
+    ssh user@10.0.0.2 sudo killall aiolimas ';' sudo systemctl enable --now aio-limas

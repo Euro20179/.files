@@ -19,6 +19,6 @@ wpctl  status |
             }" |
     sed -e 1d -e '$d' |
     rofi -theme nord -dmenu |
-    grep -o '[[:digit:]]*' |
+    tr -c '[:digit:]' ":" | sed -n 's/:*\([[:digit:]]*\).*/\1/p' |
     head -n1 |
     xargs wpctl set-default
