@@ -110,7 +110,7 @@ export SHELL_LIB="$HOME/.local/lib/shell"
 export CLOUD="/home/cloud"
 export WIKI="$CLOUD/Documents/vimwiki"
 export CALFILE="$CLOUD/CAL.md"
-export AIO_SERVER="https://cloud:8887"
+export AIO_SERVER="https://aio.seceurity.place"
 
 export DIARY_FILE="$XDG_DOCUMENTS_HOME/.diary.zip"
 
@@ -152,13 +152,6 @@ alias Q='nvim +Qalc +startinsert +set" filetype=amml"'
 
 alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
-
-alias update-aio='ssh cloud cd services/aio-limas ";" git pull origin master'
-_updateAioFull() {
-    ssh cloud cd services/aio-limas ";" git pull origin master ';' ./buildonly
-    ssh user@cloud sudo killall aiolimas ';' sudo systemctl enable --now aio-limas
-}
-alias update-aio-full=_updateAioFull
 
 config () {
     [ -n "$*" ] && {

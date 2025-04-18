@@ -12,10 +12,33 @@ end
 
 vim.lsp.config("*", { capabilities = capabilities })
 
+setupLSP("raku", {
+    cmd = { "raku-navigator", "--stdio" },
+    filetypes = { "raku" },
+    root_dir = "."
+})
+
 setupLSP("emmet", {
     cmd = { "emmet-ls", "--stdio" },
     filetypes = { "html" },
     root_dir = "."
+})
+
+setupLSP("intelephense", {
+    cmd = { "intelephense", "--stdio" },
+    filetypes = { "php" },
+    root_dir = "."
+})
+
+setupLSP("html", {
+    cmd = { "vscode-html-language-server", "--stdio" },
+    filetypes = {"html", "tmpl"},
+    root_markers = {"package.json", ".git"},
+    init_options = {
+        provideFormatter = true,
+        embeddedLanguages = { css = true, javascript = true },
+        configurationSection = { "html", "css", "javascript" }
+    }
 })
 
 setupLSP("basedpyright", {
