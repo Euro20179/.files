@@ -1,0 +1,11 @@
+#!/bin/bash
+backups=$(ls -1 "/mnt/backups/rpi-backup-"*)
+
+#we only want to move the oldest backup if there are more than 2 backups
+[ "$(wc -l <<< "$backups")" -lt 3 ] && {
+    printf "There must be at least 3 backups to move one to the backup drive\n"
+    exit 1
+}
+
+oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "/mnt/backups" "rpi-backup-" ".ext4")"
+rm "$oldest_file"

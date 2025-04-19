@@ -1,0 +1,30 @@
+#!/bin/bash
+
+: "
+    This script is responsible for finding the oldest file if that file contains a date outputted by the date(1) command
+"
+
+dir="$1"
+prefix="$2"
+suffix="$3"
+
+files=$(ls -1 "$dir/$prefix"*"$suffix")
+
+#get a list of backup timestamps
+files=$(sed 's/.*rpi-backup-\(.*\)\.ext4$/\1/' <<< "$files")
+
+dateList=()
+#make timestamps in the format of '%s $(date)'
+while read -r backup; do
+    : "${dateList[${#dateList[*]}]="$(date -d "$backup" +%s)"$'\t'$backup}"
+done <<< "$files"
+
+IFS=$'\n'
+sortedByUnixTS="$(sort -n <<< "${dateList[*]}")"
+
+#get the top line
+oldestFile="${sortedByUnixTS%%$'\n'*}"
+#format back to correct name (and remove unix timestamp)
+oldestFile="${prefix}${oldestFile#*$'\t'}${suffix}"
+
+echo "$oldestFile"

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+: "
+    This script is responsible for moving exactly one backup from my backups directory on the \$CLOUD to the backups raid.
+    It should keep a balance of 2 unique backups per location (the backups drive having the older backups)
+"
+
+backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
+
+#we only want to move the oldest backup if there are more than 2 backups
+[ "$(wc -l <<< "$backups")" -lt 3 ] && {
+    printf "There must be at least 3 backups to move one to the backup drive\n"
+    exit 1
+}
+
+oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "$CLOUD/COLD-STORAGE/backups" "rpi-backup-" ".ext4")"
+
+mv "$oldest_file" /mnt/backups/
