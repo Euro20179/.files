@@ -8,6 +8,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local function setupLSP(name, settings)
     vim.lsp.config[name] = settings
     vim.lsp.enable(name)
+
 end
 
 vim.lsp.config("*", { capabilities = capabilities })
@@ -135,6 +136,7 @@ setupLSP("clangd", {
 
 setupLSP("cssls", {
     cmd = { "vscode-css-language-server", "--stdio" },
+    init_options = { provideFormatter = true },
     filetypes = { "css", "scss" },
     root_markers = { "index.html", ".git" },
     settings = {

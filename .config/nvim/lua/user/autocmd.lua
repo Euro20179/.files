@@ -14,6 +14,8 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
     group = conf_group,
     callback = function()
+        vim.lsp.document_color.enable(true)
+
         vim.diagnostic.config({
             float = {
                 border = "single",
