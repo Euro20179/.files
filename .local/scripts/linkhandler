@@ -45,7 +45,7 @@ try_mime_handling() {
             [ $LH_NO_EDIT = 1 ] && exit 1
             open_with_editor "$link" ;;
         video/* | audio/*) mpv "$link" ;;
-        application/x-shockwave-flash) flashplayer "$link" ;;
+        application/x-shockwave-flash) ruffle "$link" ;;
         inode/directory) open_with_editor "$link" ;;
         application/json) 
             notify-send "$inTerminal"

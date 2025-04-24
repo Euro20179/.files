@@ -8,4 +8,4 @@ backups=$(ls -1 "/mnt/backups/rpi-backup-"*)
 }
 
 oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "/mnt/backups" "rpi-backup-" ".ext4")"
-rm "$oldest_file"
+rm "/mnt/backups/$oldest_file"

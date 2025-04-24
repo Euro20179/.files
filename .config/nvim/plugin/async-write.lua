@@ -2,9 +2,12 @@
     This plugin is simply meant to make :w asyncronous when writing to my sshfs mounts
 ]==]
 
-vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
+local group = vim.api.nvim_create_augroup("async-write", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufNew", "VimEnter" }, {
+    group = group,
     pattern = vim.fn.expand("$CLOUD") .. "/*",
-    callback = function ()
+    callback = function()
         vim.api.nvim_create_autocmd("BufWriteCmd", {
             callback = function()
                 local last_cmd
@@ -38,7 +41,7 @@ vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
 
                     vim.uv.fs_open(file, "w", mode, function(err, fd)
                         if err ~= nil then
-                            vim.schedule(function ()
+                            vim.schedule(function()
                                 vim.notify("Failed to open file " .. err, vim.log.levels.ERROR)
                             end)
                             return
@@ -57,7 +60,9 @@ vim.api.nvim_create_autocmd({"BufNew","VimEnter"}, {
 
                                 vim.uv.fs_close(fd, function(err, success)
                                     if not success or err ~= nil then
-                                        vim.notify("Failed to close file... however the data was already written\n" .. err, vim.log.levels.WARN)
+                                        vim.notify(
+                                        "Failed to close file... however the data was already written\n" .. err,
+                                            vim.log.levels.WARN)
                                     end
                                 end)
 

@@ -15,4 +15,6 @@ backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
 
 oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "$CLOUD/COLD-STORAGE/backups" "rpi-backup-" ".ext4")"
 
-mv "$oldest_file" /mnt/backups/
+echo "OLDEST: $oldest_file"
+
+mv "$CLOUD/COLD-STORAGE/backups/$oldest_file" /mnt/backups/

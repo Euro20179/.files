@@ -354,7 +354,5 @@ end)
 
 aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
 
-aSetup({ source = "meznaric/key-analyzer.nvim" }, later, "key-analyzer", {})
-
 -- add{ source = "altermo/nelisp" }
 --
