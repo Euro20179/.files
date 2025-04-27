@@ -6,7 +6,8 @@ read -r mic <<< $(pactl get-source-volume $(pactl get-default-source) | grep -o 
 
 action="$1"
 
-makoctl dismiss -a
+#makoctl dismiss -a
+moxnotifyctl dismiss -a
 
 set -- -t 1000
 
