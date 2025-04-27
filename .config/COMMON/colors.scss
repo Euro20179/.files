@@ -28,6 +28,7 @@ $link-color: var(--pink);
 $background: linear-gradient(var(--highlight), var(--main));
 
 :root {
+    /*catppuccin colorscheme colors*/
     --main: #1e1e2e;
     --secondary: #585b70;
     --secondary-bright: #9399b2;
@@ -56,4 +57,11 @@ $background: linear-gradient(var(--highlight), var(--main));
     --good: var(--highlight);
     --link-color: var(--pink);
     --background: linear-gradient(var(--highlight), var(--main));
+
+    /*outer wilds theme colors (a theme i made up)*/
+    --ow-main: #20143e;
+    --ow-secondary: #3d315e;
+    --ow-text-color: var(--text-color);
+    --ow-blue: #b4e8f3;
+    --ow-warn: #ab9b78;
 }
