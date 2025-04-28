@@ -10,6 +10,7 @@ declare -A class2symbol=(
 
 declare -A titleFuzz2symbol=(
     [Discord]=󰙯
+    [Songs/scripts]=󰎇
 )
 
 workspaces() {
@@ -40,6 +41,8 @@ workspaces() {
         symbolT=""
 
         while IFS=$'\t' read -r itemCLS itemADDR itemTITLE; do
+            #clobber s to ensure it's not using the previous value
+            s=
             #iterate through titles first
             for tk in "${!titleFuzz2symbol[@]}"; do
                 case "$itemTITLE" in
