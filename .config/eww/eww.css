@@ -14,6 +14,14 @@ box {
     border-bottom: 1px solid currentColor;
 }
 
+.basic-info:nth-child(1) {
+    border-top: 1px solid ;
+}
+.basic-info {
+    border-bottom: 1px solid ;
+    padding: 5px 0;
+}
+
 .unfocused-workspace {
     color: #b5e8f3;
 }
