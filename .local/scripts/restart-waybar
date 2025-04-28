@@ -1,12 +1,13 @@
 #!/bin/bash
-# killall waybar
-# for mon in "${XDG_CONFIG_HOME}/waybar/"*.json; do
-#     waybar -c "$mon" -s "${mon%.json}.css" & disown
-# done
-#
-#
 
-killall eww
+if pgrep waybar > /dev/null; then
+    killall waybar
+    for mon in "${XDG_CONFIG_HOME}/waybar/"*.json; do
+        waybar -c "$mon" -s "${mon%.json}.css" & disown
+    done
+else
+    killall eww
 
-eww open hyprland-bar-dp
-eww open hyprland-bar-hdmi
+    eww open hyprland-bar-dp
+    eww open hyprland-bar-hdmi
+fi

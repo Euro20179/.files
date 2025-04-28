@@ -1,1 +1,7 @@
+(include "./homelab/main.yuck")
 (include "./hyprland-bar/main.yuck")
+
+(defpoll volume-gr :interval "1s"
+                :initial-value "0"
+                "wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -oP '[.\\d]+'"
+)

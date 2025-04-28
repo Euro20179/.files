@@ -5,6 +5,7 @@ declare -A class2symbol=(
     [nheko]=󰊌
     [LibreWolf]=
     [osu!]=󰎄!
+    [thunderbird]=
 )
 
 workspaces() {

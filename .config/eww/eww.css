@@ -2,14 +2,22 @@
     color: #b5e8f3;
 }
 
+/*general things {{{*/
 box {
     padding-bottom: 5px;
-}
-
-.workspace-container {
     background-color: #21143e;
 }
 
+.btn {
+    border: 1px solid;
+    border-radius: 30px;
+}
+.btn:hover {
+    background-color: #392d5a;
+}
+/*}}}*/
+
+/*hyprland-bar-* {{{*/
 .workspace {
     border-bottom: 1px solid currentColor;
 }
@@ -71,3 +79,4 @@ progressbar.temp-0 progress
 .muted-true label{
     color: #832a61 ;
 }
+/*}}}*/
