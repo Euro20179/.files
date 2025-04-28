@@ -58,6 +58,7 @@
          (label :class "basic-info" :text time)
         (label :class "basic-info" :text date)
         )
+        (systray :orientation "v" :icon-size 22)
     ))
 
 (defwindow hyprland-bar-hdmi

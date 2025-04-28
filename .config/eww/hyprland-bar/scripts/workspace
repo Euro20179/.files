@@ -6,11 +6,17 @@ declare -A class2symbol=(
     [LibreWolf]=
     [osu!]=󰎄!
     [thunderbird]=
+    [mpv]=󰈫
+    [steam]=󰓓
+    [makemkv]=📀
 )
 
 declare -A titleFuzz2symbol=(
     [Discord]=󰙯
-    [Songs/scripts*(foot)]=󰎇
+    [Songs/scripts*'(foot)']=󰽴
+    [QuickMedia]=全て
+    [*nvim*'(foot)']=
+    [*conf*'(foot)']=
 )
 
 workspaces() {
