@@ -13,6 +13,9 @@
 (defpoll mic :interval "2s"
          `pactl get-source-volume @DEFAULT_SOURCE@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
 
+(defpoll pkg-count :interval "2s"
+        `pacman -Q | wc -l`)
+
 (defwidget scaler [label temp-source]
         (box :orientation "v" :space-evenly false :spacing 10
             (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
@@ -20,36 +23,52 @@
         )
 )
 
+(defvar volume-amount "")
+
 (defwidget INFO []
     (box :orientation "v" :space-evenly false
         (workspaces)
         (box
             (scaler :label "" :temp-source {EWW_TEMPS["K10TEMP_TCTL"]})
             (scaler :label "󰍹" :temp-source {EWW_TEMPS["AMDGPU_EDGE"]})
+            (scaler :label "" :temp-source {EWW_RAM["used_mem_perc"]})
         )
         (box
-            (scaler :label "" :temp-source volume)
+            (scaler :label "" :temp-source "${round(EWW_DISK["/home"]["used_perc"], 0)}")
+            (scaler :label "" :temp-source "${round((
+                            (EWW_DISK["/home/cloud"]["used"] + EWW_DISK["/home/cloud/COLD-STORAGE"]["used"])
+                            /
+                            (EWW_DISK["/home/cloud"]["total"] + EWW_DISK["/home/cloud/COLD-STORAGE"]["total"])
+                            * 100), 0)}")
+            (scaler :label "󰁯" :temp-source "${round(EWW_DISK["/mnt/backups"]["used_perc"], 0)}")
+        )
+        (box
+            (scaler :label volume-amount :temp-source volume)
             (scaler :label "" :temp-source mic)
         )
+        (box :orientation "v"
+         (label :text "${pkg-count} ")
          (label :text time)
+        )
     ))
 
 (defwindow hyprland-bar-hdmi
     :monitor 1
     :exclusive true
     :geometry (geometry
-        :width "2%"
+        :width "3%"
         :height "1%" ;as small as possible so that only the space necessary is used
         :anchor "left center"
     )
     (INFO)
 
 )
+
 (defwindow hyprland-bar-dp
     :monitor 0
     :exclusive true
     :geometry (geometry
-        :width "2%"
+        :width "3%"
         :height "1%" ;as small as possible so that only the space necessary is used
         :anchor "left center"
     )

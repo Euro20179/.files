@@ -1,7 +1,10 @@
 #!/bin/bash
 
 read -r volume <<< $(wpctl get-volume "@DEFAULT_AUDIO_SINK@")
-volume=${volume#*0.}
+[ "${volume#*0.}" -gt 1 ] && volume=${volume#*0.} || {
+    volume="${volume/./}"
+    volume="${volume#* }"
+}
 read -r mic <<< $(pactl get-source-volume $(pactl get-default-source) | grep -o '[[:digit:]]\+%' | head -n 1)
 
 action="$1"
@@ -39,12 +42,16 @@ case "$action" in
         eww update volume="${volume}"
         if [ "$volume" -ge 66 ]; then
             image="audio-volume-high"
+            eww update "volume-amount="
         elif [ "$volume" -ge 33 ]; then
             image="audio-volume-medium"
-        elif [ "$volume" -ge 0 ]; then
+            eww update "volume-amount="
+        elif [ "$volume" -gt 0 ]; then
             image='audio-volume-low'
+            eww update "volume-amount="
         else
             image="audio-volume-mute"
+            eww update "volume-amount="
         fi
         ;;
 esac
