@@ -7,8 +7,8 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export SDL_VIDEODRIVER=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-# mako & disown
-moxnotify & disown
+mako & disown
+# moxnotify & disown
 brightnessctl s 100%
 
 # case "$XDG_CURRENT_DESKTOP" in

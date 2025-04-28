@@ -15,7 +15,7 @@ metadata=$(curl "$AIO_SERVER/api/v1/metadata/retrieve?id=$id&uid=$AIO_UID")
 thumbnail="$(jq -r '.Thumbnail' <<< "$metadata")"
 title="$(jq -r '.Title' <<< "$metadata")"
 [ "$title" = "null" ] || [ -z "$title" ] && title="$(jq -r '.En_Title' <<< "$item")"
-image_tmp="$(mktemp "HOMELAB.tmp.XXXXXXX.png")"
+image_tmp="$(mktemp -p "${TMPDIR:-/tmp}" "HOMELAB.tmp.XXXXXXX.png")"
 location="$(jq -r '.Location' <<< "$item")"
 curl "$(fix-thumbnail "$thumbnail")" > "$image_tmp"
 
