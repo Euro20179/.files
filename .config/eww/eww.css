@@ -56,3 +56,10 @@ progressbar.temp-0 progress
     background-color: #83b869;
 }
 
+/*MUST come after the other progress bar things because specificity*/
+.muted-true progressbar progress{
+    background-color: #832a61 ;
+}
+.muted-true label{
+    color: #832a61 ;
+}
