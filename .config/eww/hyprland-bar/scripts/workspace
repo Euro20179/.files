@@ -8,6 +8,10 @@ declare -A class2symbol=(
     [thunderbird]=
 )
 
+declare -A titleFuzz2symbol=(
+    [Discord]=󰙯
+)
+
 workspaces() {
     declare -A occupied
     declare -A focused
@@ -32,12 +36,25 @@ workspaces() {
     for k in "${!occupied[@]}"; do
         mon="${occupied[$k]}"
 
-        itemsOnWorkspace="$(hyprctl clients -j | jq -r '.[] | select(.workspace.id=='"${k}"')|"\(.class)\t\(.address)"')"
+        itemsOnWorkspace="$(hyprctl clients -j | jq -r '.[] | select(.workspace.id=='"${k}"')|"\(.class)\t\(.address)\t\(.title)"')"
         symbolT=""
 
-        while read -r itemCLS itemADDR; do
-            s="${class2symbol[$itemCLS]}"
+        while IFS=$'\t' read -r itemCLS itemADDR itemTITLE; do
+            #iterate through titles first
+            for tk in "${!titleFuzz2symbol[@]}"; do
+                case "$itemTITLE" in
+                    *"$tk"*)
+                        s=${titleFuzz2symbol[$tk]}
+                        break ;;
+                esac
+            done
+
+            #if s has not been set, use the exact class as fallback
+            [ -z "$s" ] && s="${class2symbol[$itemCLS]}"
+
+            #if it's stil not set, use ?
             [ -z "$s" ] && s='?'
+
             [ "$activewindowID" = "$itemADDR" ] && s="F:$s"
             symbolT="${symbolT} ${s}"
         done <<<"$itemsOnWorkspace"
