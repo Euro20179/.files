@@ -24,6 +24,7 @@ esac
 
 case "$action" in
     *mic*) 
+        eww update mic="${mic%\%}"
         if [ "${mic%\%}" -ge 66 ]; then
             image="microphone-high"
         elif [ "${mic%\%}" -ge 33 ]; then
@@ -35,6 +36,7 @@ case "$action" in
         fi
         ;;
     higher|lower) 
+        eww update volume="${volume}"
         if [ "$volume" -ge 66 ]; then
             image="audio-volume-high"
         elif [ "$volume" -ge 33 ]; then
@@ -46,5 +48,6 @@ case "$action" in
         fi
         ;;
 esac
+
 
 notify-send -i "$image" "$@"

@@ -7,18 +7,13 @@
               :initial "initial-value"
               :run-while true
               `date +%H:%M`)
-(defpoll cpu-temp :interval "1s"
-                  :initial "0"
-                  :run-while true
-                  `hyprland-bar/scripts/temp`
-)
-(defpoll gpu-temp :interval "1s"
-                  :initial "0"
-                  :run-while true
-                  `hyprland-bar/scripts/gpu-temp`
-)
 
-(defwidget temp [label temp-source]
+(defpoll volume :interval "2s"
+         `pactl get-sink-volume @DEFAULT_SINK@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
+(defpoll mic :interval "2s"
+         `pactl get-source-volume @DEFAULT_SOURCE@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
+
+(defwidget scaler [label temp-source]
         (box :orientation "v" :space-evenly false :spacing 10
             (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
             (progress :value temp-source :class "temp-${round((temp-source - 10) / 10, 0)}" :orientation "v" :halign "center" :flipped true :tooltip temp-source)
@@ -29,8 +24,12 @@
     (box :orientation "v" :space-evenly false
         (workspaces)
         (box
-            (temp :label "" :temp-source cpu-temp)
-            (temp :label "󰍹" :temp-source gpu-temp)
+            (scaler :label "" :temp-source {EWW_TEMPS["K10TEMP_TCTL"]})
+            (scaler :label "󰍹" :temp-source {EWW_TEMPS["AMDGPU_EDGE"]})
+        )
+        (box
+            (scaler :label "" :temp-source volume)
+            (scaler :label "" :temp-source mic)
         )
          (label :text time)
     ))

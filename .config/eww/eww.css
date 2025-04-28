@@ -22,7 +22,7 @@ box {
     color: #e78b69;
 }
 
-.temp-1, .temp-2, .temp-3, .temp-4 {
+.temp-0, .temp-1, .temp-2, .temp-3, .temp-4 {
     color: #83b869;
 }
 
@@ -50,7 +50,8 @@ progressbar.temp-7 progress
 progressbar.temp-4 progress,
 progressbar.temp-3 progress,
 progressbar.temp-2 progress,
-progressbar.temp-1 progress
+progressbar.temp-1 progress,
+progressbar.temp-0 progress
 {
     background-color: #83b869;
 }
