@@ -19,6 +19,13 @@
 (defpoll pkg-count :interval "2s"
         `pacman -Q | wc -l`)
 
+(defpoll home-df :interval "5s"
+        `duf -json | jq '(.[]|select(.mount_point=="/home").used) / (.[]|select(.mount_point=="/home").total) * 100'`)
+(defpoll cloud-df :interval "5s"
+        `duf -json | jq '((.[]|select(.mount_point=="/home/cloud")|.used) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.used)) / ((.[]|select(.mount_point=="/home/cloud")|.total) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.total)) * 100'`)
+(defpoll backups-df :interval "5s"
+        `duf -json | jq '(.[]|select(.mount_point=="/mnt/backups").used) / (.[]|select(.mount_point=="/mnt/backups").total) * 100'`)
+
 (defwidget scaler [label temp-source ?class]
         (box :orientation "v" :space-evenly false :spacing 10 :class class
             (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
@@ -38,13 +45,9 @@
             (scaler :label "" :temp-source {EWW_RAM["used_mem_perc"]})
         )
         (box
-            (scaler :label "" :temp-source "${round(EWW_DISK["/home"]["used_perc"], 0)}")
-            (scaler :label "" :temp-source "${round((
-                            (EWW_DISK["/home/cloud"]["used"] + EWW_DISK["/home/cloud/COLD-STORAGE"]["used"])
-                            /
-                            (EWW_DISK["/home/cloud"]["total"] + EWW_DISK["/home/cloud/COLD-STORAGE"]["total"])
-                            * 100), 0)}")
-            (scaler :label "󰁯" :temp-source "${round(EWW_DISK["/mnt/backups"]["used_perc"], 0)}")
+            (scaler :label "" :temp-source "${round(home-df, 2)}")
+            (scaler :label "" :temp-source "${round(cloud-df, 2)}")
+            (scaler :label "󰁯" :temp-source "${round(backups-df, 0)}")
         )
         (box
             (scaler :label volume-amount :class "muted-${volume-muted}" :temp-source volume)
