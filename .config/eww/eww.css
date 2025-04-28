@@ -15,6 +15,16 @@ box {
 .btn:hover {
     background-color: #392d5a;
 }
+
+.monospace {
+    font-family: monospace;
+}
+/*}}}*/
+
+/*homelab {{{*/
+.homelab-item-title {
+    font-size: 2em;
+}
 /*}}}*/
 
 /*hyprland-bar-* {{{*/

@@ -51,7 +51,7 @@
         (box
             (scaler :label "" :temp-source "${round(home-df, 2)}")
             (scaler :label "" :temp-source "${round(cloud-df, 2)}")
-            (scaler :label "󰁯" :temp-source "${round(backups-df, 0)}")
+            (scaler :label "󰁯" :temp-source "${round(backups-df, 2)}")
         )
         (box
             (scaler :label volume-amount :class "muted-${volume-muted}" :temp-source volume)

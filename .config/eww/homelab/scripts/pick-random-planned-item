@@ -1,0 +1,35 @@
+#!/bin/bash
+
+rm /tmp/HOMELAB.tmp.*
+
+fix-thumbnail() {
+    case "$1" in
+    /*) printf "$AIO_SERVER%s" "$1" ;;
+    *) printf "%s" "$1" ;;
+    esac
+}
+
+item=$(curl "$AIO_SERVER/api/v1/query-v3?search=@planned&uid=$AIO_UID" | shuf | head -n1)
+id=$(jq -r '.ItemId' <<<"$item")
+metadata=$(curl "$AIO_SERVER/api/v1/metadata/retrieve?id=$id&uid=$AIO_UID")
+thumbnail="$(jq -r '.Thumbnail' <<< "$metadata")"
+title="$(jq -r '.Title' <<< "$metadata")"
+[ "$title" = "null" ] || [ -z "$title" ] && title="$(jq -r '.En_Title' <<< "$item")"
+image_tmp="$(mktemp "HOMELAB.tmp.XXXXXXX.png")"
+location="$(jq -r '.Location' <<< "$item")"
+curl "$(fix-thumbnail "$thumbnail")" > "$image_tmp"
+
+case "$location" in
+    '') onclick="_BROWSER_NO_PRIVACY 'https://cloud:8887/new-ui/?uid=$AIO_UID&item-id=$id&display'" ;;
+    *) onclick="wl-copy -n <<< '$location' && notify-send 'homelab' 'location coppied to clipboard'" ;;
+esac
+
+printf "
+(box
+    (eventbox :class \"btn\" :onclick \"%s\"
+        (box
+            (label :class \"homelab-item-title\" :markup \"RANDOM ITEM\r%s\")
+            (image :path \"%s\"  :image-height 300)
+        )
+    )
+)" "$onclick" "$title" "$image_tmp"

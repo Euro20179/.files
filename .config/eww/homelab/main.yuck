@@ -1,0 +1,39 @@
+(defwidget image-button [onclick image-path]
+    (eventbox :onclick onclick :class "btn"
+        (image :path image-path :image-height 50)
+    )
+)
+
+(defpoll random-item :interval "5s"
+         :initial-value "(box)"
+         `./homelab/scripts/pick-random-planned-item`
+)
+
+(defvar searched-items "")
+
+(defwindow homelab
+    :monitor 0
+    :exclusive false
+    :focusable true
+    :geometry (geometry
+        :width "50%"
+        :anchor "center"
+    )
+    (eventbox :onclick "eww close homelab"
+        (box :orientation "v" :class "main-box" :space-evenly false
+            (box
+                (label :text "Search")
+                (input  :onaccept `eww update "searched-items=$(/home/euro/search-aio '{}' | cut -f1 -d $'\\t' | awk '{if (NR % 3 == 0 && NR != 0) { print } else { printf "%s\\x1F", $0 } }' | column -c 80 -C trunc -t -s $'\\x1f')"`)
+            )
+            (scroll :vscroll true :height 100
+                (label :class "monospace" :text searched-items)
+            )
+            (literal :content random-item)
+            (box
+                (image-button :onclick "$BROWSER https://cloud:9999/jellyfin/" :image-path "./homelab/jellyfin.png")
+                (image-button :onclick "$BROWSER https://sonarr.cloud:9999/" :image-path "./homelab/sonarr.png")
+                (image-button :onclick "$BROWSER https://radarr.cloud:9999/" :image-path "./homelab/radarr.png")
+            )
+        )
+    )
+)

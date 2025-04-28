@@ -1,0 +1,3 @@
+#!/bin/sh
+
+eww list-windows | grep -q "$1" && eww close "$1" || eww open "$1"
