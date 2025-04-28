@@ -17,15 +17,16 @@ else
 fi
 
 select_bookmark() {
+    prompt=$1
     printf "%s" "$marks" |
         jq -r '.results.[]|"\(if .title != "" then .title elif .description == "" then .url else .description end)\t\(.url)\t#\(.tag_names|join(" "))"' |
         column -t -s $'\t' -o $'\t\t\t' |
-        rofi -dmenu -theme cat-macchiato -matching glob -i |
+        rofi -dmenu -p "$prompt bookmark" -theme cat-macchiato -matching glob -i |
         cut -f4 | tr -d '[:space:]'
 }
 
 open() {
-    link=$(select_bookmark)
+    link=$(select_bookmark "open")
     #ensure process is not linked to a tty
     [ -z "$link" ] && exit 0
     linkhandler "$link" <&- 1<&- 2<&-
@@ -46,7 +47,7 @@ remove() {
 }
 
 copy() {
-    link=$(select_bookmark)
+    link=$(select_bookmark "copy")
     wl-copy -n <<<"$link"
 }
 
