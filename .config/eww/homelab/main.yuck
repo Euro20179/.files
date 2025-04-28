@@ -23,7 +23,7 @@
         (box :orientation "v" :class "main-box" :space-evenly false
             (box
                 (label :text "Search")
-                (input  :onaccept `eww update "searched-items=$(/home/euro/search-aio '{}' | cut -f1 -d $'\\t' | awk '{if (NR % 3 == 0 && NR != 0) { print } else { printf "%s\\x1F", $0 } }' | column -c 80 -C trunc -t -s $'\\x1f')"`)
+                (input  :onaccept `eww update "searched-items=$(search-aio '{}' | cut -f1 -d $'\\t' | awk '{if (NR % 3 == 0 && NR != 0) { print } else { printf "%s\\x1F", $0 } }' | column -c 80 -C trunc -t -s $'\\x1f')"`)
             )
             (scroll :vscroll true :height 100
                 (label :class "monospace" :text searched-items)

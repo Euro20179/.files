@@ -46,7 +46,13 @@ workspaces() {
         itemsOnWorkspace="$(hyprctl clients -j | jq -r '.[] | select(.workspace.id=='"${k}"')|"\(.class)\t\(.address)\t\(.title)"')"
         symbolT=""
 
+        itemTitles=()
+        itemADDRS=()
+
         while IFS=$'\t' read -r itemCLS itemADDR itemTITLE; do
+            : "${itemTitles[${#itemTitles[*]}]=$itemTITLE}"
+            : "${itemADDRS[${#itemADDRS[*]}]=$itemADDR}"
+
             #clobber s to ensure it's not using the previous value
             s=
             #iterate through titles first
@@ -95,7 +101,7 @@ workspaces() {
                 ;;
             *) cls="" ;;
             esac
-            text="$text"'(label  :class "'"$cls"'" :text "'"${s}"'")'
+            text="$text"'(eventbox :onclick "hyprctl dispatch focuswindow address:'"${itemADDRS[$i]}"'" (label :tooltip "'"${itemTitles[$i]}"'" :class "'"$cls"'" :text "'"${s}"'") )'
             ((i++))
         done
 
