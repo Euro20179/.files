@@ -10,7 +10,7 @@ declare -A class2symbol=(
 
 declare -A titleFuzz2symbol=(
     [Discord]=󰙯
-    [Songs/scripts]=󰎇
+    [Songs/scripts*(foot)]=󰎇
 )
 
 workspaces() {
@@ -46,7 +46,8 @@ workspaces() {
             #iterate through titles first
             for tk in "${!titleFuzz2symbol[@]}"; do
                 case "$itemTITLE" in
-                    *"$tk"*)
+                    #no quotes for the var to ensure globbing works
+                    *$tk*)
                         s=${titleFuzz2symbol[$tk]}
                         break ;;
                 esac
