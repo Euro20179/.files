@@ -1,0 +1,58 @@
+
+(deflisten workspace "hyprland-bar/scripts/workspace")
+(defwidget workspaces []
+    (literal :content workspace))
+
+(defpoll time :interval "1s"
+              :initial "initial-value"
+              :run-while true
+              `date +%H:%M`)
+(defpoll cpu-temp :interval "1s"
+                  :initial "0"
+                  :run-while true
+                  `hyprland-bar/scripts/temp`
+)
+(defpoll gpu-temp :interval "1s"
+                  :initial "0"
+                  :run-while true
+                  `hyprland-bar/scripts/gpu-temp`
+)
+
+(defwidget temp [label temp-source]
+        (box :orientation "v" :space-evenly false :spacing 10
+            (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
+            (progress :value temp-source :class "temp-${round((temp-source - 10) / 10, 0)}" :orientation "v" :halign "center" :flipped true :tooltip temp-source)
+        )
+)
+
+(defwidget INFO []
+    (box :orientation "v" :space-evenly false
+        (workspaces)
+        (box
+            (temp :label "" :temp-source cpu-temp)
+            (temp :label "󰍹" :temp-source gpu-temp)
+        )
+         (label :text time)
+    ))
+
+(defwindow hyprland-bar-hdmi
+    :monitor 1
+    :exclusive true
+    :geometry (geometry
+        :width "2%"
+        :height "1%" ;as small as possible so that only the space necessary is used
+        :anchor "left center"
+    )
+    (INFO)
+
+)
+(defwindow hyprland-bar-dp
+    :monitor 0
+    :exclusive true
+    :geometry (geometry
+        :width "2%"
+        :height "1%" ;as small as possible so that only the space necessary is used
+        :anchor "left center"
+    )
+    (INFO)
+)

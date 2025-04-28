@@ -1,9 +1,0 @@
-#!/bin/sh
-
-status=$(mullvad status -l)
-text=$(echo "$status" | sed -n 1p | sed -n 's/.*in \(.*\)/\1/p')
-location=$text
-mullvad status | grep -q Disconnected || text="${text+C}"
-ip=$(echo "$status" | sed -n 2p)
-mullvad status | grep -q Disconnected && class=disconnected || class=connected
-printf "%s" "{\"text\": \"${text:-D}\", \"alt\": \"vpn\", \"tooltip\": \"$location $ip\", \"class\": \"$class\", \"percentage\": 100 }"

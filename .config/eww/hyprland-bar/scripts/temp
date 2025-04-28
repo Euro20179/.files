@@ -1,0 +1,20 @@
+#!/bin/bash
+
+for hw in /sys/class/hwmon/*; do
+    [ "$(cat "$hw/name")" = "k10temp" ] && real_temp="$(cat "$hw/temp1_input")" && break
+done
+
+temp="$(echo "scale=0; $real_temp / 1000" | bc)"
+
+if [ "$temp" -lt 50 ]; then
+    class="cold"
+elif [ "$temp" -lt 75 ]; then
+    class="medium"
+elif [ "$temp" -lt 90 ]; then
+    class="hot"
+else
+    class="warning"
+fi
+
+printf "%s" "$temp"
+

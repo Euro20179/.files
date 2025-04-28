@@ -1,0 +1,84 @@
+#!/bin/bash
+
+declare -A class2symbol=(
+    [foot]=
+    [nheko]=󰊌
+    [LibreWolf]=
+    [osu!]=󰎄!
+)
+
+workspaces() {
+    declare -A occupied
+    declare -A focused
+
+    while read -r mon; do
+        name="${mon%%[[:space:]]*}"
+        ws="${mon##*[[:space:]]}"
+        : "${occupied["${ws}"]="$name"}"
+    done <<<"$(hyprctl workspaces -j | jq -r '.[]|"\(.monitor)\t\(.name)"')"
+
+    while read -r mon; do
+        name="${mon%%[[:space:]]*}"
+        ws="${mon##*[[:space:]]}"
+        : "${focused["$name"]=$ws}"
+    done <<<"$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.activeWorkspace.id)"')"
+
+    text="(box :space-evenly false :spacing 10 :class \"workspace-container\" :orientation \"v\""
+
+    activewindow=$(hyprctl activewindow -j)
+    activewindowID=$(jq -r '.address' <<<"$activewindow")
+
+    for k in "${!occupied[@]}"; do
+        mon="${occupied[$k]}"
+
+        itemsOnWorkspace="$(hyprctl clients -j | jq -r '.[] | select(.workspace.id=='"${k}"')|"\(.class)\t\(.address)"')"
+        symbolT=""
+
+        while read -r itemCLS itemADDR; do
+            s="${class2symbol[$itemCLS]}"
+            [ -z "$s" ] && s='?'
+            [ "$activewindowID" = "$itemADDR" ] && s="F:$s"
+            symbolT="${symbolT} ${s}"
+        done <<<"$itemsOnWorkspace"
+
+        if [ "${focused[$mon]}" = "$k" ]; then
+            cls="focused-workspace"
+        else
+            cls="unfocused-workspace"
+        fi
+
+        text="$text(box :class \"workspace $cls\" :orientation \"v\""
+        text="$text"'(label :class "'"$cls"'"  :text "'"${k}"'")'
+
+        i=0
+        boxesPerRow=3
+        for s in $symbolT; do
+            #every N items add a new box to create a new row
+            [ "$((i%boxesPerRow))" = 0 ] && case "$i" in
+                                        #this is the first box do not close the non-existant previous box
+                                        0) text="$text(box" ;;
+                                        #this is not the first box, close the previous box
+                                        *) text="$text)(box"
+                                esac
+            case "$s" in
+            F:*)
+                s="${s#F:}"
+                cls="focused-item"
+                ;;
+            *) cls="" ;;
+            esac
+            text="$text"'(label  :class "'"$cls"'" :text "'"${s}"'")'
+            ((i++))
+        done
+
+        #close the final box taht didn't get closed
+        text="$text))"
+    done
+    echo "$text)"
+}
+
+workspaces
+
+socat -u UNIX-CONNECT:/run/user/$UID/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do
+    workspaces "$event"
+done

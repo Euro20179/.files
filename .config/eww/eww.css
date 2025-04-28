@@ -1,0 +1,57 @@
+* {
+    color: #b5e8f3;
+}
+
+box {
+    padding-bottom: 5px;
+}
+
+.workspace-container {
+    background-color: #21143e;
+}
+
+.workspace {
+    border-bottom: 1px solid currentColor;
+}
+
+.unfocused-workspace {
+    color: #b5e8f3;
+}
+
+.focused-workspace, .focused-item {
+    color: #e78b69;
+}
+
+.temp-1, .temp-2, .temp-3, .temp-4 {
+    color: #83b869;
+}
+
+.temp-5, .temp-6, .temp-7 {
+    color: #c756ff;
+}
+
+.temp-8, .temp-9, .temp-10 {
+    color: #e78b69;
+}
+
+progressbar.temp-8 progress,
+progressbar.temp-9 progress,
+progressbar.temp-10 progress {
+    background-color: #e78b69;
+}
+
+progressbar.temp-5 progress,
+progressbar.temp-6 progress,
+progressbar.temp-7 progress
+{
+    background-color: #c756ff;
+}
+
+progressbar.temp-4 progress,
+progressbar.temp-3 progress,
+progressbar.temp-2 progress,
+progressbar.temp-1 progress
+{
+    background-color: #83b869;
+}
+

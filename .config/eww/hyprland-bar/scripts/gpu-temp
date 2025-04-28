@@ -1,0 +1,16 @@
+#!/bin/bash
+
+real_temp="$(cat /sys/class/hwmon/hwmon1/temp1_input)"
+temp="$(echo "scale=0; $real_temp / 1000" | bc)"
+
+if [ "$temp" -lt 50 ]; then
+    class="cold"
+elif [ "$temp" -lt 75 ]; then
+    class="medium"
+elif [ "$temp" -lt 90 ]; then
+    class="hot"
+else
+    class="warning"
+fi
+
+printf "%s" "$temp"
