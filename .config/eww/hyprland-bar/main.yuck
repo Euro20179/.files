@@ -4,37 +4,41 @@
     (literal :content workspace))
 
 (defpoll time :interval "1s"
-              :initial "initial-value"
-              :run-while true
-              `date "+%H:%M "`)
+    :initial "initial-value"
+    :run-while true
+    `date "+%H:%M "`)
 (defpoll date :interval "1m"
-              :initial "initial-date"
-              `date "+%m/%d 🗓︎"`)
+    :initial "initial-date"
+    `date "+%m/%d 🗓︎"`)
 
 (defpoll volume :interval "2s"
-         `pactl get-sink-volume @DEFAULT_SINK@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
+    `pactl get-sink-volume @DEFAULT_SINK@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
 (defpoll mic :interval "2s"
-         `pactl get-source-volume @DEFAULT_SOURCE@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
+    `pactl get-source-volume @DEFAULT_SOURCE@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
 
 (defpoll pkg-count :interval "2s"
-        `pacman -Q | wc -l`)
+    `pacman -Q | wc -l`)
 
 (defpoll home-df :interval "5s"
-        `duf -json | jq '(.[]|select(.mount_point=="/home").used) / (.[]|select(.mount_point=="/home").total) * 100'`)
+    `duf -json | jq '(.[]|select(.mount_point=="/home").used) / (.[]|select(.mount_point=="/home").total) * 100'`)
 (defpoll cloud-df :interval "5s"
-        `duf -json | jq '((.[]|select(.mount_point=="/home/cloud")|.used) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.used)) / ((.[]|select(.mount_point=="/home/cloud")|.total) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.total)) * 100'`)
+    `duf -json | jq '((.[]|select(.mount_point=="/home/cloud")|.used) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.used)) / ((.[]|select(.mount_point=="/home/cloud")|.total) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.total)) * 100'`)
 (defpoll backups-df :interval "5s"
-        `duf -json | jq '(.[]|select(.mount_point=="/mnt/backups").used) / (.[]|select(.mount_point=="/mnt/backups").total) * 100'`)
+    `duf -json | jq '(.[]|select(.mount_point=="/mnt/backups").used) / (.[]|select(.mount_point=="/mnt/backups").total) * 100'`)
 
 (defwidget scaler [label temp-source ?class]
-        (box :orientation "v" :space-evenly false :spacing 10 :class class
-            (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
-            (progress :value temp-source :class "temp-${round((temp-source - 10) / 10, 0)}" :orientation "v" :halign "center" :flipped true :tooltip temp-source)
-        )
+    (box :orientation "v" :space-evenly false :spacing 10 :class class
+        (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
+        (progress :value temp-source :class "temp-${round((temp-source - 10) / 10, 0)}" :orientation "v" :halign "center" :flipped true :tooltip temp-source)
+    )
 )
+
+(defpoll cal :interval "1h" "cal")
 
 (defvar volume-amount "")
 (defpoll volume-muted :interval "1s" "wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && printf true || printf false")
+
+(defvar vpn-connected "false")
 
 (defwidget INFO []
     (box :orientation "v" :space-evenly false
@@ -53,10 +57,13 @@
             (scaler :label volume-amount :class "muted-${volume-muted}" :temp-source volume)
             (scaler :label "" :temp-source mic)
         )
-        (box :orientation "v"
-         (label :class "basic-info" :text "${pkg-count} ")
-         (label :class "basic-info" :text time)
-        (label :class "basic-info" :text date)
+        (box :orientation "v" :space-evenly false
+            (label :class "basic-info" :text "${pkg-count} ")
+            (label :class "basic-info" :text time)
+            (label :class "basic-info" :text date)
+            (revealer :transition "slideup" :reveal vpn-connected :duration "1s"
+                (label  :class "basic-info" :class "vpn-connected-text" :text "VPN C") 
+            )
         )
         (systray :orientation "v" :icon-size 22)
     ))

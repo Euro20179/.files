@@ -30,6 +30,10 @@ box {
     padding: 5px 0;
 }
 
+.vpn-connected-text {
+    color: #83b869;
+}
+
 .unfocused-workspace {
     color: #b5e8f3;
 }
