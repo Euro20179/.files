@@ -20,7 +20,7 @@ location="$(jq -r '.Location' <<< "$item")"
 curl "$(fix-thumbnail "$thumbnail")" > "$image_tmp"
 
 case "$location" in
-    '') onclick="_BROWSER_NO_PRIVACY 'https://cloud:8887/new-ui/?uid=$AIO_UID&item-id=$id&display'" ;;
+    '') onclick="_BROWSER_NO_PRIVACY 'https://cloud:8887/ui/?uid=$AIO_UID&item-id=$id&display'" ;;
     *) onclick="wl-copy -n <<< '$location' && notify-send 'homelab' 'location coppied to clipboard'" ;;
 esac
 
