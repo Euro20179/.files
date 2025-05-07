@@ -1,100 +1,100 @@
-local lsp = vim.lsp
-local ms = vim.lsp.protocol.Methods
-local util = vim.lsp.util
-
----@type "a" | "b" | "c"
-local enum = "c"
-
----@return lsp.CompletionItem[]
-local function get_lsp_items(params)
-  local results = lsp.buf_request_sync(0, ms.textDocument_completion, params)
-  local items = {}
-  if results and not vim.tbl_isempty(results) then
-    for _, obj in ipairs(results) do
-      local result = obj.result
-      if result then
-        items = vim
-          .iter(result.items)
-          :filter(function(item)
-            return item.kind == lsp.protocol.CompletionItemKind.EnumMember
-          end)
-          :totable()
-      end
-
-      if not vim.tbl_isempty(items) then
-        break
-      end
-    end
-  end
-  return items
-end
-
-local function dial(inc)
-  return function()
-    local word = vim.fn.expand("<cword>")
-    local wORD = vim.fn.expand("<cWORD>")
-    local params = util.make_position_params(0, "utf-8")
-    local items = get_lsp_items(params)
-
-    if vim.tbl_isempty(items) then
-      return
-    end
-
-    local index
-    local correct
-
-    for i, value in ipairs(items) do
-      if value.label == word then
-        index = i
-        correct = word
-        break
-      elseif value.label == wORD then
-        index = i
-        correct = wORD
-        break
-      end
-    end
-
-    if not index then
-      return
-    end
-    if inc then
-      index = index + 1
-      if index > #items then
-        index = 1
-      end
-    else
-      index = index - 1
-      if index < 1 then
-        index = #items
-      end
-    end
-
-    local next_item = items[index]
-
-    local pos = vim.api.nvim_win_get_cursor(0)
-
-    vim.cmd("s/" .. correct .. "/" .. next_item.label)
-
-    vim.api.nvim_win_set_cursor(0, pos)
-  end
-end
-
-vim.keymap.set("n", "<Plug>(LspDialInc)", dial(true), { noremap = true })
-vim.keymap.set("n", "<Plug>(LspDialDec)", dial(false), { noremap = true })
-
-vim.keymap.set("n", "<C-a>", function()
-  if tonumber(vim.fn.expand("<cword>")) ~= nil then
-    return "<C-a>"
-  else
-    return "<Plug>(LspDialInc)"
-  end
-end, { expr = true })
-
-vim.keymap.set("n", "<C-x>", function()
-  if tonumber(vim.fn.expand("<cword>")) ~= nil then
-    return "<C-x>"
-  else
-    return "<Plug>(LspDialDec)"
-  end
-end, { expr = true })
+-- local lsp = vim.lsp
+-- local ms = vim.lsp.protocol.Methods
+-- local util = vim.lsp.util
+--
+-- ---@type "a" | "b" | "c"
+-- local enum = "c"
+--
+-- ---@return lsp.CompletionItem[]
+-- local function get_lsp_items(params)
+--   local results = lsp.buf_request_sync(0, ms.textDocument_completion, params)
+--   local items = {}
+--   if results and not vim.tbl_isempty(results) then
+--     for _, obj in ipairs(results) do
+--       local result = obj.result
+--       if result then
+--         items = vim
+--           .iter(result.items)
+--           :filter(function(item)
+--             return item.kind == lsp.protocol.CompletionItemKind.EnumMember
+--           end)
+--           :totable()
+--       end
+--
+--       if not vim.tbl_isempty(items) then
+--         break
+--       end
+--     end
+--   end
+--   return items
+-- end
+--
+-- local function dial(inc)
+--   return function()
+--     local word = vim.fn.expand("<cword>")
+--     local wORD = vim.fn.expand("<cWORD>")
+--     local params = util.make_position_params(0, "utf-8")
+--     local items = get_lsp_items(params)
+--
+--     if vim.tbl_isempty(items) then
+--       return
+--     end
+--
+--     local index
+--     local correct
+--
+--     for i, value in ipairs(items) do
+--       if value.label == word then
+--         index = i
+--         correct = word
+--         break
+--       elseif value.label == wORD then
+--         index = i
+--         correct = wORD
+--         break
+--       end
+--     end
+--
+--     if not index then
+--       return
+--     end
+--     if inc then
+--       index = index + 1
+--       if index > #items then
+--         index = 1
+--       end
+--     else
+--       index = index - 1
+--       if index < 1 then
+--         index = #items
+--       end
+--     end
+--
+--     local next_item = items[index]
+--
+--     local pos = vim.api.nvim_win_get_cursor(0)
+--
+--     vim.cmd("s/" .. correct .. "/" .. next_item.label)
+--
+--     vim.api.nvim_win_set_cursor(0, pos)
+--   end
+-- end
+--
+-- vim.keymap.set("n", "<Plug>(LspDialInc)", dial(true), { noremap = true })
+-- vim.keymap.set("n", "<Plug>(LspDialDec)", dial(false), { noremap = true })
+--
+-- vim.keymap.set("n", "<C-a>", function()
+--   if tonumber(vim.fn.expand("<cword>")) ~= nil then
+--     return "<C-a>"
+--   else
+--     return "<Plug>(LspDialInc)"
+--   end
+-- end, { expr = true })
+--
+-- vim.keymap.set("n", "<C-x>", function()
+--   if tonumber(vim.fn.expand("<cword>")) ~= nil then
+--     return "<C-x>"
+--   else
+--     return "<Plug>(LspDialDec)"
+--   end
+-- end, { expr = true })

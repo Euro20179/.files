@@ -3,7 +3,7 @@
 declare -A class2symbol=(
     [foot]=
     [nheko]=󰊌
-    [LibreWolf]=
+    [librewolf]=
     [osu!]=󰎄!
     [thunderbird]=
     [mpv]=󰈫
@@ -101,7 +101,7 @@ workspaces() {
                 ;;
             *) cls="" ;;
             esac
-            text="$text"'(eventbox :onclick "hyprctl dispatch focuswindow address:'"${itemADDRS[$i]}"'" (label :tooltip "'"${itemTitles[$i]}"'" :class "'"$cls"'" :text "'"${s}"'") )'
+            text="$text"'(eventbox :onclick "hyprctl dispatch focuswindow address:'"${itemADDRS[$i]}"'" (label :class "'"$cls"'" :text "'"${s}"'") )'
             ((i++))
         done
 
