@@ -8,7 +8,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local function setupLSP(name, settings)
     vim.lsp.config[name] = settings
     vim.lsp.enable(name)
-
 end
 
 vim.lsp.config("*", { capabilities = capabilities })
@@ -21,20 +20,20 @@ setupLSP("raku", {
 
 setupLSP("emmet", {
     cmd = { "emmet-ls", "--stdio" },
-    filetypes = { "html" },
+    filetypes = { "html", "css" },
     root_dir = "."
 })
 
-setupLSP("intelephense", {
-    cmd = { "intelephense", "--stdio" },
+setupLSP("phpactor", {
+    cmd = { "phpactor", "language-server", "-vvv" },
     filetypes = { "php" },
-    root_dir = "."
+    root_dir = vim.uv.cwd()
 })
 
 setupLSP("html", {
     cmd = { "vscode-html-language-server", "--stdio" },
-    filetypes = {"html", "tmpl"},
-    root_markers = {"package.json", ".git"},
+    filetypes = { "html", "tmpl" },
+    root_markers = { "package.json", ".git" },
     init_options = {
         provideFormatter = true,
         embeddedLanguages = { css = true, javascript = true },
@@ -161,4 +160,3 @@ setupLSP("vimls", {
     },
     root_markers = { ".git" }
 })
-

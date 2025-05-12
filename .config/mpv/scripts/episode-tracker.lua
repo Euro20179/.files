@@ -23,18 +23,6 @@ local function setupLogin()
 end
 
 
-local function isAnime()
-    local dirs = { "Anime", "Shows" }
-    local workingDir = mp.get_property("working-directory")
-    local path = mp.get_property("path")
-    for _, dir in pairs(dirs) do
-        if workingDir:match(string.format("/%s", dir)) or path:match(string.format("/%s/", dir)) then
-            return true
-        end
-    end
-    return false
-end
-
 ---@param currentFile string
 ---@param path string
 local function getEp(currentFile, path)
@@ -83,7 +71,24 @@ local function updateCurrEp(login, location, num)
 end
 
 local function onload()
-    if not isAnime() then
+    local wd = mp.get_property("working-directory")
+
+    local pp = mp.get_property('playlist-path')
+    if pp == nil then
+        print("Not playing a playlist")
+        return
+    end
+
+    if not pp:match("^/") then
+        pp = wd .. "/" .. pp
+    end
+
+
+    --check if we are in an AIO-dir
+    local f = io.open(pp .. "/.AIO-ID", "r")
+    if f ~= nil then
+        f:close()
+    else
         return
     end
 
@@ -98,16 +103,6 @@ local function onload()
     if pos == -1 then
         print("Unknown playing position")
         return
-    end
-
-    local pp = mp.get_property('playlist-path')
-    if pp == nil then
-        print("Not playing a playlist")
-        return
-    end
-    local wd = mp.get_property("working-directory")
-    if not pp:match("^/") then
-        pp = wd .. "/" .. pp
     end
 
     local current_file = mp.get_property("playlist/" .. pos .. "/filename")
