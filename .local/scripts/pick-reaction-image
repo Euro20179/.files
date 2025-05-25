@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wl-copy < "$(nsxiv -ot "$XDG_PICTURES_HOME/reaction-images/"*)"

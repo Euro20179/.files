@@ -76,7 +76,7 @@
 ((list)
  .
  ((simple_marked_text
-    (box) @markup.list.checked (#eq? @markup.list.checked "[x]") (#set! conceal "✅︎"))))
+    (box) @markup.list.checked (#eq? @markup.list.checked "[x]") (#set! conceal ""))))
 
 ((list)
  .
