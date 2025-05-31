@@ -1,9 +1,13 @@
 #!/bin/sh
 
 location=$1
+
+[ -z "${location}" ] && exit 1
+
 if [ -f "$location" ]; then
     location=${location%/*}
 fi
 
 [ -f "$location/.AIO-ID" ] && cat "$location/.AIO-ID" && exit 0
-exit 1
+
+getAIOId "${location%/*}"

@@ -43,5 +43,9 @@ for file in files:
     if len(realMatches) == 1:
         break
 
-numMatch: str = realMatches[0]
-_ = sys.stdout.write(numMatch[1][:-1])
+if len(realMatches) == 0:
+    sys.stdout.write("")
+
+else:
+    numMatch: str = realMatches[0]
+    _ = sys.stdout.write(numMatch[1][:-1])

@@ -84,14 +84,6 @@ local function onload()
     end
 
 
-    --check if we are in an AIO-dir
-    local f = io.open(pp .. "/.AIO-ID", "r")
-    if f ~= nil then
-        f:close()
-    else
-        return
-    end
-
     local login = setupLogin()
 
     if login == "" then
