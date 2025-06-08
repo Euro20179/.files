@@ -13,8 +13,11 @@ backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
     exit 1
 }
 
-oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "$CLOUD/COLD-STORAGE/backups" "rpi-backup-" ".ext4")"
+while [ "$(wc -l <<< "$backups")" -ge 3 ]; do
+    oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "$CLOUD/COLD-STORAGE/backups" "rpi-backup-" ".ext4")"
 
-echo "OLDEST: $oldest_file"
+    echo "MOVING OLDEST: $oldest_file"
 
-mv "$CLOUD/COLD-STORAGE/backups/$oldest_file" /mnt/backups/
+    mv "$CLOUD/COLD-STORAGE/backups/$oldest_file" /mnt/backups/
+    backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
+done
