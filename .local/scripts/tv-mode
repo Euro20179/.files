@@ -13,6 +13,7 @@ set.wayland() {
         rm "$state_file"
         swaymsg 'unbindsym KP_8'
         swaymsg 'unbindsym KP_2'
+        killall kodi
     else
         wlr-randr --output eDP-1 --off
         wlr-randr --output HDMI-A-1 --off
@@ -20,6 +21,7 @@ set.wayland() {
         swaymsg "bindsym KP_8 exec 'pactl set-sink-volume \$(pactl get-default-sink) +5% && send-volume-notif higher'"
         swaymsg "bindsym KP_2 exec 'pactl set-sink-volume \$(pactl get-default-sink) -5% && send-volume-notif lower'"
         touch "$state_file"
+        kodi & disown
     fi
 }
 
@@ -36,10 +38,11 @@ set.hyprland() {
         for i in {5..9}; do
             hyprctl keyword workspace "${i},monitor:HDMI-A-1,layoutopt:orientation:bottom"
         done
-        hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1,transform,3
+        hyprctl keyword monitor HDMI-A-1,1920x1080@75,1920x0,1
         hyprctl keyword monitor DP-1,1920x1080@165,0x790,1
         hyprctl keyword monitor DP-2,disable
         rm "$state_file"
+        killall kodi
         # restart-wallpaper
     else
         notify-send -c tv-mode "TV MODE" "ON"
@@ -57,6 +60,7 @@ set.hyprland() {
         hyprctl keyword monitor DP-1,disable
         hyprctl keyword monitor HDMI-A-1,disable
         touch "$state_file"
+        kodi & disown
         # restart-wallpaper
     fi
 }

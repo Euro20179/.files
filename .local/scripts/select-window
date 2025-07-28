@@ -1,10 +1,23 @@
 #!/bin/bash
 
-window=$(hyprctl clients -j |
-    jq -r '.[]|"\(.title)\t\(.address)"' |
+isniri=0
+if niri msg windows >/dev/null 2>&1; then
+    isniri=1
+    cmd="niri msg -j windows"
+    jqPath='.[]|"\(.title)\t\(.id)"'
+else
+    cmd="hyprctl clients -j"
+    jqPath='.[]|"\(.title)\t\(.address)"'
+fi
+window=$($cmd |
+    jq -r "$jqPath"|
     column -t -s $'\t' -o $'\t' |
     rofi -i -dmenu -theme cat-macchiato | cut -d $'\t' -f2)
 
 [ -z "$window" ] && exit
 
-hyprctl dispatch focuswindow address:"${window}"
+if [ $isniri = 1 ]; then
+    niri msg action focus-window --id "$window"
+else
+    hyprctl dispatch focuswindow address:"${window}"
+fi

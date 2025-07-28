@@ -48,7 +48,6 @@ try_mime_handling() {
         application/x-shockwave-flash) ruffle "$link" ;;
         inode/directory) open_with_editor "$link" ;;
         application/json) 
-            notify-send "$inTerminal"
             if [ "$inTerminal" = 1 ]; then
                 fx "$link"
             else
