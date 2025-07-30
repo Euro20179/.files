@@ -48,4 +48,7 @@ if len(realMatches) == 0:
 
 else:
     numMatch: str = realMatches[0]
-    _ = sys.stdout.write(numMatch[1][:-1])
+    if len(args) > 2 and args[2] == "i":
+        _ = sys.stdout.write(str(int(numMatch[1][:-1])))
+    else:
+        _ = sys.stdout.write(numMatch[1][:-1])
