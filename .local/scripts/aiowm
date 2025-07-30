@@ -1,0 +1,10 @@
+#!/bin/bash
+
+search=$*
+search="${search// /\\ }"
+
+results=$(curl "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "search=@${search}" | jq -r '"\(.ItemId)\t\(.En_Title)\t\(.Type)\t\(.Location)"')
+selection=$(echo "$results" | column -ts$'\t' -o $'\t' | fzf)
+IFS=$'\t' read -r id name type location <<< "$selection"
+export AIO_ID="$id"
+mpv "$(eval printf '%s' "$location")"

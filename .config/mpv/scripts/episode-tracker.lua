@@ -36,6 +36,9 @@ local function getEp(currentFile, path)
 end
 
 local function getEpisodeAIOId(location)
+    if os.getenv("AIO_ID") ~= "" then
+        return os.getenv("AIO_ID")
+    end
     local cloud = os.getenv("CLOUD") or ""
     location = location:gsub("\\$CLOUD", cloud)
     local idProg = io.popen("getAIOId '" .. location .. "'")
