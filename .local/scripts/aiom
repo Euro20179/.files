@@ -1,0 +1,71 @@
+#!/bin/bash
+
+ask_subs=0
+while getopts "s" OPT; do
+    case "$OPT" in
+    s) ask_subs=1 ;;
+    *) : ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+search=$*
+search="${search// /\\ }"
+
+results=$(curl "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "search=@${search}" | jq -r '"\(.ItemId)\t\(.En_Title)\t\(.Type)\t\(.Location)"')
+selection=$(echo "$results" | column -ts$'\t' -o $'\t' | fzf -1)
+IFS=$'\t' read -r id name type location <<<"$selection"
+
+pos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry"?uid=${AIO_UID}&id=${id}" | jq -r '.CurrentPosition')
+pos="$(printf "%s" "$pos" | sed -n 's/.*\([[:digit:]]\+\).*/\1/p')"
+pos=$((pos + 1))
+[ "$ask_subs" -eq 1 ] && {
+    printf "%s\n" "Finding subfiles for episode: $pos"
+    valid=""
+    while read -r file; do
+        [ -z "$file" ] && continue
+        if [ "$(episode-grabber.py "$file" "${file%/*}")" -eq "$pos" ]; then
+            valid=$(printf "%s\n%s" "$valid" "$file")
+        fi
+    done <<<"$(fd -i sub "$location" | xargs -I{} fd . "{}")"
+    [ -z "$valid" ] && ask_subs=0 || subs="$(printf "%s" "${valid#$'\n'}" | fzf -1)"
+}
+
+seasons=""
+for file in "$location"/[Ss]eason*; do
+    case "$file" in
+        *'[Ss]eason*') continue
+    esac
+    seasons="$(printf '%s\n%s' "$seasons" "${file##*/}")"
+done
+for file in "$location"/[Ss][[:digit:]]*; do
+    case "$file" in
+        *'[Ss][[:digit:]]*') continue
+    esac
+    seasons="$(printf '%s\n%s' "$seasons" "${file##*/}")"
+done
+[ "$seasons" ] && {
+    location="${location}/$(printf "%s" "${seasons#$'\n'}" | fzf -1)"
+}
+
+old_uri="$(eval printf '%s' "\"$location\"")"
+if ! grep -q "://" <<<"$uri"; then
+    uri="file://${old_uri}"
+else
+    uri=$old_uri
+fi
+uri="${uri// /%20}"
+
+while read -r file; do
+    episode-grabber.py "$file" "$old_uri" i
+    #FIXME: in order for this to work properly, episode-grabber should be able to take in a real uri, or just a list of files to compare against
+    if [ "$(episode-grabber.py "$file" "$old_uri" i)" = "$pos" ]; then
+        export AIO_ID="$id"
+        if [ "$subs" ]; then
+            mpv --sub-file="$subs" "$location/$file"
+        else
+            mpv "$location/$file"
+        fi
+        break
+    fi
+done <<<"$(curl "$uri")"
