@@ -18,14 +18,20 @@ evallocation() {
 getpos() {
     local id=$1
     local pos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
-    pos="$(printf "%s" "$pos" | sed -n 's/.*\([[:digit:]]\+\).*/\1/p')"
+    pos="$(printf "%s" "$pos" | sed -n 's/[^[:digit:]]*\([[:digit:]]\+\).*/\1/p')"
     printf "%d" "$((pos + 1))"
+}
+
+updatepos() {
+    local newpos=$2
+    local id=$1
+    curl -H "Authorization: Basic $(printf "%s" "$AIO_ACCOUNT_NUMBER" | base64)" "$AIO_SERVER"/api/v1/engagement/mod-entry"?current-position=${newpos}&id=$id"
 }
 
 getsubs() {
     local pos="$1"
     local location="$2"
-    printf "%s\n" "Finding subfiles for episode: $pos"
+    printf "%s\n" "Finding subfiles for episode: $pos" >&2
     valid=""
     while read -r file; do
         [ -z "$file" ] && continue
@@ -65,6 +71,10 @@ findfile() {
     done <<<"$(ls "$location")"
 }
 
+setresults() {
+    results="$(mksearch "$search")"
+}
+
 play() {
     local subs=$1
     local path=$2
@@ -88,25 +98,43 @@ shift $((OPTIND - 1))
 search=$*
 search="${search// /\\ }"
 main() {
-    results="$(mksearch "$search")"
 
     selection="$(mkselection "$results")"
-    IFS=$'\t' read -r id name type location <<<"$selection"
 
-    location="$(evallocation "$location")"
+    while :; do
+        IFS=$'\t' read -r id name type location <<<"$selection"
 
-    pos=$(getpos "$id")
+        [ -z "$pos" ] && pos=$(getpos "$id")
 
-    [ "$ask_subs" = 1 ] && subsloc=$(getsubs "$pos" "$location")
+        location="$(evallocation "$location")"
 
-    season="$(getseason "$location")"
-    [ "$season" ] && location="${location}/${season}"
+        [ "$ask_subs" = 1 ] && subsloc=$(getsubs "$pos" "$location")
 
-    case "$type" in
+        season="$(getseason "$location")"
+        [ "$season" ] && location="${location}/${season}"
+
+        case "$type" in
         Show) location="${location}/$(findfile "$location")" ;;
-    esac
+        esac
 
-    play "$subsloc" "$location"
+        play "$subsloc" "$location"
+
+        select REPLY in "resume" "stop and update pos" "stop" "next"; do
+            case "$REPLY" in
+            resume) break ;;
+            "stop and update pos")
+                updatepos "$id" "$pos"
+                exit 0
+                ;;
+            stop) exit 0 ;;
+            next)
+                pos=$((pos + 1))
+                ;;
+            esac
+            break
+        done
+    done
 }
 
+setresults
 main
