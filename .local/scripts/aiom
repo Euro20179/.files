@@ -71,10 +71,6 @@ findfile() {
     done <<<"$(ls "$location")"
 }
 
-setresults() {
-    results="$(mksearch "$search")"
-}
-
 play() {
     local subs=$1
     local path=$2
@@ -98,7 +94,7 @@ shift $((OPTIND - 1))
 search=$*
 search="${search// /\\ }"
 main() {
-
+    results="$(mksearch "$search")"
     selection="$(mkselection "$results")"
 
     while :; do
@@ -110,11 +106,20 @@ main() {
 
         [ "$ask_subs" = 1 ] && subsloc=$(getsubs "$pos" "$location")
 
-        season="$(getseason "$location")"
+        #only ask if the season is not set
+        [ -z "$season" ] && season="$(getseason "$location")"
         [ "$season" ] && location="${location}/${season}"
 
         case "$type" in
-        Show) location="${location}/$(findfile "$location")" ;;
+        Show)
+            file=$(findfile "$location")
+            #if the season is not found then we have probably reached the end of the season, ask again
+            [ -z "$file" ] && {
+                season="$(getseason "$location")"
+                [ "$season" ] && location="${location}/${season}"
+            }
+            location="${location}/$(findfile "$location")"
+            ;;
         esac
 
         play "$subsloc" "$location"
@@ -136,5 +141,4 @@ main() {
     done
 }
 
-setresults
 main
