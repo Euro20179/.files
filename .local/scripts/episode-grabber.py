@@ -17,7 +17,10 @@ args = sys.argv[1:]
 currentFile = args[0]
 directory = args[1]
 
-files = os.listdir(directory)
+if directory == "-/":
+    files = input().split("\x00")
+else:
+    files = os.listdir(directory)
 
 if len(files) == 0:
     exit(1)
