@@ -99,11 +99,11 @@ if exists("&findfunc")
     "        return fnames->filter('v:val =~? a:cmda')
     "    endfun
     "else
-    func FindFiles(cmda, cmdc)
-        return glob('**/' . a:cmda . '*', v:false, v:true)
-    endfun
+    "func FindFiles(cmda, cmdc)
+    "    return glob('**/' . a:cmda . '*', v:false, v:true)
+    "endfun
     "endif
-    set findfunc=FindFiles
+    "set findfunc=FindFiles
 
     nnoremap <leader>ff :find 
 endif

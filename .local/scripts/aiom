@@ -36,11 +36,10 @@ getsubs() {
     while read -r file; do
         [ -z "$file" ] && continue
         if [ "$(episode-grabber.py "$file" "${file%/*}")" -eq "$pos" ]; then
-            valid=$(printf "%s\n%s" "$valid" "$file")
+            valid=$(printf "%s:%s" "$valid" "$file")
         fi
     done <<<"$(fd -i sub "$location" | xargs -I{} fd . "{}")"
-
-    [ "$valid" ] && printf "%s" "${valid#$'\n'}" | fzf -1
+    printf "%s" "${valid#:}"
 }
 
 getseason() {
@@ -76,7 +75,7 @@ play() {
     local path=$2
 
     if [ "$subs" ]; then
-        mpv --sub-file="${subs}" "$path"
+        mpv --sub-files="${subs}" "$path"
     else
         mpv "$path"
     fi
