@@ -123,20 +123,20 @@ main() {
 
         play "$subsloc" "$location"
 
-        select REPLY in "resume" "stop and update pos" "stop" "next"; do
-            case "$REPLY" in
-            resume) break ;;
-            "stop and update pos")
-                updatepos "$id" "$pos"
-                exit 0
-                ;;
-            stop) exit 0 ;;
-            next)
-                pos=$((pos + 1))
-                ;;
-            esac
-            break
-        done
+        read -p $'(n)ext\n(s)top\nstop and (u)pdate\n(p)revious\n(r)esume\n' -r action
+        case "$action" in
+        n*) pos=$((pos + 1)) ;;
+        s*|e*|q*) exit 0 ;;
+        u*)
+            updatepos "$id" "$pos"
+            exit 0
+            ;;
+        r*) : ;;
+        [[:digit:]]*)
+            action="${action%%[![:digit:]]*}"
+            pos=$action ;;
+        esac
+
     done
 }
 
