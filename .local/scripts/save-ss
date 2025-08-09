@@ -1,0 +1,31 @@
+#!/bin/bash
+
+folders="$CLOUD/Pictures/screenshots/
+$(fd --type directory . $XDG_PICTURES_HOME/screenshots)"
+
+folder=$(printf "%s" "$folders" | grep -vE "/[[:digit:]]{4,}/" | sort | rofi -dmenu -theme cat-macchiato)
+[ -z "$folder" ] && exit
+
+name=$(echo | rofi -p "Name" -dmenu -theme cat-macchiato-dmenu-center)
+[ -z "$name" ] && exit
+
+exifDate=$(date "+%Y:%m:%d %H:%M:%S")
+
+ext=${name##*.}
+if [ "$ext" = "$name" ]; then
+    name="${name}.$(date +%Y%m%d-%H%M%S).png"
+else
+    name="${name%"${ext}"}$(date +%Y%m%d-%H%M%S).${ext}"
+fi
+
+year="$(date +%Y)"
+#i like my screenshots sorted by year
+folder="$folder/${year}"
+
+[ -f "$folder/${name}" ] && {
+    notify-send "ERROR" "name already exists"
+    exit 0
+}
+
+wl-paste -t image/png > "$folder/${name}"
+exiftool -overwrite_original "-Exif:CreateDate=${exifDate}" "$folder/${name}"

@@ -128,7 +128,7 @@ setupLSP("bashls", {
 })
 
 setupLSP("clangd", {
-    cmd = { "clangd" },
+    cmd = { "clangd", "--fallback-style=webkit" },
     filetypes = { "c", "cpp" },
     root_markers = { ".git", "Makefile" }
 })

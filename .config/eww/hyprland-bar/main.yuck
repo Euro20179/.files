@@ -22,7 +22,7 @@
 (defpoll home-df :interval "5s"
     `duf -json | jq '(.[]|select(.mount_point=="/home").used) / (.[]|select(.mount_point=="/home").total) * 100'`)
 (defpoll cloud-df :interval "5s"
-    `duf -json | jq '((.[]|select(.mount_point=="/home/cloud")|.used) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.used)) / ((.[]|select(.mount_point=="/home/cloud")|.total) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.total)) * 100'`)
+    `duf -json | jq '((.[]|select(.mount_point=="/home/cloud")|.used) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.used)) / ((.[]|select(.mount_point=="/home/cloud")|.total) + (.[]|select(.mount_point=="/home/cloud/COLD-STORAGE")|.total)) * 100' | head -n1`)
 (defpoll backups-df :interval "5s"
     `duf -json | jq '(.[]|select(.mount_point=="/mnt/backups").used) / (.[]|select(.mount_point=="/mnt/backups").total) * 100'`)
 
