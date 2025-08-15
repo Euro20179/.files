@@ -13,7 +13,7 @@ if [ -f "$cache" ]; then
 else
     #if the cache file does not exist, it's time to refresh the cache, delete all old cache files
     rm /tmp/linkding-cache*
-    marks=$(curl "$baseUrl/api/bookmarks" -L -k -H "Authorization: Token $token" | tee "$cache")
+    marks=$(curl "$baseUrl/api/bookmarks?limit=100000000" -L -k -H "Authorization: Token $token" | tee "$cache")
 fi
 
 select_bookmark() {
