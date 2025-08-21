@@ -15,11 +15,23 @@ evallocation() {
     eval printf "%s" "\"$location\""
 }
 
+#also sets season (if in pos, otherwise "")
 getpos() {
     local id=$1
-    local pos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
-    pos="$(printf "%s" "$pos" | sed -n 's/[^[:digit:]]*\([[:digit:]]\+\).*/\1/p')"
+    local rawPos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
+    pos="$(printf "%s" "$rawPos" | sed -n 's/[^[:digit:]]*\([[:digit:]]\+\).*/\1/p')"
     printf "%d" "$((pos + 1))"
+}
+
+getseasonFromPos() {
+    local id=$1
+    local rawPos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
+    season="$(printf "%s" "$rawPos" | sed -n 's/.*S\([[:digit:]]\+\).*/\1/p')"
+    if [ "$season" = "$rawPos" ]; then
+        printf ""
+    else
+        printf "s%s" "$season"
+    fi
 }
 
 updatepos() {
@@ -82,9 +94,11 @@ play() {
 }
 
 ask_subs=0
-while getopts "s" OPT; do
+season=""
+while getopts "sS:" OPT; do
     case "$OPT" in
     s) ask_subs=1 ;;
+    S) season=$OPTARG ;;
     *) : ;;
     esac
 done
@@ -106,6 +120,7 @@ main() {
         [ "$ask_subs" = 1 ] && subsloc=$(getsubs "$pos" "$location")
 
         #only ask if the season is not set
+        [ -z "$season" ] && season=$(getseasonFromPos "$id")
         [ -z "$season" ] && season="$(getseason "$location")"
         [ "$season" ] && location="${location}/${season}"
 
@@ -128,7 +143,7 @@ main() {
         n*) pos=$((pos + 1)) ;;
         s*|e*|q*) exit 0 ;;
         u*)
-            updatepos "$id" "$pos"
+            updatepos "$id" "$pos, S${season}"
             exit 0
             ;;
         r*) : ;;
