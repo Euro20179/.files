@@ -26,11 +26,11 @@ getpos() {
 getseasonFromPos() {
     local id=$1
     local rawPos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
-    season="$(printf "%s" "$rawPos" | sed -n 's/.*S\([[:digit:]]\+\).*/\1/p')"
+    season="$(printf "%s" "$rawPos" | sed -n 's/.*S\(\([[:alpha:]]\)*[[:digit:]]\+\).*/\1/p')"
     if [ "$season" = "$rawPos" ]; then
         printf ""
     else
-        printf "s%s" "$season"
+        printf "%s" "$season"
     fi
 }
 
@@ -143,7 +143,7 @@ main() {
         n*) pos=$((pos + 1)) ;;
         s*|e*|q*) exit 0 ;;
         u*)
-            updatepos "$id" "$pos, S${season}"
+            updatepos "$id" "$pos,%20S${season}"
             exit 0
             ;;
         r*) : ;;
