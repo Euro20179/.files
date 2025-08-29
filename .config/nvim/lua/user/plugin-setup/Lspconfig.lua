@@ -107,7 +107,7 @@ local TS_LS_SETTINGS = {
 setupLSP("ts_ls", {
     cmd = { "typescript-language-server", "--stdio" },
     root_markers = { ".git", "node_modules" },
-    filetypes = { "typescript", "javascript" },
+    filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact"  },
     settings = {
         javascript = TS_LS_SETTINGS,
         typescript = TS_LS_SETTINGS
