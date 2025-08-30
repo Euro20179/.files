@@ -23,6 +23,7 @@ local add = miniDeps.add
 local later = miniDeps.later
 local now = miniDeps.now
 
+
 local function setup(when, name, opts)
     when(function()
         require(name).setup(opts)
@@ -299,6 +300,9 @@ later(function()
     vim.ui.select = require "mini.pick".ui_select
 end) -- }}}
 
+aSetup({ source = "https://git.alfie.news/devtime.nvim", checkout = "main", depends = {
+    '3rd/sqlite.nvim'
+}}, now, "devtime", {})
 -- add { source = "altermo/ultimate-autopair.nvim" }
 -- later(function()
 --     require "ultimate-autopair.core".modes = { 'i' }
@@ -330,21 +334,21 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
         setup(later, "codecompanion", {
             strategies = {
                 chat = {
-                    adapter = "llama3.1"
+                    adapter = "ollama"
                 },
             },
             adapters = {
-                ["llama3.1"] = function()
+                ["ollama"] = function()
                     return require "codecompanion.adapters".extend("ollama", {
-                        name = "llama3.1",
+                        name = "qwen3:4b",
                         schema = {
                             model = {
-                                default = "llama3.1:latest"
+                                default = "qwen3:4b"
                             }
                         },
                         env = {
                             url = "http://localhost:11434",
-                            api_key = "",
+                            api_key = "KEY",
                         }
                     })
                 end
