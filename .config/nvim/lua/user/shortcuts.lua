@@ -10,6 +10,23 @@ local gitLeader = "<M-g>"
 
 local dapLeader = "<M-d>"
 
+vim.cmd[[
+    function OpenClrPicker(context = {}, type = '') abort
+        if a:type == ''
+            let &operatorfunc = function('OpenClrPicker', [#{test: 3}])
+            return "g@"
+        endif
+        let start = getpos("'[")
+        let end = getpos("']")
+        let text = nvim_buf_get_text(0, start[1] - 1, start[2] - 1, end[1] - 1, end[2], {})
+        if text[0] != ''
+            call system('foot goker "' .. text[0] .. '"')
+        endif
+    endfun
+    nnoremap <expr> <c-c> OpenClrPicker()
+    nnoremap <c-c><c-c> <CMD>call system('foot goker "' .. expand("<cWORD>") .. '"')<CR>
+]]
+
 -- local discord = require'discord'
 --
 -- vim.keymap.set("i", "<c-s>", discord.send_message_bind, { desc = '[DISCORD] send mesasge' })
@@ -182,9 +199,7 @@ local nShortcuts = {
     { utilLeader .. "e",  ":Neorg exec cursor<CR>" },
     { utilLeader .. "W",  "\"=v:lua.Rword()<cr>p",                                     { desc = "[UTIL] random word" } },
     { utilLeader .. "d",  ":!rm \"%\"<CR>",                                            { desc = "[UTIL] Delete the current file" } },
-    { "<C-c><C-c>", function()
-        vim.system({ "foot", "goker", vim.fn.expand("<cWORD>") })
-    end, { desc = "[UTIL] Open color picker" } },
+    -- { "<C-c><C-c>", OpenCLRPicker, { desc = "[UTIL] Open color picker", expr = true } },
     -- }}}
     -- lazy {{{
     { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
