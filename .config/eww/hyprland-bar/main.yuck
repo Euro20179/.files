@@ -26,6 +26,11 @@
 (defpoll backups-df :interval "5s"
     `duf -json | jq '(.[]|select(.mount_point=="/mnt/backups").used) / (.[]|select(.mount_point=="/mnt/backups").total) * 100'`)
 
+(defpoll gpu-ram-used :interval "1s"
+    `cat /sys/module/amdgpu/drivers/pci:amdgpu/module/drivers/pci:amdgpu/*:*:00.0/mem_info_vram_used`)
+(defpoll gpu-ram-total :interval "1s"
+    `cat /sys/module/amdgpu/drivers/pci:amdgpu/module/drivers/pci:amdgpu/*:*:00.0/mem_info_vram_total`)
+
 (defwidget scaler [label temp-source ?class]
     (box :orientation "v" :space-evenly false :spacing 10 :class class
         (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
@@ -43,6 +48,9 @@
 (defwidget INFO []
     (box :orientation "v" :space-evenly false
         (workspaces)
+        (box  :orientation "h"
+            (label :text "🐏${round(gpu-ram-used / 1024 / 1024 / 1024, 2)}")
+        )
         (box
             (scaler :label "" :temp-source {EWW_TEMPS["K10TEMP_TCTL"]})
             (scaler :label "󰍹" :temp-source {EWW_TEMPS["AMDGPU_EDGE"]})

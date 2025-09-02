@@ -141,6 +141,7 @@ main() {
         read -p $'(n)ext\n(s)top\nstop and (u)pdate\n(p)revious\n(r)esume\n' -r action
         case "$action" in
         n*) pos=$((pos + 1)) ;;
+        p*) pos=$((pos - 1)) ;;
         s*|e*|q*) exit 0 ;;
         u*)
             updatepos "$id" "$pos,%20S${season}"
