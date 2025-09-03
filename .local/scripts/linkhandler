@@ -64,6 +64,7 @@ try_custom_uri() {
         *.png | *.jpg | *.jpeg | *.webm | *.gif | *.webm | *.webp) mpv --loop "$link" & ;;
         *.m3u?) mpv "$link" ;;
         *.onion) tor "$link" ;;
+        nv://*) nvim "$link" ;;
         *://cloud://*)
             extra_protocol="${link%%cloud://*}"
             new_link="${extra_protocol}${CLOUD}/${link#*://cloud://}"

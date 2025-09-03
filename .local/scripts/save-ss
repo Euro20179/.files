@@ -21,6 +21,7 @@ fi
 year="$(date +%Y)"
 #i like my screenshots sorted by year
 folder="$folder/${year}"
+mkdir -p "$folder"
 
 [ -f "$folder/${name}" ] && {
     notify-send "ERROR" "name already exists"

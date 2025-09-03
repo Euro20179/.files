@@ -162,7 +162,9 @@ aSetup({
         },
 
         fuzzy = {
-            use_frecency = false,
+            frecency = {
+                enabled = true
+            }
         }
     }
 )
@@ -328,33 +330,33 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
         return
     end
 
-    vim.schedule(function()
-        vim.g.codecompanion_adapter = "llama3.1"
-
-        setup(later, "codecompanion", {
-            strategies = {
-                chat = {
-                    adapter = "ollama"
-                },
-            },
-            adapters = {
-                ["ollama"] = function()
-                    return require "codecompanion.adapters".extend("ollama", {
-                        name = "qwen3:4b",
-                        schema = {
-                            model = {
-                                default = "qwen3:4b"
-                            }
-                        },
-                        env = {
-                            url = "http://localhost:11434",
-                            api_key = "KEY",
-                        }
-                    })
-                end
-            }
-        })
-    end)
+    -- vim.schedule(function()
+    --     vim.g.codecompanion_adapter = "llama3.1"
+    --
+    --     setup(later, "codecompanion", {
+    --         strategies = {
+    --             chat = {
+    --                 adapter = "ollama"
+    --             },
+    --         },
+    --         adapters = {
+    --             ["ollama"] = function()
+    --                 return require "codecompanion.adapters".extend("ollama", {
+    --                     name = "qwen3:4b",
+    --                     schema = {
+    --                         model = {
+    --                             default = "qwen3:4b"
+    --                         }
+    --                     },
+    --                     env = {
+    --                         url = "http://localhost:11434",
+    --                         api_key = "KEY",
+    --                     }
+    --                 })
+    --             end
+    --         }
+    --     })
+    -- end)
 end)
 
 aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})

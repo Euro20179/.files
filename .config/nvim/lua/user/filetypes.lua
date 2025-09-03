@@ -11,6 +11,7 @@ vim.filetype.add({
         end
     },
     pattern = {
+        ["nv://.*"] = 'nv-connect',
         [".*%.config/hypr/.*%.conf"] = "hyprlang",
         [".*"] = {
             ---@diagnostic disable-next-line: unused-vararg
