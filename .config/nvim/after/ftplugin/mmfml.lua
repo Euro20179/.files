@@ -22,7 +22,7 @@ local function nodeToHTML(node)
         return "<br><br>"
     elseif t == "word" then
         return "<span>" .. gt(node, 0, {}) .. "</span>"
-    elseif t== "non_word" then
+    elseif t == "non_word" then
         return "<span>" .. gt(node, 0, {}) .. "</span>"
     elseif t == "divider" then
         return "<code>" .. gt(node, 0, {}) .. "</code>"
@@ -79,13 +79,13 @@ local function nodeToHTML(node)
 
         local ht = vim.fn.trim(fullHT, " =")
 
-        local headerLevel = vim.fn.min({eqCount, 6})
+        local headerLevel = vim.fn.min({ eqCount, 6 })
 
         return "<h" .. tostring(headerLevel) .. ">" .. ht .. "</h" .. tostring(headerLevel) .. ">"
     elseif t == "link_url" then
         local text = gt(node, 0, {})
         return "<a href=\"" .. vim.fn.trim(text, " ") .. '">' .. text .. "</a>"
-    elseif t== "list" then
+    elseif t == "list" then
         local text = gt(node, 0, {})
         local firstChar, _ = text:find('[^%s]')
         local whiteSpace = vim.fn.slice(text, 0, firstChar - 1)
@@ -323,7 +323,19 @@ function Tagfunc(pattern, flags, info)
     if flags:match("i") then
         return insert_complete_tagfunc(pattern, info)
     elseif flags == "c" then
-        return normalmode_tagfunc(pattern, info)
+        local tags = normalmode_tagfunc(pattern, info)
+
+        if #tags == 0 then
+            vim.cmd.norm [[F|]]              --go back to the start of the link
+            vim.fn.search(vim.b.link_search) --find the next link
+            return { {
+                name = vim.fn.expand("<cfile>"),
+                filename = vim.fn.expand("<cfile>:p"),
+                cmd = "/^"
+            } }
+        end
+
+        return tags
     end
     return {}
 end
@@ -462,6 +474,19 @@ vim.keymap.set("n", "gO", function()
     vim.fn.setloclist(0, list)
     vim.cmd.lwin()
 end, { buffer = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = { "*.mmfml" },
+    callback = function()
+        local file = vim.fn.expand("%:p")
+        vim.print(file)
+        if vim.fn.isdirectory(file) ~= 0 then
+            vim.cmd.cd(file)
+        else
+            vim.cmd.cd(vim.fn.expand("%:p:h"))
+        end
+    end
+})
 
 vim.opt_local.tagfunc = 'v:lua.Tagfunc'
 vim.opt_local.iskeyword = "!-~,^[,^],^*,^|,^\",192-255"
