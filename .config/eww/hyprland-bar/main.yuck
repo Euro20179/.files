@@ -32,10 +32,7 @@
     `cat /sys/module/amdgpu/drivers/pci:amdgpu/module/drivers/pci:amdgpu/*:*:00.0/mem_info_vram_total`)
 
 (defwidget scaler [label temp-source ?class]
-    (box :orientation "v" :space-evenly false :spacing 10 :class class
-        (label :text label :class "temp-${round((temp-source - 10) / 10, 0)}")
-        (progress :value temp-source :class "temp-${round((temp-source - 10) / 10, 0)}" :orientation "v" :halign "center" :flipped true :tooltip temp-source)
-    )
+    (label :text "${label} ${temp-source}" :class "temp-${round((temp-source - 10) / 10, 0)}")
 )
 
 (defpoll cal :interval "1h" "cal")
@@ -51,20 +48,16 @@
         (box  :orientation "h"
             (label :text "🐏${round(gpu-ram-used / 1024 / 1024 / 1024, 2)}")
         )
-        (box
-            (scaler :label "" :temp-source {EWW_TEMPS["K10TEMP_TCTL"]})
-            (scaler :label "󰍹" :temp-source {EWW_TEMPS["AMDGPU_EDGE"]})
-            (scaler :label "" :temp-source {EWW_RAM["used_mem_perc"]})
-        )
-        (box
-            (scaler :label "" :temp-source "${round(home-df, 2)}")
-            (scaler :label "" :temp-source "${round(cloud-df, 2)}")
-            (scaler :label "󰁯" :temp-source "${round(backups-df, 2)}")
-        )
-        (box
-            (scaler :label volume-amount :class "muted-${volume-muted}" :temp-source volume)
-            (scaler :label "" :temp-source mic)
-        )
+        (scaler :label "" :temp-source "${round(EWW_TEMPS["K10TEMP_TCTL"], 0)}")
+        (scaler :label "󰍹" :temp-source "${round(EWW_TEMPS["AMDGPU_EDGE"], 0)}")
+        (scaler :label "" :temp-source {round(EWW_RAM["used_mem_perc"], 1)})
+        (scaler :label "" :temp-source "${round(home-df, 1)}")
+        (scaler :label "" :temp-source "${round(cloud-df, 1)}")
+        (scaler :label "󰁯" :temp-source "${round(backups-df, 1)}")
+        (scaler :label volume-amount :class "muted-${volume-muted}" :temp-source volume)
+        (scaler :label "" :temp-source mic)
+
+
         (box :orientation "v" :space-evenly false
             (label :class "basic-info" :text "${pkg-count} ")
             (label :class "basic-info" :text time)
@@ -81,7 +74,7 @@
     :exclusive true
     :stacking "bottom"
     :geometry (geometry
-        :width "3%"
+        :width "50px"
         :anchor "left center"
     )
     (INFO)
@@ -93,7 +86,7 @@
     :exclusive true
     :stacking "bottom"
     :geometry (geometry
-        :width "3%"
+        :width "50px"
         :anchor "left center"
     )
     (INFO)

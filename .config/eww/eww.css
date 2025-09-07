@@ -1,5 +1,5 @@
 * {
-    color: #b5e8f3;
+    color: #c6dff7;
 }
 
 /*general things {{{*/
@@ -41,40 +41,40 @@ box {
 }
 
 .vpn-connected-text {
-    color: #83b869;
+    color: #afd1b7;
 }
 
 .unfocused-workspace {
-    color: #b5e8f3;
+    color: #c6dff7;
 }
 
 .focused-workspace, .focused-item {
-    color: #e78b69;
+    color: #fab387;
 }
 
 .temp-0, .temp-1, .temp-2, .temp-3, .temp-4 {
-    color: #83b869;
+    color: #afd1b7;
 }
 
 .temp-5, .temp-6, .temp-7 {
-    color: #c756ff;
+    color: #cba6f7;
 }
 
 .temp-8, .temp-9, .temp-10 {
-    color: #e78b69;
+    color: #fab387;
 }
 
 progressbar.temp-8 progress,
 progressbar.temp-9 progress,
 progressbar.temp-10 progress {
-    background-color: #e78b69;
+    background-color: #fab387;
 }
 
 progressbar.temp-5 progress,
 progressbar.temp-6 progress,
 progressbar.temp-7 progress
 {
-    background-color: #c756ff;
+    background-color: #cba6f7;
 }
 
 progressbar.temp-4 progress,
@@ -83,14 +83,14 @@ progressbar.temp-2 progress,
 progressbar.temp-1 progress,
 progressbar.temp-0 progress
 {
-    background-color: #83b869;
+    background-color: #afd1b7;
 }
 
 /*MUST come after the other progress bar things because specificity*/
 .muted-true progressbar progress{
-    background-color: #832a61 ;
+    background-color: #f38ba8;
 }
 .muted-true label{
-    color: #832a61 ;
+    color: #f38ba8;
 }
 /*}}}*/
