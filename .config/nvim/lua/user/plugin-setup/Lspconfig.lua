@@ -18,6 +18,12 @@ setupLSP("raku", {
     root_dir = "."
 })
 
+setupLSP("zig", {
+    cmd = { "zls" },
+    filetypes = { "zig" },
+    root_dir = "."
+})
+
 setupLSP("emmet", {
     cmd = { "emmet-ls", "--stdio" },
     filetypes = { "html", "css" },
