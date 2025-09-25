@@ -1,0 +1,7 @@
+#!/bin/sh
+
+proj=$(for file in $HOME/Programs/Coding\ Projects/*; do
+    zoxide query -al "$file/"
+done | fzf)
+
+nvim +cd\ "${proj}" "$proj"

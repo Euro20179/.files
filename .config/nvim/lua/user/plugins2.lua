@@ -302,9 +302,13 @@ later(function()
     vim.ui.select = require "mini.pick".ui_select
 end) -- }}}
 
-aSetup({ source = "https://git.alfie.news/devtime.nvim", checkout = "main", depends = {
-    '3rd/sqlite.nvim'
-}}, now, "devtime", {})
+aSetup({
+    source = "https://git.alfie.news/devtime.nvim",
+    checkout = "main",
+    depends = {
+        '3rd/sqlite.nvim'
+    }
+}, now, "devtime", {})
 -- add { source = "altermo/ultimate-autopair.nvim" }
 -- later(function()
 --     require "ultimate-autopair.core".modes = { 'i' }
@@ -330,33 +334,35 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
         return
     end
 
-    -- vim.schedule(function()
-    --     vim.g.codecompanion_adapter = "llama3.1"
-    --
-    --     setup(later, "codecompanion", {
-    --         strategies = {
-    --             chat = {
-    --                 adapter = "ollama"
-    --             },
-    --         },
-    --         adapters = {
-    --             ["ollama"] = function()
-    --                 return require "codecompanion.adapters".extend("ollama", {
-    --                     name = "qwen3:4b",
-    --                     schema = {
-    --                         model = {
-    --                             default = "qwen3:4b"
-    --                         }
-    --                     },
-    --                     env = {
-    --                         url = "http://localhost:11434",
-    --                         api_key = "KEY",
-    --                     }
-    --                 })
-    --             end
-    --         }
-    --     })
-    -- end)
+    vim.schedule(function()
+        vim.g.codecompanion_adapter = "llama3.1"
+
+        setup(later, "codecompanion", {
+            strategies = {
+                chat = {
+                    adapter = "ollama"
+                },
+            },
+            adapters = {
+                http = {
+                    ["ollama"] = function()
+                        return require "codecompanion.adapters".extend("ollama", {
+                            name = "qwen3:1.7b",
+                            schema = {
+                                model = {
+                                    default = "qwen3:1.7b"
+                                }
+                            },
+                            env = {
+                                url = "http://localhost:11434",
+                                api_key = "KEY",
+                            }
+                        })
+                    end
+                }
+            }
+        })
+    end)
 end)
 
 aSetup({ source = "patrickpichler/hovercraft.nvim" }, later, "hovercraft", {})
