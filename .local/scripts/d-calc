@@ -10,4 +10,11 @@
 
 [ -z "$e" ] && exit
 
-linkhandler "calc:$e"
+ans="$(qalc -t "${e}")"
+
+case "$XDG_SESSION_TYPE" in
+    wayland) wl-copy  -- "$ans" ;;
+    X11) xclip -i <<< "$ans" ;;
+esac
+
+notify-send -- "$ans"

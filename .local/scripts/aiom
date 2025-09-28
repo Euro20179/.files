@@ -142,15 +142,20 @@ main() {
         case "$action" in
         n*) pos=$((pos + 1)) ;;
         p*) pos=$((pos - 1)) ;;
-        s*|e*|q*) exit 0 ;;
+        s* | e* | q*) exit 0 ;;
         u*)
-            updatepos "$id" "$pos,%20S${season}"
+            if [ -n "$season" ]; then
+                updatepos "$id" "$pos,%20S${season}"
+            else
+                updatepos "$id" "$pos"
+            fi
             exit 0
             ;;
         r*) : ;;
         [[:digit:]]*)
             action="${action%%[![:digit:]]*}"
-            pos=$action ;;
+            pos=$action
+            ;;
         esac
 
     done

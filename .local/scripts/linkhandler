@@ -137,13 +137,7 @@ try_custom_uri() {
                 fi 
             } ;;
         calc:*)
-            ans="$(qalc -t "${link#calc:}")"
-            #stolen from d-calc
-            case "$XDG_SESSION_TYPE" in
-                wayland) wl-copy  -- "$ans" ;;
-                X11) xclip -i <<< "$ans" ;;
-            esac
-            notify-send -- "$ans" ;;
+            d-calc "${link#calc:}" ;;
         diary://*)
             entry=${link#diary://}
             baseEntry="${entry%%/*}"
