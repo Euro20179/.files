@@ -206,6 +206,11 @@ binds {
     Mod+Z { spawn "sh" "-c" "$TERMINAL -e $SYSMON"; }
     Mod+Semicolon { spawn "pick-emoji"; }
     Mod+Shift+Semicolon { spawn "pick-reaction-image"; }
+
+    Mod+p { spawn-sh "clr=$(hyprpicker -n) && [ \"$clr\" ] && $TERMINAL -a goker goker \"${clr}\""; }
+
+    Mod+X { spawn "cp-pass"; }
+    Mod+Shift+X { spawn "cp-pass" "otp"; }
     // }}}
 
     Mod+B { spawn-sh "wlr-which-key -k b"; }
