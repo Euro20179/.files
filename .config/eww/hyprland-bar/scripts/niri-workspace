@@ -1,0 +1,121 @@
+#!/bin/bash
+
+declare -A class2symbol=(
+    [foot]=
+    [nheko]=󰊌
+    [librewolf]=
+    [osu!]=󰎄!
+    [thunderbird]=
+    [mpv]=󰈫
+    [steam]=󰓓
+    [makemkv]=📀
+)
+
+declare -A titleFuzz2symbol=(
+    [Discord]=󰙯
+    [Songs/scripts*'(foot)']=󰽴
+    [QuickMedia]=全て
+    [*nvim*'(foot)']=
+    [*conf*'(foot)']=
+)
+
+workspaces() {
+    declare -A occupied
+    declare -A focused
+    declare -A wsid2ws
+
+    while read -r mon; do
+        name="${mon%%[[:space:]]*}"
+        ws="${mon##*[[:space:]]}"
+        : "${occupied["${ws}"]="$name"}"
+    done <<<"$(niri msg --json windows | jq -r '.[]|"\(.title)\t\(.workspace_id)"')"
+
+    while IFS=$'\t' read -r output id idx; do
+        : "${focused["$output"]=$id}"
+        : "${wsid2ws["$id"]="$idx"}"
+    done <<<"$(niri msg --json workspaces | jq -r '.[] | "\(.output)\t\(.id)\t\(if .name != null then .name else .idx end)"')"
+
+    text="(box :space-evenly false :spacing 10 :class \"workspace-container\" :orientation \"v\""
+
+    activewindow=$(niri msg --json focused-window)
+    activewindowID=$(jq -r '.id' <<<"$activewindow")
+
+    for k in "${!occupied[@]}"; do
+        mon="${occupied[$k]}"
+
+        itemsOnWorkspace="$(niri msg --json windows | jq -r '.[] | select(.workspace_id=='"${k}"')|"\(.app_id)\t\(.id)\t\(.title)"')"
+        symbolT=""
+
+        itemTitles=()
+        itemADDRS=()
+
+        while IFS=$'\t' read -r itemCLS itemADDR itemTITLE; do
+            : "${itemTitles[${#itemTitles[*]}]=$itemTITLE}"
+            : "${itemADDRS[${#itemADDRS[*]}]=$itemADDR}"
+
+            #clobber s to ensure it's not using the previous value
+            s=
+            #iterate through titles first
+            for tk in "${!titleFuzz2symbol[@]}"; do
+                case "$itemTITLE" in
+                    #no quotes for the var to ensure globbing works
+                    *$tk*)
+                        s=${titleFuzz2symbol[$tk]}
+                        break ;;
+                esac
+            done
+
+            #if s has not been set, use the exact class as fallback
+            [ -z "$s" ] && s="${class2symbol[$itemCLS]}"
+
+            #if it's stil not set, use ?
+            [ -z "$s" ] && s='?'
+
+            [ "$activewindowID" = "$itemADDR" ] && s="F:$s"
+            symbolT="${symbolT} ${s}"
+        done <<<"$itemsOnWorkspace"
+
+        if [ "${focused[$mon]}" = "$k" ]; then
+            cls="focused-workspace"
+        else
+            cls="unfocused-workspace"
+        fi
+
+        text="$text(box :class \"workspace $cls\" :orientation \"v\""
+        text="$text"'(label :class "'"$cls"'"  :text "'"${wsid2ws[$k]}"'")'
+
+        i=0
+        boxesPerRow=3
+        for s in $symbolT; do
+            #every N items add a new box to create a new row
+            [ "$((i%boxesPerRow))" = 0 ] && case "$i" in
+                                        #this is the first box do not close the non-existant previous box
+                                        0) text="$text(box" ;;
+                                        #this is not the first box, close the previous box
+                                        *) text="$text)(box"
+                                esac
+            case "$s" in
+            F:*)
+                s="${s#F:}"
+                cls="focused-item"
+                ;;
+            *) cls="" ;;
+            esac
+            text="$text"'(eventbox :onclick "niri msg action focus-window --id '"${itemADDRS[$i]}"'" (label :class "'"$cls"'" :text "'"${s}"'") )'
+            ((i++))
+        done
+
+        #close the final box taht didn't get closed
+        text="$text))"
+    done
+    echo "$text)"
+}
+
+workspaces
+
+niri msg event-stream | while read -r line; do
+        workspaces
+done
+# socat -u UNIX-CONNECT:/run/user/$UID/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do
+#     workspaces "$event"
+# done
