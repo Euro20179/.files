@@ -15,13 +15,16 @@ The one currently in use is `minimalistic/hashtags-black.png`
 ---------------------------------- Programs -----------------------------------
 
 * wm:
-    [hyprland] | https://github.com/hyprwm/Hyprland |
+    [niri] | https://github.com/YaLTeR/niri |
 
 * bar:
     [waybar] | https://github.com/Alexays/Waybar/ |
 
 * $SHELL:
     [zsh] | https://www.zsh.org/ |
+
+* $BROWSER:
+    [glide] | https://github.com/glide-browser/glide |
 
 * $EDITOR:
     [neovim] | https://neovim.io |
