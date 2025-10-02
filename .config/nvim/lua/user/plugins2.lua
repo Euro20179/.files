@@ -329,6 +329,11 @@ add { source = "olimorris/codecompanion.nvim", depends = {
     "j-hui/fidget.nvim"
 } }
 
+-- add { source = "yetone/avante.nvim", depends = {
+--     "nvim-lula/plenary.nvim",
+--     "MunifTanjim/nui.nvim"
+-- }}
+
 vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
     if res.code ~= 0 then
         return
@@ -336,6 +341,19 @@ vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
 
     vim.schedule(function()
         vim.g.codecompanion_adapter = "llama3.1"
+
+        -- setup(later, "avante", {
+        --     provider = "ollama",
+        --     providers = {
+        --         ollama = {
+        --             endpoint = "http://localhost:11434",
+        --             model = "qwen3:1.7b",
+        --             extra_request_body = {
+        --                 max_tokens = 20480
+        --             }
+        --         }
+        --     }
+        -- })
 
         setup(later, "codecompanion", {
             strategies = {

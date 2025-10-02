@@ -186,7 +186,7 @@ me () {
 # {{{
 alias nvim=$EDITOR
 alias n="$EDITOR +Oil"
-alias sxiv=nsxiv
+alias sxiv=swiv
 alias "vim=nvim"
 alias 'ls=lsd'
 alias "l=lsd --hyperlink auto --group-directories-first -A"

@@ -1,5 +1,5 @@
 
-(deflisten workspace "hyprland-bar/scripts/workspace")
+(deflisten workspace `hyprland-bar/scripts/niri-workspace`)
 (defwidget workspaces []
     (literal :content workspace))
 

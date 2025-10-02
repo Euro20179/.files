@@ -1,0 +1,302 @@
+spawn-sh-at-startup "$HOME/.config/wlinit"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+workspace "1st" {
+    open-on-output "DP-1"
+}
+workspace "2nd" {
+    open-on-output "DP-1"
+}
+workspace "3rd" {
+    open-on-output "DP-1"
+}
+
+workspace "email" {
+    open-on-output "DP-1"
+}
+
+workspace "chat" {
+    open-on-output "HDMI-A-1"
+}
+
+workspace "O-2nd" {
+    open-on-output "HDMI-A-1"
+}
+
+window-rule {
+    match app-id=r#"thunderbird"#    
+    open-maximized true
+    open-on-workspace "email"
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="swiv"
+    open-floating true
+}
+
+window-rule {
+    match app-id="goker"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"osu!"#
+    open-fullscreen true
+}
+
+input {
+    keyboard {
+        repeat-rate 75
+        repeat-delay 250
+        xkb {
+            // You can set rules, model, layout, variant and options.
+            // For more information, see xkeyboard-config(7).
+
+            // For example:
+            // layout "us,ru"
+            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+        }
+    }
+
+    // Uncomment this to make the mouse warp to the center of newly focused windows.
+    warp-mouse-to-focus
+
+    // Focus windows and outputs automatically when moving the mouse into them.
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    focus-follows-mouse
+}
+
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+// The built-in laptop monitor is usually called "eDP-1".
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+// Remember to uncomment the node by removing "/-"!
+output "DP-1" {
+
+    mode "1920x1080@165"
+
+    scale 1
+
+    // Transform allows to rotate the output counter-clockwise, valid values are:
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    position x=0 y=0
+}
+
+output "DP-2" {
+    off
+    position x=3840 y=0
+}
+output "HDMI-A-1" {
+    mode "1920x1080@75"
+    position x=1920 y=0
+}
+
+
+layout {
+    gaps 4
+
+    // When to center a column when changing focus, options are:
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused column.
+    center-focused-column "never"
+
+    default-column-width { proportion 0.5; }
+
+    always-center-single-column
+
+
+    focus-ring {
+        // Uncomment this line to disable the focus ring.
+        // off
+
+        // How many logical pixels the ring extends out from the windows.
+        width 2
+
+
+        // Color of the ring on the active monitor.
+        active-color "#7fc8ff"
+
+        // Color of the ring on inactive monitors.
+        inactive-color "#505050"
+
+
+    }
+
+    border {
+        off
+
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#505050"
+    }
+
+    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
+    // You can think of them as a kind of outer gaps. They are set in logical pixels.
+    // Left and right struts will cause the next window to the side to always be visible.
+    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
+    // layer-shell panels and regular gaps.
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+
+animations {
+    // Uncomment to turn off all animations.
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+}
+
+binds {
+
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
+
+    //programs {{{
+    Mod+Return { spawn "foot"; }
+    Mod+T { spawn "sh" "-c" "$BROWSER"; }
+    Mod+Shift+T { spawn "sh" "-c" "$BROWSER_LITE"; }
+    Mod+Shift+E { spawn "thunderbird"; }
+    Mod+Alt+T { spawn "sh" "-c" "_BROWSER_NO_PRIVACY"; }
+    Mod+Z { spawn "sh" "-c" "$TERMINAL -e $SYSMON"; }
+    Mod+Semicolon { spawn "pick-emoji"; }
+    Mod+Shift+Semicolon { spawn "pick-reaction-image"; }
+    // }}}
+
+    Mod+B { spawn-sh "wlr-which-key -k b"; }
+    Mod+G { spawn-sh "wlr-which-key -k g"; }
+
+    Mod+R { spawn "os-menu"; }
+    Mod+Comma { spawn "select-window"; }
+    Mod+Alt+Semicolon { spawn "lock"; }
+
+    Mod+Space { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
+
+    // You can also use a shell. Do this if you need pipes, multiple commands, etc.
+    // Note: the entire command goes as a single argument in the end.
+    // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
+
+    // Example volume keys mappings for PipeWire & WirePlumber.
+    // The allow-when-locked=true property makes them work even when the session is locked.
+    XF86AudioLowerVolume allow-when-locked=true { spawn "sh" "-c" "wpctl set-volume \"@DEFAULT_AUDIO_SINK@\" 5%- && send-volume-notif lower"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "sh" "-c" "wpctl set-volume \"@DEFAULT_AUDIO_SINK@\" 5%+ && send-volume-notif higher"; }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+
+    Mod+Q { close-window; }
+
+    Mod+H     { focus-column-or-monitor-left; }
+    Mod+L     { focus-column-or-monitor-right; }
+
+    Mod+Shift+H     { move-column-left-or-to-monitor-left; }
+    Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+    Mod+Shift+L     { move-column-right-or-to-monitor-right; }
+
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+
+    Mod+Period     { focus-monitor-next; }
+
+    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    Mod+Shift+M  { move-window-to-monitor-next; }
+
+    Mod+S              { move-column-to-workspace-down; }
+    Mod+W              { move-column-to-workspace-up; }
+
+    Mod+BracketLeft { focus-workspace "1st"; }
+    Mod+BracketRight { focus-workspace "2nd"; }
+    Mod+Minus { focus-workspace "3rd"; }
+    Mod+Equal { focus-workspace "email"; }
+    Mod+Backslash { focus-workspace "chat"; }
+    Mod+Backspace { focus-workspace "O-2nd"; }
+    // Mod+7 { focus-workspace 7; }
+    // Mod+8 { focus-workspace 8; }
+    // Mod+9 { focus-workspace 9; }
+    Mod+Shift+BracketLeft { move-window-to-workspace "1st"; }
+    Mod+Shift+BracketRight { move-window-to-workspace "2nd"; }
+    Mod+Shift+Minus { move-window-to-workspace "3rd"; }
+    // Mod+Shift+Equal { move-column-to-workspace 4; }
+    Mod+Shift+Backslash { move-window-to-workspace "chat"; }
+    Mod+Shift+Backspace { move-window-to-workspace "O-2nd"; }
+    // Mod+Shift+7 { move-column-to-workspace 7; }
+    // Mod+Shift+8 { move-column-to-workspace 8; }
+    // Mod+Shift+9 { move-column-to-workspace 9; }
+
+
+
+    // Consume one window from the right into the focused column.
+    Mod+Shift+Comma  { consume-window-into-column; }
+    // Expel one window from the focused column to the right.
+    Mod+Shift+Period { expel-window-from-column; }
+
+    // There are also commands that consume or expel a single window to the side.
+    // Mod+BracketLeft  { consume-or-expel-window-left; }
+    // Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+    Mod+M { set-column-width "50%"; }
+
+    // Finer width adjustments.
+    // This command can also:
+    // * set width in pixels: "1000"
+    // * adjust width in pixels: "-5" or "+5"
+    // * set width as a percentage of screen width: "25%"
+    // * adjust width as a percentage of screen width: "-10%" or "+10%"
+    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+    // set-column-width "100" will make the column occupy 200 physical screen pixels.
+    Mod+Alt+H { set-column-width "-10%"; }
+    Mod+Alt+L { set-column-width "+10%"; }
+    Mod+Alt+K { set-window-height "-10%"; }
+    Mod+Alt+J { set-window-height "+10%"; }
+
+    Print { screenshot; }
+    Mod+V { spawn "scr-wayland"; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // The quit action will show a confirmation dialog to avoid accidental exits.
+    Mod+Alt+Shift+R { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    Mod+Shift+P { power-off-monitors; }
+}
