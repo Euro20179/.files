@@ -72,7 +72,7 @@
 (defwindow hyprland-bar-hdmi
     :monitor 1
     :exclusive true
-    :stacking "bottom"
+    :stacking "fg"
     :geometry (geometry
         :width "50px"
         :anchor "left center"
@@ -84,7 +84,7 @@
 (defwindow hyprland-bar-dp
     :monitor 0
     :exclusive true
-    :stacking "bottom"
+    :stacking "fg"
     :geometry (geometry
         :width "50px"
         :anchor "left center"

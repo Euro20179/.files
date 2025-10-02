@@ -1,5 +1,12 @@
 spawn-sh-at-startup "$HOME/.config/wlinit"
 
+cursor {
+    xcursor-theme "ArcStarry-cursors"
+    xcursor-size 24
+
+    hide-when-typing
+}
+
 hotkey-overlay {
     skip-at-startup
 }
@@ -121,6 +128,11 @@ layout {
 
     default-column-width { proportion 0.5; }
 
+    preset-column-widths {
+        proportion 0.5;
+        proportion 0.9;
+    }
+
     always-center-single-column
 
 
@@ -168,11 +180,14 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 
 animations {
-    // Uncomment to turn off all animations.
-    // off
-
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    // window-open {
+    //     custom-shader r"
+    //         vec4 open_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+    //             vec3 coords_tex = niri_geo_to_tex * coords_geo;
+    //             return texture2D(niri_tex, coords_tex.st);
+    //         }
+    //     "
+    // }
 }
 
 binds {
@@ -277,6 +292,7 @@ binds {
 
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
+    Mod+A { switch-preset-column-width; }
     Mod+C { center-column; }
     Mod+M { set-column-width "50%"; }
 
@@ -298,6 +314,8 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
+    Mod+y { spawn-sh "search < /dev/null > /dev/null 2>&1"; }
+
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Alt+Shift+R { quit; }
     Ctrl+Alt+Delete { quit; }
@@ -305,4 +323,12 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    Mod+U { toggle-column-tabbed-display; }
+}
+
+gestures {
+    hot-corners {
+        off
+    }
 }
