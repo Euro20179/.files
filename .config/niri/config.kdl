@@ -185,7 +185,8 @@ binds {
     Mod+Return { spawn "foot"; }
     Mod+T { spawn "sh" "-c" "$BROWSER"; }
     Mod+Shift+T { spawn "sh" "-c" "$BROWSER_LITE"; }
-    Mod+Shift+E { spawn "thunderbird"; }
+    Mod+Shift+E { spawn-sh "$EMAIL"; }
+    Mod+E { spawn-sh "$MATRIX"; }
     Mod+Alt+T { spawn "sh" "-c" "_BROWSER_NO_PRIVACY"; }
     Mod+Z { spawn "sh" "-c" "$TERMINAL -e $SYSMON"; }
     Mod+Semicolon { spawn "pick-emoji"; }
