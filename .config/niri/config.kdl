@@ -26,6 +26,11 @@ workspace "O-2nd" {
     open-on-output "HDMI-A-1"
 }
 
+//out of the way
+workspace "ootw" {
+    open-on-output "HDMI-A-1"
+}
+
 window-rule {
     match app-id=r#"thunderbird"#    
     open-maximized true
@@ -247,7 +252,7 @@ binds {
     Mod+Backspace { focus-workspace "O-2nd"; }
     // Mod+7 { focus-workspace 7; }
     // Mod+8 { focus-workspace 8; }
-    // Mod+9 { focus-workspace 9; }
+    Mod+9 { focus-workspace "ootw"; }
     Mod+Shift+BracketLeft { move-window-to-workspace "1st"; }
     Mod+Shift+BracketRight { move-window-to-workspace "2nd"; }
     Mod+Shift+Minus { move-window-to-workspace "3rd"; }
@@ -256,7 +261,7 @@ binds {
     Mod+Shift+Backspace { move-window-to-workspace "O-2nd"; }
     // Mod+Shift+7 { move-column-to-workspace 7; }
     // Mod+Shift+8 { move-column-to-workspace 8; }
-    // Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+9 { move-column-to-workspace "ootw"; }
 
 
 
