@@ -1,23 +1,6 @@
 #!/bin/bash
 
-declare -A class2symbol=(
-    [foot]=
-    [nheko]=󰊌
-    [librewolf]=
-    [osu!]=󰎄!
-    [thunderbird]=
-    [mpv]=󰈫
-    [steam]=󰓓
-    [makemkv]=📀
-)
-
-declare -A titleFuzz2symbol=(
-    [Discord]=󰙯
-    [Songs/scripts*'(foot)']=󰽴
-    [QuickMedia]=全て
-    [*nvim*'(foot)']=
-    [*conf*'(foot)']=
-)
+. "$XDG_CONFIG_HOME/eww/hyprland-bar/scripts/symbols"
 
 workspaces() {
     declare -A occupied

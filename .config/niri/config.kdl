@@ -39,6 +39,11 @@ workspace "ootw" {
 }
 
 window-rule {
+    match app-id="nvim-float"
+    open-floating true
+}
+
+window-rule {
     match app-id=r#"thunderbird"#    
     open-maximized true
     open-on-workspace "email"
@@ -94,7 +99,8 @@ input {
 // Remember to uncomment the node by removing "/-"!
 output "DP-1" {
 
-    mode "1920x1080@165"
+    mode "1920x1080@165.003"
+    focus-at-startup
 
     scale 1
 
@@ -110,7 +116,7 @@ output "DP-2" {
     position x=3840 y=0
 }
 output "HDMI-A-1" {
-    mode "1920x1080@75"
+    mode "1920x1080@74.986"
     position x=1920 y=0
 }
 
@@ -211,6 +217,9 @@ binds {
 
     Mod+X { spawn "cp-pass"; }
     Mod+Shift+X { spawn "cp-pass" "otp"; }
+
+    Mod+I { spawn-sh "foot -a nvim-float nvim -S $HOME/.local/vim-scripts/clipedit.vim"; }
+    Mod+Shift+I { spawn-sh "foot -a nvim-float nvim-calc"; }
     // }}}
 
     Mod+B { spawn-sh "wlr-which-key -k b"; }
@@ -260,7 +269,8 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-    Mod+Shift+M  { move-window-to-monitor-next; }
+    Mod+Shift+Period  { move-window-to-monitor-next; }
+    Mod+Shift+M  { move-column-to-first; }
 
     Mod+S              { move-column-to-workspace-down; }
     Mod+W              { move-column-to-workspace-up; }
@@ -287,9 +297,9 @@ binds {
 
 
     // Consume one window from the right into the focused column.
-    Mod+Shift+Comma  { consume-window-into-column; }
+    Mod+Shift+Comma  { consume-or-expel-window-right; }
     // Expel one window from the focused column to the right.
-    Mod+Shift+Period { expel-window-from-column; }
+    // Mod+Shift+Period { expel-window-from-column; }
 
     // There are also commands that consume or expel a single window to the side.
     // Mod+BracketLeft  { consume-or-expel-window-left; }
@@ -314,12 +324,13 @@ binds {
     Mod+Alt+K { set-window-height "-10%"; }
     Mod+Alt+J { set-window-height "+10%"; }
 
-    Print { screenshot; }
+    Print { screenshot-screen; }
     Mod+V { spawn "scr-wayland"; }
-    Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    Mod+y { spawn-sh "search < /dev/null > /dev/null 2>&1"; }
+    Mod+Slash { spawn-sh "wl-copy -c && printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }
+    Mod+Y { spawn-sh "search < /dev/null > /dev/null 2>&1"; }
+    Mod+Apostrophe { spawn-sh "linkding-cli search"; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Alt+Shift+R { quit; }

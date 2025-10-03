@@ -30,4 +30,4 @@ export TRASH="$HOME/.local/share/trash"
 export GEMINI="_GEMINI"
 
 
-export WM=niri
+export WM="niri --session"

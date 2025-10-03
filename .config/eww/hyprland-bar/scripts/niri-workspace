@@ -1,23 +1,8 @@
 #!/bin/bash
 
-declare -A class2symbol=(
-    [foot]=
-    [nheko]=󰊌
-    [librewolf]=
-    [osu!]=󰎄!
-    [thunderbird]=
-    [mpv]=󰈫
-    [steam]=󰓓
-    [makemkv]=📀
-)
+sleep 7
 
-declare -A titleFuzz2symbol=(
-    [Discord]=󰙯
-    [Songs/scripts*'(foot)']=󰽴
-    [QuickMedia]=全て
-    [*nvim*'(foot)']=
-    [*conf*'(foot)']=
-)
+. "$XDG_CONFIG_HOME/eww/hyprland-bar/scripts/symbols"
 
 workspaces() {
     declare -A occupied
@@ -40,7 +25,8 @@ workspaces() {
     activewindow=$(niri msg --json focused-window)
     activewindowID=$(jq -r '.id' <<<"$activewindow")
 
-    for k in "${!occupied[@]}"; do
+    while read -r k; do
+    # for k in "${!occupied[@]}"; do
         mon="${occupied[$k]}"
 
         itemsOnWorkspace="$(niri msg --json windows | jq -r '.[] | select(.workspace_id=='"${k}"')|"\(.app_id)\t\(.id)\t\(.title)"')"
@@ -69,7 +55,7 @@ workspaces() {
             [ -z "$s" ] && s="${class2symbol[$itemCLS]}"
 
             #if it's stil not set, use ?
-            [ -z "$s" ] && s='?'
+            [ -z "$s" ] && s="$itemTITLE"
 
             [ "$activewindowID" = "$itemADDR" ] && s="F:$s"
             symbolT="${symbolT} ${s}"
@@ -105,9 +91,9 @@ workspaces() {
             ((i++))
         done
 
-        #close the final box taht didn't get closed
+        #close the final box that didn't get closed
         text="$text))"
-    done
+    done <<< "$(printf "%s\n" "${!occupied[@]}" | tac)"
     echo "$text)"
 }
 
@@ -116,6 +102,3 @@ workspaces
 niri msg event-stream | while read -r line; do
         workspaces
 done
-# socat -u UNIX-CONNECT:/run/user/$UID/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do
-#     workspaces "$event"
-# done
