@@ -2,10 +2,17 @@
     color: #c6dff7;
 }
 
+.background {
+    border: 1px solid #89dceb;
+    background: rgba(30, 30, 46, 0.5);
+
+    border-radius: 10px;
+}
+
 /*general things {{{*/
 box {
     padding-bottom: 5px;
-    background-color: #21143e;
+    /* background-color: #21143e; */
 }
 
 .btn {
@@ -57,7 +64,7 @@ box {
 }
 
 .temp-5, .temp-6, .temp-7 {
-    color: #cba6f7;
+    color: #b4befe;
 }
 
 .temp-8, .temp-9, .temp-10 {
@@ -74,7 +81,7 @@ progressbar.temp-5 progress,
 progressbar.temp-6 progress,
 progressbar.temp-7 progress
 {
-    background-color: #cba6f7;
+    background-color: #b4befe;
 }
 
 progressbar.temp-4 progress,
