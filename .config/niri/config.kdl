@@ -220,6 +220,7 @@ binds {
 
     Mod+I { spawn-sh "foot -a nvim-float nvim -S $HOME/.local/vim-scripts/clipedit.vim"; }
     Mod+Shift+I { spawn-sh "foot -a nvim-float nvim-calc"; }
+    Mod+C { spawn-sh "d-calc"; }
     // }}}
 
     Mod+B { spawn-sh "wlr-which-key -k b"; }
@@ -308,7 +309,7 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+A { switch-preset-column-width; }
-    Mod+C { center-column; }
+    Mod+Shift+C { center-column; }
     Mod+M { set-column-width "50%"; }
 
     // Finer width adjustments.
@@ -326,6 +327,7 @@ binds {
 
     Print { screenshot-screen; }
     Mod+V { spawn "scr-wayland"; }
+    Mod+Alt+V { spawn "save-ss"; }
     Alt+Print { screenshot-window; }
 
     Mod+Slash { spawn-sh "wl-copy -c && printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }

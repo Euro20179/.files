@@ -1,5 +1,4 @@
-                                  = Dotfiles =
-───────────────────────────────────────────────────────────────────────────────
+================================== Dotfiles ===================================
 
 This repository contains basically everything my system relies on,
 and all the scripts i use
@@ -66,6 +65,7 @@ I have 2 mirrors:
 
 incase you hate this file just that much
 | ./Documents/README-old.md |
+
 (/
 WARNING: The old readme is unmaintained
 /)

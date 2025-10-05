@@ -216,7 +216,6 @@ local nShortcuts = {
         })
     end },
     { "<c-s-i>", "<cmd>InspectTree<CR>", { desc = "[TREESITTER] Open InspectTree" }},
-    { "<leader>fO", "<cmd>Oil<CR>", { desc = "[FILE] Open oil" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",

@@ -28,6 +28,9 @@ if !has("nvim")
 
     "laststatus is in this file
     so $XDG_CONFIG_HOME/vim/user/statusline.vim
+else
+    "i want things i write for vim to also load in nvim
+    set rtp+=$XDG_CONFIG_HOME/vim
 endif
 
 "OPTIONS{{{
@@ -237,6 +240,9 @@ nnoremap <c-s-k> K
 "This SHOULD be the default (insert + fix indent)
 "no idea why it needs to be the literal bytes instead of <c-r><c-p>
 exec "inoremap <c-r> \<c-r>\<c-p>"
+
+"Swapchars loaded in plugin/swap-chars.vim
+inoremap <c-s-h> <cmd>call Swapchars(line("."), col("."))<CR>
 
 if exists(":term")
     "Shift space can cause the line to clear for some reason (very annoying)

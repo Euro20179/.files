@@ -31,7 +31,6 @@ parser_config.mmfml = {
     install_info = {
         url = "/home/euro/Programs/Coding Projects/treesitter/mmfml/",
         files = { "src/parser.c", "src/scanner.c" },
-        branch = "master",
         generate_requires_npm = false,
         requires_generate_from_grammar = false,
     },
