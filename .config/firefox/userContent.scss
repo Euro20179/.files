@@ -2111,6 +2111,12 @@ blink {
 
 }
 
+@-moz-document regexp("https://www.youtube.com.*") {
+  .ytSuggestionComponentSuggestion {
+    height: 1.5em !important;
+  }
+}
+
 // @-moz-document domain("kagi.com") {
 //     :root {
 //         --background-color: var(--main) !important;

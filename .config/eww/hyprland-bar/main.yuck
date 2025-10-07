@@ -6,10 +6,10 @@
 (defpoll time :interval "1s"
     :initial "initial-value"
     :run-while true
-    `date "+%H:%M "`)
+    `date "+%H:%M"`)
 (defpoll date :interval "1m"
     :initial "initial-date"
-    `date "+%m/%d 🗓︎"`)
+    `date "+%m/%d"`)
 
 (defpoll volume :interval "2s"
     `pactl get-sink-volume @DEFAULT_SINK@ | cut -d / -f2 | head -n1 | grep -o '[[:digit:]]*'`)
