@@ -18,12 +18,6 @@ require 'user.init'
 require 'user.colorscheme'
 require 'user.globals-setup'
 
--- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
--- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
-for _, plug in pairs({"mmfml", "gemini"}) do
-    vim.cmd.packadd(plug)
-end
-
 local g = require"gemini"
 g.setup{
     bookmark_file = vim.fn.stdpath("config") .. "/gemini-bookmarks",

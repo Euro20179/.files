@@ -2111,21 +2111,8 @@ blink {
 
 }
 
-@-moz-document regexp("https://www.youtube.com.*") {
+@-moz-document domain("www.youtube.com") {
   .ytSuggestionComponentSuggestion {
     height: 1.5em !important;
   }
 }
-
-// @-moz-document domain("kagi.com") {
-//     :root {
-//         --background-color: var(--main) !important;
-//         --page-text-color: var(--text-color) !important;
-//         --color-link: var(--link-color) !important;
-//         --site_info_grade_trackers_danger_1: var(--warn) !important;
-//         --site_info_grade_trackers_danger_2: var(--error) !important;
-//         --domain-rank-icon-color-trackers: var(--error) !important;
-//         --ranked-box-connection-secure: var(--green) !important;
-//         --ranked-box-tracker-desc-clear: var(--green) !important;
-//     }
-// }

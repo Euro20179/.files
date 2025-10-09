@@ -164,7 +164,7 @@ local nShortcuts = {
     { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
-    { "<leader>eu",       "<cmd>lua require('undotree').toggle()<cr>" },
+    { "<leader>eu",       "<cmd>Undotree<cr>" },
     { "<leader>O",        require 'oil'.open },
     --}}}
     --buffer/window shortcuts{{{

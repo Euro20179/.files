@@ -17,6 +17,12 @@ require "mini.deps".setup({ path = { package = path_package } })
 
 vim.cmd.packadd "cfilter"
 vim.cmd.packadd { "termdebug", bang = true }
+-- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
+-- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
+for _, plug in pairs({"nvim.undotree", "mmfml", "gemini"}) do
+    vim.cmd.packadd(plug)
+end
+
 
 local miniDeps = require "mini.deps"
 local add = miniDeps.add
@@ -309,13 +315,14 @@ aSetup({
         '3rd/sqlite.nvim'
     }
 }, now, "devtime", {})
+
 -- add { source = "altermo/ultimate-autopair.nvim" }
 -- later(function()
 --     require "ultimate-autopair.core".modes = { 'i' }
 --     require "ultimate-autopair".setup {}
 -- end)
 
-aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
+-- aSetup({ source = "jiaoshijie/undotree" }, later, "undotree", { window = { winblend = 5 } })
 
 add { source = "Apeiros-46B/qalc.nvim", checkout = "451f082" }
 
