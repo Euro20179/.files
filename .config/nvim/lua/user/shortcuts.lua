@@ -164,7 +164,11 @@ local nShortcuts = {
     { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
-    { "<leader>eu",       "<cmd>Undotree<cr>" },
+    { "<leader>eu",       function ()
+        vim.cmd.Undotree()
+        vim.cmd.wincmd("H")
+        vim.api.nvim_win_set_width(0, 40)
+    end},
     { "<leader>O",        require 'oil'.open },
     --}}}
     --buffer/window shortcuts{{{

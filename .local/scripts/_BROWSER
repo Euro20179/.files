@@ -3,6 +3,6 @@
 # EXE=librewolf
 # command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
 
-exec "$HOME/glide/glide" -P default-glide "$@"
+exec "glide-bin" -P default-glide "$@"
 
 # # firefox-developer-edition -P default-release "$@"

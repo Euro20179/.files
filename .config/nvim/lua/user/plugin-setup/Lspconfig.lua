@@ -1,11 +1,81 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
+-- capabilities = require "blink.cmp".get_lsp_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ---Setup an lsp server
 ---@param name string
 ---@param settings vim.lsp.Config
 local function setupLSP(name, settings)
+    -- local kind2name = {
+    --      [ 1 ] = "Text",
+    --      [ 2 ] = "Method",
+    --      [ 3 ] = "Function",
+    --      [ 4 ] = "Constructor",
+    --      [ 5 ] = "Field",
+    --      [ 6 ] = "Variable",
+    --      [ 7 ] = "Class",
+    --      [ 8 ] = "Interface",
+    --      [ 9 ] = "Module",
+    --      [ 10 ] = "Property",
+    --      [ 11 ] = "Unit",
+    --      [ 12 ] = "Value",
+    --      [ 13 ] = "Enum",
+    --      [ 14 ] = "Keyword",
+    --      [ 15 ] = "Snippet",
+    --      [ 16 ] = "Color",
+    --      [ 17 ] = "File",
+    --      [ 18 ] = "Reference",
+    --      [ 19 ] = "Folder",
+    --      [ 20 ] = "EnumMember",
+    --      [ 21 ] = "Constant",
+    --      [ 22 ] = "Struct",
+    --      [ 23 ] = "Event",
+    --      [ 24 ] = "Operator",
+    --      [ 25 ] = "TypeParameter",
+    -- }
+    --
+    -- local kind_icons = {
+    --     Text = "",
+    --     Method = " ",
+    --     Function = "",
+    --     Constructor = "",
+    --     Field = "",
+    --     Variable = "𝑥",
+    --     Class = "",
+    --     Interface = "",
+    --     Module = "",
+    --     Property = "",
+    --     Unit = "",
+    --     Value = "",
+    --     Enum = "",
+    --     Keyword = "",
+    --     Snippet = "󱄽",
+    --     Color = "",
+    --     File = "",
+    --     Reference = "",
+    --     Folder = "",
+    --     EnumMember = "",
+    --     Constant = "",
+    --     Struct = "",
+    --     Event = "",
+    --     Operator = "",
+    --     TypeParameter = ""
+    -- }
+    --
+    -- settings.on_attach = function(client, buf)
+    --     vim.cmd[[set completeopt+=menuone,noselect,popup]]
+    --     vim.cmd[[inoremap <c-n> <c-x><c-o>]]
+    --     vim.lsp.completion.enable(true, client.id, buf, {
+    --         autotrigger = true,
+    --         convert = function(item)
+    --             return {
+    --                 abbr = item.label,
+    --                 kind = kind_icons[kind2name[item.kind]],
+    --                 abbr_hlgroup = kind_icons[kind2name[item.kind]]
+    --             }
+    --         end
+    --     })
+    -- end
     vim.lsp.config[name] = settings
     vim.lsp.enable(name)
 end
@@ -113,7 +183,7 @@ local TS_LS_SETTINGS = {
 setupLSP("ts_ls", {
     cmd = { "typescript-language-server", "--stdio" },
     root_markers = { ".git", "node_modules" },
-    filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact"  },
+    filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
     settings = {
         javascript = TS_LS_SETTINGS,
         typescript = TS_LS_SETTINGS
