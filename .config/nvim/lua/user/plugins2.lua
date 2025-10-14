@@ -19,7 +19,7 @@ vim.cmd.packadd "cfilter"
 vim.cmd.packadd { "termdebug", bang = true }
 -- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
 -- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
-for _, plug in pairs({"nvim.undotree", "mmfml", "gemini"}) do
+for _, plug in pairs({"nvim.difftool", "nvim.undotree", "mmfml", "gemini"}) do
     vim.cmd.packadd(plug)
 end
 

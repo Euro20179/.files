@@ -210,6 +210,7 @@ binds {
     Mod+E { spawn-sh "$MATRIX"; }
     Mod+Alt+T { spawn "sh" "-c" "_BROWSER_NO_PRIVACY"; }
     Mod+Z { spawn "sh" "-c" "$TERMINAL -e $SYSMON"; }
+    Mod+Shift+Z { spawn "sh" "-c" "$TERMINAL -e nvtop"; }
     Mod+Semicolon { spawn "pick-emoji"; }
     Mod+Shift+Semicolon { spawn "pick-reaction-image"; }
 
