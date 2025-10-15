@@ -106,17 +106,6 @@ setupLSP("phpactor", {
     root_dir = vim.uv.cwd()
 })
 
-setupLSP("html", {
-    cmd = { "vscode-html-language-server", "--stdio" },
-    filetypes = { "html", "tmpl" },
-    root_markers = { "package.json", ".git" },
-    init_options = {
-        provideFormatter = true,
-        embeddedLanguages = { css = true, javascript = true },
-        configurationSection = { "html", "css", "javascript" }
-    }
-})
-
 setupLSP("basedpyright", {
     cmd = { "basedpyright-langserver", "--stdio" },
     filetypes = { "python" },
@@ -180,6 +169,7 @@ local TS_LS_SETTINGS = {
     },
 }
 
+
 setupLSP("ts_ls", {
     cmd = { "typescript-language-server", "--stdio" },
     root_markers = { ".git", "node_modules" },
@@ -220,11 +210,6 @@ setupLSP("cssls", {
     }
 })
 
-setupLSP("jsonls", {
-    cmd = { "vscode-json-language-server", "--stdio" },
-    filtypes = { "json" },
-    root_dir = function() return vim.uv.cwd() end
-})
 
 setupLSP("vimls", {
     cmd = { "vim-language-server", "--stdio" },

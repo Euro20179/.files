@@ -1,0 +1,14 @@
+*execsel.txt* Execute the selection as a shell script
+
+===================
+2. About            *exec-plugin*
+
+Execute text as a shell script in a new |:terminal| buffer
+
+===================
+1. Commands
+
+                *:Exec*
+:[range]Exec[!] [{cmd}]
+    If {cmd} is given, execute it. Otherwise execute range in a new
+    |:terminal| buffer. If the bang is given, do execute with |:!cmd|

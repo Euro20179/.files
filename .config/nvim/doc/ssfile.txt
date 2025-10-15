@@ -1,0 +1,12 @@
+*ssfile.txt* Plugin for screenshotting text
+
+Adds |:Ssfile| to screenshot a buffer, range, or file
+
+================
+2. Commands
+
+                    *:Ssfile*
+:[range]Ssfile [{file}]
+                    Screenshot {file} or the current buffer. If range is
+                    given, screenshot that range in the file
+                    See |ssfile-plugin|
