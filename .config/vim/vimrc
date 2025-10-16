@@ -8,7 +8,7 @@ catch /Cannot find color scheme '\w\+'/
     color desert
 endtry
 
-"vim bad defaults
+"vim bad defaults {{{
 if !has("nvim")
     filetype on
     syntax enable
@@ -28,6 +28,7 @@ if !has("nvim")
 
     "laststatus is in this file
     so $XDG_CONFIG_HOME/vim/user/statusline.vim
+"}}}
 else
     "i want things i write for vim to also load in nvim
     set rtp+=$XDG_CONFIG_HOME/vim
@@ -209,6 +210,12 @@ inoremap <c-s-v> <c-r>+
 nnoremap <c-s-v> a<c-r>+<esc>
 "}}}
 
+"completion {{{
+if exists("*pumvisible")
+    inoremap <expr> <c-l> pumvisible() ? "<c-y>" : "<c-l>"
+endif
+"}}}
+
 "Text editing {{{
 nnoremap [<space> :execute ':norm O' \| call setline(".", "") \| noh \| :norm j<CR>
 nnoremap ]<space> :execute ':norm o' \| call setline(".", "") \| noh \| :norm k<CR>
@@ -229,22 +236,19 @@ nnoremap <silent> <leader>o :set opfunc=AddLineAboveBelowMotion<cr>g@
 vnoremap <leader>o :BlankLines<CR>
 "}}}
 
+" misc {{{
 nnoremap <leader>fh :help 
-
 nnoremap <c-s-k> K
-
-"Im tired of pressing ctrl-w and closing tabs
-"inoremap <c-w> <nop>
-"inoremap <c-bs> <c-w>
+" }}}
 
 "This SHOULD be the default (insert + fix indent)
 "no idea why it needs to be the literal bytes instead of <c-r><c-p>
-exec "inoremap <c-r> \<c-r>\<c-p>"
+inoremap <expr> <c-r> "<c-r><c-p>"
 
 "Swapchars loaded in plugin/swap-chars.vim
 inoremap <c-s-h> <cmd>call Swapchars(line("."), col("."))<CR>
 
-if exists(":term")
+if exists(":tnoremap")
     "Shift space can cause the line to clear for some reason (very annoying)
     tnoremap <S-Space> <space>
 endif
@@ -265,6 +269,7 @@ for i in range(1, 9)
     call digraph_set("J" .. i, jnumbs[i - 1])
 endfor
 
+"Fix nerdfonts {{{
 let s:hs = char2nr("☭")
 call setcellwidths([
     \ [ s:hs, s:hs, 2], 
@@ -288,3 +293,4 @@ call setcellwidths([
     \ [ 0xe700, 0xe7c5, 2 ],
     \ [ 0xf0001, 0xf1af0, 2 ],
 \ ])
+"}}}

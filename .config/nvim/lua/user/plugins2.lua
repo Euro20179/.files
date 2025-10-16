@@ -62,118 +62,118 @@ add { source = "b0o/Schemastore.nvim" }
 
 aSetup({ source = "icholy/lsplinks.nvim" }, later, "lsplinks", {})
 
-local function buildBlink()
-    local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/nvim/site/pack/deps/opt/blink.cmp")
-    vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
-        function(res)
-            vim.schedule(function()
-                vim.notify("Please wait while blink is being built...")
-                if res.code ~= 0 then
-                    vim.notify(tostring(res.stderr))
-                else
-                    vim.notify("Built blink cmp")
-                end
-            end)
-        end
-    )
-end
-
-aSetup({
-        source = "Saghen/blink.cmp",
-        -- source = "file:///home/euro/Programs/GithubContribs/blink.cmp",
-        depends = { 'rafamadriz/friendly-snippets' },
-        hooks = {
-            post_checkout = buildBlink,
-            post_install = buildBlink,
-        }
-    }, later,
-    "blink-cmp", {
-        completion = {
-            menu = {
-                draw = {
-                    treesitter = {
-                        "lsp",
-                    }
-                }
-            },
-
-            keyword = {
-                range = "prefix",
-            },
-
-            documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 0,
-                update_delay_ms = 50
-            },
-
-            ghost_text = {
-                enabled = false
-            },
-
-            accept = {
-                auto_brackets = {
-                    enabled = false
-                }
-            }
-        },
-
-        keymap = {
-            preset = "default",
-            ["<Tab>"] = {},
-            ["<Up>"] = {},
-            ["<Down>"] = {},
-            ["<c-q>"] = { "show", "hide" },
-            ["<c-l>"] = { "accept" },
-            ["<c-n>"] = { "select_next" },
-            ["<c-p>"] = { "select_prev" },
-            ["<C-f>"] = { "scroll_documentation_up" },
-            ["<C-b>"] = { "scroll_documentation_down" },
-            ["<c-,>"] = { "show_documentation", "hide_documentation" },
-        },
-        appearance = {
-            highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
-            use_nvim_cmp_as_default = true,
-            kind_icons = {
-                Text = "",
-                Method = " ",
-                Function = "",
-                Constructor = "",
-                Field = "",
-                Variable = "𝑥",
-                Class = "",
-                Interface = "",
-                Module = "",
-                Property = "",
-                Unit = "",
-                Value = "",
-                Enum = "",
-                Keyword = "",
-                Snippet = "󱄽",
-                Color = "",
-                File = "",
-                Reference = "",
-                Folder = "",
-                EnumMember = "",
-                Constant = "",
-                Struct = "",
-                Event = "",
-                Operator = "",
-                TypeParameter = ""
-            },
-        },
-
-        sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
-        },
-
-        fuzzy = {
-            frecency = {
-                enabled = true
-            }
-        }
-    }
-)
+-- local function buildBlink()
+--     local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/nvim/site/pack/deps/opt/blink.cmp")
+--     vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
+--         function(res)
+--             vim.schedule(function()
+--                 vim.notify("Please wait while blink is being built...")
+--                 if res.code ~= 0 then
+--                     vim.notify(tostring(res.stderr))
+--                 else
+--                     vim.notify("Built blink cmp")
+--                 end
+--             end)
+--         end
+--     )
+-- end
+--
+-- aSetup({
+--         source = "Saghen/blink.cmp",
+--         -- source = "file:///home/euro/Programs/GithubContribs/blink.cmp",
+--         depends = { 'rafamadriz/friendly-snippets' },
+--         hooks = {
+--             post_checkout = buildBlink,
+--             post_install = buildBlink,
+--         }
+--     }, later,
+--     "blink-cmp", {
+--         completion = {
+--             menu = {
+--                 draw = {
+--                     treesitter = {
+--                         "lsp",
+--                     }
+--                 }
+--             },
+--
+--             keyword = {
+--                 range = "prefix",
+--             },
+--
+--             documentation = {
+--                 auto_show = true,
+--                 auto_show_delay_ms = 0,
+--                 update_delay_ms = 50
+--             },
+--
+--             ghost_text = {
+--                 enabled = false
+--             },
+--
+--             accept = {
+--                 auto_brackets = {
+--                     enabled = false
+--                 }
+--             }
+--         },
+--
+--         keymap = {
+--             preset = "default",
+--             ["<Tab>"] = {},
+--             ["<Up>"] = {},
+--             ["<Down>"] = {},
+--             ["<c-q>"] = { "show", "hide" },
+--             ["<c-l>"] = { "accept" },
+--             ["<c-n>"] = { "select_next" },
+--             ["<c-p>"] = { "select_prev" },
+--             ["<C-f>"] = { "scroll_documentation_up" },
+--             ["<C-b>"] = { "scroll_documentation_down" },
+--             ["<c-,>"] = { "show_documentation", "hide_documentation" },
+--         },
+--         appearance = {
+--             highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+--             use_nvim_cmp_as_default = true,
+--             kind_icons = {
+--                 Text = "",
+--                 Method = " ",
+--                 Function = "",
+--                 Constructor = "",
+--                 Field = "",
+--                 Variable = "𝑥",
+--                 Class = "",
+--                 Interface = "",
+--                 Module = "",
+--                 Property = "",
+--                 Unit = "",
+--                 Value = "",
+--                 Enum = "",
+--                 Keyword = "",
+--                 Snippet = "󱄽",
+--                 Color = "",
+--                 File = "",
+--                 Reference = "",
+--                 Folder = "",
+--                 EnumMember = "",
+--                 Constant = "",
+--                 Struct = "",
+--                 Event = "",
+--                 Operator = "",
+--                 TypeParameter = ""
+--             },
+--         },
+--
+--         sources = {
+--             default = { "lsp", "path", "snippets", "buffer" },
+--         },
+--
+--         fuzzy = {
+--             frecency = {
+--                 enabled = true
+--             }
+--         }
+--     }
+-- )
 
 -- add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }

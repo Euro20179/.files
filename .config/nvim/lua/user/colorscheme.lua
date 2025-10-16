@@ -120,7 +120,29 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         hi DiagnosticUnderlineHint gui=underline
         hi DiagnosticUnderlineOk gui=underline
 
-        hi Keyword gui=italic
+        hi clear @type.builtin
+        hi clear @variable.parameter
+        hi clear @keyword.operator
+        hi clear @keyword.function
+        hi clear @variable.member
+        hi clear @variable.builtin
+        hi clear @property
+        hi clear @variable
+        hi clear Boolean
+
+        hi link @class Type
+        hi link Boolean Number
+        hi link @property @variable
+        hi link @type.builtin Type
+        hi link @variable.member @variable
+        hi link @variable.builtin @variable
+        hi link @variable.parameter @variable
+        hi link @keyword.operator Operator
+        hi link @keyword.function Keyword
+
+        hi link @variable Normal
+        "hi Delimiter guifg=#7ec9d8
+        
     ]]
 
         --better quickfix{{{
