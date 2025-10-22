@@ -212,6 +212,11 @@ setupLSP("cssls", {
     }
 })
 
+setupLSP("lemminx", {
+    cmd = { "lemminx" },
+    filetypes = { "xml", "xslt" }
+})
+
 
 setupLSP("vimls", {
     cmd = { "vim-language-server", "--stdio" },
