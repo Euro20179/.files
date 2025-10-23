@@ -10,7 +10,7 @@ foreground = "#c5c8c6"
 size = 14
 
 [font.normal]
-family = "jetbrainsmono"
+family = "liga berkeleymono"
 
 [window]
 opacity = 0.95

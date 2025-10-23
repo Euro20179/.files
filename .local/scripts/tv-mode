@@ -5,21 +5,20 @@ state_file="/tmp/tv-mode"
 set.wayland() {
     if [ -f "$state_file" ]; then
         # i don't know why i need to use swaymsg here, but apparently I do
-        wlr-randr --output eDP-1 --on
+        pactl set-default-sink 'alsa_output.pci-0000_2f_00.4.analog-stereo'
+        wlr-randr --output DP-1 --on
         wlr-randr --output HDMI-A-1 --on
-        wlr-randr --output DP-1 --off
-        wlr-randr --output eDP-1 --pos 1920,0
-        wlr-randr --output HDMI-A-1 --pos 0,0
+        wlr-randr --output DP-2 --off
+        wlr-randr --output DP-1 --pos 0,0
+        wlr-randr --output HDMI-A-1 --pos 1920,0
         rm "$state_file"
-        swaymsg 'unbindsym KP_8'
-        swaymsg 'unbindsym KP_2'
         killall kodi
     else
-        wlr-randr --output eDP-1 --off
+        wlr-randr --output DP-2 --on
         wlr-randr --output HDMI-A-1 --off
-        wlr-randr --output DP-1 --on
-        swaymsg "bindsym KP_8 exec 'pactl set-sink-volume \$(pactl get-default-sink) +5% && send-volume-notif higher'"
-        swaymsg "bindsym KP_2 exec 'pactl set-sink-volume \$(pactl get-default-sink) -5% && send-volume-notif lower'"
+        wlr-randr --output DP-1 --off
+        sleep 1
+        pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
         touch "$state_file"
         kodi & disown
     fi
@@ -75,7 +74,9 @@ wayland)
         disown
         ;;
     Hyprland | X-generic)
-        set.hyprland
+        set.hyprland ;;
+    *)
+        set.wayland
         ;;
     esac
     ;;

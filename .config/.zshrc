@@ -51,12 +51,12 @@ elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} == '' ]
     echo -ne '\e['"$INSBEAM"' q'
 fi
 }
-isnt_vim && zle -N zle-keymap-select
+isnt_vim && ! [[ $TERM =~ .*kitty ]] && zle -N zle-keymap-select
 # #initial cursor
 zle-line-init(){
 zle -K viins
 #beam
-echo -ne "\e['"$INSBEAM"' q"
+! [[ $TERM =~ .*kitty ]] && echo -ne "\e['"$INSBEAM"' q"
 }
 isnt_vim && zle -N zle-line-init
 # #initial cursor

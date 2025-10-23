@@ -1,3 +1,2 @@
 #!/bin/bash
-less
-# /usr/share/nvim/runtime/macros/less.sh
+nvim "+call nvim_open_term(0, {})"
