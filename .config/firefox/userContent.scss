@@ -17,7 +17,7 @@
     --text-normal: var(--text-color) !important;
     --text-default: var(--main) !important;
 
-    --background-code: unquote('hsl(from var(--main) h s l / 70%)') !important;
+    --background-code: hsl(from var(--main) h s l / 70%) !important;
   }
 
   #channels {
