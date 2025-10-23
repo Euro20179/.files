@@ -52,11 +52,12 @@ vim.api.nvim_create_user_command("Boxify", function(args)
 
     local text = vim.api.nvim_buf_get_text(0, sl, sc, el, ec, {})
 
+    local height = #text - 2
     local lineCount = #text
-    local longestLineLen = #text[1]
+    local width = #text[1]
     for _, line in ipairs(text) do
-        if #line > longestLineLen then
-            longestLineLen = #line
+        if #line > width then
+            width = #line
         end
     end
 
@@ -67,36 +68,59 @@ vim.api.nvim_create_user_command("Boxify", function(args)
     local h = "─"
     local v = "│"
 
-    local chars = args.fargs
+    local fargs = args.fargs
 
-    if chars[1] == "b" then
+    if fargs[1] == "b" then
         tl = "┏"
         tr = "┓"
         bl = "┗"
         br = "┛"
         h = "━"
         v = "┃"
-    elseif chars[1] == "d" then
+    elseif fargs[1] == "d" then
         tr = "╗"
         tl = "╔"
         br = "╝"
         bl = "╚"
         h = "═"
         v = "║"
-    else
-        for _, char in pairs(chars) do
-            if vim.startswith(char, "h=") then
-                h = string.sub(char, 3)
-            elseif vim.startswith(char, "v=") then
-                v = string.sub(char, 3)
-            elseif vim.startswith(char, "tl=") then
-                v = string.sub(char, 4)
-            elseif vim.startswith(char, "tr=") then
-                v = string.sub(char, 4)
-            elseif vim.startswith(char, "br=") then
-                v = string.sub(char, 4)
-            elseif vim.startswith(char, "bl=") then
-                v = string.sub(char, 4)
+    end
+
+    for _, kwarg in pairs(fargs) do
+        if vim.startswith(kwarg, "h=") then
+            h = string.sub(kwarg, 3)
+        elseif vim.startswith(kwarg, "v=") then
+            v = string.sub(kwarg, 3)
+        elseif vim.startswith(kwarg, "tl=") then
+            v = string.sub(kwarg, 4)
+        elseif vim.startswith(kwarg, "tr=") then
+            v = string.sub(kwarg, 4)
+        elseif vim.startswith(kwarg, "br=") then
+            v = string.sub(kwarg, 4)
+        elseif vim.startswith(kwarg, "bl=") then
+            v = string.sub(kwarg, 4)
+        elseif vim.startswith(kwarg, "width=") then
+            local amount = string.sub(kwarg, 7)
+
+            if string.sub(amount, 1, 1) == "+" then
+                width = width + (tonumber(string.sub(amount, 2))) * 2
+                vim.print(width)
+            else
+                local n = tonumber(kwarg)
+                if n and n > width then
+                    width = math.floor(n)
+                end
+            end
+        elseif vim.startswith(kwarg, "height=") then
+            local amount = string.sub(kwarg, 7)
+
+            if string.sub(amount, 1, 1) == "+" then
+                height = height + (tonumber(string.sub(amount, 2))) * 2
+            else
+                local n = tonumber(kwarg)
+                if n and n > height then
+                    height = math.floor(n)
+                end
             end
         end
     end
@@ -105,23 +129,38 @@ vim.api.nvim_create_user_command("Boxify", function(args)
 
     -- top line {{{
     newText[1] = tl
-    for i = 1, longestLineLen do
+    for i = 1, width do
         newText[1] = newText[1] .. h
     end
     newText[1] = newText[1] .. tr
     -- }}}
 
-    -- middle text {{{
-    for _, line in ipairs(text) do
-        line = v .. centerPad(line, longestLineLen) .. v
+    -- top padding {{{
+    for _ = 0, (height - lineCount) / 2 do
+        local line = v .. centerPad(' ', width) .. v
         newText[#newText + 1] = line
     end
     -- }}}
 
+    -- middle text {{{
+    for _, line in ipairs(text) do
+        line = v .. centerPad(line, width) .. v
+        newText[#newText + 1] = line
+    end
+    -- }}}
+
+    -- bottom padding {{{
+    for _ = 0, (height - lineCount) / 2 do
+        local line = v .. centerPad(' ', width) .. v
+        newText[#newText + 1] = line
+    end
+    -- }}}
+
+
     -- bottom line {{{
     local last = #newText + 1
     newText[last] = bl
-    for i = 1, longestLineLen do
+    for i = 1, width do
         newText[last] = newText[last] .. h
     end
     newText[last] = newText[last] .. br
