@@ -32,7 +32,7 @@ parser_config.mmfml = {
         url = "/home/euro/Programs/Coding Projects/treesitter/mmfml/",
         files = { "src/parser.c", "src/scanner.c" },
         generate_requires_npm = false,
-        requires_generate_from_grammar = false,
+        requires_generate_from_grammar = true,
     },
     filetype = "mmfml"
 }

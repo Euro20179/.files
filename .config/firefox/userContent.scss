@@ -2,24 +2,88 @@
 
 @-moz-document regexp("https://discord.com.*") {
   :root {
-    --background-mentioned: oklch(from var(--ow-blue) 30% c h) !important;
+    --background-mentioned: oklch(from var(--red) 30% c h) !important;
     --background-mentioned-hover: oklch(from var(--background-mentioned) l c h / 50%) !important;
     /*used for the little light on the left of a message when you are pinged*/
     --info-warning-foreground: oklch(from var(--background-mentioned) 80% c h) !important;
 
-    --background-base-lowest: var(--ow-main) !important;
-    --background-base-lower: var(--ow-main) !important;
-    --background-primary: var(--ow-main) !important;
-    --background-secondary: var(--ow-main) !important;
-    --chat-background-default: var(--ow-secondary) !important;
-    --bg-overlay-floating: var(--ow-secondary) !important;
+    --background-base-lowest: var(--main) !important;
+    --background-base-lower: var(--main) !important;
+    --background-primary: var(--main) !important;
+    --background-secondary: var(--main) !important;
+    --chat-background-default: var(--secondary) !important;
+    --bg-overlay-floating: var(--secondary) !important;
 
     --text-normal: var(--text-color) !important;
+    --text-default: var(--main) !important;
+
+    --background-code: unquote('hsl(from var(--main) h s l / 70%)') !important;
   }
 
-  // * {
-  //   color: var(--text-color);
-  // }
+  #channels {
+    background: var(--main) !important;
+    li [class*="name"] {
+      color: var(--text-color) !important;
+    }
+  }
+
+  [class*=sidebarList] {
+    border-color: var(--text-color) !important;
+  }
+
+  [aria-label="Servers sidebar"] {
+    background: var(--main) !important;
+  }
+
+  li[class*=messageListItem] {
+    border: 2px outset var(--blue) !important;
+    margin-block: 10px !important;
+    box-shadow: 3px 3px 3px black !important;
+    background: var(--blue) !important;
+    max-width: fit-content !important;
+
+    :not([class*=image]) a:not([data-role="img"]) {
+      //sassc doesn't like relative colors
+      color: unquote('hsl(from var(--link-color) h s 30%)') !important;
+      background-color: var(--link-color) !important;
+      border-radius: 5px;
+
+      span {
+        padding-inline: 1ch !important;
+      }
+    }
+
+    small {
+      color: inherit !important;
+    }
+
+    time {
+      color: var(--main) !important;
+    }
+
+    pre, code {
+      color: var(--text-color) !important;
+      border-color: currentColor !important;
+    }
+
+    [class*=embed] {
+      color: var(--text-color) !important;
+
+      a {
+        color: unquote('hsl(from var(--link-color) h s 30%)') !important;
+      }
+    }
+
+    .mention {
+      background-color: var(--red) !important;
+      color: unquote('hsl(from var(--red) h s 30%)') !important
+    }
+  }
+
+
+  div[class*=mentioned] {
+    --text-default: var(--text-color) !important;
+  }
 }
 
 // @-moz-document regexp(".*4chan.org/.*") {
