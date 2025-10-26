@@ -85,14 +85,14 @@ vim.diagnostic.config({
     }
 })
 
-vim.lsp.buf.hover = function()
-    local hc = require"hovercraft"
-    if hc.is_visible() then
-        hc.enter_popup()
-    else
-        hc.hover()
-    end
-end
+-- vim.lsp.buf.hover = function()
+--     local hc = require"hovercraft"
+--     if hc.is_visible() then
+--         hc.enter_popup()
+--     else
+--         hc.hover()
+--     end
+-- end
 
 vim.o.winbar = [====[%{luaeval("vim.fn.join(vim.iter(require'harpoon':list().items):enumerate():map(function(i, item) return tostring(i) .. ' ' .. item.value end):filter(function(item) return item ~= '' end):totable(), ' | ')")}]====]
 

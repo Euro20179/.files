@@ -147,14 +147,6 @@ require 'nvim-treesitter.configs'.setup {
             },
         },
 
-        lsp_interop = {
-            enable = true,
-            peek_definition_code = {
-                ["<leader>F"] = "@function.outer",
-                ["<leader>C"] = "@class.outer",
-            }
-        },
-
         select = {
             enable = true,
             keymaps = {

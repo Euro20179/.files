@@ -1,46 +1,12 @@
 vim.cmd.packadd "pkg"
 local pkg = require "pkg"
 
---bootstrap {{{
--- local path_package = vim.fn.stdpath("data") .. "/site/"
---
--- local mini_path = path_package .. "pack/deps/start/mini.nvim"
---
--- if not vim.uv.fs_stat(mini_path) then
---     vim.cmd('echo "Installing `mini.nvim`" | redraw')
---     vim.fn.system({
---         'git', 'clone', '--filter=blob:none',
---         "https://github.com/echasnovski/mini.nvim", mini_path
---     })
---     vim.cmd("packadd mini.nvim | helptags ALL")
--- end
---
--- require "mini.deps".setup({ path = { package = path_package } })
---}}}
-
 -- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
 -- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
-for _, plug in pairs({ "cfilter",  "nvim.difftool", "nvim.undotree", "mmfml", "gemini" }) do
+for _, plug in pairs({ "cfilter", "nvim.difftool", "nvim.undotree", "mmfml", "gemini" }) do
     vim.cmd.packadd(plug)
 end
 
-
--- local miniDeps = require "mini.deps"
--- local add = miniDeps.add
--- local later = miniDeps.later
--- local now = miniDeps.now
-
-
--- local function setup(when, name, opts)
---     when(function()
---         require(name).setup(opts)
---     end)
--- end
--- local function aSetup(addOpts, when, name, opts)
---     add(addOpts)
---     setup(when, name, opts)
--- end
---
 
 --libraries{{{
 pkg.add({
@@ -72,22 +38,117 @@ pkg.add({
     end
 })
 
--- local function buildBlink()
---     local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/nvim/site/pack/deps/opt/blink.cmp")
---     vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
---         function(res)
---             vim.schedule(function()
---                 vim.notify("Please wait while blink is being built...")
---                 if res.code ~= 0 then
---                     vim.notify(tostring(res.stderr))
---                 else
---                     vim.notify("Built blink cmp")
---                 end
---             end)
---         end
---     )
--- end
---
+local function buildBlink()
+    local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp")
+    vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
+        function(res)
+            vim.schedule(function()
+                vim.notify("Please wait while blink is being built...")
+                if res.code ~= 0 then
+                    vim.notify(tostring(res.stderr))
+                else
+                    vim.notify("Built blink cmp")
+                end
+            end)
+        end
+    )
+end
+
+pkg.add({
+    { src = "Saghen/blink.cmp" }
+}, "now", {
+    on_add = function()
+        buildBlink()
+            require"blink.cmp".setup{
+            completion = {
+                menu = {
+                    draw = {
+                        treesitter = {
+                            "lsp",
+                        }
+                    }
+                },
+
+                keyword = {
+                    range = "prefix",
+                },
+
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 0,
+                    update_delay_ms = 50
+                },
+
+                ghost_text = {
+                    enabled = false
+                },
+
+                accept = {
+                    auto_brackets = {
+                        enabled = false
+                    }
+                }
+            },
+
+            keymap = {
+                preset = "default",
+                ["<Tab>"] = {},
+                ["<Up>"] = {},
+                ["<Down>"] = {},
+                ["<c-q>"] = { "show", "hide" },
+                ["<c-l>"] = { "accept" },
+                ["<c-n>"] = { "select_next" },
+                ["<c-p>"] = { "select_prev" },
+                ["<C-b>"] = { "scroll_documentation_up" },
+                ["<C-f>"] = { "scroll_documentation_down" },
+                ["<c-,>"] = { "show_documentation", "hide_documentation" },
+            },
+            appearance = {
+                highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+                use_nvim_cmp_as_default = true,
+                kind_icons = {
+                    Text = "",
+                    Method = " ",
+                    Function = "",
+                    Constructor = "",
+                    Field = "",
+                    Variable = "𝑥",
+                    Class = "",
+                    Interface = "",
+                    Module = "",
+                    Property = "",
+                    Unit = "",
+                    Value = "",
+                    Enum = "",
+                    Keyword = "",
+                    Snippet = "󱄽",
+                    Color = "",
+                    File = "",
+                    Reference = "",
+                    Folder = "",
+                    EnumMember = "",
+                    Constant = "",
+                    Struct = "",
+                    Event = "",
+                    Operator = "",
+                    TypeParameter = ""
+                },
+            },
+
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+
+            fuzzy = {
+                frecency = {
+                    enabled = true
+                }
+            }
+        }
+
+    end
+})
+
 -- aSetup({
 --         source = "Saghen/blink.cmp",
 --         -- source = "file:///home/euro/Programs/GithubContribs/blink.cmp",
@@ -97,93 +158,7 @@ pkg.add({
 --             post_install = buildBlink,
 --         }
 --     }, later,
---     "blink-cmp", {
---         completion = {
---             menu = {
---                 draw = {
---                     treesitter = {
---                         "lsp",
---                     }
---                 }
---             },
---
---             keyword = {
---                 range = "prefix",
---             },
---
---             documentation = {
---                 auto_show = true,
---                 auto_show_delay_ms = 0,
---                 update_delay_ms = 50
---             },
---
---             ghost_text = {
---                 enabled = false
---             },
---
---             accept = {
---                 auto_brackets = {
---                     enabled = false
---                 }
---             }
---         },
---
---         keymap = {
---             preset = "default",
---             ["<Tab>"] = {},
---             ["<Up>"] = {},
---             ["<Down>"] = {},
---             ["<c-q>"] = { "show", "hide" },
---             ["<c-l>"] = { "accept" },
---             ["<c-n>"] = { "select_next" },
---             ["<c-p>"] = { "select_prev" },
---             ["<C-f>"] = { "scroll_documentation_up" },
---             ["<C-b>"] = { "scroll_documentation_down" },
---             ["<c-,>"] = { "show_documentation", "hide_documentation" },
---         },
---         appearance = {
---             highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
---             use_nvim_cmp_as_default = true,
---             kind_icons = {
---                 Text = "",
---                 Method = " ",
---                 Function = "",
---                 Constructor = "",
---                 Field = "",
---                 Variable = "𝑥",
---                 Class = "",
---                 Interface = "",
---                 Module = "",
---                 Property = "",
---                 Unit = "",
---                 Value = "",
---                 Enum = "",
---                 Keyword = "",
---                 Snippet = "󱄽",
---                 Color = "",
---                 File = "",
---                 Reference = "",
---                 Folder = "",
---                 EnumMember = "",
---                 Constant = "",
---                 Struct = "",
---                 Event = "",
---                 Operator = "",
---                 TypeParameter = ""
---             },
---         },
---
---         sources = {
---             default = { "lsp", "path", "snippets", "buffer" },
---         },
---
---         fuzzy = {
---             frecency = {
---                 enabled = true
---             }
---         }
---     }
--- )
+--     "blink-cmp", )
 
 -- add { source = "mfussenegger/nvim-dap" }
 -- add { source = "mxsdev/nvim-dap-vscode-js" }
@@ -325,12 +300,10 @@ pkg.add({
     {
         src = "https://git.alfie.news/devtime.nvim",
         version = "main"
-    }
+    },
+    { src = "https://github.com/Apeiros-46B/qalc.nvim", version = "451f082" },
+    { src = "https://github.com/tpope/vim-fugitive" }
 }, "now")
-
-pkg.add { { src = "https://github.com/Apeiros-46B/qalc.nvim", version = "451f082" } }
-
-pkg.add { { src = "https://github.com/tpope/vim-fugitive" } }
 
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
@@ -338,43 +311,42 @@ pkg.add { { src = "https://github.com/tpope/vim-fugitive" } }
 pkg.add({
     { src = "https://github.com/olimorris/codecompanion.nvim" },
     { src = "https://github.com/j-hui/fidget.nvim" }
-}, "now", {
+}, "UIEnter", {
     on_add = function()
         vim.g.codecompanion_adapter = "llama3.1"
+        vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
+            if res.code ~= 0 then
+                return
+            end
+            require "codecompanion".setup {
+                strategies = {
+                    chat = {
+                        adapter = "ollama"
+                    },
+                },
+                adapters = {
+                    http = {
+                        ["ollama"] = function()
+                            return require "codecompanion.adapters".extend("ollama", {
+                                name = "qwen3:1.7b",
+                                schema = {
+                                    model = {
+                                        default = "qwen3:1.7b"
+                                    }
+                                },
+                                env = {
+                                    url = "http://localhost:11434",
+                                    api_key = "KEY",
+                                }
+                            })
+                        end
+                    }
+                }
+            }
+        end)
     end
 })
 
-vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
-    if res.code ~= 0 then
-        return
-    end
-    require "codecompanion".setup {
-        strategies = {
-            chat = {
-                adapter = "ollama"
-            },
-        },
-        adapters = {
-            http = {
-                ["ollama"] = function()
-                    return require "codecompanion.adapters".extend("ollama", {
-                        name = "qwen3:1.7b",
-                        schema = {
-                            model = {
-                                default = "qwen3:1.7b"
-                            }
-                        },
-                        env = {
-                            url = "http://localhost:11434",
-                            api_key = "KEY",
-                        }
-                    })
-                end
-            }
-        }
-    }
-end)
-
-pkg.add({
-    { src = "https://github.com/patrickpichler/hovercraft.nvim" }
-}, "LspAttach")
+-- pkg.add({
+--     { src = "https://github.com/patrickpichler/hovercraft.nvim" }
+-- }, "LspAttach")

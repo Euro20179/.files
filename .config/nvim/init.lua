@@ -14,7 +14,9 @@ require 'user.shortcuts'
 require 'user.autocmd'
 -- require 'link-graph'
 require 'user.filetypes'
-require 'user.init'
+require "user.plugin-setup.treesitter"
+require 'user.plugin-setup.whichkey'
+require "user.plugin-setup.Lspconfig"
 require 'user.colorscheme'
 require 'user.globals-setup'
 --
