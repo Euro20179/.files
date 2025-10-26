@@ -35,6 +35,10 @@
     background: var(--main) !important;
   }
 
+  [class*=inTextChannel] [class*=text]>strong {
+    color: var(--text-color) !important;
+  }
+
   li[class*=messageListItem] {
     border: 2px outset var(--blue) !important;
     margin-block: 10px !important;

@@ -47,16 +47,17 @@ function Winbar()
 end
 
 function GotoTerminalBuf()
-    for _, tid in ipairs(vim.api.nvim_list_tabpages()) do
-        for _, wid in ipairs(vim.api.nvim_tabpage_list_wins(tid)) do
-            local bid = vim.api.nvim_win_get_buf(wid)
-            local name = vim.api.nvim_buf_get_name(bid)
-            if vim.startswith(name, "term://") then
-                vim.api.nvim_set_current_tabpage(tid)
-                vim.api.nvim_tabpage_set_win(tid, wid)
-                return
-            end
+    for _, bid in ipairs(vim.api.nvim_list_bufs()) do
+        if not vim.api.nvim_buf_is_loaded(bid) then
+            goto continue
         end
+        local name = vim.api.nvim_buf_get_name(bid)
+        if vim.startswith(name, "term://") then
+            vim.cmd.tabnew()
+            vim.api.nvim_win_set_buf(0, bid)
+            return
+        end
+        ::continue::
     end
     vim.cmd.terminal()
 end
@@ -77,9 +78,7 @@ function ListBufNames()
     end):filter(function(name) return name ~= "" end):totable()
 end
 
-
 vim.api.nvim_create_user_command("EditSheet", EditSheet, {})
 -- vim.api.nvim_create_user_command("ChatBotDocument", ChatBotDocument, { range = true })
 -- vim.api.nvim_create_user_command("ChatBotQuery", queryChatBot, {})
 --
-

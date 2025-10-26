@@ -3,9 +3,9 @@ if vim.fn.findfile("${XDG_CONFIG_HOME}/vim/vimrc") ~= "" then
 elseif vim.fn.findfile("~/.vimrc") ~= "" then
     vim.cmd.source("~/.vimrc")
 end
-
-vim.loader.enable()
-
+--
+-- vim.loader.enable()
+--
 require 'user.functions'
 require 'user.options'
 require 'user.plugins2'
@@ -17,8 +17,9 @@ require 'user.filetypes'
 require 'user.init'
 require 'user.colorscheme'
 require 'user.globals-setup'
-
+--
 local g = require"gemini"
+
 g.setup{
     bookmark_file = vim.fn.stdpath("config") .. "/gemini-bookmarks",
     certificates = {
@@ -28,15 +29,16 @@ g.setup{
         }
     }
 }
-g.addmime("text/x-mmfml", "mmfml")
-
--- require "discord-ui".setup {
---    token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
---    user_id = "1190132846409564170"
--- }
 --
--- require"matrix.config".set_config({
---     homeserver = "https://matrix.org",
--- })
+-- g.addmime("text/x-mmfml", "mmfml")
 --
---
+-- -- require "discord-ui".setup {
+-- --    token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
+-- --    user_id = "1190132846409564170"
+-- -- }
+-- --
+-- -- require"matrix.config".set_config({
+-- --     homeserver = "https://matrix.org",
+-- -- })
+-- --
+-- --

@@ -48,29 +48,6 @@ end)
 
 --Normal Mode{{{
 local nShortcuts = {
-    -- dap {{{
-    -- { dapLeader .. "s", function()
-    --     local sidebar = widgets.sidebar(widgets.scopes)
-    --     sidebar.open()
-    -- end, { desc = "[DAP] open scopes" } },
-    -- { dapLeader .. "f", function()
-    --     local sidebar = widgets.sidebar(widgets.frames)
-    --     sidebar.open()
-    -- end, { desc = "[DAP] open frames" } },
-    -- { dapLeader .. "<leader>", function()
-    --     require "lua.user.plugin-setup.dap".repl.toggle()
-    -- end, { desc = "[DAP] open repl" } },
-    -- { dapLeader .. "k", function()
-    --     widgets.hover()
-    -- end, { desc = "[DAP] hover widget" } },
-    -- { dapLeader .. "t", function()
-    --     local sidebar = widgets.sidebar(widgets.threads)
-    --     sidebar.open()
-    -- end, { desc = "[DAP] open threads" } },
-    -- { dapLeader .. "e", function()
-    --     local sidebar = widgets.sidebar(widgets.expression)
-    --     sidebar.open()
-    -- end, { desc = "[DAP] open expressions" } },
     { dapLeader .. "b", function() require "lua.user.plugin-setup.dap".toggle_breakpoint() end, { desc = "[DAP] toggle breakpoint" } },
     { dapLeader .. "P", function() require "lua.user.plugin-setup.dap".pause() end,             { desc = "[DAP] pause" } },
     { dapLeader .. "c", function() require "lua.user.plugin-setup.dap".continue() end,          { desc = "[DAP] continue" } },
@@ -206,8 +183,8 @@ local nShortcuts = {
     -- { "<C-c><C-c>", OpenCLRPicker, { desc = "[UTIL] Open color picker", expr = true } },
     -- }}}
     -- lazy {{{
-    { "<leader>Lu", "<cmd>DepsUpdate<cr>" },
-    { "<leader>Lx", "<cmd>DepsClean<cr>" },
+    { "<leader>Lu", vim.pack.update },
+    -- { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF", function()
         require "mini.misc".zoom(0, {

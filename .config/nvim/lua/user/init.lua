@@ -1,6 +1,6 @@
 -- require "user.cmp"
 -- require "user.telescope"
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup(
         "euro_treesitter_lazyload",
         { clear = true}
@@ -19,5 +19,5 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 require 'user.plugin-setup.whichkey'
 require "user.plugin-setup.Lspconfig"
 -- require "user.plugin-setup.dap"
-require"user.plugin-setup.lsplinks"
+-- require"user.plugin-setup.lsplinks"
 -- require"user.nelisp"
