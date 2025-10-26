@@ -43,4 +43,23 @@ function M.add(spec, on, opts)
     end
 end
 
+local function listPluginNames()
+    local plugins = vim.iter(vim.pack.get())
+    return plugins:map(function (v)
+        return v.spec.name
+    end):totable()
+end
+
+function PkgUpdateCompl(...)
+    return listPluginNames()
+end
+
+vim.api.nvim_create_user_command("PkgUpdate", function (data)
+    local args = data.fargs
+    if #args == 0 then
+        args = listPluginNames()
+    end
+    vim.pack.update(args)
+end, { nargs = "*", complete = "customlist,v:lua.PkgUpdateCompl" })
+
 return M

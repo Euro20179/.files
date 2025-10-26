@@ -58,8 +58,7 @@ pkg.add({
     { src = "Saghen/blink.cmp" }
 }, "now", {
     on_add = function()
-        buildBlink()
-            require"blink.cmp".setup{
+        require "blink.cmp".setup {
             completion = {
                 menu = {
                     draw = {
@@ -145,7 +144,6 @@ pkg.add({
                 }
             }
         }
-
     end
 })
 
