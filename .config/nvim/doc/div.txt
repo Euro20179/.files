@@ -5,8 +5,8 @@
                     *:Boxify*
 :[range]Boxify {style}
     see |boxify-styles|
-:[range]Boxify {charstyles}
-    see |boxify-charstyles|
+:[range]Boxify {kwargs}
+    see |boxify-kwargs|
 
                     *boxify-styles*
 b
@@ -14,7 +14,7 @@ b
 d
     uses the double charset, ═, ║, etc...
 
-                    *boxify-charstyles*
+                    *boxify-kwargs*
 h={char}
     set the horizontal character, ─ by default
 v={char}
@@ -27,6 +27,11 @@ bl={char}
     set the bottom left char, └ by default
 br={char}
     set the bottom right char, ┘ by default
+width=[+]{width}
+    set the width of the box to {width}
+    if + is given, set the width of the box to auto + {width}
+height=[+]{height}
+    similar width=, but works on the height
 
 
                     *Divline*
