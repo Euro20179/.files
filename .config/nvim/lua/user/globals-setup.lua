@@ -8,7 +8,7 @@ vim.ui.open = function(item, opts)
     local fullPath = ""
 
     --if url
-    if item:find("^%w+://") then
+    if item:find("^%w+:") then
         fullPath = item
     --if absolute
     elseif vim.startswith(expanded, "~") or
