@@ -1,9 +1,9 @@
 local function centerPad(text, size)
-    if #text >= size then
+    if vim.fn.strwidth(text) >= size then
         return text
     end
 
-    local needed = size - #text
+    local needed = size - vim.fn.strwidth(text)
     local left = vim.fn.floor(needed / 2)
     local right = vim.fn.ceil(needed / 2)
 
@@ -54,10 +54,10 @@ vim.api.nvim_create_user_command("Boxify", function(args)
 
     local height = #text - 2
     local lineCount = #text
-    local width = #text[1]
+    local width = vim.fn.strwidth(text[1])
     for _, line in ipairs(text) do
-        if #line > width then
-            width = #line
+        if vim.fn.strwidth(line) > width then
+            width = vim.fn.strwidth(line)
         end
     end
 
@@ -106,7 +106,7 @@ vim.api.nvim_create_user_command("Boxify", function(args)
                 width = width + (tonumber(string.sub(amount, 2))) * 2
                 vim.print(width)
             else
-                local n = tonumber(kwarg)
+                local n = tonumber(amount)
                 if n and n > width then
                     width = math.floor(n)
                 end
@@ -117,7 +117,7 @@ vim.api.nvim_create_user_command("Boxify", function(args)
             if string.sub(amount, 1, 1) == "+" then
                 height = height + (tonumber(string.sub(amount, 2))) * 2
             else
-                local n = tonumber(kwarg)
+                local n = tonumber(amount)
                 if n and n > height then
                     height = math.floor(n)
                 end

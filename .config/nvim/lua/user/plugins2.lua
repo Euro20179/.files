@@ -166,7 +166,11 @@ pkg.add({
     {
         src = "https://github.com/williamboman/mason.nvim"
     }
-}, "now")
+}, "now", {
+    on_add = function()
+            require("mason").setup{}
+    end
+})
 --}}}
 
 -- Themes {{{
