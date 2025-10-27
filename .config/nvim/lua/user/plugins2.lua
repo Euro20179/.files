@@ -3,7 +3,8 @@ local pkg = require "pkg"
 
 -- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
 -- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
-for _, plug in pairs({ "cfilter", "nvim.difftool", "nvim.undotree", "mmfml", "gemini" }) do
+-- div can be found: https://github.com/Euro20179/div.nvim
+for _, plug in pairs({ "cfilter", "nvim.difftool", "nvim.undotree", "mmfml", "gemini", "div" }) do
     vim.cmd.packadd(plug)
 end
 
