@@ -85,6 +85,10 @@ vim.diagnostic.config({
     }
 })
 
+require"vim._extui".enable {
+    enable = true,
+}
+
 -- vim.lsp.buf.hover = function()
 --     local hc = require"hovercraft"
 --     if hc.is_visible() then

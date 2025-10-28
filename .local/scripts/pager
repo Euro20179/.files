@@ -1,2 +1,9 @@
-#!/bin/bash
-nvim "+call nvim_open_term(0, {})"
+#!/bin/nvim -S
+
+function s:load()
+    call nvim_open_term(0, {})
+    call nvim_buf_set_name(0, "[pager]")
+    set nomodifiable
+endfun
+
+autocmd VimEnter * call s:load()
