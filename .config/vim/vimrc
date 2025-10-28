@@ -94,7 +94,7 @@ set exrc
 
 set nowrap
 
-set colorcolumn=80
+set colorcolumn=81
 
 if exists("&findfunc")
     "if finddir(".git") != ""
