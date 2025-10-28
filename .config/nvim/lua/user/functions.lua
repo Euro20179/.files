@@ -46,22 +46,6 @@ function Winbar()
     return text
 end
 
-function GotoTerminalBuf()
-    for _, bid in ipairs(vim.api.nvim_list_bufs()) do
-        if not vim.api.nvim_buf_is_loaded(bid) then
-            goto continue
-        end
-        local name = vim.api.nvim_buf_get_name(bid)
-        if vim.startswith(name, "term://") then
-            vim.cmd.tabnew()
-            vim.api.nvim_win_set_buf(0, bid)
-            return
-        end
-        ::continue::
-    end
-    vim.cmd.terminal()
-end
-
 function GetLspNames()
     local names = vim.iter(vim.lsp.get_clients()):map(function(c) return c.name end):join(" ")
 

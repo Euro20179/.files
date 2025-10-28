@@ -159,7 +159,6 @@ local nShortcuts = {
     { "<leader>2",        function() harpoon:list():select(7) end },
     { "<leader>3",        function() harpoon:list():select(8) end },
     { "<leader>4",        function() harpoon:list():select(9) end },
-    { "<leader>T",        function() GotoTerminalBuf() end },
     --}}}
     -- Git {{{
     { gitLeader .. "l",   ":G log<CR>",                                                { desc = "[GIT]: log" } },
@@ -203,8 +202,7 @@ local nShortcuts = {
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
-    { "<leader>R",  ":Regedit ",    { desc = "[REGEDIT] edit a register" } },
-    { "<a-m>",      ":make<CR>",    { desc = "copmile" } },
+    { "<a-m>",      ":make<CR>",    { desc = "compile" } },
     { "g:",         ":= ",          { desc = "[CMD]: lua expression" } },
 }
 for _, map in ipairs(nShortcuts) do
@@ -219,26 +217,20 @@ end
 
 -- Insert Mode{{{
 local iShortcuts = {
-    -- Movement {{{
-    -- { "<C-bs>",     "<C-w>" },
-    { "<c-space>l", "<Esc>:tabnext<CR>" },
-    { "<c-space>h", "<Esc>:tabprev<CR>" },
     { "<c-bs>",     vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
-    -- }}}
-    -- { "<Right>", require"bropilot".accept_block, { desc = "[COPILOT] accept" } }
 }
 for _, map in ipairs(iShortcuts) do
     vim.keymap.set("i", map[1], map[2], map[3])
 end
 --}}}
 
---Visual Mode{{{
-local vShortcuts = {
-    { utilLeader .. "e", ":Exec<CR>" },
-}
-for _, map in ipairs(vShortcuts) do
-    vim.keymap.set("x", map[1], map[2])
-end --}}}
+-- --Visual Mode{{{
+-- local vShortcuts = {
+--     { utilLeader .. "e", ":Exec<CR>" },
+-- }
+-- for _, map in ipairs(vShortcuts) do
+--     vim.keymap.set("x", map[1], map[2])
+-- end --}}}
 
 -- Select Mode {{{
 local sShortcuts = {
