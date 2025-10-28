@@ -1,17 +1,2 @@
-#!/bin/nvim -S
-" Description:
-"	used as the $PAGER, using nvim's nvim_open_term to read
-"	terminal escape codes. Also buffer should not be modifiable
-
-function s:load()
-    call nvim_open_term(0, {})
-    if getline(1) == ""
-        norm )zt
-    endif
-    call nvim_buf_set_name(0, "[pager]")
-    set nomodifiable
-endfun
-
-autocmd VimEnter * call s:load()
-
-"vim:ts=8
+#!/bin/bash
+less -R
