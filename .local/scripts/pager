@@ -1,4 +1,7 @@
 #!/bin/nvim -S
+" Description:
+"	used as the $PAGER, using nvim's nvim_open_term to read
+"	terminal escape codes. Also buffer should not be modifiable
 
 function s:load()
     call nvim_open_term(0, {})
@@ -7,3 +10,5 @@ function s:load()
 endfun
 
 autocmd VimEnter * call s:load()
+
+"vim:ts=8
