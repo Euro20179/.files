@@ -13,36 +13,23 @@ The one currently in use is `minimalistic/hashtags-black.png`
 
 ---------------------------------- Programs -----------------------------------
 
-* wm:
-    [niri] | https://github.com/YaLTeR/niri |
+wm ............................... niri | https://github.com/YaLTeR/niri |
 
-* bar:
-    [waybar] | https://github.com/Alexays/Waybar/ |
+bar .............................. waybar | https://github.com/Alexays/Waybar/ |
 
-* $SHELL:
-    [zsh] | https://www.zsh.org/ |
+$SHELL ........................... zsh | https://www.zsh.org/ |
 
-* $BROWSER:
-    [glide] | https://github.com/glide-browser/glide |
+$BROWSER ......................... glide | https://github.com/glide-browser/glide |
 
-* $EDITOR:
-    [neovim] | https://neovim.io |
+$EDITOR .......................... neovim | https://neovim.io |
 
-* app launcher:
-    [rofi] | https://github.com/DaveDavenport/rofi |
-    - is also my dmenu program
+app launcher ..................... rofi | https://github.com/DaveDavenport/rofi |
 
-* $TERMINAL:
-    [foot] | https://codeberg.org/dnkl/foot |
-    - By far the best lightweight terminal,
+$TERMINAL ........................ foot | https://codeberg.org/dnkl/foot |
 
-* colorscheme:
-    [catppuccin] | https://github.com/catppuccin/catppuccin |
-    - The best colorscheme
-    - and tokyonight for neovim
+colorscheme ...................... catppuccin | https://github.com/catppuccin/catppuccin |
 
-* fetch program:
-    [fastfetch] | https://github.com/fastfetch-cli/fastfetch |
+fetch program .................... fastfetch | https://github.com/fastfetch-cli/fastfetch |
 
 --------------------------------- Screenshots ---------------------------------
 
