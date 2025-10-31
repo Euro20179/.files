@@ -1,4 +1,3 @@
-#!/bin/nvim -S
 "The point of this file is to be usable in vim and neovim
 
 "vim compatible default colorscheme
@@ -7,6 +6,9 @@ try
 catch /Cannot find color scheme '\w\+'/
     color desert
 endtry
+
+"standard vim plugins
+packadd cfilter
 
 "vim bad defaults {{{
 if !has("nvim")
@@ -96,18 +98,20 @@ set nowrap
 
 set colorcolumn=81
 
+set path=./*/
+
 if exists("&findfunc")
-    "if finddir(".git") != ""
-    "    func FindFiles(cmda, cmdc)
-    "        let fnames = systemlist("git ls-files")
-    "        return fnames->filter('v:val =~? a:cmda')
-    "    endfun
-    "else
-    "func FindFiles(cmda, cmdc)
-    "    return glob('**/' . a:cmda . '*', v:false, v:true)
-    "endfun
-    "endif
-    "set findfunc=FindFiles
+    if finddir("./.git") != ""
+        func FindFiles(cmda, cmdc)
+            let fnames = systemlist("git ls-files")
+            return fnames->filter('v:val =~? a:cmda')
+        endfun
+    else
+        func FindFiles(cmda, cmdc)
+            return glob('**/' . a:cmda . '*', v:false, v:true)
+        endfun
+    endif
+    set findfunc=FindFiles
 
     nnoremap <leader>ff :find 
 endif

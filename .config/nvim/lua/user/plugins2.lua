@@ -1,13 +1,17 @@
 vim.cmd.packadd "pkg"
 local pkg = require "pkg"
 
+vim.o.pp = vim.o.pp .. ',' .. vim.fn.expand("$HOME/Programs/Coding Projects/neovim-plugins")
+
+
 -- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
 -- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
 -- div can be found: https://github.com/Euro20179/div.nvim
-for _, plug in pairs({ "cfilter", "nvim.difftool", "nvim.undotree", "mmfml", "gemini", "div" }) do
-    vim.cmd.packadd(plug)
+for _, plug in pairs({ "nvim.difftool", "nvim.undotree", "mmfml", "gemini", "div"}) do
+    -- :packadd! = do not source plugin/*
+    -- because plug is added to &rtp meaning it will get sourced anyway
+    vim.cmd.packadd{plug, bang = true}
 end
-
 
 --libraries{{{
 pkg.add({
@@ -55,98 +59,98 @@ pkg.add({
 --     )
 -- end
 
-pkg.add({
-    { src = "Saghen/blink.cmp" }
-}, "now", {
-    on_add = function()
-        require "blink.cmp".setup {
-            completion = {
-                menu = {
-                    draw = {
-                        treesitter = {
-                            "lsp",
-                        }
-                    }
-                },
-
-                keyword = {
-                    range = "prefix",
-                },
-
-                documentation = {
-                    auto_show = true,
-                    auto_show_delay_ms = 0,
-                    update_delay_ms = 50
-                },
-
-                ghost_text = {
-                    enabled = false
-                },
-
-                accept = {
-                    auto_brackets = {
-                        enabled = false
-                    }
-                }
-            },
-
-            keymap = {
-                preset = "default",
-                ["<Tab>"] = {},
-                ["<Up>"] = {},
-                ["<Down>"] = {},
-                ["<c-q>"] = { "show", "hide" },
-                ["<c-l>"] = { "accept" },
-                ["<c-n>"] = { "select_next" },
-                ["<c-p>"] = { "select_prev" },
-                ["<C-b>"] = { "scroll_documentation_up" },
-                ["<C-f>"] = { "scroll_documentation_down" },
-                ["<c-,>"] = { "show_documentation", "hide_documentation" },
-            },
-            appearance = {
-                highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
-                use_nvim_cmp_as_default = true,
-                kind_icons = {
-                    Text = "",
-                    Method = " ",
-                    Function = "",
-                    Constructor = "",
-                    Field = "",
-                    Variable = "𝑥",
-                    Class = "",
-                    Interface = "",
-                    Module = "",
-                    Property = "",
-                    Unit = "",
-                    Value = "",
-                    Enum = "",
-                    Keyword = "",
-                    Snippet = "󱄽",
-                    Color = "",
-                    File = "",
-                    Reference = "",
-                    Folder = "",
-                    EnumMember = "",
-                    Constant = "",
-                    Struct = "",
-                    Event = "",
-                    Operator = "",
-                    TypeParameter = ""
-                },
-            },
-
-            sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
-            },
-
-            fuzzy = {
-                frecency = {
-                    enabled = true
-                }
-            }
-        }
-    end
-})
+-- pkg.add({
+--     { src = "Saghen/blink.cmp" }
+-- }, "now", {
+--     on_add = function()
+--         require "blink.cmp".setup {
+--             completion = {
+--                 menu = {
+--                     draw = {
+--                         treesitter = {
+--                             "lsp",
+--                         }
+--                     }
+--                 },
+--
+--                 keyword = {
+--                     range = "prefix",
+--                 },
+--
+--                 documentation = {
+--                     auto_show = true,
+--                     auto_show_delay_ms = 0,
+--                     update_delay_ms = 50
+--                 },
+--
+--                 ghost_text = {
+--                     enabled = false
+--                 },
+--
+--                 accept = {
+--                     auto_brackets = {
+--                         enabled = false
+--                     }
+--                 }
+--             },
+--
+--             keymap = {
+--                 preset = "default",
+--                 ["<Tab>"] = {},
+--                 ["<Up>"] = {},
+--                 ["<Down>"] = {},
+--                 ["<c-q>"] = { "show", "hide" },
+--                 ["<c-l>"] = { "accept" },
+--                 ["<c-n>"] = { "select_next" },
+--                 ["<c-p>"] = { "select_prev" },
+--                 ["<C-b>"] = { "scroll_documentation_up" },
+--                 ["<C-f>"] = { "scroll_documentation_down" },
+--                 ["<c-,>"] = { "show_documentation", "hide_documentation" },
+--             },
+--             appearance = {
+--                 highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+--                 use_nvim_cmp_as_default = true,
+--                 kind_icons = {
+--                     Text = "",
+--                     Method = " ",
+--                     Function = "",
+--                     Constructor = "",
+--                     Field = "",
+--                     Variable = "𝑥",
+--                     Class = "",
+--                     Interface = "",
+--                     Module = "",
+--                     Property = "",
+--                     Unit = "",
+--                     Value = "",
+--                     Enum = "",
+--                     Keyword = "",
+--                     Snippet = "󱄽",
+--                     Color = "",
+--                     File = "",
+--                     Reference = "",
+--                     Folder = "",
+--                     EnumMember = "",
+--                     Constant = "",
+--                     Struct = "",
+--                     Event = "",
+--                     Operator = "",
+--                     TypeParameter = ""
+--                 },
+--             },
+--
+--             sources = {
+--                 default = { "lsp", "path", "snippets", "buffer" },
+--             },
+--
+--             fuzzy = {
+--                 frecency = {
+--                     enabled = true
+--                 }
+--             }
+--         }
+--     end
+-- })
 
 -- aSetup({
 --         source = "Saghen/blink.cmp",
@@ -169,7 +173,7 @@ pkg.add({
     }
 }, "now", {
     on_add = function()
-            require("mason").setup{}
+        require("mason").setup {}
     end
 })
 --}}}
