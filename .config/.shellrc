@@ -158,7 +158,7 @@ alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
 config () {
     [ -n "$*" ] && {
         git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME "$@"
-    } || lazygit -g ~/Programs/GithubContribs/dotfiles -w $HOME
+    } || git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME difftool
 }
 
 alias o=linkhandler
