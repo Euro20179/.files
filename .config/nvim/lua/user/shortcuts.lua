@@ -168,6 +168,18 @@ local nShortcuts = {
     -- }}}
     -- Treesitter {{{
     { "glt",              "<cmd>Inspect<cr>" },
+    { "[h", function()
+        local findHL = require"find-highlight"
+        local sr, sc, el, ec = findHL.prevhl("@markup.heading", vim.fn.line(".") - 1, vim.fn.col("."))
+        if not sr then return end
+        vim.fn.setpos(".", { 0, sr + 1, sc + 1 })
+    end, { desc = "[JUMP]: jump to previous @markup.heading" }},
+    { "]h", function()
+        local findHL = require"find-highlight"
+        local sr, sc, el, ec = findHL.nexthl("@markup.heading", vim.fn.line(".") + 1, vim.fn.col("."))
+        if not sr then return end
+        vim.fn.setpos(".", { 0, sr + 1, sc + 1 })
+    end, { desc = "[JUMP]: jump to next @markup.heading" }},
     -- }}}
     --syntax highlighting{{{
     { "<A-f>s",           ":set foldmethod=syntax<cr>" },
