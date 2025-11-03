@@ -46,9 +46,14 @@ set nowritebackup
 
 set grepprg=rg\ --vimgrep\ $*
 
-if finddir(".git", ".;", 1) == ".git"
-    set grepprg=git\ grep\ -n\ $*
-    set grepformat=%f:%l:%m
+if finddir("./.git", ".;", 1) == "./.git" && match(&grepprg, "^rg") == -1
+    if match(system("command -v rg"), "rg")
+        set grepprg=rg\ --vimgrep\ -uu
+        set grepformat=%f:%l:%c:%m
+    else
+        set grepprg=git\ grep\ -n\ $*
+        set grepformat=%f:%l:%m
+    endif
 endif
 
 set timeoutlen=300
