@@ -18,14 +18,23 @@ vim.cmd[[
         endif
         let start = getpos("'[")
         let end = getpos("']")
-        let text = nvim_buf_get_text(0, start[1] - 1, start[2] - 1, end[1] - 1, end[2], {})
+        let text = nvim_buf_get_text(0, start[1] - 1, start[2] - 1, end[1] - 1, end[2], [])
         if text[0] != ''
-            call system('foot goker "' .. text[0] .. '"')
+            let temp = tempname()
+            let newClr = trim(system('foot -d none sh -c "goker \"' .. text[0] .. '\" > ' .. temp .. '"'))
+            let newClr = readfile(temp)
+            call delete(temp)
+            if newClr[0] != ""
+                call nvim_buf_set_text(0, start[1] - 1, start[2] - 1, end[1] - 1, end[2], newClr)
+            endif
         endif
     endfun
     nnoremap <expr> <c-c> OpenClrPicker()
-    nnoremap <c-c><c-c> <CMD>call system('foot goker "' .. expand("<cWORD>") .. '"')<CR>
 ]]
+
+vim.keymap.set("n", "<c-c><c-c>", function()
+    vim.system({'foot', 'goker', vim.fn.expand("<cWORD>")})
+end, { desc = "[UTIL]: color picker" })
 
 -- local discord = require'discord'
 --
