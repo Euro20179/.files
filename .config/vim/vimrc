@@ -112,6 +112,10 @@ if exists("&findfunc")
             let fnames = systemlist("git ls-files")
             return fnames->filter('v:val =~? a:cmda')
         endfun
+    elseif match(system("command -v fd"), "fd")
+        func FindFiles(cmda, cmdc)
+            return systemlist("fd --glob '*'" .. shellescape(a:cmda) .. "'*'")
+        endfun
     else
         func FindFiles(cmda, cmdc)
             return glob('**/' . a:cmda . '*', v:false, v:true)
@@ -206,19 +210,19 @@ nnoremap <c-k>           <C-w>k
 "}}}
 
 "copying in visual mode {{{
-vnoremap <leader>y       "+y
-vnoremap <leader>d       "+d
-vnoremap <leader>c       "+c
-vnoremap <leader>p       "+p
+xnoremap <leader>y       "+y
+xnoremap <leader>d       "+d
+xnoremap <leader>c       "+c
+xnoremap <leader>p       "+p
 "}}}
 
 "indents {{{
-vnoremap < <gv
-vnoremap > >gv
+xnoremap < <gv
+xnoremap > >gv
 "}}}
 
 "Better pipe mnemonic{{{
-vnoremap \| !
+xnoremap \| !
 nnoremap \| !
 "}}}
 
@@ -251,7 +255,7 @@ endf
 
 nnoremap <silent> <leader>o :set opfunc=AddLineAboveBelowMotion<cr>g@
 
-vnoremap <leader>o :BlankLines<CR>
+xnoremap <leader>o :BlankLines<CR>
 "}}}
 
 " misc {{{
