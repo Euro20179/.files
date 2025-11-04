@@ -28,13 +28,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
-        vim.api.nvim_set_hl(0, "User1", { link = "@label" })
-        vim.api.nvim_set_hl(0, "User2", { link = "@namespace" })
-        vim.api.nvim_set_hl(0, "User3", { link = "@property" })
-        vim.api.nvim_set_hl(0, "User4", { link = "@number" })
-        vim.api.nvim_set_hl(0, "User5", { link = "Error" })
-        vim.api.nvim_set_hl(0, "User6", { link = "DiagnosticWarning" })
-
         vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
         vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
         vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })

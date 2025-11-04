@@ -1,5 +1,14 @@
 let g:gitStatsCache = {}
 
+hi! link User1 Label
+hi! link User2 Special
+if has("nvim")
+    hi! link User3 @property
+endif
+hi! link User4 Number
+hi! link User5 Error
+hi! link User6 WarningMsg
+
 function s:calcGitStats()
     if !finddir(".git")
         return [0, 0]
@@ -48,15 +57,30 @@ function GetGitStats()
     return " (%#DiffAdd#+" .. l:add .. " %#DiffDelete#-" .. sub .. "%*)"
 endfun
 
+lua <<EOF
+function FormatstatuslineDiag()
+    local text = ""
+    local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+    local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+    if errors ~= 0 then
+        text = text .. "%5*" .. tostring(errors) .. "%*"
+    end
+    if warnings ~= 0 then
+        text = text .. ' %6*⚠' .. tostring(warnings) .. '%*'
+    end
+    return text
+end
+EOF
+
 augroup gitstats
     au!
     autocmd BufWritePost * call s:calcGitStats()
 augroup END
 
-let left = "%f%{&modified == v:true ? '*' : ''} %{%GetGitStats()%} %p%%"
+let left = "%1*%f%2*%{&modified == v:true ? '*' : ''} %{%GetGitStats()%} %4*[%l:%v] %p%%%* %{%has('nvim') ? v:lua.FormatstatuslineDiag() : ''%}"
 let right = "%{&filetype}"
-let center = ""
+let center = has("nvim")
+            \ ? '%3*%{v:lua.GetLspNames()}%*'
+            \ : ""
 
 let &statusline = left .. "%=" .. center .. "%=" .. right
-
-set laststatus=1

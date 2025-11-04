@@ -28,8 +28,7 @@ if !has("nvim")
         set incsearch
     endif
 
-    "laststatus is in this file
-    so $XDG_CONFIG_HOME/vim/user/statusline.vim
+    "laststatus is in ./plugin/statusline.vim
 "}}}
 else
     "i want things i write for vim to also load in nvim
@@ -38,6 +37,8 @@ endif
 
 "OPTIONS{{{
 let g:mapleader = " "
+
+set laststatus=2
 
 "writebackup overwrites birth time, and it's annoying
 "yeah, yeah i could overwrite the file but the odds of that are incredibly
@@ -185,8 +186,16 @@ nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
 "}}}
 
 "Syntax highlighting {{{
-nnoremap <c-/> <CMD>noh<CR>
-"nnoremap <A-s>           <CMD>syntax sync fromstart<CR>
+function s:clearHighlight()
+    noh
+
+    lua <<EOF
+    if vim.fn.has("nvim-0.10.0") then
+        vim.snippet.stop()
+    end
+EOF
+endfun
+nnoremap <c-/> <CMD>call <SID>clearHighlight()<CR>
 "}}}
 
 "Normal movement {{{
@@ -198,8 +207,8 @@ nnoremap <c-k>           <C-w>k
 
 "copying in visual mode {{{
 vnoremap <leader>y       "+y
-vnoremap <leader>d       "_d
-vnoremap <leader>c       "_c
+vnoremap <leader>d       "+d
+vnoremap <leader>c       "+c
 vnoremap <leader>p       "+p
 "}}}
 
