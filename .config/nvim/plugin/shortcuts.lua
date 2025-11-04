@@ -10,7 +10,7 @@ local gitLeader = "<M-g>"
 
 local dapLeader = "<M-d>"
 
-vim.cmd[[
+vim.cmd [[
     function OpenClrPicker(context = {}, type = '') abort
         if a:type == ''
             let &operatorfunc = function('OpenClrPicker', [#{test: 3}])
@@ -33,7 +33,7 @@ vim.cmd[[
 ]]
 
 vim.keymap.set("n", "<c-c><c-c>", function()
-    vim.system({'foot', 'goker', vim.fn.expand("<cWORD>")})
+    vim.system({ 'foot', 'goker', vim.fn.expand("<cWORD>") })
 end, { desc = "[UTIL]: color picker" })
 
 -- local discord = require'discord'
@@ -150,11 +150,11 @@ local nShortcuts = {
     { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
-    { "<leader>eu",       function ()
+    { "<leader>eu", function()
         vim.cmd.Undotree()
         vim.cmd.wincmd("H")
         vim.api.nvim_win_set_width(0, 40)
-    end},
+    end },
     { "<leader>O",        require 'oil'.open },
     --}}}
     --buffer/window shortcuts{{{
@@ -178,32 +178,32 @@ local nShortcuts = {
     -- Treesitter {{{
     { "glt",              "<cmd>Inspect<cr>" },
     { "[h", function()
-        local findHL = require"find-highlight"
+        local findHL = require "find-highlight"
         local sr, sc, el, ec = findHL.prevhl("@markup.heading", vim.fn.line(".") - 1)
         if not sr then return end
         vim.fn.setpos(".", { 0, sr + 1, sc + 1 })
-    end, { desc = "[JUMP]: jump to previous @markup.heading" }},
+    end, { desc = "[JUMP]: jump to previous @markup.heading" } },
     { "]h", function()
-        local findHL = require"find-highlight"
+        local findHL = require "find-highlight"
         local sr, sc, el, ec = findHL.nexthl("@markup.heading", vim.fn.line(".") + 1)
         if not sr then return end
         vim.fn.setpos(".", { 0, sr + 1, sc + 1 })
-    end, { desc = "[JUMP]: jump to next @markup.heading" }},
+    end, { desc = "[JUMP]: jump to next @markup.heading" } },
     -- }}}
     --syntax highlighting{{{
-    { "<A-f>s",           ":set foldmethod=syntax<cr>" },
-    { "<A-f>m",           ':set foldmethod=marker<cr>' },
-    { "<A-f>e",           ':set foldmethod=expr<cr>' },
+    { "<A-f>s",          ":set foldmethod=syntax<cr>" },
+    { "<A-f>m",          ':set foldmethod=marker<cr>' },
+    { "<A-f>e",          ':set foldmethod=expr<cr>' },
     --}}}
     -- Util Functions {{{
-    { utilLeader .. "x",  ":!chmod +x \"%\"<CR>",                                      { desc = "[UTIL] chmod +x the current file" } },
-    { utilLeader .. "e",  ":Neorg exec cursor<CR>" },
-    { utilLeader .. "W",  "\"=v:lua.Rword()<cr>p",                                     { desc = "[UTIL] random word" } },
-    { utilLeader .. "d",  ":!rm \"%\"<CR>",                                            { desc = "[UTIL] Delete the current file" } },
+    { utilLeader .. "x", ":!chmod +x \"%\"<CR>",      { desc = "[UTIL] chmod +x the current file" } },
+    { utilLeader .. "e", ":Neorg exec cursor<CR>" },
+    { utilLeader .. "W", "\"=v:lua.Rword()<cr>p",     { desc = "[UTIL] random word" } },
+    { utilLeader .. "d", ":!rm \"%\"<CR>",            { desc = "[UTIL] Delete the current file" } },
     -- { "<C-c><C-c>", OpenCLRPicker, { desc = "[UTIL] Open color picker", expr = true } },
     -- }}}
     -- lazy {{{
-    { "<leader>Lu", vim.pack.update },
+    { "<leader>Lu",      vim.pack.update },
     -- { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF", function()
@@ -216,15 +216,15 @@ local nShortcuts = {
             title = vim.api.nvim_buf_get_name(0)
         })
     end },
-    { "<c-s-i>", "<cmd>InspectTree<CR>", { desc = "[TREESITTER] Open InspectTree" }},
+    { "<c-s-i>", "<cmd>InspectTree<CR>", { desc = "[TREESITTER] Open InspectTree" } },
     { "<c-s-t>", function()
         vim.api.nvim_cmd({
             cmd = "tag",
             range = { vim.v.count1 }
         }, {})
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
-    { "<a-m>",      ":make<CR>",    { desc = "compile" } },
-    { "g:",         ":= ",          { desc = "[CMD]: lua expression" } },
+    { "<a-m>",   ":make<CR>",            { desc = "compile" } },
+    { "g:",      ":= ",                  { desc = "[CMD]: lua expression" } },
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
@@ -238,7 +238,7 @@ end
 
 -- Insert Mode{{{
 local iShortcuts = {
-    { "<c-bs>",     vim.snippet.stop,   { desc = "[SNIPPET] exit" } },
+    { "<c-bs>", vim.snippet.stop, { desc = "[SNIPPET] exit" } },
 }
 for _, map in ipairs(iShortcuts) do
     vim.keymap.set("i", map[1], map[2], map[3])

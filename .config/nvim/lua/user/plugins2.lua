@@ -265,10 +265,6 @@ pkg.add({ { src = "https://github.com/echasnovski/mini.nvim" } }, "now", {
 
         require "mini.splitjoin".setup {}
 
-        require "mini.indentscope".setup {
-            delay = 0
-        }
-
         require "mini.operators".setup {
             exchange = {
                 prefix = "<leader>x"
@@ -294,8 +290,6 @@ pkg.add({ { src = "https://github.com/echasnovski/mini.nvim" } }, "now", {
                 end
             }
         }
-
-        vim.ui.select = require "mini.pick".ui_select
     end
 })
 -- }}}
