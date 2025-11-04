@@ -28,18 +28,16 @@ function M.add(spec, on, opts)
 
     if on == nil or on == "now" then
         M.add_raw(spec, opts)
-    elseif type(on) == 'string' then
-        vim.api.nvim_create_autocmd(on, {
-            group = aug,
-            once = true,
-            callback = function ()
-                M.add_raw(spec, opts)
-            end
-        })
+    -- elseif type(on) == 'string' then
+    --     vim.api.nvim_create_autocmd(on, {
+    --         group = aug,
+    --         once = true,
+    --         callback = function ()
+    --             M.add_raw(spec, opts)
+    --         end
+    --     })
     else
-        on.opts.group = aug
-        on.opts.once = true
-        vim.api.nvim_create_autocmd(on.event, on.opts)
+        vim.notify("on MUST be 'now' because loading packages later messes up vim.pack.update()", vim.log.levels.ERROR, {})
     end
 end
 
@@ -55,11 +53,12 @@ function PkgUpdateCompl(...)
 end
 
 vim.api.nvim_create_user_command("PkgUpdate", function (data)
+    vim.pack.update(listPluginNames())
+end, { nargs = "*", complete = "customlist,v:lua.PkgUpdateCompl" })
+
+vim.api.nvim_create_user_command("PkgRm", function(data)
     local args = data.fargs
-    if #args == 0 then
-        args = listPluginNames()
-    end
-    vim.pack.update(args)
+    vim.pack.del(args)
 end, { nargs = "*", complete = "customlist,v:lua.PkgUpdateCompl" })
 
 return M

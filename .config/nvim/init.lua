@@ -6,20 +6,8 @@ end
 
 vim.loader.enable()
 
-require 'user.functions'
-require 'user.options'
 require 'user.plugins2'
-require 'user.snippets'
-require 'user.shortcuts'
-require 'user.autocmd'
--- require 'link-graph'
-require 'user.filetypes'
-require "user.plugin-setup.treesitter"
-require 'user.plugin-setup.whichkey'
-require "user.plugin-setup.Lspconfig"
-require 'user.colorscheme'
-require 'user.globals-setup'
---
+
 local g = require"gemini"
 
 g.setup{

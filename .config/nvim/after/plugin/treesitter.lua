@@ -1,22 +1,4 @@
--- require'aerial'.setup{
---     filter_kind = false
--- }
-
--- require'nvim-highlight-colors'.setup {
---     render = "background"
--- }
---
-
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
--- parser_config.nu = {
---     install_info = {
---         url = "https://github.com/nushell/tree-sitter-nu",
---         files = { "src/parser.c" },
---         branch = "main",
---     },
---     filetype = "nu",
--- }
 
 parser_config.hypr = {
     install_info = {
@@ -69,14 +51,6 @@ require 'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = { "org", "vim"}
-        -- disable = function(lang, buf)
-        --     -- I genuinely have no idea why this file is so laggy, but the problem has to do with require("treesitter.locals") or whatever that module is called
-        --     if vim.api.nvim_buf_get_name(buf) == "/home/euro/Programs/Coding Projects/JS Things/bircle/src/commands.ts" then
-        --         return true
-        --     end
-        --     return false
-        --     -- return false
-        -- end
     },
 
     playground = {

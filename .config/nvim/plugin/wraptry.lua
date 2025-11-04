@@ -1,9 +1,4 @@
 function WrapTryGeneric(cmdData)
-    if cmdData.range == 0 then
-        vim.notify("No range given", vim.log.levels.ERROR)
-        return
-    end
-
     local tryWordDefault = "try{"
     local catchWordDefault = "}\rcatch(err){\r}"
 

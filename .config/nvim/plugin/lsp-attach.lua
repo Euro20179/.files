@@ -1,15 +1,6 @@
-local conf_group = vim.api.nvim_create_augroup("config", {
+local conf_group = vim.api.nvim_create_augroup("config.lsp-attach", {
     clear = true
 })
-
-if vim.hl and vim.hl.on_yank ~= nil then
-    vim.api.nvim_create_autocmd("TextYankPost", {
-        group = conf_group,
-        callback = function()
-            vim.hl.on_yank({ timeout = 100, higroup = "Visual" })
-        end
-    })
-end
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = conf_group,
@@ -162,10 +153,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
     end
 })
-
--- vim.api.nvim_create_autocmd({"ModeChanged"}, {
---     pattern = "*:*",
---     callback = function ()
---         vim.o.titlestring = "nvim - " .. vim.fn.mode()
---     end
--- })
