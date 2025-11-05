@@ -9,6 +9,9 @@ endtry
 
 "standard vim plugins
 packadd cfilter
+packadd stocks
+
+let g:stocks_api_key = readfile(expand("$XDG_DOCUMENTS_HOME") .. "/APIKeys/finnhub-stocks.apikey")[0]
 
 "vim bad defaults {{{
 if !has("nvim")
@@ -190,16 +193,7 @@ nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
 "}}}
 
 "Syntax highlighting {{{
-function s:clearHighlight()
-    noh
-
-    lua <<EOF
-    if vim.fn.has("nvim-0.10.0") then
-        vim.snippet.stop()
-    end
-EOF
-endfun
-nnoremap <c-/> <CMD>call <SID>clearHighlight()<CR>
+nnoremap <c-/> <CMD>noh \| lua if vim.fn.has("nvim-0.10.0") == 1 then vim.snippet.stop() end<CR>
 "}}}
 
 "Normal movement {{{
