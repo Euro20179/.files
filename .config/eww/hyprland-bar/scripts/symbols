@@ -1,0 +1,25 @@
+#!/bin/bash
+
+declare -A class2symbol=(
+    [foot]=
+    [nheko]=󰊌
+    [librewolf]=
+    [glide-glide]=
+    [osu!]=󰎄!
+    [thunderbird]=
+    [org.mozilla.Thunderbird]=
+    [mpv]=󰈫
+    [steam]=󰓓
+    [makemkv]=📀
+    [dolphin-emu]=🐬
+)
+
+declare -A titleFuzz2symbol=(
+    [Discord]=󰙯
+    [Songs/scripts*'(foot)']=󰽴
+    [QuickMedia]=全て
+    [*nvim*'(foot)']=
+    [*conf*'(foot)']=
+    [*AIO*]=󰿏
+)
+
