@@ -26,6 +26,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         local ks = vim.keymap.set
         local key_maps = {
+            { "[i", function()
+                vim.lsp.buf.definition({
+                    on_list = function (opts)
+                        vim.print(vim.fn.getline(opts["items"][1]["lnum"]))
+                    end
+                })
+            end },
             { "glc", vim.lsp.document_color.color_presentation, { desc = "[LSP] Color representation" } },
             { "gls",  "gO",  { desc = "[LSP] [QF] Document symbols", remap = true } },
             { "glw", vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },
