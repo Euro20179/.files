@@ -8,6 +8,9 @@ vim.opt.fillchars = { msgsep = "‾" }
 
 vim.opt.winborder = "single"
 
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 vim.g.health = { style = "float" }
 
 vim.diagnostic.config({
