@@ -245,6 +245,9 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
+    Mod+F8 { spawn "sh" "-c" "wpctl set-volume \"@DEFAULT_AUDIO_SINK@\" 5%+ && send-volume-notif higher"; }
+    Mod+F7 { spawn "sh" "-c" "wpctl set-volume \"@DEFAULT_AUDIO_SINK@\" 5%- && send-volume-notif lower"; }
+
 
     Mod+Q { close-window; }
 
