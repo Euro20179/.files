@@ -44,7 +44,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"org.mozilla.thunderbird"#    
+    match app-id=r#"org.mozilla.Thunderbird"#    
     open-maximized true
     open-on-workspace "email"
 }
