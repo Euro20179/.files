@@ -1,5 +1,5 @@
 #!/bin/bash
 
 [ ! -t 0 ] && read -r search || search=$1
-curl "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "uid=$AIO_UID" --data-urlencode "search=$search" | jq -r '"\(.En_Title)\t\(.ItemId)"'
+curl -s "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "uid=$AIO_UID" --data-urlencode "search=$search" | jq -r '"\(.En_Title)\t\(.ItemId)"' | column -t -s $'\t'
 
