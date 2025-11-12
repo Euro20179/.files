@@ -1,7 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-proj=$(for file in $HOME/Programs/Coding\ Projects/*; do
-    zoxide query -al "$file/"
-done | fzf)
+proj="$1"
+if [ "$proj" ]; then
+    proj=$(zoxide query -al "$proj" | fzf -1)
+else
+    shopt -s globstar
 
+    proj=$(for file in $HOME/Programs/Coding\ Projects/*; do
+        zoxide query -al "$file/"
+    done | fzf)
+fi
+[ -z "$proj" ] && exit
 nvim +cd\ "${proj}" "$proj"
