@@ -45,10 +45,10 @@ pkg.add({
 
 function BuildBlink()
     local blink_cmp_path = vim.fn.expand("$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp")
+    vim.notify("Please wait while blink is being build")
     vim.system({ "cargo", "build", "--release", "--manifest-path", blink_cmp_path .. "/Cargo.toml" }, {},
         function(res)
             vim.schedule(function()
-                vim.notify("Please wait while blink is being built...")
                 if res.code ~= 0 then
                     vim.notify(tostring(res.stderr))
                 else
