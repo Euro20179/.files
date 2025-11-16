@@ -20,13 +20,13 @@ g.setup{
     }
 }
 
--- g.addmime("text/x-mmfml", "mmfml")
---
+g.addmime("text/x-mmfml", "mmfml")
+
 -- require "discord-ui".setup {
 --    token = vim.fn.readfile( "/home/euro/Documents/APIKeys/discord2" )[1],
 --    user_id = "1190132846409564170"
 -- }
---
+
 -- require"matrix.config".set_config({
 --     homeserver = "https://matrix.org",
 -- })

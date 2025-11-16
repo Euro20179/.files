@@ -7,7 +7,16 @@ vim.o.pp = vim.o.pp .. ',' .. vim.fn.expand("$HOME/Programs/Coding Projects/neov
 -- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
 -- gemini plugin can be found: https://github.com/euro20179/nvim-gemini
 -- div can be found: https://github.com/Euro20179/div.nvim
-for _, plug in pairs({ "nvim.difftool", "nvim.undotree", "mmfml", "gemini", "div", "find-highlight" }) do
+for _, plug in pairs({
+    "nvim.difftool",
+    "nvim.undotree",
+    "mmfml",
+    "gemini",
+    "div",
+    "find-highlight",
+    "discord",
+    "discord-ui"
+}) do
     -- :packadd! = do not source plugin/*
     -- because plug is added to &rtp meaning it will get sourced anyway
     vim.cmd.packadd { plug, bang = true }

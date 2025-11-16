@@ -79,7 +79,7 @@ findfile() {
             printf "%s" "$file"
             break
         fi
-    done <<<"$(ls "$location")"
+    done <<<"$(ls -1 "$location")"
 }
 
 play() {
@@ -116,6 +116,7 @@ main() {
         [ -z "$pos" ] && pos=$(getpos "$id")
 
         location="$(evallocation "$location")"
+        base_location="$location"
 
         [ "$ask_subs" = 1 ] && subsloc=$(getsubs "$pos" "$location")
 
@@ -124,13 +125,14 @@ main() {
         [ -z "$season" ] && season="$(getseason "$location")"
         [ "$season" ] && location="${location}/${season}"
 
+
         case "$type" in
         Show)
             file=$(findfile "$location")
-            #if the season is not found then we have probably reached the end of the season, ask again
+            #if the file is not found then we have probably reached the end of the season, ask again
             [ -z "$file" ] && {
-                season="$(getseason "$location")"
-                [ "$season" ] && location="${location}/${season}"
+                season="$(getseason "$base_location")"
+                [ "$season" ] && location="${base_location}/${season}"
             }
             location="${location}/$(findfile "$location")"
             ;;
