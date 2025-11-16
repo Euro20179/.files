@@ -57,17 +57,13 @@ getsubs() {
 getseason() {
     local location="$1"
     seasons=""
-    for file in "$location"/[Ss]eason*; do
-        case "$file" in
-        *'[Ss]eason*') continue ;;
-        esac
-        seasons="$(printf '%s\n%s' "$seasons" "${file##*/}")"
-    done
-    for file in "$location"/[Ss][[:digit:]]*; do
-        case "$file" in
-        *'[Ss][[:digit:]]*') continue ;;
-        esac
-        seasons="$(printf '%s\n%s' "$seasons" "${file##*/}")"
+    for pat in "[Ss]eason*" "[Ss][[:digit:]]*"; do
+        for file in "$location"/$pat; do
+            case "$file" in
+            *"$pat") continue ;;
+            esac
+            seasons="$(printf '%s\n%s' "$seasons" "${file##*/}")"
+        done
     done
     [ "$seasons" ] && printf "%s" "${seasons#$'\n'}" | fzf -1
 }
