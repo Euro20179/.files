@@ -129,6 +129,7 @@ main() {
             [ -z "$file" ] && {
                 season="$(getseason "$base_location")"
                 [ "$season" ] && location="${base_location}/${season}"
+                pos=1
             }
             location="${location}/$(findfile "$location")"
             ;;
