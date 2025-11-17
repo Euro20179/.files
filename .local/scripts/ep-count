@@ -1,0 +1,60 @@
+#!/bin/bash
+
+################################################################################
+# This script is responsible for determining the episode count of a show folder#
+# A folder may contain seasons or episodes or both, and it should obtain each  #
+# season's episode count                                                       #
+################################################################################
+
+root="$1"
+
+[ -z "$root" ] && {
+    printf "No root provided\n"
+    exit 1
+}
+
+declare -A seasons
+
+function list_folder() {
+    local root="$1"
+
+    local curSeason="$(episode-grabber.py -s "$root" . 2> /dev/null || echo -- -1)"
+
+    #the root folder doesn't have an associated season
+    #this should be treated as the ONLY season of the root folder
+    #this only season should be called season 1
+    [ "$curSeason" = "-1" ] && curSeason=1
+
+    for file in "$root"/*; do
+        if [ -d "$file" ]; then
+            seasonnr=$(episode-grabber.py -s "${file##*/}" "$root" i)
+            [ "$seasonnr" = "-1" ] && continue
+
+            [ "${seasons["$seasonnr"]}" ] && continue
+
+            list_folder "$file"
+        else
+            epnr=$(episode-grabber.py -b "${file##*/}" "$root" i)
+            season="${epnr%:*}"
+            epnr="${epnr#*:}"
+            [ "$season" = "-1" ] && season="$curSeason"
+            [ -z "$epnr" ] && continue
+            seasons["$season"]+=" $epnr"
+        fi
+    done
+}
+
+list_folder "$root"
+
+total=0
+for snr in "${!seasons[@]}"; do
+    printf "Season %s\n" "$snr"
+    eps=$(for epnr in ${seasons[$snr]}; do
+        echo "${epnr}"
+    done | sort -n)
+    count=$(printf "%s\n" "$eps" | wc -l)
+    printf -- "Count %d\n----------------\n" "$count"
+    (( total += count ))
+done
+
+echo "TOTAL: $total"

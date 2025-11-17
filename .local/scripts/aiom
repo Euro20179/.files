@@ -136,6 +136,8 @@ main() {
 
         play "$subsloc" "$location"
 
+        total_season_eps=$(ep-count "${location%/*}" | grep TOTAL | sed -n 's/TOTAL: \([[:digit:]]\+\).*/\1/p')
+
         read -p $'(n)ext\n(s)top\nstop and (u)pdate\n(p)revious\n(r)esume\n' -r action
         case "$action" in
         n*) pos=$((pos + 1)) ;;
@@ -143,9 +145,9 @@ main() {
         s* | e* | q*) exit 0 ;;
         u*)
             if [ -n "$season" ]; then
-                updatepos "$id" "$pos,%20S${season}"
+                updatepos "$id" "$pos/${total_season_eps},%20S${season}"
             else
-                updatepos "$id" "$pos"
+                updatepos "$id" "$pos/${total_season_eps}"
             fi
             exit 0
             ;;
