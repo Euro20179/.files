@@ -13,6 +13,7 @@ set.wayland() {
         wlr-randr --output HDMI-A-1 --pos 1920,0
         rm "$state_file"
         killall kodi
+        restart-waybar
     else
         wlr-randr --output DP-2 --on
         wlr-randr --output HDMI-A-1 --off
