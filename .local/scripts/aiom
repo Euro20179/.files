@@ -89,12 +89,36 @@ play() {
     fi
 }
 
+manual_mode() {
+    results="$(mksearch "$search")"
+    selection="$(mkselection "$results")"
+    [ $? != 0 ] && exit
+
+    IFS=$'\t' read -r id name type location <<<"$selection"
+    location="$(evallocation "$location")"
+
+    base_location="$location"
+
+    while :; do
+        while [ -d "$location" ]; do
+            location="${location}/$(ls -1a "$location" | fzf -1)"
+
+            [ $? != 0 ] && exit
+        done
+
+        linkhandler "$location"
+        location="$base_location"
+    done
+}
+
 ask_subs=0
 season=""
-while getopts "sS:" OPT; do
+manual=0
+while getopts "sS:m" OPT; do
     case "$OPT" in
     s) ask_subs=1 ;;
     S) season=$OPTARG ;;
+    m) manual=1 ;;
     *) : ;;
     esac
 done
@@ -120,7 +144,6 @@ main() {
         [ -z "$season" ] && season=$(getseasonFromPos "$id")
         [ -z "$season" ] && season="$(getseason "$location")"
         [ "$season" ] && location="${location}/${season}"
-
 
         case "$type" in
         Show)
@@ -162,4 +185,7 @@ main() {
     done
 }
 
-main
+case "$manual" in
+0) main ;;
+*) manual_mode ;;
+esac
