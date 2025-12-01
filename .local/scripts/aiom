@@ -107,6 +107,7 @@ manual_mode() {
         done
 
         linkhandler "$location"
+        read -p "Press enter to continue"
         location="$base_location"
     done
 }
