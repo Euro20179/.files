@@ -7,7 +7,14 @@ mksearch() {
 
 mkselection() {
     local results="$1"
-    echo "$results" | fzf -1
+    select=$(echo "$results" | fzf --expect=ctrl-r -1)
+    key="$(printf "%s" "$select" | head -n1)"
+    if [ "$key" = "ctrl-r" ]; then
+        loc=$(echo "$results" | shuf | head -n1)
+    else
+        loc="$(echo "$results" | sed -n 2p)"
+    fi
+    echo "$loc"
 }
 
 evallocation() {
@@ -101,7 +108,14 @@ manual_mode() {
 
     while :; do
         while [ -d "$location" ]; do
-            location="${location}/$(ls -1a "$location" | fzf -1)"
+            select=$(ls -1a "$location" | fzf --expect=ctrl-r -1)
+            key="$(printf "%s" "$select" | head -n1)"
+            if [ "$key" = "ctrl-r" ]; then
+                loc=$(ls -1 "$location" | shuf | head -n1)
+            else
+                loc="$(printf "%s" "$select" | sed -n 2p)"
+            fi
+            location="${location}/${loc}"
 
             [ $? != 0 ] && exit
         done
