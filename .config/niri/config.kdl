@@ -204,6 +204,9 @@ binds {
 
     //programs {{{
     Mod+Return { spawn "foot"; }
+    Mod+Shift+Return {
+        spawn-sh "niri-spawn-in-column foot";
+    }
     Mod+T { spawn "sh" "-c" "$BROWSER"; }
     Mod+Shift+T { spawn "sh" "-c" "$BROWSER_LITE"; }
     Mod+Shift+E { spawn-sh "$EMAIL"; }

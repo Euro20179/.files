@@ -1,0 +1,11 @@
+#!/bin/bash
+{
+    niri msg event-stream | while read -r line; do
+        echo "$line" | grep -q Window\ opened\ or\ changed
+        [ $? = 0 ] && {
+            niri msg action consume-or-expel-window-left
+            exit
+        }
+    done
+} &
+"$@" & disown
