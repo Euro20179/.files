@@ -15,7 +15,8 @@ for _, plug in pairs({
     "div",
     "find-highlight",
     "discord",
-    "discord-ui"
+    "discord-ui",
+    "irc.nvim"
 }) do
     -- :packadd! = do not source plugin/*
     -- because plug is added to &rtp meaning it will get sourced anyway
@@ -305,18 +306,20 @@ pkg.add({ { src = "https://github.com/echasnovski/mini.nvim" } }, "now", {
 
 pkg.add({
     {
-        src = "https://github.com/3rd/sqlite.nvim"
-    },
+    src = "https://github.com/wakatime/vim-wakatime"
+    }
+})
+
+pkg.add({
     {
-        src = "https://git.alfie.news/devtime.nvim",
-        version = "main"
+        src = "https://github.com/3rd/sqlite.nvim"
     },
     { src = "https://github.com/Apeiros-46B/qalc.nvim", version = "451f082" },
     { src = "https://github.com/tpope/vim-fugitive" }
 }, "now")
 
 -- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
--- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord-ui" }
+-- add { source = "file:///home/euro/Prorams/Coding Projects/neovim-plugins/discord-ui" }
 
 -- pkg.add({
 --     { src = "https://github.com/olimorris/codecompanion.nvim" },
