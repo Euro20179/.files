@@ -134,7 +134,6 @@ export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 # PROGRAM ALIASES #
 ###################
 # {{{
-#
 alias t=tmux' attach'
 alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
@@ -154,6 +153,8 @@ alias Q='nvim +Qalc +startinsert +set" filetype=amml"'
 
 alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
+
+alias stockrt='nvim +StockRT ~/stocks'
 
 config () {
     [ -n "$*" ] && {
