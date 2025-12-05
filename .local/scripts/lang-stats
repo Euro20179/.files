@@ -1,6 +1,6 @@
 #!/bin/bash
 
-milestones=(25 50 75)
+milestones=(50)
 if [ -n "$*" ]; then
     milestones=($(echo "$*" | tr '[:space:]' $'\n' | sort -n))
 fi
