@@ -1,0 +1,30 @@
+#!/bin/bash
+
+milestones=(25 50 75)
+if [ -n "$*" ]; then
+    milestones=($(echo "$*" | tr '[:space:]' $'\n' | sort -n))
+fi
+
+total_pct=0
+total_secs=0
+cur_milestone=0
+lang_count=0
+while read -r lang secs pct time; do
+    total_pct=$(echo "$total_pct + ${pct}" | bc)
+    total_secs=$((total_secs + secs))
+
+    lang_count=$((lang_count + 1))
+
+    echo "$lang $(date -d@"${secs}" -u +%H:%M:%S) ($pct)"
+
+    milestone_nr=${milestones[$cur_milestone]}
+    while [ -n "$milestone_nr" ] && [ "$(bc <<< "${total_pct} > ${milestone_nr}")" = 1 ]; do
+        printf "\x1b[1m%s%%-(%d) %s (%.2f%%)\x1b[0m\n" "$milestone_nr" "$lang_count" "$(date -d@"$total_secs" -u +%H:%M:%S)" "${total_pct}"
+        cur_milestone=$((cur_milestone + 1))
+        milestone_nr=${milestones[$cur_milestone]}
+    done
+done <<< "$(
+        curl -s http://cloud:54321/api/compat/wakatime/v1/users/euro/stats/ |
+            jq -r .data.languages'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)\t\(.digital)"'
+    )" |
+    column -t
