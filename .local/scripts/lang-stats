@@ -3,10 +3,13 @@
 section='languages'
 exclude_unknown=0
 
-while getopts pU OPT; do
+range=""
+
+while getopts pUr: OPT; do
     case $OPT in
     p) section='projects' ;;
     U) exclude_unknown=1 ;;
+    r) range=$OPTARG ;;
     *) : ;;
     esac
 done
@@ -47,7 +50,7 @@ lang_count=0
             milestone_nr=${milestones[$cur_milestone]}
         done
     done <<<"$(
-        curl -s http://cloud:54321/api/compat/wakatime/v1/users/euro/stats/ |
+        curl -s http://cloud:54321/api/compat/wakatime/v1/users/euro/stats/"$range" |
             jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
         )"
 
