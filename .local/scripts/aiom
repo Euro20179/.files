@@ -12,7 +12,7 @@ mkselection() {
     if [ "$key" = "ctrl-r" ]; then
         loc=$(echo "$results" | shuf | head -n1)
     else
-        loc="$(echo "$results" | sed -n 2p)"
+        loc="$(echo "$select" | sed -n 2p)"
     fi
     echo "$loc"
 }
