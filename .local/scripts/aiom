@@ -115,6 +115,9 @@ manual_mode() {
             else
                 loc="$(printf "%s" "$select" | sed -n 2p)"
             fi
+
+            [ -z "$loc" ] && exit
+
             location="${location}/${loc}"
 
             [ $? != 0 ] && exit
