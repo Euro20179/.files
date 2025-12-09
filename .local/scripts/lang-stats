@@ -6,7 +6,7 @@ include_langs=()
 
 use_real_total=0
 
-while getopts hTpr:x:i:a: OPT; do
+while getopts hTpr:x:i:a:u: OPT; do
     case $OPT in
     p) section='projects' ;;
     r) range=$OPTARG ;;
@@ -20,12 +20,14 @@ while getopts hTpr:x:i:a: OPT; do
         : "${include_langs[$((${#include_langs[@]} + 1))]:=$OPTARG}"
         ;;
     a) api="$OPTARG" ;;
+    u) user="$OPTARG" ;;
     h)
         cat <<HELP 
 lang-stats [Tprxi] [percentage...]
     Use wakapi to print language/project usage stats
 
     OPTIONS:
+    u <user>   : the user to print stats for
     p          : print project times instead of language times
     r <range>  : time range
     x <names>  : exclude a ',' separated list of languages/projects
@@ -69,7 +71,7 @@ if [ -n "$*" ]; then
 fi
 
 data="$(
-curl -s "$api"/api/compat/wakatime/v1/users/euro/stats/"$range" |
+curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range" |
     jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
 )"
 
