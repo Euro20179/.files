@@ -4,9 +4,7 @@ section='languages'
 exclude_langs=()
 include_langs=()
 
-range=""
-
-while getopts pUr:x:i: OPT; do
+while getopts hpUr:x:i:a: OPT; do
     case $OPT in
     p) section='projects' ;;
     r) range=$OPTARG ;;
@@ -18,9 +16,37 @@ while getopts pUr:x:i: OPT; do
         exclude_langs=()
         : "${include_langs[$((${#include_langs[@]} + 1))]:=$OPTARG}"
         ;;
+    a) api="$OPTARG" ;;
+    h)
+        cat <<HELP 
+lang-stats [pUrxi] [percentage...]
+    Use wakapi to print language/project usage stats
+
+    OPTIONS:
+    p          : print project times instead of language times
+    r <range>  : time range
+    x <names>  : exclude a ',' separated list of languages/projects
+                 can be used multiple times.
+                 Mutually exclusive with -i
+    i <names>  : Similar to -x but ONLY show the languages listed with -i
+                 Mutually exclusive with -x
+    a <domain> : use <domain> as the api url base
+
+    ARGUMENTS:
+    percentage... :
+                each arg is treated as a percentage to print to label how many
+                languages are needed to add up to that percentage.
+
+HELP
+        exit 0 ;;
     *) : ;;
     esac
 done
+
+[ "$api" ] || {
+    printf "No api url given\n"
+    exit 1
+}
 
 shift $((OPTIND - 1))
 
@@ -74,7 +100,7 @@ lang_count=0
             milestone_nr=${milestones[$cur_milestone]}
         done
     done <<<"$(
-        curl -s http://cloud:54321/api/compat/wakatime/v1/users/euro/stats/"$range" |
+        curl -s "$api"/api/compat/wakatime/v1/users/euro/stats/"$range" |
             jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
         )"
 

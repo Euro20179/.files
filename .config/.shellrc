@@ -146,6 +146,8 @@ alias 's=bookmarkfs search'
 alias "bc=bc -l"
 alias "less=less -r"
 
+alias lang-stats='lang-stats -a http://cloud:54321'
+
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
 
