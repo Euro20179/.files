@@ -70,10 +70,18 @@ if [ -n "$*" ]; then
     milestones=($(echo "$*" | tr '[:space:]' $'\n' | sort -n))
 fi
 
+raw=$(curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range")
+
 data="$(
-curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range" |
+    echo "$raw" |
     jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
 )"
+
+read -r start end <<< "$(echo "$raw" | jq -r '"\(.data.start)\t\(.data.end)"')"
+start_time=$(date -d "$start" +%s)
+end_time=$(date -d "$end" +%s)
+
+time_total=$((end_time - start_time))
 
 total_secs_included=0
 
@@ -133,4 +141,7 @@ lang_count=0
     done <<< "$data"
 
     printf -- "-------------\nTOTAL %s (%s%%)\n" "$(convertsecs "$total_secs")" "$(printf "%.02f" "$total_pct")"
+
+    printf -- "--------------\nAVG %s\n" "$(echo "printf '%.02f hours/day', $total_secs / $time_total * 24" | perl)"
 } | column -t
+
