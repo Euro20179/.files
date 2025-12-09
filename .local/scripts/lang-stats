@@ -1,15 +1,15 @@
 #!/bin/bash
 
 section='languages'
-exclude_unknown=0
+exclude_langs=()
 
 range=""
 
-while getopts pUr: OPT; do
+while getopts pUr:x: OPT; do
     case $OPT in
     p) section='projects' ;;
-    U) exclude_unknown=1 ;;
     r) range=$OPTARG ;;
+    x) : "${exclude_langs[$((${#exclude_langs[@]} + 1))]=$OPTARG}" ;;
     *) : ;;
     esac
 done
@@ -34,7 +34,12 @@ cur_milestone=0
 lang_count=0
 {
     while read -r lang secs pct; do
-        [ "$exclude_unknown" = 1 ] && [ "${lang,,}" = "unknown" ] && continue
+
+        IFS=,
+        case ",${exclude_langs[*]}," in
+            *) unset IFS ;;&
+            *,"${lang,,}",*) continue ;;
+        esac
 
         total_pct=$(echo "$total_pct + ${pct}" | bc)
         total_secs=$((total_secs + secs))
