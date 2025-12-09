@@ -4,10 +4,13 @@ section='languages'
 exclude_langs=()
 include_langs=()
 
-while getopts hpUr:x:i:a: OPT; do
+use_real_total=0
+
+while getopts hTpr:x:i:a: OPT; do
     case $OPT in
     p) section='projects' ;;
     r) range=$OPTARG ;;
+    T) use_real_total=1 ;;
     x)
         include_langs=()
         : "${exclude_langs[$((${#exclude_langs[@]} + 1))]:=$OPTARG}"
@@ -19,7 +22,7 @@ while getopts hpUr:x:i:a: OPT; do
     a) api="$OPTARG" ;;
     h)
         cat <<HELP 
-lang-stats [pUrxi] [percentage...]
+lang-stats [Tprxi] [percentage...]
     Use wakapi to print language/project usage stats
 
     OPTIONS:
@@ -30,6 +33,9 @@ lang-stats [pUrxi] [percentage...]
                  Mutually exclusive with -i
     i <names>  : Similar to -x but ONLY show the languages listed with -i
                  Mutually exclusive with -x
+    T          : When using -x or -i,
+                 use the complete total seconds for the percentage instead
+                 of only the total seconds of included langs/projects
     a <domain> : use <domain> as the api url base
 
     ARGUMENTS:
@@ -62,36 +68,59 @@ if [ -n "$*" ]; then
     milestones=($(echo "$*" | tr '[:space:]' $'\n' | sort -n))
 fi
 
+data="$(
+curl -s "$api"/api/compat/wakatime/v1/users/euro/stats/"$range" |
+    jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
+)"
+
+total_secs_included=0
+
+include_lang () {
+    local lang="$1"
+    [ "${exclude_langs[1]}" ] && {
+        IFS=,
+        case ",${exclude_langs[*]}," in
+            *) unset IFS ;;&
+            *,"${lang,,}",*) return 1 ;;
+        esac
+    }
+
+    [ "${include_langs[1]}" ] && {
+        IFS=,
+        case ",${include_langs[*]}," in
+            *) unset IFS ;;&
+            *,"${lang,,}",*) : ;;
+            *) return 1 ;;
+        esac
+    }
+
+    return 0
+}
+
+while read -r lang secs pct; do
+    include_lang "$lang" || continue
+
+    total_secs_included=$((total_secs_included + secs))
+done <<< "$data"
+
 total_pct=0
 total_secs=0
 cur_milestone=0
 lang_count=0
+
 {
     while read -r lang secs pct; do
+        include_lang "$lang" || continue
 
-        [ "${exclude_langs[1]}" ] && {
-            IFS=,
-            case ",${exclude_langs[*]}," in
-                *) unset IFS ;;&
-                *,"${lang,,}",*) continue ;;
-            esac
-        }
+        [ "$use_real_total" = 0 ] && \
+            pct=$(echo "print $secs / $total_secs_included * 100" | perl)
 
-        [ "${include_langs[1]}" ] && {
-            IFS=,
-            case ",${include_langs[*]}," in
-                *) unset IFS ;;&
-                *,"${lang,,}",*) : ;;
-                *) continue ;;
-            esac
-        }
-
-        total_pct=$(echo "$total_pct + ${pct}" | bc)
+        total_pct=$(echo "print $total_pct + (${pct})" | perl)
         total_secs=$((total_secs + secs))
 
         lang_count=$((lang_count + 1))
 
-        echo "$lang $(convertsecs "$secs") ($pct)"
+        echo "$lang $(convertsecs "$secs") ($(printf '%.02f' "$pct"))"
 
         milestone_nr=${milestones[$cur_milestone]}
         while [ -n "$milestone_nr" ] && [ "$(bc <<<"${total_pct} > ${milestone_nr}")" = 1 ]; do
@@ -99,10 +128,7 @@ lang_count=0
             cur_milestone=$((cur_milestone + 1))
             milestone_nr=${milestones[$cur_milestone]}
         done
-    done <<<"$(
-        curl -s "$api"/api/compat/wakatime/v1/users/euro/stats/"$range" |
-            jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
-        )"
+    done <<< "$data"
 
-    printf -- "-------------\nTOTAL %s (100%%)\n" "$(convertsecs "$total_secs")"
+    printf -- "-------------\nTOTAL %s (%s%%)\n" "$(convertsecs "$total_secs")" "$(printf "%.02f" "$total_pct")"
 } | column -t
