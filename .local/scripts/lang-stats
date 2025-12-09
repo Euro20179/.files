@@ -2,14 +2,22 @@
 
 section='languages'
 exclude_langs=()
+include_langs=()
 
 range=""
 
-while getopts pUr:x: OPT; do
+while getopts pUr:x:i: OPT; do
     case $OPT in
     p) section='projects' ;;
     r) range=$OPTARG ;;
-    x) : "${exclude_langs[$((${#exclude_langs[@]} + 1))]=$OPTARG}" ;;
+    x)
+        include_langs=()
+        : "${exclude_langs[$((${#exclude_langs[@]} + 1))]:=$OPTARG}"
+        ;;
+    i)
+        exclude_langs=()
+        : "${include_langs[$((${#include_langs[@]} + 1))]:=$OPTARG}"
+        ;;
     *) : ;;
     esac
 done
@@ -35,11 +43,22 @@ lang_count=0
 {
     while read -r lang secs pct; do
 
-        IFS=,
-        case ",${exclude_langs[*]}," in
-            *) unset IFS ;;&
-            *,"${lang,,}",*) continue ;;
-        esac
+        [ "${exclude_langs[1]}" ] && {
+            IFS=,
+            case ",${exclude_langs[*]}," in
+                *) unset IFS ;;&
+                *,"${lang,,}",*) continue ;;
+            esac
+        }
+
+        [ "${include_langs[1]}" ] && {
+            IFS=,
+            case ",${include_langs[*]}," in
+                *) unset IFS ;;&
+                *,"${lang,,}",*) : ;;
+                *) continue ;;
+            esac
+        }
 
         total_pct=$(echo "$total_pct + ${pct}" | bc)
         total_secs=$((total_secs + secs))
