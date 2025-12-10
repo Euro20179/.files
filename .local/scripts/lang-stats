@@ -6,6 +6,25 @@ include_langs=()
 
 use_real_total=0
 
+valid_ranges=(
+    today
+    yesterday
+    week
+    month
+    year
+    last_7_days
+    7_days
+    last_30_days
+    30_days
+    last_6_months
+    6_months
+    last_12_months
+    12_months
+    last_year
+    any
+    all_time
+)
+
 while getopts hTpr:x:i:a:u: OPT; do
     case $OPT in
     p) section='projects' ;;
@@ -22,6 +41,7 @@ while getopts hTpr:x:i:a:u: OPT; do
     a) api="$OPTARG" ;;
     u) user="$OPTARG" ;;
     h)
+        IFS=$'\n'
         cat <<HELP 
 lang-stats [Tprxi] [percentage...]
     Use wakapi to print language/project usage stats
@@ -29,7 +49,8 @@ lang-stats [Tprxi] [percentage...]
     OPTIONS:
     u <user>   : the user to print stats for
     p          : print project times instead of language times
-    r <range>  : time range
+    r <range>  : time range, one of:
+    $(printf '\t\t  %s\n' "${valid_ranges[@]}")
     x <names>  : exclude a ',' separated list of languages/projects
                  can be used multiple times.
                  Mutually exclusive with -i
@@ -58,6 +79,13 @@ done
 
 shift $((OPTIND - 1))
 
+IFS=,
+case ",${valid_ranges[*]}," in
+    *,"${range}",*) : ;;
+    *) printf "Invalid range\n"; exit 1 ;;
+esac
+unset IFS
+
 convertsecs() {
     ((h = ${1} / 3600))
     ((m = (${1} % 3600) / 60))
@@ -72,16 +100,15 @@ fi
 
 raw=$(curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range")
 
+#day count doesn't include the current day, add one
+day_count=$(($(echo "$raw" | jq .data.days_including_holidays) + 1))
+
 data="$(
     echo "$raw" |
     jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
 )"
 
-read -r start end <<< "$(echo "$raw" | jq -r '"\(.data.start)\t\(.data.end)"')"
-start_time=$(date -d "$start" +%s)
-end_time=$(date -d "$end" +%s)
-
-time_total=$((end_time - start_time))
+time_total=$((day_count * 86400))
 
 total_secs_included=0
 
@@ -142,6 +169,6 @@ lang_count=0
 
     printf -- "-------------\nTOTAL %s (%s%%)\n" "$(convertsecs "$total_secs")" "$(printf "%.02f" "$total_pct")"
 
-    printf -- "--------------\nAVG %s\n" "$(echo "printf '%.02f hours/day', $total_secs / $time_total * 24" | perl)"
+    printf -- "--------------\nAVG %s time/day\n" "$(convertsecs "$(echo "printf '%.0f', $total_secs / $time_total * 86400" | perl)")"
 } | column -t
 
