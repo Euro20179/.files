@@ -25,6 +25,8 @@ valid_ranges=(
     all_time
 )
 
+range=any
+
 while getopts hTpr:x:i:a:u: OPT; do
     case $OPT in
     p) section='projects' ;;
