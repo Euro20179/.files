@@ -14,3 +14,5 @@ augroup lastmodifed
     exec 'au BufWriteCmd ' .. expand("$CLOUD") .. '/* call s:handleLastModified()'
     au BufWritePre * call s:handleLastModified()
 augroup END
+
+command! ILastMod norm iLast Modified =strftime("%m/%d/%Y %H:%M")
