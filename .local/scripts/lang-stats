@@ -11,7 +11,9 @@ include_langs: list[str] = []
 
 use_real_total = 0
 
-milestones = [50]
+milestones: list[float | int] = [50]
+
+time_milestones: list[str] = []
 
 api = ""
 user = ""
@@ -108,6 +110,10 @@ def convertsecs(secs: int):
     s = secs % 60
     return f"{h:02d}:{m:02d}:{s:02d}"
 
+def time2secs(time: str):
+    hours, mins, secs = time.split(":")
+    return int(hours) * 3600 + int(mins) * 60 + int(secs)
+
 def lang_counter():
     langs_included = 0
 
@@ -132,7 +138,13 @@ def lang_counter():
     return include_lang
 
 if args:
-    milestones = [float(k) for k in args]
+    milestones = []
+    time_milestones = []
+    for arg in args:
+        if ":" in arg:
+            time_milestones.append(arg)
+        else:
+            milestones.append(float(arg))
 
 raw = requests.get(f"{api}/api/compat/wakatime/v1/users/{user}/stats/{used_range}")
 
@@ -157,8 +169,13 @@ for item in data:
 
 total_pct = 0
 total_secs = 0
-milestones = iter(milestones)
-cur_milestone = next(milestones)
+
+milestones_iter = iter(sorted(milestones))
+cur_milestone = next(milestones_iter, -1)
+
+time_milestones_iter = iter(sorted(time_milestones, key=time2secs))
+cur_time_milestone = next(time_milestones_iter, "")
+
 lang_count = 0
 
 include = lang_counter()
@@ -183,6 +200,11 @@ for item in data:
 
     while cur_milestone > 0 and total_pct > cur_milestone:
         print(f"\x1b[1m{cur_milestone}%-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
-        cur_milestone = next(milestones, -1)
+        cur_milestone = next(milestones_iter, -1)
+
+    while cur_time_milestone and total_secs > time2secs(cur_time_milestone):
+        print(f"\x1b[1m{cur_time_milestone}-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
+        cur_time_milestone = next(time_milestones_iter, "")
+
 print(f"--------------\nTOTAL: {convertsecs(total_secs)} ({total_pct:.02f}%)")
 print(f"--------------\nAVG {convertsecs(round(total_secs / time_total * 86400))} time/day\n")
