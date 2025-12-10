@@ -27,8 +27,9 @@ valid_ranges=(
 
 range=any
 
-while getopts hTpr:x:i:a:u: OPT; do
+while getopts hTpr:x:i:a:u:t: OPT; do
     case $OPT in
+    t) top=$OPTARG ;;
     p) section='projects' ;;
     r) range=$OPTARG ;;
     T) use_real_total=1 ;;
@@ -50,6 +51,7 @@ lang-stats [Tprxi] [percentage...]
 
     OPTIONS:
     u <user>   : the user to print stats for
+    t <number> : display the top <number> languages/projects
     p          : print project times instead of language times
     r <range>  : time range, one of:
     $(printf '\t\t  %s\n' "${valid_ranges[@]}")
@@ -105,9 +107,11 @@ raw=$(curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range"
 #day count doesn't include the current day, add one
 day_count=$(($(echo "$raw" | jq .data.days_including_holidays) + 1))
 
+list_slice="[0:]"
+[ "$top" ] && list_slice="[0:$top]"
 data="$(
     echo "$raw" |
-    jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
+    jq -r .data."$section""$list_slice"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
 )"
 
 time_total=$((day_count * 86400))
