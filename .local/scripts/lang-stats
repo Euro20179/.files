@@ -80,7 +80,7 @@ for opt, optarg in opts:
         case "t":
             top = int(optarg)
         case "p":
-            section = optarg
+            section = "projects"
         case "r":
             used_range = optarg
             shortcuts = {
@@ -230,7 +230,7 @@ for i, item in enumerate(data):
         cur_milestone = next(milestones_iter, -1)
 
     while cur_time_milestone and total_secs > time2secs(cur_time_milestone):
-        print_line_item(f"{cur_time_milestone}%-({lang_count})", convertsecs(total_secs), total_pct, clr="95")
+        print_line_item(f"{cur_time_milestone}-({lang_count})", convertsecs(total_secs), total_pct, clr="95")
         # print(f"\x1b[1m{cur_time_milestone}-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
         cur_time_milestone = next(time_milestones_iter, "")
 
