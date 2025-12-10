@@ -107,11 +107,9 @@ raw=$(curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range"
 #day count doesn't include the current day, add one
 day_count=$(($(echo "$raw" | jq .data.days_including_holidays) + 1))
 
-list_slice="[0:]"
-[ "$top" ] && list_slice="[0:$top]"
 data="$(
     echo "$raw" |
-    jq -r .data."$section""$list_slice"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
+    jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
 )"
 
 time_total=$((day_count * 86400))
@@ -137,9 +135,14 @@ include_lang () {
         esac
     }
 
+    [ "$top" ] && [ "$langs_included" -ge "$top" ] && return 1
+
+    (( langs_included += 1 ))
+
     return 0
 }
 
+langs_included=0
 while read -r lang secs pct; do
     include_lang "$lang" || continue
 
@@ -151,6 +154,7 @@ total_secs=0
 cur_milestone=0
 lang_count=0
 
+langs_included=0
 {
     while read -r lang secs pct; do
         include_lang "$lang" || continue
