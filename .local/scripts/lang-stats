@@ -149,9 +149,13 @@ def lang_counter():
 
         if exclude_langs and lang in exclude_langs:
             return False
+        elif exclude_langs:
+            return True
 
         if include_langs and lang in include_langs:
             return True
+        elif include_langs:
+            return False
 
         return True
 
