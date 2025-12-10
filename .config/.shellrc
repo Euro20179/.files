@@ -147,7 +147,7 @@ alias "bc=bc -l"
 alias "less=less -r"
 
 lang-stats() {
-    command lang-stats -a http://cloud:54321 -u euro "$@" | column -t
+    command lang-stats -a http://cloud:54321 -u euro -e "$@" | column -t
 }
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'

@@ -20,6 +20,8 @@ user = ""
 
 top = -1
 
+ansi_enabled = sys.stdout.isatty()
+
 valid_ranges=[
     "today",
     "yesterday",
@@ -42,7 +44,7 @@ valid_ranges=[
 used_range = "any"
 
 def gen_help():
-    print("""lang-stats [Tprxiaut] [percentage...]
+    print("""lang-stats [TprxiautAe] [percentage...]
         Use wakapi to print language/project usage stats
 
         OPTIONS:
@@ -60,6 +62,9 @@ def gen_help():
                      use the complete total seconds for the percentage instead
                      of only the total seconds of included langs/projects
         a <domain> : use <domain> as the api url base
+        A          : disbale ansi sequences
+                     (automatically disabled when stdout is not a terminal)
+        e          : enable ansi sequences
 
         ARGUMENTS:
         percentage... :
@@ -68,7 +73,7 @@ def gen_help():
 """)
 
 args = sys.argv
-opts, args = getopt.getopt(args[1:], "hTpr:x:i:a:u:t:")
+opts, args = getopt.getopt(args[1:], "hTpr:x:i:a:u:t:Ae")
 
 for opt, optarg in opts:
     match opt[1:]:
@@ -93,6 +98,10 @@ for opt, optarg in opts:
             api = optarg
         case 'u':
             user = optarg
+        case 'e':
+            ansi_enabled = 1
+        case 'A':
+            ansi_enabled = 0
         case 'h':
             gen_help()
 
@@ -180,7 +189,13 @@ lang_count = 0
 
 include = lang_counter()
 
-for item in data:
+def print_line_item(name: str, time: str, pct: float, *, clr="35"):
+    text = f"\x1b[{clr}m{name}\x1b[0m" if ansi_enabled else name
+    text += f" {time} ({pct:.2f}%)"
+    text += "\x1b[0m" if ansi_enabled else ""
+    print(text)
+
+for i, item in enumerate(data):
     name = item["name"]
     if not include(name): continue
 
@@ -196,14 +211,16 @@ for item in data:
     total_secs += secs
     lang_count += 1
 
-    print(f"{name} {convertsecs(secs)} ({pct:.02f})")
+    print_line_item(name, convertsecs(secs), pct, clr=f"3{i + 1}" if i < 6 else '0')
 
     while cur_milestone > 0 and total_pct > cur_milestone:
-        print(f"\x1b[1m{cur_milestone}%-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
+        print_line_item(f"{cur_milestone}%-({lang_count})", convertsecs(total_secs), total_pct, clr="35;1")
+        # print(f"\x1b[1m{cur_milestone}%-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
         cur_milestone = next(milestones_iter, -1)
 
     while cur_time_milestone and total_secs > time2secs(cur_time_milestone):
-        print(f"\x1b[1m{cur_time_milestone}-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
+        print_line_item(f"{cur_time_milestone}%-({lang_count})", convertsecs(total_secs), total_pct, clr="95")
+        # print(f"\x1b[1m{cur_time_milestone}-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
         cur_time_milestone = next(time_milestones_iter, "")
 
 print(f"--------------\nTOTAL: {convertsecs(total_secs)} ({total_pct:.02f}%)")
