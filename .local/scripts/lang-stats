@@ -1,184 +1,188 @@
-#!/bin/bash
+#!/bin/python
+import getopt
+import sys
+import json
 
-section='languages'
-exclude_langs=()
-include_langs=()
+import requests
 
-use_real_total=0
+section = "languages"
+exclude_langs: list[str] = []
+include_langs: list[str] = []
 
-valid_ranges=(
-    today
-    yesterday
-    week
-    month
-    year
-    last_7_days
-    7_days
-    last_30_days
-    30_days
-    last_6_months
-    6_months
-    last_12_months
-    12_months
-    last_year
-    any
-    all_time
-)
+use_real_total = 0
 
-range=any
+milestones = [50]
 
-while getopts hTpr:x:i:a:u:t: OPT; do
-    case $OPT in
-    t) top=$OPTARG ;;
-    p) section='projects' ;;
-    r) range=$OPTARG ;;
-    T) use_real_total=1 ;;
-    x)
-        include_langs=()
-        : "${exclude_langs[$((${#exclude_langs[@]} + 1))]:=$OPTARG}"
-        ;;
-    i)
-        exclude_langs=()
-        : "${include_langs[$((${#include_langs[@]} + 1))]:=$OPTARG}"
-        ;;
-    a) api="$OPTARG" ;;
-    u) user="$OPTARG" ;;
-    h)
-        IFS=$'\n'
-        cat <<HELP 
-lang-stats [Tprxi] [percentage...]
-    Use wakapi to print language/project usage stats
+api = ""
+user = ""
 
-    OPTIONS:
-    u <user>   : the user to print stats for
-    t <number> : display the top <number> languages/projects
-    p          : print project times instead of language times
-    r <range>  : time range, one of:
-    $(printf '\t\t  %s\n' "${valid_ranges[@]}")
-    x <names>  : exclude a ',' separated list of languages/projects
-                 can be used multiple times.
-                 Mutually exclusive with -i
-    i <names>  : Similar to -x but ONLY show the languages listed with -i
-                 Mutually exclusive with -x
-    T          : When using -x or -i,
-                 use the complete total seconds for the percentage instead
-                 of only the total seconds of included langs/projects
-    a <domain> : use <domain> as the api url base
+top = -1
 
-    ARGUMENTS:
-    percentage... :
-                each arg is treated as a percentage to print to label how many
-                languages are needed to add up to that percentage.
+valid_ranges=[
+    "today",
+    "yesterday",
+    "week",
+    "month",
+    "year",
+    "last_7_days",
+    "7_days",
+    "last_30_days",
+    "30_days",
+    "last_6_months",
+    "6_months",
+    "last_12_months",
+    "12_months",
+    "last_year",
+    "any",
+    "all_time"
+]
 
-HELP
-        exit 0 ;;
-    *) : ;;
-    esac
-done
+used_range = "any"
 
-[ "$api" ] || {
-    printf "No api url given\n"
-    exit 1
-}
+def gen_help():
+    print("""lang-stats [Tprxiaut] [percentage...]
+        Use wakapi to print language/project usage stats
 
-shift $((OPTIND - 1))
+        OPTIONS:
+        u <user>   : the user to print stats for
+        t <number> : display the top <number> languages/projects
+        p          : print project times instead of language times
+        r <range>  : time range, one of:
+        $(printf '\t\t  %s\n' "${valid_ranges[@]}")
+        x <names>  : exclude a ',' separated list of languages/projects
+                     can be used multiple times.
+                     Mutually exclusive with -i
+        i <names>  : Similar to -x but ONLY show the languages listed with -i
+                     Mutually exclusive with -x
+        T          : When using -x or -i,
+                     use the complete total seconds for the percentage instead
+                     of only the total seconds of included langs/projects
+        a <domain> : use <domain> as the api url base
 
-IFS=,
-case ",${valid_ranges[*]}," in
-    *,"${range}",*) : ;;
-    *) printf "Invalid range\n"; exit 1 ;;
-esac
-unset IFS
+        ARGUMENTS:
+        percentage... :
+                    each arg is treated as a percentage to print to label how many
+                    languages are needed to add up to that percentage.
+""")
 
-convertsecs() {
-    ((h = ${1} / 3600))
-    ((m = (${1} % 3600) / 60))
-    ((s = ${1} % 60))
-    printf "%02d:%02d:%02d\n" $h $m $s
-}
+args = sys.argv
+opts, args = getopt.getopt(args[1:], "hTpr:x:i:a:u:t:")
 
-milestones=(50)
-if [ -n "$*" ]; then
-    milestones=($(echo "$*" | tr '[:space:]' $'\n' | sort -n))
-fi
+for opt, optarg in opts:
+    match opt[1:]:
+        case "t":
+            top = int(optarg)
+        case "p":
+            section = optarg
+        case "r":
+            used_range = optarg
+            if used_range not in valid_ranges:
+                print(f"Not a valid range: {used_range} setting back to any",
+                      file=sys.stderr)
+        case "T":
+            use_real_total = 1
+        case "x":
+            include_langs = []
+            exclude_langs += [k.strip().lower() for k in optarg.split(",")]
+        case 'i':
+            exclude_langs = []
+            include_langs += [k.strip().lower() for k in optarg.split(",")]
+        case 'a':
+            api = optarg
+        case 'u':
+            user = optarg
+        case 'h':
+            gen_help()
 
-raw=$(curl -s "$api"/api/compat/wakatime/v1/users/"${user:-euro}"/stats/"$range")
+if not api:
+    print("No api url given", file=sys.stderr)
+    exit(1)
 
-#day count doesn't include the current day, add one
-day_count=$(($(echo "$raw" | jq .data.days_including_holidays) + 1))
+if not user:
+    print("No user given", file=sys.stderr)
+    exit(1)
 
-data="$(
-    echo "$raw" |
-    jq -r .data."$section"'.[]|"\(.name)\t\(.total_seconds)\t\(.percent)"'
-)"
+def convertsecs(secs: int):
+    h = secs // 3600
+    m = (secs % 3600) // 60
+    s = secs % 60
+    return f"{h:02d}:{m:02d}:{s:02d}"
 
-time_total=$((day_count * 86400))
+def lang_counter():
+    langs_included = 0
 
-total_secs_included=0
+    def include_lang(lang: str):
+        nonlocal langs_included
 
-include_lang () {
-    local lang="$1"
-    [ "${exclude_langs[1]}" ] && {
-        IFS=,
-        case ",${exclude_langs[*]}," in
-            *) unset IFS ;;&
-            *,"${lang,,}",*) return 1 ;;
-        esac
-    }
+        lang = lang.lower()
 
-    [ "${include_langs[1]}" ] && {
-        IFS=,
-        case ",${include_langs[*]}," in
-            *) unset IFS ;;&
-            *,"${lang,,}",*) : ;;
-            *) return 1 ;;
-        esac
-    }
+        if top > 0 and langs_included > top:
+            return False
 
-    [ "$top" ] && [ "$langs_included" -ge "$top" ] && return 1
+        langs_included += 1
 
-    (( langs_included += 1 ))
+        if exclude_langs and lang in exclude_langs:
+            return False
 
-    return 0
-}
+        if include_langs and lang in include_langs:
+            return True
 
-langs_included=0
-while read -r lang secs pct; do
-    include_lang "$lang" || continue
+        return True
 
-    total_secs_included=$((total_secs_included + secs))
-done <<< "$data"
+    return include_lang
 
-total_pct=0
-total_secs=0
-cur_milestone=0
-lang_count=0
+if args:
+    milestones = [float(k) for k in args]
 
-langs_included=0
-{
-    while read -r lang secs pct; do
-        include_lang "$lang" || continue
+raw = requests.get(f"{api}/api/compat/wakatime/v1/users/{user}/stats/{used_range}")
 
-        [ "$use_real_total" = 0 ] && \
-            pct=$(echo "print $secs / $total_secs_included * 100" | perl)
+raw = raw.json()
+# print(json.dumps(raw))
 
-        total_pct=$(echo "print $total_pct + (${pct})" | perl)
-        total_secs=$((total_secs + secs))
+day_count = raw["data"]["days_including_holidays"] + 1
 
-        lang_count=$((lang_count + 1))
+data = raw["data"][section]
 
-        echo "$lang $(convertsecs "$secs") ($(printf '%.02f' "$pct"))"
+time_total = day_count * 86400
 
-        milestone_nr=${milestones[$cur_milestone]}
-        while [ -n "$milestone_nr" ] && [ "$(bc <<<"${total_pct} > ${milestone_nr}")" = 1 ]; do
-            printf "\x1b[1m%s%%-(%d) %s (%.2f%%)\x1b[0m\n" "$milestone_nr" "$lang_count" "$(convertsecs "$total_secs")" "${total_pct}"
-            cur_milestone=$((cur_milestone + 1))
-            milestone_nr=${milestones[$cur_milestone]}
-        done
-    done <<< "$data"
+total_secs_included = 0
 
-    printf -- "-------------\nTOTAL %s (%s%%)\n" "$(convertsecs "$total_secs")" "$(printf "%.02f" "$total_pct")"
+include = lang_counter()
+for item in data:
+    name = item["name"]
+    if not include(name):
+        continue
+    total_secs_included += item["total_seconds"]
 
-    printf -- "--------------\nAVG %s time/day\n" "$(convertsecs "$(echo "printf '%.0f', $total_secs / $time_total * 86400" | perl)")"
-} | column -t
 
+total_pct = 0
+total_secs = 0
+milestones = iter(milestones)
+cur_milestone = next(milestones)
+lang_count = 0
+
+include = lang_counter()
+
+for item in data:
+    name = item["name"]
+    if not include(name): continue
+
+    secs = item["total_seconds"]
+
+    if not use_real_total:
+        pct = secs / total_secs_included * 100
+    else:
+        pct = item["percent"]
+
+    total_pct += pct
+
+    total_secs += secs
+    lang_count += 1
+
+    print(f"{name} {convertsecs(secs)} ({pct:.02f})")
+
+    while cur_milestone > 0 and total_pct > cur_milestone:
+        print(f"\x1b[1m{cur_milestone}%-({lang_count}) {convertsecs(total_secs)} ({total_pct:.2f}%)\x1b[0m")
+        cur_milestone = next(milestones, -1)
+print(f"--------------\nTOTAL: {convertsecs(total_secs)} ({total_pct:.02f}%)")
+print(f"--------------\nAVG {convertsecs(round(total_secs / time_total * 86400))} time/day\n")
