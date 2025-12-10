@@ -83,6 +83,14 @@ for opt, optarg in opts:
             section = optarg
         case "r":
             used_range = optarg
+            shortcuts = {
+                    "t": "today",
+                    "w": "week",
+                    "m": "month",
+                    "30": "last_30_days",
+            }
+            used_range = shortcuts.get(used_range, used_range)
+
             if used_range not in valid_ranges:
                 print(f"Not a valid range: {used_range} setting back to any",
                       file=sys.stderr)
@@ -104,6 +112,9 @@ for opt, optarg in opts:
             ansi_enabled = 0
         case 'h':
             gen_help()
+        case INVALID:
+            print(f"Invalid option {INVALID}", file=sys.stderr)
+            exit(1)
 
 if not api:
     print("No api url given", file=sys.stderr)
