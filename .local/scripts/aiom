@@ -2,7 +2,7 @@
 
 mksearch() {
     local search=$1
-    curl "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "search=@${search}" | jq -r '"\(.ItemId)\t\(.En_Title)\t\(.Type)\t\(.Location)"'
+    curl -s "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "search=@${search}" | jq -r '"\(.ItemId)\t\(.En_Title)\t\(.Type)\t\(.Location)"'
 }
 
 mkselection() {
@@ -25,14 +25,14 @@ evallocation() {
 #also sets season (if in pos, otherwise "")
 getpos() {
     local id=$1
-    local rawPos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
+    local rawPos=$(curl -s "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
     pos="$(printf "%s" "$rawPos" | sed -n 's/[^[:digit:]]*\([[:digit:]]\+\).*/\1/p')"
     printf "%d" "$((pos + 1))"
 }
 
 getseasonFromPos() {
     local id=$1
-    local rawPos=$(curl "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
+    local rawPos=$(curl -s "$AIO_SERVER"/api/v1/engagement/get-entry -G --data-urlencode "uid=${AIO_UID}" --data-urlencode "id=${id}" | jq -r '.CurrentPosition')
     season="$(printf "%s" "$rawPos" | sed -n 's/.*S\(\([[:alpha:]]\)*[[:digit:]]\+\).*/\1/p')"
     if [ "$season" = "$rawPos" ]; then
         printf ""
@@ -44,7 +44,7 @@ getseasonFromPos() {
 updatepos() {
     local newpos=$2
     local id=$1
-    curl -H "Authorization: Basic $(printf "%s" "$AIO_ACCOUNT_NUMBER" | base64)" "$AIO_SERVER"/api/v1/engagement/mod-entry"?current-position=${newpos}&id=$id"
+    curl -s -H "Authorization: Basic $(printf "%s" "$AIO_ACCOUNT_NUMBER" | base64)" "$AIO_SERVER"/api/v1/engagement/mod-entry"?current-position=${newpos}&id=$id"
 }
 
 getsubs() {
@@ -147,6 +147,8 @@ search="${search// /\\ }"
 main() {
     results="$(mksearch "$search")"
     selection="$(mkselection "$results")"
+
+    [ -z "$selection" ] && exit
 
     while :; do
         IFS=$'\t' read -r id name type location <<<"$selection"
