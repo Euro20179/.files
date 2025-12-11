@@ -13,6 +13,8 @@ include_langs: list[str] = []
 
 use_real_total = 0
 
+print_reversed = 0
+
 milestones: list[float | int] = [50]
 
 time_milestones: list[str] = []
@@ -51,7 +53,7 @@ read_from = ""
 data_fmt = "stats"
 
 def gen_help():
-    print("""lang-stats [TprxiautAefSE] [percentage...]
+    print("""lang-stats [TprxiautAefSER] [percentage...]
         Use wakapi to print language/project usage stats
 
         OPTIONS:
@@ -59,6 +61,7 @@ def gen_help():
         t <number>         : display the top <number> languages/projects
         p                  : print project times instead of language times
         r <range>          : time range, one of:
+        R                  : print from least -> greatest
         $(printf '\t\t\t %s\n' "${valid_ranges[@]}")
         x <names>          : exclude a ',' separated list of languages/projects
                              can be used multiple times.
@@ -90,7 +93,7 @@ def gen_help():
 """)
 
 args = sys.argv
-opts, args = getopt.getopt(args[1:], "hTpr:x:i:a:u:t:Aef:F:S:E:")
+opts, args = getopt.getopt(args[1:], "hTpr:x:i:a:u:t:Aef:F:S:E:R")
 
 for opt, optarg in opts:
     match opt[1:]:
@@ -98,6 +101,8 @@ for opt, optarg in opts:
             top = int(optarg)
         case "p":
             section = "projects"
+        case "R":
+            print_reversed = 1
         case "r":
             used_range = optarg
             shortcuts = {
@@ -233,9 +238,13 @@ def print_line_item(name: str, time: str, pct: float, *, clr="35"):
     text += "\x1b[0m" if ansi_enabled else ""
     print(text)
 
-def handle_stats(stats, label = ""):
+def handle_stats(stats, label = "", print_reversed = print_reversed):
     if label:
         print(f"------------------\n{label}\n------------------")
+
+    if print_reversed:
+        stats = [*reversed(stats)]
+
     time_total = day_count * 86400
 
     total_secs_included = 0
@@ -261,9 +270,10 @@ def handle_stats(stats, label = ""):
 
     include = lang_counter()
 
-    for i, item in enumerate(stats):
+    langs = [item for item in stats if include(item["name"])]
+
+    for i, item in enumerate(langs):
         name = item["name"]
-        if not include(name): continue
 
         secs = item["total_seconds"]
 
@@ -277,7 +287,14 @@ def handle_stats(stats, label = ""):
         total_secs += secs
         lang_count += 1
 
-        print_line_item(name, convertsecs(secs), pct, clr=f"3{i + 1}" if i < 6 else '0')
+        if print_reversed and len(langs) - i < 6:
+            clr = f"3{len(langs) - i}"
+        elif not print_reversed and i < 6:
+            clr = f"3{i + 1}"
+        else:
+            clr = "0"
+
+        print_line_item(name, convertsecs(secs), pct, clr=clr)
 
         while cur_milestone > 0 and total_pct > cur_milestone:
             print_line_item(f"{cur_milestone}%-({lang_count})", convertsecs(total_secs), total_pct, clr="35;1")
