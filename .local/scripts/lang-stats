@@ -311,4 +311,4 @@ else:
     day_count = raw["daily_average"]["days_including_holidays"]
 
 data = data[section]
-handle_stats("", data)
+handle_stats(data, "")
