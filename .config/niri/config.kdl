@@ -60,6 +60,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="pick-reaction-image"
+    open-floating true
+}
+
+window-rule {
     match app-id="goker"
     open-floating true
 }

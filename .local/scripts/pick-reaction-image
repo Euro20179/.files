@@ -1,3 +1,12 @@
 #!/bin/bash
 
-wl-copy -t image/png < "$(swiv -ot "$XDG_PICTURES_HOME/reaction-images/"*)"
+if [ -t 1 ]; then
+    find "${XDG_PICTURES_HOME}"/reaction-images/ -type f \
+        | cut -d/ -f6 \
+        | fzf --preview="chafa -s \${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES} \${XDG_PICTURES_HOME}/reaction-images/{}" \
+        | xargs printf "%s/reaction-images/%s" "$XDG_PICTURES_HOME" \
+        | xargs cat \
+        | wl-copy -t image/png
+else
+    $TERMINAL -a pick-reaction-image -e "$0" "$@"
+fi

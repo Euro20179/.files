@@ -86,7 +86,8 @@
 
 
   div[class*=mentioned] {
-    --text-default: var(--text-color) !important;
+    --text-default: var(--main) !important;
+    background-color: var(--peach) !important;
   }
 }
 
