@@ -1,4 +1,22 @@
--- local aug = vim.api.nvim_create_augroup("conf.vimwiki", {})
+local aug = vim.api.nvim_create_augroup("conf.vimwiki", {})
+vim.api.nvim_create_autocmd("BufNewFile", {
+    group = aug,
+    pattern = {
+        vim.fn.expand("$WIKI") .. "/*.mmfml",
+        vim.fn.expand("$WIKI") .. "/*.mfl"
+    },
+    callback = function()
+        vim.cmd[[
+        Divl =
+        call append(".", "")
+        call setpos(".", [0, 2, 0])
+        ILastMod
+        right
+        /=/norm 3O
+        call setpos(".", [0, 0, 0])
+        ]]
+    end
+})
 --
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --     callback = function()
