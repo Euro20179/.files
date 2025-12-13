@@ -229,7 +229,7 @@ CAL () {
 alias "ds=cd ~/Downloads"
 alias "dF=cd ~/Documents"
 alias "dm=cd ~/Pictures/memes"
-alias "db=cd ~/Documents/bookmarks"
+alias "dc=cd \$CLOUD"
 
 gc () {
     sub_dir="$1"

@@ -126,6 +126,7 @@ keymap = [
 	{ on = [ "d", "h" ],       run = "cd ~",             desc = "Go to the home directory" },
 	{ on = [ "d", "." ],       run = "cd ~/.config",     desc = "Go to the config directory" },
 	{ on = [ "d", "s" ],       run = "cd ~/Downloads",   desc = "Go to the downloads directory" },
+    { on = [ "d", "c" ],       run = "cd $CLOUD",        dessc = "Go to $CLOUD" },
     { on = [ "d", "c", "g" ],  run = "cd $CLOUD/Games",  desc = "Go to $CLOUD/Games" },
 	{ on = [ "d", "F" ],       run = "cd ~/Documents",   desc = "Go to the documents directory" },
 	{ on = [ "d", "t" ],       run = "cd /tmp",          desc = "Go to the temporary directory" },
