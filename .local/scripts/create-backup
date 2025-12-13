@@ -1,0 +1,9 @@
+#!/bin/sh
+
+path=$1
+name="${path##*/}"
+shift
+
+mkdir -p /mnt/backups/"$name"
+
+zip "$@" -- "/mnt/backups/name/$name-$(date).zip" "$path"

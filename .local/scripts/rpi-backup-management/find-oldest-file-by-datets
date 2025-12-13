@@ -11,7 +11,7 @@ suffix="$3"
 files=$(ls -1 "$dir/$prefix"*"$suffix")
 
 #get a list of backup timestamps
-files=$(sed 's/.*rpi-backup-\(.*\)\.ext4$/\1/' <<< "$files")
+files=$(sed 's/.*'"$prefix"'\(.*\)'"$suffix"'$/\1/' <<< "$files")
 
 dateList=()
 #make timestamps in the format of '%s $(date)'
