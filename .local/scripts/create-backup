@@ -6,4 +6,4 @@ shift
 
 mkdir -p /mnt/backups/"$name"
 
-zip "$@" -- "/mnt/backups/name/$name-$(date).zip" "$path"
+zip "$@" "/mnt/backups/$name/$name-$(date).zip" "$path"

@@ -25,7 +25,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.treesitter.language.register("mmfml", { "mmfml" })
-vim.treesitter.language.register("amml", { "amml" })
 
 
 -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
