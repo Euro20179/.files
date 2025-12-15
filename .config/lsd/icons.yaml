@@ -1,28 +1,24 @@
 name:
+  .java: 
   songs: 󱍚
   .config: 󱂀
   documents: 󰲃
   videos: 
   .mozilla: 󰈹
   .ssh: 󰣀
-  .pki: 
   downloads: 󱃩
-  .npm: 
   .git: 
   src: 
   .dotnet: 󰪮
-  .cache: 
   cloud: 󰒋
   euro: 
   config: 󱁼
   programs: 
 extension:
-  bin: 
-  dat: 
   conf: 󰢻
 filetype:
   dir: 
   socket: 
   device-char: 󰾺
-  pipe: 
+  pipe: 󰟩
 
