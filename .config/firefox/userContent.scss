@@ -15,7 +15,7 @@
     --bg-overlay-floating: var(--secondary) !important;
 
     --text-normal: var(--text-color) !important;
-    --text-default: var(--main) !important;
+    --text-default: var(--text-color) !important;
 
     --background-code: hsl(from var(--main) h s l / 70%) !important;
   }
@@ -40,11 +40,12 @@
   }
 
   li[class*=messageListItem] {
-    border: 2px outset var(--blue) !important;
+    border: 2px outset var(--text-color) !important;
+    color: var(--text-color) !important;
     margin-block: 10px !important;
     box-shadow: 3px 3px 3px black !important;
-    background: var(--blue) !important;
-    max-width: fit-content !important;
+    background: var(--secondary) !important;
+    max-width: max-content !important;
 
     :not([class*=image]) a:not([data-role="img"]) {
       //sassc doesn't like relative colors
@@ -62,7 +63,7 @@
     }
 
     time {
-      color: var(--main) !important;
+      color: var(--text-color) !important;
     }
 
     pre, code {
