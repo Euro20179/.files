@@ -78,6 +78,7 @@ input {
     keyboard {
         repeat-rate 75
         repeat-delay 250
+        numlock
         xkb {
             // You can set rules, model, layout, variant and options.
             // For more information, see xkeyboard-config(7).
