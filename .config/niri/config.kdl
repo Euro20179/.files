@@ -208,6 +208,11 @@ binds {
 
     Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
 
+    Mod+F1 { spawn "mullvad-sxhkd"; }
+    Shift+F1 { spawn-sh "notify-send \"$(mullvad status)\""; }
+    SUPER+F2 { spawn-sh "mullvad relay list | grep \"^[[:alpha:]]\" | rofi -dmenu -theme nord | cut -d \" \" -f2 | tr -d \"()\" | xargs mullvad relay set location"; }
+
+
     //programs {{{
     Mod+Return { spawn "foot"; }
     Mod+Shift+Return {

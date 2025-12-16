@@ -239,6 +239,7 @@ end
 -- Insert Mode{{{
 local iShortcuts = {
     { "<c-bs>", vim.snippet.stop, { desc = "[SNIPPET] exit" } },
+    { "<a-t>", "<c-r>=strftime('%D %H:%M:%S')<CR>", { desc = "[INSERT] date" } },
 }
 for _, map in ipairs(iShortcuts) do
     vim.keymap.set("i", map[1], map[2], map[3])
