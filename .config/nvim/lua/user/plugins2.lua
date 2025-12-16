@@ -330,30 +330,29 @@ pkg.add({
         src = "https://github.com/3rd/sqlite.nvim"
     },
     { src = "https://github.com/Apeiros-46B/qalc.nvim", version = "451f082" },
-    { src = "https://github.com/tpope/vim-fugitive" }
+    { src = "https://github.com/tpope/vim-fugitive" },
+    { src = "https://github.com/RaafatTurki/hex.nvim" },
 }, "now")
-
--- add { source = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
--- add { source = "file:///home/euro/Prorams/Coding Projects/neovim-plugins/discord-ui" }
-
--- pkg.add({
---     { src = "https://github.com/olimorris/codecompanion.nvim" },
---     { src = "https://github.com/j-hui/fidget.nvim" }
--- }, "UIEnter", {
---     on_add = function()
---         vim.g.codecompanion_adapter = "llama3.1"
---         vim.system({ "curl", "http://localhost:11434" }, {}, function(res)
---             if res.code ~= 0 then
---                 return
---             end
---             require "codecompanion".setup {
---                 strategies = {
---                     chat = {
---                         adapter = "ollama"
---                     },
---                 },
---                 adapters = {
---                     http = {
+-- add { sour  ce = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
+-- add { sour  ce = "file:///home/euro/Prorams/Coding Projects/neovim-plugins/discord-ui" }
+-- pkg.add({   
+--     { src   = "https://github.com/olimorris/codecompanion.nvim" },
+--     { src   = "https://github.com/j-hui/fidget.nvim" }
+-- }, "UIEnte  r", {
+--     on_add   = function()
+--         vi  m.g.codecompanion_adapter = "llama3.1"
+--         vi  m.system({ "curl", "http://localhost:11434" }, {}, function(res)
+--               if res.code ~= 0 then
+--                   return
+--               end
+--               require "codecompanion".setup {
+--                   strategies = {
+--                       chat = {
+--                           adapter = "ollama"
+--                       },
+--                   },
+--                   adapters = {
+--             "          http = {
 --                         ["ollama"] = function()
 --                             return require "codecompanion.adapters".extend("ollama", {
 --                                 name = "qwen3:1.7b",
