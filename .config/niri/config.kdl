@@ -188,7 +188,7 @@ layout {
 
 prefer-no-csd
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/screenshots/%Y/Screenshot-%Y-%m-%dT%H-%M-%S.png"
 
 
 animations {

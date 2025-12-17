@@ -18,9 +18,7 @@ vim.api.nvim_create_autocmd("User", { pattern = "TSUpdate",
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         local lang = vim.treesitter.language.get_lang(vim.bo[0].filetype)
-        if lang == "mmfml" or lang == "amml" or require"nvim-treesitter.parsers"[lang] ~= nil then
-            local _, ok = pcall(vim.treesitter.start, 0, lang)
-        end
+        local ok, _ = pcall(vim.treesitter.start, 0, lang)
     end
 })
 

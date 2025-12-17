@@ -135,7 +135,7 @@ export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 ###################
 # {{{
 alias t=tmux' attach'
-alias u="yay; autoremove"
+alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
 alias "dr=ripdrag"
 alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'

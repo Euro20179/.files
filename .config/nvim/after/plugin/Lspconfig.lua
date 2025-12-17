@@ -115,20 +115,26 @@ setupLSP("phpactor", {
     root_dir = "."
 })
 
-setupLSP("basedpyright", {
-    cmd = { "basedpyright-langserver", "--stdio" },
+setupLSP("python-ty", {
+    cmd = { "ty", "server" },
     filetypes = { "python" },
-    root_markers = { ".git" },
-    settings = {
-        basedpyright = {
-            analysis = {
-                inlayHints = {
-                    callArgumentNames = true
-                }
-            }
-        }
-    }
+    root_markers = { "pyproject.toml", ".git" }
 })
+
+-- setupLSP("basedpyright", {
+--     cmd = { "basedpyright-langserver", "--stdio" },
+--     filetypes = { "python" },
+--     root_markers = { ".git" },
+--     settings = {
+--         basedpyright = {
+--             analysis = {
+--                 inlayHints = {
+--                     callArgumentNames = true
+--                 }
+--             }
+--         }
+--     }
+-- })
 
 local lua_ls_library = { "/usr/share/nvim/runtime/lua/vim", "/home/euro/.local/share/nvim/site/pack/deps/opt" }
 
