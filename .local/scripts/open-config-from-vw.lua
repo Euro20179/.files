@@ -56,8 +56,8 @@ for _, conf in ipairs(items) do
     configs[conf_name] = path
     configs[#configs + 1] = conf_name
 end
-if configs[string.lower(args[#args])] or configs[string.lower(args[#args]) .. "/"] then
-    local path = configs[string.lower(args[#args])] or configs[string.lower(args[#args]) .. "/"]
+if configs[args[#args]] or configs[args[#args] .. "/"] then
+    local path = configs[args[#args]] or configs[args[#args] .. "/"]
     open_path(path)
 else
     for k, v in pairs(configs) do
