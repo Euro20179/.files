@@ -139,15 +139,6 @@ try_custom_uri() {
             } ;;
         calc:*)
             d-calc "${link#calc:}" ;;
-        diary://*)
-            entry=${link#diary://}
-            baseEntry="${entry%%/*}"
-            path="${entry#*/}"
-            tmp=$(mktemp -u)
-            unzip -d "$tmp" "$DIARY_FILE" "$baseEntry/*"
-            linkhandler "$tmp/${entry}"
-            rm -r "$tmp"
-            ;;
         /* | ~/* | ./*)
             [ "$LH_NO_EDIT" = 1 ] && exit 1
             open_with_editor "$link"
