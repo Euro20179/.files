@@ -350,6 +350,7 @@ binds {
 
     Mod+Slash { spawn-sh "wl-copy -c && printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }
     Mod+Y { spawn-sh "search < /dev/null > /dev/null 2>&1"; }
+    Mod+Shift+Y { spawn-sh "search https:// < /dev/null > /dev/null 2&1"; }
     Mod+Apostrophe { spawn-sh "linkding-cli search"; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
