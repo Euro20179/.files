@@ -1,5 +1,11 @@
---This program automatically generates a package.json file for the
---snippets folder based on the files that are in the snippets folder
+--[==[
+Author: euro
+Last Modified 12/19/2025 07:33
+
+Description: This program automatically generates a package.json file for the
+snippets folder at nvim load time based on the files that are in the
+snippets folder
+--]==]
 local snippetPath = vim.fn.stdpath("config") .. "/snippets/"
 
 local snippetFiles = vim.fn.readdir(snippetPath)

@@ -1,3 +1,7 @@
+--[=[
+Last Modified 12/19/2025 07:41
+Description: Whatever improvements I feel like adding to my vimwiki
+--]=]
 local aug = vim.api.nvim_create_augroup("conf.vimwiki", {})
 vim.api.nvim_create_autocmd("BufNewFile", {
     group = aug,

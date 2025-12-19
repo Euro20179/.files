@@ -1,3 +1,9 @@
+--[=[
+Last Modified 12/19/2025 07:43
+Description: adds the :WrapTry command which wraps the current line in a try block
+             the variables b:wraptry_tryword and b:wraptry_catchWord should be
+             set in an ftplugin to specify how the try should happen
+--]=]
 function WrapTryGeneric(cmdData)
     local tryWordDefault = "try{"
     local catchWordDefault = "}\rcatch(err){\r}"

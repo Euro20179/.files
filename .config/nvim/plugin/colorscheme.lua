@@ -1,3 +1,9 @@
+--[=[
+Author: euro
+Last Modified 12/19/2025 07:32
+
+Description: simply a plugin that sets the colorscheme
+--]=]
 local clrGroup = vim.api.nvim_create_augroup("conf-colorscheme", { clear = true })
 
 vim.api.nvim_create_autocmd("ColorSchemePre", {

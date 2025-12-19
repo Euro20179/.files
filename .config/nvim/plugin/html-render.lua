@@ -1,3 +1,9 @@
+--[==[
+Author: Euro
+Last Modified 12/19/2025 07:34
+
+Description: Attempts to render a file in html, or potentially another filetype
+--]==]
 function RenderHTML(renderer, args, newFiletype)
     if renderer == nil then
         args = { "-tgfm", "-fhtml" }

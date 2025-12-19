@@ -1,3 +1,7 @@
+--[==[
+Last Modified 12/19/2025 07:36
+Description: jumps to the <n>th reference of an lsp symbol
+--]==]
 function GotoNthRelativeReference(n)
     local pos = vim.api.nvim_win_get_cursor(0)
     local row = pos[1]

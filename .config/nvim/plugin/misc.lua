@@ -1,3 +1,8 @@
+--[==[
+Last Modified 12/19/2025 07:37
+Description: miscellanious helper functions to be called in the ex cmdline
+or a keybind
+--]==]
 function Rword()
     local words = {}
     for line in io.lines("/home/euro/Documents/words.txt") do

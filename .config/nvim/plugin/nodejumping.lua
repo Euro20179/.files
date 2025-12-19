@@ -1,3 +1,8 @@
+--[=[
+Last Modified 12/19/2025 07:38
+Description: Allows jumping to the next/previous of a treesitter node
+--]=]
+
 ---@param parentNode TSNode
 ---@param childName string
 local function getCorrectChildren(parentNode, childName)
