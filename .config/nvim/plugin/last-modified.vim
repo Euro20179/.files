@@ -1,6 +1,11 @@
 function s:handleLastModified()
     let pos = getpos(".")
-    undojoin
+    try
+        undojoin
+        "no :undojoin after `u`
+    catch /E790:/
+        return
+    endtry
 
     let count = search('\<Last Modified\_$\?\n\?\_^\?\s*[[:digit:]]\{2\}\/[[:digit:]]\{2\}\/[[:digit:]]\{4\} [[:digit:]]\{2\}:[[:digit:]]\{2\}\>', "p")
     if count == 0 | return | endif
