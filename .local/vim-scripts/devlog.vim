@@ -1,14 +1,14 @@
 cd $WIKI/server/rpinet-doc/
 e HISTORY.mmfml
 
-let year = strftime("%Y")
-let m = strftime("%m")
-let d = strftime("%d")
+let s:year = strftime("%Y")
+let s:m = strftime("%m")
+let s:d = strftime("%d")
 
 "go to the current year
-call search("^= " . year)
+call search("^= " . s:year)
 "find todays date as an entry (and move the mouse if it exists)
-let has_date = search('\%>.l== ' . m . '/' . d, "p")
+let has_date = search('\%>.l== ' . s:m . '/' . s:d, "p")
 "if we found the date then add another list item to it
 if has_date > 0
     "use feedkeys instead of norm so that the cursor stays AFTER the space
@@ -17,6 +17,7 @@ else
     "otherwise go to the bottom as indicated by ===========
     call search('\%>.l================')
     "then create a new date entry and add a list item to it
-    call feedkeys("{O\t==" . m . "/" . d . "\r\t+ ")
+    call feedkeys("{O\t==" . s:m . "/" . s:d . "\r\t+ ")
 endif
 
+unlet s:year s:m s:d

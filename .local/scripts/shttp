@@ -1,0 +1,35 @@
+#!/bin/bash
+
+command -v htmlq > /dev/null \
+    && prettify() {
+            htmlq -p
+        } \
+    || prettify() {
+            cat
+       }
+
+curpath="/"
+while :; do
+    read -rp "path (base: $curpath) "
+    case "$REPLY" in
+        /*) curpath="${REPLY}" ;;
+        ./*) curpath="${curpath}/${REPLY#./}" ;;
+        ..)
+            #remove one more / if path ends with /
+            if [ "${curpath:$((${#curpath} - 1))}" = "/" ]; then
+                curpath="${curpath%/*}"
+            fi
+            curpath="${curpath%/*}" ;;
+        .) : ;;
+        *) curpath="${curpath}${REPLY}" ;;
+    esac
+    [ -z "$curpath" ] && curpath="/"
+
+    while [[ $curpath =~ // ]]; do
+        curpath=${curpath//\/\//\/}
+    done
+
+    nc "$1" "${2:-80}" <<-EOF | cat - <(printf '\n') | prettify | $PAGER
+GET $curpath
+EOF
+done
