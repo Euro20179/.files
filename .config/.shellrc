@@ -208,8 +208,7 @@ alias rm="trash"
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.mmfml'
 
 devlog () {
-    cd $WIKI/server/rpinet-doc/ || return
-    $EDITOR +'call search("\\%>100l================")' +norm\ k  HISTORY.mmfml
+    nvim -S "$HOME"/.local/vim-scripts/devlog.vim
 }
 
 p() {

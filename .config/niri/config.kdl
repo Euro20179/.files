@@ -348,7 +348,7 @@ binds {
     Mod+Alt+V { spawn "save-ss"; }
     Alt+Print { screenshot-window; }
 
-    Mod+Slash { spawn-sh "wl-copy -c && printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }
+    Mod+Slash { spawn-sh "printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }
     Mod+Y { spawn-sh "search < /dev/null > /dev/null 2>&1"; }
     Mod+Shift+Y { spawn-sh "search https:// < /dev/null > /dev/null 2&1"; }
     Mod+Apostrophe { spawn-sh "linkding-cli search"; }

@@ -110,9 +110,9 @@ setupLSP("emmet", {
 })
 
 setupLSP("phpactor", {
-    cmd = { "phpactor", "language-server", "-vvv" },
+    cmd = { "/usr/bin/phpactor", "language-server", "-vvv" },
     filetypes = { "php" },
-    root_dir = "."
+    root_dir = vim.fn.getcwd(0)
 })
 
 setupLSP("python-ty", {
