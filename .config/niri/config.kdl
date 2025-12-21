@@ -326,7 +326,6 @@ binds {
 
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
-    Mod+A { switch-preset-column-width; }
     Mod+Shift+C { center-column; }
     Mod+M { set-column-width "50%"; }
 
