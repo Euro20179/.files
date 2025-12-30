@@ -55,7 +55,7 @@ workspaces() {
             [ -z "$s" ] && s="${class2symbol[$itemCLS]}"
 
             #if it's stil not set, use ?
-            [ -z "$s" ] && s="$itemTITLE"
+            [ -z "$s" ] && s="?"
 
             [ "$activewindowID" = "$itemADDR" ] && s="F:$s"
             symbolT="${symbolT} ${s}"

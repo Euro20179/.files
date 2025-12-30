@@ -146,6 +146,8 @@ alias 's=bookmarkfs search'
 alias "bc=bc -l"
 alias "less=less -r"
 
+alias 'mkre=mkre -f remind@barney -t user@raspberrypi $CLOUD/reminders'
+
 lang-stats() {
     command lang-stats -a http://cloud:54321 -u euro -e "$@"
 }
@@ -274,7 +276,7 @@ pdf_color="38;2;220;0;0"
 compressed_color="38;2;255;140;140"
 c_color="48;2;0;0;211"
 shell_lang_color="48;2;160;168;0"
-markup_color="48;2;232;93;0"
+markup_color="38;2;232;93;0"
 js_color="48;2;245;220;29m\033[38;2;0;0;0"
 ts_color="48;2;36;131;209m\033[38;2;245;220;29"
 font_file_color="38;2;25;245;164"

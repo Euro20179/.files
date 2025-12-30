@@ -17,7 +17,7 @@ else
     "otherwise go to the bottom as indicated by ===========
     call search('\%>.l================')
     "then create a new date entry and add a list item to it
-    call feedkeys("{O\t==" . s:m . "/" . s:d . "\r\t+ ")
+    call feedkeys("{O\t== " . s:m . "/" . s:d . "\r\t+ ")
 endif
 
 unlet s:year s:m s:d
