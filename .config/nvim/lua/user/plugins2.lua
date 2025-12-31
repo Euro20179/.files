@@ -322,7 +322,7 @@ pkg.add({ { src = "https://github.com/echasnovski/mini.nvim" } }, "now", {
 pkg.add({
     {
     src = "https://github.com/wakatime/vim-wakatime"
-    }
+    },
 })
 
 pkg.add({

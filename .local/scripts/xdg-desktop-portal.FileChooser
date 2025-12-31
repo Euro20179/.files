@@ -6,6 +6,9 @@ save="$3"
 path="$4"
 out="$5"
 
+tmp=$(wl-paste)
+wl-copy "${path##*/}"
+
 declare -a args
 
 state_home=${XDG_STATE_HOME:-$HOME/.local/state}/xdg-desktop-portal.FileChooser
@@ -33,3 +36,5 @@ WAYLAND_DISPLAY=wayland-1 $TERMINAL -e yazi "${args[@]}"
 if [ "$save" -eq 1 ] && [ ! -s "$out" ]; then
 	rm "$path"
 fi
+
+wl-copy "$tmp"

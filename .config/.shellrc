@@ -71,9 +71,14 @@ export ZEF_CONFIG_PATH="${XDG_CONFIG_HOME}/zef"
 
 export LYNX_CFG="${XDG_CONFIG_HOME}/lynx/lynx.cfg"
 
-CONF_FILE="$HOME/.config/mpd.conf"
+export CONF_FILE="$HOME/.config/mpd.conf"
+
+export KODI_DATA="$XDG_DATA_HOME"/kodi
+
+export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+
 export DIALOGRC=~/.config
 export XINITRC=~/.config
 export LESSHISTFILE="/dev/null"
