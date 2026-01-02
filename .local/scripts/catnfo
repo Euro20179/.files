@@ -4,10 +4,15 @@ path=$1
 path="${path##*$'\t'}"
 path="$(eval echo '"'"$path"'"')"
 
-if [ -d "$path" ]; then
-    find "$path" -iname '*.nfo' -exec cat '{}' ';'
-elif [ -f "$path" ]; then
-    find "${path%/*}" -iname '*.nfo' -exec cat '{}' ';'
-else
-    exit 1
-fi
+while [ -d "$path" ]; do
+    if [ -d "$path" ]; then
+        [ -n "$(find "$path" -maxdepth 1 -iname "*.nfo")" ] &&
+            find "$path" -maxdepth 1  -iname '*.nfo' -exec cat '{}' ';' &&
+            break
+    elif [ -f "$path" ]; then
+        [ -n "$(find "${path%/*}" -maxdepth 1 -iname "*.nfo")" ] &&
+            find "${path%/*}" -maxdepth 1  -iname '*.nfo' -exec cat '{}' ';' &&
+            break
+    fi
+    path="${path%/*}"
+done
