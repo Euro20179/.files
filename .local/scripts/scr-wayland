@@ -5,7 +5,15 @@ image_lib="${2:-png}"
 
 pos=$(slurp "$slurp_args")
 grim -t png -g "$pos" /dev/stdout | ffmpeg -i - -c:v "${image_lib}" -f image2pipe - | wl-copy -t image/png
-t=$(mktemp)
-wl-paste > $t
-notify-send -c screenshot -i $t "Image taken at: $pos"
-rm $t
+
+year="$(date +%Y)"
+
+t="$XDG_PICTURES_HOME/screenshots/$year"
+! [ -d "$t" ] && mkdir -p "$t"
+t="${t}/Screenshot_${USER}-$(uname)_$(date +%Y%m%d-%H%M%S).png"
+wl-paste > "$t"
+
+exifDate=$(date "+%Y:%m:%d %H:%M:%S")
+exiftool -overwrite_original "-alldates=${exifDate}" "$t"
+
+notify-send -c screenshot -i "$t" "Image taken at: $pos"

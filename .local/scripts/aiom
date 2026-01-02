@@ -89,6 +89,13 @@ play() {
     local subs=$1
     local path=$2
 
+    if [ -d "$path" ]; then
+        nfo=$(echo "${path}/"*".nfo")
+    else
+        nfo=$(echo "${path%/*}/"*".nfo")
+    fi
+    printf -- "\n\n--------------------\n\n" | cat "$nfo" -
+
     if [ "$subs" ]; then
         mpv --sub-files="${subs}" "$path"
     else

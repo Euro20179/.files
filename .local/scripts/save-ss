@@ -6,7 +6,7 @@ $(fd --type directory . $XDG_PICTURES_HOME/screenshots)"
 folder=$(printf "%s" "$folders" | grep -vE "/[[:digit:]]{4,}/" | sort | rofi -dmenu -theme cat-macchiato)
 [ -z "$folder" ] && exit
 
-name=$(echo | rofi -p "Name" -dmenu -theme cat-macchiato-dmenu-center)
+[ -z "$name" ] && name=$(echo | rofi -p "Name" -dmenu -theme cat-macchiato-dmenu-center)
 [ -z "$name" ] && exit
 
 exifDate=$(date "+%Y:%m:%d %H:%M:%S")

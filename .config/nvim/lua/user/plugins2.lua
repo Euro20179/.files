@@ -16,7 +16,8 @@ for _, plug in pairs({
     "find-highlight",
     "discord",
     "discord-ui",
-    "irc.nvim"
+    "irc.nvim",
+    "enc-notes"
 }) do
     -- :packadd! = do not source plugin/*
     -- because plug is added to &rtp meaning it will get sourced anyway
