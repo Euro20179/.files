@@ -7,7 +7,7 @@ mksearch() {
 
 mkselection() {
     local results="$1"
-    select=$(echo "$results" | fzf --expect=ctrl-r -1)
+    select=$(echo "$results" | fzf --expect=ctrl-r -1 --preview "catnfo {}")
     key="$(printf "%s" "$select" | head -n1)"
     if [ "$key" = "ctrl-r" ]; then
         loc=$(echo "$results" | shuf | head -n1)
