@@ -6,8 +6,8 @@ if [ -t 1 ]; then
         | fzf --preview="chafa -s \${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES} \${XDG_PICTURES_HOME}/reaction-images/{}" \
         | xargs -0 printf "%s/reaction-images/%s" "$XDG_PICTURES_HOME"  \
         | head -c -1 \
-        | xargs -0 cat \
-        | wl-copy -t image/png
+        | sed -n 's/\(.*\)/file:\/\/\1/p' \
+        | xargs wl-copy -t "text/uri-list"
 else
     $TERMINAL -a pick-reaction-image -e "$0" "$@"
 fi
