@@ -38,6 +38,7 @@ try_mime_handling() {
     mime=$(file --mime-type "$link" | rev | cut -d: -f1 | rev | tr -d ' ')
     case "$mime" in
         application/pdf | application/epub*) zathura "$link" ;;
+        application/vnd.microsoft.portable-executable) wine "$link" ;;
         image/svg+xml) "$BROWSER" "$link" ;;
         image/*) swiv "$link" ;;
         text/html) $BROWSER "$link" ;;
