@@ -67,39 +67,6 @@ try_custom_uri() {
         *.onion) tor "$link" ;;
         *.sheet) $TERMINAL -e sheet "$link" ;;
         nv://*) nvim "$link" ;;
-        *://cloud://*)
-            extra_protocol="${link%%cloud://*}"
-            new_link="${extra_protocol}${CLOUD}/${link#*://cloud://}"
-            linkhandler "$new_link"
-            exit
-            ;;
-        # steam://*) flatpak run com.valvesoftware.Steam "$link" ;;
-        jellyfin:*//*)
-            #planned uri
-            # jellyfin:[type]//{search}[/s[number][/[number]]]
-            # eg: jellyfin://friends/s: will list the seasons of the selected result
-            # eg: jellyfin://friends/s10: will play season 10 of the selected result
-            # eg: jellyfin://friends/s[eE]5: will play episode 5 of the selected result's season
-            # eg: jellyfin://friends/s1[eE]10: will play season 1 episode 10 of the selected result
-            type="${link#jellyfin:}"
-            type="${type%//*}"
-
-            [ -z "$type" ] && type="Series,Movie,Episode"
-
-            show="${link#jellyfin:*//}"
-            args=(--)
-
-            [[ "$show" =~ /s$ ]] && show="${show%/s}" && args=(-os)
-            [[ "$show" =~ /s[[:digit:]]*$ ]] && args=(-os -s"${show#*/s}") && show="${show%/*}"
-            show="$(printf "%s" "$show" | jq -sRr @uri)"
-            aiow -d '\(if .Type != "Series" then "\(.SeriesName) " else "" end)[\(.Type)\(if .Type == "Episode" then
-                    " : \(.IndexNumber), S\(.ParentIndexNumber)"
-                elif .Type == "Season" then
-                    " : S\(.IndexNumber)"
-                else
-                    ""
-                end)] \(.Name)' "${args[@]}" "$show" "IncludeItemTypes=$type"
-            ;;
         exe://*) "${link#exe://}" ;;
         media://*) mpv "${link#media://}" ;;
         https://cdn.discordapp.com/attachments/*)
@@ -144,8 +111,6 @@ try_custom_uri() {
             [ "$LH_NO_EDIT" = 1 ] && exit 1
             open_with_editor "$link"
             ;;
-        #otherwise, infinite loop
-        cloud:*) exit 0 ;;
         =*) open_with_editor "$(which "${link#=}")" ;;
         *) xdg-open "$link" 2>/dev/null || {
             if [[ "$link" =~ :// ]]; then
@@ -161,15 +126,6 @@ try_custom_uri() {
 expand_path_uri() {
     local prev="$link"
     case "$link" in
-        cloud:*//*)
-            extra="${link#cloud:}"
-            extra="${extra%%//*}"
-            case "$extra" in
-                /*) path="${extra#/}://$CLOUD/${link#cloud:*//}" ;;
-                :*) path="${extra#:}:$CLOUD/${link#cloud:*//}" ;;
-                *) path="$CLOUD/${link#cloud:*//}" ;;
-            esac
-            link="$path" ;;
         vw:*)
             link="$WIKI/${link#vw:}"
             if [ "${link:$((${#link}-1))}" = '/' ]; then
@@ -195,7 +151,7 @@ expand_path_uri() {
             path="${link#file://"${authority}"}"
             case "$authority" in
                 localhost) link="$path" ;;
-                cloud) link="cloud://${path#/}" ;;
+                cloud) link="$CLOUD/${path#/}" ;;
                 *) link="ftp://$authority${path}" ;;
             esac ;;
         file:/*) link="${link#file:/}" ;;
