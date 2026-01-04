@@ -88,6 +88,7 @@ findfile() {
 play() {
     local subs=$1
     local path=$2
+    local type=$3
 
     if [ -d "$path" ]; then
         nfo=$(echo "${path}/"*".nfo")
@@ -97,10 +98,13 @@ play() {
     printf -- "\n\n--------------------\n\n" | cat "$nfo" -
 
     if [ "$subs" ]; then
-        mpv --sub-files="${subs}" "$path"
+        exe=(mpv --sub-files="${subs}" "$path")
+    elif [ "$type" = "Game" ]; then
+        exe=(linkhandler "$path")
     else
-        mpv "$path"
+        exe=(mpv "$path")
     fi
+    "${exe[@]}"
 }
 
 manual_mode() {
@@ -185,7 +189,7 @@ main() {
             ;;
         esac
 
-        play "$subsloc" "$location"
+        play "$subsloc" "$location" "$type"
 
         total_season_eps=$(ep-count "${location%/*}" | grep TOTAL | sed -n 's/TOTAL: \([[:digit:]]\+\).*/\1/p')
 
