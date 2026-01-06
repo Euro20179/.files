@@ -332,7 +332,6 @@ pkg.add({
     },
     { src = "https://github.com/Apeiros-46B/qalc.nvim", version = "451f082" },
     { src = "https://github.com/tpope/vim-fugitive" },
-    { src = "https://github.com/RaafatTurki/hex.nvim" },
 }, "now")
 -- add { sour  ce = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
 -- add { sour  ce = "file:///home/euro/Prorams/Coding Projects/neovim-plugins/discord-ui" }
