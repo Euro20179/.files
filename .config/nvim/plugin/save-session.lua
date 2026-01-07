@@ -2,7 +2,7 @@ local function save_session()
     local finds = vim.fs.find(".git", { upward = true })
     local projname = ""
     if #finds == 0 then
-        projname = vim.fn.input("Unable to find git root, enter project name > ")
+        return
     else
         projname = string.gsub(finds[1], ".*/([^/]*)/.git$", "%1")
     end
