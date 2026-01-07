@@ -1,14 +1,5 @@
 #!/bin/sh
 
-########
-# Foot #
-########
-# {{{
-#foot terminfo is broken for some reason
-    #by broken i mean it doesn't exist
-# [ $TERM = "foot" ] && export TERM=xterm-256color
-# }}}
-
 ###########
 # THEMING #
 ###########
@@ -16,8 +7,6 @@
 export XCURSOR_SIZE=24
 export XCURSOR_THEME="ArcStarry-cursors"
 # export GTK_THEME='catppuccin-macchiato-blue-standard+default'
-export QT_QPA_PLATFORMTHEME=qt6ct
-export QT_QPA_PLATFORM=wayland
 # }}}
 
 #######
@@ -58,6 +47,8 @@ export GTK_USE_PORTAL=1
 export GDK_BACKEND=wayland
 export MOZ_ENABLE_WAYLAND=1
 export SDL_VIDEODRIVER=wayland,x11
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_QPA_PLATFORM=wayland
 #fixes weird xdg-open bugs for some fucking reason
 [ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=Hyprland
 # }}}
@@ -111,9 +102,9 @@ export SONGS_ROOT=$HOME/Songs/scripts
 # SYSTEM PATHS #
 ################
 # {{{
+export CLOUD="/home/cloud"
 export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
 export SHELL_LIB="$HOME/.local/lib/shell"
-export CLOUD="/home/cloud"
 export BOOKS="$CLOUD/Books/"
 export MOVIES="$CLOUD/Movies"
 export SHOWS="$CLOUD/Shows"
@@ -122,6 +113,8 @@ export BACKUPS="/mnt/backups"
 export WIKI="$CLOUD/Documents/vimwiki"
 export CALFILE="$CLOUD/CAL.md"
 export AIO_SERVER="https://aio.seceurity.place"
+
+export VIM_SESSIONS="$XDG_STATE_HOME/vim-sessions/"
 
 export DIARY_FILE="$XDG_DOCUMENTS_HOME/.diary.zip"
 
@@ -146,12 +139,9 @@ export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 alias t=tmux' attach'
 alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
-alias "dr=ripdrag"
-alias awatch='ytfzf -ccloud --url-handler-opts=--profile=anime'
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 #It's really annoying that wget leaves the .wget_hists file or whatever
 alias "wget=wget --no-hsts"
-alias 's=bookmarkfs search'
 alias "bc=bc -l"
 alias "less=less -r"
 
@@ -163,8 +153,6 @@ lang-stats() {
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
-
-alias Q='nvim +Qalc +startinsert +set" filetype=amml"'
 
 alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
@@ -183,17 +171,6 @@ alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'
 
 alias te=trash-empty
 
-alias today='events | grep "$(date +"%B/%d/%Y")" | awk -F "ON" "{print \$1}"'
-alias tomorrow='events | grep "$(date -d tomorrow +"%B/%d/%Y")" | awk -F "ON" "{print \$1}"'
-
-me () {
-    disown 2> /dev/null 1>&2
-    if [ "$?" -ne 127 ]; then
-        mullvad-exclude "$@" & disown
-    else
-        printf "\033[31mBAD SHELL\n\033[0m"
-    fi
-}
 # }}}
 
 ############################
@@ -201,9 +178,8 @@ me () {
 ############################
 # {{{
 alias nvim=$EDITOR
-alias n="$EDITOR +Oil"
 alias sxiv=swiv
-alias "vim=nvim"
+alias "vim=$EDITOR"
 alias 'ls=lsd'
 alias "l=lsd --hyperlink auto --group-directories-first -A"
 alias "ll=command ls -ASs --group-directories-first --color=auto"
@@ -215,7 +191,6 @@ alias rm="trash"
 # FILE/DIRECTORY SHORTCUTS #
 ############################
 # {{{
-#alias anime='nvim +"cd $HOME/Documents/vimwiki/norg-home" $HOME/Documents/vimwiki/norg-home/anime-list.norg'
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.mmfml'
 
 devlog () {
@@ -223,18 +198,28 @@ devlog () {
 }
 
 p() {
-    file=$(zoxide query -i)
-    # file=$(zoxide query -l "Coding Projects/" "/" | fzf)
-    cd "$file"
-    nvim +"if exists(':Oil') | Oil . | else Explore . | endif" "$file"
+    programs=$HOME/Programs/Coding\ Projects/
+
+    file=$(
+        find "$programs" -maxdepth 2  -type d\
+            | sed 's_^.*Programs/Coding Projects/__' \
+            | fzf --preview "cd \"$programs\"/{}; readme=\$(find -iname 'README*'); [ -f \"\$PWD/\$readme\" ] && cat \"\$PWD/\$readme\""
+    )
+
+    [ -z "$file" ] && return
+
+    cd "$programs/$file" || { printf "Failed to cd" && return; }
+
+    project="${file##*/}"
+    if [ -f "$VIM_SESSIONS/$project.vim" ]; then
+        $EDITOR -S "$VIM_SESSIONS/$project.vim"
+    else
+        $EDITOR +"if exists(':Oil') | Oil . | else Explore . | endif" "$file"
+    fi
+    unset programs
 }
 
 alias TODO='linkhandler vw:TODO.mmfml'
-
-CAL () {
-    m=$(date +%B)
-    $EDITOR -S "$HOME/.local/vim-scripts/open-cal"
-}
 
 alias "ds=cd ~/Downloads"
 alias "dF=cd ~/Documents"
@@ -247,17 +232,7 @@ dc () {
     IFS=$tmp
 }
 
-gc () {
-    sub_dir="$1"
-    case "$sub_dir" in
-        y) sub_dir="../GithubContribs/ytfzf" ;;
-        B) sub_dir="JS Things/bircle" ;;
-        b) sub_dir="JS Things/bircle-website" ;;
-        d) sub_dir="C/dvd_screen" ;;
-        T) sub_dir="rust/tpick" ;;
-    esac
-    cd "$HOME/Programs/Coding Projects/$sub_dir"
-}
+alias gc='p'
 # }}}
 
 #####################

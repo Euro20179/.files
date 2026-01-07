@@ -143,7 +143,6 @@ if [ "$VIM" ] && [ -z "$NVIM" ]; then
     alias l='ls -A --color=always -S --group-directories-first'
 fi
 
-fpath=("$XDG_CONFIG_HOME"/zsh-autoload "${fpath[@]}")
 autoload -U compinit
 compinit
 _comp_options+=(globdots)
