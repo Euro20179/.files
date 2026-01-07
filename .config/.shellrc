@@ -198,25 +198,11 @@ devlog () {
 }
 
 p() {
-    programs=$HOME/Programs/Coding\ Projects/
-
-    file=$(
-        find "$programs" -maxdepth 2  -type d\
-            | sed 's_^.*Programs/Coding Projects/__' \
-            | fzf --preview "cd \"$programs\"/{}; readme=\$(find -iname 'README*'); [ -f \"\$PWD/\$readme\" ] && cat \"\$PWD/\$readme\""
-    )
-
-    [ -z "$file" ] && return
-
-    cd "$programs/$file" || { printf "Failed to cd" && return; }
-
-    project="${file##*/}"
-    if [ -f "$VIM_SESSIONS/$project.vim" ]; then
-        $EDITOR -S "$VIM_SESSIONS/$project.vim"
-    else
-        $EDITOR +"if exists(':Oil') | Oil . | else Explore . | endif" "$file"
-    fi
-    unset programs
+    vimsource=$(printf "%s\n" "$XDG_STATE_HOME/vim-sessions/"* |
+        sed 's/.*\///' |
+        sed 's/\.vim$//' |
+        fzf --preview 'grep cd "$XDG_STATE_HOME/vim-sessions/"{}.vim | sed "s/cd //"| sed "s_~_${HOME}_" | xargs -I "KK" find "KK" -iname "README*" -exec "cat" "\{}" ";"').vim
+    $EDITOR -S "$XDG_STATE_HOME/vim-sessions/$vimsource"
 }
 
 alias TODO='linkhandler vw:TODO.mmfml'
