@@ -3,6 +3,7 @@ vim.filetype.add({
         amml = "amml",
         mmfml = "mmfml",
         nu = "nu",
+        bircle = "bircle",
     },
     pattern = {
         ["nv://.*"] = 'nv-connect',

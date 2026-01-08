@@ -1,5 +1,5 @@
 --[==[
-Last Modified 12/19/2025 07:35
+Last Modified 01/08/2026 15:20
 Description: binds lsp mappings, and various other lsp stuff
 --]==]
 local conf_group = vim.api.nvim_create_augroup("config.lsp-attach", {
@@ -28,7 +28,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         })
 
 
-        local ks = vim.keymap.set
         local key_maps = {
             { "[i", function()
                 vim.lsp.buf.definition({
@@ -160,7 +159,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
         }
         for _, value in ipairs(key_maps) do
-            ks("n", value[1], value[2], value[3] or {})
+            vim.keymap.set("n", value[1], value[2], value[3] or {})
         end
     end
 })

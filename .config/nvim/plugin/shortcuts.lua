@@ -1,6 +1,3 @@
-local harpoon = require "harpoon"
-harpoon:setup()
-
 -- local widgets = require "dap.ui.widgets"
 
 -- local moveline = require("moveline")
@@ -147,7 +144,6 @@ local nShortcuts = {
         end
         vim.api.nvim_feedkeys(keys.lhs, "n", true)
     end, { desc = "[TELESCOPE] keymap pallete" } },
-    { "<leader>fH",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon menu" } },
     --}}}
     --Viewers {{{
     { "<leader>eu", function()
@@ -156,18 +152,6 @@ local nShortcuts = {
         vim.api.nvim_win_set_width(0, 40)
     end },
     { "<leader>O",        require 'oil'.open },
-    --}}}
-    --buffer/window shortcuts{{{
-    { "<leader><leader>", function() harpoon:list():add() end },
-    { "<A-j>",            function() harpoon:list():select(1) end },
-    { "<A-k>",            function() harpoon:list():select(2) end },
-    { "<A-l>",            function() harpoon:list():select(3) end },
-    { "<A-;>",            function() harpoon:list():select(4) end },
-    { "<A-'>",            function() harpoon:list():select(5) end },
-    { "<leader>1",        function() harpoon:list():select(6) end },
-    { "<leader>2",        function() harpoon:list():select(7) end },
-    { "<leader>3",        function() harpoon:list():select(8) end },
-    { "<leader>4",        function() harpoon:list():select(9) end },
     --}}}
     -- Git {{{
     { gitLeader .. "l",   ":G log<CR>",                                                { desc = "[GIT]: log" } },

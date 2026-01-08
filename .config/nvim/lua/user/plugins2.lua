@@ -203,10 +203,6 @@ pkg.add({
     end
 })
 
-pkg.add {
-    { src = "https://github.com/theprimeagen/harpoon", version = "harpoon2" }
-}
-
 pkg.add({ { src = "https://github.com/stevearc/oil.nvim" } }, "now", {
     on_add = function()
         require "oil".setup {

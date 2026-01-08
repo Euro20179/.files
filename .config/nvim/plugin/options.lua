@@ -8,9 +8,6 @@ vim.opt.fillchars = { msgsep = "‾" }
 
 vim.opt.winborder = "single"
 
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
 vim.g.health = { style = "float" }
 
 vim.diagnostic.config({
@@ -31,9 +28,8 @@ require "vim._extui".enable {
 --         hc.hover()
 --     end
 -- end
-
-vim.o.winbar =
-[====[%{luaeval("vim.fn.join(vim.iter(require'harpoon':list().items):enumerate():map(function(i, item) return tostring(i) .. ' ' .. item.value end):filter(function(item) return item ~= '' end):totable(), ' | ')")}]====]
+--
+-- [====[%{luaeval("vim.fn.join(vim.iter(require'harpoon':list().items):enumerate():map(function(i, item) return tostring(i) .. ' ' .. item.value end):filter(function(item) return item ~= '' end):totable(), ' | ')")}]====]
 
 vim.o.conceallevel = 1
 
