@@ -10,8 +10,13 @@ hi! link User4 Number
 hi! link User5 Error
 hi! link User6 WarningMsg
 
+
 function s:calcGitStats()
-    if !finddir(".git")
+    if !exists("b:statusline_has_git") 
+        let b:statusline_has_git = finddir("./.git")
+    endif
+
+    if b:statusline_has_git == ""
         return [0, 0]
     endif
     ":silent prevents the terminal from going into 'cooked mode'

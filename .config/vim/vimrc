@@ -164,9 +164,6 @@ nnoremap <leader>B "+
 nnoremap  <leader>S      <CMD>split \|  wincmd  j<CR>
 nnoremap  <leader>V      <CMD>vsplit \|  wincmd  l<CR>
 
-nnoremap  ]t             <CMD>tabnext<CR>
-nnoremap  [t             <CMD>tabprev<CR>
-
 if !has("nvim") "these are mapped by default in nvim
     nnoremap  ]b             <CMD>bn<CR>
     nnoremap  [b             <CMD>bp<CR>
