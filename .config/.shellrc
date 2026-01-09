@@ -202,6 +202,7 @@ p() {
         sed 's/.*\///' |
         sed 's/\.vim$//' |
         fzf --preview 'grep cd "$XDG_STATE_HOME/vim-sessions/"{}.vim | sed "s/cd //"| sed "s_~_${HOME}_" | xargs -I "KK" find "KK" -iname "README*" -exec "cat" "\{}" ";"').vim
+    cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
     $EDITOR -S "$XDG_STATE_HOME/vim-sessions/$vimsource"
 }
 

@@ -100,7 +100,7 @@ pkg.add({
 
                 accept = {
                     auto_brackets = {
-                        enabled = false
+                       enabled = false
                     }
                 }
             },
@@ -163,20 +163,6 @@ pkg.add({
     end
 })
 
--- aSetup({
---         source = "Saghen/blink.cmp",
---         -- source = "file:///home/euro/Programs/GithubContribs/blink.cmp",
---         depends = { 'rafamadriz/friendly-snippets' },
---         hooks = {
---             post_checkout = buildBlink,
---             post_install = buildBlink,
---         }
---     }, later,
---     "blink-cmp", )
-
--- add { source = "mfussenegger/nvim-dap" }
--- add { source = "mxsdev/nvim-dap-vscode-js" }
--- aSetup({ source = "rcarriga/nvim-dap-ui" }, later, "dapui", {})
 
 pkg.add({
     {
@@ -238,15 +224,6 @@ pkg.add({ { src = "https://github.com/stevearc/oil.nvim" } }, "now", {
     end
 })
 -- }}}
-
--- Neorg {{{
--- add { source = "nvim-neorg/neorg",
---     depends = {
---         "pysan3/pathlib.nvim",
---         "vhyrro/luarocks.nvim",
---         "nvim-neorg/lua-utils.nvim"
---     }
--- } -- }}}
 
 -- Mini{{{
 pkg.add({ { src = "https://github.com/echasnovski/mini.nvim" } }, "now", {
@@ -329,47 +306,3 @@ pkg.add({
     { src = "https://github.com/Apeiros-46B/qalc.nvim", version = "451f082" },
     { src = "https://github.com/tpope/vim-fugitive" },
 }, "now")
--- add { sour  ce = "file:///home/euro/Programs/Coding Projects/neovim-plugins/discord" }
--- add { sour  ce = "file:///home/euro/Prorams/Coding Projects/neovim-plugins/discord-ui" }
--- pkg.add({   
---     { src   = "https://github.com/olimorris/codecompanion.nvim" },
---     { src   = "https://github.com/j-hui/fidget.nvim" }
--- }, "UIEnte  r", {
---     on_add   = function()
---         vi  m.g.codecompanion_adapter = "llama3.1"
---         vi  m.system({ "curl", "http://localhost:11434" }, {}, function(res)
---               if res.code ~= 0 then
---                   return
---               end
---               require "codecompanion".setup {
---                   strategies = {
---                       chat = {
---                           adapter = "ollama"
---                       },
---                   },
---                   adapters = {
---             "          http = {
---                         ["ollama"] = function()
---                             return require "codecompanion.adapters".extend("ollama", {
---                                 name = "qwen3:1.7b",
---                                 schema = {
---                                     model = {
---                                         default = "qwen3:1.7b"
---                                     }
---                                 },
---                                 env = {
---                                     url = "http://localhost:11434",
---                                     api_key = "KEY",
---                                 }
---                             })
---                         end
---                     }
---                 }
---             }
---         end)
---     end
--- })
-
--- pkg.add({
---     { src = "https://github.com/patrickpichler/hovercraft.nvim" }
--- }, "LspAttach")
