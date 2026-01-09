@@ -193,20 +193,19 @@ alias rm="trash"
 # {{{
 alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.mmfml'
 
-devlog () {
-    nvim -S "$HOME"/.local/vim-scripts/devlog.vim
-}
+alias devlog='nvim -S $HOME/.local/vim-scripts/devlog.vim'
 
 p() {
     vimsource=$(printf "%s\n" "$XDG_STATE_HOME/vim-sessions/"* |
-        sed 's/.*\///' |
-        sed 's/\.vim$//' |
+        sed -e 's/.*\///' -e 's/\.vim$//' |
         fzf --preview 'grep cd "$XDG_STATE_HOME/vim-sessions/"{}.vim | sed "s/cd //"| sed "s_~_${HOME}_" | xargs -I "KK" find "KK" -iname "README*" -exec "cat" "\{}" ";"').vim
 
     [ "$vimsource" = ".vim" ] && return
 
+
     cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
-    $EDITOR -S "$XDG_STATE_HOME/vim-sessions/$vimsource"
+    [ "$1" = cd ] && return
+    $EDITOR --listen "/tmp/${vimsource#.*}" -S "$XDG_STATE_HOME/vim-sessions/$vimsource"
 }
 
 alias TODO='linkhandler vw:TODO.mmfml'
