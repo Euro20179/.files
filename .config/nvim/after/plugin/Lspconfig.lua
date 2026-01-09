@@ -202,12 +202,6 @@ setupLSP("rust_analyzer", {
 })
 
 
-setupLSP("bashls", {
-    cmd = { "bash-language-server", "start" },
-    filetypes = { "bash", "sh" },
-    root_markers = { ".git" }
-})
-
 setupLSP("clangd", {
     cmd = { "clangd", "--fallback-style=webkit" },
     filetypes = { "c", "cpp" },

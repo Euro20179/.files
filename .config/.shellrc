@@ -4,8 +4,10 @@
 # THEMING #
 ###########
 # {{{
+
 export XCURSOR_SIZE=24
 export XCURSOR_THEME="ArcStarry-cursors"
+export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
 # export GTK_THEME='catppuccin-macchiato-blue-standard+default'
 # }}}
 
@@ -50,7 +52,7 @@ export SDL_VIDEODRIVER=wayland,x11
 export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_QPA_PLATFORM=wayland
 #fixes weird xdg-open bugs for some fucking reason
-[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=Hyprland
+#[ -z "$XDG_CURRENT_DESKTOP" ] && export XDG_CURRENT_DESKTOP=Hyprland
 # }}}
 
 #################
@@ -91,8 +93,6 @@ export DOTNET_CLI_HOME="${XDG_DATA_HOME}/dotnet"
 export GOPATH="$XDG_DATA_HOME/go:$HOME/Programs/Coding Projects/go"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
-export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
-
 export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 export SONGS_ROOT=$HOME/Songs/scripts
@@ -102,27 +102,12 @@ export SONGS_ROOT=$HOME/Songs/scripts
 # SYSTEM PATHS #
 ################
 # {{{
-export CLOUD="/home/cloud"
-export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
-export SHELL_LIB="$HOME/.local/lib/shell"
-export BOOKS="$CLOUD/Books/"
-export MOVIES="$CLOUD/Movies"
-export SHOWS="$CLOUD/Shows"
-export ANIME="$CLOUD/Anime"
-export BACKUPS="/mnt/backups"
-export WIKI="$CLOUD/Documents/vimwiki"
-export CALFILE="$CLOUD/CAL.md"
-export AIO_SERVER="https://aio.seceurity.place"
-
-export VIM_SESSIONS="$XDG_STATE_HOME/vim-sessions/"
-
 export DIARY_FILE="$XDG_DOCUMENTS_HOME/.diary.zip"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
 export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"
 export PATH="${PATH}:/opt/servo"
-export SH_SCRIPTS="$HOME/Programs/Coding Projects/bash"
 # }}}
 
 ####################
@@ -140,16 +125,9 @@ alias t=tmux' attach'
 alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
-#It's really annoying that wget leaves the .wget_hists file or whatever
-alias "wget=wget --no-hsts"
-alias "bc=bc -l"
-alias "less=less -r"
+alias te=trash-empty
+alias o=linkhandler
 
-alias 'mkre=mkre -f remind@barney -t user@raspberrypi $CLOUD/reminders'
-
-lang-stats() {
-    command lang-stats -a http://cloud:54321 -u euro -e "$@"
-}
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
@@ -165,11 +143,8 @@ config () {
     } || git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME difftool
 }
 
-alias o=linkhandler
-
 alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'
 
-alias te=trash-empty
 
 # }}}
 
@@ -181,9 +156,20 @@ alias nvim=$EDITOR
 alias sxiv=swiv
 alias "vim=$EDITOR"
 alias 'ls=lsd'
+alias rm="trash"
+alias "bc=bc -l"
+alias "less=less -r"
+alias "wget=wget --no-hsts"
+
 alias "l=lsd --hyperlink auto --group-directories-first -A"
 alias "ll=command ls -ASs --group-directories-first --color=auto"
-alias rm="trash"
+
+alias 'mkre=mkre -f remind@barney -t user@raspberrypi $CLOUD/reminders'
+
+alias lang-stats="lang-stats -a http://cloud:54321 -u euro -e"
+
+#It's really annoying that wget leaves the .wget_hists file or whatever
+
 #`alias cd=z` is done in the zoxide autoload file because it must be done after zoxide does its stuff
 # }}}
 

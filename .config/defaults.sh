@@ -1,4 +1,27 @@
 #!/bin/sh
+
+################################################################################
+#                                  STD Paths                                   #
+################################################################################
+
+export CLOUD="/home/cloud"
+export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
+export SHELL_LIB="$HOME/.local/lib/shell"
+export BOOKS="$CLOUD/Books/"
+export MOVIES="$CLOUD/Movies"
+export SHOWS="$CLOUD/Shows"
+export ANIME="$CLOUD/Anime"
+export BACKUPS="/mnt/backups"
+export WIKI="$CLOUD/Documents/vimwiki"
+export CALFILE="$CLOUD/CAL.md"
+export AIO_SERVER="https://aio.seceurity.place"
+
+export VIM_SESSIONS="$XDG_STATE_HOME/vim-sessions/"
+
+################################################################################
+#                                 STD Programs                                 #
+################################################################################
+
 export BROWSER_LITE="_BROWSER_LITE"
 export BROWSER="_BROWSER"
 export BROWSER_SCRIPTING="linkhandler"
