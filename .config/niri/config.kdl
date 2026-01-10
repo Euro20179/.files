@@ -344,6 +344,7 @@ binds {
 
     Print { screenshot-screen; }
     Mod+V { spawn "scr-wayland"; }
+    Mod+Shift+V { spawn "scr-wayland" "" "" "no-save"; }
     Alt+Print { screenshot-window; }
 
     Mod+Slash { spawn-sh "printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }

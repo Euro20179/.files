@@ -1,5 +1,5 @@
 " Author: euro
-" Last Modified 12/20/2025 08:07
+" Last Modified 01/09/2026 13:08
 " Description: If the file contains the text `Last Modified: <date> <time>` it
 " will replace that date and time with the current time on :w
 function s:handleLastModified()
@@ -18,10 +18,12 @@ function s:handleLastModified()
     call setpos(".", pos)
 endfun
 
+
 augroup lastmodifed
     au!
     exec 'au BufWriteCmd ' .. expand("$CLOUD") .. '/* call s:handleLastModified()'
     au BufWritePre * call s:handleLastModified()
 augroup END
 
-command! ILastMod norm iLast Modified =strftime("%m/%d/%Y %H:%M")
+command! -bar ILastMod norm iLast Modified =strftime("%m/%d/%Y %H:%M")
+command! -bar ICreated norm iCreated =strftime("%m/%d/%Y %H:%M")

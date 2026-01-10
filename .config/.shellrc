@@ -1,16 +1,5 @@
 #!/bin/sh
 
-###########
-# THEMING #
-###########
-# {{{
-
-export XCURSOR_SIZE=24
-export XCURSOR_THEME="ArcStarry-cursors"
-export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
-# export GTK_THEME='catppuccin-macchiato-blue-standard+default'
-# }}}
-
 #######
 # IME #
 #######
@@ -248,6 +237,17 @@ export LS_COLORS="*.py=${py_color}:*-old=$old_color:*.old=$old_color:*.jpg=$img_
 
 unset py_color old_color img_color video_color audio_color win_exe_color document_color pdf_color\
     compressed_color c_color shell_lang_color markup_color js_color font_file_color powerpoint_color spreadsheet_color css_color java_color
+# }}}
+
+###########
+# THEMING #
+###########
+# {{{
+
+export XCURSOR_SIZE=24
+export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
+export XCURSOR_THEME="ArcStarry-cursors"
+# export GTK_THEME='catppuccin-macchiato-blue-standard+default'
 # }}}
 
 if ! [ "$TMUX" ]; then

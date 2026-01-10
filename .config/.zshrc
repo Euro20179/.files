@@ -34,10 +34,6 @@ setopt CORRECT
 setopt EQUALS
 setopt DOTGLOB
 
-#if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-#    source /usr/share/zsh/manjaro-zsh-prompt ]]
-#fi
-
 INSBEAM="3"
 NORMBEAM="1"
 
@@ -66,16 +62,6 @@ isnt_vim && preexec() { echo -ne '\e['"$INSBEAM"' q'; }
 
 chpwd () {
     [ "$OLDPWD" != "$PWD" ] && [ -d ".git" ] && onefetch
-}
-
-rangercd () {
-    tmp="$(mktemp)"
-    ranger --choosedir="$tmp" --show-only-dirs
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
 }
 
 #all of this is the prompt{{{
@@ -146,5 +132,5 @@ fi
 autoload -U compinit
 compinit
 _comp_options+=(globdots)
-compdef _gnu_generic ytfzf
-compdef _gnu_generic trash
+# compdef _gnu_generic ytfzf
+# compdef _gnu_generic trash

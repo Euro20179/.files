@@ -12,6 +12,8 @@ hi! link User6 WarningMsg
 
 
 function s:calcGitStats()
+    " cache the result of finddir because in sshfs it can make everything VERY
+    " slow as it has to calculate it every update
     if !exists("b:statusline_has_git") 
         let b:statusline_has_git = finddir("./.git")
     endif

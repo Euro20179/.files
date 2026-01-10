@@ -17,3 +17,7 @@ exifDate=$(date "+%Y:%m:%d %H:%M:%S")
 exiftool -overwrite_original "-alldates=${exifDate}" "$t"
 
 notify-send -c screenshot -i "$t" "Image taken at: $pos"
+
+if [ "$3" = "no-save" ]; then
+    rm "$t"
+fi
