@@ -1,0 +1,42 @@
+#!/bin/sh
+set -e
+
+# Requiruements:
+#   pacman
+#   coreutils
+#   sed
+#   bc
+
+pipe=$(mktemp -d)
+trap 'rm -rf "$pipe"' 0 2 3 15
+mkfifo "${pipe}/names"
+
+pacman -Qi \
+    | sed -n -e "
+        /^Installed Size/ {
+            # Clean up the noise.
+            s/Installed Size//
+            s/://
+            s/\s//g
+
+            # Expand item sizes.
+            s/KiB/\/1024/
+            s/MiB//
+            s/GiB/*1024/
+            s/B/\/1048576/
+            p
+        }
+        /^Name/ {
+            s/Name//
+            s/://
+            s/\s//g
+
+            # Queue the names for later.
+            w ${pipe}/names
+        }
+    " \
+    | sed -e "1 s/.*/scale=4;&/" \
+    | bc \
+    | paste - "${pipe}/names" \
+    | sort -gr
+
