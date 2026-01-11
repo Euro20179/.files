@@ -1,4 +1,4 @@
-" Last Modified: 12/19/2025 07:38
+" Last Modified: 01/11/2026 11:35
 " Description: binds the keymap <leader>g that jumps to the next instance of
 "              b:link_search (which should be set in an ftplugin) then
 "              attempts to open <cfile> if <cfile> doesn't exist, create it as
