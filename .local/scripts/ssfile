@@ -32,7 +32,7 @@ endif
 TOhtml
 silent w!
 let s:filename = expand("%:p")
-execute '!firefox --screenshot file://' . s:filename
+!$BROWSER --screenshot file://%:p
 echo s:filename
 silent execute '!rm ' . s:filename
 qall!
