@@ -42,6 +42,9 @@ menu:
       - key: "Mod4+s"
         desc: "AIOOOOO desktop"
         cmd: "gtk-launch AIO.desktop"
+      - key: "Mod4+S"
+        desc: "stock"
+        cmd: "stock"
       - key: "s"
         desc: "AIOOOOO search"
         cmd: '_BROWSER_NO_PRIVACY "https://$(cat $HOME/Documents/APIKeys/AIO | base64 -d -w0)@cloud:8887/login?uid=1&q=$(rofi -dmenu -p "aio serach" -theme  cat-macchiato-dmenu-center)"'
