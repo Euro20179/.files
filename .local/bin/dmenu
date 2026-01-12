@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# replicate the original behavior of dmenu
+# where it has to read from stdin
+data=$(cat)
+
+printf "%s" "$data" | rofi -theme cat-macchiato-dmenu -dmenu  "$@"
