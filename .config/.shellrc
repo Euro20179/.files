@@ -171,6 +171,8 @@ alias vw='nvim +"cd $HOME/Documents/vimwiki" $HOME/Documents/vimwiki/index.mmfml
 alias devlog='nvim -S $HOME/.local/vim-scripts/devlog.vim'
 
 p() {
+    cd=0
+    [ "$1" = cd ] && cd=1 && shift 1
     opts=$(printf "%s\n" "$XDG_STATE_HOME/vim-sessions/"* |
         sed -e 's/.*\///' -e 's/\.vim$//')
 
@@ -189,7 +191,7 @@ EOF
     [ "$vimsource" = ".vim" ] && return
 
     cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
-    [ "$1" = cd ] && return
+    [ "$cd" = 1 ] && return
     $EDITOR --listen "/tmp/${vimsource#.*}" -S "$XDG_STATE_HOME/vim-sessions/$vimsource"
 }
 
