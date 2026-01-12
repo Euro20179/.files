@@ -155,7 +155,7 @@ alias "ll=command ls -ASs --group-directories-first --color=auto"
 
 alias 'mkre=mkre -f remind@barney -t user@raspberrypi $CLOUD/reminders'
 
-alias lang-stats="lang-stats -a http://cloud:54321 -u euro -e"
+alias lang-stats="lang-stats -a http://cloud:54321 -u euro"
 
 #It's really annoying that wget leaves the .wget_hists file or whatever
 
