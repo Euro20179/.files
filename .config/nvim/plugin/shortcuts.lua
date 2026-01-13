@@ -188,6 +188,12 @@ local nShortcuts = {
     -- }}}
     -- lazy {{{
     { "<leader>Lu",      vim.pack.update },
+    { "<leader>Lx",      function()
+        vim.iter(vim.pack.get())
+            :filter(function(v) return not v.active end)
+            :map(function(v) return v.spec.name end)
+            :map(vim.pack.del)
+    end },
     -- { "<leader>Lx", "<cmd>DepsClean<cr>" },
     -- }}}
     { "ZF", function()
