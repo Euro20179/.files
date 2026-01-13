@@ -190,9 +190,17 @@ EOF
 
     [ "$vimsource" = ".vim" ] && return
 
-    cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
-    [ "$cd" = 1 ] && return
-    $EDITOR --listen "/tmp/${vimsource#.*}" -S "$XDG_STATE_HOME/vim-sessions/$vimsource"
+    if [ -e "/tmp/${vimsource#.*}" ]; then
+        # yes this should be %, i'm not sure why the above is #
+        # % will remove the .vim at the end
+        notify-send "going to ${vimsource%.*}"
+        select-window ".*p.*${vimsource%.*}.*"
+        exit
+    else
+        cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
+        [ "$cd" = 1 ] && return
+        $EDITOR --listen "/tmp/${vimsource#.*}" -S "$XDG_STATE_HOME/vim-sessions/$vimsource" ||
+    fi
 }
 
 alias TODO='linkhandler vw:TODO.mmfml'

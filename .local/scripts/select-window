@@ -1,5 +1,6 @@
 #!/bin/bash
 
+window_match="$1"
 isniri=0
 if niri msg windows >/dev/null 2>&1; then
     isniri=1
@@ -9,10 +10,23 @@ else
     cmd="hyprctl clients -j"
     jqPath='.[]|"\(.title)\t\(.address)"'
 fi
-window=$($cmd |
+
+window_columns=$($cmd |
     jq -r "$jqPath"|
-    column -t -s $'\t' -o $'\t' |
-    rofi -i -dmenu -theme cat-macchiato | cut -d $'\t' -f2)
+    column -t -s $'\t' -o $'\t')
+
+
+if [ "$window_match" ]; then
+    focused_window="$(niri msg -j focused-window | jq -r '.title')"
+    window=$(printf "%s" "$window_columns" |
+        grep -Fv "$focused_window" |
+        grep -i "$window_match" |
+        head -n1)
+else
+    window=$(printf "%s" "$window_columns" |
+        rofi -i -dmenu -theme cat-macchiato)
+fi
+window="$(printf "%s" "$window" | cut -d $'\t' -f2)"
 
 [ -z "$window" ] && exit
 
