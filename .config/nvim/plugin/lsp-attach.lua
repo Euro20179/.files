@@ -1,5 +1,5 @@
 --[==[
-Last Modified 01/08/2026 15:20
+Last Modified 01/12/2026 23:22
 Description: binds lsp mappings, and various other lsp stuff
 --]==]
 local conf_group = vim.api.nvim_create_augroup("config.lsp-attach", {
@@ -9,6 +9,9 @@ local conf_group = vim.api.nvim_create_augroup("config.lsp-attach", {
 vim.api.nvim_create_autocmd("LspAttach", {
     group = conf_group,
     callback = function()
+        require "lsplinks".setup {}
+        vim.keymap.set("n", "gx", require "lsplinks".gx)
+
         vim.lsp.document_color.enable(true)
         -- vim.lsp.inlay_hint.enable(true)
 
