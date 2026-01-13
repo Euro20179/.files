@@ -193,12 +193,13 @@ EOF
     if [ -e "/tmp/${vimsource#.*}" ]; then
         # yes this should be %, i'm not sure why the above is #
         # % will remove the .vim at the end
-        notify-send "going to ${vimsource%.*} (foot)"
-        select-window "${vimsource%.*} (foot)"
+        notify-send "going to ${vimsource%.*}"
+        select-window "CODING PROJECT: ${vimsource%.*}"
         exit
     else
         cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
         [ "$cd" = 1 ] && return
+        printf "\x1b]2;%s\a" "CODING PROJECT: ${vimsource%.*}"
         $EDITOR --listen "/tmp/${vimsource#.*}" -S "$XDG_STATE_HOME/vim-sessions/$vimsource" ||
     fi
 }
