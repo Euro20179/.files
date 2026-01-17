@@ -137,13 +137,6 @@ local nShortcuts = {
         end)
     end, { desc = "[TELESCOPE] buffers" } },
     { "<leader>f/", require "mini.pick".builtin.grep_live,                               { desc = "[TELESCOPE] grep" } },
-    { "<C-S-p>", function()
-        local keys = require "mini.extra".pickers.keymaps()
-        if keys == nil then
-            return
-        end
-        vim.api.nvim_feedkeys(keys.lhs, "n", true)
-    end, { desc = "[TELESCOPE] keymap pallete" } },
     --}}}
     --Viewers {{{
     { "<leader>eu", function()
@@ -282,6 +275,16 @@ end
 vim.keymap.set("x", "<a-u>w", ":'<,'>WrapTry<CR>", { desc = "[UTIL] Wrap try" })
 vim.keymap.set("n", "<a-u>w", ":.WrapTry<CR>", { desc = "[UTIL] Wrap try" })
 --}}}
+
+for _, mode in ipairs({"t", "s", "x", "n", "i", "o", "c"}) do
+    vim.keymap.set({mode},  "<C-S-p>", function()
+        local keys = require "mini.extra".pickers.keymaps({mode = mode})
+        if keys == nil then
+            return
+        end
+        vim.api.nvim_feedkeys(keys.lhs, 'n', true)
+    end, { desc = "[TELESCOPE] keymap pallete" })
+end
 
 -- vim.keymap.set({ "o", "x" }, "?", function()
 --     require "various-textobjs".diagnostic()
