@@ -190,7 +190,7 @@ EOF
 
     [ "$vimsource" = ".vim" ] && return
 
-    if [ -e "/tmp/${vimsource#.*}" ]; then
+    if [ $cd = 0 ] && [ -e "/tmp/${vimsource#.*}" ]; then
         # yes this should be %, i'm not sure why the above is #
         # % will remove the .vim at the end
         notify-send "going to ${vimsource%.*}"

@@ -35,6 +35,12 @@ vim.pack.add({
         branches = { "main" },
         version = "main"
     },
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+        rev = "main",
+        branches = { "main" },
+        version = "main"
+    },
     -- }}}
 
     --LSP+DAP{{{

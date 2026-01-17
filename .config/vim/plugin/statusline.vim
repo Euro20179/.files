@@ -30,7 +30,7 @@ function s:calcGitStats()
     ":silent prevents the terminal from going into 'cooked mode'
     "whatever the hell that is, the end effect is it prevents
     "garbled ansi codes from appearing in vim on the first draw
-    silent let l:gitOut = system("git diff --numstat " .. expand("%"))
+    silent let l:gitOut = system("git diff --numstat " .. expand("%:S"))
 
     if l:gitOut == ""
         let g:gitStatsCache["add"] = "0"
