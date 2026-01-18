@@ -73,6 +73,7 @@ set scrolloff=3
 set splitbelow splitright
 
 set dictionary=/usr/share/dict/american-english spelllang=en_us
+set thesaurus=$XDG_DOCUMENTS_HOME/thesaurus.txt
 
 set nu rnu
 
