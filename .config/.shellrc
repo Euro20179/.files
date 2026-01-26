@@ -118,8 +118,10 @@ alias te=trash-empty
 alias o=linkhandler
 
 
-alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotdu/plotdu'
-alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plotpkgs/plotpkgs'
+alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotdu'
+alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgs'
+alias 'plothome=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgs'
+alias 'plotpkgsize=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgsze'
 
 alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"

@@ -21,13 +21,14 @@ tty 2> /dev/null 1>&2 && inTerminal=1 || inTerminal=0
 
 open_with_editor() {
     modified_link="$1"
+    shift
 
     #If nvim is open and linkhandler was opened from nvim, open in a new tab in the current instance of nvim
     [ "$NVIM" ] && nvim --headless --server "$NVIM" --remote-send ":tabnew $modified_link<CR>" || {
         if [ "${inTerminal}" = 1 ]; then
-            "$EDITOR" "$modified_link"
+            "$EDITOR" "$@" "$modified_link"
         else
-            ${GUIEDITOR} "$modified_link"
+            ${GUIEDITOR} "$@" "$modified_link"
         fi
     }
     return 0
@@ -80,6 +81,7 @@ try_custom_uri() {
             file_path=${link#*/blob/}
             repo="${link%%/blob/*}"
             repo="${repo#https://github.com/}"
+            data="${link##*\#}"
             open_with_editor "https://raw.githubusercontent.com/${repo}/${file_path}"
             ;;
         https://*/watch?v=* | https://youtu.be*) mpv "$link" ;;
