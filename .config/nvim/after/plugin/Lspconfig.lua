@@ -4,86 +4,83 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 ---@param name string
 ---@param settings vim.lsp.Config
 local function setupLSP(name, settings)
-    -- local kind2name = {
-    --      [ 1 ] = "Text",
-    --      [ 2 ] = "Method",
-    --      [ 3 ] = "Function",
-    --      [ 4 ] = "Constructor",
-    --      [ 5 ] = "Field",
-    --      [ 6 ] = "Variable",
-    --      [ 7 ] = "Class",
-    --      [ 8 ] = "Interface",
-    --      [ 9 ] = "Module",
-    --      [ 10 ] = "Property",
-    --      [ 11 ] = "Unit",
-    --      [ 12 ] = "Value",
-    --      [ 13 ] = "Enum",
-    --      [ 14 ] = "Keyword",
-    --      [ 15 ] = "Snippet",
-    --      [ 16 ] = "Color",
-    --      [ 17 ] = "File",
-    --      [ 18 ] = "Reference",
-    --      [ 19 ] = "Folder",
-    --      [ 20 ] = "EnumMember",
-    --      [ 21 ] = "Constant",
-    --      [ 22 ] = "Struct",
-    --      [ 23 ] = "Event",
-    --      [ 24 ] = "Operator",
-    --      [ 25 ] = "TypeParameter",
-    -- }
-    --
-    -- local kind_icons = {
-    --     Text = "",
-    --     Method = " ",
-    --     Function = "",
-    --     Constructor = "",
-    --     Field = "",
-    --     Variable = "𝑥",
-    --     Class = "",
-    --     Interface = "",
-    --     Module = "",
-    --     Property = "",
-    --     Unit = "",
-    --     Value = "",
-    --     Enum = "",
-    --     Keyword = "",
-    --     Snippet = "󱄽",
-    --     Color = "",
-    --     File = "",
-    --     Reference = "",
-    --     Folder = "",
-    --     EnumMember = "",
-    --     Constant = "",
-    --     Struct = "",
-    --     Event = "",
-    --     Operator = "",
-    --     TypeParameter = ""
-    -- }
-    --
-    -- settings.on_attach = function(client, buf)
-    --     vim.bo.completeopt = "menuone,noselect,popup,preview,preinsert"
-    --     vim.keymap.set("i", "<c-n>", "<c-x><c-o>", { buffer = true })
-    --     vim.api.nvim_set_hl(0, "PreInsert", { link = "Comment" })
-    --     vim.o.pumborder = 'rounded'
-    --
-    --     vim.lsp.completion.enable(true, client.id, buf, {
-    --         autotrigger = true,
-    --         convert = function(item)
-    --             return {
-    --                 abbr = item.label,
-    --                 kind = kind_icons[kind2name[item.kind]],
-    --                 abbr_hlgroup = '@' .. string.lower(kind2name[item.kind]),
-    --             }
-    --         end
-    --     })
-    -- end
-    --
-    -- settings.on_attach = function(client, buf)
-    --     if client:supports_method('textDocument/foldingRange') then
-    --         local win = vim.api.nvim_get_current_win()
-    --         vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
-    --     end
-    -- end
+    local kind2name = {
+         [ 1 ] = "Text",
+         [ 2 ] = "Method",
+         [ 3 ] = "Function",
+         [ 4 ] = "Constructor",
+         [ 5 ] = "Field",
+         [ 6 ] = "Variable",
+         [ 7 ] = "Class",
+         [ 8 ] = "Interface",
+         [ 9 ] = "Module",
+         [ 10 ] = "Property",
+         [ 11 ] = "Unit",
+         [ 12 ] = "Value",
+         [ 13 ] = "Enum",
+         [ 14 ] = "Keyword",
+         [ 15 ] = "Snippet",
+         [ 16 ] = "Color",
+         [ 17 ] = "File",
+         [ 18 ] = "Reference",
+         [ 19 ] = "Folder",
+         [ 20 ] = "EnumMember",
+         [ 21 ] = "Constant",
+         [ 22 ] = "Struct",
+         [ 23 ] = "Event",
+         [ 24 ] = "Operator",
+         [ 25 ] = "TypeParameter",
+    }
+
+    local kind_icons = {
+        Text = "",
+        Method = " ",
+        Function = "",
+        Constructor = "",
+        Field = "",
+        Variable = "𝑥",
+        Class = "",
+        Interface = "",
+        Module = "",
+        Property = "",
+        Unit = "",
+        Value = "",
+        Enum = "",
+        Keyword = "",
+        Snippet = "󱄽",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        EnumMember = "",
+        Constant = "",
+        Struct = "",
+        Event = "",
+        Operator = "",
+        TypeParameter = ""
+    }
+
+    settings.on_attach = function(client, buf)
+        vim.bo.completeopt = "menuone,noselect,popup,preview,preinsert"
+        vim.keymap.set("i", "<c-n>", "<c-x><c-o>", { buffer = true })
+        vim.api.nvim_set_hl(0, "PreInsert", { link = "Comment" })
+        vim.o.pumborder = 'rounded'
+
+        vim.lsp.completion.enable(true, client.id, buf, {
+            autotrigger = true,
+            convert = function(item)
+                return {
+                    abbr = item.label,
+                    kind = kind_icons[kind2name[item.kind]],
+                    abbr_hlgroup = '@' .. string.lower(kind2name[item.kind]),
+                }
+            end
+        })
+        if client:supports_method('textDocument/foldingRange') then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+        end
+    end
 
     vim.lsp.config[name] = settings
     vim.lsp.enable(name)

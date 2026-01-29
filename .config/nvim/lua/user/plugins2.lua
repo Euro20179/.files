@@ -46,7 +46,7 @@ vim.pack.add({
     --LSP+DAP{{{
     { src = "https://github.com/b0o/Schemastore.nvim" },
     { src = "https://github.com/icholy/lsplinks.nvim" },
-    { src = "https://github.com/Saghen/blink.cmp" },
+    -- { src = "https://github.com/Saghen/blink.cmp" },
     { src = "https://github.com/williamboman/mason.nvim" },
     --- }}}
 

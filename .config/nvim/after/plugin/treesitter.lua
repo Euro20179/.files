@@ -24,7 +24,8 @@ vim.api.nvim_create_autocmd("FileType", {
                 lookahead = true,
             }
         }
-        pcall(vim.treesitter.start)
+        local lang = vim.treesitter.language.get_lang(vim.bo.ft)
+        pcall(vim.treesitter.start, 0, lang)
     end
 })
 
