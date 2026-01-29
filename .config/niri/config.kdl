@@ -192,6 +192,7 @@ screenshot-path "~/Pictures/screenshots/%Y/Screenshot-%Y-%m-%dT%H-%M-%S.png"
 
 
 animations {
+    slowdown 0.4
     // window-open {
     //     custom-shader r"
     //         vec4 open_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
@@ -342,10 +343,9 @@ binds {
     Mod+Alt+K { set-window-height "-10%"; }
     Mod+Alt+J { set-window-height "+10%"; }
 
-    Print { screenshot-screen; }
+    Print { spawn-sh "SCREENSHOT_OUTPUT=$(niri msg -j focused-output | jq -r .name) scr-wayland"; }
     Mod+V { spawn "scr-wayland"; }
     Mod+Shift+V { spawn "scr-wayland" "" "" "no-save"; }
-    Alt+Print { screenshot-window; }
 
     Mod+Slash { spawn-sh "printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n"; }
     Mod+Y { spawn-sh "search < /dev/null > /dev/null 2>&1"; }
