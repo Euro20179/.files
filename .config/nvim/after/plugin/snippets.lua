@@ -2,32 +2,35 @@ local config_dir = vim.fn.stdpath('config')
 
 local snippet_prefixes = {}
 
-local function get_snippets()
-    local kwd = ""
-    local line = vim.fn.getline(".")
-    local col = vim.fn.col(".") - 1
+function Get_snippets(findstart, base)
+    if findstart == 1 then
+        local kwd = ""
+        local line = vim.fn.getline(".")
+        local col = vim.fn.col(".") - 1
 
-    while vim.fn.match(string.sub(line, col, col), "\\k") ~= -1 do
-        kwd = string.sub(line, col, col) .. kwd
-        col = col - 1
+        while vim.fn.match(string.sub(line, col, col), "\\k") ~= -1 do
+            kwd = string.sub(line, col, col) .. kwd
+            col = col - 1
+        end
+
+        if kwd == "" then return -3 end
+        return col
     end
-
-    if kwd == "" then return end
 
     local matches = {}
     for p, b in pairs(snippet_prefixes) do
-        if not vim.startswith(p, kwd) then goto continue end
+        if not vim.startswith(p, base) then goto continue end
 
         matches[#matches+1] = p
 
         ::continue::
     end
 
-    vim.print(matches)
-    if #matches == 1 then
-        vim.cmd.norm"diw"
-        vim.snippet.expand(snippet_prefixes[matches[1]])
-    end
+    return {
+        words = vim.iter(matches)
+                    :map(function(w) return snippet_prefixes[w] end)
+                    :totable()
+    }
 end
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -50,6 +53,6 @@ vim.api.nvim_create_autocmd("FileType", {
             snippet_prefixes[v['prefix']] = v['body']
         end
 
-        vim.keymap.set("i", "<c-s-s>", get_snippets)
+        vim.bo.completefunc = 'v:lua.Get_snippets'
     end
 })
