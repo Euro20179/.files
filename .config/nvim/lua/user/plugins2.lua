@@ -51,7 +51,7 @@ vim.pack.add({
     --- }}}
 
     -- Themes {{{
-     { src = "https://github.com/catppuccin/nvim"  },
+     -- { src = "https://github.com/catppuccin/nvim"  },
     -- }}}
 
     -- Navigation {{{

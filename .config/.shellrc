@@ -123,7 +123,8 @@ alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_thi
 alias 'plothome=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgs'
 alias 'plotpkgsize=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgsze'
 
-alias llm="su -c 'HOME=$HOME HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
+# alias llm="su -c 'HOME=$HOME OLLAMA_DEBUG=1 ROCM_PATH=/opt/rocm HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
+alias llm="su -c 'HOME=$HOME OLLAMA_DEBUG=1 OLLAMA_VULKAN=1 OLLAMA_LLM_LIBRARY=vulkan OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
 
 alias stockrt='nvim +StockRT ~/stocks'
@@ -175,6 +176,10 @@ alias devlog='nvim -S $HOME/.local/vim-scripts/devlog.vim'
 p() {
     cd=0
     [ "$1" = cd ] && cd=1 && shift 1
+    [ "$1" = "-l" ] &&  {
+        ls -1 "$XDG_STATE_HOME/vim-sessions" | sed 's/\.vim$//'
+        return
+    }
     opts=$(printf "%s\n" "$XDG_STATE_HOME/vim-sessions/"* |
         sed -e 's/.*\///' -e 's/\.vim$//')
 
@@ -267,7 +272,7 @@ unset py_color old_color img_color video_color audio_color win_exe_color documen
 ###########
 # {{{
 
-export XCURSOR_SIZE=24
+export XCURSOR_SIZE=12
 export XCURSOR_PATH="/usr/share/icons:/usr/local/share/icons:$XDG_DATA_HOME/icons"
 export XCURSOR_THEME="ArcStarry-cursors"
 # export GTK_THEME='catppuccin-macchiato-blue-standard+default'

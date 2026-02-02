@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 12/31/2025 11:46
+Last Modified 02/01/2026 13:43
 
 Description: simply a plugin that sets the colorscheme
 --]=]

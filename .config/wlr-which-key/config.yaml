@@ -2,7 +2,7 @@ background: "#21143e"
 border: "#89dceb"
 color: "#cba6f7"
 
-# inhibit_compositor_keyboard_shortcuts: true
+inhibit_compositor_keyboard_shortcuts: true
 auto_kbd_layout: true
 
 menu:

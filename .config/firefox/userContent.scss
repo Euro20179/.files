@@ -27,6 +27,11 @@
     }
   }
 
+  [class*="username"] {
+    border-radius: 5px;
+    background: #{ "hsl(from currentColor h s calc((sign(50 - l) * (120 - l))))" };
+  }
+
   [class*=sidebarList] {
     border-color: var(--text-color) !important;
   }
