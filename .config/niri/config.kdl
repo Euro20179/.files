@@ -190,7 +190,6 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/screenshots/%Y/Screenshot-%Y-%m-%dT%H-%M-%S.png"
 
-
 animations {
     slowdown 0.4
     // window-open {

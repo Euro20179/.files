@@ -127,7 +127,7 @@ alias 'plotpkgsize=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_
 alias llm="su -c 'HOME=$HOME OLLAMA_DEBUG=1 OLLAMA_VULKAN=1 OLLAMA_LLM_LIBRARY=vulkan OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
 alias ollama="OLLAMA_HOST=0.0.0.0 ollama"
 
-alias stockrt='nvim +StockRT ~/stocks'
+alias stockrt='nvim +StockRT ~/Documents/stocks'
 
 config () {
     [ -n "$*" ] && {
