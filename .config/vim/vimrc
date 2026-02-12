@@ -273,7 +273,7 @@ augroup relnutoggle
     autocmd CmdlineEnter * if &rnu != 0 || &nu != 0 | set nornu | redraw | endif
     autocmd CmdlineLeave * if &rnu != 0 || &nu != 0 | set rnu | redraw | endif
     ":m[ove], :co[py], and :t work better with relnum
-    autocmd CmdlineChanged * if getcmdline() =~ '^\(m\%[ove]\|co\%[py]\|t\)[^[:alpha:]]' | set rnu | else | set nornu | endif | redraw
+    "autocmd CmdlineChanged * if getcmdline() =~ '^\(m\%[ove]\|co\%[py]\|t\)[^[:alpha:]]' | set rnu | else | set nornu | endif | redraw
 augroup END
 
 call digraph_set("*s", "ₓ")
