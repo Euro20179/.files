@@ -145,7 +145,7 @@ endfu
 nnoremap <c-q> <CMD>call <SID>toggleQFWinType("cwin", "cclose")<CR>
 nnoremap <c-s-q> <CMD>call <SID>toggleQFWinType("lwin", "lclose")<CR>
 
-nnoremap <leader>/ :silent lgrep! \| lwindow<S-Left><S-Left>
+nnoremap <leader>f/ :silent lgrep! \| lwindow<S-Left><S-Left>
 "}}}
 
 "Copy shortcuts{{{
@@ -231,8 +231,8 @@ endif
 "}}}
 
 "Text editing {{{
-nnoremap [<space> :execute ':norm O' \| call setline(".", "") \| noh \| :norm j<CR>
-nnoremap ]<space> :execute ':norm o' \| call setline(".", "") \| noh \| :norm k<CR>
+nnoremap [<space> <CMD>execute ':norm O' \| call setline(".", "") \| noh \| :norm j<CR>
+nnoremap ]<space> <CMD>execute ':norm o' \| call setline(".", "") \| noh \| :norm k<CR>
 
 func AddLineAboveBelow(start, end)
     call append(a:start - 1, "")

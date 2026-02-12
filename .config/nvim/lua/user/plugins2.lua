@@ -57,6 +57,7 @@ vim.pack.add({
     -- Navigation {{{
     { src = "https://github.com/kevinhwang91/nvim-bqf" },
     { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/Bekaboo/dropbar.nvim" },
     -- }}}
 
     { src = "https://github.com/echasnovski/mini.nvim" },

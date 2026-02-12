@@ -9,6 +9,9 @@ menu:
   - key: "g"
     desc: "application launch"
     submenu:
+      - key: "Mod4+w"
+        desc: "Whiteboard"
+        cmd: "whiteboard"
       - key: "Mod4+O"
         desc: "osu lazer"
         cmd: "osu-lazer"

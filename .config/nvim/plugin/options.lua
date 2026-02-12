@@ -16,9 +16,9 @@ vim.diagnostic.config({
     }
 })
 
--- require "vim._extui".enable {
---     enable = true,
--- }
+require "vim._core.ui2".enable {
+    enable = true,
+}
 
 -- vim.lsp.buf.hover = function()
 --     local hc = require"hovercraft"

@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 02/01/2026 13:43
+Last Modified 02/10/2026 07:43
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -97,5 +97,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 vim.api.nvim_cmd({
     cmd = "colorscheme",
-    args = { "catppuccin" }
+    args = { "momiji" }
 }, {})
