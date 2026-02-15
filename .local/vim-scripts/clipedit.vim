@@ -1,4 +1,9 @@
 enew! | e clipboard edit
+set wrap
+
+nnoremap j gj
+nnoremap k gk
+
 setl buftype=acwrite
 
 call setline(1, @+[:-1])
