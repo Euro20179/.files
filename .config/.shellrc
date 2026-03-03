@@ -278,6 +278,8 @@ export XCURSOR_THEME="ArcStarry-cursors"
 # export GTK_THEME='catppuccin-macchiato-blue-standard+default'
 # }}}
 
+alias lvs='sudo nvim /etc/libvirt/hooks/qemu.d/win11-2/prepare/begin/start.sh'
+
 if ! [ "$TMUX" ]; then
     for file in "${XDG_CONFIG_HOME}/shell-autoload"/*; do
         . "$file"
