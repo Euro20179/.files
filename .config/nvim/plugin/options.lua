@@ -20,6 +20,8 @@ require "vim._core.ui2".enable {
     enable = true,
 }
 
+vim.opt.completeopt = "menuone,popup,noselect,preview"
+
 -- vim.lsp.buf.hover = function()
 --     local hc = require"hovercraft"
 --     if hc.is_visible() then
