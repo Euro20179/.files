@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 02/10/2026 07:43
+Last Modified 03/27/2026 14:55
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -34,10 +34,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
-        vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
-        vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
-        vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { background = "NONE" })
+        -- vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
+        -- vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
+        -- vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
+        -- vim.api.nvim_set_hl(0, "NormalFloat", { link = "NONE" })
 
         vim.api.nvim_set_hl(0, "@markup.heading.1.delimiter.vimdoc", { })
         vim.api.nvim_set_hl(0, "@markup.heading.2.delimiter.vimdoc", { })
@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "Boolean", { link = "Number" })
 
-        vim.api.nvim_set_hl(0, "Normal", { fg="#eeeeee"})
+        -- vim.api.nvim_set_hl(0, "Normal", { fg="#eeeeee"})
         vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#f38ba8" })
         vim.api.nvim_set_hl(0, "Comment", {fg = "#589353", italic = true})
 
@@ -97,5 +97,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 vim.api.nvim_cmd({
     cmd = "colorscheme",
-    args = { "momiji" }
+    args = { "catppuccin" }
 }, {})

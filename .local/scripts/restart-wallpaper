@@ -3,13 +3,13 @@
 # killall hyprpaper
 # hyprpaper & disown
 
-swww kill
-[ -e "/run/user/1000/swww.socket" ] && rm "/run/user/1000/swww.socket"
-swww-daemon & disown
+awww kill
+[ -e "/run/user/1000/awww.socket" ] && rm "/run/user/1000/awww.socket"
+awww-daemon & disown
 
-[ -f "$SYSTEM_IMAGES/desktop.png" ] && swww img "$SYSTEM_IMAGES/desktop.png"
+[ -f "$SYSTEM_IMAGES/desktop.png" ] && awww img "$SYSTEM_IMAGES/desktop.png"
 for wallpaper in "$SYSTEM_IMAGES/desktop"*.png; do 
     output="${wallpaper##*desktop}"
     output="${output%.png}"
-    swww img "$wallpaper" -o "$output"
+    awww img "$wallpaper" -o "$output"
 done
