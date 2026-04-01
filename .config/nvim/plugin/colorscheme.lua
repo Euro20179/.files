@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 03/27/2026 14:55
+Last Modified 03/29/2026 14:06
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -47,6 +47,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "NotifyBackground", { background = "#000000" })
 
         for _, toclr in pairs({
+            "@lsp.type.property",
+            "@lsp.type.variable",
             "@lsp.type.function",
             "@lsp.type.method",
             "@keyword.operator",
