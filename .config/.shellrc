@@ -120,7 +120,7 @@ alias o=linkhandler
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgs'
-alias 'plothome=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgs'
+alias 'plothome=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plothome'
 alias 'plotpkgsize=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgsze'
 
 # alias llm="su -c 'HOME=$HOME OLLAMA_DEBUG=1 ROCM_PATH=/opt/rocm HSA_OVERRIDE_GFX_VERSION=10.3.0 OLLAMA_HOST='0.0.0.0' OLLAMA_ORIGINS='*' ollama serve'"
