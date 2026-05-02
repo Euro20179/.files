@@ -47,6 +47,10 @@ box {
     padding: 5px 0;
 }
 
+.bordered {
+    border-bottom: 1px solid #c6dff7;
+}
+
 .vpn-connected-text {
     color: #afd1b7;
 }

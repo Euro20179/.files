@@ -32,7 +32,7 @@
     `cat /sys/module/amdgpu/drivers/pci:amdgpu/module/drivers/pci:amdgpu/*:*:00.0/mem_info_vram_total`)
 
 (defwidget scaler [label temp-source ?class]
-    (label :text "${label} ${temp-source}" :class "temp-${round((temp-source - 10) / 10, 0)}")
+    (label :text "${label} ${temp-source}" :class "temp-${round((temp-source - 10) / 10, 0)} ${class}")
 )
 
 (defpoll cal :interval "1h" "cal")
@@ -45,15 +45,12 @@
 (defwidget INFO []
     (box :orientation "v" :space-evenly false
         (workspaces)
-        (box  :orientation "h"
-            (label :text "🐏${round(gpu-ram-used / 1024 / 1024 / 1024, 2)}")
-        )
         (scaler :label "" :temp-source "${round(EWW_TEMPS["K10TEMP_TCTL"], 0)}")
         (scaler :label "󰍹" :temp-source "${round(EWW_TEMPS["AMDGPU_EDGE"], 0)}")
-        (scaler :label "" :temp-source {round(EWW_RAM["used_mem_perc"], 1)})
+        (scaler :label "" :temp-source {round(EWW_RAM["used_mem_perc"], 1)} :class "bordered")
         (scaler :label "" :temp-source "${round(home-df, 1)}")
         (scaler :label "" :temp-source "${round(cloud-df, 1)}")
-        (scaler :label "󰁯" :temp-source "${round(backups-df, 1)}")
+        (scaler :label "󰁯" :temp-source "${round(backups-df, 1)}" :class "bordered")
         (scaler :label volume-amount :class "muted-${volume-muted}" :temp-source volume)
         (scaler :label "" :temp-source mic)
 

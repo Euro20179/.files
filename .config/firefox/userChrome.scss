@@ -21,14 +21,16 @@ tab[selected="true"] vbox.tab-background {
 
   --ts-time: 150ms;
   transition: background var(--ts-time) linear,
-              border-color var(--ts-time) linear;
+    border-color var(--ts-time) linear;
 }
+
 tab:not([selected="true"]) vbox.tab-background {
   border: none !important;
   border-color: transparent !important;
 }
 
-toolbaritem, toolbarbutton {
+toolbaritem,
+toolbarbutton {
   height: fit-content;
 }
 
@@ -43,6 +45,48 @@ toolbaritem, toolbarbutton {
 hbox.titlebar-buttonbox-container {
   display: none;
 }
+
+/* END }}} */
+
+/* hide basically everything but omnibar {{{ */
+#back-button,
+#forward-button,
+#alltabs-button,
+toolbaritem[widget-type="custom"] {
+  display: none;
+}
+/* END }}}*/
+
+/* bottom address bar hack {{{*/
+// #browser {
+//   -moz-box-ordinal-group: 0 !important;
+//   order: 0 !important;
+// }
+//
+// #navigator-toolbox {
+//   -moz-box-ordinal-group: 1 !important;
+//   order: 1 !important;
+// }
+//
+// *|*:root[sizemode="normal"] #browser {
+//   padding-top: 0 !important;
+// }
+//
+// *|*:root[inFullscreen] #navigator-toolbox {
+//   display: none;
+// }
+//
+// #TabsToolbar>.titlebar-buttonbox-container {
+//   display: none !important;
+// }
+//
+// #urlbar[open] {
+//   display: flex !important;
+//   flex-direction: column-reverse;
+//   /* use 'column' if you want to type the URL in center*/
+//   bottom: -2px !important;
+//   top: auto !important;
+// }
 
 /* END }}} */
 
