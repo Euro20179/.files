@@ -53,4 +53,4 @@ export TRASH="$HOME/.local/share/trash"
 export GEMINI="_GEMINI"
 
 
-export WM="niri --session"
+export WM="start-hyprland"

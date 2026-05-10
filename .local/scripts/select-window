@@ -33,5 +33,5 @@ window="$(printf "%s" "$window" | cut -d $'\t' -f2)"
 if [ $isniri = 1 ]; then
     niri msg action focus-window --id "$window"
 else
-    hyprctl dispatch focuswindow address:"${window}"
+    hyprctl dispatch "hl.dsp.focus({window = \"address:${window}\"})"
 fi

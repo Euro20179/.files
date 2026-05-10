@@ -1,5 +1,5 @@
 
-(deflisten workspace `hyprland-bar/scripts/niri-workspace`)
+(deflisten workspace `hyprland-bar/scripts/workspace`)
 (defwidget workspaces []
     (literal :content workspace))
 
@@ -7,6 +7,7 @@
     :initial "initial-value"
     :run-while true
     `date "+%H:%M"`)
+
 (defpoll date :interval "1m"
     :initial "initial-date"
     `date "+%m/%d"`)

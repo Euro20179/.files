@@ -45,12 +45,55 @@
   }
 
   li[class*=messageListItem] {
-    border: 2px outset var(--text-color) !important;
+
+    /* first and last message user sent */
+    /* checks if the message has avatar, and if the next sibling is not a list item without avatar */
+    /* we could just check if the next list item has an avatar, but that wouldn't account for the message before the text box*/
+    // &:has(img[class*=avatar]):has(+ li img[class*=avatar]) {
+    //   border: 2px outset var(--text-color) !important;
+    //   margin-block: 10px !important;
+    // }
+
+      /* first message in chain */
+      &:has(img[class*=avatar]):not(:has(+ li img[class*=avatar])) {
+        border-bottom: none !important;
+        margin-block-start: 10px !important;
+      }
+
+      /* first and only message */
+      &:has(img[class*=avatar]):has(+ li img[class*=avatar]) {
+        margin-block-end: 10px !important;
+      }
+
+      /* middle message in chain */
+      &:not(:has(img[class*=avatar])):not(:has(+ li img[class*=avatar])) {
+        border-top: none !important;
+        border-bottom: none !important;
+      }
+
+      /* last message in chain, and is not the first message */
+      &:not(:has(img[class*=avatar])):has(+ li img[class*=avatar]) {
+        border-top: none !important;
+        margin-block-end: 10px !important;
+      }
+
+      border: 2px outset var(--text-color) !important;
+
+    /*first in a chain of messages*/
+    // &:has(img[class*=avatar]):not(:has(+ li img[class*=avatar])) {
+    //   /* last in the chain, similar logic to first-and-only message */
+    //
+    //   & ~ li:not(:has(img[class*=avatar])){
+    //     border-inline: 2px outset var(--text-color) !important;
+    //   }
+    //
+    //   border: 2px outset var(--text-color) !important;
+    //   border-bottom: none !important;
+    //   margin-block-start: 10px !important;
+    //
+    // }
+
     color: var(--text-color) !important;
-    margin-block: 10px !important;
-    box-shadow: 3px 3px 3px black !important;
-    background: var(--secondary) !important;
-    max-width: max-content !important;
 
     :not([class*=image]) a:not([data-role="img"]) {
       //sassc doesn't like relative colors

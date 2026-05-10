@@ -67,8 +67,8 @@ workspaces() {
             cls="unfocused-workspace"
         fi
 
-        text="$text(box :class \"workspace $cls\" :orientation \"v\""
-        text="$text"'(label :class "'"$cls"'"  :text "'"${wsid2ws[$k]}"'")'
+        text="$text(box :class \"workspace ${cls}\" :orientation \"v\""
+        text="$text"'(label :class "'"$cls"'"  :text "'"${wsid2ws[$k]//[\"\']/}"'")'
 
         i=0
         boxesPerRow=3
@@ -87,7 +87,7 @@ workspaces() {
                 ;;
             *) cls="" ;;
             esac
-            text="$text"'(eventbox :onclick "niri msg action focus-window --id '"${itemADDRS[$i]}"'" (label :class "'"$cls"'" :text "'"${s}"'") )'
+            text="$text"'(eventbox :onclick "niri msg action focus-window --id '"${itemADDRS[$i]//[\'\"]/}"'" (label :class "'"$cls"'" :text "'"${s//[\"\']/}"'") )'
             ((i++))
         done
 

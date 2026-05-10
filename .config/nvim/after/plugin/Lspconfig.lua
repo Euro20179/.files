@@ -68,13 +68,13 @@ local function setupLSP(name, settings)
 
         vim.lsp.completion.enable(true, client.id, buf, {
             autotrigger = true,
-            convert = function(item)
-                return {
-                    abbr = item.label,
-                    kind = kind_icons[kind2name[item.kind]],
-                    abbr_hlgroup = '@' .. string.lower(kind2name[item.kind]),
-                }
-            end
+            -- convert = function(item)
+            --     return {
+            --         abbr = item.label,
+            --         kind = kind_icons[kind2name[item.kind]],
+            --         abbr_hlgroup = '@' .. string.lower(kind2name[item.kind]),
+            --     }
+            -- end
         })
         if client:supports_method('textDocument/foldingRange') then
             local win = vim.api.nvim_get_current_win()

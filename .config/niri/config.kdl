@@ -204,6 +204,8 @@ animations {
 
 binds {
 
+    Mod+XF86AudioMute { spawn "eject" "-T"; }
+
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
@@ -360,8 +362,6 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
-
-    Mod+U { toggle-column-tabbed-display; }
 }
 
 gestures {

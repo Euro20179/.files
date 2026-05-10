@@ -16,7 +16,7 @@ workspaces() {
         name="${mon%%[[:space:]]*}"
         ws="${mon##*[[:space:]]}"
         : "${focused["$name"]=$ws}"
-    done <<<"$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.activeWorkspace.id)"')"
+    done <<<"$(hyprctl monitors -j | jq -r '.[] | "\(.name)\t\(.activeWorkspace.name)"')"
 
     text="(box :space-evenly false :spacing 10 :class \"workspace-container\" :orientation \"v\""
 
@@ -26,7 +26,7 @@ workspaces() {
     for k in "${!occupied[@]}"; do
         mon="${occupied[$k]}"
 
-        itemsOnWorkspace="$(hyprctl clients -j | jq -r '.[] | select(.workspace.id=='"${k}"')|"\(.class)\t\(.address)\t\(.title)"')"
+        itemsOnWorkspace="$(hyprctl clients -j | jq -r '.[] | select(.workspace.name=="'"${k}"'")|"\(.class)\t\(.address)\t\(.title)"')"
         symbolT=""
 
         itemTitles=()

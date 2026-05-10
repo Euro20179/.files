@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 03/29/2026 14:06
+Last Modified 05/10/2026 00:57
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -35,9 +35,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 
         -- vim.api.nvim_set_hl(0, "Normal", { background = "#161b2f" })
-        -- vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
-        -- vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
-        -- vim.api.nvim_set_hl(0, "NormalFloat", { link = "NONE" })
+        vim.api.nvim_set_hl(0, "Normal", { background = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalNC", { background = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { link = "NONE" })
 
         vim.api.nvim_set_hl(0, "@markup.heading.1.delimiter.vimdoc", { })
         vim.api.nvim_set_hl(0, "@markup.heading.2.delimiter.vimdoc", { })
