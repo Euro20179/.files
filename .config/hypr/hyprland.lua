@@ -8,26 +8,26 @@ local submap_reset = "hyprctl dispatch submap reset"
 local mod = "SUPER"
 
 local workspaces = {
-    BracketLeft =  "name:1st",
-    BracketRight =  "name:2nd",
-    Minus =  "name:3rd",
-    Equal =  "name:email",
-    Backslash =  "name:chat",
-    Backspace =  "name:O-2nd",
-    ['9'] =  "name:ootw",
+    BracketLeft =  "1",
+    BracketRight =  "2",
+    Minus =  "3",
+    Equal =  "4",
+    Backslash =  "5",
+    Backspace =  "6",
+    ['9'] =  "7",
 }
 
 local workspace_order = {
     ["DP-1"] = {
-        "name:1st",
-        "name:2nd",
-        "name:3rd",
-        "name:email",
+        "1",
+        "2",
+        "3",
+        "4",
     },
     ["HDMI-A-1"] = {
-        "name:chat",
-        "name:O-2nd",
-        "name:ootw",
+        "5",
+        "6",
+        "7",
     }
 }
 
@@ -65,8 +65,8 @@ end
 
 local function get_next_ws(dir)
     local mon = hl.get_active_monitor().name
-    local cur_ws = hl.get_active_workspace().name
-    local idx = indexOf(workspace_order[mon], 'name:' .. cur_ws) + dir
+    local cur_ws = hl.get_active_workspace().id
+    local idx = indexOf(workspace_order[mon], tostring(cur_ws)) + dir
     if idx < 1 then
         idx = #(workspace_order[mon])
     elseif idx > #(workspace_order[mon]) then
