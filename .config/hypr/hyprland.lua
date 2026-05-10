@@ -222,7 +222,7 @@ mbind("j", function()
     end
 end)
 mbind("k", function()
-    if attempt_refocus({direction = "down"}) == false then
+    if attempt_refocus({direction = "up"}) == false then
         goto_next_ws(-1)
     end
 end)
@@ -262,11 +262,6 @@ end
 
 -- }}}
 
-hl.on("hyprland.start", function()
-    exec "hyprctl setcursor 'ArcStarry-cursors' 24"
-    exec (os.getenv("HOME") .. "/.config/wlinit")
-end)
-
 wsr {
     workspace = "1",
     monitor = "DP-1",
@@ -290,7 +285,7 @@ wsr {
 }
 
 wsr {
-    workspace = "1",
+    workspace = "5",
     monitor = "HDMI-A-1",
     default = true,
     layout = "scrolling",
@@ -298,13 +293,13 @@ wsr {
 }
 
 wsr {
-    workspace = "2",
+    workspace = "6",
     monitor = "HDMI-A-1",
     default_name = "O-2nd"
 }
 
 wsr {
-    workspace = "3",
+    workspace = "7",
     monitor = "HDMI-A-1",
     default_name = "ootw"
 }
@@ -332,4 +327,9 @@ for _, name in pairs({
         float = true
     }
 end
+
+hl.on("hyprland.start", function()
+    exec "hyprctl setcursor 'ArcStarry-cursors' 24"
+    exec (os.getenv("HOME") .. "/.config/wlinit")
+end)
 
