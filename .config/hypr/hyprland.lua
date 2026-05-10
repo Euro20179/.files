@@ -66,11 +66,14 @@ end
 local function get_next_ws(dir)
     local mon = hl.get_active_monitor().name
     local cur_ws = hl.get_active_workspace().id
-    local idx = indexOf(workspace_order[mon], tostring(cur_ws)) + dir
+    local idx = indexOf(workspace_order[mon], tostring(cur_ws))
+    if idx == nil then
+        return tostring(cur_ws + dir)
+    else idx = idx + dir end
     if idx < 1 then
         idx = #(workspace_order[mon])
     elseif idx > #(workspace_order[mon]) then
-        idx = 1
+        return tostring(cur_ws + dir)
     end
     return workspace_order[mon][idx]
 end
@@ -281,7 +284,8 @@ wsr {
 wsr {
     workspace = "4",
     monitor = "DP-1",
-    default_name = "email"
+    default_name = "email",
+    layout = "scrolling"
 }
 
 wsr {
@@ -309,7 +313,7 @@ wr {
     match = {
         class = "org.mozilla.Thunderbird"
     },
-    workspace = "name:email"
+    workspace = "name:email",
 }
 
 for _, name in pairs({
