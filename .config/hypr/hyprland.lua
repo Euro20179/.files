@@ -53,28 +53,21 @@ local function attempt_refocus(focus)
     return cur ~= now
 end
 
-local function attempt_swap(dir)
-    local win = hl.get_active_window()
-    if win == nil then return end
-    local at = win.at
-    hl.dsp.window.swap{direction = dir}
-    local at2 = win.at
-
-    return at['x'] ~= at2['x'] or at['y'] ~= at2['y']
-end
-
 local function get_next_ws(dir)
     local mon = hl.get_active_monitor().name
     local cur_ws = hl.get_active_workspace().id
+
     local idx = indexOf(workspace_order[mon], tostring(cur_ws))
     if idx == nil then
         return tostring(cur_ws + dir)
     else idx = idx + dir end
+
     if idx < 1 then
         idx = #(workspace_order[mon])
     elseif idx > #(workspace_order[mon]) then
         return tostring(cur_ws + dir)
     end
+
     return workspace_order[mon][idx]
 end
 
@@ -92,7 +85,7 @@ end
 
 hl.monitor{
     output = "DP-1",
-    mode = "1920x1080@165",
+    mode = "1920x1080@165.003006",
     position = "0x0",
 }
 
@@ -157,6 +150,8 @@ mbind("XF86AudioMute", partial(hl.exec_cmd, "eject -T"))
 mbind("v", run "scr-wayland")
 mbind("SHIFT+v", run "scr-wayland '' '' 'no-save'")
 
+mbind("F3", run "tv-mode")
+
 -- Audio {{{
 
 local VOLUME_5_LOWER=[[wpctl set-volume "@DEFAULT_AUDIO_SINK@" 5%- && send-volume-notif lower]]
@@ -216,7 +211,7 @@ mbind("b", partial(hl.exec_cmd, "wlr-which-key -k b"))
 -- WM Stuff {{{
 mbind("ALT+R", hl.dsp.exit())
 
-mbind("q", hl.dsp.window.kill())
+mbind("q", hl.dsp.window.close())
 
 mbind("f", hl.dsp.window.fullscreen())
 mbind("space", hl.dsp.window.float{toggle = true})
