@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 05/10/2026 00:57
+Last Modified 05/10/2026 15:26
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -64,6 +64,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "@variable.member", { link = "@variable" })
         vim.api.nvim_set_hl(0, "@variable.builtin", { link = "@variable" })
+
+        vim.api.nvim_set_hl(0, "@keyword.return", { link = "Operator" })
+        vim.api.nvim_set_hl(0, "@keyword.return", { update = true, italic = true })
+        vim.api.nvim_set_hl(0, "@keyword", { italic = true })
 
         vim.api.nvim_set_hl(0, "Boolean", { link = "Number" })
 

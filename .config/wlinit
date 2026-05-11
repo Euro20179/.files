@@ -45,13 +45,13 @@ fcitx5 -d & disown
 # killall hyprland-activity-tracker
 # hyprland-activity-tracker & disown
 
-killall jellyfin-mpv-shim
-jellyfin-mpv-shim & disown
-
 # kilall dvd-auto-play
 # dvd-auto-play & disown
 
-export XDG_CURRENT_DESKTOP=Hyprland
+# export XDG_CURRENT_DESKTOP=Hyprland
 
 eval $CALENDAR &
 $GUIEDITOR $WIKI/TODO.mmfml &
+
+# wlr-randr --output HDMI-A-1 --on
+# wlr-randr --output DP-1 --on

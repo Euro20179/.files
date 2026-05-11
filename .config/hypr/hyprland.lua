@@ -154,6 +154,9 @@ hl.animation {
 
 mbind("XF86AudioMute", partial(hl.exec_cmd, "eject -T"))
 
+mbind("v", run "scr-wayland")
+mbind("SHIFT+v", run "scr-wayland '' '' 'no-save'")
+
 -- Audio {{{
 
 local VOLUME_5_LOWER=[[wpctl set-volume "@DEFAULT_AUDIO_SINK@" 5%- && send-volume-notif lower]]
@@ -235,16 +238,8 @@ mbind("Comma", run "select-window")
 
 mbind("SHIFT+h", hl.dsp.window.swap{direction = "left"})
 mbind("SHIFT+l", hl.dsp.window.swap{direction = "right"})
-mbind("SHIFT+k", function()
-    if not attempt_swap("up") then
-        hl.dispatch(hl.dsp.window.move{workspace = get_next_ws(-1)})
-    end
-end)
-mbind("SHIFT+j", function()
-    if not attempt_swap("down") then
-        hl.dispatch(hl.dsp.window.move{workspace = get_next_ws(1)})
-    end
-end)
+mbind("SHIFT+k", hl.dsp.window.swap{direction = "up"})
+mbind("SHIFT+j", hl.dsp.window.swap{direction = "down"})
 mbind("ALT+h", hl.dsp.window.move{direction = "left"})
 mbind("ALT+l", hl.dsp.window.move{direction = "right"})
 mbind("ALT+k", hl.dsp.window.move{direction = "up"})
