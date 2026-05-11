@@ -53,5 +53,3 @@ fcitx5 -d & disown
 eval $CALENDAR &
 $GUIEDITOR $WIKI/TODO.mmfml &
 
-# wlr-randr --output HDMI-A-1 --on
-# wlr-randr --output DP-1 --on
