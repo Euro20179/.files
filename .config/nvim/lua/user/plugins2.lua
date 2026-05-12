@@ -11,10 +11,7 @@ for _, plug in pairs({
     "gemini",
     "div",
     "find-highlight",
-    "discord",
-    "discord-ui",
     "irc.nvim",
-    "enc-notes"
 }) do
     -- :packadd! = do not source plugin/*
     -- because plug is added to &rtp meaning it will get sourced anyway
@@ -45,7 +42,6 @@ vim.pack.add({
 
     --LSP+DAP{{{
     { src = "https://github.com/b0o/Schemastore.nvim" },
-    { src = "https://github.com/williamboman/mason.nvim" },
     --- }}}
 
     -- Navigation {{{

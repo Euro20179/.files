@@ -31,7 +31,7 @@ else
 	args=(--chooser-file="${out}")
 	# args=(--choosefile="$out")
 fi
-WAYLAND_DISPLAY=wayland-1 $TERMINAL -e yazi "${args[@]}"
+$TERMINAL -e yazi "${args[@]}"
 
 if [ "$save" -eq 1 ] && [ ! -s "$out" ]; then
 	rm "$path"

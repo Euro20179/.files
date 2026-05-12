@@ -101,7 +101,7 @@ setupLSP("zig", {
 })
 
 setupLSP("emmet", {
-    cmd = { "emmet-ls", "--stdio" },
+    cmd = { "emmet-language-server", "--stdio" },
     filetypes = { "html", "css" },
     root_dir = "."
 })

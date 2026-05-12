@@ -19,7 +19,7 @@ background-color=#24273aee
 text-color=#cdd6f4
 
 [urgency=high]
-format=<b>Important</b>\n\n<span size="15pt">%s</span>\n<span size="12pt">%b</span>
+format=<b>Important</b>\n<span size="15pt">%s</span>\n<span size="12pt">%b</span>
 background-color=#e68b69ee
 text-color=#20143e
 ignore-timeout=0

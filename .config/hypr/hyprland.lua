@@ -65,7 +65,7 @@ local function get_next_ws(dir)
     if idx < 1 then
         idx = #(workspace_order[mon])
     elseif idx > #(workspace_order[mon]) then
-        return tostring(cur_ws + dir)
+        return workspace_order[mon][1]
     end
 
     return workspace_order[mon][idx]
@@ -79,6 +79,9 @@ local function run(cmd)
     return partial(hl.exec_cmd, cmd)
 end
 
+---@param key string
+---@param exec function|HL.Dispatcher
+---@param extra HL.BindOptions | nil
 local function mbind(key, exec, extra)
     hl.bind(mod .. " + " .. key, exec, extra)
 end
@@ -96,8 +99,9 @@ hl.monitor{
 
 hl.config {
     general = {
+        allow_tearing = true,
         gaps_in = 0,
-        gaps_out = 0,
+        gaps_out = 5,
         border_size = 1,
         layout = "master",
         col = {
@@ -108,16 +112,19 @@ hl.config {
     decoration = {
         rounding = 5,
         dim_inactive = true,
-        dim_strength = 0.2,
+        dim_strength = 0.15,
         blur = {
             new_optimizations = true,
             xray = false,
-            noise = 0.0,
-            size = 2,
-            passes = 3,
+            noise = 0.1,
+            size = 3,
+            passes = 2,
             special = true,
             popups = true
-        }
+        },
+        shadow = {
+            enabled = false
+        },
     },
     ecosystem = {
         no_update_news = true
@@ -127,7 +134,10 @@ hl.config {
         repeat_delay = 250,
         numlock_by_default = true,
         follow_mouse = 1,
-    }
+    },
+    misc = {
+        render_unfocused_fps = 30,
+    },
 }
 
 hl.animation {
@@ -215,6 +225,7 @@ mbind("q", hl.dsp.window.close())
 
 mbind("f", hl.dsp.window.fullscreen())
 mbind("space", hl.dsp.window.float{toggle = true})
+mbind("SHIFT+p", hl.dsp.window.pin())
 
 mbind("h", hl.dsp.focus{direction = "left"})
 mbind("j", function()
@@ -235,10 +246,15 @@ mbind("SHIFT+h", hl.dsp.window.move{direction = "left"})
 mbind("SHIFT+l", hl.dsp.window.move{direction = "right"})
 mbind("SHIFT+k", hl.dsp.window.move{direction = "up"})
 mbind("SHIFT+j", hl.dsp.window.move{direction = "down"})
-mbind("ALT+h", hl.dsp.window.swap{direction = "left"})
-mbind("ALT+l", hl.dsp.window.swap{direction = "right"})
-mbind("ALT+k", hl.dsp.window.swap{direction = "up"})
-mbind("ALT+j", hl.dsp.window.swap{direction = "down"})
+mbind("SHIFT+ALT+h", hl.dsp.window.swap{direction = "left"})
+mbind("SHIFT+ALT+l", hl.dsp.window.swap{direction = "right"})
+mbind("SHIFT+ALT+k", hl.dsp.window.swap{direction = "up"})
+mbind("SHIFT+ALT+j", hl.dsp.window.swap{direction = "down"})
+
+mbind("ALT+h", hl.dsp.window.resize{x = "-20", y = 0, relative = true}, {repeating = true})
+mbind("ALT+l", hl.dsp.window.resize{x = "20", y = 0, relative = true}, {repeating = true})
+mbind("ALT+k", hl.dsp.window.resize{x = "0", y = 20, relative = true}, {repeating = true})
+mbind("ALT+j", hl.dsp.window.resize{x = "0", y = -20, relative = true}, {repeating = true})
 
 mbind("period", hl.dsp.focus{monitor = "+1"})
 mbind("SHIFT+period", hl.dsp.window.move({monitor = "+1"}))
@@ -247,6 +263,7 @@ mbind("mouse:272", hl.dsp.window.drag(),   { mouse = true })
 mbind("mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 mbind("ALT+Semicolon", run "lock")
+mbind("Apostrophe", run "linkding-cli search")
 
 for key, ws_name in pairs(workspaces) do
     mbind(key, hl.dsp.focus{ workspace = ws_name })
@@ -299,11 +316,29 @@ wsr {
 }
 
 wr {
+    name = "osu-on-first",
+    match = {
+        class = 'osu!'
+    },
+    workspace = '1',
+}
+
+wr {
     name = "email",
     match = {
         class = "org.mozilla.Thunderbird"
     },
-    workspace = "name:email",
+    workspace = "4",
+}
+
+wr {
+    name = "pinned-decor",
+    match = {
+        pin = true,
+    },
+    no_dim = true,
+    rounding = 0,
+    border_color = "rgb(ffff00)"
 }
 
 for _, name in pairs({
@@ -311,7 +346,6 @@ for _, name in pairs({
     "nvim-float",
     "pick-reaction-image",
     "goker",
-    "osu!"
 }) do
     wr {
         name = name,
@@ -327,3 +361,6 @@ hl.on("hyprland.start", function()
     exec (os.getenv("HOME") .. "/.config/wlinit")
 end)
 
+hl.on("window.urgent", function(win)
+    exec ('notify-send "alert" "' .. win.title:gsub('"', '') .. '"')
+end)
