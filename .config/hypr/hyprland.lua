@@ -228,16 +228,8 @@ mbind("space", hl.dsp.window.float{toggle = true})
 mbind("SHIFT+p", hl.dsp.window.pin())
 
 mbind("h", hl.dsp.focus{direction = "left"})
-mbind("j", function()
-    if attempt_refocus({direction = "down"}) == false then
-        goto_next_ws(1)
-    end
-end)
-mbind("k", function()
-    if attempt_refocus({direction = "up"}) == false then
-        goto_next_ws(-1)
-    end
-end)
+mbind("j", hl.dsp.focus{direction = "down"})
+mbind("k", hl.dsp.focus{direction = "up"})
 mbind("l", hl.dsp.focus{direction = "right"})
 
 mbind("Comma", run "select-window")

@@ -1,5 +1,5 @@
 --[=[
-Last Modified 12/19/2025 07:43
+Last Modified 05/12/2026 11:54
 Description: adds the :WrapTry command which wraps the current line in a try block
              the variables b:wraptry_tryword and b:wraptry_catchWord should be
              set in an ftplugin to specify how the try should happen

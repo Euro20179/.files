@@ -80,6 +80,7 @@ set nu rnu
 set autoindent shiftwidth=4 tabstop=4 expandtab
 
 set noswapfile
+set undofile
 
 set foldmethod=marker
 
@@ -209,6 +210,7 @@ xnoremap <leader>p       "+p
 "}}}
 
 "indents {{{
+nnoremap <leader>= <CMD>keepmarks norm gg=G`'<CR>
 xnoremap < <gv
 xnoremap > >gv
 "}}}

@@ -2,8 +2,6 @@ vim.fn.setenv("NVIM", vim.v.servername)
 
 vim.opt.scbk = 100
 
-vim.opt.undofile = true
-
 vim.opt.fillchars = { msgsep = "‾" }
 
 vim.opt.winborder = "single"

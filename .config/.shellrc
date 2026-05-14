@@ -146,7 +146,6 @@ alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'
 # {{{
 alias nvim=$EDITOR
 alias sxiv=swiv
-alias "vim=$EDITOR"
 alias 'ls=lsd'
 alias rm="trash"
 alias "bc=bc -l"

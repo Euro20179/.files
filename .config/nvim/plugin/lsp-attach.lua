@@ -1,5 +1,5 @@
 --[==[
-Last Modified 05/01/2026 10:23
+Last Modified 05/14/2026 11:32
 Description: binds lsp mappings, and various other lsp stuff
 --]==]
 local conf_group = vim.api.nvim_create_augroup("config.lsp-attach", {
@@ -155,7 +155,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end, { desc = "[LSP] Go to next diagnostic error" }
             },
             {
-                "<leader>=",
+                "glf",
                 function()
                     vim.lsp.buf.format { async = true }
                 end, { desc = "[LSP] Format code" }
