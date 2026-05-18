@@ -8,6 +8,7 @@ out="$5"
 
 tmp=$(wl-paste)
 wl-copy "${path##*/}"
+notify-send "Extension" "${path##*.}"
 
 declare -a args
 

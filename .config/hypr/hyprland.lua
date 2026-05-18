@@ -222,6 +222,7 @@ mbind("b", partial(hl.exec_cmd, "wlr-which-key -k b"))
 mbind("ALT+R", hl.dsp.exit())
 
 mbind("q", hl.dsp.window.close())
+mbind("SHIFT+q", hl.dsp.window.close())
 
 mbind("f", hl.dsp.window.fullscreen())
 mbind("space", hl.dsp.window.float{toggle = true})

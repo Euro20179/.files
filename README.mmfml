@@ -13,13 +13,13 @@ The one currently in use is `minimalistic/hashtags-black.png`
 
 ---------------------------------- Programs -----------------------------------
 
-wm ............................... niri | https://github.com/YaLTeR/niri |
+wm ............................... hyprland | https://github.com/hyprwm/hyprland |
 
-bar .............................. waybar | https://github.com/Alexays/Waybar/ |
+bar .............................. eww | https://github.com/elkowar/eww |
 
 $SHELL ........................... zsh | https://www.zsh.org/ |
 
-$BROWSER ......................... glide | https://github.com/glide-browser/glide |
+$BROWSER ......................... librewolf | https://librewolf.net | 
 
 $EDITOR .......................... neovim | https://neovim.io |
 
@@ -42,7 +42,6 @@ Emoji selector | ./Pictures/system-images/dotfiles-emoji-selector.png |
 I have 2 mirrors:
     1. | https://codeberg.org/Euro2017/.files |
     2. | https://github.com/euro20179/.files  |
-
 
 ‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗
 

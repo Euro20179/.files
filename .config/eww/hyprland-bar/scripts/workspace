@@ -65,7 +65,7 @@ workspaces() {
         fi
 
         text="$text(box :class \"workspace $cls\" :orientation \"v\""
-        text="$text"'(label :class "'"$cls"'"  :text "'"${k}"'")'
+        text="$text"'(label :class "'"${cls//[\"\']/}"'"  :text "'"${k//[\"\']/}"'")'
 
         i=0
         boxesPerRow=3
@@ -84,7 +84,7 @@ workspaces() {
                 ;;
             *) cls="" ;;
             esac
-            text="$text"'(eventbox :onclick "hyprctl dispatch focuswindow address:'"${itemADDRS[$i]}"'" (label :class "'"$cls"'" :text "'"${s}"'") )'
+            text="$text"'(eventbox :onclick "hyprctl dispatch focuswindow address:'"${itemADDRS[$i]//[\"\']/}"'" (label :class "'"${cls//[\"\']/}"'" :text "'"${s//[\"\']/}"'") )'
             ((i++))
         done
 
