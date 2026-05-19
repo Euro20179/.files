@@ -224,7 +224,30 @@ mbind("ALT+R", hl.dsp.exit())
 mbind("q", hl.dsp.window.close())
 mbind("SHIFT+q", hl.dsp.window.close())
 
-mbind("f", hl.dsp.window.fullscreen())
+mbind("SHIFT+f", hl.dsp.window.fullscreen())
+local undo_fullscreen = {}
+mbind("f", function()
+    local size = hl.get_active_window().size
+
+    local prevstate = undo_fullscreen[hl.get_active_window().address]
+    if prevstate ~= nil and prevstate.fullscreen == true then
+        prevstate.fullscreen = false
+        hl.dispatch(hl.dsp.window.resize{x = prevstate.size.x, y = prevstate.size.y})
+        return
+    end
+
+    undo_fullscreen[hl.get_active_window().address] = {
+        fullscreen = true,
+        size = size
+    }
+
+    local prevsize = { x = 0, y = 0 }
+    while size["x"] ~= prevsize["x"] do
+        prevsize = size
+        hl.dispatch(hl.dsp.window.resize{x = "20", y = 0, relative = true})
+        size = hl.get_active_window().size
+    end
+end)
 mbind("space", hl.dsp.window.float{toggle = true})
 mbind("SHIFT+p", hl.dsp.window.pin())
 
