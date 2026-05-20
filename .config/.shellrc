@@ -117,6 +117,8 @@ alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 alias te=trash-empty
 alias o=linkhandler
 
+alias viewing='aio s3 @viewing printf "{info.En_Title}'$'\t''{info.Location}" | column -t -s "'$'\t''"'
+
 
 alias 'plotdu=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotdu'
 alias 'plotpkgs=BROWSER=$BROWSER_LITE $HOME/Programs/Coding\ Projects/Python_things/plot*/plotpkgs'

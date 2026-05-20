@@ -210,7 +210,7 @@ xnoremap <leader>p       "+p
 "}}}
 
 "indents {{{
-nnoremap <leader>= <CMD>keepmarks norm gg=G`'<CR>
+nnoremap <leader>= <CMD>keepmarks keepjumps norm magg=G`a<CR>
 xnoremap < <gv
 xnoremap > >gv
 "}}}
