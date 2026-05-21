@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 05/20/2026 11:34
+Last Modified 05/20/2026 22:56
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -73,7 +73,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         -- vim.api.nvim_set_hl(0, "Normal", { fg="#eeeeee"})
         vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#f38ba8" })
-        vim.api.nvim_set_hl(0, "Comment", {fg = "#589353", italic = true})
+        local str = vim.api.nvim_get_hl(0, {})["String"]
+        str.dim = true
+        vim.api.nvim_set_hl(0, "Comment", str)
 
         -- vim.api.nvim_set_hl(0, "ColorColumn", { link = "DiagnosticVirtualTextWarn" })
 

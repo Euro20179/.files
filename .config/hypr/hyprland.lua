@@ -216,6 +216,7 @@ mbind("SHIFT+i", run "foot -a nvim-float nvim-calc")
 mbind("c", run "d-calc")
 
 mbind("r", run "os-menu")
+mbind("y", run "search < /dev/null > /dev/null 2>&1")
 -- }}}
 
 mbind("g", partial(hl.exec_cmd, "wlr-which-key -k g"))

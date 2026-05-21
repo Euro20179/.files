@@ -1,1 +1,5 @@
-QT_QPA_PLATFORMTHEME=gtk3 nheko
+#!/bin/sh
+#QT_QPA_PLATFORMTHEME=gtk3 nheko
+
+exec neochat
+
