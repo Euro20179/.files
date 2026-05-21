@@ -1,6 +1,6 @@
 --[=[
 Author: euro
-Last Modified 05/20/2026 22:56
+Last Modified 05/20/2026 23:01
 
 Description: simply a plugin that sets the colorscheme
 --]=]
@@ -57,7 +57,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
             "@variable",
             "@function.call",
             "@function.method.call",
-            "@lsp.typemod.function.defaultLibrary"
+            "@lsp.typemod.function.defaultLibrary",
+            "@punctuation.delimiter",
         }) do
             vim.api.nvim_set_hl(0, toclr, {})
         end
@@ -72,7 +73,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "Boolean", { link = "Number" })
 
         -- vim.api.nvim_set_hl(0, "Normal", { fg="#eeeeee"})
-        vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#f38ba8" })
         local str = vim.api.nvim_get_hl(0, {})["String"]
         str.dim = true
         vim.api.nvim_set_hl(0, "Comment", str)
