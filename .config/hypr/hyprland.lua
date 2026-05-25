@@ -162,6 +162,7 @@ hl.bind("Print", function()
 end)
 mbind("v", run "scr-wayland")
 mbind("SHIFT+v", run "scr-wayland '' '' 'no-save'")
+mbind("ALT+v", run "clip-send")
 
 mbind("F3", run "tv-mode")
 

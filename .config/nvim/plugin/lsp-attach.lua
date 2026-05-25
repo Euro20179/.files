@@ -1,5 +1,5 @@
 --[==[
-Last Modified 05/14/2026 11:32
+Last Modified 05/21/2026 12:29
 Description: binds lsp mappings, and various other lsp stuff
 --]==]
 local conf_group = vim.api.nvim_create_augroup("config.lsp-attach", {
@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     end
                 })
             end },
+            { "gl=", vim.lsp.buf.format, { desc = "[LSP] format" }},
             { "glc", vim.lsp.document_color.color_presentation, { desc = "[LSP] Color representation" } },
             { "gls",  "gO",  { desc = "[LSP] [QF] Document symbols", remap = true } },
             { "glw", vim.lsp.buf.workspace_symbol, { desc = "[LSP] [QF] Workspace symbols" } },

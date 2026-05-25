@@ -115,6 +115,7 @@ alias u="paru; autoremove"
 alias conf=open-config-from-vw.lua
 alias autoremove='pacman -Qdttq | sudo pacman -Rs - || echo Nothing to remove'
 alias te=trash-empty
+alias cte="trash-empty --trash-dir=$CLOUD/.Trash-1000"
 alias o=linkhandler
 
 alias viewing='aio s3 @viewing printf "{info.En_Title}'$'\t''{info.Location}" | column -t -s "'$'\t''"'

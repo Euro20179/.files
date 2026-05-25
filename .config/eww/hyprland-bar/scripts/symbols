@@ -3,6 +3,7 @@
 declare -A class2symbol=(
     [foot]=
     [nheko]=󰊌
+    [org.kde.neochat]=󰊌
     [librewolf]=
     [glide-glide]=
     [osu!]=󰎄!
