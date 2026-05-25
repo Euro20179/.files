@@ -1,0 +1,72 @@
+#!/bin/python
+
+import time
+import socket
+import sys
+import os
+
+ip = sys.argv[1]
+FROM = sys.argv[2]
+file = sys.argv[3]
+
+trueFile = file.split(":")[-1]
+
+with open(file, "br") as f:
+    fileData = f.read()
+
+size = os.path.getsize(file)
+
+initialize_packet = f"120 {FROM} {size} {trueFile}"
+
+def send():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((ip, 59))
+        s.sendall(bytes(initialize_packet, "utf-8"))
+        data = s.recv(1024)
+        if not data.startswith(b"121"):
+            print(data)
+            exit(1)
+        INCSIZE = 1024 * 100
+        sent = 0
+        i = INCSIZE
+        recved = 0
+        while sent < size:
+            while True:
+                try:
+                    data = s.recv(4, socket.MSG_PEEK | socket.MSG_DONTWAIT)
+                except Exception:
+                    break
+                if len(data) == 4:
+                    data = s.recv(4)
+                    recved = int.from_bytes(data, byteorder='big')
+                    print(f"Recieved {recved}/{size}")
+                    if recved > size:
+                        print("ERR ack >= size")
+                        return
+                elif len(data) > 0:
+                    print("bad stuff", len(data), data)
+                else: break
+            print(f"Sent {i}/{size}")
+            s.sendall(fileData[sent:i])
+            sent = i
+            i += INCSIZE
+        print(sent, size)
+        while recved < size:
+            try:
+                data = s.recv(4, socket.MSG_PEEK | socket.MSG_DONTWAIT)
+            except BlockingIOError as e:
+                print(e)
+            except Exception as e:
+                print(e)
+            if len(data) == 4:
+                data = s.recv(4)
+                recved = int.from_bytes(data, byteorder='big')
+                print(f"Recieved {recved}/{size}")
+                if recved > size:
+                    print("ERR ack >= size")
+                    return
+            elif len(data) > 0:
+                print("bad stuff", len(data), data)
+        s.sendall(bytes("%c%c%032lu" %(3 + 0x30, 48, size), "utf-8"))
+
+send()
