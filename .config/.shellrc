@@ -135,7 +135,7 @@ alias stockrt='nvim +StockRT ~/Documents/stocks'
 config () {
     [ -n "$*" ] && {
         git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME "$@"
-    } || git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME difftool
+    }
 }
 
 alias 'lines=tokei | awk "/Total/{print \$3}" | tail -n1'

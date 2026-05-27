@@ -9,64 +9,55 @@ ip = sys.argv[1]
 FROM = sys.argv[2]
 file = sys.argv[3]
 
-trueFile = file.split(":")[-1]
-
-with open(file, "br") as f:
-    fileData = f.read()
+file, trueFile = file.split(":")
 
 size = os.path.getsize(file)
 
 initialize_packet = f"120 {FROM} {size} {trueFile}"
 
+def recvack(conn: socket.socket):
+    while True:
+        try:
+            data = conn.recv(4, socket.MSG_PEEK | socket.MSG_DONTWAIT)
+        except Exception:
+            return 0
+        if len(data) == 4:
+            data = conn.recv(4)
+            return int.from_bytes(data, byteorder='big')
+        elif len(data) > 0:
+            print("bad stuff", len(data), data, file=sys.stderr)
+        else: return 0
+
 def send():
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((ip, 59))
-        s.sendall(bytes(initialize_packet, "utf-8"))
-        data = s.recv(1024)
-        if not data.startswith(b"121"):
-            print(data)
-            exit(1)
-        INCSIZE = 1024 * 100
-        sent = 0
-        i = INCSIZE
-        recved = 0
-        while sent < size:
-            while True:
-                try:
-                    data = s.recv(4, socket.MSG_PEEK | socket.MSG_DONTWAIT)
-                except Exception:
-                    break
-                if len(data) == 4:
-                    data = s.recv(4)
-                    recved = int.from_bytes(data, byteorder='big')
-                    print(f"Recieved {recved}/{size}")
-                    if recved > size:
-                        print("ERR ack >= size")
-                        return
-                elif len(data) > 0:
-                    print("bad stuff", len(data), data)
-                else: break
-            print(f"Sent {i}/{size}")
-            s.sendall(fileData[sent:i])
-            sent = i
-            i += INCSIZE
-        print(sent, size)
-        while recved < size:
-            try:
-                data = s.recv(4, socket.MSG_PEEK | socket.MSG_DONTWAIT)
-            except BlockingIOError as e:
-                print(e)
-            except Exception as e:
-                print(e)
-            if len(data) == 4:
-                data = s.recv(4)
-                recved = int.from_bytes(data, byteorder='big')
-                print(f"Recieved {recved}/{size}")
+    print("\x1b[0H\x1b[2J", end="")
+    with open(file, "br") as f:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect((ip, 59))
+            s.sendall(bytes(initialize_packet, "utf-8"))
+            data = s.recv(1024)
+            if not data.startswith(b"121"):
+                print(data)
+                exit(1)
+            BLOCKSIZE = 1024 * 100
+            sent = 0
+            recved = 0
+            while sent < size:
+                newack = recvack(s)
+                if newack > 0:
+                    recved = newack
+                print(f"\x1b[1;0H\x1b[2KRecieved {recved}/{size} ({recved / size * 100}%)")
                 if recved > size:
-                    print("ERR ack >= size")
+                    print("\x1b[3;0HERR ack >= size")
                     return
-            elif len(data) > 0:
-                print("bad stuff", len(data), data)
-        s.sendall(bytes("%c%c%032lu" %(3 + 0x30, 48, size), "utf-8"))
+                print(f"\x1b[2;0H\x1b[2KSent {sent}/{size} ({sent / size * 100}%)")
+                new_bytes = f.read(BLOCKSIZE)
+                s.sendall(new_bytes)
+                sent += len(new_bytes)
+            print(sent, size)
+            while recved < size:
+                newack = recvack(s)
+                if newack > 0:
+                    recved = newack
+            s.sendall(bytes("%c%c%032lu" %(3 + 0x30, 48, size), "utf-8"))
 
 send()
