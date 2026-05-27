@@ -1,4 +1,5 @@
 #!/bin/python
+import shlex
 import sys
 import fnmatch
 import socket
@@ -26,6 +27,29 @@ netconfig = config.get("network", {
     "blocksize": 5
 })
 
+filesystem = config.get("filesystem", {})
+
+if downloads := filesystem.get("downloads"):
+    download_dir = downloads
+elif xdg_downloads := os.getenv("XDG_DOWNLOAD_HOME"):
+    download_dir = xdg_downloads
+elif home := os.getenv("HOME"):
+    download_dir = home + "/Downloads"
+elif user := os.getenv("USER"):
+    download_dir = "/home/" + user + "/Downloads"
+else:
+    print("No downloads dir")
+    exit(1)
+
+chownas = filesystem.get("chown")
+
+if not os.path.exists(download_dir):
+    os.mkdir(download_dir)
+
+if chownas:
+    os.chown(download_dir, *chownas)
+
+
 def send(conn: socket.socket, data: bytes, reprval = None):
     conn.sendall(data)
     text = f"> {data}"
@@ -33,24 +57,37 @@ def send(conn: socket.socket, data: bytes, reprval = None):
         text += f" ({reprval})"
     print(text, file=sys.stderr)
 
-def handle_file_send_request(conn: socket.socket, req: bytes):
-    print(req)
-    _, _, fsize, *fname = req.split(b" ")
+def handle_file_send_request(conn: socket.socket, addr: str, req: bytes):
+    _, user, fsize, *fname = req.split(b" ")
     fname = " ".join([s.decode("utf-8") for s in fname]).encode("utf-8")
     if fname[0] == '"':
         fname = fname[1:-1]
     fsize = int(fsize.decode('utf-8'))
     fname = fname.decode("utf-8")
+    user = user.decode('utf-8')
     print(f"< {req.decode('utf-8')}", file=sys.stderr)
     send(conn, b"121 euro@barney.local 0")
     blocksize = 1024 * 5
     recved = 0
-    with open(fname, "wb") as f:
+    fpath = f'{download_dir}/DCC-FROM-{user}/{fname}'
+    if not os.path.exists(fpath):
+        os.mkdir(os.path.dirname(fpath))
+        if chownas:
+            os.chown(os.path.dirname(fpath), *chownas)
+    with open(fpath, "wb") as f:
+        try:
+            hooks = config.get("hooks", {})
+            if cmd := hooks.get("onreceive", ""):
+                os.system(cmd.format(user=shlex.quote(user), fname=shlex.quote(fname), fsize=shlex.quote(str(fsize))))
+        except Exception:
+            pass
         while recved < fsize:
             req = conn.recv(blocksize)
             recved += len(req)
             f.write(req)
             send(conn, recved.to_bytes(4, byteorder="big"), recved)
+    if chownas:
+        os.chown(fpath, *chownas)
 
 # def handle_chat_request(conn: socket.socket, req: bytes):
 #     print(f"< {req.decode('utf-8')}", file=sys.stderr)
@@ -82,6 +119,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if not is_name_and_ip_whitelisted(name.decode("utf-8"), addr[0]):
                 print("not whitelisted")
             elif req_type == b"120":
-                handle_file_send_request(conn, req)
+                handle_file_send_request(conn, addr[0], req)
             elif req_type == b"100":
                 handle_chat_request(conn, req)
