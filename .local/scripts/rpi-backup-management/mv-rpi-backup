@@ -5,7 +5,7 @@
     It should keep a balance of 2 unique backups per location (the backups drive having the older backups)
 "
 
-backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
+backups=$(ls -1 "$CLOUD/backups/rpi-backup-"*)
 
 #we only want to move the oldest backup if there are more than 2 backups
 [ "$(wc -l <<< "$backups")" -lt 3 ] && {
@@ -14,10 +14,10 @@ backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
 }
 
 while [ "$(wc -l <<< "$backups")" -ge 3 ]; do
-    oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "$CLOUD/COLD-STORAGE/backups" "rpi-backup-" ".ext4")"
+    oldest_file="$("$HOME"/.local/scripts/rpi-backup-management/find-oldest-file-by-datets "$CLOUD/backups" "rpi-backup-" ".ext4")"
 
     echo "MOVING OLDEST: $oldest_file"
 
-    mv "$CLOUD/COLD-STORAGE/backups/$oldest_file" /mnt/backups/
-    backups=$(ls -1 "$CLOUD/COLD-STORAGE/backups/rpi-backup-"*)
+    mv "$CLOUD/backups/$oldest_file" /mnt/backups/
+    backups=$(ls -1 "$CLOUD/backups/rpi-backup-"*)
 done

@@ -217,6 +217,7 @@ mbind("SHIFT+i", run "foot -a nvim-float nvim-calc")
 mbind("c", run "d-calc")
 
 mbind("r", run "os-menu")
+mbind("Slash", run "printf \"\" | rofi -theme cat-macchiato-dmenu-center -dmenu -p \"command\" | bash | wl-copy -n")
 mbind("y", run "search < /dev/null > /dev/null 2>&1")
 -- }}}
 

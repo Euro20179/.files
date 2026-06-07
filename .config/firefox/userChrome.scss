@@ -49,12 +49,14 @@ hbox.titlebar-buttonbox-container {
 /* END }}} */
 
 /* hide basically everything but omnibar {{{ */
+/*
 #back-button,
 #forward-button,
 #alltabs-button,
 toolbaritem[widget-type="custom"] {
   display: none;
 }
+*/
 /* END }}}*/
 
 /* bottom address bar hack {{{*/

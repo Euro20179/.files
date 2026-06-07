@@ -48,7 +48,7 @@
         (workspaces)
         (scaler :label "" :temp-source "${round(EWW_TEMPS["K10TEMP_TCTL"], 0)}")
         (scaler :label "󰍹" :temp-source "${round(EWW_TEMPS["AMDGPU_EDGE"], 0)}")
-        (scaler :label "" :temp-source {round(EWW_RAM["used_mem_perc"], 1)} :class "bordered")
+        (scaler :label "󰍛" :temp-source {round(EWW_RAM["used_mem_perc"], 1)} :class "bordered")
         (scaler :label "" :temp-source "${round(home-df, 1)}")
         (scaler :label "" :temp-source "${round(cloud-df, 1)}")
         (scaler :label "󰁯" :temp-source "${round(backups-df, 1)}" :class "bordered")

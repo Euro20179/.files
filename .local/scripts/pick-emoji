@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat $XDG_DOCUMENTS_HOME/symbol-pages/* |
+cat $XDG_DOCUMENTS_DIR/symbol-pages/* |
     rofi -dmenu -theme cat-macchiato -matching regex -i|
     cut -f1 |
     wl-copy -n
