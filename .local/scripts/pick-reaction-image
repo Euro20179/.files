@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ -t 1 ]; then
-    find "${XDG_PICTURES_HOME}"/reaction-images/ -type f \
+    find "${XDG_PICTURES_DIR}"/reaction-images/ -type f \
         | cut -d/ -f6 \
-        | fzf --preview="chafa -s \${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES} \${XDG_PICTURES_HOME}/reaction-images/{}" \
-        | xargs -0 printf "%s/reaction-images/%s" "$XDG_PICTURES_HOME"  \
+        | fzf --preview="chafa -s \${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES} \${XDG_PICTURES_DIR}/reaction-images/{}" \
+        | xargs -0 printf "%s/reaction-images/%s" "$XDG_PICTURES_DIR"  \
         | head -c -1 \
         | sed -n 's/\(.*\)/file:\/\/\1/p' \
         | xargs wl-copy -t "text/uri-list"
