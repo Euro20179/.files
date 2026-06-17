@@ -53,3 +53,5 @@ fcitx5 -d & disown
 eval $CALENDAR &
 $GUIEDITOR $WIKI/TODO.mmfml &
 
+killall xdg-desktop-portal
+/usr/lib/xdg-desktop-portal & disown
