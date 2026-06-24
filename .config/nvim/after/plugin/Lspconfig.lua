@@ -62,7 +62,6 @@ local function setupLSP(name, settings)
 
     settings.on_attach = function(client, buf)
         vim.bo.completeopt = "menuone,noselect,popup,preview,preinsert"
-        vim.keymap.set("i", "<c-n>", "<c-x><c-o>", { buffer = true })
         vim.api.nvim_set_hl(0, "PreInsert", { link = "Comment" })
         vim.o.pumborder = 'rounded'
 

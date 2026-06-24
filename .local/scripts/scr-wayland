@@ -12,7 +12,7 @@ fi | ffmpeg -i - -c:v "${image_lib}" -f image2pipe - | wl-copy -t image/png
 
 year="$(date +%Y)"
 
-t="$XDG_PICTURES_HOME/screenshots/$year"
+t="$XDG_PICTURES_DIR/screenshots/$year"
 ! [ -d "$t" ] && mkdir -p "$t"
 t="${t}/Screenshot_${USER}-$(uname)_$(date +%Y%m%d-%H%M%S).png"
 wl-paste > "$t"

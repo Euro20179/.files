@@ -284,7 +284,7 @@ mbind("SHIFT+period", hl.dsp.window.move({monitor = "+1"}))
 mbind("mouse:272", hl.dsp.window.drag(),   { mouse = true })
 mbind("mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-mbind("ALT+Semicolon", run "lock")
+-- mbind("ALT+Semicolon", run "lock")
 mbind("Apostrophe", run "linkding-cli search")
 
 for key, ws_name in pairs(workspaces) do
