@@ -220,6 +220,11 @@ setupLSP("lemminx", {
     filetypes = { "xml", "xslt" }
 })
 
+setupLSP("kotlin", {
+    cmd = { "sh", "-c", [[JAVA_HOME=/usr/lib/jvm/java-21-openjdk kotlin-language-server 2> /dev/null]] },
+    filetypes = { "kotlin" }
+})
+
 
 setupLSP("vimls", {
     cmd = { "vim-language-server", "--stdio" },
