@@ -1,38 +1,38 @@
 @import "../COMMON/colors.scss";
 
 /* small topbar hack  {{{*/
-#nav-bar {
-  height: fit-content;
-}
-
-#urlbar-container {
-  margin: 0 !important;
-  min-height: 0 !important;
-  height: fit-content !important;
-  align-self: center !important;
-}
-
-moz-urlbar[focused] #urlbar-searchmode-switcher {
-  height: 100% !important;
-}
-
-tab[selected="true"] vbox.tab-background {
-  border: 1px solid $blue !important;
-
-  --ts-time: 150ms;
-  transition: background var(--ts-time) linear,
-    border-color var(--ts-time) linear;
-}
-
-tab:not([selected="true"]) vbox.tab-background {
-  border: none !important;
-  border-color: transparent !important;
-}
-
-toolbaritem,
-toolbarbutton {
-  height: fit-content;
-}
+// #nav-bar {
+//   height: fit-content;
+// }
+//
+// #urlbar-container {
+//   margin: 0 !important;
+//   min-height: 0 !important;
+//   height: fit-content !important;
+//   align-self: center !important;
+// }
+//
+// moz-urlbar[focused] #urlbar-searchmode-switcher {
+//   height: 100% !important;
+// }
+//
+// tab[selected="true"] vbox.tab-background {
+//   border: 1px solid $blue !important;
+//
+//   --ts-time: 150ms;
+//   transition: background var(--ts-time) linear,
+//     border-color var(--ts-time) linear;
+// }
+//
+// tab:not([selected="true"]) vbox.tab-background {
+//   border: none !important;
+//   border-color: transparent !important;
+// }
+//
+// toolbaritem,
+// toolbarbutton {
+//   height: fit-content;
+// }
 
 /* END }}}*/
 

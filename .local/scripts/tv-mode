@@ -12,7 +12,7 @@ set.wayland() {
         wlr-randr --output DP-1 --pos 0,0
         wlr-randr --output HDMI-A-1 --pos 1920,0
         rm "$state_file"
-        killall Switchfin
+        killall gamescope
         restart-waybar
     else
         wlr-randr --output DP-2 --on
@@ -21,7 +21,7 @@ set.wayland() {
         sleep 1
         pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
         touch "$state_file"
-        flatpak run fun.dragonfly.switchfin & disown
+        gamescope -w 1920 -h 1080 -e steam & disown
     fi
 }
 
@@ -42,7 +42,7 @@ set.hyprland() {
         hyprctl keyword monitor DP-1,1920x1080@165,0x790,1
         hyprctl keyword monitor DP-2,disable
         rm "$state_file"
-        killall Switchfin
+        killall steam
         restart-waybar
     else
         notify-send -c tv-mode "TV MODE" "ON"
@@ -60,8 +60,7 @@ set.hyprland() {
         hyprctl keyword monitor DP-1,disable
         hyprctl keyword monitor HDMI-A-1,disable
         touch "$state_file"
-        flatpak run fun.dragonfly.switchfin & disown
-        # restart-wallpaper
+        gamescope  -w 1920 -h 1080 -e -- steam & disown
     fi
 }
 

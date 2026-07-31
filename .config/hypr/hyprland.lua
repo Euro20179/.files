@@ -264,8 +264,20 @@ mbind("l", hl.dsp.focus{direction = "right"})
 
 mbind("Comma", run "select-window")
 
-mbind("SHIFT+h", hl.dsp.window.move{direction = "left"})
-mbind("SHIFT+l", hl.dsp.window.move{direction = "right"})
+mbind("SHIFT+h", function()
+    if hl.get_active_workspace().tiled_layout == "master" then
+        hl.dispatch(hl.dsp.layout("addmaster"))
+    else
+        hl.dispatch(hl.dsp.window.move{direction = "left"})
+    end
+end)
+mbind("SHIFT+l", function()
+    if hl.get_active_workspace().tiled_layout == "master" then
+        hl.dispatch(hl.dsp.layout("removemaster"))
+    else
+        hl.dispatch(hl.dsp.window.move{direction = "right"})
+    end
+end)
 mbind("SHIFT+k", hl.dsp.window.move{direction = "up"})
 mbind("SHIFT+j", hl.dsp.window.move{direction = "down"})
 mbind("SHIFT+ALT+h", hl.dsp.window.swap{direction = "left"})
@@ -378,11 +390,16 @@ for _, name in pairs({
     }
 end
 
+wr {
+    name = "steam Big Picture",
+    match = {
+        title = "Steam Big Picture Mode"
+    },
+    fullscreen = true,
+    workspace = "1"
+}
+
 hl.on("hyprland.start", function()
     exec "hyprctl setcursor 'ArcStarry-cursors' 24"
     exec (os.getenv("HOME") .. "/.config/wlinit")
-end)
-
-hl.on("window.urgent", function(win)
-    exec ('notify-send "alert" "' .. win.title:gsub('"', '') .. '"')
 end)
