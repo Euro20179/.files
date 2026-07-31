@@ -271,6 +271,7 @@ mbind("SHIFT+h", function()
         hl.dispatch(hl.dsp.window.move{direction = "left"})
     end
 end)
+
 mbind("SHIFT+l", function()
     if hl.get_active_workspace().tiled_layout == "master" then
         hl.dispatch(hl.dsp.layout("removemaster"))
@@ -278,6 +279,13 @@ mbind("SHIFT+l", function()
         hl.dispatch(hl.dsp.window.move{direction = "right"})
     end
 end)
+
+mbind("SHIFT+m", function()
+    if hl.get_active_workspace().tiled_layout == "master" then
+        hl.dispatch(hl.dsp.layout("swapwithmaster"))
+    end
+end)
+
 mbind("SHIFT+k", hl.dsp.window.move{direction = "up"})
 mbind("SHIFT+j", hl.dsp.window.move{direction = "down"})
 mbind("SHIFT+ALT+h", hl.dsp.window.swap{direction = "left"})
