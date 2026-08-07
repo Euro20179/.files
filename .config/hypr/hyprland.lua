@@ -107,20 +107,16 @@ hl.config {
         col = {
             inactive_border = "rgba(00000000)",
             active_border = "rgb(89DCEB)",
-        }
+        },
     },
     decoration = {
         rounding = 5,
         dim_inactive = true,
         dim_strength = 0.15,
         blur = {
-            new_optimizations = true,
-            xray = false,
-            noise = 0.1,
-            size = 3,
-            passes = 2,
-            special = true,
-            popups = true
+            enabled = true,
+            size = 10,
+            passes = 5,
         },
         shadow = {
             enabled = false
@@ -363,6 +359,7 @@ wr {
         class = 'osu!'
     },
     workspace = '1',
+    immediate = true
 }
 
 wr {
