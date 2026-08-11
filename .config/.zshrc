@@ -113,11 +113,12 @@ preexec () {
 
 
 enable_plugin "zsh-syntax-highlighting"
-enable_plugin "zsh-auto-complete"
+enable_plugin "zsh-autocomplete"
 # enable_plugin "fzf-tab-completion/zsh"
-source "$HOME/.config/zshplugs/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
-bindkey '^I' fzf_completion
-zstyle ":completion:*" fzf-search-display true
+# source "$HOME/.config/zshplugs/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
+bindkey '^I' menu-select
+# bindkey '^I' fzf_completion
+# zstyle ":completion:*" fzf-search-display true
 # enable_plugin "zsh-autocomplete"
 
 alias "ref=clear; source ~/.config/.zshrc"    
