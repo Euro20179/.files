@@ -18,6 +18,11 @@ setopt inc_append_history share_history EXTENDED_GLOB
 
 unsetopt BEEP
 
+hash -d ds=$XDG_DOWNLOAD_DIR
+hash -d dP=$XDG_PICTURES_DIR
+hash -d dF=$XDG_DOCUMENTS_DIR
+hash -d dm=$XDG_PICTURES_DIR/memes
+
 bindkey -v
 bindkey '^b' backward-char
 bindkey '^f' forward-char
@@ -133,5 +138,5 @@ fi
 autoload -U compinit
 compinit
 _comp_options+=(globdots)
-# compdef _gnu_generic ytfzf
+compdef _gnu_generic ytfzf
 # compdef _gnu_generic trash

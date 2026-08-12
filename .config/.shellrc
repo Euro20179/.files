@@ -222,6 +222,7 @@ EOF
 alias TODO='linkhandler vw:TODO.mmfml'
 
 alias "ds=cd ~/Downloads"
+alias "dP=cd ~/Pictures"
 alias "dF=cd ~/Documents"
 alias "dm=cd ~/Pictures/memes"
 
