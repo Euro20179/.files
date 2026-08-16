@@ -71,7 +71,7 @@ vim.ui.open = function(item, opts)
     vim.system(cmd)
 end
 
-if vim.hl and vim.hl.on_yank ~= nil then
+if vim.hl and vim.hl.hl_op ~= nil then
     local conf_group = vim.api.nvim_create_augroup("conf", {
         clear = true
     })
@@ -79,7 +79,7 @@ if vim.hl and vim.hl.on_yank ~= nil then
     vim.api.nvim_create_autocmd("TextYankPost", {
         group = conf_group,
         callback = function()
-            vim.hl.on_yank({ timeout = 100, higroup = "Visual" })
+            vim.hl.hl_op({ timeout = 100, higroup = "Visual" })
         end
     })
 end
