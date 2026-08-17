@@ -1,7 +1,7 @@
 #!/bin/nvim -S
 " Adds an update entry to my site's update log, and allows me to write a
 " description
-" Last Modified 08/16/2026 17:25
+" Last Modified 08/16/2026 18:21
 
 e $CLOUD/www/home/updates.xml
 /<h:article>
@@ -12,7 +12,7 @@ i|	<h:article>
 	</h:article>
 .
 norm 2k
-s/datetime=""></\='datetime="' . strftime('%Y-%m-%d') . '">' . strftime('%b %d, %Y') . '<'/
+s/datetime=""></\='datetime="' . strftime('%Y-%m-%dT%H:%M:%S') . '">' . strftime('%b %d, %Y at %H:%M:%S') . ' PST <'/
 norm j^f>l
 retab
 startinsert
