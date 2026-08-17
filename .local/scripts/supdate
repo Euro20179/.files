@@ -1,0 +1,18 @@
+#!/bin/nvim -S
+" Adds an update entry to my site's update log, and allows me to write a
+" description
+" Last Modified 08/16/2026 17:18
+
+e $CLOUD/www/home/updates.xml
+/<h:article>
+norm O
+i|	<h:article>
+		<h:time datetime=""></h:time>
+		<h:p></h:p>
+	</h:article>
+.
+norm 2k
+s/datetime=""></\='datetime="' . strftime('%Y-%m-%d') . '">' . strftime('%b %d, %Y') . '<'/
+norm j^f>l
+retab
+startinsert
