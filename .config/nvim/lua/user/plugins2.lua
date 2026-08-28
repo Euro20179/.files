@@ -1,4 +1,4 @@
-vim.o.pp = vim.o.pp .. ',' .. vim.fn.expand("$HOME/Programs/Coding Projects/neovim-plugins")
+vim.o.pp = vim.o.pp .. ',' .. vim.fn.expand("$HOME/Projects/Coding/by-type/neovim-plugins")
 
 
 -- mmfml plugin can be found: https://static.seceurity.place/git/nvim-mmfml
@@ -11,7 +11,7 @@ for _, plug in pairs({
     "gemini",
     "div",
     "find-highlight",
-    "irc.nvim",
+    "irc",
 }) do
     -- :packadd! = do not source plugin/*
     -- because plug is added to &rtp meaning it will get sourced anyway

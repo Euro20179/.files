@@ -9,6 +9,8 @@ endtry
 
 "standard vim plugins
 packadd cfilter
+
+"my plugins
 packadd stocks
 
 let g:stocks_api_key = readfile(expand("$XDG_DOCUMENTS_HOME") .. "/APIKeys/finnhub-stocks.apikey")[0]

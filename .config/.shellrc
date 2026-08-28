@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#allows `write`
+mesg y
+
 #######
 # IME #
 #######
@@ -14,20 +17,19 @@ export XMODIFIERS='@im=fcitx'
 # XDG #
 #######
 # {{{
-export XDG_HISTORY_DIR=${XDG_HISTORY_HOME:=$HOME/.history}
-export XDG_DATA_DIR=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_GAMES_DIR=${XDG_GAMES_HOME:="$HOME/Games"}
-export XDG_CACHE_DIR=${XDG_CACHE_HOME:="$HOME/.cache"}
-export XDG_CONFIG_DIR=${XDG_CONFIG_HOME:="$HOME/.config"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_DIR}
-export XDG_DOWNLOAD_DIR=${XDG_DOWNLOAD_HOME:="$HOME/Downloads"}
-export XDG_DOCUMENTS_DIR=${XDG_DOCUMENTS_HOME:="$HOME/Documents"}
-export XDG_DOCUMENTS_HOME=${XDG_DOCUMENTS_DIR}
-export XDG_PICTURES_DIR=${XDG_PICTURES_HOME:="$HOME/Pictures"}
-export XDG_VIDEOS_DIR=${XDG_VIDEOS_HOME:="$HOME/Videos"}
-export XDG_STATE_DIR=${XDG_STATE_HOME:="$HOME/.local/state"}
-export XDG_MUSIC_DIR=${XDG_MUSIC_HOME:="$HOME/Songs"}
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export XDG_GAMES_DIR="$HOME/Games"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_MUSIC_DIR="$HOME/Songs"
 export XDG_WALLPAPERS_DIR="$XDG_PICTURES_HOME/wallpapers"
+export XDG_PROJECTS_DIR="$HOME/Projects"
 # }}}
 
 #################
@@ -98,7 +100,7 @@ export SONGS_ROOT=$HOME/Songs/scripts
 # {{{
 export DIARY_FILE="$XDG_DOCUMENTS_HOME/.diary.zip"
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Programs/Coding Projects/bash:"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/opt:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Projects/Coding/by-lang/bash:"
 export PATH="$PATH:$GOPATH/bin:$CARGO_HOME/bin:/usr/share/code:$HOME/Programs/Coding Projects/bash:$HOME/.local/bin:$HOME/.local/scripts:/opt"
 export PATH="${PATH}:$HOME/.local/share/nvim/mason/bin:$XDG_CONFIG_HOME/emacs/bin"
 export PATH="${PATH}:/opt/servo"
@@ -140,7 +142,7 @@ alias stockrt='nvim +StockRT ~/Documents/stocks'
 
 config () {
     [ -n "$*" ] && {
-        git --git-dir=$HOME/Programs/GithubContribs/dotfiles/ --work-tree=$HOME "$@"
+        git --git-dir=$XDG_PROJECTS_DIR/GithubContribs/dotfiles/ --work-tree=$HOME "$@"
     }
 }
 
