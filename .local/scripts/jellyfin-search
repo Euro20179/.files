@@ -1,8 +1,8 @@
 #!/bin/bash
 
 jellyfinapi="https://cloud:9999/jellyfin"
-jellyfinkey=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-apikey)
-userid=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-userid)
+jellyfinkey=$(cat "$XDG_DOCUMENTS_DIR"/APIKeys/jellyfin-apikey)
+userid=$(cat "$XDG_DOCUMENTS_DIR"/APIKeys/jellyfin-userid)
 
 search=$1
 queryParams=$2

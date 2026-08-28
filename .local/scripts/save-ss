@@ -1,7 +1,7 @@
 #!/bin/bash
 
 folders="$CLOUD/Pictures/screenshots/
-$(fd --type directory . $XDG_PICTURES_HOME/screenshots)"
+$(fd --type directory . $XDG_PICTURES_DIR/screenshots)"
 
 folder=$(printf "%s" "$folders" | grep -vE "/[[:digit:]]{4,}/" | sort | rofi -dmenu -theme cat-macchiato)
 [ -z "$folder" ] && exit

@@ -2,7 +2,7 @@
 
 action=$1
 
-bookmark_dir="${XDG_DOCUMENTS_HOME}/bookmarks"
+bookmark_dir="${XDG_DOCUMENTS_DIR}/bookmarks"
 
 open() {
 	file=$(find "$bookmark_dir/" -type f -printf "%P\n" | while read -r line; do

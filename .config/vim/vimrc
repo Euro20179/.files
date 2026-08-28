@@ -13,7 +13,7 @@ packadd cfilter
 "my plugins
 packadd stocks
 
-let g:stocks_api_key = readfile(expand("$XDG_DOCUMENTS_HOME") .. "/APIKeys/finnhub-stocks.apikey")[0]
+let g:stocks_api_key = readfile(expand("$XDG_DOCUMENTS_DIR") .. "/APIKeys/finnhub-stocks.apikey")[0]
 
 "vim bad defaults {{{
 if !has("nvim")

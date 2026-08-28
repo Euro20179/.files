@@ -4,7 +4,7 @@ action=$1
 
 baseUrl="https://marks.cloud1:9999"
 
-token="$(cat $XDG_DOCUMENTS_HOME/APIKeys/linkding)"
+token="$(cat $XDG_DOCUMENTS_DIR/APIKeys/linkding)"
 
 cache=/tmp/linkding-cache-$(date +%H)
 

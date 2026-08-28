@@ -34,8 +34,8 @@ queryParams="Recursive=True&fields=Path&${queryParams}"
 [ "$search" ] && queryParams="searchTerm=${search}&${queryParams}"
 
 jellyfinapi="https://cloud:9999/jellyfin"
-jellyfinkey=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-apikey)
-userid=$(cat "$XDG_DOCUMENTS_HOME"/APIKeys/jellyfin-userid)
+jellyfinkey=$(cat "$XDG_DOCUMENTS_DIR"/APIKeys/jellyfin-apikey)
+userid=$(cat "$XDG_DOCUMENTS_DIR"/APIKeys/jellyfin-userid)
 
 sixel_cache="${XDG_CACHE_HOME}/aiow"
 
