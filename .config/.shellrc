@@ -217,7 +217,7 @@ EOF
         cd "$(eval echo "$(grep -Po '(?<=cd).*' "$XDG_STATE_HOME/vim-sessions/$vimsource")")"
         [ "$cd" = 1 ] && return
         printf "\x1b]2;%s\a" "CODING PROJECT: ${vimsource%.*}"
-        $EDITOR --listen "/tmp/${vimsource#.*}" -S "$XDG_STATE_HOME/vim-sessions/$vimsource" ||
+        $EDITOR -S "$XDG_STATE_HOME/vim-sessions/$vimsource" ||
     fi
 }
 
