@@ -10,8 +10,26 @@ endtry
 "standard vim plugins
 packadd cfilter
 
+" vim plugins
+if !has("nvim")
+    packadd lsp
+
+    call LspOptionsSet(#{
+        \   showSignatureDocs: v:true
+        \ })
+
+    call LspAddServer([#{
+        \   name: "clangd",
+        \   filetype: ["c", "cpp"],
+        \   path: "/bin/clangd",
+        \   args: ["--fallback-style=webkit"]
+        \ }])
+endif
+
 "my plugins
 packadd stocks
+packadd nmail
+let g:mail_server = "smtp://cloud"
 
 let g:stocks_api_key = readfile(expand("$XDG_DOCUMENTS_DIR") .. "/APIKeys/finnhub-stocks.apikey")[0]
 
@@ -194,7 +212,7 @@ nnoremap <leader>vw <CMD>call <SID>navigateToVimWiki()<CR>
 "}}}
 
 "Syntax highlighting {{{
-nnoremap <c-/> <CMD>noh \| lua if vim.fn.has("nvim-0.10.0") == 1 then vim.snippet.stop() end<CR>
+nnoremap <c-/> <CMD>noh \| lua if vim.fn.has("nvim-0.10.0") == 1 then vim.snippet.stop() end if vim.fn.has("nvim-0.13.0") then vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1) end<CR>
 "}}}
 
 "Normal movement {{{

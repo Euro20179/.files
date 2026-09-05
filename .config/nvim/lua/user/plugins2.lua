@@ -12,6 +12,7 @@ for _, plug in pairs({
     "div",
     "find-highlight",
     "irc",
+    "nmail"
 }) do
     -- :packadd! = do not source plugin/*
     -- because plug is added to &rtp meaning it will get sourced anyway
