@@ -198,7 +198,9 @@ main() {
         p*) pos=$((pos - 1)) ;;
         s* | e* | q*) exit 0 ;;
         u*)
-            if [ -n "$season" ]; then
+
+            seasoncount=$(ls -1 | grep '\([Ss]eason\|[Ss][[:digit:]]\)' | wc -l)
+            if [ -n "$season" ] && [ "$seasoncount" -gt 1 ]; then
                 updatepos "$id" "$pos,%20S${season}"
             else
                 updatepos "$id" "$pos"

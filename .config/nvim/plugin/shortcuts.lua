@@ -53,7 +53,7 @@ end)
 -- }}}
 
 --Normal Mode{{{
-local nShortcuts = {
+local nShortcuts = { -- {{{
     { dapLeader .. "b", function() require "lua.user.plugin-setup.dap".toggle_breakpoint() end, { desc = "[DAP] toggle breakpoint" } },
     { dapLeader .. "P", function() require "lua.user.plugin-setup.dap".pause() end,             { desc = "[DAP] pause" } },
     { dapLeader .. "c", function() require "lua.user.plugin-setup.dap".continue() end,          { desc = "[DAP] continue" } },
@@ -195,6 +195,9 @@ local nShortcuts = {
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
     { "<a-m>",   ":make<CR>",            { desc = "compile" } },
     { "g:",      ":= ",                  { desc = "[CMD]: lua expression" } },
+    { "<c-q>",   function()
+        vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1)
+    end, { desc = "clear cursors" }},
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})

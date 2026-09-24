@@ -216,7 +216,12 @@ setupLSP("cssls", {
 })
 
 setupLSP("lemminx", {
-    cmd = { "lemminx" },
+    cmd = {
+        "lemminx",
+        cmd_env = {
+            JAVA_HOME = "/usr/lib/jvm/java-21-openjdk/"
+        }
+    },
     filetypes = { "xml", "xslt" }
 })
 
