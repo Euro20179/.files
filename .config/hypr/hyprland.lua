@@ -154,9 +154,9 @@ hl.animation {
 mbind("XF86AudioMute", partial(hl.exec_cmd, "eject -T"))
 
 hl.bind("Print", function()
-    hl.exec_cmd("SCREENSHOT_OUTPUT=$(hyprctl -j activeworkspace | jq -r .monitor) scr-wayland")
+    hl.exec_cmd("SCREENSHOT_OUTPUT=$(hyprctl -j activeworkspace | jq -r .monitor) scr-wayland '' 'libjxl'")
 end)
-mbind("v", run "scr-wayland")
+mbind("v", run "scr-wayland '' 'libjxl'")
 mbind("SHIFT+v", run "scr-wayland '' '' 'no-save'")
 mbind("ALT+v", run "clip-send")
 

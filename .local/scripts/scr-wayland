@@ -14,7 +14,14 @@ year="$(date +%Y)"
 
 t="$XDG_PICTURES_DIR/screenshots/$year"
 ! [ -d "$t" ] && mkdir -p "$t"
-t="${t}/Screenshot_${USER}-$(uname)_$(date +%Y%m%d-%H%M%S).png"
+
+case "$image_lib" in
+    libjxl) ext="jxl" ;;
+    png) ext="png" ;;
+esac
+
+t="${t}/Screenshot_${USER}-$(uname)_$(date +%Y%m%d-%H%M%S).${ext}"
+
 wl-paste > "$t"
 
 exifDate=$(date "+%Y:%m:%d %H:%M:%S")

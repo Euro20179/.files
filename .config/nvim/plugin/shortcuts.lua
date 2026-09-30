@@ -195,9 +195,6 @@ local nShortcuts = { -- {{{
     end, { desc = "[TAG] go to [count] previous tag in the tag stack" } },
     { "<a-m>",   ":make<CR>",            { desc = "compile" } },
     { "g:",      ":= ",                  { desc = "[CMD]: lua expression" } },
-    { "<c-q>",   function()
-        vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1)
-    end, { desc = "clear cursors" }},
 }
 for _, map in ipairs(nShortcuts) do
     vim.keymap.set("n", map[1], map[2], map[3] or {})
