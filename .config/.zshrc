@@ -135,6 +135,8 @@ if [ "$VIM" ] && [ -z "$NVIM" ]; then
     alias l='ls -A --color=always -S --group-directories-first'
 fi
 
+zstyle ':autocomplete:*' ignored-input 'ssh://.*' 
+
 #autoload -U compinit
 #compinit
 _comp_options+=(globdots)

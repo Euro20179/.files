@@ -3,12 +3,20 @@
 slurp_args="$1"
 image_lib="${2:-png}"
 
+copypl() {
+    if [ "$image_lib" != "png" ]; then
+        ffmpeg -i - -c:v "$image_lib" -f image2pipe - | wl-copy -t image/png
+    else
+        wl-copy -t image/png
+    fi
+}
+
 if [ -z "$SCREENSHOT_OUTPUT" ]; then
     pos=${SCREENSHOT_POS:-$(slurp "$slurp_args")}
     grim -t png -g "$pos" /dev/stdout
 else
     grim -t png -o "$SCREENSHOT_OUTPUT" /dev/stdout
-fi | ffmpeg -i - -c:v "${image_lib}" -f image2pipe - | wl-copy -t image/png
+fi | copypl
 
 year="$(date +%Y)"
 

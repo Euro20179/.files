@@ -21,7 +21,7 @@ if [ "$save" -eq 1 ]; then
 	# args=(--choosefile="$out" "${path%/*}")
 elif [ "$dir" -eq 1 ]; then
     notify-send "Choose directory"
-	args=(--cwd-file="${out}")
+	args=(--cwd-file="${out}" "--chooser-file=$out")
 	# args=(--choosedir="$out" --show-only-dirs)
 elif [ "$multiple" -eq 1 ]; then
     notify-send "Choose multiple files"

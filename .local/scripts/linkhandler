@@ -67,6 +67,7 @@ try_custom_uri() {
         *.m3u?) mpv "$link" ;;
         *.onion) tor "$link" ;;
         *.sheet) $TERMINAL -e sheet "$link" ;;
+        *.tierlist|*.tierlistx) tierlist-maker "$link" ;;
         nv://*) nvim "$link" ;;
         exe://*) "${link#exe://}" ;;
         media://*) mpv "${link#media://}" ;;

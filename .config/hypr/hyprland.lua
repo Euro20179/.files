@@ -386,6 +386,8 @@ for _, name in pairs({
     "nvim-float",
     "pick-reaction-image",
     "goker",
+    "th06e.exe",
+    "東方紅魔郷.exe"
 }) do
     wr {
         name = name,

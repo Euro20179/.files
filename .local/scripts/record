@@ -13,4 +13,5 @@ ffmpeg $args \
     -device /dev/dri/card1 -crtc_id "$(modetest -p | sed -n '/^[[:digit:]]/p' | head -n1 | awk '{print $1}')" \
     -f kmsgrab -i - \
     -vf 'hwmap=derive_device=vaapi,hwdownload,format=bgr0' \
+    -c:v hevc_amf \
     "$(date)".mp4
