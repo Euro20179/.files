@@ -117,14 +117,13 @@ preexec () {
 }
 
 
+export ZSH_AUTOSUGGEST_STRATEGY=(completion history match_prev_cmd)
+autoload -U compinit
+compinit
 enable_plugin "zsh-syntax-highlighting"
-enable_plugin "zsh-autocomplete"
-# enable_plugin "fzf-tab-completion/zsh"
-# source "$HOME/.config/zshplugs/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
-bindkey '^I' menu-select
-# bindkey '^I' fzf_completion
-# zstyle ":completion:*" fzf-search-display true
-# enable_plugin "zsh-autocomplete"
+enable_plugin "zsh-autosuggestions"
+enable_plugin "fzf-tab"
+zstyle ":completion:*" fzf-search-display true
 
 alias "ref=clear; source ~/.config/.zshrc"    
 
@@ -135,10 +134,8 @@ if [ "$VIM" ] && [ -z "$NVIM" ]; then
     alias l='ls -A --color=always -S --group-directories-first'
 fi
 
-zstyle ':autocomplete:*' ignored-input 'ssh://.*' 
+# zstyle ':autocomplete:*' ignored-input 'ssh://.*' 
 
-#autoload -U compinit
-#compinit
 _comp_options+=(globdots)
 compdef _gnu_generic ytfzf
 # compdef _gnu_generic trash
