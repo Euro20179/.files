@@ -163,7 +163,7 @@ alias "bc=bc -l"
 alias "less=less -r"
 alias "wget=wget --no-hsts"
 
-alias "l=lsd --hyperlink auto --group-directories-first -A"
+alias "l=lsd --hyperlink auto --group-directories-first -AX"
 alias "ll=command ls -ASs --group-directories-first --color=auto"
 
 alias 'mkre=mkre -f remind@barney -t user@raspberrypi $CLOUD/reminders'

@@ -3,11 +3,11 @@
 slurp_args="$1"
 image_lib="${2:-png}"
 
-copypl() {
+convert() {
     if [ "$image_lib" != "png" ]; then
-        ffmpeg -i - -c:v "$image_lib" -f image2pipe - | wl-copy -t image/png
+        ffmpeg -i - -c:v "$image_lib" -f image2pipe -
     else
-        wl-copy -t image/png
+        cat
     fi
 }
 
@@ -16,7 +16,7 @@ if [ -z "$SCREENSHOT_OUTPUT" ]; then
     grim -t png -g "$pos" /dev/stdout
 else
     grim -t png -o "$SCREENSHOT_OUTPUT" /dev/stdout
-fi | copypl
+fi | wl-copy -t image/png
 
 year="$(date +%Y)"
 
@@ -30,7 +30,7 @@ esac
 
 t="${t}/Screenshot_${USER}-$(uname)_$(date +%Y%m%d-%H%M%S).${ext}"
 
-wl-paste > "$t"
+wl-paste -t image/png | convert > "$t"
 
 exifDate=$(date "+%Y:%m:%d %H:%M:%S")
 exiftool -overwrite_original "-alldates=${exifDate}" "$t"
