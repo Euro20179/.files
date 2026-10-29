@@ -95,12 +95,12 @@ play() {
     else
         nfo=$(echo "${path%/*}/"*".nfo")
     fi
-    printf -- "\n\n--------------------\n\n" | cat "$nfo" -
+    printf -- "\n\n--------------------\n\n" | cat - "$nfo"
 
     if [ "$subs" ]; then
         exe=(mpv --sub-files="${subs}" "$path")
     elif [ "$type" = "Game" ]; then
-        exe=(linkhandler "$path")
+        exe=(linkhandler -E "$path")
     else
         exe=(mpv "$path")
     fi
@@ -155,6 +155,7 @@ shift $((OPTIND - 1))
 
 search=$*
 search="${search// /\\ }"
+[ -z "$search" ] && search="%"
 main() {
     results="$(mksearch "$search")"
     selection="$(mkselection "$results")"

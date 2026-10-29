@@ -1,9 +1,11 @@
 #!/bin/bash
 #LH_NO_EDIT is used in my nvim config to say, dont edit just exit with an error to let nvim handle the editing
 
-while getopts "e" OPT; do
+exec=0
+while getopts "eE" OPT; do
     case "$OPT" in
         e) LINKHANDLER_EXPAND_ONLY=1 ;;
+        E) exec=1 ;;
         *) : ;;
     esac
 done
@@ -13,6 +15,14 @@ shift "$((OPTIND-1))"
 link="$*"
 : "${LH_NO_EDIT=0}"
 : "${LINKHANDLER_EXPAND_ONLY:-0}"
+
+if [ "$exec" = 1 ]; then
+    case "$link" in
+        steam://*) steam "$link" ;;
+        *) "$link" ;;
+    esac
+    exit
+fi
 
 # EDITOR="$TERMINAL $EDITOR"
 #
