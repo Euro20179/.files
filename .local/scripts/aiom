@@ -2,7 +2,7 @@
 
 mksearch() {
     local search=$1
-    curl -s "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "search=@${search}" | jq -r '"\(.ItemId)\t\(.En_Title)\t\(.Type)\t\(.Location)"'
+    curl -s "$AIO_SERVER/api/v1/query-v3" -G --data-urlencode "search=@${search}" --data-urlencode "uid=1" | jq -r '"\(.ItemId)\t\(.En_Title)\t\(.Type)\t\(.Location)"'
 }
 
 mkselection() {
@@ -54,9 +54,13 @@ getsubs() {
     valid=""
     while read -r file; do
         [ -z "$file" ] && continue
-        if [ "$(episode-grabber.py "$file" "${file%/*}")" -eq "$pos" ]; then
-            valid=$(printf "%s:%s" "$valid" "$file")
-        fi
+        while read -r epnr; do
+            epnr="${epnr%%[[:space:]]*}"
+            if [ "$epnr" -eq "$pos" ]; then
+                valid=$(printf "%s:%s" "$valid" "$file")
+                break
+            fi
+        done <<< "$(episode-grabber.py "$file" "${file%/*}")";
     done <<<"$(fd -i sub "$location" | xargs -I{} fd . "{}")"
     printf "%s" "${valid#:}"
 }
@@ -78,10 +82,12 @@ getseason() {
 findfile() {
     local location="$1"
     while read -r file; do
-        if [ "$(episode-grabber.py "$file" "$location" i)" = "$pos" ]; then
-            printf "%s" "$file"
-            break
-        fi
+        while read -r epnr; do
+            if [ "$epnr" = "$pos" ]; then
+                printf "%s" "$file"
+                return 0
+            fi
+        done <<< "$(episode-grabber.py "$file" "$location" i)"
     done <<<"$(ls -1 "$location")"
 }
 
@@ -143,11 +149,13 @@ manual_mode() {
 ask_subs=0
 season=""
 manual=0
-while getopts "sS:m" OPT; do
+type=""
+while getopts "sS:mt" OPT; do
     case "$OPT" in
     s) ask_subs=1 ;;
     S) season=$OPTARG ;;
     m) manual=1 ;;
+    t) type="$OPTARG" ;;
     *) : ;;
     esac
 done
@@ -177,14 +185,17 @@ main() {
         [ -z "$season" ] && season="$(getseason "$location")"
         [ "$season" ] && location="${location}/${season}"
 
-
         case "$type" in
         Show)
             file=$(findfile "$location")
-            #if the file is not found then we have probably reached the end of the season, ask again
+            #if the file is not found then either: we have reached the end of show, OR we are not looking a list of eps, pick a season either way
             [ -z "$file" ] && {
                 season="$(getseason "$base_location")"
                 [ "$season" ] && location="${base_location}/${season}"
+            }
+            file=$(findfile "$location")
+            [ -z "$file" ] && {
+                # if we still dont have a file, set pos to 1
                 pos=1
             }
             location="${location}/$(findfile "$location")"

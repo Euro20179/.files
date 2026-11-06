@@ -48,7 +48,7 @@ seasonRegex = re.compile(r"(S|Season ?)(\d+)(?:[E\.]|$)", re.IGNORECASE)
 #and the suffix MUST match [\W_-. ]
 #this will match something like S03E10, or S1x30 or NAME 3.mkv, etc...
 #the extra garbage MUST be included to compare against other files
-epRegex = re.compile(r"([\W_\-\. ]|E|OVA|\dx)?(\d+(?:\.\d+)?[\W_\-\. ]|$)", re.IGNORECASE)
+epRegex = re.compile(r"([\W_\-\. ]|E|OVA|\dx)?(?:(\d+(?:\.\d+)?)[\W_\-\. E]|$)", re.IGNORECASE)
 epMatches = epRegex.findall(currentFile)
 
 curSeason = seasonRegex.findall(currentFile)
@@ -68,6 +68,7 @@ currentFile = str(Path(directory) / Path(currentFile))
 for file in files:
     file = str(Path(directory) / Path(file))
     if file == currentFile: continue
+    file = os.path.basename(file)
 
     fileSeason = seasonRegex.findall(file)
     fileSeason = int(fileSeason[0][1]) if fileSeason else -1
@@ -89,15 +90,22 @@ if len(realMatches) == 0:
         sys.stdout.write("")
 
 else:
-    numMatch: str = realMatches[0]
-    if len(args) > 2 and args[2] == "i":
+    # numMatch: str = realMatches[0]
+    prevnr = 0
+    for i, numMatch in enumerate(realMatches):
+        if not numMatch[1]: continue
+        if len(args) > 2 and args[2] == "i":
+            #only fractional eps should get converted to a float
+            #otherwise we get .0 on integer eps
+            ep = str((float if "." in numMatch[1] else int)(numMatch[1]))
+        else:
+            ep = numMatch[1]
 
-        #only fractional eps should get converted to a float
-        #otherwise we get .0 on integer eps
-        ep = str((float if "." in numMatch[1][:-1] else int)(numMatch[1][:-1]))
-    else:
-        ep = numMatch[1][:-1]
-    if printBoth:
-        _ = sys.stdout.write(f"{curSeason}:{ep}")
-    else:
-        _ = sys.stdout.write(ep)
+        if i > 0 and float(ep) - prevnr > 1:
+            break
+
+        if printBoth:
+            print(f"{curSeason}:{ep}")
+        else:
+            print(ep)
+        prevnr = float(ep)

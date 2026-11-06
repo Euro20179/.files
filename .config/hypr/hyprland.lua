@@ -399,6 +399,14 @@ for _, name in pairs({
 end
 
 wr {
+    name = "no hdr",
+    match = {
+        title = ".*"
+    },
+    no_auto_hdr = true
+}
+
+wr {
     name = "steam Big Picture",
     match = {
         title = "Steam Big Picture Mode"
