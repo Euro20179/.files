@@ -70,6 +70,7 @@ getseason() {
     seasons=""
     for pat in "[Ss]eason*" "[Ss][[:digit:]]*"; do
         for file in "$location"/$pat; do
+            ! [ -d "$file" ] && continue
             case "$file" in
             *"$pat") continue ;;
             esac

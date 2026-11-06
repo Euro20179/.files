@@ -91,6 +91,8 @@ if len(realMatches) == 0:
 
 else:
     # numMatch: str = realMatches[0]
+    # one file should only have consecutive episode numbers, it'd be weird if they didn't
+    # ensure file only contains consecutive numbers.
     prevnr = 0
     for i, numMatch in enumerate(realMatches):
         if not numMatch[1]: continue
