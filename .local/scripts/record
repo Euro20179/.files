@@ -2,10 +2,13 @@
 sudo setcap cap_sys_admin+ep $(which ffmpeg)
 
 args=""
+postargs=""
 for arg in "$@"; do
     case "$arg" in
         -mic) args="$args -f pulse -i -" ;;
-        -pcaudio) args="$args -f pulse -i alsa_output.pci-0000_2f_00.4.analog-stereo.monitor" ;;
+        -pcaudio)
+            args="$args -f pulse -i alsa_output.pci-0000_2f_00.4.analog-stereo.monitor" ;;
+        *) postargs="$postargs $arg" ;;
     esac
 done
 
@@ -13,5 +16,6 @@ ffmpeg $args \
     -device /dev/dri/card1 -crtc_id "$(modetest -p | sed -n '/^[[:digit:]]/p' | head -n1 | awk '{print $1}')" \
     -f kmsgrab -i - \
     -vf 'hwmap=derive_device=vaapi,hwdownload,format=bgr0' \
+    $postargs \
     -c:v hevc_amf \
     "$(date)".mp4
