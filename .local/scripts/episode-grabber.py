@@ -48,7 +48,7 @@ seasonRegex = re.compile(r"(S|Season ?)(\d+)(?:[E\.]|$)", re.IGNORECASE)
 #and the suffix MUST match [\W_-. ]
 #this will match something like S03E10, or S1x30 or NAME 3.mkv, etc...
 #the extra garbage MUST be included to compare against other files
-epRegex = re.compile(r"([\W_\-\. ]|E|OVA|\dx)?(?:(\d+(?:\.\d+)?)[\W_\-\. E]|$)", re.IGNORECASE)
+epRegex = re.compile(r"([\W_\-\. ]|E|OVA|\dx|^)(\d+(?:\.\d+)?)(?:[\W_\-\. E]|$)", re.IGNORECASE)
 epMatches = epRegex.findall(currentFile)
 
 curSeason = seasonRegex.findall(currentFile)
