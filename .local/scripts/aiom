@@ -108,6 +108,8 @@ play() {
         exe=(mpv --sub-files="${subs}" "$path")
     elif [ "$type" = "Game" ]; then
         exe=(linkhandler -E "$path")
+    elif ! [ -d "$path" ]; then
+        exe=(linkhandler "$path")
     else
         exe=(mpv "$path")
     fi
