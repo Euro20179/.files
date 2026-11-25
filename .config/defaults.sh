@@ -5,7 +5,7 @@
 ################################################################################
 
 export CLOUD="/home/cloud"
-export SYSTEM_IMAGES="$XDG_PICTURES_HOME/system-images"
+export SYSTEM_IMAGES="$XDG_PICTURES_DIR/system-images"
 export SHELL_LIB="$HOME/.local/lib/shell"
 export BOOKS="$CLOUD/Books/"
 export MOVIES="$CLOUD/Movies"

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-librewolf -P no-privacy "$@"
+#librewolf -P no-privacy "$@"
+
+exec firefox -P no-privacy "$@"

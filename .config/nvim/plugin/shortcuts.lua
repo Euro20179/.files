@@ -26,7 +26,7 @@ vim.cmd [[
             endif
         endif
     endfun
-    nnoremap <expr> <M-u><c-c> OpenClrPicker()
+    nnoremap <expr> <c-c> OpenClrPicker()
 ]]
 
 vim.keymap.set("n", "<c-c><c-c>", function()

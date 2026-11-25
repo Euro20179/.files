@@ -1,9 +1,11 @@
 #!/bin/sh
 
-EXE=librewolf
-command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
-exec "$EXE" -P "default-default" "$@"
+# EXE=librewolf
+# command -v librewolf-bin > /dev/null 2>&1 && EXE=librewolf-bin
+# exec "$EXE" -P "default-default" "$@"
 
 # exec "glide-bin" -P default-glide "$@"
 
 # # firefox-developer-edition -P default-release "$@"
+
+exec firefox -P default-release "$@"

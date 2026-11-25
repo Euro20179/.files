@@ -1,5 +1,14 @@
 @import "../COMMON/colors.scss";
 
+:root {
+  /* omori {{{ */
+  // --toolbar-field-text-color: #9cc2df !important;
+  // --toolbar-field-text-color-focus: #9cc2df !important;
+  // --urlbarview-background-color-selected: #f6c0f8 !important;
+  // --urlbarview-text-color-selected: #9f67f6 !important;
+  /* END omori }}} */
+}
+
 /* small topbar hack  {{{*/
 // #nav-bar {
 //   height: fit-content;
@@ -49,14 +58,12 @@ hbox.titlebar-buttonbox-container {
 /* END }}} */
 
 /* hide basically everything but omnibar {{{ */
-/*
 #back-button,
 #forward-button,
 #alltabs-button,
-toolbaritem[widget-type="custom"] {
+#fxa-toolbar-menu-button{
   display: none;
 }
-*/
 /* END }}}*/
 
 /* bottom address bar hack {{{*/

@@ -15,13 +15,13 @@ set.wayland() {
         killall gamescope
         restart-waybar
     else
-        wlr-randr --output DP-2 --on
-        wlr-randr --output HDMI-A-1 --off
-        wlr-randr --output DP-1 --off
         sleep 1
         pactl set-default-sink 'alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4'
         touch "$state_file"
         gamescope -w 1920 -h 1080 -e steam & disown
+        wlr-randr --output DP-2 --on
+        wlr-randr --output HDMI-A-1 --off
+        wlr-randr --output DP-1 --off
     fi
 }
 

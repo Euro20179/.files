@@ -399,9 +399,9 @@ for _, name in pairs({
 end
 
 wr {
-    name = "no hdr",
+    name = "no hdr2",
     match = {
-        title = ".*"
+        class = ".*"
     },
     no_auto_hdr = true
 }
